@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">  
 <title>متجر عُمراء | Omara Store</title>  
 <link rel="preconnect" href="https://fonts.googleapis.com">  
-<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Markazi+Text:wght@400;600;700&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">  
+<!-- تم إضافة خطوط كايرو وأميري لتوفير خيارات أكثر في لوحة التحكم -->
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@400;600;700&family=Markazi+Text:wght@400;600;700&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">  
 <style>  
   :root{  
     --cream:#F8EACB;  
@@ -20,6 +21,7 @@
     --ok:#4C6B3E;  
     --shadow:0 10px 30px rgba(32,48,28,.10);  
     --card-width: 180px; 
+    --product-font: 'Aref Ruqaa', serif; /* متغير ديناميكي لخط المنتجات */
   }  
   *{box-sizing:border-box;}  
   html,body{margin:0;padding:0;}  
@@ -82,6 +84,14 @@
     display:inline-flex; align-items:center; justify-content:center; padding:0 4px;  
   }  
   
+  @media (max-width: 768px) {
+    .topbar-inner { flex-wrap: wrap; justify-content: space-between; }
+    .brand { flex: 1; }
+    nav.pillnav { order: 3; width: 100%; justify-content: center; margin-top: 10px; flex-wrap: wrap; background:transparent; border:none; box-shadow:none; padding:0; gap:8px;}
+    nav.pillnav button { background:var(--card); border:1px solid var(--line); box-shadow:var(--shadow); flex:1; text-align:center; white-space:nowrap;}
+    nav.pillnav button.active,nav.pillnav button:hover{background:var(--ink); color:var(--cream);}
+  }
+
   .hero{max-width:900px; margin:50px auto 10px; text-align:center; padding:0 20px;}  
   .hero .eyebrow{font-size:19px; color:var(--gold); margin-bottom:6px;}  
   .hero h1{font-size:64px; margin:4px 0 10px; color:var(--ink);}  
@@ -99,12 +109,7 @@
     border-radius:20px; overflow:hidden; 
     box-shadow:var(--shadow); border:1px solid var(--line);
     background-color: var(--cream-deep);
-    
-    /* الشفرة الجوهرية لأجهزة سفاري وأبل لقص زوايا الفيديو بدون انحراف */
-    -webkit-transform: translateZ(0); 
-    transform: translateZ(0);
-    -webkit-mask-image: -webkit-radial-gradient(white, black);
-    
+    -webkit-transform: translateZ(0); transform: translateZ(0);
     display: flex; align-items: center; justify-content: center;
   }
   .ad-slide { position:absolute; inset:0; opacity:0; transition:opacity 1s ease-in-out; width:100%; height:100%; object-fit:cover; }
@@ -141,7 +146,8 @@
   .badge-out{position:absolute; inset:0; background:rgba(32,48,28,.55); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; border-radius:20px;}  
   
   .card .body{padding:12px 0; display:flex; flex-direction:column; gap:6px; width:100%;}  
-  .card .name{font-family:'Aref Ruqaa',serif; font-size:24px; margin:0;}  
+  /* الخط المخصص لأسماء المنتجات هنا */
+  .card .name{font-family:var(--product-font); font-size:24px; margin:0;}  
   .card .desc, .card .swatches { display:none; }  
   
   .swatches{display:flex; gap:6px; flex-wrap:wrap;}  
@@ -160,7 +166,12 @@
   .empty{text-align:center; padding:60px 20px; color:var(--ink-soft); grid-column: 1 / -1;}  
   
   footer{border-top:1px solid var(--line); padding:36px 22px; text-align:center; color:var(--ink-soft); font-size:13px;}  
-  footer .admin-link{display:block; margin-top:10px; font-size:11px; opacity:.55;}  
+  footer .admin-link{display:block; margin-top:20px; font-size:11px; opacity:.55;}  
+
+  /* تنسيق أيقونات السوشيال ميديا */
+  .social-links { display: flex; justify-content: center; gap: 16px; margin-top: 20px; }
+  .social-links a { color: var(--ink-soft); display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); transition: .2s; background: var(--card); }
+  .social-links a:hover { transform: translateY(-3px); color: var(--ink); border-color: var(--ink); box-shadow: var(--shadow); }
   
   .scrim{position:fixed; inset:0; background:rgba(20,26,16,.55); backdrop-filter:blur(3px); z-index:80; opacity:0; pointer-events:none; transition:.3s;}  
   .scrim.show{opacity:1; pointer-events:auto;}  
@@ -245,7 +256,6 @@
   .icon-btn.danger{color:var(--danger); border-color:var(--danger);}  
   #loginModal .msg{font-size:12px; color:var(--danger); min-height:16px;}  
 
-  /* تنسيق الأقسام في الإدارة */
   .admin-cat-pill { background:var(--cream); border:1px solid var(--gold-soft); padding:6px 12px; border-radius:999px; font-size:13px; display:inline-flex; align-items:center; gap:8px; }
   .admin-cat-pill button { background:none; border:none; color:var(--danger); cursor:pointer; font-weight:bold; }
 </style>  
@@ -297,7 +307,8 @@
   <div id="adBannerContainer">
     <a id="adBannerLink" href="#" target="_blank">
       <div id="adMediaWrapper" class="ad-container">
-        </div>
+        <!-- سيتم إضافة الوسائط هنا -->
+      </div>
     </a>
   </div>
   
@@ -320,6 +331,10 @@
   <footer>  
     <div>متجر عُمراء © <span id="yr"></span> — جميع الحقوق محفوظة</div>  
     <div id="footerPolicies" style="margin-top:10px; font-size:12.5px; opacity:0.85; white-space:pre-line;"></div>  
+    
+    <!-- مساحة روابط التواصل الاجتماعي -->
+    <div id="socialLinks" class="social-links"></div>
+
     <a class="admin-link" href="#admin" onclick="openAdminLogin()">لوحة التحكم</a>  
   </footer>  
 </div>  
@@ -344,7 +359,7 @@
       <img id="pmImage" src="">
     </div>
     <div class="pm-info-col">
-      <h2 id="pmName" style="font-family:'Aref Ruqaa',serif; font-size:36px; margin:0 0 10px; line-height:1.2;"></h2>
+      <h2 id="pmName" style="font-family:var(--product-font); font-size:36px; margin:0 0 10px; line-height:1.2;"></h2>
       <div id="pmPrice" class="price" style="font-size:26px; color:var(--gold); margin-bottom:16px; direction:ltr; display:flex; gap:8px; justify-content:flex-end;"></div>
       <div style="font-size:14px; font-weight:700; color:var(--ink-soft); margin-bottom:16px; display:inline-flex; align-items:center; gap:6px; background:var(--cream); padding:6px 14px; border-radius:999px; width:fit-content; border:1px solid var(--line);">
         <span>✦ الصناعة والبراند:</span> <span>عُمراء للعطور الفاخرة</span>
@@ -476,6 +491,19 @@
     <div id="tab-settings" style="display:none;">  
 
       <div class="form-card">
+        <h3 style="margin-top:0;">الخطوط والمظهر</h3>
+        <label>خط أسماء المنتجات</label>
+        <select id="setProductFont">
+          <option value="'Aref Ruqaa', serif">عارف رقعة (Aref Ruqaa) - افتراضي</option>
+          <option value="'Tajawal', sans-serif">تجوال (Tajawal)</option>
+          <option value="'Markazi Text', serif">مركزي (Markazi Text)</option>
+          <option value="'Cairo', sans-serif">كايرو (Cairo)</option>
+          <option value="'Amiri', serif">أميري (Amiri)</option>
+        </select>
+        <div class="hint">هذا الخيار يغير الخط في كرت المنتج وفي نافذة تفاصيل المنتج فقط.</div>
+      </div>
+
+      <div class="form-card">
         <h3 style="margin-top:0;">إدارة الأقسام (الكاتجري)</h3>
         <label>إضافة قسم جديد</label>
         <div style="display:flex; gap:8px;">
@@ -483,7 +511,24 @@
           <button class="btn small" style="width:auto; padding:0 20px;" onclick="addNewCategory()">إضافة</button>
         </div>
         <div id="adminCategoryList" style="display:flex; flex-wrap:wrap; gap:8px; margin-top:14px;"></div>
-        <div class="hint">اضغط حفظ الإعدادات في الأسفل لتأكيد التغييرات.</div>
+      </div>
+
+      <div class="form-card">
+        <h3 style="margin-top:0;">حسابات التواصل الاجتماعي</h3>
+        <label>رقم واتساب (بدون أصفار، مثال: 9677...)</label>
+        <input type="text" id="setWhatsapp" placeholder="96877XXXXXXX">
+        
+        <label>رابط فيسبوك</label>
+        <input type="text" id="setFacebook" placeholder="https://facebook.com/...">
+        
+        <label>رابط إنستقرام</label>
+        <input type="text" id="setInstagram" placeholder="https://instagram.com/...">
+        
+        <label>رابط تيليجرام</label>
+        <input type="text" id="setTelegram" placeholder="https://t.me/...">
+        
+        <label>رابط تويتر / إكس</label>
+        <input type="text" id="setTwitter" placeholder="https://x.com/...">
       </div>
 
       <div class="form-card">
@@ -522,8 +567,7 @@
       </div>
 
       <div class="form-card">  
-        <h3 style="margin-top:0;">إعدادات عامة</h3>  
-        <label>رقم واتساب المتجر</label><input type="text" id="setWhatsapp" placeholder="96877XXXXXXX">  
+        <h3 style="margin-top:0;">إعدادات عامة إضافية</h3>  
         <label>عرض كرت المنتج (بالبيكسل - للتحكم بالحجم)</label>
         <input type="number" id="setCardWidth" placeholder="180">
         <label>كلمة مرور لوحة التحكم الجديدة</label><input type="password" id="setNewPass" placeholder="اتركه فارغًا إن لم ترغب بالتغيير">  
@@ -535,6 +579,7 @@
   
 <div class="toast" id="toast"></div>  
   
+<!-- ============ SUPABASE SCRIPT ============ -->  
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>  
 <script>  
 const SUPABASE_URL = "https://vhnvjcioxmacfsogmrka.supabase.co";  
@@ -544,7 +589,7 @@ const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 let products = [];  
 let orders = [];  
 let paymentSettings = {};  
-let generalSettings = { whatsapp: "96877881748", cardWidth: 180, categories: ['عطور فاخرة', 'منتجات أخرى'], adMedia: [], adType: 'none' };  
+let generalSettings = { whatsapp: "96877881748", cardWidth: 180, categories: ['عطور فاخرة', 'منتجات أخرى'], adMedia: [], adType: 'none', productFont: "'Aref Ruqaa', serif" };  
 let activeCategory = 'الكل';  
 let pendingImageFiles = [];  
 let existingImageUrls = [];  
@@ -611,7 +656,6 @@ function renderAdMedia() {
 
   container.style.display = 'block';
   
-  // تفعيل أو تعطيل الرابط
   if(generalSettings.adLink && generalSettings.adLink.trim() !== '') {
       linkWrap.href = generalSettings.adLink;
       linkWrap.style.pointerEvents = 'auto';
@@ -621,30 +665,13 @@ function renderAdMedia() {
   }
   
   if (type === 'video') {
-    // كود مخصص لأجهزة أبل بقوة التشغيل
-    wrapper.innerHTML = `<video id="promoVideo" class="ad-video" autoplay loop muted playsinline webkit-playsinline disablePictureInPicture>
+    wrapper.innerHTML = `<video class="ad-video" autoplay loop muted playsinline webkit-playsinline disablePictureInPicture>
                            <source src="${media[0]}">
                          </video>`;
-    
     setTimeout(() => {
-        const v = document.getElementById('promoVideo');
-        if(v) {
-            v.muted = true; 
-            v.defaultMuted = true;
-            v.play().catch(e => {
-                console.log('Autoplay blocked by iOS. Waiting for user interaction.');
-                // إذا رفضت أبل التشغيل التلقائي، ننتظر أي لمسة في الشاشة لنجبره على التشغيل
-                const forcePlay = () => {
-                    v.play();
-                    document.removeEventListener('touchstart', forcePlay);
-                    document.removeEventListener('click', forcePlay);
-                };
-                document.addEventListener('touchstart', forcePlay);
-                document.addEventListener('click', forcePlay);
-            });
-        }
-    }, 150);
-
+        const v = wrapper.querySelector('video');
+        if(v) v.play().catch(e => console.log('Video autoplay prevented:', e));
+    }, 300);
   } else if (type === 'slider' || media.length > 1) {
     wrapper.innerHTML = media.map((src, i) => `<img class="ad-slide ${i===0?'active':''}" src="${src}">`).join('');
     let curr = 0;
@@ -694,6 +721,12 @@ async function fetchSettings() {
         renderCategories(); 
 
         document.getElementById('setWhatsapp').value = generalSettings.whatsapp || '';  
+        document.getElementById('setFacebook').value = generalSettings.facebook || '';
+        document.getElementById('setInstagram').value = generalSettings.instagram || '';
+        document.getElementById('setTelegram').value = generalSettings.telegram || '';
+        document.getElementById('setTwitter').value = generalSettings.twitter || '';
+        document.getElementById('setProductFont').value = generalSettings.productFont || "'Aref Ruqaa', serif";
+
         const width = generalSettings.cardWidth || 180;
         document.getElementById('setCardWidth').value = width;
         document.getElementById('setSloganTitle').value = generalSettings.sloganTitle || 'عطور تُروى، لا تُقال';
@@ -703,7 +736,6 @@ async function fetchSettings() {
         document.getElementById('setAdLink').value = generalSettings.adLink || '';
         document.getElementById('setWatermarkText').value = generalSettings.watermarkText || '';
         
-        // Admin Ad Preview
         const adPrevBox = document.getElementById('adMediaAdminPreview');
         if (generalSettings.adMedia && generalSettings.adMedia.length > 0) {
             document.getElementById('removeAdBtn').style.display = 'inline-block';
@@ -730,11 +762,31 @@ async function fetchSettings() {
         setWatermark(generalSettings.watermarkText);
 
         document.documentElement.style.setProperty('--card-width', width + 'px');
+        document.documentElement.style.setProperty('--product-font', generalSettings.productFont || "'Aref Ruqaa', serif");
+
         document.getElementById('waLink').href = 'https://wa.me/'+(generalSettings.whatsapp||'96877881748');  
         document.getElementById('storeSloganTitle').textContent = generalSettings.sloganTitle || 'عطور تُروى، لا تُقال';
         document.getElementById('storeSloganDesc').textContent = generalSettings.sloganDesc || 'تشكيلة عطور ومنتجات مختارة بعناية، بروح شرقية أصيلة ولمسة عصرية فاخرة. كل قطعة في متجرنا تُختار لتبقى.';
         document.getElementById('storeAboutText').textContent = generalSettings.aboutText || 'متجر عُمراء برئاسة عامر الشعيبي، وجهتك للعطور الفاخرة والمنتجات المختارة بعناية. نلتزم بالجودة والأصالة في كل تفصيل.';
         document.getElementById('footerPolicies').textContent = generalSettings.policies || '';
+        
+        // بناء أيقونات السوشيال ميديا أسفل الموقع
+        const slBox = document.getElementById('socialLinks');
+        let slHtml = '';
+        const icons = {
+          facebook: `<svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/></svg>`,
+          instagram: `<svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>`,
+          telegram: `<svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/></svg>`,
+          twitter: `<svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`,
+          whatsapp: `<svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984a9.964 9.964 0 001.333 4.993L2 22l5.233-1.337a9.983 9.983 0 004.779 1.217h.004c5.502 0 9.985-4.48 9.985-9.984C21.996 6.481 17.513 2 12.012 2zM12.016 19.988a8.448 8.448 0 01-4.3-1.17l-.308-.184-3.197.818.833-3.05-.205-.316a8.434 8.434 0 01-1.285-4.502c0-4.662 3.8-8.455 8.468-8.455 4.664 0 8.457 3.791 8.457 8.453-.001 4.665-3.794 8.456-8.463 8.456zm4.646-6.353c-.255-.128-1.507-.743-1.74-.828-.233-.085-.403-.128-.574.128-.17.255-.658.828-.806.999-.15.17-.3.192-.555.064-.255-.128-1.076-.396-2.05-1.123-.757-.565-1.268-1.264-1.418-1.519-.15-.255-.016-.392.112-.52.114-.113.255-.297.382-.447.128-.15.17-.255.255-.426.085-.17.042-.319-.021-.447-.064-.128-.574-1.385-.786-1.895-.206-.497-.417-.43-.574-.437l-.49-.009c-.17 0-.447.064-.68.319-.234.255-.893.874-.893 2.13 0 1.257.914 2.47 1.042 2.64.128.17 1.795 2.738 4.346 3.836.607.262 1.08.418 1.45.535.609.193 1.163.165 1.599.1.487-.073 1.507-.616 1.719-1.212.213-.596.213-1.107.15-1.212-.064-.105-.234-.17-.49-.298z"/></svg>`
+        };
+
+        if(generalSettings.whatsapp) slHtml += `<a href="https://wa.me/${generalSettings.whatsapp}" target="_blank" title="واتساب">${icons.whatsapp}</a>`;
+        if(generalSettings.facebook) slHtml += `<a href="${generalSettings.facebook}" target="_blank" title="فيسبوك">${icons.facebook}</a>`;
+        if(generalSettings.instagram) slHtml += `<a href="${generalSettings.instagram}" target="_blank" title="إنستقرام">${icons.instagram}</a>`;
+        if(generalSettings.telegram) slHtml += `<a href="${generalSettings.telegram}" target="_blank" title="تيليجرام">${icons.telegram}</a>`;
+        if(generalSettings.twitter) slHtml += `<a href="${generalSettings.twitter}" target="_blank" title="إكس">${icons.twitter}</a>`;
+        slBox.innerHTML = slHtml;
         
         renderAdMedia();
       }
@@ -916,7 +968,6 @@ function openCart(){ document.getElementById('cartDrawer').classList.add('show')
 function closeCart(){ document.getElementById('cartDrawer').classList.remove('show'); document.getElementById('cartScrim').classList.remove('show'); }  
 function scrollToSection(id){ document.getElementById(id).scrollIntoView({behavior:'smooth'}); }  
   
-/* ---------------- Customer Tracking ---------------- */  
 function openTrackingModal(){ document.getElementById('trackingModal').classList.add('show'); document.getElementById('trackingScrim').classList.add('show'); }  
 function closeTrackingModal(){ document.getElementById('trackingModal').classList.remove('show'); document.getElementById('trackingScrim').classList.remove('show'); }  
 async function searchTrackingOrders(){
@@ -951,7 +1002,6 @@ async function searchTrackingOrders(){
   }
 }
 
-/* ---------------- Checkout & Orders ---------------- */  
 function openCheckout(){  
   if(!cart.length){ toast('السلة فارغة'); return; }  
   closeCart();  
@@ -1272,6 +1322,12 @@ function removeBg() {
 
 async function saveGeneralSettings(){  
   const wa = document.getElementById('setWhatsapp').value.trim();  
+  const facebook = document.getElementById('setFacebook').value.trim();  
+  const instagram = document.getElementById('setInstagram').value.trim();  
+  const telegram = document.getElementById('setTelegram').value.trim();  
+  const twitter = document.getElementById('setTwitter').value.trim();  
+  const productFont = document.getElementById('setProductFont').value;  
+
   const cWidth = document.getElementById('setCardWidth').value.trim() || 180;
   
   const sloganTitle = document.getElementById('setSloganTitle').value.trim();
@@ -1320,6 +1376,11 @@ async function saveGeneralSettings(){
 
   const newData = { 
     whatsapp: wa, 
+    facebook: facebook,
+    instagram: instagram,
+    telegram: telegram,
+    twitter: twitter,
+    productFont: productFont,
     cardWidth: Number(cWidth),
     categories: adminCatArray,
     sloganTitle: sloganTitle,
