@@ -1,4 +1,3 @@
-#   
 <!DOCTYPE html>    
 <html lang="ar" dir="rtl">    
 <head>    
@@ -41,11 +40,10 @@
     
   .form-card{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:20px; box-shadow:var(--shadow); margin-bottom:26px;}    
   .row2{display:grid; grid-template-columns:1fr 1fr; gap:12px;}    
-  .row3{display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px;}  
     
   .thumbstrip{display:flex; gap:8px; flex-wrap:wrap; margin-top:8px;}    
   .thumbstrip .th{position:relative;}    
-  .thumbstrip img, .thumbstrip video {width:56px; height:56px; object-fit:cover; border-radius:8px; border:1px solid var(--line);}    
+  .thumbstrip img {width:56px; height:56px; object-fit:cover; border-radius:8px; border:1px solid var(--line);}    
   .thumbstrip .rm{position:absolute; top:-6px; left:-6px; background:var(--danger); color:#fff; border-radius:999px; width:18px; height:18px; font-size:11px; border:none; line-height:1; cursor:pointer;}    
     
   .status-pill{font-size:11px; padding:3px 10px; border-radius:999px; font-weight:700;}    
@@ -80,12 +78,9 @@
   .icon-btn{background:#fff; border:1px solid var(--line); border-radius:8px; padding:5px 9px; font-size:12px;}    
   .icon-btn.danger{color:var(--danger); border-color:var(--danger);}    
   #loginModal .msg{font-size:12px; color:var(--danger); min-height:16px;}    
-  
-  .admin-cat-pill { background:var(--cream); border:1px solid var(--gold-soft); padding:6px 12px; border-radius:999px; font-size:13px; display:inline-flex; align-items:center; gap:8px; }  
-  .admin-cat-pill button { background:none; border:none; color:var(--danger); cursor:pointer; font-weight:bold; }  
 </style>    
 </head>    
-<body onload="checkLogin()">    
+<body>    
     
 <div class="scrim show" id="loginScrim"></div>    
 <div class="modal show" id="loginModal">    
@@ -114,23 +109,11 @@
         <input type="hidden" id="pfId">    
         <div class="row2">    
           <div><label>اسم المنتج</label><input type="text" id="pfName"></div>    
-          <div>  
-            <label>القسم (الكاتجري)</label>  
-            <select id="pfCategory"></select>  
-            <div class="hint">يمكنك إدارة الأقسام من قائمة الإعدادات.</div>  
-          </div>    
+          <div><label>الفئة</label><input type="text" id="pfCategory" placeholder="عطور رجالية / نسائية / منتجات أخرى"></div>    
         </div>    
         <label>الوصف</label><textarea id="pfDesc"></textarea>    
-        <div class="row3">    
-          <div><label>السعر</label><input type="number" step="0.001" id="pfPrice"></div>    
-          <div>  
-            <label>العملة</label>  
-            <select id="pfCurrency">  
-              <option value="ر.ي">ريال يمني (ر.ي)</option>  
-              <option value="ر.س">ريال سعودي (ر.س)</option>  
-              <option value="$">دولار أمريكي ($)</option>  
-            </select>  
-          </div>  
+        <div class="row2">    
+          <div><label>السعر (ر.ع)</label><input type="number" step="0.001" id="pfPrice"></div>    
           <div><label>نسبة الخصم %</label><input type="number" step="1" id="pfDiscount" value="0"></div>    
         </div>    
         <div class="row2">    
@@ -178,59 +161,42 @@
     </div>    
     
     <div id="tab-settings" style="display:none;">    
-  
-      <div class="form-card">  
-        <h3 style="margin-top:0;">إدارة الأقسام (الكاتجري)</h3>  
-        <label>إضافة قسم جديد</label>  
-        <div style="display:flex; gap:8px;">  
-          <input type="text" id="newCategoryInput" placeholder="مثال: المنتجات الجديدة، عطور شتوية...">  
-          <button class="btn small" style="width:auto; padding:0 20px;" onclick="addNewCategory()">إضافة</button>  
-        </div>  
-        <div id="adminCategoryList" style="display:flex; flex-wrap:wrap; gap:8px; margin-top:14px;"></div>  
-        <div class="hint">اضغط حفظ الإعدادات في الأسفل لتأكيد التغييرات.</div>  
-      </div>  
-  
-      <div class="form-card">  
-        <h3 style="margin-top:0;">خلفية المتجر والعلامة المائية</h3>  
-        <label>صورة خلفية للمتجر (اختياري)</label>  
-        <input type="file" id="setBgImage" accept="image/*">  
-        <img id="currentBgPreview" style="max-width:200px; margin-top:10px; border-radius:8px; display:none; border:1px solid var(--line);">  
-        <button id="removeBgBtn" class="btn secondary small" style="display:none; margin-top:10px;" onclick="removeBg()">إزالة الخلفية الحالية</button>  
-        <label>نص العلامة المائية المتحركة (اختياري)</label>  
-        <input type="text" id="setWatermarkText" placeholder="مثال: عُمراء للعطور الفاخرة">  
-      </div>  
-  
-      <div class="form-card">  
-        <h3 style="margin-top:0;">تخصيص نصوص المتجر</h3>  
-        <label>العنوان الرئيسي (المقولة)</label>  
-        <input type="text" id="setSloganTitle" placeholder="عطور تُروى، لا تُقال">  
-        <label>النص الوصفي تحت العنوان</label>  
-        <textarea id="setSloganDesc" style="min-height:90px;"></textarea>  
-        <label>قصة عُمراء (قسم من نحن)</label>  
-        <textarea id="setAboutText" style="min-height:120px;"></textarea>  
-        <label>سياسات المتجر (تظهر أسفل الموقع في الفوتر)</label>  
-        <textarea id="setStorePolicies" placeholder="سياسة الاسترجاع والشحن..." style="min-height:90px;"></textarea>  
-      </div>  
-  
-      <div class="form-card">  
-        <h3 style="margin-top:0;">الإعلان الترويجي (Banner)</h3>  
-        <label>رفع صور السلايدر أو مقطع فيديو إعلاني</label>  
-        <input type="file" id="setAdMedia" accept="image/*,video/mp4,video/quicktime,video/webm" multiple>  
-        <div class="hint">إذا رفعت صورة واحدة ستعرض بشكل ثابت. عدة صور = سلايدر متحرك. ملف فيديو = يعمل بصمت.</div>  
+        
+      <div class="form-card">    
+        <h3 style="margin-top:0;">تخصيص نصوص المتجر</h3>    
+        <label>العنوان الرئيسي (المقولة)</label>    
+        <input type="text" id="setSloganTitle" placeholder="عطور تُروى، لا تُقال">    
           
-        <div id="adMediaAdminPreview" class="thumbstrip"></div>  
-        <button id="removeAdBtn" class="btn secondary small" style="display:none; margin-top:10px;" onclick="removeAd()">إزالة الإعلان الحالي</button>  
-  
-        <label>رابط الإعلان (للصور فقط - اختياري)</label>  
-        <input type="text" id="setAdLink" placeholder="https://...">  
-      </div>  
-  
+        <label>النص الوصفي تحت العنوان</label>    
+        <textarea id="setSloganDesc" style="min-height:90px;"></textarea>    
+    
+        <label>قصة عُمراء (قسم من نحن)</label>    
+        <textarea id="setAboutText" style="min-height:120px;"></textarea>    
+      </div>    
+    
+      <div class="form-card">    
+        <h3 style="margin-top:0;">إعلان الصفحة الرئيسية (Banner)</h3>    
+        <label>رفع صورة الإعلان</label>    
+        <input type="file" id="setAdImage" accept="image/*">    
+        <div class="hint">عند الرفع، سيظهر الإعلان أعلى قسم المنتجات للزوار.</div>    
+          
+        <img id="currentAdPreview" style="max-width:200px; margin-top:10px; border-radius:8px; display:none; border:1px solid var(--line);">    
+        <button id="removeAdBtn" class="btn secondary small" style="display:none; margin-top:10px;" onclick="removeAd()">إزالة الإعلان الحالي</button>    
+    
+        <label>رابط الإعلان (اختياري - لتحويل الزائر عند الضغط على الصورة)</label>    
+        <input type="text" id="setAdLink" placeholder="https://...">    
+      </div>    
+    
       <div class="form-card">    
         <h3 style="margin-top:0;">إعدادات عامة</h3>    
         <label>رقم واتساب المتجر</label><input type="text" id="setWhatsapp" placeholder="96877XXXXXXX">    
-        <label>عرض كرت المنتج (بالبيكسل - للتحكم بالحجم)</label>  
-        <input type="number" id="setCardWidth" placeholder="180">  
+          
+        <label>عرض كرت المنتج (بالبيكسل - للتحكم بالحجم)</label>    
+        <input type="number" id="setCardWidth" placeholder="180">    
+        <div class="hint">يفضل إدخال 150 أو 160 لتصغير المنتجات وتناسبها مع شاشات الهواتف الصغيرة.</div>    
+    
         <label>كلمة مرور لوحة التحكم الجديدة</label><input type="password" id="setNewPass" placeholder="اتركه فارغًا إن لم ترغب بالتغيير">    
+          
         <button class="btn" style="width:auto;padding:13px 32px;margin-top:14px;font-size:16px;" onclick="saveGeneralSettings()">حفظ جميع الإعدادات</button>    
       </div>    
     </div>    
@@ -239,7 +205,6 @@
     
 <div class="toast" id="toast"></div>    
     
-<!-- ============ SUPABASE SCRIPT ============ -->    
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>    
 <script>    
 const SUPABASE_URL = "https://vhnvjcioxmacfsogmrka.supabase.co";    
@@ -249,12 +214,10 @@ const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 let products = [];    
 let orders = [];    
 let paymentSettings = {};    
-let generalSettings = { whatsapp: "96877881748", cardWidth: 180, categories: ['عطور فاخرة', 'منتجات أخرى'], adMedia: [], adType: 'none' };    
+let generalSettings = { whatsapp: "96877881748", cardWidth: 180 };    
 let pendingImageFiles = [];    
 let existingImageUrls = [];    
-let pendingAdFiles = [];  
-let pendingBgFile = null;  
-let adminCatArray = [];  
+let pendingAdFile = null;  
     
 function toast(msg){    
   const t = document.getElementById('toast');    
@@ -262,62 +225,68 @@ function toast(msg){
   setTimeout(()=>t.classList.remove('show'), 2200);    
 }    
   
-function checkLogin(){  
-  if(sessionStorage.getItem('omara_admin') === '1'){  
-     document.getElementById('loginModal').classList.remove('show');  
-     document.getElementById('loginScrim').classList.remove('show');  
-     document.getElementById('adminView').style.display = 'block';  
-  }  
-}  
-  
+function checkLogin(){
+  if(sessionStorage.getItem('omara_admin') === '1'){
+     document.getElementById('loginModal').classList.remove('show');
+     document.getElementById('loginScrim').classList.remove('show');
+     document.getElementById('adminView').style.display = 'block';
+  }
+}
+
 async function adminLogin(){    
   const pass = document.getElementById('loginPass').value;    
   try {  
     const { data, error } = await client.from('settings').select('data').eq('id', 'admin').single();  
-    if(error) { alert("خطأ أثناء الاتصال: " + error.message); return; }  
+      
+    if(error) {  
+      alert("خطأ أثناء الاتصال: " + error.message);  
+      return;  
+    }  
+      
     if(data && data.data && data.data.password === pass){    
       sessionStorage.setItem('omara_admin','1');  
-      document.getElementById('loginModal').classList.remove('show');  
-      document.getElementById('loginScrim').classList.remove('show');  
-      document.getElementById('adminView').style.display = 'block';  
+      document.getElementById('loginModal').classList.remove('show');
+      document.getElementById('loginScrim').classList.remove('show');
+      document.getElementById('adminView').style.display = 'block'; 
     } else {    
       document.getElementById('loginMsg').textContent = 'كلمة المرور غير صحيحة';    
     }    
-  } catch(err) { alert("فشل الاتصال: " + err.message); }  
+  } catch(err) {  
+    alert("فشل الاتصال: " + err.message);  
+  }  
 }    
   
 function adminLogout(){   
   sessionStorage.removeItem('omara_admin');  
-  window.location.href = 'index.html';  
+  window.location.href = 'index.html';
 }    
-    
+  
+function showTab(name){    
+  ['products','orders','payment','settings'].forEach(t=>{    
+    document.getElementById('tab-'+t).style.display = (t===name)?'block':'none';    
+  });    
+  document.querySelectorAll('.adminbar button[data-tab]').forEach(b=>b.classList.toggle('active', b.dataset.tab===name));    
+}    
+  
 async function fetchProducts() {  
   try {  
     const { data, error } = await client.from('products').select('*').order('created_at', { ascending: false });  
-    if (!error && data) { products = data; renderAdminProducts(); }  
+    if (!error && data) {  
+      products = data;  
+      renderAdminProducts();  
+    }  
   } catch (err) {}  
 }  
   
 async function fetchOrders() {  
   try {  
     const { data, error } = await client.from('orders').select('*').order('created_at', { ascending: false });  
-    if (data) { orders = data; renderAdminOrders(); }  
+    if (data) {  
+      orders = data;  
+      renderAdminOrders();  
+    }  
   } catch (err) {}  
 }  
-  
-function renderAdminCatList() {  
-  const box = document.getElementById('adminCategoryList');  
-  box.innerHTML = adminCatArray.map((c, i) => `<div class="admin-cat-pill"><span>${c}</span><button onclick="removeAdminCat(${i})">✕</button></div>`).join('');  
-  const select = document.getElementById('pfCategory');  
-  select.innerHTML = adminCatArray.map(c => `<option value="${c}">${c}</option>`).join('');  
-}  
-  
-function addNewCategory() {  
-  const v = document.getElementById('newCategoryInput').value.trim();  
-  if(v && !adminCatArray.includes(v)) { adminCatArray.push(v); renderAdminCatList(); }  
-  document.getElementById('newCategoryInput').value = '';  
-}  
-function removeAdminCat(index) { adminCatArray.splice(index, 1); renderAdminCatList(); }  
   
 async function fetchSettings() {  
   try {  
@@ -332,36 +301,19 @@ async function fetchSettings() {
       }  
       if (genDoc && genDoc.data) {  
         generalSettings = genDoc.data;  
-        if(!generalSettings.categories) generalSettings.categories = ['المنتجات الجديدة', 'عطور فاخرة', 'منتجات أخرى'];  
-        adminCatArray = [...generalSettings.categories];  
-        renderAdminCatList();  
-  
-        document.getElementById('setWhatsapp').value = generalSettings.whatsapp || '';    
-        document.getElementById('setCardWidth').value = generalSettings.cardWidth || 180;  
-        document.getElementById('setSloganTitle').value = generalSettings.sloganTitle || '';  
-        document.getElementById('setSloganDesc').value = generalSettings.sloganDesc || '';  
-        document.getElementById('setAboutText').value = generalSettings.aboutText || '';  
-        document.getElementById('setStorePolicies').value = generalSettings.policies || '';  
-        document.getElementById('setAdLink').value = generalSettings.adLink || '';  
-        document.getElementById('setWatermarkText').value = generalSettings.watermarkText || '';  
           
-        const adPrevBox = document.getElementById('adMediaAdminPreview');  
-        if (generalSettings.adMedia && generalSettings.adMedia.length > 0) {  
+        document.getElementById('setWhatsapp').value = generalSettings.whatsapp || '';  
+        const width = generalSettings.cardWidth || 180;  
+        document.getElementById('setCardWidth').value = width;  
+        document.getElementById('setSloganTitle').value = generalSettings.sloganTitle || 'عطور تُروى، لا تُقال';  
+        document.getElementById('setSloganDesc').value = generalSettings.sloganDesc || 'تشكيلة عطور ومنتجات مختارة بعناية، بروح شرقية أصيلة ولمسة عصرية فاخرة. كل قطعة في متجرنا تُختار لتبقى.';  
+        document.getElementById('setAboutText').value = generalSettings.aboutText || 'متجر عُمراء برئاسة عامر الشعيبي، وجهتك للعطور الفاخرة والمنتجات المختارة بعناية. نلتزم بالجودة والأصالة في كل تفصيل.';  
+        document.getElementById('setAdLink').value = generalSettings.adLink || '';  
+          
+        if (generalSettings.adImage) {  
+            document.getElementById('currentAdPreview').src = generalSettings.adImage;  
+            document.getElementById('currentAdPreview').style.display = 'block';  
             document.getElementById('removeAdBtn').style.display = 'inline-block';  
-            if(generalSettings.adType === 'video') {  
-               adPrevBox.innerHTML = `<video src="${generalSettings.adMedia[0]}" muted loop autoplay playsinline webkit-playsinline></video>`;  
-            } else {  
-               adPrevBox.innerHTML = generalSettings.adMedia.map(src => `<img src="${src}">`).join('');  
-            }  
-        } else {  
-            adPrevBox.innerHTML = '';  
-            document.getElementById('removeAdBtn').style.display = 'none';  
-        }  
-  
-        if (generalSettings.bgImage) {  
-            document.getElementById('currentBgPreview').src = generalSettings.bgImage;  
-            document.getElementById('currentBgPreview').style.display = 'block';  
-            document.getElementById('removeBgBtn').style.display = 'inline-block';  
         }  
       }  
     }  
@@ -378,13 +330,6 @@ client.channel('admin-tables')
   .on('postgres_changes', { event: '*', schema: 'public', table: 'settings' }, fetchSettings)  
   .subscribe();  
   
-function showTab(name){    
-  ['products','orders','payment','settings'].forEach(t=>{    
-    document.getElementById('tab-'+t).style.display = (t===name)?'block':'none';    
-  });    
-  document.querySelectorAll('.adminbar button[data-tab]').forEach(b=>b.classList.toggle('active', b.dataset.tab===name));    
-}    
-    
 document.getElementById('pfImages').addEventListener('change', e=>{    
   pendingImageFiles = [...e.target.files];    
   renderThumbs();    
@@ -400,11 +345,9 @@ function removeExistingImage(i){ existingImageUrls.splice(i,1); renderThumbs(); 
 function resetProductForm(){    
   document.getElementById('pfId').value='';    
   document.getElementById('pfName').value='';    
-  const catSelect = document.getElementById('pfCategory');  
-  if(catSelect.options.length > 0) catSelect.selectedIndex = 0;  
+  document.getElementById('pfCategory').value='';    
   document.getElementById('pfDesc').value='';    
   document.getElementById('pfPrice').value='';    
-  document.getElementById('pfCurrency').value='ر.ي';   
   document.getElementById('pfDiscount').value='0';    
   document.getElementById('pfColors').value='';    
   document.getElementById('pfSizes').value='';    
@@ -419,11 +362,9 @@ function editProduct(id){
   if(!p) return;    
   document.getElementById('pfId').value=p.id;    
   document.getElementById('pfName').value=p.name||'';    
-  const catSelect = document.getElementById('pfCategory');  
-  if(p.category && adminCatArray.includes(p.category)) { catSelect.value = p.category; }  
+  document.getElementById('pfCategory').value=p.category||'';    
   document.getElementById('pfDesc').value=p.description||'';    
   document.getElementById('pfPrice').value=p.price||'';    
-  document.getElementById('pfCurrency').value=p.currency||'ر.ي';    
   document.getElementById('pfDiscount').value=p.discount||0;    
   document.getElementById('pfColors').value=(p.colors||[]).join(', ');    
   document.getElementById('pfSizes').value=(p.sizes||[]).join(', ');    
@@ -457,10 +398,9 @@ async function saveProduct(){
     
   const productData = {    
     name,    
-    category: document.getElementById('pfCategory').value || 'منتجات أخرى',    
+    category: document.getElementById('pfCategory').value.trim() || 'منتجات أخرى',    
     description: document.getElementById('pfDesc').value.trim(),    
     price,    
-    currency: document.getElementById('pfCurrency').value || 'ر.ي',  
     discount: Number(document.getElementById('pfDiscount').value)||0,    
     colors: document.getElementById('pfColors').value.split(',').map(s=>s.trim()).filter(Boolean),    
     sizes: document.getElementById('pfSizes').value.split(',').map(s=>s.trim()).filter(Boolean),    
@@ -469,9 +409,14 @@ async function saveProduct(){
   };    
     
   const id = document.getElementById('pfId').value;    
-  if(id){ await client.from('products').update(productData).eq('id', id); }   
-  else { await client.from('products').insert([productData]); }    
-  resetProductForm(); toast('تم حفظ المنتج بنجاح');    
+  if(id){   
+    await client.from('products').update(productData).eq('id', id);   
+  } else {   
+    await client.from('products').insert([productData]);   
+  }    
+    
+  resetProductForm();    
+  toast('تم حفظ المنتج بنجاح');    
 }    
   
 function renderAdminProducts(){    
@@ -480,7 +425,7 @@ function renderAdminProducts(){
       <td>${p.images&&p.images[0]?`<img class="tbl-img" src="${p.images[0]}">`:''}</td>    
       <td>${p.name}</td>    
       <td>${p.category||''}</td>    
-      <td style="direction:ltr;">${Number(p.price||0).toFixed(2)} ${p.currency||'ر.ي'}</td>    
+      <td>${Number(p.price||0).toFixed(3)}</td>    
       <td>${p.discount||0}%</td>    
       <td>${p.stock||0}</td>    
       <td class="actions">    
@@ -497,7 +442,7 @@ function renderAdminOrders(){
       <td>${date}</td>    
       <td>${o.name}<div class="hint">${o.address||''}</div></td>    
       <td>${o.phone}</td>    
-      <td style="direction:ltr;">${o.total||'0'}</td>    
+      <td>${Number(o.total||0).toFixed(3)} ر.ع</td>    
       <td>${o.pay_method==='bank'?'تحويل بنكي':'إيداع بنكي'}</td>    
       <td><span class="status-pill status-${o.status}">${{pending:'قيد الانتظار',confirmed:'مؤكد',shipped:'تم الشحن'}[o.status]||o.status}</span></td>    
       <td>    
@@ -539,112 +484,67 @@ async function savePaymentSettings(){
   toast('تم حفظ طرق الدفع');    
 }    
     
-document.getElementById('setAdMedia').addEventListener('change', e => {  
+document.getElementById('setAdImage').addEventListener('change', e => {  
   if(e.target.files.length > 0) {  
-    pendingAdFiles = [...e.target.files];  
-    const adPrevBox = document.getElementById('adMediaAdminPreview');  
-    const firstFile = pendingAdFiles[0];  
-    const isVideo = firstFile.type.startsWith('video/') || firstFile.name.match(/\.(mp4|mov|webm)$/i);  
-  
-    if (isVideo) {  
-       adPrevBox.innerHTML = `<video src="${URL.createObjectURL(firstFile)}" muted loop autoplay playsinline webkit-playsinline style="width:100px; height:auto; border-radius:8px;"></video>`;  
-    } else {  
-       adPrevBox.innerHTML = pendingAdFiles.map(f => `<img src="${URL.createObjectURL(f)}" style="width:60px; height:60px; object-fit:cover; border-radius:8px;">`).join('');  
-    }  
+    pendingAdFile = e.target.files[0];  
+    document.getElementById('currentAdPreview').src = URL.createObjectURL(pendingAdFile);  
+    document.getElementById('currentAdPreview').style.display = 'block';  
     document.getElementById('removeAdBtn').style.display = 'inline-block';  
   }  
 });  
   
 function removeAd() {  
-  generalSettings.adMedia = [];  
-  generalSettings.adType = 'none';  
-  document.getElementById('adMediaAdminPreview').innerHTML = '';  
+  generalSettings.adImage = null;  
+  document.getElementById('currentAdPreview').style.display = 'none';  
   document.getElementById('removeAdBtn').style.display = 'none';  
-  document.getElementById('setAdMedia').value = '';  
-  pendingAdFiles = [];  
+  document.getElementById('setAdImage').value = '';  
+  pendingAdFile = null;  
   toast('تم إزالة الإعلان مؤقتاً، اضغط حفظ لتأكيد الإزالة.');  
-}  
-  
-document.getElementById('setBgImage').addEventListener('change', e => {  
-  if(e.target.files.length > 0) {  
-    pendingBgFile = e.target.files[0];  
-    document.getElementById('currentBgPreview').src = URL.createObjectURL(pendingBgFile);  
-    document.getElementById('currentBgPreview').style.display = 'block';  
-    document.getElementById('removeBgBtn').style.display = 'inline-block';  
-  }  
-});  
-  
-function removeBg() {  
-  generalSettings.bgImage = null;  
-  document.getElementById('currentBgPreview').style.display = 'none';  
-  document.getElementById('removeBgBtn').style.display = 'none';  
-  document.getElementById('setBgImage').value = '';  
-  pendingBgFile = null;  
-  toast('تم إزالة الخلفية مؤقتاً، اضغط حفظ لتأكيد الإزالة.');  
 }  
   
 async function saveGeneralSettings(){    
   const wa = document.getElementById('setWhatsapp').value.trim();    
   const cWidth = document.getElementById('setCardWidth').value.trim() || 180;  
+    
   const sloganTitle = document.getElementById('setSloganTitle').value.trim();  
   const sloganDesc = document.getElementById('setSloganDesc').value.trim();  
   const aboutText = document.getElementById('setAboutText').value.trim();  
-  const storePolicies = document.getElementById('setStorePolicies').value.trim();  
   const adLink = document.getElementById('setAdLink').value.trim();  
-  const watermarkText = document.getElementById('setWatermarkText').value.trim();  
   
   toast('جارٍ الحفظ... الرجاء الانتظار');  
   
-  let savedAdUrls = generalSettings.adMedia || [];  
-  let savedAdType = generalSettings.adType || 'none';  
+  let adImageUrl = generalSettings.adImage || null;  
     
-  if (pendingAdFiles.length > 0) {  
-    savedAdUrls = [];  
-    const firstFile = pendingAdFiles[0];  
-    const isVideo = firstFile.type.startsWith('video/') || firstFile.name.match(/\.(mp4|mov|webm)$/i);  
-    savedAdType = isVideo ? 'video' : (pendingAdFiles.length > 1 ? 'slider' : 'image');  
-  
-    for(let file of pendingAdFiles) {  
-      const path = 'ad_' + Date.now() + '_' + file.name;    
-      const { data, error } = await client.storage.from('store-images').upload(path, file);  
-      if (!error) {  
-        const { data: publicUrlData } = client.storage.from('store-images').getPublicUrl(path);  
-        savedAdUrls.push(publicUrlData.publicUrl);  
-      }  
+  if (pendingAdFile) {  
+    const path = 'ad_' + Date.now() + '_' + pendingAdFile.name;    
+    const { data, error } = await client.storage.from('store-images').upload(path, pendingAdFile);  
+      
+    if (error) {  
+      alert('تعذر رفع صورة الإعلان: ' + error.message);  
+      return;   
     }  
-    pendingAdFiles = [];  
-  } else if (generalSettings.adMedia && generalSettings.adMedia.length === 0) {  
-    savedAdType = 'none';  
-  }  
-  
-  let bgImageUrl = generalSettings.bgImage || null;  
-  if (pendingBgFile) {  
-    const path = 'bg_' + Date.now() + '_' + pendingBgFile.name;    
-    const { data, error } = await client.storage.from('store-images').upload(path, pendingBgFile);  
-    if (!error) {  
-      const { data: publicUrlData } = client.storage.from('store-images').getPublicUrl(path);  
-      bgImageUrl = publicUrlData.publicUrl;  
-    }  
-    pendingBgFile = null;  
+      
+    const { data: publicUrlData } = client.storage.from('store-images').getPublicUrl(path);  
+    adImageUrl = publicUrlData.publicUrl;  
+    pendingAdFile = null;  
   }  
   
   const newData = {   
     whatsapp: wa,   
     cardWidth: Number(cWidth),  
-    categories: adminCatArray,  
     sloganTitle: sloganTitle,  
     sloganDesc: sloganDesc,  
     aboutText: aboutText,  
-    policies: storePolicies,  
-    adMedia: savedAdUrls,  
-    adType: savedAdType,  
-    adLink: adLink,  
-    bgImage: bgImageUrl,  
-    watermarkText: watermarkText  
+    adImage: adImageUrl,  
+    adLink: adLink  
   };  
   
   const { error: updateError } = await client.from('settings').update({ data: newData }).eq('id', 'general');  
-  if (updateError) { alert('حدث خطأ أثناء حفظ الإعدادات'); return; }  
+    
+  if (updateError) {  
+    alert('حدث خطأ أثناء حفظ الإعدادات: ' + updateError.message);  
+    return;  
+  }  
     
   const newPass = document.getElementById('setNewPass').value.trim();    
   if(newPass){    
@@ -657,4 +557,4 @@ async function saveGeneralSettings(){
 }    
 </script>    
 </body>    
-</html>  
+</html>
