@@ -11,10 +11,12 @@
 <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
 <script>
   window.OneSignalDeferred = window.OneSignalDeferred || [];
-  OneSignalDeferred.push(function(OneSignal) {
-    OneSignal.init({
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
       appId: "3fe0707f-ffa3-48ca-9737-11425770bcc2",
-      notifyButton: { enable: true },
+      notifyButton: { 
+        enable: true 
+      },
     });
   });
 </script>
@@ -339,7 +341,7 @@
     <div class="sunrise"><svg viewBox="0 0 200 40" fill="none" stroke="#20301C" stroke-width="1"><path d="M10 20 Q100 5 190 20"/></svg></div>  
     <div style="max-width:640px;margin:0 auto;text-align:center;">  
       <h2 style="font-size:28px;">قصة عُمراء</h2>  
-      <p id="storeAboutText" style="color:var(--ink-soft);line-height:2;white-space:pre-line;">متجر عُمراء برئاسة عامر الشعيبي، وجهتك للعطور الفاخرة والمنتجات المختارة بعناية. نلتزم بالجودة والأصالة في كل تفصيل.</p>  
+      <p id="storeAboutText" style="color:var(--ink-soft);line-height:2;white-space:pre-line;">متجر عُمراء، وجهتك للعطور الفاخرة والمنتجات المختارة بعناية. نلتزم بالجودة والأصالة في كل تفصيل.</p>  
     </div>  
   </section>  
   
@@ -768,7 +770,7 @@ async function fetchSettings() {
         document.getElementById('setCardWidth').value = width;
         document.getElementById('setSloganTitle').value = generalSettings.sloganTitle || 'عطور تُروى، لا تُقال';
         document.getElementById('setSloganDesc').value = generalSettings.sloganDesc || 'تشكيلة عطور ومنتجات مختارة بعناية، بروح شرقية أصيلة ولمسة عصرية فاخرة. كل قطعة في متجرنا تُختار لتبقى.';
-        document.getElementById('setAboutText').value = generalSettings.aboutText || 'متجر عُمراء برئاسة عامر الشعيبي، وجهتك للعطور الفاخرة والمنتجات المختارة بعناية. نلتزم بالجودة والأصالة في كل تفصيل.';
+        document.getElementById('setAboutText').value = generalSettings.aboutText || 'متجر عُمراء، وجهتك للعطور الفاخرة والمنتجات المختارة بعناية. نلتزم بالجودة والأصالة في كل تفصيل.';
         document.getElementById('setStorePolicies').value = generalSettings.policies || '';
         document.getElementById('setAdLink').value = generalSettings.adLink || '';
         document.getElementById('setWatermarkText').value = generalSettings.watermarkText || '';
@@ -803,7 +805,7 @@ async function fetchSettings() {
         document.getElementById('waLink').href = 'https://wa.me/'+(generalSettings.whatsapp||'96877881748');  
         document.getElementById('storeSloganTitle').textContent = generalSettings.sloganTitle || 'عطور تُروى، لا تُقال';
         document.getElementById('storeSloganDesc').textContent = generalSettings.sloganDesc || 'تشكيلة عطور ومنتجات مختارة بعناية، بروح شرقية أصيلة ولمسة عصرية فاخرة. كل قطعة في متجرنا تُختار لتبقى.';
-        document.getElementById('storeAboutText').textContent = generalSettings.aboutText || 'متجر عُمراء برئاسة عامر الشعيبي، وجهتك للعطور الفاخرة والمنتجات المختارة بعناية. نلتزم بالجودة والأصالة في كل تفصيل.';
+        document.getElementById('storeAboutText').textContent = generalSettings.aboutText || 'متجر عُمراء، وجهتك للعطور الفاخرة والمنتجات المختارة بعناية. نلتزم بالجودة والأصالة في كل تفصيل.';
         document.getElementById('footerPolicies').textContent = generalSettings.policies || '';
         
         const slBox = document.getElementById('socialLinks');
