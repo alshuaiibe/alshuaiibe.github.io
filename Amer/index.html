@@ -73,6 +73,14 @@
   #loginModal .msg{font-size:12px; color:var(--danger); min-height:16px;}  
   .admin-cat-pill { background:var(--cream); border:1px solid var(--gold-soft); padding:6px 12px; border-radius:999px; font-size:13px; display:inline-flex; align-items:center; gap:8px; }
   .admin-cat-pill button { background:none; border:none; color:var(--danger); cursor:pointer; font-weight:bold; }
+  
+  .switch { position: relative; display: inline-block; width: 40px; height: 22px; }
+  .switch input { opacity: 0; width: 0; height: 0; }
+  .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+  .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
+  input:checked + .slider { background-color: var(--ok); }
+  input:checked + .slider:before { transform: translateX(18px); }
+  .flex-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
 </style>  
 </head>  
 <body>  
@@ -172,6 +180,29 @@
   
     <!-- الإعدادات -->
     <div id="tab-settings" style="display:none;">  
+      
+      <!-- إضافة التحكم بخصائص الواجهة -->
+      <div class="form-card">
+        <h3 style="margin-top:0;">إدارة ميزات المتجر (تفعيل/تعطيل)</h3>
+        
+        <div class="flex-row">
+          <span>شريط البحث عن المنتجات</span>
+          <label class="switch">
+            <input type="checkbox" id="featureSearch">
+            <span class="slider"></span>
+          </label>
+        </div>
+        
+        <div class="flex-row">
+          <span>خيارات فرز المنتجات (الأحدث، الأقل سعراً...)</span>
+          <label class="switch">
+            <input type="checkbox" id="featureSort">
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="hint" style="margin-top: 10px;">قم بتفعيل هذه الخيارات ليتم عرضها في واجهة المتجر الرئيسية للعملاء.</div>
+      </div>
 
       <div class="form-card">
         <h3 style="margin-top:0;">إرسال إشعار للعملاء (في أيقونة الجرس)</h3>
@@ -282,7 +313,12 @@ const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 let products = [];  
 let orders = [];  
 let paymentSettings = {};  
-let generalSettings = { whatsapp: "", cardWidth: 180, categories: ['عطور فاخرة', 'منتجات أخرى'], adMedia: [], adType: 'none', productFont: "'Aref Ruqaa', serif", tiktok: "", reviews: [], customNotifs: [] };  
+let generalSettings = { 
+  whatsapp: "", cardWidth: 180, categories: ['عطور فاخرة', 'منتجات أخرى'], 
+  adMedia: [], adType: 'none', productFont: "'Aref Ruqaa', serif", 
+  tiktok: "", reviews: [], customNotifs: [],
+  enableSearch: false, enableSort: false 
+};  
 let pendingImageFiles = [];  
 let existingImageUrls = [];  
 let pendingAdFiles = [];
@@ -342,6 +378,11 @@ async function fetchSettings() {
     if (genDoc && genDoc.data) {
       generalSettings = genDoc.data;
       if(!generalSettings.categories) generalSettings.categories = ['المنتجات الجديدة', 'عطور فاخرة', 'منتجات أخرى'];
+      
+      // تأكد من وجود قيم تفعيل الخصائص
+      if(generalSettings.enableSearch === undefined) generalSettings.enableSearch = false;
+      if(generalSettings.enableSort === undefined) generalSettings.enableSort = false;
+
       adminCatArray = [...generalSettings.categories];
       renderAdminCatList(); 
       fillGeneralForm();
@@ -364,6 +405,10 @@ function fillGeneralForm() {
     document.getElementById('setStorePolicies').value = generalSettings.policies || '';
     document.getElementById('setAdLink').value = generalSettings.adLink || '';
     document.getElementById('setWatermarkText').value = generalSettings.watermarkText || '';
+    
+    // تعيين قيم الأزرار التبديلية (Switches)
+    document.getElementById('featureSearch').checked = generalSettings.enableSearch;
+    document.getElementById('featureSort').checked = generalSettings.enableSort;
     
     const adPrevBox = document.getElementById('adMediaAdminPreview');
     if (generalSettings.adMedia && generalSettings.adMedia.length > 0) {
@@ -607,7 +652,9 @@ async function saveGeneralSettings(){
     policies: document.getElementById('setStorePolicies').value.trim(), adMedia: savedAdUrls, adType: savedAdType,
     adLink: document.getElementById('setAdLink').value.trim(), bgImage: bgImageUrl, 
     watermarkText: document.getElementById('setWatermarkText').value.trim(),
-    reviews: generalSettings.reviews || [], customNotifs: generalSettings.customNotifs || []
+    reviews: generalSettings.reviews || [], customNotifs: generalSettings.customNotifs || [],
+    enableSearch: document.getElementById('featureSearch').checked,
+    enableSort: document.getElementById('featureSort').checked
   };
 
   const { error: updateError } = await client.from('settings').update({ data: newData }).eq('id', 'general');
