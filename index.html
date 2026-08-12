@@ -14,39 +14,23 @@
   OneSignalDeferred.push(async function(OneSignal) {
     await OneSignal.init({
       appId: "3fe0707f-ffa3-48ca-9737-11425770bcc2",
-      notifyButton: { 
-        enable: true 
-      },
+      notifyButton: { enable: true },
     });
   });
 </script>
-<!-- ==================================================== -->
 
 <style>  
   :root{  
-    --cream:#F8EACB;  
-    --cream-deep:#F1DDA6;  
-    --card:#FFFBF0;  
-    --ink:#20301C;  
-    --ink-soft:#3B4A34;  
-    --gold:#A9793C;  
-    --gold-soft:#C9A96E;  
-    --line:rgba(32,48,28,.16);  
-    --danger:#9B3A2E;  
-    --ok:#4C6B3E;  
-    --shadow:0 10px 30px rgba(32,48,28,.10);  
-    --card-width: 180px; 
-    --product-font: 'Aref Ruqaa', serif;
+    --cream:#F8EACB; --cream-deep:#F1DDA6; --card:#FFFBF0; --ink:#20301C;  
+    --ink-soft:#3B4A34; --gold:#A9793C; --gold-soft:#C9A96E; --line:rgba(32,48,28,.16);  
+    --danger:#9B3A2E; --ok:#4C6B3E; --shadow:0 10px 30px rgba(32,48,28,.10);  
+    --card-width: 180px; --product-font: 'Aref Ruqaa', serif;
   }  
   *{box-sizing:border-box;}  
   html,body{margin:0;padding:0;}  
   body{  
-    background:  
-      radial-gradient(1200px 500px at 50% -10%, var(--cream-deep), transparent 60%),  
-      var(--cream);  
-    color:var(--ink);  
-    font-family:'Tajawal',sans-serif;  
-    min-height:100vh;  
+    background: radial-gradient(1200px 500px at 50% -10%, var(--cream-deep), transparent 60%), var(--cream);  
+    color:var(--ink); font-family:'Tajawal',sans-serif; min-height:100vh;  
   }  
   h1,h2,h3,.display{font-family:'Aref Ruqaa',serif;}  
   .eyebrow{font-family:'Markazi Text',serif; letter-spacing:.04em;}  
@@ -95,7 +79,6 @@
     display:inline-flex; align-items:center; justify-content:center; padding:0 4px;  
   }  
   
-  /* ============ الإشعارات وآراء العملاء ============ */
   .notification-bell {
     background: transparent; border: 1px solid var(--line); color: var(--ink);
     width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
@@ -114,9 +97,7 @@
     max-height: 400px; overflow-y: auto; text-align: right;
   }
   .notifications-dropdown.show { opacity: 1; pointer-events: auto; }
-  .notif-item {
-    padding: 12px 0; border-bottom: 1px solid var(--line); display: flex; gap: 12px; align-items: center; cursor: pointer; transition: .2s;
-  }
+  .notif-item { padding: 12px 0; border-bottom: 1px solid var(--line); display: flex; gap: 12px; align-items: center; cursor: pointer; transition: .2s; }
   .notif-item:hover { opacity: 0.7; }
   .notif-item:last-child { border-bottom: none; }
   .notif-item img { width: 50px; height: 50px; border-radius: 8px; object-fit: cover; }
@@ -186,7 +167,6 @@
   .empty{text-align:center; padding:60px 20px; color:var(--ink-soft); grid-column: 1 / -1;}  
   
   footer{border-top:1px solid var(--line); padding:36px 22px; text-align:center; color:var(--ink-soft); font-size:13px;}  
-  footer .admin-link{display:block; margin-top:20px; font-size:11px; opacity:.55;}  
   .social-links { display: flex; justify-content: center; gap: 16px; margin-top: 20px; flex-wrap: wrap; }
   .social-links a { color: var(--ink-soft); display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); transition: .2s; background: var(--card); }
   .social-links a:hover { transform: translateY(-3px); color: var(--ink); border-color: var(--ink); box-shadow: var(--shadow); }
@@ -232,25 +212,6 @@
   .radiocard{flex:1; border:1px solid var(--line); border-radius:12px; padding:10px; font-size:13px; text-align:center; cursor:pointer;}  
   .radiocard.sel{border-color:var(--ink); background:var(--cream);}  
   .pay-details{background:var(--cream); border:1px dashed var(--gold); border-radius:12px; padding:12px; font-size:13px; margin-top:10px; line-height:1.9; white-space:pre-line;}  
-  
-  #adminView{display:none;}  
-  .adminbar{max-width:1180px; margin:0 auto; padding:16px 22px 0; display:flex; gap:8px; flex-wrap:wrap;}  
-  .adminbar button{background:var(--card); border:1px solid var(--line); padding:9px 16px; border-radius:999px; font-size:13px; font-weight:700; color:var(--ink-soft);}  
-  .adminbar button.active{background:var(--ink); color:var(--cream);}  
-  .adminbar .spacer{flex:1;}  
-  .admin-panel{max-width:1180px; margin:0 auto; padding:20px 22px 70px;}  
-  table{width:100%; border-collapse:collapse; background:var(--card); border-radius:14px; overflow:hidden; box-shadow:var(--shadow);}  
-  th,td{padding:10px 12px; text-align:right; font-size:13px; border-bottom:1px solid var(--line);}  
-  th{background:var(--cream-deep); font-weight:800;}  
-  tr:last-child td{border-bottom:none;}  
-  .tbl-img{width:42px; height:42px; object-fit:cover; border-radius:8px;}  
-  .form-card{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:20px; box-shadow:var(--shadow); margin-bottom:26px;}  
-  .row2{display:grid; grid-template-columns:1fr 1fr; gap:12px;}  
-  .row3{display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px;}
-  .thumbstrip{display:flex; gap:8px; flex-wrap:wrap; margin-top:8px;}  
-  .thumbstrip .th{position:relative;}  
-  .thumbstrip img, .thumbstrip video {width:56px; height:56px; object-fit:cover; border-radius:8px; border:1px solid var(--line);}  
-  .thumbstrip .rm{position:absolute; top:-6px; left:-6px; background:var(--danger); color:#fff; border-radius:999px; width:18px; height:18px; font-size:11px; border:none; line-height:1; cursor:pointer;}  
   .status-pill{font-size:11px; padding:3px 10px; border-radius:999px; font-weight:700;}  
   .status-pending{background:#F3E3B8; color:#7A5B10;}  
   .status-confirmed{background:#D6E7CC; color:var(--ok);}  
@@ -258,12 +219,6 @@
   .toast{position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:var(--ink); color:var(--cream); padding:12px 22px; border-radius:999px; font-size:13px; font-weight:700; z-index:200; opacity:0; transition:.3s; pointer-events:none;}  
   .toast.show{opacity:1; bottom:34px;}  
   .hint{font-size:11.5px; color:var(--ink-soft); margin-top:4px;}  
-  .actions{display:flex; gap:6px;}  
-  .icon-btn{background:#fff; border:1px solid var(--line); border-radius:8px; padding:5px 9px; font-size:12px;}  
-  .icon-btn.danger{color:var(--danger); border-color:var(--danger);}  
-  #loginModal .msg{font-size:12px; color:var(--danger); min-height:16px;}  
-  .admin-cat-pill { background:var(--cream); border:1px solid var(--gold-soft); padding:6px 12px; border-radius:999px; font-size:13px; display:inline-flex; align-items:center; gap:8px; }
-  .admin-cat-pill button { background:none; border:none; color:var(--danger); cursor:pointer; font-weight:bold; }
 </style>  
 </head>  
 <body>  
@@ -323,9 +278,7 @@
 
   <div id="adBannerContainer">
     <a id="adBannerLink" href="#" target="_blank">
-      <div id="adMediaWrapper" class="ad-container">
-        <!-- سيتم إضافة الوسائط هنا -->
-      </div>
+      <div id="adMediaWrapper" class="ad-container"></div>
     </a>
   </div>
   
@@ -358,7 +311,6 @@
     <div>متجر عُمراء © <span id="yr"></span> — جميع الحقوق محفوظة</div>  
     <div id="footerPolicies" style="margin-top:10px; font-size:12.5px; opacity:0.85; white-space:pre-line;"></div>  
     <div id="socialLinks" class="social-links"></div>
-    <a class="admin-link" href="#admin" onclick="openAdminLogin()">لوحة التحكم</a>  
   </footer>  
 </div>  
 
@@ -421,211 +373,6 @@
   <div class="hint" style="text-align:center;margin-top:8px;">سيتم التواصل معك لتأكيد الطلب بعد إرساله</div>  
 </div>  
   
-<div class="scrim" id="loginScrim" onclick="closeAdminLogin()"></div>  
-<div class="modal" id="loginModal">  
-  <h3>دخول لوحة التحكم</h3>  
-  <label>كلمة المرور</label>  
-  <input type="password" id="loginPass" onkeydown="if(event.key==='Enter')adminLogin()">  
-  <div class="msg" id="loginMsg"></div>  
-  <button class="btn" style="margin-top:14px;" onclick="adminLogin()">دخول</button>  
-</div>  
-  
-<div id="adminView">  
-  <div class="adminbar">  
-    <button class="active" data-tab="products" onclick="showTab('products')">المنتجات</button>  
-    <button data-tab="orders" onclick="showTab('orders')">الطلبات</button>  
-    <button data-tab="payment" onclick="showTab('payment')">طرق الدفع</button>  
-    <button data-tab="settings" onclick="showTab('settings')">الإعدادات</button>  
-    <div class="spacer"></div>  
-    <button onclick="viewStore()">مشاهدة المتجر ↗</button>  
-    <button onclick="adminLogout()">خروج</button>  
-  </div>  
-  
-  <div class="admin-panel">  
-    <div id="tab-products">  
-      <div class="form-card">  
-        <h3 id="pfTitle" style="margin-top:0;">إضافة منتج جديد</h3>  
-        <input type="hidden" id="pfId">  
-        <div class="row2">  
-          <div><label>اسم المنتج</label><input type="text" id="pfName"></div>  
-          <div>
-            <label>القسم (الكاتجري)</label>
-            <select id="pfCategory"></select>
-            <div class="hint">يمكنك إدارة الأقسام من قائمة الإعدادات.</div>
-          </div>  
-        </div>  
-        <label>الوصف</label><textarea id="pfDesc"></textarea>  
-        <div class="row3">  
-          <div><label>السعر</label><input type="number" step="0.001" id="pfPrice"></div>  
-          <div>
-            <label>العملة</label>
-            <select id="pfCurrency">
-              <option value="ر.ي">ريال يمني (ر.ي)</option>
-              <option value="ر.س">ريال سعودي (ر.س)</option>
-              <option value="$">دولار أمريكي ($)</option>
-            </select>
-          </div>
-          <div><label>نسبة الخصم %</label><input type="number" step="1" id="pfDiscount" value="0"></div>  
-        </div>  
-        <div class="row2">  
-          <div><label>الألوان (افصل بفاصلة)</label><input type="text" id="pfColors" placeholder="أسود, ذهبي, كهرماني"></div>  
-          <div><label>الأحجام (افصل بفاصلة)</label><input type="text" id="pfSizes" placeholder="50ml, 100ml"></div>  
-        </div>  
-        <label>الكمية المتوفرة</label><input type="number" id="pfStock" value="10">  
-        <label>صور المنتج</label>  
-        <input type="file" id="pfImages" accept="image/*" multiple>  
-        <div class="thumbstrip" id="pfThumbs"></div>  
-        <div class="hint">سيتم رفع الصور مباشرة إلى مساحة تخزين Supabase.</div>  
-        <div style="display:flex; gap:10px; margin-top:16px;">  
-          <button class="btn" style="width:auto;padding:11px 26px;" onclick="saveProduct()">حفظ المنتج</button>  
-          <button class="btn secondary" style="width:auto;padding:11px 26px;" onclick="resetProductForm()">إلغاء / جديد</button>  
-        </div>  
-      </div>  
-      <table>  
-        <thead><tr><th></th><th>الاسم</th><th>الفئة</th><th>السعر</th><th>الخصم</th><th>المخزون</th><th></th></tr></thead>  
-        <tbody id="adminProductRows"></tbody>  
-      </table>  
-    </div>  
-  
-    <div id="tab-orders" style="display:none;">  
-      <table>  
-        <thead><tr><th>التاريخ</th><th>العميل</th><th>الهاتف</th><th>الإجمالي</th><th>الدفع</th><th>الحالة</th><th></th></tr></thead>  
-        <tbody id="adminOrderRows"></tbody>  
-      </table>  
-    </div>  
-  
-    <div id="tab-payment" style="display:none;">  
-      <div class="form-card">  
-        <h3 style="margin-top:0;">بيانات التحويل البنكي</h3>  
-        <label>اسم البنك</label><input type="text" id="payBankName">  
-        <label>اسم صاحب الحساب</label><input type="text" id="payAccName">  
-        <label>رقم الحساب / الآيبان</label><input type="text" id="payAccNumber">  
-        <label>تعليمات إضافية</label><textarea id="payBankNotes"></textarea>  
-      </div>  
-      <div class="form-card">  
-        <h3 style="margin-top:0;">بيانات الإيداع البنكي</h3>  
-        <label>اسم البنك</label><input type="text" id="payDepBankName">  
-        <label>رقم الحساب</label><input type="text" id="payDepAccNumber">  
-        <label>تعليمات إضافية</label><textarea id="payDepNotes"></textarea>  
-      </div>  
-      <button class="btn" style="width:auto;padding:11px 26px;" onclick="savePaymentSettings()">حفظ طرق الدفع</button>  
-    </div>  
-  
-    <div id="tab-settings" style="display:none;">  
-
-      <div class="form-card">
-        <h3 style="margin-top:0;">إرسال إشعار للعملاء (في أيقونة الجرس)</h3>
-        <label>عنوان الإشعار</label>
-        <input type="text" id="notifTitle" placeholder="مثال: خصم 50% لنهاية الأسبوع!">
-        <label>تفاصيل الإشعار</label>
-        <textarea id="notifBody" style="min-height:70px;" placeholder="اكتب تفاصيل العرض هنا..."></textarea>
-        <button class="btn" style="margin-top:10px; width:auto; padding:11px 26px;" onclick="sendCustomNotification()">نشر الإشعار</button>
-        <div class="hint">سيظهر هذا الإشعار في أيقونة الجرس لجميع زوار الموقع المتواجدين حالياً.</div>
-      </div>
-
-      <div class="form-card">
-        <h3 style="margin-top:0;">الخطوط والمظهر</h3>
-        <label>خط أسماء المنتجات</label>
-        <select id="setProductFont">
-          <option value="'Aref Ruqaa', serif">عارف رقعة (Aref Ruqaa) - افتراضي</option>
-          <option value="'Tajawal', sans-serif">تجوال (Tajawal)</option>
-          <option value="'Markazi Text', serif">مركزي (Markazi Text)</option>
-          <option value="'Cairo', sans-serif">كايرو (Cairo)</option>
-          <option value="'Amiri', serif">أميري (Amiri)</option>
-        </select>
-      </div>
-
-      <div class="form-card">
-        <h3 style="margin-top:0;">إدارة الأقسام (الكاتجري)</h3>
-        <label>إضافة قسم جديد</label>
-        <div style="display:flex; gap:8px;">
-          <input type="text" id="newCategoryInput" placeholder="مثال: المنتجات الجديدة، عطور شتوية...">
-          <button class="btn small" style="width:auto; padding:0 20px;" onclick="addNewCategory()">إضافة</button>
-        </div>
-        <div id="adminCategoryList" style="display:flex; flex-wrap:wrap; gap:8px; margin-top:14px;"></div>
-      </div>
-
-      <div class="form-card">
-        <h3 style="margin-top:0;">حسابات التواصل الاجتماعي</h3>
-        <label>رقم واتساب (بدون أصفار، مثال: 9677...)</label>
-        <input type="text" id="setWhatsapp" placeholder="96877XXXXXXX">
-        
-        <label>رابط فيسبوك</label>
-        <input type="text" id="setFacebook" placeholder="https://facebook.com/...">
-        
-        <label>رابط إنستقرام</label>
-        <input type="text" id="setInstagram" placeholder="https://instagram.com/...">
-        
-        <label>رابط تيليجرام</label>
-        <input type="text" id="setTelegram" placeholder="https://t.me/...">
-        
-        <label>رابط تويتر / إكس</label>
-        <input type="text" id="setTwitter" placeholder="https://x.com/...">
-
-        <label>رابط تيك توك</label>
-        <input type="text" id="setTiktok" placeholder="https://tiktok.com/@...">
-      </div>
-
-      <div class="form-card">
-        <h3 style="margin-top:0;">إضافة رأي عميل جديد</h3>
-        <div class="row2">
-          <div><label>اسم العميل</label><input type="text" id="revName"></div>
-          <div><label>التقييم (من 5)</label><input type="number" id="revRating" min="1" max="5" value="5"></div>
-        </div>
-        <label>نص التقييم</label>
-        <textarea id="revText" style="min-height:70px;"></textarea>
-        <button class="btn small" style="margin-top:10px;" onclick="addReview()">إضافة التقييم</button>
-        
-        <h4 style="margin-top:20px;">التقييمات الحالية:</h4>
-        <div id="adminReviewsList" style="display:flex; flex-direction:column; gap:8px;"></div>
-      </div>
-
-      <div class="form-card">
-        <h3 style="margin-top:0;">خلفية المتجر والعلامة المائية</h3>
-        <label>صورة خلفية للمتجر (اختياري)</label>
-        <input type="file" id="setBgImage" accept="image/*">
-        <img id="currentBgPreview" style="max-width:200px; margin-top:10px; border-radius:8px; display:none; border:1px solid var(--line);">
-        <button id="removeBgBtn" class="btn secondary small" style="display:none; margin-top:10px;" onclick="removeBg()">إزالة الخلفية الحالية</button>
-        <label>نص العلامة المائية المتحركة (اختياري)</label>
-        <input type="text" id="setWatermarkText" placeholder="مثال: عُمراء للعطور الفاخرة">
-      </div>
-
-      <div class="form-card">
-        <h3 style="margin-top:0;">تخصيص نصوص المتجر</h3>
-        <label>العنوان الرئيسي (المقولة)</label>
-        <input type="text" id="setSloganTitle" placeholder="عطور تُروى، لا تُقال">
-        <label>النص الوصفي تحت العنوان</label>
-        <textarea id="setSloganDesc" style="min-height:90px;"></textarea>
-        <label>قصة عُمراء (قسم من نحن)</label>
-        <textarea id="setAboutText" style="min-height:120px;"></textarea>
-        <label>سياسات المتجر (تظهر أسفل الموقع في الفوتر)</label>
-        <textarea id="setStorePolicies" placeholder="سياسة الاسترجاع والشحن..." style="min-height:90px;"></textarea>
-      </div>
-
-      <div class="form-card">
-        <h3 style="margin-top:0;">الإعلان الترويجي (Banner)</h3>
-        <label>رفع صور السلايدر أو مقطع فيديو إعلاني</label>
-        <input type="file" id="setAdMedia" accept="image/*,video/mp4,video/quicktime,video/webm" multiple>
-        <div class="hint">إذا رفعت صورة واحدة ستعرض بشكل ثابت. عدة صور = سلايدر متحرك. ملف فيديو = يعمل بصمت.</div>
-        
-        <div id="adMediaAdminPreview" class="thumbstrip"></div>
-        <button id="removeAdBtn" class="btn secondary small" style="display:none; margin-top:10px;" onclick="removeAd()">إزالة الإعلان الحالي</button>
-
-        <label>رابط الإعلان (للصور فقط - اختياري)</label>
-        <input type="text" id="setAdLink" placeholder="https://...">
-      </div>
-
-      <div class="form-card">  
-        <h3 style="margin-top:0;">إعدادات عامة إضافية</h3>  
-        <label>عرض كرت المنتج (بالبيكسل - للتحكم بالحجم)</label>
-        <input type="number" id="setCardWidth" placeholder="180">
-        <label>كلمة مرور لوحة التحكم الجديدة</label><input type="password" id="setNewPass" placeholder="اتركه فارغًا إن لم ترغب بالتغيير">  
-        <button class="btn" style="width:auto;padding:13px 32px;margin-top:14px;font-size:16px;" onclick="saveGeneralSettings()">حفظ جميع الإعدادات</button>  
-      </div>  
-    </div>  
-  </div>  
-</div>  
-  
 <div class="toast" id="toast"></div>  
   
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>  
@@ -635,16 +382,10 @@ const SUPABASE_ANON_KEY = "sb_publishable_oqvyjt2eMRXeLKS-u7ahpQ_EhmoZR2t";
 const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
   
 let products = [];  
-let orders = [];  
 let paymentSettings = {};  
 let generalSettings = { whatsapp: "96877881748", cardWidth: 180, categories: ['عطور فاخرة', 'منتجات أخرى'], adMedia: [], adType: 'none', productFont: "'Aref Ruqaa', serif", tiktok: "", reviews: [], customNotifs: [] };  
 let activeCategory = 'الكل';  
-let pendingImageFiles = [];  
-let existingImageUrls = [];  
 let selectedPayMethod = 'bank';  
-let pendingAdFiles = [];
-let pendingBgFile = null;
-let adminCatArray = [];
 let sliderInterval = null;
   
 let cart = [];
@@ -662,16 +403,9 @@ async function fetchProducts() {
     const { data, error } = await client.from('products').select('*').order('created_at', { ascending: false });
     if (!error && data) {
       products = data;
-      renderCategories(); renderProducts(); renderAdminProducts();
+      renderCategories(); renderProducts();
       renderNotifications();
     }
-  } catch (err) {}
-}
-
-async function fetchOrders() {
-  try {
-    const { data, error } = await client.from('orders').select('*').order('created_at', { ascending: false });
-    if (data) { orders = data; renderAdminOrders(); }
   } catch (err) {}
 }
 
@@ -725,19 +459,6 @@ function renderAdMedia() {
   }
 }
 
-function renderAdminCatList() {
-  const box = document.getElementById('adminCategoryList');
-  box.innerHTML = adminCatArray.map((c, i) => `<div class="admin-cat-pill"><span>${c}</span><button onclick="removeAdminCat(${i})">✕</button></div>`).join('');
-  const select = document.getElementById('pfCategory');
-  select.innerHTML = adminCatArray.map(c => `<option value="${c}">${c}</option>`).join('');
-}
-function addNewCategory() {
-  const v = document.getElementById('newCategoryInput').value.trim();
-  if(v && !adminCatArray.includes(v)) { adminCatArray.push(v); renderAdminCatList(); }
-  document.getElementById('newCategoryInput').value = '';
-}
-function removeAdminCat(index) { adminCatArray.splice(index, 1); renderAdminCatList(); }
-
 async function fetchSettings() {
   try {
     const { data, error } = await client.from('settings').select('*');
@@ -745,53 +466,17 @@ async function fetchSettings() {
       const payDoc = data.find(d => d.id === 'payment');
       const genDoc = data.find(d => d.id === 'general');
       
-      if (payDoc) {
-        paymentSettings = payDoc.data || {};
-        fillPaymentForm(); renderPayDetails();
-      }
+      if (payDoc) { paymentSettings = payDoc.data || {}; }
       if (genDoc && genDoc.data) {
         generalSettings = genDoc.data;
         if(!generalSettings.categories) generalSettings.categories = ['المنتجات الجديدة', 'عطور فاخرة', 'منتجات أخرى'];
         if(!generalSettings.reviews) generalSettings.reviews = [];
         if(!generalSettings.customNotifs) generalSettings.customNotifs = [];
         
-        adminCatArray = [...generalSettings.categories];
-        renderAdminCatList(); renderCategories(); 
-
-        document.getElementById('setWhatsapp').value = generalSettings.whatsapp || '';  
-        document.getElementById('setFacebook').value = generalSettings.facebook || '';
-        document.getElementById('setInstagram').value = generalSettings.instagram || '';
-        document.getElementById('setTelegram').value = generalSettings.telegram || '';
-        document.getElementById('setTwitter').value = generalSettings.twitter || '';
-        document.getElementById('setTiktok').value = generalSettings.tiktok || '';
-        document.getElementById('setProductFont').value = generalSettings.productFont || "'Aref Ruqaa', serif";
+        renderCategories(); 
 
         const width = generalSettings.cardWidth || 180;
-        document.getElementById('setCardWidth').value = width;
-        document.getElementById('setSloganTitle').value = generalSettings.sloganTitle || 'عطور تُروى، لا تُقال';
-        document.getElementById('setSloganDesc').value = generalSettings.sloganDesc || 'تشكيلة عطور ومنتجات مختارة بعناية، بروح شرقية أصيلة ولمسة عصرية فاخرة. كل قطعة في متجرنا تُختار لتبقى.';
-        document.getElementById('setAboutText').value = generalSettings.aboutText || 'متجر عُمراء، وجهتك للعطور الفاخرة والمنتجات المختارة بعناية. نلتزم بالجودة والأصالة في كل تفصيل.';
-        document.getElementById('setStorePolicies').value = generalSettings.policies || '';
-        document.getElementById('setAdLink').value = generalSettings.adLink || '';
-        document.getElementById('setWatermarkText').value = generalSettings.watermarkText || '';
-        
-        const adPrevBox = document.getElementById('adMediaAdminPreview');
-        if (generalSettings.adMedia && generalSettings.adMedia.length > 0) {
-            document.getElementById('removeAdBtn').style.display = 'inline-block';
-            if(generalSettings.adType === 'video') {
-               adPrevBox.innerHTML = `<video src="${generalSettings.adMedia[0]}" muted loop playsinline webkit-playsinline autoplay></video>`;
-            } else {
-               adPrevBox.innerHTML = generalSettings.adMedia.map(src => `<img src="${src}">`).join('');
-            }
-        } else {
-            adPrevBox.innerHTML = '';
-            document.getElementById('removeAdBtn').style.display = 'none';
-        }
-
         if (generalSettings.bgImage) {
-            document.getElementById('currentBgPreview').src = generalSettings.bgImage;
-            document.getElementById('currentBgPreview').style.display = 'block';
-            document.getElementById('removeBgBtn').style.display = 'inline-block';
             document.getElementById('customBgLayer').style.backgroundImage = `url('${generalSettings.bgImage}')`;
             document.getElementById('customBgLayer').style.display = 'block';
         } else {
@@ -835,12 +520,10 @@ async function fetchSettings() {
 }
 
 fetchProducts();
-fetchOrders();
 fetchSettings();
 
 client.channel('public-tables')
   .on('postgres_changes', { event: '*', schema: 'public', table: 'products' }, fetchProducts)
-  .on('postgres_changes', { event: '*', schema: 'public', table: 'orders' }, fetchOrders)
   .on('postgres_changes', { event: '*', schema: 'public', table: 'settings' }, fetchSettings)
   .subscribe();
 
@@ -849,7 +532,7 @@ function renderCategories(){
   const cats = generalSettings.categories || [];
   if(!cats.includes(activeCategory) && activeCategory !== 'الكل') activeCategory = 'الكل';
   const box = document.getElementById('catFilters');  
-  box.innerHTML = ['الكل', ...cats].map(c=>`<button class="${c===activeCategory?'active':''}" onclick="setCategory('${c.replace(/'/g,"\\'")}')">${c}</button>`).join('');  
+  box.innerHTML = ['الكل', ...cats].map(c=>`<button class="${c===activeCategory?'active':''}" onclick="setCategory('${c.replace(/'/g,"\'")}')">${c}</button>`).join('');  
 }  
 function setCategory(c){ activeCategory = c; renderCategories(); renderProducts(); }  
   
@@ -980,7 +663,7 @@ function renderCart(){
   else {  
     body.innerHTML = cart.map(c=>`  
       <div class="cart-item">  
-        ${c.image?`<img src="${c.image}">`:'<div class="tbl-img" style="width:64px;height:64px;background:var(--cream-deep);border-radius:10px;"></div>'}  
+        ${c.image?`<img src="${c.image}">`:'<div style="width:64px;height:64px;background:var(--cream-deep);border-radius:10px;"></div>'}  
         <div class="info">  
           <div class="nm">${c.name}</div>  
           <div class="meta">${[c.color,c.size].filter(Boolean).join(' · ')}</div>  
@@ -1059,9 +742,14 @@ function selectPay(m){
 function renderPayDetails(){  
   const box = document.getElementById('payDetailsBox');  
   if(selectedPayMethod==='bank'){  
-    box.textContent = `البنك: ${paymentSettings.bankName||'—'}\nاسم الحساب: ${paymentSettings.accName||'—'}\nرقم الحساب/الآيبان: ${paymentSettings.accNumber||'—'}\n${paymentSettings.bankNotes||''}`;  
+    box.textContent = `البنك: ${paymentSettings.bankName||'—'}
+اسم الحساب: ${paymentSettings.accName||'—'}
+رقم الحساب/الآيبان: ${paymentSettings.accNumber||'—'}
+${paymentSettings.bankNotes||''}`;  
   } else {  
-    box.textContent = `البنك: ${paymentSettings.depBankName||'—'}\nرقم الحساب: ${paymentSettings.depAccNumber||'—'}\n${paymentSettings.depNotes||''}`;  
+    box.textContent = `البنك: ${paymentSettings.depBankName||'—'}
+رقم الحساب: ${paymentSettings.depAccNumber||'—'}
+${paymentSettings.depNotes||''}`;  
   }  
 }  
 async function submitOrder(){  
@@ -1090,293 +778,6 @@ async function submitOrder(){
     }
   } catch (err) { alert("فشل الاتصال بقاعدة البيانات: " + err.message); }
 }  
-  
-/* ---------------- Admin Auth ---------------- */  
-function openAdminLogin(){ document.getElementById('loginModal').classList.add('show'); document.getElementById('loginScrim').classList.add('show'); }  
-function closeAdminLogin(){ document.getElementById('loginModal').classList.remove('show'); document.getElementById('loginScrim').classList.remove('show'); }  
-
-async function adminLogin(){  
-  const pass = document.getElementById('loginPass').value;  
-  try {
-    const { data, error } = await client.from('settings').select('data').eq('id', 'admin').single();
-    if(error) { alert("خطأ أثناء الاتصال: " + error.message); return; }
-    
-    if(data && data.data && data.data.password === pass){  
-      try { sessionStorage.setItem('omara_admin','1'); } catch(e){}
-      closeAdminLogin(); enterAdmin();  
-    } else {  
-      document.getElementById('loginMsg').textContent = 'كلمة المرور غير صحيحة';  
-    }  
-  } catch(err) { alert("فشل الاتصال: " + err.message); }
-}  
-
-function adminLogout(){ try { sessionStorage.removeItem('omara_admin'); } catch(e){} viewStore(); }  
-function enterAdmin(){ document.getElementById('storeView').style.display='none'; document.getElementById('adminView').style.display='block'; }  
-function viewStore(){ document.getElementById('adminView').style.display='none'; document.getElementById('storeView').style.display='block'; history.replaceState(null,null,' '); }  
-
-let isAdmin = false;
-try { isAdmin = sessionStorage.getItem('omara_admin') === '1'; } catch(e){}
-if(location.hash==='#admin' && isAdmin){ enterAdmin(); }  
-  
-function showTab(name){  
-  ['products','orders','payment','settings'].forEach(t=>{ document.getElementById('tab-'+t).style.display = (t===name)?'block':'none'; });  
-  document.querySelectorAll('.adminbar button[data-tab]').forEach(b=>b.classList.toggle('active', b.dataset.tab===name));  
-}  
-  
-/* ---------------- Admin Products ---------------- */  
-document.getElementById('pfImages').addEventListener('change', e=>{ pendingImageFiles = [...e.target.files]; renderThumbs(); });  
-function renderThumbs(){  
-  const box = document.getElementById('pfThumbs');  
-  let html = existingImageUrls.map((u,i)=>`<div class="th"><img src="${u}"><button class="rm" onclick="removeExistingImage(${i})">✕</button></div>`).join('');  
-  html += pendingImageFiles.map(f=>`<div class="th"><img src="${URL.createObjectURL(f)}"></div>`).join('');  
-  box.innerHTML = html;  
-}  
-function removeExistingImage(i){ existingImageUrls.splice(i,1); renderThumbs(); }  
-  
-function resetProductForm(){  
-  document.getElementById('pfId').value=''; document.getElementById('pfName').value='';  
-  const catSelect = document.getElementById('pfCategory');
-  if(catSelect.options.length > 0) catSelect.selectedIndex = 0;
-  
-  document.getElementById('pfDesc').value=''; document.getElementById('pfPrice').value='';  
-  document.getElementById('pfCurrency').value='ر.ي'; document.getElementById('pfDiscount').value='0';  
-  document.getElementById('pfColors').value=''; document.getElementById('pfSizes').value='';  
-  document.getElementById('pfStock').value='10'; document.getElementById('pfImages').value='';  
-  pendingImageFiles=[]; existingImageUrls=[]; renderThumbs();  
-  document.getElementById('pfTitle').textContent='إضافة منتج جديد';  
-}  
-
-function editProduct(id){  
-  const p = products.find(x=>x.id===id);  
-  if(!p) return;  
-  document.getElementById('pfId').value=p.id; document.getElementById('pfName').value=p.name||'';  
-  
-  const catSelect = document.getElementById('pfCategory');
-  if(p.category && adminCatArray.includes(p.category)) { catSelect.value = p.category; }
-  
-  document.getElementById('pfDesc').value=p.description||''; document.getElementById('pfPrice').value=p.price||'';  
-  document.getElementById('pfCurrency').value=p.currency||'ر.ي'; document.getElementById('pfDiscount').value=p.discount||0;  
-  document.getElementById('pfColors').value=(p.colors||[]).join(', '); document.getElementById('pfSizes').value=(p.sizes||[]).join(', ');  
-  document.getElementById('pfStock').value=p.stock||0; existingImageUrls=[...(p.images||[])]; pendingImageFiles=[];  
-  document.getElementById('pfImages').value=''; renderThumbs();  
-  document.getElementById('pfTitle').textContent='تعديل المنتج'; window.scrollTo({top:0,behavior:'smooth'});  
-}  
-
-async function deleteProduct(id){  
-  if(!confirm('حذف هذا المنتج نهائياً؟')) return;  
-  await client.from('products').delete().eq('id', id); toast('تم حذف المنتج');  
-}  
-
-async function saveProduct(){  
-  const name = document.getElementById('pfName').value.trim();  
-  const price = Number(document.getElementById('pfPrice').value);  
-  if(!name || !price){ toast('يرجى إدخال اسم وسعر المنتج'); return; }  
-  toast('جارٍ الحفظ…');  
-  
-  let urls = [...existingImageUrls];  
-  for(const file of pendingImageFiles){  
-    const path = Date.now() + '_' + file.name;  
-    const { data, error } = await client.storage.from('store-images').upload(path, file);
-    if (!error) {
-      const { data: publicUrlData } = client.storage.from('store-images').getPublicUrl(path);
-      urls.push(publicUrlData.publicUrl);
-    }
-  }  
-  
-  const productData = {  
-    name, category: document.getElementById('pfCategory').value || 'منتجات أخرى',  
-    description: document.getElementById('pfDesc').value.trim(), price,  
-    currency: document.getElementById('pfCurrency').value || 'ر.ي',
-    discount: Number(document.getElementById('pfDiscount').value)||0,  
-    colors: document.getElementById('pfColors').value.split(',').map(s=>s.trim()).filter(Boolean),  
-    sizes: document.getElementById('pfSizes').value.split(',').map(s=>s.trim()).filter(Boolean),  
-    stock: Number(document.getElementById('pfStock').value)||0, images: urls  
-  };  
-  
-  const id = document.getElementById('pfId').value;  
-  if(id){ await client.from('products').update(productData).eq('id', id); } 
-  else { await client.from('products').insert([productData]); }  
-  resetProductForm(); toast('تم حفظ المنتج بنجاح');  
-}  
-
-function renderAdminProducts(){  
-  document.getElementById('adminProductRows').innerHTML = products.map(p=>`  
-    <tr>  
-      <td>${p.images&&p.images[0]?`<img class="tbl-img" src="${p.images[0]}">`:''}</td>  
-      <td>${p.name}</td><td>${p.category||''}</td>  
-      <td style="direction:ltr;">${Number(p.price||0).toFixed(2)} ${p.currency||'ر.ي'}</td>  
-      <td>${p.discount||0}%</td><td>${p.stock||0}</td>  
-      <td class="actions">  
-        <button class="icon-btn" onclick="editProduct('${p.id}')">تعديل</button>  
-        <button class="icon-btn danger" onclick="deleteProduct('${p.id}')">حذف</button>  
-      </td>  
-    </tr>`).join('');  
-}  
-  
-/* ---------------- Admin Orders ---------------- */  
-function renderAdminOrders(){  
-  document.getElementById('adminOrderRows').innerHTML = orders.map(o=>{  
-    const date = o.created_at ? new Date(o.created_at).toLocaleString('ar-OM') : '—';  
-    return `<tr>  
-      <td>${date}</td><td>${o.name}<div class="hint">${o.address||''}</div></td><td>${o.phone}</td>  
-      <td style="direction:ltr;">${o.total||'0'}</td><td>${o.pay_method==='bank'?'تحويل بنكي':'إيداع بنكي'}</td>  
-      <td><span class="status-pill status-${o.status}">${{pending:'قيد الانتظار',confirmed:'مؤكد',shipped:'تم الشحن'}[o.status]||o.status}</span></td>  
-      <td>  
-        <select onchange="updateOrderStatus('${o.id}',this.value)">  
-          <option value="pending" ${o.status==='pending'?'selected':''}>قيد الانتظار</option>  
-          <option value="confirmed" ${o.status==='confirmed'?'selected':''}>مؤكد</option>  
-          <option value="shipped" ${o.status==='shipped'?'selected':''}>تم الشحن</option>  
-        </select>  
-      </td>  
-    </tr>`;  
-  }).join('') || '<tr><td colspan="7" class="empty">لا توجد طلبات بعد</td></tr>';  
-}  
-async function updateOrderStatus(id,status){ await client.from('orders').update({status}).eq('id', id); toast('تم تحديث حالة الطلب'); }  
-  
-/* ---------------- Admin Settings & Ads ---------------- */  
-function fillPaymentForm(){  
-  document.getElementById('payBankName').value = paymentSettings.bankName||'';  
-  document.getElementById('payAccName').value = paymentSettings.accName||'';  
-  document.getElementById('payAccNumber').value = paymentSettings.accNumber||'';  
-  document.getElementById('payBankNotes').value = paymentSettings.bankNotes||'';  
-  document.getElementById('payDepBankName').value = paymentSettings.depBankName||'';  
-  document.getElementById('payDepAccNumber').value = paymentSettings.depAccNumber||'';  
-  document.getElementById('payDepNotes').value = paymentSettings.depNotes||'';  
-}  
-
-async function savePaymentSettings(){  
-  const data = {  
-    bankName: document.getElementById('payBankName').value.trim(), accName: document.getElementById('payAccName').value.trim(),  
-    accNumber: document.getElementById('payAccNumber').value.trim(), bankNotes: document.getElementById('payBankNotes').value.trim(),  
-    depBankName: document.getElementById('payDepBankName').value.trim(), depAccNumber: document.getElementById('payDepAccNumber').value.trim(),  
-    depNotes: document.getElementById('payDepNotes').value.trim(),  
-  };  
-  await client.from('settings').update({ data }).eq('id', 'payment'); toast('تم حفظ طرق الدفع');  
-}  
-  
-document.getElementById('setAdMedia').addEventListener('change', e => {
-  if(e.target.files.length > 0) {
-    pendingAdFiles = [...e.target.files];
-    const adPrevBox = document.getElementById('adMediaAdminPreview');
-    const firstFile = pendingAdFiles[0];
-    const isVideo = firstFile.type.startsWith('video/') || firstFile.name.match(/\.(mp4|mov|webm)$/i);
-    if (isVideo) {
-       adPrevBox.innerHTML = `<video src="${URL.createObjectURL(firstFile)}" muted loop autoplay playsinline webkit-playsinline style="width:100px; height:auto; border-radius:8px;"></video>`;
-    } else {
-       adPrevBox.innerHTML = pendingAdFiles.map(f => `<img src="${URL.createObjectURL(f)}" style="width:60px; height:60px; object-fit:cover; border-radius:8px;">`).join('');
-    }
-    document.getElementById('removeAdBtn').style.display = 'inline-block';
-  }
-});
-
-function removeAd() {
-  generalSettings.adMedia = []; generalSettings.adType = 'none';
-  document.getElementById('adMediaAdminPreview').innerHTML = ''; document.getElementById('removeAdBtn').style.display = 'none';
-  document.getElementById('setAdMedia').value = ''; pendingAdFiles = []; toast('تم إزالة الإعلان مؤقتاً، اضغط حفظ لتأكيد الإزالة.');
-}
-
-document.getElementById('setBgImage').addEventListener('change', e => {
-  if(e.target.files.length > 0) {
-    pendingBgFile = e.target.files[0];
-    document.getElementById('currentBgPreview').src = URL.createObjectURL(pendingBgFile);
-    document.getElementById('currentBgPreview').style.display = 'block';
-    document.getElementById('removeBgBtn').style.display = 'inline-block';
-  }
-});
-
-function removeBg() {
-  generalSettings.bgImage = null; document.getElementById('currentBgPreview').style.display = 'none';
-  document.getElementById('removeBgBtn').style.display = 'none'; document.getElementById('setBgImage').value = ''; pendingBgFile = null;
-  toast('تم إزالة الخلفية مؤقتاً، اضغط حفظ لتأكيد الإزالة.');
-}
-
-async function saveGeneralSettings(){  
-  const wa = document.getElementById('setWhatsapp').value.trim();  
-  const facebook = document.getElementById('setFacebook').value.trim();  
-  const instagram = document.getElementById('setInstagram').value.trim();  
-  const telegram = document.getElementById('setTelegram').value.trim();  
-  const twitter = document.getElementById('setTwitter').value.trim();  
-  const tiktok = document.getElementById('setTiktok').value.trim();  
-  const productFont = document.getElementById('setProductFont').value;  
-  const cWidth = document.getElementById('setCardWidth').value.trim() || 180;
-  const sloganTitle = document.getElementById('setSloganTitle').value.trim();
-  const sloganDesc = document.getElementById('setSloganDesc').value.trim();
-  const aboutText = document.getElementById('setAboutText').value.trim();
-  const storePolicies = document.getElementById('setStorePolicies').value.trim();
-  const adLink = document.getElementById('setAdLink').value.trim();
-  const watermarkText = document.getElementById('setWatermarkText').value.trim();
-
-  toast('جارٍ الحفظ... الرجاء الانتظار');
-
-  let savedAdUrls = generalSettings.adMedia || [];
-  let savedAdType = generalSettings.adType || 'none';
-  
-  if (pendingAdFiles.length > 0) {
-    savedAdUrls = [];
-    const firstFile = pendingAdFiles[0];
-    const isVideo = firstFile.type.startsWith('video/') || firstFile.name.match(/\.(mp4|mov|webm)$/i);
-    savedAdType = isVideo ? 'video' : (pendingAdFiles.length > 1 ? 'slider' : 'image');
-
-    for(let file of pendingAdFiles) {
-      const path = 'ad_' + Date.now() + '_' + file.name;  
-      const { data, error } = await client.storage.from('store-images').upload(path, file);
-      if (!error) {
-        const { data: publicUrlData } = client.storage.from('store-images').getPublicUrl(path);
-        savedAdUrls.push(publicUrlData.publicUrl);
-      } else { alert('حدث خطأ في رفع الوسائط الإعلانية: ' + error.message); }
-    }
-    pendingAdFiles = [];
-  } else if (generalSettings.adMedia && generalSettings.adMedia.length === 0) { savedAdType = 'none'; }
-
-  let bgImageUrl = generalSettings.bgImage || null;
-  if (pendingBgFile) {
-    const path = 'bg_' + Date.now() + '_' + pendingBgFile.name;  
-    const { data, error } = await client.storage.from('store-images').upload(path, pendingBgFile);
-    if (!error) {
-      const { data: publicUrlData } = client.storage.from('store-images').getPublicUrl(path);
-      bgImageUrl = publicUrlData.publicUrl;
-    }
-    pendingBgFile = null;
-  }
-
-  const newData = { 
-    whatsapp: wa, facebook: facebook, instagram: instagram, telegram: telegram, twitter: twitter, tiktok: tiktok,
-    productFont: productFont, cardWidth: Number(cWidth), categories: adminCatArray, sloganTitle: sloganTitle,
-    sloganDesc: sloganDesc, aboutText: aboutText, policies: storePolicies, adMedia: savedAdUrls, adType: savedAdType,
-    adLink: adLink, bgImage: bgImageUrl, watermarkText: watermarkText,
-    reviews: generalSettings.reviews || [], customNotifs: generalSettings.customNotifs || []
-  };
-
-  const { error: updateError } = await client.from('settings').update({ data: newData }).eq('id', 'general');
-  if (updateError) { alert('حدث خطأ أثناء حفظ الإعدادات: ' + updateError.message); return; }
-  
-  const newPass = document.getElementById('setNewPass').value.trim();  
-  if(newPass){  
-    await client.from('settings').update({ data: { password: newPass } }).eq('id', 'admin');
-    document.getElementById('setNewPass').value=''; toast('تم حفظ الإعدادات وتغيير كلمة المرور');  
-  } else { toast('تم حفظ الإعدادات بنجاح'); }  
-}  
-
-/* ---------------- الإشعارات الديناميكية والمخصصة ---------------- */
-async function sendCustomNotification() {
-  const title = document.getElementById('notifTitle').value.trim();
-  const body = document.getElementById('notifBody').value.trim();
-  
-  if(!title || !body) { toast('يرجى كتابة عنوان وتفاصيل الإشعار'); return; }
-  
-  const newNotif = { id: Date.now(), title: title, body: body, date: new Date().toLocaleDateString('ar-OM') };
-  if(!generalSettings.customNotifs) generalSettings.customNotifs = [];
-  
-  generalSettings.customNotifs.unshift(newNotif);
-  if(generalSettings.customNotifs.length > 10) generalSettings.customNotifs.pop();
-  
-  const { error } = await client.from('settings').update({ data: generalSettings }).eq('id', 'general');
-  
-  if(!error) {
-    document.getElementById('notifTitle').value = ''; document.getElementById('notifBody').value = '';
-    toast('تم إرسال الإشعار لجميع الزوار!'); renderNotifications();
-  } else { toast('حدث خطأ أثناء الإرسال'); }
-}
 
 function renderNotifications() {
   const notifList = document.getElementById('notifList');
@@ -1423,14 +824,13 @@ document.addEventListener('click', function(e) {
   if (bell && dropdown && !bell.contains(e.target) && !dropdown.contains(e.target)) { dropdown.classList.remove('show'); }
 });
 
-/* ---------------- آراء العملاء ---------------- */
 function renderReviews() {
-  const grid = document.getElementById('reviewsGrid'); const adminList = document.getElementById('adminReviewsList');
+  const grid = document.getElementById('reviewsGrid'); 
   const revs = generalSettings.reviews || [];
   
   if(!revs.length) {
     if(grid) grid.innerHTML = '<div class="empty" style="width:100%; text-align:center;">لا توجد تقييمات بعد.</div>';
-    if(adminList) adminList.innerHTML = '<div class="hint">لا توجد تقييمات مضافة.</div>'; return;
+    return;
   }
   
   if(grid) {
@@ -1442,34 +842,6 @@ function renderReviews() {
       </div>
     `).join('');
   }
-  
-  if(adminList) {
-    adminList.innerHTML = revs.map((r, i) => `
-      <div style="background:var(--cream); padding:10px; border-radius:8px; display:flex; justify-content:space-between; align-items:center;">
-        <div><b>${r.name}</b> (${r.rating}/5)<br><span style="font-size:12px;">${r.text}</span></div>
-        <button class="icon-btn danger" onclick="deleteReview(${i})">حذف</button>
-      </div>
-    `).join('');
-  }
-}
-
-async function addReview() {
-  const name = document.getElementById('revName').value.trim();
-  const rating = Number(document.getElementById('revRating').value);
-  const text = document.getElementById('revText').value.trim();
-  if(!name || !text) { toast('يرجى تعبئة الاسم والنص'); return; }
-  if(!generalSettings.reviews) generalSettings.reviews = [];
-  generalSettings.reviews.unshift({ name, rating, text });
-  
-  const { error } = await client.from('settings').update({ data: generalSettings }).eq('id', 'general');
-  if(!error) { document.getElementById('revName').value = ''; document.getElementById('revText').value = ''; renderReviews(); toast('تمت إضافة التقييم بنجاح'); } else { toast('حدث خطأ أثناء الحفظ'); }
-}
-
-async function deleteReview(index) {
-  if(!confirm('هل أنت متأكد من حذف هذا التقييم؟')) return;
-  generalSettings.reviews.splice(index, 1);
-  const { error } = await client.from('settings').update({ data: generalSettings }).eq('id', 'general');
-  if(!error) { renderReviews(); toast('تم حذف التقييم'); } else { toast('حدث خطأ أثناء الحذف'); }
 }
 
 renderCart();  
