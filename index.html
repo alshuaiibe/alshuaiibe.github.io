@@ -364,7 +364,7 @@
       <nav class="pillnav" id="mainNav">  
         <button class="active" onclick="scrollToSection('shop')">المتجر</button>  
         <button onclick="scrollToSection('about')">من نحن</button>  
-        <button id="wishlistTab" style="display:none;" onclick="setCategory('wishlist')">❤️ المفضلة</button>
+        <button id="wishlistTab" style="display:none;" onclick="setCategory('wishlist')">❤️ المفضلة</button>  
         <button onclick="openTrackingModal()">تتبع طلبك</button>  
       </nav>  
       <div style="display:flex; gap:10px; position:relative;">
@@ -909,10 +909,10 @@ function renderProducts(){
       return;
   }
 
-  // تصفية وحصول على جميع الأقسام المتاحة أو المحددة
+  // استخدام الأقسام المحفوظة فقط بدون أي أقسام افتراضية
   const configuredCategories = generalSettings.categories || [];
   
-  // تجميع كافة الفئات الموجودة في المنتجات للتأكد من عدم ضياع أي فئة
+  // تجميع الأقسام الموجودة في المنتجات
   const actualCategories = [...new Set(list.map(p => p.category).filter(Boolean))];
   const allCategories = [...new Set([...configuredCategories, ...actualCategories])];
 
@@ -964,7 +964,7 @@ function renderProducts(){
       fullHTML += `
         <div class="category-group">
           <div class="category-header">
-             <h3 class="category-title-text">منتجات أخرى</h3>
+             <h3 class="category-title-text">أخرى</h3>
              <div class="scroll-controls">
                 <button class="scroll-btn" onclick="scrollCategory('other_cats', 'right')">❯</button>
                 <button class="scroll-btn" onclick="scrollCategory('other_cats', 'left')">❮</button>
@@ -1205,8 +1205,7 @@ async function submitOrder(){
           let t = totals[k] * (1 - appliedCoupon.percent / 100);
           return `${t.toFixed(2)} ${k}`;
       }).join(' + ');
-      finalNotes += `
-(تم استخدام كود الخصم: ${appliedCoupon.code} بخصم ${appliedCoupon.percent}%)`;
+      finalNotes += `\n(تم استخدام كود الخصم: ${appliedCoupon.code} بخصم ${appliedCoupon.percent}%)`;
   } else {
       finalTotalText = Object.keys(totals).map(k => `${totals[k].toFixed(2)} ${k}`).join(' + ');
   }
@@ -1226,22 +1225,11 @@ async function submitOrder(){
       toast('تم إرسال طلبك بنجاح!');  
       
       if(generalSettings.featureWaCheck === true && generalSettings.whatsapp) {
-          let waText = `طلب جديد من متجر عُمراء 🛍️
-
-👤 الاسم: ${name}
-📞 الهاتف: ${phone}
-📍 العنوان: ${address}
-
-📦 المنتجات:
-`;
-          tempCart.forEach(c => { waText += `- ${c.name} (${c.qty})
-`; });
-          waText += `
-💰 الإجمالي المطلـوب: ${finalTotalText}
-💳 الدفع: ${selectedPayMethod === 'bank' ? 'تحويل بنكي' : 'إيداع بنكي'}`;
+          let waText = `طلب جديد من متجر عُمراء 🛍️\n\n👤 الاسم: ${name}\n📞 الهاتف: ${phone}\n📍 العنوان: ${address}\n\n📦 المنتجات:\n`;
+          tempCart.forEach(c => { waText += `- ${c.name} (${c.qty})\n`; });
+          waText += `\n💰 الإجمالي المطلـوب: ${finalTotalText}\n💳 الدفع: ${selectedPayMethod === 'bank' ? 'تحويل بنكي' : 'إيداع بنكي'}`;
           
-          if(finalNotes) waText += `
-📝 ملاحظات: ${finalNotes}`;
+          if(finalNotes) waText += `\n📝 ملاحظات: ${finalNotes}`;
           
           setTimeout(() => {
               window.open(`https://wa.me/${generalSettings.whatsapp}?text=${encodeURIComponent(waText)}`, '_blank');
