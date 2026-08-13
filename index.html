@@ -177,7 +177,7 @@
     margin-bottom: 18px;
   }
   .category-title-text {
-    font-family: 'Aref Ruqaa', serif;
+    font-family: var(--product-font);
     font-size: 28px;
     font-weight: 700;
     color: var(--ink);
@@ -679,7 +679,7 @@ async function fetchSettings() {
       if (payDoc) { paymentSettings = payDoc.data || {}; }
       if (genDoc && genDoc.data) {
         generalSettings = genDoc.data;
-        if(!generalSettings.categories) generalSettings.categories = ['إبراز', 'دخوني', 'عطور فاخرة', 'منتجات أخرى'];
+        if(!generalSettings.categories) generalSettings.categories = [];
         if(!generalSettings.reviews) generalSettings.reviews = [];
         if(!generalSettings.customNotifs) generalSettings.customNotifs = [];
         if(!generalSettings.coupons) generalSettings.coupons = [];
@@ -910,7 +910,7 @@ function renderProducts(){
   }
 
   // تصفية وحصول على جميع الأقسام المتاحة أو المحددة
-  const configuredCategories = generalSettings.categories || ['إبراز', 'دخوني', 'عطور فاخرة', 'منتجات أخرى'];
+  const configuredCategories = generalSettings.categories || [];
   
   // تجميع كافة الفئات الموجودة في المنتجات للتأكد من عدم ضياع أي فئة
   const actualCategories = [...new Set(list.map(p => p.category).filter(Boolean))];
