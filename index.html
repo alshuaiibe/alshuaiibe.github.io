@@ -782,7 +782,7 @@ function renderCategories(){
   const cats = generalSettings.categories || [];
   if(!cats.includes(activeCategory) && activeCategory !== 'الكل' && activeCategory !== 'wishlist') activeCategory = 'الكل';
   const box = document.getElementById('catFilters');  
-  let html = ['الكل', ...cats].map(c=>`<button class="${c===activeCategory?'active':''}" onclick="setCategory('${c.replace(/'/g,"'")}')">${c}</button>`).join('');  
+  let html = ['الكل', ...cats].map(c=>`<button class="${c===activeCategory?'active':''}" onclick="setCategory('${c.replace(/'/g,"\'")}')">${c}</button>`).join('');  
   box.innerHTML = html;
   
   const navBtns = document.querySelectorAll('#mainNav button');
@@ -915,6 +915,13 @@ function renderProducts(){
       return;
   }
 
+  // تصفية وحصول على جميع الأقسام المتاحة أو المحددة
+  const configuredCategories = generalSettings.categories || ['إبراز', 'دخوني', 'عطور فاخرة', 'منتجات أخرى'];
+  
+  // تجميع كافة الفئات الموجودة في المنتجات للتأكد من عدم ضياع أي فئة
+  const actualCategories = [...new Set(list.map(p => p.category).filter(Boolean))];
+  const allCategories = [...new Set([...configuredCategories, ...actualCategories])];
+
   if(activeCategory !== 'الكل') {
       const catList = list.filter(p => p.category === activeCategory);
       if(!catList.length) { container.innerHTML = '<div class="empty">لا توجد منتجات في هذا القسم حالياً.</div>'; return; }
@@ -936,7 +943,6 @@ function renderProducts(){
       return;
   }
 
-  const allCategories = generalSettings.categories || ['إبراز', 'دخوني', 'عطور فاخرة', 'منتجات أخرى'];
   let fullHTML = '';
 
   allCategories.forEach((catName) => {
@@ -959,8 +965,8 @@ function renderProducts(){
       }
   });
 
-  const remainingProducts = list.filter(p => !allCategories.includes(p.category));
-  if(remainingProducts.length > 0) {
+  const unassignedProducts = list.filter(p => !p.category);
+  if(unassignedProducts.length > 0) {
       fullHTML += `
         <div class="category-group">
           <div class="category-header">
@@ -971,7 +977,7 @@ function renderProducts(){
              </div>
           </div>
           <div class="horizontal-scroll-container" id="scroll-container-other_cats">
-             ${remainingProducts.map(p => buildCardHTML(p, showWishBtn)).join('')}
+             ${unassignedProducts.map(p => buildCardHTML(p, showWishBtn)).join('')}
           </div>
         </div>`;
   }
