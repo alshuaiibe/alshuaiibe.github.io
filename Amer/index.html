@@ -73,7 +73,9 @@
   
   #loginModal .msg{font-size:12px; color:var(--danger); min-height:16px;}  
   .admin-cat-pill { background:var(--cream); border:1px solid var(--gold-soft); padding:6px 12px; border-radius:999px; font-size:13px; display:inline-flex; align-items:center; gap:8px; }
-  .admin-cat-pill button { background:none; border:none; color:var(--danger); cursor:pointer; font-weight:bold; }
+  .admin-cat-pill button { background:none; border:none; cursor:pointer; font-weight:bold; }
+  .admin-cat-pill .btn-del { color:var(--danger); }
+  .admin-cat-pill .btn-edit { color:var(--gold); }
   
   .switch { position: relative; display: inline-block; width: 40px; height: 22px; }
   .switch input { opacity: 0; width: 0; height: 0; }
@@ -215,14 +217,14 @@
       
       <!-- إدارة الأقسام وأسطر العرض -->
       <div class="form-card">
-        <h3 style="margin-top:0;">إدارة الأقسام (أسطر العرض المستقلة كـ إبراق ودخوني)</h3>
+        <h3 style="margin-top:0;">إدارة الأقسام (أسطر العرض المستقلة)</h3>
         <label>إضافة قسم جديد</label>
         <div style="display:flex; gap:8px;">
-          <input type="text" id="newCategoryInput" placeholder="مثال: إبراق، دخوني، عطور فاخرة...">
+          <input type="text" id="newCategoryInput" placeholder="مثال: إبراق، دخوني...">
           <button class="btn small" style="width:auto; padding:0 20px;" onclick="addNewCategory()">إضافة وحفظ</button>
         </div>
         <div id="adminCategoryList" style="display:flex; flex-wrap:wrap; gap:8px; margin-top:14px;"></div>
-        <div class="hint" style="margin-top:8px;">أي قسم تضيفه هنا سيُحفظ تلقائياً، وسيظهر كسطر منفصل في واجهة المتجر تندرج تحته منتجاته.</div>
+        <div class="hint" style="margin-top:8px;">قم بحذف القسم بالضغط على علامة ✕ إذا كنت لا تريده، ولتعديل اسمه اضغط ✎.</div>
       </div>
 
       <!-- تعديل الألوان -->
@@ -285,7 +287,7 @@
 
       <div class="form-card">
         <h3 style="margin-top:0;">الخطوط والمظهر</h3>
-        <label>خط أسماء المنتجات</label>
+        <label>خط أسماء المنتجات والأقسام</label>
         <select id="setProductFont">
           <option value="'Aref Ruqaa', serif">عارف رقعة (Aref Ruqaa) - افتراضي</option>
           <option value="'Tajawal', sans-serif">تجوال (Tajawal)</option>
@@ -293,6 +295,7 @@
           <option value="'Cairo', sans-serif">كايرو (Cairo)</option>
           <option value="'Amiri', serif">أميري (Amiri)</option>
         </select>
+        <div class="hint">يتم تطبيق هذا الخط على عناوين الأقسام وأسماء العطور لتغيير شكلها بالكامل.</div>
       </div>
 
       <div class="form-card">
@@ -363,7 +366,7 @@ let products = [];
 let orders = [];  
 let paymentSettings = {};  
 let generalSettings = { 
-  whatsapp: "", cardWidth: 180, categories: ['إبراق', 'دخوني', 'عطور فاخرة', 'منتجات أخرى'],
+  whatsapp: "", cardWidth: 180, categories: [],
   adMedia: [], adType: 'none', productFont: "'Aref Ruqaa', serif", 
   tiktok: "", reviews: [], customNotifs: [], coupons: [], colors: {},
   enableSearch: false, enableSort: false, featureWaCheck: false, featureWish: false, featurePWA: false, featureSkel: false
@@ -442,7 +445,7 @@ async function fetchSettings() {
     if (payDoc) { paymentSettings = payDoc.data || {}; fillPaymentForm(); }
     if (genDoc && genDoc.data) {
       generalSettings = Object.assign(generalSettings, genDoc.data);
-      if(!generalSettings.categories) generalSettings.categories = ['إبراق', 'دخوني', 'عطور فاخرة', 'منتجات أخرى'];
+      if(!generalSettings.categories) generalSettings.categories = [];
       if(!generalSettings.coupons) generalSettings.coupons = [];
       if(!generalSettings.colors) generalSettings.colors = {};
       
@@ -538,7 +541,13 @@ function removeCoupon(index) {
 
 function renderAdminCatList() {
   const box = document.getElementById('adminCategoryList');
-  box.innerHTML = adminCatArray.map((c, i) => `<div class="admin-cat-pill"><span>${c}</span><button onclick="removeAdminCat(${i})">✕</button></div>`).join('');
+  box.innerHTML = adminCatArray.map((c, i) => `
+    <div class="admin-cat-pill">
+      <span>${c}</span>
+      <button class="btn-edit" title="تعديل الاسم" onclick="editAdminCat(${i})">✎</button>
+      <button class="btn-del" title="حذف" onclick="removeAdminCat(${i})">✕</button>
+    </div>
+  `).join('');
   const select = document.getElementById('pfCategory');
   select.innerHTML = adminCatArray.map(c => `<option value="${c}">${c}</option>`).join('');
 }
@@ -557,6 +566,32 @@ async function addNewCategory() {
       }
   }
   document.getElementById('newCategoryInput').value = '';
+}
+
+async function editAdminCat(index) {
+  const oldName = adminCatArray[index];
+  const newName = prompt('تعديل اسم القسم (سيتم تحديثه في جميع المنتجات المرتبطة تلقائياً):', oldName);
+  
+  if(!newName || newName.trim() === '' || newName.trim() === oldName) return;
+
+  const finalName = newName.trim();
+  adminCatArray[index] = finalName;
+  generalSettings.categories = adminCatArray;
+
+  toast('جارٍ التحديث...');
+  
+  // حفظ القسم الجديد في الإعدادات
+  await client.from('settings').update({ data: generalSettings }).eq('id', 'general');
+  
+  // البحث عن المنتجات التي تحمل الاسم القديم وتحديثها
+  const affectedProducts = products.filter(p => p.category === oldName);
+  for(let p of affectedProducts) {
+      await client.from('products').update({ category: finalName }).eq('id', p.id);
+  }
+  
+  await fetchProducts(); // تحديث القائمة
+  renderAdminCatList();
+  toast('تم تعديل القسم بنجاح!');
 }
 
 async function removeAdminCat(index) { 
@@ -628,7 +663,7 @@ async function saveProduct(){
   }  
   
   const productData = {  
-    name, category: document.getElementById('pfCategory').value || 'منتجات أخرى',  
+    name, category: document.getElementById('pfCategory').value || 'أخرى',  
     description: document.getElementById('pfDesc').value.trim(), price,  
     currency: document.getElementById('pfCurrency').value || 'ر.ي',
     discount: Number(document.getElementById('pfDiscount').value)||0,  
@@ -647,7 +682,7 @@ function renderAdminProducts(){
   document.getElementById('adminProductRows').innerHTML = products.map(p=>`  
     <tr>  
       <td>${p.images&&p.images[0]?`<img class="tbl-img" src="${p.images[0]}">`:''}</td>  
-      <td>${p.name}</td><td>${p.category||'منتجات أخرى'}</td>  
+      <td>${p.name}</td><td>${p.category||'أخرى'}</td>  
       <td style="direction:ltr;">${Number(p.price||0).toFixed(2)} ${p.currency||'ر.ي'}</td>  
       <td>${p.discount||0}%</td><td>${p.stock||0}</td>  
       <td class="actions">  
