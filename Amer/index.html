@@ -35,7 +35,8 @@
   .modal h3{margin:0 0 16px; font-size:24px;}  
 
   label{display:block; font-size:12.5px; color:var(--ink-soft); margin:12px 0 5px; font-weight:700;}  
-  input[type=text],input[type=tel],input[type=number],input[type=password],textarea,select{ width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:10px; background:#fff; font-family:inherit; font-size:14px; color:var(--ink); }  
+  input[type=text],input[type=tel],input[type=number],input[type=password],input[type=color],textarea,select{ width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:10px; background:#fff; font-family:inherit; font-size:14px; color:var(--ink); }  
+  input[type=color] { padding: 4px 8px; cursor:pointer; height:42px; }
   textarea{resize:vertical; min-height:70px;}  
 
   #adminView{display:none;}  
@@ -80,7 +81,14 @@
   .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
   input:checked + .slider { background-color: var(--ok); }
   input:checked + .slider:before { transform: translateX(18px); }
-  .flex-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  .flex-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; padding-bottom:12px; border-bottom:1px dashed var(--line); }
+  .flex-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .flex-row span { font-weight: 700; font-size: 14px; }
+  .flex-row small { display: block; font-weight: 400; font-size: 11px; color: var(--ink-soft); margin-top: 4px; }
+  
+  .stat-box { background: var(--card); border: 1px solid var(--gold-soft); padding: 20px; border-radius: 16px; text-align: center; box-shadow: var(--shadow); }
+  .stat-box h3 { margin: 0 0 10px; font-size: 18px; color: var(--ink-soft); }
+  .stat-box h1 { margin: 0; font-size: 42px; color: var(--gold); }
 </style>  
 </head>  
 <body>  
@@ -97,17 +105,41 @@
   
 <div id="adminView">  
   <div class="adminbar">  
-    <button class="active" data-tab="products" onclick="showTab('products')">المنتجات</button>  
+    <button class="active" data-tab="dashboard" onclick="showTab('dashboard')">الرئيسية والإحصائيات</button>  
+    <button data-tab="products" onclick="showTab('products')">المنتجات</button>  
     <button data-tab="orders" onclick="showTab('orders')">الطلبات</button>  
     <button data-tab="payment" onclick="showTab('payment')">طرق الدفع</button>  
-    <button data-tab="settings" onclick="showTab('settings')">الإعدادات</button>  
+    <button data-tab="settings" onclick="showTab('settings')">الإعدادات والتصميم</button>  
     <div class="spacer"></div>  
     <button onclick="adminLogout()">تسجيل خروج</button>  
   </div>  
   
   <div class="admin-panel">  
+  
+    <!-- الإحصائيات (جديد) -->
+    <div id="tab-dashboard">
+        <div class="row3">
+            <div class="stat-box">
+                <h3>عدد المنتجات</h3>
+                <h1 id="statProducts">0</h1>
+            </div>
+            <div class="stat-box">
+                <h3>إجمالي الطلبات</h3>
+                <h1 id="statOrders">0</h1>
+            </div>
+            <div class="stat-box">
+                <h3>زيارات المتجر</h3>
+                <h1 id="statVisits">...</h1>
+            </div>
+        </div>
+        <div class="form-card" style="margin-top: 26px;">
+            <h3>أهلاً بك في لوحة تحكم متجر عُمراء!</h3>
+            <p style="color:var(--ink-soft); line-height:1.8;">من هنا يمكنك إدارة كل تفاصيل متجرك. يمكنك إضافة منتجات جديدة، مراجعة طلبات العملاء، تعديل أكواد الخصم وتغيير ألوان وتصميم المتجر بالكامل ليتناسب مع هويتك البصرية.</p>
+        </div>
+    </div>
+
     <!-- المنتجات -->
-    <div id="tab-products">  
+    <div id="tab-products" style="display:none;">  
       <div class="form-card">  
         <h3 id="pfTitle" style="margin-top:0;">إضافة منتج جديد</h3>  
         <input type="hidden" id="pfId">  
@@ -178,30 +210,82 @@
       <button class="btn" style="width:auto;padding:11px 26px;" onclick="savePaymentSettings()">حفظ طرق الدفع</button>  
     </div>  
   
-    <!-- الإعدادات -->
+    <!-- الإعدادات والتصميم -->
     <div id="tab-settings" style="display:none;">  
       
-      <!-- إضافة التحكم بخصائص الواجهة -->
+      <!-- تعديل الألوان (جديد) -->
       <div class="form-card">
-        <h3 style="margin-top:0;">إدارة ميزات المتجر (تفعيل/تعطيل)</h3>
+        <h3 style="margin-top:0;">تخصيص ألوان المتجر</h3>
+        <div class="row2">
+          <div><label>لون الخلفية الرئيسي (كريمي)</label><input type="color" id="colorCream" value="#F8EACB"></div>
+          <div><label>لون البطاقات والقوائم</label><input type="color" id="colorCard" value="#FFFBF0"></div>
+          <div><label>لون النصوص والأزرار (داكن)</label><input type="color" id="colorInk" value="#20301C"></div>
+          <div><label>اللون المميز / اللمسات (ذهبي)</label><input type="color" id="colorGold" value="#A9793C"></div>
+        </div>
+        <button class="btn secondary small" style="margin-top:14px;" onclick="resetColors()">استعادة الألوان الافتراضية</button>
+      </div>
+
+      <!-- أكواد الخصم (جديد) -->
+      <div class="form-card">
+        <h3 style="margin-top:0;">إدارة أكواد الخصم (الكوبونات)</h3>
+        <div class="row2" style="align-items:end;">
+          <div><label>كود الخصم (بالحروف الإنجليزية)</label><input type="text" id="newCouponCode" placeholder="مثال: OMARA20" style="text-transform:uppercase;"></div>
+          <div><label>نسبة الخصم %</label><div style="display:flex; gap:8px;"><input type="number" id="newCouponPercent" min="1" max="100" placeholder="مثال: 15"><button class="btn small" style="width:100px; padding:0;" onclick="addCoupon()">إضافة</button></div></div>
+        </div>
+        <div id="adminCouponsList" style="margin-top:16px; display:flex; flex-direction:column; gap:8px;"></div>
+      </div>
+
+      <!-- إضافة التحكم بخصائص الواجهة والميزات المتقدمة -->
+      <div class="form-card">
+        <h3 style="margin-top:0;">إدارة ميزات المتجر (التسويق والتجربة)</h3>
         
         <div class="flex-row">
-          <span>شريط البحث عن المنتجات</span>
-          <label class="switch">
-            <input type="checkbox" id="featureSearch">
-            <span class="slider"></span>
-          </label>
+          <div>
+            <span>شريط البحث</span>
+            <small>إتاحة مربع بحث للعملاء للبحث السريع عن المنتجات بالاسم.</small>
+          </div>
+          <label class="switch"><input type="checkbox" id="featureSearch"><span class="slider"></span></label>
         </div>
         
         <div class="flex-row">
-          <span>خيارات فرز المنتجات (الأحدث، الأقل سعراً...)</span>
-          <label class="switch">
-            <input type="checkbox" id="featureSort">
-            <span class="slider"></span>
-          </label>
+          <div>
+            <span>خيارات فرز المنتجات</span>
+            <small>إتاحة قائمة لترتيب المنتجات (الأحدث، الأقل سعراً).</small>
+          </div>
+          <label class="switch"><input type="checkbox" id="featureSort"><span class="slider"></span></label>
         </div>
 
-        <div class="hint" style="margin-top: 10px;">قم بتفعيل هذه الخيارات ليتم عرضها في واجهة المتجر الرئيسية للعملاء.</div>
+        <div class="flex-row">
+          <div>
+            <span>توجيه الطلب عبر واتساب</span>
+            <small>بعد تأكيد الطلب، سيتم فتح تطبيق واتساب لدى العميل لتأكيد إرسال الطلب لرقمك.</small>
+          </div>
+          <label class="switch"><input type="checkbox" id="featureWaCheck"><span class="slider"></span></label>
+        </div>
+
+        <div class="flex-row">
+          <div>
+            <span>ميزة المفضلة (Wishlist)</span>
+            <small>إظهار أيقونة قلب لحفظ المنتجات في مفضلة العميل لشرائها لاحقاً.</small>
+          </div>
+          <label class="switch"><input type="checkbox" id="featureWish"><span class="slider"></span></label>
+        </div>
+
+        <div class="flex-row">
+          <div>
+            <span>شاشات التحميل الاحترافية (Skeleton)</span>
+            <small>عرض هيكل متحرك للمنتجات أثناء التحميل بدلاً من شاشة فارغة.</small>
+          </div>
+          <label class="switch"><input type="checkbox" id="featureSkel"><span class="slider"></span></label>
+        </div>
+
+        <div class="flex-row">
+          <div>
+            <span>تطبيق المتجر (PWA)</span>
+            <small>إظهار نافذة للعميل لاقتراح تثبيت المتجر كتطبيق على الشاشة الرئيسية لجهازه.</small>
+          </div>
+          <label class="switch"><input type="checkbox" id="featurePWA"><span class="slider"></span></label>
+        </div>
       </div>
 
       <div class="form-card">
@@ -316,8 +400,8 @@ let paymentSettings = {};
 let generalSettings = { 
   whatsapp: "", cardWidth: 180, categories: ['عطور فاخرة', 'منتجات أخرى'], 
   adMedia: [], adType: 'none', productFont: "'Aref Ruqaa', serif", 
-  tiktok: "", reviews: [], customNotifs: [],
-  enableSearch: false, enableSort: false 
+  tiktok: "", reviews: [], customNotifs: [], coupons: [], colors: {},
+  enableSearch: false, enableSort: false, featureWaCheck: false, featureWish: false, featurePWA: false, featureSkel: false
 };  
 let pendingImageFiles = [];  
 let existingImageUrls = [];  
@@ -341,7 +425,7 @@ async function adminLogin(){
       document.getElementById('loginModal').classList.remove('show');
       document.getElementById('loginScrim').classList.remove('show');
       document.getElementById('adminView').style.display='block';
-      fetchProducts(); fetchOrders(); fetchSettings();
+      fetchProducts(); fetchOrders(); fetchSettings(); fetchVisits();
     } else {  
       document.getElementById('loginMsg').textContent = 'كلمة المرور غير صحيحة';  
     }  
@@ -356,17 +440,33 @@ function adminLogout(){
 }  
   
 function showTab(name){  
-  ['products','orders','payment','settings'].forEach(t=>{ document.getElementById('tab-'+t).style.display = (t===name)?'block':'none'; });  
+  ['dashboard','products','orders','payment','settings'].forEach(t=>{ document.getElementById('tab-'+t).style.display = (t===name)?'block':'none'; });  
   document.querySelectorAll('.adminbar button[data-tab]').forEach(b=>b.classList.toggle('active', b.dataset.tab===name));  
 }  
   
 async function fetchProducts() {
   const { data } = await client.from('products').select('*').order('created_at', { ascending: false });
-  if (data) { products = data; renderAdminProducts(); }
+  if (data) { 
+      products = data; 
+      renderAdminProducts(); 
+      document.getElementById('statProducts').textContent = products.length;
+  }
 }
+
 async function fetchOrders() {
   const { data } = await client.from('orders').select('*').order('created_at', { ascending: false });
-  if (data) { orders = data; renderAdminOrders(); }
+  if (data) { 
+      orders = data; 
+      renderAdminOrders(); 
+      document.getElementById('statOrders').textContent = orders.length;
+  }
+}
+
+function fetchVisits() {
+    fetch('https://api.counterapi.dev/v1/omara1store/visits')
+    .then(r => r.json())
+    .then(data => { document.getElementById('statVisits').textContent = data.count || 0; })
+    .catch(() => { document.getElementById('statVisits').textContent = 'غير متاح'; });
 }
 
 async function fetchSettings() {
@@ -376,21 +476,26 @@ async function fetchSettings() {
     const genDoc = data.find(d => d.id === 'general');
     if (payDoc) { paymentSettings = payDoc.data || {}; fillPaymentForm(); }
     if (genDoc && genDoc.data) {
-      generalSettings = genDoc.data;
+      generalSettings = Object.assign(generalSettings, genDoc.data);
       if(!generalSettings.categories) generalSettings.categories = ['المنتجات الجديدة', 'عطور فاخرة', 'منتجات أخرى'];
+      if(!generalSettings.coupons) generalSettings.coupons = [];
+      if(!generalSettings.colors) generalSettings.colors = {};
       
-      // تأكد من وجود قيم تفعيل الخصائص
-      if(generalSettings.enableSearch === undefined) generalSettings.enableSearch = false;
-      if(generalSettings.enableSort === undefined) generalSettings.enableSort = false;
-
       adminCatArray = [...generalSettings.categories];
       renderAdminCatList(); 
       fillGeneralForm();
+      renderAdminCoupons();
     }
   }
 }
 
 function fillGeneralForm() {
+    // Colors
+    if(generalSettings.colors.cream) document.getElementById('colorCream').value = generalSettings.colors.cream;
+    if(generalSettings.colors.card) document.getElementById('colorCard').value = generalSettings.colors.card;
+    if(generalSettings.colors.ink) document.getElementById('colorInk').value = generalSettings.colors.ink;
+    if(generalSettings.colors.gold) document.getElementById('colorGold').value = generalSettings.colors.gold;
+
     document.getElementById('setWhatsapp').value = generalSettings.whatsapp || '';  
     document.getElementById('setFacebook').value = generalSettings.facebook || '';
     document.getElementById('setInstagram').value = generalSettings.instagram || '';
@@ -406,9 +511,12 @@ function fillGeneralForm() {
     document.getElementById('setAdLink').value = generalSettings.adLink || '';
     document.getElementById('setWatermarkText').value = generalSettings.watermarkText || '';
     
-    // تعيين قيم الأزرار التبديلية (Switches)
-    document.getElementById('featureSearch').checked = generalSettings.enableSearch;
-    document.getElementById('featureSort').checked = generalSettings.enableSort;
+    document.getElementById('featureSearch').checked = generalSettings.enableSearch === true;
+    document.getElementById('featureSort').checked = generalSettings.enableSort === true;
+    document.getElementById('featureWaCheck').checked = generalSettings.featureWaCheck === true;
+    document.getElementById('featureWish').checked = generalSettings.featureWish === true;
+    document.getElementById('featurePWA').checked = generalSettings.featurePWA === true;
+    document.getElementById('featureSkel').checked = generalSettings.featureSkel === true;
     
     const adPrevBox = document.getElementById('adMediaAdminPreview');
     if (generalSettings.adMedia && generalSettings.adMedia.length > 0) {
@@ -429,6 +537,39 @@ function fillGeneralForm() {
         document.getElementById('removeBgBtn').style.display = 'inline-block';
     }
     renderAdminReviews();
+}
+
+function resetColors() {
+    document.getElementById('colorCream').value = '#F8EACB';
+    document.getElementById('colorCard').value = '#FFFBF0';
+    document.getElementById('colorInk').value = '#20301C';
+    document.getElementById('colorGold').value = '#A9793C';
+    toast('تم استعادة الألوان الافتراضية، اضغط حفظ لتأكيد التغيير.');
+}
+
+function renderAdminCoupons() {
+  const box = document.getElementById('adminCouponsList');
+  const arr = generalSettings.coupons || [];
+  if(!arr.length) { box.innerHTML = '<div class="hint">لا توجد أكواد خصم.</div>'; return; }
+  box.innerHTML = arr.map((c, i) => `
+    <div style="background:var(--cream); padding:10px 14px; border-radius:8px; border:1px dashed var(--gold-soft); display:flex; justify-content:space-between; align-items:center;">
+      <div><strong>${c.code}</strong> (خصم ${c.percent}%)</div>
+      <button class="icon-btn danger" onclick="removeCoupon(${i})">حذف</button>
+    </div>
+  `).join('');
+}
+function addCoupon() {
+  const code = document.getElementById('newCouponCode').value.trim().toUpperCase();
+  const pct = Number(document.getElementById('newCouponPercent').value);
+  if(!code || !pct) { toast('يرجى إدخال الكود ونسبة الخصم'); return; }
+  if(!generalSettings.coupons) generalSettings.coupons = [];
+  generalSettings.coupons.push({code: code, percent: pct});
+  document.getElementById('newCouponCode').value = ''; document.getElementById('newCouponPercent').value = '';
+  renderAdminCoupons();
+}
+function removeCoupon(index) {
+  generalSettings.coupons.splice(index, 1);
+  renderAdminCoupons();
 }
 
 function renderAdminCatList() {
@@ -653,8 +794,19 @@ async function saveGeneralSettings(){
     adLink: document.getElementById('setAdLink').value.trim(), bgImage: bgImageUrl, 
     watermarkText: document.getElementById('setWatermarkText').value.trim(),
     reviews: generalSettings.reviews || [], customNotifs: generalSettings.customNotifs || [],
+    coupons: generalSettings.coupons || [],
+    colors: {
+      cream: document.getElementById('colorCream').value,
+      card: document.getElementById('colorCard').value,
+      ink: document.getElementById('colorInk').value,
+      gold: document.getElementById('colorGold').value
+    },
     enableSearch: document.getElementById('featureSearch').checked,
-    enableSort: document.getElementById('featureSort').checked
+    enableSort: document.getElementById('featureSort').checked,
+    featureWaCheck: document.getElementById('featureWaCheck').checked,
+    featureWish: document.getElementById('featureWish').checked,
+    featurePWA: document.getElementById('featurePWA').checked,
+    featureSkel: document.getElementById('featureSkel').checked
   };
 
   const { error: updateError } = await client.from('settings').update({ data: newData }).eq('id', 'general');
