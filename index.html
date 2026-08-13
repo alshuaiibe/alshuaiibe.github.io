@@ -257,14 +257,8 @@
   }
 
   @keyframes slideInFromLeft {
-    0% {
-      opacity: 0;
-      transform: translateX(-40px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateX(0);
-    }
+    0% { opacity: 0; transform: translateX(-40px); }
+    100% { opacity: 1; transform: translateX(0); }
   }
 
   .card .imgwrap{ aspect-ratio:1/1; background:transparent; position:relative; overflow:visible; width:100%; cursor:pointer; }  
@@ -782,7 +776,7 @@ function renderCategories(){
   const cats = generalSettings.categories || [];
   if(!cats.includes(activeCategory) && activeCategory !== 'الكل' && activeCategory !== 'wishlist') activeCategory = 'الكل';
   const box = document.getElementById('catFilters');  
-  let html = ['الكل', ...cats].map(c=>`<button class="${c===activeCategory?'active':''}" onclick="setCategory('${c.replace(/'/g,"\'")}')">${c}</button>`).join('');  
+  let html = ['الكل', ...cats].map(c=>`<button class="${c===activeCategory?'active':''}" onclick="setCategory('${c.replace(/'/g,"'")}')">${c}</button>`).join('');  
   box.innerHTML = html;
   
   const navBtns = document.querySelectorAll('#mainNav button');
