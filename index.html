@@ -248,6 +248,11 @@
   .toast{position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:var(--ink); color:var(--cream); padding:12px 22px; border-radius:999px; font-size:13px; font-weight:700; z-index:200; opacity:0; transition:.3s; pointer-events:none;}  
   .toast.show{opacity:1; bottom:34px;}  
   .hint{font-size:11.5px; color:var(--ink-soft); margin-top:4px;}  
+
+  /* تصميم قسم البراندات في واجهة المتجر */
+  .brand-section { margin-top: 40px; }
+  .brand-title-bar { display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid var(--gold-soft); padding-bottom: 8px; margin-bottom: 20px; }
+  .brand-title-bar h3 { font-size: 26px; margin: 0; color: var(--ink); }
 </style>  
 </head>  
 <body>  
@@ -331,9 +336,13 @@
         </div>
     </div>
 
+    <!-- شبكة المنتجات الرئيسية -->
     <div class="grid" id="productGrid">
       <div class="empty">جارِ تحميل المنتجات…</div>
     </div>  
+
+    <!-- حاوية أسطر البراندات المستقلة أسفل المنتجات -->
+    <div id="brandRowsContainer"></div>
   </section>  
   
   <section class="section" id="about">  
@@ -473,7 +482,6 @@ function renderSkeletons() {
     `).join('');
 }
 
-// Track Visit using simple public counter API
 function trackVisit() {
     let visited = sessionStorage.getItem('omara_visited');
     if (!visited) {
@@ -568,24 +576,22 @@ async function fetchSettings() {
       if (genDoc && genDoc.data) {
         generalSettings = genDoc.data;
         if(!generalSettings.categories) generalSettings.categories = ['المنتجات الجديدة', 'عطور فاخرة', 'منتجات أخرى'];
+        if(!generalSettings.brands) generalSettings.brands = [];
         if(!generalSettings.reviews) generalSettings.reviews = [];
         if(!generalSettings.customNotifs) generalSettings.customNotifs = [];
         if(!generalSettings.coupons) generalSettings.coupons = [];
         if(!generalSettings.colors) generalSettings.colors = {};
         
-        // تطبيق الألوان
         const root = document.documentElement;
         if(generalSettings.colors.cream) root.style.setProperty('--cream', generalSettings.colors.cream);
         if(generalSettings.colors.card) root.style.setProperty('--card', generalSettings.colors.card);
         if(generalSettings.colors.ink) root.style.setProperty('--ink', generalSettings.colors.ink);
         if(generalSettings.colors.gold) root.style.setProperty('--gold', generalSettings.colors.gold);
 
-        // تفعيل ميزة Skeletons
         if(generalSettings.featureSkel === true && products.length === 0) {
             renderSkeletons();
         }
 
-        // إعدادات أشرطة البحث والفرز
         const showSearch = generalSettings.enableSearch === true;
         const showSort = generalSettings.enableSort === true;
         const toolsRow = document.getElementById('storeToolsRow');
@@ -600,7 +606,6 @@ async function fetchSettings() {
             toolsRow.style.display = 'none';
         }
 
-        // إعدادات المفضلة والـ PWA والـ SEO
         document.getElementById('wishlistTab').style.display = (generalSettings.featureWish === true) ? 'inline-block' : 'none';
         if(generalSettings.featurePWA === true) setupPWA();
 
@@ -624,7 +629,6 @@ async function fetchSettings() {
         document.getElementById('storeAboutText').textContent = generalSettings.aboutText || 'متجر عُمراء، وجهتك للعطور الفاخرة والمنتجات المختارة بعناية. نلتزم بالجودة والأصالة في كل تفصيل.';
         document.getElementById('footerPolicies').textContent = generalSettings.policies || '';
         
-        // SEO Updates
         document.title = (generalSettings.sloganTitle || 'متجر عُمراء') + ' | Omara Store';
         document.getElementById('metaDesc').content = generalSettings.sloganDesc || '';
         
@@ -644,6 +648,7 @@ async function fetchSettings() {
         if(generalSettings.instagram) slHtml += `<a href="${generalSettings.instagram}" target="_blank" title="إنستقرام">${icons.instagram}</a>`;
         if(generalSettings.telegram) slHtml += `<a href="${generalSettings.telegram}" target="_blank" title="تيليجرام">${icons.telegram}</a>`;
         if(generalSettings.twitter) slHtml += `<a href="${generalSettings.twitter}" target="_blank" title="إكس">${icons.twitter}</a>`;
+        if(generalSettings.whatsapp) slHtml += `<a href="https://wa.me/${generalSettings.whatsapp}" target="_blank" title="واتساب">${icons.whatsapp}</a>`;
         if(generalSettings.tiktok) slHtml += `<a href="${generalSettings.tiktok}" target="_blank" title="تيك توك">${icons.tiktok}</a>`;
         slBox.innerHTML = slHtml;
         
@@ -672,7 +677,6 @@ function renderCategories(){
   let html = ['الكل', ...cats].map(c=>`<button class="${c===activeCategory?'active':''}" onclick="setCategory('${c.replace(/'/g,"'")}')">${c}</button>`).join('');  
   box.innerHTML = html;
   
-  // تفعيل الزر في القائمة العلوية
   const navBtns = document.querySelectorAll('#mainNav button');
   navBtns.forEach(b => b.classList.remove('active'));
   if(activeCategory === 'wishlist') {
@@ -731,9 +735,10 @@ function applyCoupon() {
 
 function renderProducts(){  
   const grid = document.getElementById('productGrid');  
+  const brandRowsContainer = document.getElementById('brandRowsContainer');
   let list = [...products]; 
   
-  // 1. فرز الأقسام والمفضلة
+  // 1. فلترة الأقسام أو المفضلة لشبكة المنتجات الرئيسية
   if(activeCategory === 'wishlist') {
       list = list.filter(p => wishlist.includes(p.id));
   } else if(activeCategory !== 'الكل') {
@@ -757,12 +762,35 @@ function renderProducts(){
 
   if(!list.length){ 
       grid.innerHTML = activeCategory === 'wishlist' ? '<div class="empty">قائمة المفضلة فارغة حالياً.</div>' : '<div class="empty">لا توجد منتجات مطابقة لطلبك.</div>'; 
-      return; 
-  }  
-  
-  const showWishBtn = generalSettings.featureWish === true;
+  } else {
+      grid.innerHTML = renderCardList(list);
+  }
 
-  grid.innerHTML = list.map(p=>{  
+  // رسم أسطر البراندات المستقلة أسفل بعضها (تظهر فقط إذا كنا في قسم "الكل" ولم يتم استخدام البحث)
+  const brands = generalSettings.brands || [];
+  if(activeCategory === 'الكل' && currentSearchQuery === '' && brands.length > 0) {
+      brandRowsContainer.innerHTML = brands.map(brandName => {
+          let brandProducts = products.filter(p => p.brand === brandName);
+          if(brandProducts.length === 0) return ''; // لا نعرض السطر إذا لم تكن هناك منتجات للبراند
+          return `
+            <div class="brand-section">
+              <div class="brand-title-bar">
+                <h3>✦ براند: ${brandName}</h3>
+              </div>
+              <div class="grid">
+                ${renderCardList(brandProducts)}
+              </div>
+            </div>
+          `;
+      }).join('');
+  } else {
+      brandRowsContainer.innerHTML = '';
+  }
+}  
+
+function renderCardList(items) {
+  const showWishBtn = generalSettings.featureWish === true;
+  return items.map(p => {
     const price = Number(p.price||0);  
     const disc = Number(p.discount||0);  
     const finalPrice = disc>0 ? price*(1-disc/100) : price;  
@@ -790,8 +818,8 @@ function renderProducts(){
         <button class="addbtn" ${out?'disabled':''} onclick='addToCart(${JSON.stringify(p.id)}, this)'>${out?'غير متوفر':'أضف للسلة'}</button>  
       </div>  
     </div>`;  
-  }).join('');  
-}  
+  }).join('');
+}
 
 function openProductModal(id) {
   const p = products.find(x => x.id === id);
@@ -953,7 +981,6 @@ function openCheckout(){
   if(!cart.length){ toast('السلة فارغة'); return; }  
   closeCart();  
   
-  // تصفير الكوبون عند فتح صفحة الدفع
   appliedCoupon = null;
   document.getElementById('ckCoupon').value = '';
   document.getElementById('couponMsg').textContent = '';
@@ -984,7 +1011,6 @@ ${paymentSettings.bankNotes||''}`;
 ${paymentSettings.depNotes||''}`;  
   }  
 
-  // حساب الإجمالي النهائي وعرضه للمستخدم
   const totals = {};
   cart.forEach(c => { totals[c.currency] = (totals[c.currency] || 0) + (c.price * c.qty); });
   
@@ -1021,8 +1047,7 @@ async function submitOrder(){
           let t = totals[k] * (1 - appliedCoupon.percent / 100);
           return `${t.toFixed(2)} ${k}`;
       }).join(' + ');
-      finalNotes += `
-(تم استخدام كود الخصم: ${appliedCoupon.code} بخصم ${appliedCoupon.percent}%)`;
+      finalNotes += `\n(تم استخدام كود الخصم: ${appliedCoupon.code} بخصم ${appliedCoupon.percent}%)`;
   } else {
       finalTotalText = Object.keys(totals).map(k => `${totals[k].toFixed(2)} ${k}`).join(' + ');
   }
@@ -1041,24 +1066,12 @@ async function submitOrder(){
       closeCheckout();  
       toast('تم إرسال طلبك بنجاح!');  
       
-      // التوجيه عبر واتساب إذا كانت الميزة مفعلة
       if(generalSettings.featureWaCheck === true && generalSettings.whatsapp) {
-          let waText = `طلب جديد من متجر عُمراء 🛍️
-
-👤 الاسم: ${name}
-📞 الهاتف: ${phone}
-📍 العنوان: ${address}
-
-📦 المنتجات:
-`;
-          tempCart.forEach(c => { waText += `- ${c.name} (${c.qty})
-`; });
-          waText += `
-💰 الإجمالي المطلـوب: ${finalTotalText}
-💳 الدفع: ${selectedPayMethod === 'bank' ? 'تحويل بنكي' : 'إيداع بنكي'}`;
+          let waText = `طلب جديد من متجر عُمراء 🛍️\n\n👤 الاسم: ${name}\n📞 الهاتف: ${phone}\n📍 العنوان: ${address}\n\n📦 المنتجات:\n`;
+          tempCart.forEach(c => { waText += `- ${c.name} (${c.qty})\n`; });
+          waText += `\n💰 الإجمالي المطلـوب: ${finalTotalText}\n💳 الدفع: ${selectedPayMethod === 'bank' ? 'تحويل بنكي' : 'إيداع بنكي'}`;
           
-          if(finalNotes) waText += `
-📝 ملاحظات: ${finalNotes}`;
+          if(finalNotes) waText += `\n📝 ملاحظات: ${finalNotes}`;
           
           setTimeout(() => {
               window.open(`https://wa.me/${generalSettings.whatsapp}?text=${encodeURIComponent(waText)}`, '_blank');
