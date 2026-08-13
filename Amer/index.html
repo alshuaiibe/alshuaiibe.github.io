@@ -134,7 +134,7 @@
         </div>
         <div class="form-card" style="margin-top: 26px;">
             <h3>أهلاً بك في لوحة تحكم متجر عُمراء!</h3>
-            <p style="color:var(--ink-soft); line-height:1.8;">من هنا يمكنك إدارة كل تفاصيل متجرك، وتحديد براندات العطور وأسطر العرض بكل سهولة.</p>
+            <p style="color:var(--ink-soft); line-height:1.8;">من هنا يمكنك إدارة كل تفاصيل متجرك، وتحديد أسطر العرض (إبراق، دخوني...) بكل سهولة.</p>
         </div>
     </div>
 
@@ -143,19 +143,13 @@
       <div class="form-card">  
         <h3 id="pfTitle" style="margin-top:0;">إضافة منتج جديد</h3>  
         <input type="hidden" id="pfId">  
-        <div class="row3">  
+        <div class="row2">  
           <div><label>اسم المنتج</label><input type="text" id="pfName"></div>  
           <div>
-            <label>القسم (الكاتجري)</label>
+            <label>القسم / سطر العرض (مثال: إبراق)</label>
             <select id="pfCategory"></select>
+            <div class="hint">سيظهر هذا المنتج تحت اسم القسم المختار كسطر مستقل.</div>
           </div>  
-          <div>
-            <label>براند العطر (السطر الخاص به)</label>
-            <select id="pfBrand">
-                <option value="">بدون براند (افتراضي)</option>
-            </select>
-            <div class="hint">أضف البراندات من قسم الإعدادات أدناه.</div>
-          </div>
         </div>  
         <label>الوصف</label><textarea id="pfDesc"></textarea>  
         <div class="row3">  
@@ -185,7 +179,7 @@
         </div>  
       </div>  
       <table>  
-        <thead><tr><th></th><th>الاسم</th><th>الفئة</th><th>البراند</th><th>السعر</th><th>الخصم</th><th>المخزون</th><th></th></tr></thead>  
+        <thead><tr><th></th><th>الاسم</th><th>القسم (سطر العرض)</th><th>السعر</th><th>الخصم</th><th>المخزون</th><th></th></tr></thead>  
         <tbody id="adminProductRows"></tbody>  
       </table>  
     </div>  
@@ -219,16 +213,16 @@
     <!-- الإعدادات والتصميم -->
     <div id="tab-settings" style="display:none;">  
       
-      <!-- إدارة البراندات وأسطر العرض (جديد) -->
+      <!-- إدارة الأقسام وأسطر العرض -->
       <div class="form-card">
-        <h3 style="margin-top:0;">إدارة براندات العطور (أسطر العرض المستقلة)</h3>
-        <label>إضافة براند جديد</label>
+        <h3 style="margin-top:0;">إدارة الأقسام (أسطر العرض المستقلة كـ إبراق ودخوني)</h3>
+        <label>إضافة قسم جديد</label>
         <div style="display:flex; gap:8px;">
-          <input type="text" id="newBrandInput" placeholder="مثال: براند شانيل، توم فورد...">
-          <button class="btn small" style="width:auto; padding:0 20px;" onclick="addNewBrand()">إضافة براند</button>
+          <input type="text" id="newCategoryInput" placeholder="مثال: إبراق، دخوني، عطور فاخرة...">
+          <button class="btn small" style="width:auto; padding:0 20px;" onclick="addNewCategory()">إضافة وحفظ</button>
         </div>
-        <div id="adminBrandList" style="margin-top:14px; display:flex; flex-wrap:wrap; gap:8px;"></div>
-        <div class="hint" style="margin-top:8px;">عند إضافة براند هنا، سيظهر كسطر منفصل ومستقل بذاته في واجهة المتجر مع منتجاته الخاصة أسفل بعضها.</div>
+        <div id="adminCategoryList" style="display:flex; flex-wrap:wrap; gap:8px; margin-top:14px;"></div>
+        <div class="hint" style="margin-top:8px;">أي قسم تضيفه هنا سيُحفظ تلقائياً، وسيظهر كسطر منفصل في واجهة المتجر تندرج تحته منتجاته.</div>
       </div>
 
       <!-- تعديل الألوان -->
@@ -302,16 +296,6 @@
       </div>
 
       <div class="form-card">
-        <h3 style="margin-top:0;">إدارة الأقسام (الكاتجري)</h3>
-        <label>إضافة قسم جديد</label>
-        <div style="display:flex; gap:8px;">
-          <input type="text" id="newCategoryInput" placeholder="مثال: المنتجات الجديدة...">
-          <button class="btn small" style="width:auto; padding:0 20px;" onclick="addNewCategory()">إضافة</button>
-        </div>
-        <div id="adminCategoryList" style="display:flex; flex-wrap:wrap; gap:8px; margin-top:14px;"></div>
-      </div>
-
-      <div class="form-card">
         <h3 style="margin-top:0;">حسابات التواصل الاجتماعي</h3>
         <label>رقم واتساب (بدون أصفار، مثال: 9677...)</label><input type="text" id="setWhatsapp">
         <label>رابط فيسبوك</label><input type="text" id="setFacebook">
@@ -379,7 +363,7 @@ let products = [];
 let orders = [];  
 let paymentSettings = {};  
 let generalSettings = { 
-  whatsapp: "", cardWidth: 180, categories: ['عطور فاخرة', 'منتجات أخرى'], brands: [],
+  whatsapp: "", cardWidth: 180, categories: ['إبراق', 'دخوني', 'عطور فاخرة', 'منتجات أخرى'],
   adMedia: [], adType: 'none', productFont: "'Aref Ruqaa', serif", 
   tiktok: "", reviews: [], customNotifs: [], coupons: [], colors: {},
   enableSearch: false, enableSort: false, featureWaCheck: false, featureWish: false, featurePWA: false, featureSkel: false
@@ -389,7 +373,6 @@ let existingImageUrls = [];
 let pendingAdFiles = [];
 let pendingBgFile = null;
 let adminCatArray = [];
-let adminBrandArray = [];
   
 function toast(msg){  
   const t = document.getElementById('toast');  
@@ -459,15 +442,12 @@ async function fetchSettings() {
     if (payDoc) { paymentSettings = payDoc.data || {}; fillPaymentForm(); }
     if (genDoc && genDoc.data) {
       generalSettings = Object.assign(generalSettings, genDoc.data);
-      if(!generalSettings.categories) generalSettings.categories = ['المنتجات الجديدة', 'عطور فاخرة', 'منتجات أخرى'];
-      if(!generalSettings.brands) generalSettings.brands = [];
+      if(!generalSettings.categories) generalSettings.categories = ['إبراق', 'دخوني', 'عطور فاخرة', 'منتجات أخرى'];
       if(!generalSettings.coupons) generalSettings.coupons = [];
       if(!generalSettings.colors) generalSettings.colors = {};
       
       adminCatArray = [...generalSettings.categories];
-      adminBrandArray = [...generalSettings.brands];
       renderAdminCatList(); 
-      renderAdminBrandList();
       fillGeneralForm();
       renderAdminCoupons();
     }
@@ -531,20 +511,6 @@ function resetColors() {
     toast('تم استعادة الألوان الافتراضية، اضغط حفظ لتأكيد التغيير.');
 }
 
-function renderAdminBrandList() {
-  const box = document.getElementById('adminBrandList');
-  box.innerHTML = adminBrandArray.map((b, i) => `<div class="admin-cat-pill"><span>${b}</span><button onclick="removeAdminBrand(${i})">✕</button></div>`).join('');
-  
-  const brandSelect = document.getElementById('pfBrand');
-  brandSelect.innerHTML = `<option value="">بدون براند (افتراضي)</option>` + adminBrandArray.map(b => `<option value="${b}">${b}</option>`).join('');
-}
-function addNewBrand() {
-  const v = document.getElementById('newBrandInput').value.trim();
-  if(v && !adminBrandArray.includes(v)) { adminBrandArray.push(v); renderAdminBrandList(); }
-  document.getElementById('newBrandInput').value = '';
-}
-function removeAdminBrand(index) { adminBrandArray.splice(index, 1); renderAdminBrandList(); }
-
 function renderAdminCoupons() {
   const box = document.getElementById('adminCouponsList');
   const arr = generalSettings.coupons || [];
@@ -576,12 +542,33 @@ function renderAdminCatList() {
   const select = document.getElementById('pfCategory');
   select.innerHTML = adminCatArray.map(c => `<option value="${c}">${c}</option>`).join('');
 }
-function addNewCategory() {
+
+async function addNewCategory() {
   const v = document.getElementById('newCategoryInput').value.trim();
-  if(v && !adminCatArray.includes(v)) { adminCatArray.push(v); renderAdminCatList(); }
+  if(v && !adminCatArray.includes(v)) { 
+      adminCatArray.push(v); 
+      generalSettings.categories = adminCatArray;
+      const { error } = await client.from('settings').update({ data: generalSettings }).eq('id', 'general');
+      if(!error) {
+          renderAdminCatList(); 
+          toast('تم إضافة القسم وحفظه بالمتجر بنجاح!');
+      } else {
+          toast('حدث خطأ أثناء الحفظ');
+      }
+  }
   document.getElementById('newCategoryInput').value = '';
 }
-function removeAdminCat(index) { adminCatArray.splice(index, 1); renderAdminCatList(); }
+
+async function removeAdminCat(index) { 
+  if(!confirm('هل أنت متأكد من حذف هذا القسم؟ (لن تُحذف المنتجات)')) return;
+  adminCatArray.splice(index, 1); 
+  generalSettings.categories = adminCatArray;
+  const { error } = await client.from('settings').update({ data: generalSettings }).eq('id', 'general');
+  if(!error) {
+      renderAdminCatList(); 
+      toast('تم الحذف بنجاح');
+  }
+}
 
 /* ---------------- Admin Products ---------------- */  
 document.getElementById('pfImages').addEventListener('change', e=>{ pendingImageFiles = [...e.target.files]; renderThumbs(); });  
@@ -597,7 +584,6 @@ function resetProductForm(){
   document.getElementById('pfId').value=''; document.getElementById('pfName').value='';  
   const catSelect = document.getElementById('pfCategory');
   if(catSelect.options.length > 0) catSelect.selectedIndex = 0;
-  document.getElementById('pfBrand').value = '';
   document.getElementById('pfDesc').value=''; document.getElementById('pfPrice').value='';  
   document.getElementById('pfCurrency').value='ر.ي'; document.getElementById('pfDiscount').value='0';  
   document.getElementById('pfColors').value=''; document.getElementById('pfSizes').value='';  
@@ -612,7 +598,6 @@ function editProduct(id){
   document.getElementById('pfId').value=p.id; document.getElementById('pfName').value=p.name||'';  
   const catSelect = document.getElementById('pfCategory');
   if(p.category && adminCatArray.includes(p.category)) { catSelect.value = p.category; }
-  document.getElementById('pfBrand').value = p.brand || '';
   document.getElementById('pfDesc').value=p.description||''; document.getElementById('pfPrice').value=p.price||'';  
   document.getElementById('pfCurrency').value=p.currency||'ر.ي'; document.getElementById('pfDiscount').value=p.discount||0;  
   document.getElementById('pfColors').value=(p.colors||[]).join(', '); document.getElementById('pfSizes').value=(p.sizes||[]).join(', ');  
@@ -644,7 +629,6 @@ async function saveProduct(){
   
   const productData = {  
     name, category: document.getElementById('pfCategory').value || 'منتجات أخرى',  
-    brand: document.getElementById('pfBrand').value || '',
     description: document.getElementById('pfDesc').value.trim(), price,  
     currency: document.getElementById('pfCurrency').value || 'ر.ي',
     discount: Number(document.getElementById('pfDiscount').value)||0,  
@@ -663,7 +647,7 @@ function renderAdminProducts(){
   document.getElementById('adminProductRows').innerHTML = products.map(p=>`  
     <tr>  
       <td>${p.images&&p.images[0]?`<img class="tbl-img" src="${p.images[0]}">`:''}</td>  
-      <td>${p.name}</td><td>${p.category||''}</td><td>${p.brand||'—'}</td>  
+      <td>${p.name}</td><td>${p.category||'منتجات أخرى'}</td>  
       <td style="direction:ltr;">${Number(p.price||0).toFixed(2)} ${p.currency||'ر.ي'}</td>  
       <td>${p.discount||0}%</td><td>${p.stock||0}</td>  
       <td class="actions">  
@@ -789,7 +773,7 @@ async function saveGeneralSettings(){
     instagram: document.getElementById('setInstagram').value.trim(), telegram: document.getElementById('setTelegram').value.trim(), 
     twitter: document.getElementById('setTwitter').value.trim(), tiktok: document.getElementById('setTiktok').value.trim(),
     productFont: document.getElementById('setProductFont').value, cardWidth: Number(document.getElementById('setCardWidth').value.trim() || 180), 
-    categories: adminCatArray, brands: adminBrandArray, sloganTitle: document.getElementById('setSloganTitle').value.trim(),
+    categories: adminCatArray, sloganTitle: document.getElementById('setSloganTitle').value.trim(),
     sloganDesc: document.getElementById('setSloganDesc').value.trim(), aboutText: document.getElementById('setAboutText').value.trim(), 
     policies: document.getElementById('setStorePolicies').value.trim(), adMedia: savedAdUrls, adType: savedAdType,
     adLink: document.getElementById('setAdLink').value.trim(), bgImage: bgImageUrl, 
