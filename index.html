@@ -4,6 +4,12 @@
 <meta charset="UTF-8">  
 <meta name="viewport" content="width=device-width, initial-scale=1.0">  
 <title>متجر عُمراء | Omara Store</title>  
+<meta id="metaDesc" name="description" content="عطور تُروى، لا تُقال. تشكيلة عطور ومنتجات مختارة بعناية.">
+<meta property="og:title" content="متجر عُمراء | Omara Store">
+<meta property="og:description" content="عطور تُروى، لا تُقال. تشكيلة عطور ومنتجات مختارة بعناية.">
+<meta property="og:type" content="website">
+<link id="pwaManifest" rel="manifest" href="">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">  
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@400;600;700&family=Markazi+Text:wght@400;600;700&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">  
 
@@ -30,7 +36,7 @@
   html,body{margin:0;padding:0;}  
   body{  
     background: radial-gradient(1200px 500px at 50% -10%, var(--cream-deep), transparent 60%), var(--cream);  
-    color:var(--ink); font-family:'Tajawal',sans-serif; min-height:100vh;  
+    color:var(--ink); font-family:'Tajawal',sans-serif; min-height:100vh; transition: background 0.3s; 
   }  
   h1,h2,h3,.display{font-family:'Aref Ruqaa',serif;}  
   .eyebrow{font-family:'Markazi Text',serif; letter-spacing:.04em;}  
@@ -51,10 +57,12 @@
   
   .sunrise{width:100%; display:flex; justify-content:center; margin:6px 0;}  
   .sunrise svg{width:260px; max-width:70vw; opacity:.75;}  
+  .sunrise svg path, .sunrise svg circle { stroke: var(--ink); fill: none; }
+  .sunrise svg circle { fill: var(--ink); }
   
   header.topbar{  
     position:sticky; top:0; z-index:40;  
-    background:rgba(248,234,203,.88); backdrop-filter:blur(8px);  
+    background:rgba(255,255,255,0.4); backdrop-filter:blur(12px);  
     border-bottom:1px solid var(--line);  
   }  
   .topbar-inner{  
@@ -137,18 +145,39 @@
   .ad-video { width:100%; height:100%; max-height:400px; object-fit:cover; display:block; border-radius:20px; outline:none; border:none; }
 
   .section{max-width:1180px; margin:0 auto; padding:36px 22px 70px;}  
-  .section-head{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:22px; flex-wrap:wrap; gap:10px;}  
+  .section-head{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:14px; flex-wrap:wrap; gap:10px;}  
   .section-head h2{font-size:34px; margin:0;}  
   .cats{display:flex; gap:8px; flex-wrap:wrap;}  
   .cats button{ background:var(--card); border:1px solid var(--line); padding:8px 16px; border-radius:999px; font-size:13px; font-weight:700; color:var(--ink-soft); }  
   .cats button.active{background:var(--ink); color:var(--cream); border-color:var(--ink);}  
   
+  .tools-row { display:none; flex-wrap:wrap; gap:10px; margin-bottom:26px; }
+  .tools-row input, .tools-row select { 
+    background:var(--card); border:1px solid var(--line); color:var(--ink); 
+    font-family:inherit; outline:none; transition:.2s; padding:10px 16px; 
+    border-radius:999px; font-size:14px;
+  }
+  .tools-row input:focus, .tools-row select:focus { border-color:var(--ink); box-shadow: 0 0 0 3px rgba(32,48,28,0.1); }
+  .tools-row select { cursor:pointer; font-weight:700; }
+
   .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(var(--card-width),1fr)); gap:22px;}  
-  .card{ background:transparent; border:none; box-shadow:none; display:flex; flex-direction:column; align-items:center; text-align:center; transition:transform .25s ease; }  
+  .card{ background:transparent; border:none; box-shadow:none; display:flex; flex-direction:column; align-items:center; text-align:center; transition:transform .25s ease; position:relative;}  
   .card .imgwrap{ aspect-ratio:1/1; background:transparent; position:relative; overflow:visible; width:100%; cursor:pointer; }  
   .card .imgwrap img{ width:100%; height:100%; object-fit:contain; padding:10px; transition:transform 0.4s ease; }  
   .card .imgwrap:hover img { transform: scale(1.08); }
   
+  /* Skeleton Loading Styles */
+  .skeleton { background: linear-gradient(90deg, var(--card) 25%, var(--cream) 50%, var(--card) 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 12px; }
+  @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+  .skel-card { width:100%; display:flex; flex-direction:column; gap:10px; }
+  .skel-img { width:100%; aspect-ratio:1/1; border-radius:12px; }
+  .skel-line { width:80%; height:20px; border-radius:6px; margin:0 auto; }
+  .skel-btn { width:100%; height:40px; border-radius:12px; margin-top:10px; }
+
+  /* Wishlist Icon Styles */
+  .fav-btn { position:absolute; top:10px; left:10px; z-index:5; background:rgba(255,255,255,0.8); border:none; border-radius:50%; width:34px; height:34px; display:flex; align-items:center; justify-content:center; font-size:18px; cursor:pointer; backdrop-filter:blur(4px); transition:.2s; box-shadow:0 4px 10px rgba(0,0,0,0.1); }
+  .fav-btn:hover { transform:scale(1.1); }
+
   .badge-discount{ position:absolute; top:10px; right:10px; background:var(--danger); color:#fff; font-size:12px; font-weight:700; padding:4px 10px; border-radius:999px; z-index:2; }  
   .badge-out{position:absolute; inset:0; background:rgba(32,48,28,.55); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; border-radius:20px;}  
   
@@ -156,15 +185,15 @@
   .card .name{font-family:var(--product-font); font-size:24px; margin:0;}  
   .card .desc, .card .swatches { display:none; }  
   .swatches{display:flex; gap:6px; flex-wrap:wrap;}  
-  .swatch{ font-size:11px; border:1px solid var(--line); padding:3px 9px; border-radius:999px; color:var(--ink-soft); background:#fff; cursor:pointer; }  
+  .swatch{ font-size:11px; border:1px solid var(--line); padding:3px 9px; border-radius:999px; color:var(--ink-soft); background:var(--card); cursor:pointer; }  
   .swatch.sel{background:var(--ink); color:var(--cream); border-color:var(--ink);}  
   
   .price-row{display:flex; align-items:center; justify-content:center; gap:6px; flex-wrap:wrap;}  
   .price{font-weight:900; font-size:18px; color:var(--ink); direction:ltr;}  
   .price-old{font-size:13px; color:var(--ink-soft); text-decoration:line-through; opacity:.7; direction:ltr;}  
   .addbtn{ margin-top:6px; width:100%; background:var(--ink); color:var(--cream); border:none; padding:11px; border-radius:12px; font-weight:700; font-size:14px; }  
-  .addbtn:disabled{background:#c8c1ab; color:#7d7862;}  
-  .empty{text-align:center; padding:60px 20px; color:var(--ink-soft); grid-column: 1 / -1;}  
+  .addbtn:disabled{background:var(--line); color:var(--ink-soft);}  
+  .empty{text-align:center; padding:60px 20px; color:var(--ink-soft); grid-column: 1 / -1; width:100%;}  
   
   footer{border-top:1px solid var(--line); padding:36px 22px; text-align:center; color:var(--ink-soft); font-size:13px;}  
   .social-links { display: flex; justify-content: center; gap: 16px; margin-top: 20px; flex-wrap: wrap; }
@@ -177,25 +206,25 @@
   .product-modal { position:fixed; top:50%; left:50%; transform:translate(-50%,-46%) scale(0.95); width:min(800px, 92vw); max-height:90vh; overflow-y:auto; background:var(--card); border-radius:24px; z-index:95; box-shadow:0 30px 60px rgba(0,0,0,0.2); opacity:0; pointer-events:none; transition:.3s cubic-bezier(0.16, 1, 0.3, 1); }
   .product-modal.show { opacity:1; pointer-events:auto; transform:translate(-50%,-50%) scale(1); }
   .pm-layout { display:flex; flex-wrap:wrap; }
-  .pm-image-col { flex:1; min-width:300px; background:var(--cream-deep); padding:30px; display:flex; align-items:center; justify-content:center; position:relative; }
+  .pm-image-col { flex:1; min-width:300px; background:var(--cream); padding:30px; display:flex; align-items:center; justify-content:center; position:relative; border-bottom: 1px solid var(--line); }
   .pm-image-col img { width:100%; max-height:400px; object-fit:contain; filter:drop-shadow(0 20px 30px rgba(0,0,0,0.15)); }
   .pm-info-col { flex:1; min-width:300px; padding:40px 30px; display:flex; flex-direction:column; }
-  .pm-close { position:absolute; top:16px; right:16px; background:rgba(255,255,255,0.5); border:none; width:36px; height:36px; border-radius:50%; font-size:20px; cursor:pointer; color:var(--ink); display:flex; align-items:center; justify-content:center; z-index:10; }
+  .pm-close { position:absolute; top:16px; right:16px; background:var(--card); border:none; width:36px; height:36px; border-radius:50%; font-size:20px; cursor:pointer; color:var(--ink); display:flex; align-items:center; justify-content:center; z-index:10; box-shadow:var(--shadow); }
   
-  .drawer{ position:fixed; top:0; bottom:0; left:0; width:min(420px,92vw); background:var(--cream); z-index:90; transform:translateX(-100%); transition:.3s ease; box-shadow:20px 0 40px rgba(0,0,0,.15); display:flex; flex-direction:column; }  
+  .drawer{ position:fixed; top:0; bottom:0; left:0; width:min(420px,92vw); background:var(--card); z-index:90; transform:translateX(-100%); transition:.3s ease; box-shadow:20px 0 40px rgba(0,0,0,.15); display:flex; flex-direction:column; }  
   .drawer.show{transform:translateX(0);}  
   .drawer-head{padding:20px; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; align-items:center;}  
   .drawer-head h3{margin:0; font-size:24px;}  
   .x{background:none;border:none;font-size:22px;color:var(--ink-soft);}  
   .drawer-body{flex:1; overflow-y:auto; padding:16px 20px;}  
   .cart-item{display:flex; gap:12px; padding:12px 0; border-bottom:1px solid var(--line);}  
-  .cart-item img{width:64px; height:64px; border-radius:10px; object-fit:cover; background:var(--cream-deep);}  
+  .cart-item img{width:64px; height:64px; border-radius:10px; object-fit:cover; background:var(--cream);}  
   .cart-item .info{flex:1;}  
   .cart-item .info .nm{font-weight:700; font-size:14px;}  
   .cart-item .info .meta{font-size:11.5px; color:var(--ink-soft);}  
   .qty{display:flex; align-items:center; gap:8px; margin-top:6px;}  
-  .qty button{width:24px; height:24px; border-radius:8px; border:1px solid var(--line); background:#fff;}  
-  .drawer-foot{padding:18px 20px; border-top:1px solid var(--line);}  
+  .qty button{width:24px; height:24px; border-radius:8px; border:1px solid var(--line); background:var(--cream);}  
+  .drawer-foot{padding:18px 20px; border-top:1px solid var(--line); background:var(--cream);}  
   .total-row{display:flex; justify-content:space-between; font-weight:900; font-size:18px; margin-bottom:12px;}  
   .btn{background:var(--ink); color:var(--cream); border:none; padding:13px; border-radius:12px; font-weight:700; font-size:15px; width:100%;}  
   .btn.secondary{background:transparent; border:1px solid var(--ink); color:var(--ink);}  
@@ -206,7 +235,7 @@
   .modal.show{opacity:1; pointer-events:auto; transform:translate(-50%,-50%);}  
   .modal h3{margin:0 0 16px; font-size:26px;}  
   label{display:block; font-size:12.5px; color:var(--ink-soft); margin:12px 0 5px; font-weight:700;}  
-  input[type=text],input[type=tel],input[type=number],input[type=password],textarea,select{ width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:10px; background:#fff; font-family:inherit; font-size:14px; color:var(--ink); }  
+  input[type=text],input[type=tel],input[type=number],input[type=password],textarea,select{ width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:10px; background:var(--cream); font-family:inherit; font-size:14px; color:var(--ink); }  
   textarea{resize:vertical; min-height:70px;}  
   .radiorow{display:flex; gap:10px; margin-top:6px;}  
   .radiocard{flex:1; border:1px solid var(--line); border-radius:12px; padding:10px; font-size:13px; text-align:center; cursor:pointer;}  
@@ -233,9 +262,10 @@
         <span class="brand-mark">عُمراء</span>  
         <span class="brand-sub">OMARA&nbsp;STORE</span>  
       </div>  
-      <nav class="pillnav">  
+      <nav class="pillnav" id="mainNav">  
         <button class="active" onclick="scrollToSection('shop')">المتجر</button>  
         <button onclick="scrollToSection('about')">من نحن</button>  
+        <button id="wishlistTab" style="display:none;" onclick="setCategory('wishlist')">❤️ المفضلة</button>
         <button onclick="openTrackingModal()">تتبع طلبك</button>  
       </nav>  
       <div style="display:flex; gap:10px; position:relative;">
@@ -287,7 +317,23 @@
       <h2>تشكيلتنا</h2>  
       <div class="cats" id="catFilters"></div>  
     </div>  
-    <div class="grid" id="productGrid"><div class="empty">جارِ تحميل المنتجات…</div></div>  
+    
+    <div class="tools-row" id="storeToolsRow">
+        <div id="searchBox" style="flex:1; min-width:200px; display:none;">
+            <input type="text" id="searchInput" placeholder="ابحث عن عطر أو منتج..." oninput="handleSearch()" autocomplete="off">
+        </div>
+        <div id="sortBox" style="display:none;">
+            <select id="sortSelect" onchange="handleSort()">
+                <option value="newest">الأحدث وصولاً</option>
+                <option value="price_asc">الأقل سعراً</option>
+                <option value="price_desc">الأعلى سعراً</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="grid" id="productGrid">
+      <div class="empty">جارِ تحميل المنتجات…</div>
+    </div>  
   </section>  
   
   <section class="section" id="about">  
@@ -363,12 +409,21 @@
   <label>رقم الهاتف</label><input type="tel" id="ckPhone" placeholder="7XXXXXXX">  
   <label>العنوان / الولاية</label><input type="text" id="ckAddress">  
   <label>ملاحظات (اختياري)</label><textarea id="ckNotes"></textarea>  
+  
+  <label>كود الخصم (إن وجد)</label>
+  <div style="display:flex; gap:8px;">
+      <input type="text" id="ckCoupon" placeholder="ادخل الكود هنا" style="text-transform:uppercase;">
+      <button class="btn small" style="width:auto; padding:0 20px;" onclick="applyCoupon()">تطبيق</button>
+  </div>
+  <div id="couponMsg" class="hint" style="margin-bottom: 12px; font-weight:700;"></div>
+
   <label>طريقة الدفع</label>  
   <div class="radiorow">  
     <div class="radiocard sel" id="payBankCard" onclick="selectPay('bank')">تحويل بنكي</div>  
     <div class="radiocard" id="payDepositCard" onclick="selectPay('deposit')">إيداع بنكي</div>  
   </div>  
   <div class="pay-details" id="payDetailsBox"></div>  
+  
   <button class="btn" style="margin-top:18px;" onclick="submitOrder()">تأكيد الطلب</button>  
   <div class="hint" style="text-align:center;margin-top:8px;">سيتم التواصل معك لتأكيد الطلب بعد إرساله</div>  
 </div>  
@@ -383,13 +438,21 @@ const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
   
 let products = [];  
 let paymentSettings = {};  
-let generalSettings = { whatsapp: "96877881748", cardWidth: 180, categories: ['عطور فاخرة', 'منتجات أخرى'], adMedia: [], adType: 'none', productFont: "'Aref Ruqaa', serif", tiktok: "", reviews: [], customNotifs: [] };  
+let generalSettings = {};  
 let activeCategory = 'الكل';  
 let selectedPayMethod = 'bank';  
 let sliderInterval = null;
+
+let currentSearchQuery = '';
+let currentSortMethod = 'newest';
+let appliedCoupon = null;
   
 let cart = [];
-try { cart = JSON.parse(localStorage.getItem('omara_cart') || '[]'); } catch(e) {}
+let wishlist = [];
+try { 
+    cart = JSON.parse(localStorage.getItem('omara_cart') || '[]'); 
+    wishlist = JSON.parse(localStorage.getItem('omara_wish') || '[]');
+} catch(e) {}
   
 function toast(msg){  
   const t = document.getElementById('toast');  
@@ -398,6 +461,28 @@ function toast(msg){
 }  
 document.getElementById('yr').textContent = new Date().getFullYear();  
   
+function renderSkeletons() {
+    const grid = document.getElementById('productGrid');
+    grid.innerHTML = Array(4).fill(0).map(() => `
+        <div class="skel-card">
+            <div class="skel-img skeleton"></div>
+            <div class="skel-line skeleton" style="width:60%;"></div>
+            <div class="skel-line skeleton"></div>
+            <div class="skel-btn skeleton"></div>
+        </div>
+    `).join('');
+}
+
+// Track Visit using simple public counter API
+function trackVisit() {
+    let visited = sessionStorage.getItem('omara_visited');
+    if (!visited) {
+        fetch('https://api.counterapi.dev/v1/omara1store/visits/up').catch(()=>{});
+        sessionStorage.setItem('omara_visited', 'true');
+    }
+}
+trackVisit();
+
 async function fetchProducts() {
   try {
     const { data, error } = await client.from('products').select('*').order('created_at', { ascending: false });
@@ -418,6 +503,19 @@ function setWatermark(text) {
    const encoded = "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(svg)));
    wmLayer.style.backgroundImage = `url("${encoded}")`;
    wmLayer.style.display = 'block';
+}
+
+function setupPWA() {
+    const manifest = {
+        name: generalSettings.sloganTitle || "متجر عُمراء",
+        short_name: "عُمراء",
+        display: "standalone",
+        background_color: generalSettings.colors?.cream || "#F8EACB",
+        theme_color: generalSettings.colors?.ink || "#20301C",
+        icons: [{src: "https://cdn-icons-png.flaticon.com/512/3081/3081840.png", sizes: "512x512", type: "image/png"}]
+    };
+    const blob = new Blob([JSON.stringify(manifest)], {type: 'application/json'});
+    document.querySelector('#pwaManifest').setAttribute('href', URL.createObjectURL(blob));
 }
 
 function renderAdMedia() {
@@ -472,7 +570,40 @@ async function fetchSettings() {
         if(!generalSettings.categories) generalSettings.categories = ['المنتجات الجديدة', 'عطور فاخرة', 'منتجات أخرى'];
         if(!generalSettings.reviews) generalSettings.reviews = [];
         if(!generalSettings.customNotifs) generalSettings.customNotifs = [];
+        if(!generalSettings.coupons) generalSettings.coupons = [];
+        if(!generalSettings.colors) generalSettings.colors = {};
         
+        // تطبيق الألوان
+        const root = document.documentElement;
+        if(generalSettings.colors.cream) root.style.setProperty('--cream', generalSettings.colors.cream);
+        if(generalSettings.colors.card) root.style.setProperty('--card', generalSettings.colors.card);
+        if(generalSettings.colors.ink) root.style.setProperty('--ink', generalSettings.colors.ink);
+        if(generalSettings.colors.gold) root.style.setProperty('--gold', generalSettings.colors.gold);
+
+        // تفعيل ميزة Skeletons
+        if(generalSettings.featureSkel === true && products.length === 0) {
+            renderSkeletons();
+        }
+
+        // إعدادات أشرطة البحث والفرز
+        const showSearch = generalSettings.enableSearch === true;
+        const showSort = generalSettings.enableSort === true;
+        const toolsRow = document.getElementById('storeToolsRow');
+        const searchBox = document.getElementById('searchBox');
+        const sortBox = document.getElementById('sortBox');
+
+        if(showSearch || showSort) {
+            toolsRow.style.display = 'flex';
+            searchBox.style.display = showSearch ? 'block' : 'none';
+            sortBox.style.display = showSort ? 'block' : 'none';
+        } else {
+            toolsRow.style.display = 'none';
+        }
+
+        // إعدادات المفضلة والـ PWA والـ SEO
+        document.getElementById('wishlistTab').style.display = (generalSettings.featureWish === true) ? 'inline-block' : 'none';
+        if(generalSettings.featurePWA === true) setupPWA();
+
         renderCategories(); 
 
         const width = generalSettings.cardWidth || 180;
@@ -492,6 +623,10 @@ async function fetchSettings() {
         document.getElementById('storeSloganDesc').textContent = generalSettings.sloganDesc || 'تشكيلة عطور ومنتجات مختارة بعناية، بروح شرقية أصيلة ولمسة عصرية فاخرة. كل قطعة في متجرنا تُختار لتبقى.';
         document.getElementById('storeAboutText').textContent = generalSettings.aboutText || 'متجر عُمراء، وجهتك للعطور الفاخرة والمنتجات المختارة بعناية. نلتزم بالجودة والأصالة في كل تفصيل.';
         document.getElementById('footerPolicies').textContent = generalSettings.policies || '';
+        
+        // SEO Updates
+        document.title = (generalSettings.sloganTitle || 'متجر عُمراء') + ' | Omara Store';
+        document.getElementById('metaDesc').content = generalSettings.sloganDesc || '';
         
         const slBox = document.getElementById('socialLinks');
         let slHtml = '';
@@ -514,6 +649,8 @@ async function fetchSettings() {
         
         renderAdMedia();
         renderReviews();
+        
+        if(products.length > 0) renderProducts();
       }
     }
   } catch (err) {}
@@ -530,17 +667,101 @@ client.channel('public-tables')
 /* ---------------- Storefront logic ---------------- */  
 function renderCategories(){  
   const cats = generalSettings.categories || [];
-  if(!cats.includes(activeCategory) && activeCategory !== 'الكل') activeCategory = 'الكل';
+  if(!cats.includes(activeCategory) && activeCategory !== 'الكل' && activeCategory !== 'wishlist') activeCategory = 'الكل';
   const box = document.getElementById('catFilters');  
-  box.innerHTML = ['الكل', ...cats].map(c=>`<button class="${c===activeCategory?'active':''}" onclick="setCategory('${c.replace(/'/g,"\'")}')">${c}</button>`).join('');  
-}  
-function setCategory(c){ activeCategory = c; renderCategories(); renderProducts(); }  
+  let html = ['الكل', ...cats].map(c=>`<button class="${c===activeCategory?'active':''}" onclick="setCategory('${c.replace(/'/g,"'")}')">${c}</button>`).join('');  
+  box.innerHTML = html;
   
+  // تفعيل الزر في القائمة العلوية
+  const navBtns = document.querySelectorAll('#mainNav button');
+  navBtns.forEach(b => b.classList.remove('active'));
+  if(activeCategory === 'wishlist') {
+      document.getElementById('wishlistTab').classList.add('active');
+  } else {
+      navBtns[0].classList.add('active');
+  }
+}  
+function setCategory(c){ activeCategory = c; scrollToSection('shop'); renderCategories(); renderProducts(); }  
+  
+function handleSearch() {
+  currentSearchQuery = document.getElementById('searchInput').value.trim().toLowerCase();
+  renderProducts();
+}
+
+function handleSort() {
+  currentSortMethod = document.getElementById('sortSelect').value;
+  renderProducts();
+}
+
+function toggleWishlist(id, e) {
+    if(e) e.stopPropagation();
+    if(wishlist.includes(id)) {
+        wishlist = wishlist.filter(x => x !== id);
+    } else {
+        wishlist.push(id);
+        toast('تمت الإضافة للمفضلة ❤️');
+    }
+    try { localStorage.setItem('omara_wish', JSON.stringify(wishlist)); } catch(err){}
+    renderProducts();
+}
+
+function applyCoupon() {
+    const codeInput = document.getElementById('ckCoupon').value.trim().toUpperCase();
+    const msgBox = document.getElementById('couponMsg');
+    
+    if(!codeInput) {
+        appliedCoupon = null;
+        msgBox.textContent = '';
+        renderPayDetails();
+        return;
+    }
+    
+    const valid = (generalSettings.coupons || []).find(c => c.code.toUpperCase() === codeInput);
+    if(valid) {
+        appliedCoupon = valid;
+        msgBox.textContent = `تم تطبيق خصم ${valid.percent}% بنجاح! 🎉`;
+        msgBox.style.color = 'var(--ok)';
+    } else {
+        appliedCoupon = null;
+        msgBox.textContent = 'كود الخصم غير صحيح أو منتهي.';
+        msgBox.style.color = 'var(--danger)';
+    }
+    renderPayDetails();
+}
+
 function renderProducts(){  
   const grid = document.getElementById('productGrid');  
-  let list = products;  
-  if(activeCategory !== 'الكل') list = list.filter(p=>p.category===activeCategory);  
-  if(!list.length){ grid.innerHTML = '<div class="empty">لا توجد منتجات حالياً في هذا القسم.</div>'; return; }  
+  let list = [...products]; 
+  
+  // 1. فرز الأقسام والمفضلة
+  if(activeCategory === 'wishlist') {
+      list = list.filter(p => wishlist.includes(p.id));
+  } else if(activeCategory !== 'الكل') {
+      list = list.filter(p => p.category === activeCategory);  
+  }
+  
+  // 2. فلترة البحث
+  if(currentSearchQuery !== '') {
+      list = list.filter(p => p.name && p.name.toLowerCase().includes(currentSearchQuery));
+  }
+  
+  // 3. الترتيب (الفرز)
+  list.sort((a, b) => {
+      const priceA = Number(a.price || 0) * (1 - Number(a.discount || 0) / 100);
+      const priceB = Number(b.price || 0) * (1 - Number(b.discount || 0) / 100);
+      
+      if(currentSortMethod === 'price_asc') return priceA - priceB;
+      if(currentSortMethod === 'price_desc') return priceB - priceA;
+      return 0;
+  });
+
+  if(!list.length){ 
+      grid.innerHTML = activeCategory === 'wishlist' ? '<div class="empty">قائمة المفضلة فارغة حالياً.</div>' : '<div class="empty">لا توجد منتجات مطابقة لطلبك.</div>'; 
+      return; 
+  }  
+  
+  const showWishBtn = generalSettings.featureWish === true;
+
   grid.innerHTML = list.map(p=>{  
     const price = Number(p.price||0);  
     const disc = Number(p.discount||0);  
@@ -548,9 +769,12 @@ function renderProducts(){
     const img = (p.images && p.images[0]) || '';  
     const out = Number(p.stock||0) <= 0;  
     const currency = p.currency || 'ر.ي';
+    const isFav = wishlist.includes(p.id);
+
     return `  
     <div class="card">  
       <div class="imgwrap" onclick='openProductModal(${JSON.stringify(p.id)})'>  
+        ${showWishBtn ? `<button class="fav-btn" onclick="toggleWishlist('${p.id}', event)">${isFav ? '❤️' : '🤍'}</button>` : ''}
         ${img?`<img src="${img}" alt="${p.name}">`:''}  
         ${disc>0?`<div class="badge-discount">خصم ${disc}%</div>`:''}  
         ${out?`<div class="badge-out">نفدت الكمية</div>`:''}  
@@ -728,6 +952,12 @@ async function searchTrackingOrders(){
 function openCheckout(){  
   if(!cart.length){ toast('السلة فارغة'); return; }  
   closeCart();  
+  
+  // تصفير الكوبون عند فتح صفحة الدفع
+  appliedCoupon = null;
+  document.getElementById('ckCoupon').value = '';
+  document.getElementById('couponMsg').textContent = '';
+  
   document.getElementById('checkoutModal').classList.add('show');  
   document.getElementById('checkoutScrim').classList.add('show');  
   renderPayDetails();  
@@ -741,17 +971,38 @@ function selectPay(m){
 }  
 function renderPayDetails(){  
   const box = document.getElementById('payDetailsBox');  
+  let detailsText = '';
+
   if(selectedPayMethod==='bank'){  
-    box.textContent = `البنك: ${paymentSettings.bankName||'—'}
+    detailsText = `البنك: ${paymentSettings.bankName||'—'}
 اسم الحساب: ${paymentSettings.accName||'—'}
 رقم الحساب/الآيبان: ${paymentSettings.accNumber||'—'}
 ${paymentSettings.bankNotes||''}`;  
   } else {  
-    box.textContent = `البنك: ${paymentSettings.depBankName||'—'}
+    detailsText = `البنك: ${paymentSettings.depBankName||'—'}
 رقم الحساب: ${paymentSettings.depAccNumber||'—'}
 ${paymentSettings.depNotes||''}`;  
   }  
+
+  // حساب الإجمالي النهائي وعرضه للمستخدم
+  const totals = {};
+  cart.forEach(c => { totals[c.currency] = (totals[c.currency] || 0) + (c.price * c.qty); });
+  
+  let grandTotalText = '';
+  if(appliedCoupon) {
+      grandTotalText = Object.keys(totals).map(k => {
+          let t = totals[k];
+          let disc = t * (appliedCoupon.percent / 100);
+          return `${(t - disc).toFixed(2)} ${k} (بعد الخصم)`;
+      }).join(' + ');
+  } else {
+      grandTotalText = Object.keys(totals).map(k => `${totals[k].toFixed(2)} ${k}`).join(' + ');
+  }
+
+  box.innerHTML = `<div style="white-space:pre-line; margin-bottom:10px;">${detailsText}</div>
+                   <div style="border-top:1px solid rgba(0,0,0,0.1); padding-top:10px; font-weight:900; font-size:16px;">المبلغ المطلوب دفعه: <span style="direction:ltr; display:inline-block;">${grandTotalText}</span></div>`;
 }  
+
 async function submitOrder(){  
   const name = document.getElementById('ckName').value.trim();  
   const phone = document.getElementById('ckPhone').value.trim();  
@@ -761,20 +1012,58 @@ async function submitOrder(){
   
   const totals = {};
   cart.forEach(c => { totals[c.currency] = (totals[c.currency] || 0) + (c.price * c.qty); });
-  const finalTotalText = Object.keys(totals).map(k => `${totals[k].toFixed(2)} ${k}`).join(' + ');
+  
+  let finalTotalText = '';
+  let finalNotes = notes;
+
+  if(appliedCoupon) {
+      finalTotalText = Object.keys(totals).map(k => {
+          let t = totals[k] * (1 - appliedCoupon.percent / 100);
+          return `${t.toFixed(2)} ${k}`;
+      }).join(' + ');
+      finalNotes += `
+(تم استخدام كود الخصم: ${appliedCoupon.code} بخصم ${appliedCoupon.percent}%)`;
+  } else {
+      finalTotalText = Object.keys(totals).map(k => `${totals[k].toFixed(2)} ${k}`).join(' + ');
+  }
   
   try {
     const { data, error } = await client.from('orders').insert([{
-      name: name, phone: phone, address: address, notes: notes,
+      name: name, phone: phone, address: address, notes: finalNotes.trim(),
       items: cart, total: finalTotalText, pay_method: selectedPayMethod, status: 'pending'
     }]);
 
     if(error) { 
       alert("تعذر إرسال الطلب. رسالة النظام: " + error.message);
     } else {
+      let tempCart = [...cart];
       cart = []; saveCart();  
       closeCheckout();  
-      toast('تم إرسال طلبك بنجاح، سنتواصل معك قريباً');  
+      toast('تم إرسال طلبك بنجاح!');  
+      
+      // التوجيه عبر واتساب إذا كانت الميزة مفعلة
+      if(generalSettings.featureWaCheck === true && generalSettings.whatsapp) {
+          let waText = `طلب جديد من متجر عُمراء 🛍️
+
+👤 الاسم: ${name}
+📞 الهاتف: ${phone}
+📍 العنوان: ${address}
+
+📦 المنتجات:
+`;
+          tempCart.forEach(c => { waText += `- ${c.name} (${c.qty})
+`; });
+          waText += `
+💰 الإجمالي المطلـوب: ${finalTotalText}
+💳 الدفع: ${selectedPayMethod === 'bank' ? 'تحويل بنكي' : 'إيداع بنكي'}`;
+          
+          if(finalNotes) waText += `
+📝 ملاحظات: ${finalNotes}`;
+          
+          setTimeout(() => {
+              window.open(`https://wa.me/${generalSettings.whatsapp}?text=${encodeURIComponent(waText)}`, '_blank');
+          }, 800);
+      }
     }
   } catch (err) { alert("فشل الاتصال بقاعدة البيانات: " + err.message); }
 }  
