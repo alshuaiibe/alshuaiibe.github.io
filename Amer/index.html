@@ -116,7 +116,7 @@
   
   <div class="admin-panel">  
   
-    <!-- الإحصائيات -->
+    <!-- الإحصائيات (جديد) -->
     <div id="tab-dashboard">
         <div class="row3">
             <div class="stat-box">
@@ -134,7 +134,7 @@
         </div>
         <div class="form-card" style="margin-top: 26px;">
             <h3>أهلاً بك في لوحة تحكم متجر عُمراء!</h3>
-            <p style="color:var(--ink-soft); line-height:1.8;">من هنا يمكنك إدارة كل تفاصيل متجرك، وتحديد براندات العطور وأسطر العرض بكل سهولة.</p>
+            <p style="color:var(--ink-soft); line-height:1.8;">من هنا يمكنك إدارة كل تفاصيل متجرك. يمكنك إضافة منتجات جديدة، مراجعة طلبات العملاء، تعديل أكواد الخصم وتغيير ألوان وتصميم المتجر بالكامل ليتناسب مع هويتك البصرية.</p>
         </div>
     </div>
 
@@ -143,19 +143,13 @@
       <div class="form-card">  
         <h3 id="pfTitle" style="margin-top:0;">إضافة منتج جديد</h3>  
         <input type="hidden" id="pfId">  
-        <div class="row3">  
+        <div class="row2">  
           <div><label>اسم المنتج</label><input type="text" id="pfName"></div>  
           <div>
             <label>القسم (الكاتجري)</label>
             <select id="pfCategory"></select>
+            <div class="hint">يمكنك إدارة الأقسام من قائمة الإعدادات.</div>
           </div>  
-          <div>
-            <label>براند العطر (السطر الخاص به)</label>
-            <select id="pfBrand">
-                <option value="">بدون براند (افتراضي)</option>
-            </select>
-            <div class="hint">أضف البراندات من قسم الإعدادات أدناه.</div>
-          </div>
         </div>  
         <label>الوصف</label><textarea id="pfDesc"></textarea>  
         <div class="row3">  
@@ -185,7 +179,7 @@
         </div>  
       </div>  
       <table>  
-        <thead><tr><th></th><th>الاسم</th><th>الفئة</th><th>البراند</th><th>السعر</th><th>الخصم</th><th>المخزون</th><th></th></tr></thead>  
+        <thead><tr><th></th><th>الاسم</th><th>الفئة</th><th>السعر</th><th>الخصم</th><th>المخزون</th><th></th></tr></thead>  
         <tbody id="adminProductRows"></tbody>  
       </table>  
     </div>  
@@ -219,19 +213,7 @@
     <!-- الإعدادات والتصميم -->
     <div id="tab-settings" style="display:none;">  
       
-      <!-- إدارة البراندات وأسطر العرض (جديد) -->
-      <div class="form-card">
-        <h3 style="margin-top:0;">إدارة براندات العطور (أسطر العرض المستقلة)</h3>
-        <label>إضافة براند جديد</label>
-        <div style="display:flex; gap:8px;">
-          <input type="text" id="newBrandInput" placeholder="مثال: براند شانيل، توم فورد...">
-          <button class="btn small" style="width:auto; padding:0 20px;" onclick="addNewBrand()">إضافة براند</button>
-        </div>
-        <div id="adminBrandList" style="margin-top:14px; display:flex; flex-wrap:wrap; gap:8px;"></div>
-        <div class="hint" style="margin-top:8px;">عند إضافة براند هنا، سيظهر كسطر منفصل ومستقل بذاته في واجهة المتجر مع منتجاته الخاصة أسفل بعضها.</div>
-      </div>
-
-      <!-- تعديل الألوان -->
+      <!-- تعديل الألوان (جديد) -->
       <div class="form-card">
         <h3 style="margin-top:0;">تخصيص ألوان المتجر</h3>
         <div class="row2">
@@ -243,7 +225,7 @@
         <button class="btn secondary small" style="margin-top:14px;" onclick="resetColors()">استعادة الألوان الافتراضية</button>
       </div>
 
-      <!-- أكواد الخصم -->
+      <!-- أكواد الخصم (جديد) -->
       <div class="form-card">
         <h3 style="margin-top:0;">إدارة أكواد الخصم (الكوبونات)</h3>
         <div class="row2" style="align-items:end;">
@@ -253,39 +235,65 @@
         <div id="adminCouponsList" style="margin-top:16px; display:flex; flex-direction:column; gap:8px;"></div>
       </div>
 
-      <!-- ميزات المتجر -->
+      <!-- إضافة التحكم بخصائص الواجهة والميزات المتقدمة -->
       <div class="form-card">
         <h3 style="margin-top:0;">إدارة ميزات المتجر (التسويق والتجربة)</h3>
+        
         <div class="flex-row">
-          <div><span>شريط البحث</span><small>إتاحة مربع بحث للعملاء.</small></div>
+          <div>
+            <span>شريط البحث</span>
+            <small>إتاحة مربع بحث للعملاء للبحث السريع عن المنتجات بالاسم.</small>
+          </div>
           <label class="switch"><input type="checkbox" id="featureSearch"><span class="slider"></span></label>
         </div>
+        
         <div class="flex-row">
-          <div><span>خيارات فرز المنتجات</span><small>إتاحة قائمة لترتيب المنتجات.</small></div>
+          <div>
+            <span>خيارات فرز المنتجات</span>
+            <small>إتاحة قائمة لترتيب المنتجات (الأحدث، الأقل سعراً).</small>
+          </div>
           <label class="switch"><input type="checkbox" id="featureSort"><span class="slider"></span></label>
         </div>
+
         <div class="flex-row">
-          <div><span>توجيه الطلب عبر واتساب</span><small>فتح واتساب تلقائياً بعد تأكيد الطلب.</small></div>
+          <div>
+            <span>توجيه الطلب عبر واتساب</span>
+            <small>بعد تأكيد الطلب، سيتم فتح تطبيق واتساب لدى العميل لتأكيد إرسال الطلب لرقمك.</small>
+          </div>
           <label class="switch"><input type="checkbox" id="featureWaCheck"><span class="slider"></span></label>
         </div>
+
         <div class="flex-row">
-          <div><span>ميزة المفضلة (Wishlist)</span><small>إظهار أيقونة قلب لحفظ المنتجات.</small></div>
+          <div>
+            <span>ميزة المفضلة (Wishlist)</span>
+            <small>إظهار أيقونة قلب لحفظ المنتجات في مفضلة العميل لشرائها لاحقاً.</small>
+          </div>
           <label class="switch"><input type="checkbox" id="featureWish"><span class="slider"></span></label>
         </div>
+
         <div class="flex-row">
-          <div><span>شاشات التحميل الاحترافية (Skeleton)</span><small>عرض هيكل متحرك أثناء التحميل.</small></div>
+          <div>
+            <span>شاشات التحميل الاحترافية (Skeleton)</span>
+            <small>عرض هيكل متحرك للمنتجات أثناء التحميل بدلاً من شاشة فارغة.</small>
+          </div>
           <label class="switch"><input type="checkbox" id="featureSkel"><span class="slider"></span></label>
         </div>
+
         <div class="flex-row">
-          <div><span>تطبيق المتجر (PWA)</span><small>اقتراح تثبيت المتجر كتطبيق.</small></div>
+          <div>
+            <span>تطبيق المتجر (PWA)</span>
+            <small>إظهار نافذة للعميل لاقتراح تثبيت المتجر كتطبيق على الشاشة الرئيسية لجهازه.</small>
+          </div>
           <label class="switch"><input type="checkbox" id="featurePWA"><span class="slider"></span></label>
         </div>
       </div>
 
       <div class="form-card">
         <h3 style="margin-top:0;">إرسال إشعار للعملاء (في أيقونة الجرس)</h3>
-        <label>عنوان الإشعار</label><input type="text" id="notifTitle" placeholder="مثال: خصم 50% لنهاية الأسبوع!">
-        <label>تفاصيل الإشعار</label><textarea id="notifBody" style="min-height:70px;" placeholder="اكتب تفاصيل العرض هنا..."></textarea>
+        <label>عنوان الإشعار</label>
+        <input type="text" id="notifTitle" placeholder="مثال: خصم 50% لنهاية الأسبوع!">
+        <label>تفاصيل الإشعار</label>
+        <textarea id="notifBody" style="min-height:70px;" placeholder="اكتب تفاصيل العرض هنا..."></textarea>
         <button class="btn" style="margin-top:10px; width:auto; padding:11px 26px;" onclick="sendCustomNotification()">نشر الإشعار</button>
       </div>
 
@@ -313,7 +321,8 @@
 
       <div class="form-card">
         <h3 style="margin-top:0;">حسابات التواصل الاجتماعي</h3>
-        <label>رقم واتساب (بدون أصفار، مثال: 9677...)</label><input type="text" id="setWhatsapp">
+        <label>رقم واتساب (بدون أصفار، مثال: 9677...)</label>
+        <input type="text" id="setWhatsapp">
         <label>رابط فيسبوك</label><input type="text" id="setFacebook">
         <label>رابط إنستقرام</label><input type="text" id="setInstagram">
         <label>رابط تيليجرام</label><input type="text" id="setTelegram">
@@ -335,32 +344,42 @@
 
       <div class="form-card">
         <h3 style="margin-top:0;">خلفية المتجر والعلامة المائية</h3>
-        <label>صورة خلفية للمتجر (اختياري)</label><input type="file" id="setBgImage" accept="image/*">
+        <label>صورة خلفية للمتجر (اختياري)</label>
+        <input type="file" id="setBgImage" accept="image/*">
         <img id="currentBgPreview" style="max-width:200px; margin-top:10px; border-radius:8px; display:none; border:1px solid var(--line);">
         <button id="removeBgBtn" class="btn secondary small" style="display:none; margin-top:10px;" onclick="removeBg()">إزالة الخلفية الحالية</button>
-        <label>نص العلامة المائية المتحركة (اختياري)</label><input type="text" id="setWatermarkText">
+        <label>نص العلامة المائية المتحركة (اختياري)</label>
+        <input type="text" id="setWatermarkText">
       </div>
 
       <div class="form-card">
         <h3 style="margin-top:0;">تخصيص نصوص المتجر</h3>
-        <label>العنوان الرئيسي (المقولة)</label><input type="text" id="setSloganTitle">
-        <label>النص الوصفي تحت العنوان</label><textarea id="setSloganDesc" style="min-height:90px;"></textarea>
-        <label>قصة عُمراء (قسم من نحن)</label><textarea id="setAboutText" style="min-height:120px;"></textarea>
-        <label>سياسات المتجر</label><textarea id="setStorePolicies" style="min-height:90px;"></textarea>
+        <label>العنوان الرئيسي (المقولة)</label>
+        <input type="text" id="setSloganTitle">
+        <label>النص الوصفي تحت العنوان</label>
+        <textarea id="setSloganDesc" style="min-height:90px;"></textarea>
+        <label>قصة عُمراء (قسم من نحن)</label>
+        <textarea id="setAboutText" style="min-height:120px;"></textarea>
+        <label>سياسات المتجر</label>
+        <textarea id="setStorePolicies" style="min-height:90px;"></textarea>
       </div>
 
       <div class="form-card">
         <h3 style="margin-top:0;">الإعلان الترويجي (Banner)</h3>
-        <label>رفع صور السلايدر أو مقطع فيديو إعلاني</label><input type="file" id="setAdMedia" accept="image/*,video/mp4,video/quicktime,video/webm" multiple>
+        <label>رفع صور السلايدر أو مقطع فيديو إعلاني</label>
+        <input type="file" id="setAdMedia" accept="image/*,video/mp4,video/quicktime,video/webm" multiple>
         <div id="adMediaAdminPreview" class="thumbstrip"></div>
         <button id="removeAdBtn" class="btn secondary small" style="display:none; margin-top:10px;" onclick="removeAd()">إزالة الإعلان الحالي</button>
-        <label>رابط الإعلان (للصور فقط)</label><input type="text" id="setAdLink">
+        <label>رابط الإعلان (للصور فقط)</label>
+        <input type="text" id="setAdLink">
       </div>
 
       <div class="form-card">  
         <h3 style="margin-top:0;">إعدادات عامة إضافية</h3>  
-        <label>عرض كرت المنتج (بالبيكسل)</label><input type="number" id="setCardWidth">
-        <label>كلمة مرور لوحة التحكم الجديدة</label><input type="password" id="setNewPass" placeholder="اتركه فارغًا إن لم ترغب بالتغيير">  
+        <label>عرض كرت المنتج (بالبيكسل)</label>
+        <input type="number" id="setCardWidth">
+        <label>كلمة مرور لوحة التحكم الجديدة</label>
+        <input type="password" id="setNewPass" placeholder="اتركه فارغًا إن لم ترغب بالتغيير">  
         <button class="btn" style="width:auto;padding:13px 32px;margin-top:14px;font-size:16px;" onclick="saveGeneralSettings()">حفظ جميع الإعدادات</button>  
       </div>  
     </div>  
@@ -379,7 +398,7 @@ let products = [];
 let orders = [];  
 let paymentSettings = {};  
 let generalSettings = { 
-  whatsapp: "", cardWidth: 180, categories: ['عطور فاخرة', 'منتجات أخرى'], brands: [],
+  whatsapp: "", cardWidth: 180, categories: ['عطور فاخرة', 'منتجات أخرى'], 
   adMedia: [], adType: 'none', productFont: "'Aref Ruqaa', serif", 
   tiktok: "", reviews: [], customNotifs: [], coupons: [], colors: {},
   enableSearch: false, enableSort: false, featureWaCheck: false, featureWish: false, featurePWA: false, featureSkel: false
@@ -389,7 +408,6 @@ let existingImageUrls = [];
 let pendingAdFiles = [];
 let pendingBgFile = null;
 let adminCatArray = [];
-let adminBrandArray = [];
   
 function toast(msg){  
   const t = document.getElementById('toast');  
@@ -460,14 +478,11 @@ async function fetchSettings() {
     if (genDoc && genDoc.data) {
       generalSettings = Object.assign(generalSettings, genDoc.data);
       if(!generalSettings.categories) generalSettings.categories = ['المنتجات الجديدة', 'عطور فاخرة', 'منتجات أخرى'];
-      if(!generalSettings.brands) generalSettings.brands = [];
       if(!generalSettings.coupons) generalSettings.coupons = [];
       if(!generalSettings.colors) generalSettings.colors = {};
       
       adminCatArray = [...generalSettings.categories];
-      adminBrandArray = [...generalSettings.brands];
       renderAdminCatList(); 
-      renderAdminBrandList();
       fillGeneralForm();
       renderAdminCoupons();
     }
@@ -475,6 +490,7 @@ async function fetchSettings() {
 }
 
 function fillGeneralForm() {
+    // Colors
     if(generalSettings.colors.cream) document.getElementById('colorCream').value = generalSettings.colors.cream;
     if(generalSettings.colors.card) document.getElementById('colorCard').value = generalSettings.colors.card;
     if(generalSettings.colors.ink) document.getElementById('colorInk').value = generalSettings.colors.ink;
@@ -531,20 +547,6 @@ function resetColors() {
     toast('تم استعادة الألوان الافتراضية، اضغط حفظ لتأكيد التغيير.');
 }
 
-function renderAdminBrandList() {
-  const box = document.getElementById('adminBrandList');
-  box.innerHTML = adminBrandArray.map((b, i) => `<div class="admin-cat-pill"><span>${b}</span><button onclick="removeAdminBrand(${i})">✕</button></div>`).join('');
-  
-  const brandSelect = document.getElementById('pfBrand');
-  brandSelect.innerHTML = `<option value="">بدون براند (افتراضي)</option>` + adminBrandArray.map(b => `<option value="${b}">${b}</option>`).join('');
-}
-function addNewBrand() {
-  const v = document.getElementById('newBrandInput').value.trim();
-  if(v && !adminBrandArray.includes(v)) { adminBrandArray.push(v); renderAdminBrandList(); }
-  document.getElementById('newBrandInput').value = '';
-}
-function removeAdminBrand(index) { adminBrandArray.splice(index, 1); renderAdminBrandList(); }
-
 function renderAdminCoupons() {
   const box = document.getElementById('adminCouponsList');
   const arr = generalSettings.coupons || [];
@@ -597,7 +599,6 @@ function resetProductForm(){
   document.getElementById('pfId').value=''; document.getElementById('pfName').value='';  
   const catSelect = document.getElementById('pfCategory');
   if(catSelect.options.length > 0) catSelect.selectedIndex = 0;
-  document.getElementById('pfBrand').value = '';
   document.getElementById('pfDesc').value=''; document.getElementById('pfPrice').value='';  
   document.getElementById('pfCurrency').value='ر.ي'; document.getElementById('pfDiscount').value='0';  
   document.getElementById('pfColors').value=''; document.getElementById('pfSizes').value='';  
@@ -612,7 +613,6 @@ function editProduct(id){
   document.getElementById('pfId').value=p.id; document.getElementById('pfName').value=p.name||'';  
   const catSelect = document.getElementById('pfCategory');
   if(p.category && adminCatArray.includes(p.category)) { catSelect.value = p.category; }
-  document.getElementById('pfBrand').value = p.brand || '';
   document.getElementById('pfDesc').value=p.description||''; document.getElementById('pfPrice').value=p.price||'';  
   document.getElementById('pfCurrency').value=p.currency||'ر.ي'; document.getElementById('pfDiscount').value=p.discount||0;  
   document.getElementById('pfColors').value=(p.colors||[]).join(', '); document.getElementById('pfSizes').value=(p.sizes||[]).join(', ');  
@@ -644,7 +644,6 @@ async function saveProduct(){
   
   const productData = {  
     name, category: document.getElementById('pfCategory').value || 'منتجات أخرى',  
-    brand: document.getElementById('pfBrand').value || '',
     description: document.getElementById('pfDesc').value.trim(), price,  
     currency: document.getElementById('pfCurrency').value || 'ر.ي',
     discount: Number(document.getElementById('pfDiscount').value)||0,  
@@ -663,7 +662,7 @@ function renderAdminProducts(){
   document.getElementById('adminProductRows').innerHTML = products.map(p=>`  
     <tr>  
       <td>${p.images&&p.images[0]?`<img class="tbl-img" src="${p.images[0]}">`:''}</td>  
-      <td>${p.name}</td><td>${p.category||''}</td><td>${p.brand||'—'}</td>  
+      <td>${p.name}</td><td>${p.category||''}</td>  
       <td style="direction:ltr;">${Number(p.price||0).toFixed(2)} ${p.currency||'ر.ي'}</td>  
       <td>${p.discount||0}%</td><td>${p.stock||0}</td>  
       <td class="actions">  
@@ -789,7 +788,7 @@ async function saveGeneralSettings(){
     instagram: document.getElementById('setInstagram').value.trim(), telegram: document.getElementById('setTelegram').value.trim(), 
     twitter: document.getElementById('setTwitter').value.trim(), tiktok: document.getElementById('setTiktok').value.trim(),
     productFont: document.getElementById('setProductFont').value, cardWidth: Number(document.getElementById('setCardWidth').value.trim() || 180), 
-    categories: adminCatArray, brands: adminBrandArray, sloganTitle: document.getElementById('setSloganTitle').value.trim(),
+    categories: adminCatArray, sloganTitle: document.getElementById('setSloganTitle').value.trim(),
     sloganDesc: document.getElementById('setSloganDesc').value.trim(), aboutText: document.getElementById('setAboutText').value.trim(), 
     policies: document.getElementById('setStorePolicies').value.trim(), adMedia: savedAdUrls, adType: savedAdType,
     adLink: document.getElementById('setAdLink').value.trim(), bgImage: bgImageUrl, 
