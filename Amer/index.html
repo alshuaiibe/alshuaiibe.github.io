@@ -72,7 +72,7 @@
   .icon-btn.danger{color:var(--danger); border-color:var(--danger);}  
   
   #loginModal .msg{font-size:12px; color:var(--danger); min-height:16px;}  
-  .admin-cat-pill { background:var(--cream); border:1px solid var(--gold-soft); padding:6px 12px; border-radius:999px; font-size:13px; display:inline-flex; align-items:center; gap:8px; }
+  .admin-cat-pill { background:var(--cream); border:1px solid var(--gold-soft); padding:6px 12px; border-radius:999px; font-size:13px; display:inline-flex; align-items:center; gap:8px; flex-wrap:wrap; }
   .admin-cat-pill button { background:none; border:none; color:var(--danger); cursor:pointer; font-weight:bold; }
   
   .switch { position: relative; display: inline-block; width: 40px; height: 22px; }
@@ -146,9 +146,9 @@
         <div class="row2">  
           <div><label>اسم المنتج</label><input type="text" id="pfName"></div>  
           <div>
-            <label>القسم (الكاتجري)</label>
+            <label>القسم / السطر (الكاتجري)</label>
             <select id="pfCategory"></select>
-            <div class="hint">يمكنك إدارة الأقسام من قائمة الإعدادات.</div>
+            <div class="hint">يمكنك إدارة الأقسام (الأسطر) وخطوطها من قائمة الإعدادات.</div>
           </div>  
         </div>  
         <label>الوصف</label><textarea id="pfDesc"></textarea>  
@@ -179,7 +179,7 @@
         </div>  
       </div>  
       <table>  
-        <thead><tr><th></th><th>الاسم</th><th>الفئة</th><th>السعر</th><th>الخصم</th><th>المخزون</th><th></th></tr></thead>  
+        <thead><tr><th></th><th>الاسم</th><th>القسم (السطر)</th><th>السعر</th><th>الخصم</th><th>المخزون</th><th></th></tr></thead>  
         <tbody id="adminProductRows"></tbody>  
       </table>  
     </div>  
@@ -298,8 +298,8 @@
       </div>
 
       <div class="form-card">
-        <h3 style="margin-top:0;">الخطوط والمظهر</h3>
-        <label>خط أسماء المنتجات</label>
+        <h3 style="margin-top:0;">الخطوط والمظهر العام</h3>
+        <label>خط أسماء المنتجات (الأساسي)</label>
         <select id="setProductFont">
           <option value="'Aref Ruqaa', serif">عارف رقعة (Aref Ruqaa) - افتراضي</option>
           <option value="'Tajawal', sans-serif">تجوال (Tajawal)</option>
@@ -309,12 +309,20 @@
         </select>
       </div>
 
+      <!-- تحديث: إدارة الأقسام والخطوط لكل قسم (الأسطر الأفقية) -->
       <div class="form-card">
-        <h3 style="margin-top:0;">إدارة الأقسام (الكاتجري)</h3>
-        <label>إضافة قسم جديد</label>
-        <div style="display:flex; gap:8px;">
-          <input type="text" id="newCategoryInput" placeholder="مثال: المنتجات الجديدة...">
-          <button class="btn small" style="width:auto; padding:0 20px;" onclick="addNewCategory()">إضافة</button>
+        <h3 style="margin-top:0;">إدارة الأقسام (أسطر المنتجات)</h3>
+        <label>إضافة قسم جديد وتحديد خط عنوانه</label>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <input type="text" id="newCategoryInput" placeholder="اسم القسم (مثال: ابراق)..." style="flex:1; min-width: 150px;">
+          <select id="newCategoryFont" style="flex:1; min-width: 150px;">
+              <option value="'Aref Ruqaa', serif">الخط: عارف رقعة</option>
+              <option value="'Tajawal', sans-serif">الخط: تجوال</option>
+              <option value="'Markazi Text', serif">الخط: مركزي</option>
+              <option value="'Cairo', sans-serif">الخط: كايرو</option>
+              <option value="'Amiri', serif">الخط: أميري</option>
+          </select>
+          <button class="btn small" style="width:auto; padding:0 20px;" onclick="addNewCategory()">إضافة القسم</button>
         </div>
         <div id="adminCategoryList" style="display:flex; flex-wrap:wrap; gap:8px; margin-top:14px;"></div>
       </div>
@@ -399,6 +407,7 @@ let orders = [];
 let paymentSettings = {};  
 let generalSettings = { 
   whatsapp: "", cardWidth: 180, categories: ['عطور فاخرة', 'منتجات أخرى'], 
+  categoryFonts: {}, // خصائص الخطوط للأقسام
   adMedia: [], adType: 'none', productFont: "'Aref Ruqaa', serif", 
   tiktok: "", reviews: [], customNotifs: [], coupons: [], colors: {},
   enableSearch: false, enableSort: false, featureWaCheck: false, featureWish: false, featurePWA: false, featureSkel: false
@@ -478,6 +487,7 @@ async function fetchSettings() {
     if (genDoc && genDoc.data) {
       generalSettings = Object.assign(generalSettings, genDoc.data);
       if(!generalSettings.categories) generalSettings.categories = ['المنتجات الجديدة', 'عطور فاخرة', 'منتجات أخرى'];
+      if(!generalSettings.categoryFonts) generalSettings.categoryFonts = {}; // جديد: للخطوط
       if(!generalSettings.coupons) generalSettings.coupons = [];
       if(!generalSettings.colors) generalSettings.colors = {};
       
@@ -572,18 +582,45 @@ function removeCoupon(index) {
   renderAdminCoupons();
 }
 
+// تعديل لعرض الخط المحدد مع القسم
 function renderAdminCatList() {
   const box = document.getElementById('adminCategoryList');
-  box.innerHTML = adminCatArray.map((c, i) => `<div class="admin-cat-pill"><span>${c}</span><button onclick="removeAdminCat(${i})">✕</button></div>`).join('');
+  box.innerHTML = adminCatArray.map((c, i) => {
+    let fontText = "افتراضي";
+    let fontName = generalSettings.categoryFonts && generalSettings.categoryFonts[c];
+    if (fontName) {
+        if (fontName.includes("Aref Ruqaa")) fontText = "عارف رقعة";
+        else if (fontName.includes("Tajawal")) fontText = "تجوال";
+        else if (fontName.includes("Markazi")) fontText = "مركزي";
+        else if (fontName.includes("Cairo")) fontText = "كايرو";
+        else if (fontName.includes("Amiri")) fontText = "أميري";
+    }
+    return `<div class="admin-cat-pill"><span style="font-family: ${fontName || 'inherit'}; font-size:15px;">${c}</span> <small>(${fontText})</small><button onclick="removeAdminCat(${i}, '${c}')">✕</button></div>`;
+  }).join('');
+  
   const select = document.getElementById('pfCategory');
   select.innerHTML = adminCatArray.map(c => `<option value="${c}">${c}</option>`).join('');
 }
+
 function addNewCategory() {
   const v = document.getElementById('newCategoryInput').value.trim();
-  if(v && !adminCatArray.includes(v)) { adminCatArray.push(v); renderAdminCatList(); }
+  const font = document.getElementById('newCategoryFont').value;
+  if(v && !adminCatArray.includes(v)) { 
+      adminCatArray.push(v); 
+      if(!generalSettings.categoryFonts) generalSettings.categoryFonts = {};
+      generalSettings.categoryFonts[v] = font;
+      renderAdminCatList(); 
+  }
   document.getElementById('newCategoryInput').value = '';
 }
-function removeAdminCat(index) { adminCatArray.splice(index, 1); renderAdminCatList(); }
+
+function removeAdminCat(index, catName) { 
+    adminCatArray.splice(index, 1); 
+    if (generalSettings.categoryFonts && generalSettings.categoryFonts[catName]) {
+        delete generalSettings.categoryFonts[catName];
+    }
+    renderAdminCatList(); 
+}
 
 /* ---------------- Admin Products ---------------- */  
 document.getElementById('pfImages').addEventListener('change', e=>{ pendingImageFiles = [...e.target.files]; renderThumbs(); });  
@@ -788,7 +825,9 @@ async function saveGeneralSettings(){
     instagram: document.getElementById('setInstagram').value.trim(), telegram: document.getElementById('setTelegram').value.trim(), 
     twitter: document.getElementById('setTwitter').value.trim(), tiktok: document.getElementById('setTiktok').value.trim(),
     productFont: document.getElementById('setProductFont').value, cardWidth: Number(document.getElementById('setCardWidth').value.trim() || 180), 
-    categories: adminCatArray, sloganTitle: document.getElementById('setSloganTitle').value.trim(),
+    categories: adminCatArray, 
+    categoryFonts: generalSettings.categoryFonts || {}, // حفظ خطوط الأقسام المخصصة
+    sloganTitle: document.getElementById('setSloganTitle').value.trim(),
     sloganDesc: document.getElementById('setSloganDesc').value.trim(), aboutText: document.getElementById('setAboutText').value.trim(), 
     policies: document.getElementById('setStorePolicies').value.trim(), adMedia: savedAdUrls, adType: savedAdType,
     adLink: document.getElementById('setAdLink').value.trim(), bgImage: bgImageUrl, 
