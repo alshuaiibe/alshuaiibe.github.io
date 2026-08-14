@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">  
 <title>لوحة التحكم | متجر عُمراء</title>  
 <link rel="preconnect" href="https://fonts.googleapis.com">  
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">  
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@400;600;700&family=Markazi+Text:wght@400;600;700&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">  
 
 <style>  
   :root{  
@@ -136,7 +136,7 @@
         </div>
         <div class="form-card" style="margin-top: 26px;">
             <h3>أهلاً بك في لوحة تحكم متجر عُمراء!</h3>
-            <p style="color:var(--ink-soft); line-height:1.8;">من هنا يمكنك إدارة كل تفاصيل متجرك، وتحديد أسطر العرض (إبراق، دخوني...) بكل سهولة.</p>
+            <p style="color:var(--ink-soft); line-height:1.8;">من هنا يمكنك إدارة كل تفاصيل متجرك، وتحديد براندات العطور وأسطر العرض بكل سهولة.</p>
         </div>
     </div>
 
@@ -221,6 +221,20 @@
     <!-- الإعدادات والتصميم -->
     <div id="tab-settings" style="display:none;">  
       
+      <!-- إعداد الخطوط المخصص -->
+      <div class="form-card">
+        <h3 style="margin-top:0;">تخصيص الخطوط</h3>
+        <label>خط أسماء المنتجات وعناوين الأقسام</label>
+        <select id="setProductFont">
+          <option value="'Aref Ruqaa', serif">عارف رقعة (Aref Ruqaa)</option>
+          <option value="'Tajawal', sans-serif">تجوال (Tajawal)</option>
+          <option value="'Markazi Text', serif">مركزي (Markazi Text)</option>
+          <option value="'Cairo', sans-serif">كايرو (Cairo)</option>
+          <option value="'Amiri', serif">أميري (Amiri)</option>
+        </select>
+        <div class="hint">اختر الخط المناسب لعرض عناوين الأقسام وأسماء العطور في متجرك.</div>
+      </div>
+
       <!-- إدارة البراندات وأسطر العرض -->
       <div class="form-card">
         <h3 style="margin-top:0;">إدارة براندات العطور (أسطر العرض المستقلة)</h3>
@@ -289,19 +303,6 @@
         <label>عنوان الإشعار</label><input type="text" id="notifTitle" placeholder="مثال: خصم 50% لنهاية الأسبوع!">
         <label>تفاصيل الإشعار</label><textarea id="notifBody" style="min-height:70px;" placeholder="اكتب تفاصيل العرض هنا..."></textarea>
         <button class="btn" style="margin-top:10px; width:auto; padding:11px 26px;" onclick="sendCustomNotification()">نشر الإشعار</button>
-      </div>
-
-      <div class="form-card">
-        <h3 style="margin-top:0;">الخطوط والمظهر</h3>
-        <label>خط أسماء المنتجات والأقسام</label>
-        <select id="setProductFont">
-          <option value="'Aref Ruqaa', serif">عارف رقعة (Aref Ruqaa) - افتراضي</option>
-          <option value="'Tajawal', sans-serif">تجوال (Tajawal)</option>
-          <option value="'Markazi Text', serif">مركزي (Markazi Text)</option>
-          <option value="'Cairo', sans-serif">كايرو (Cairo)</option>
-          <option value="'Amiri', serif">أميري (Amiri)</option>
-        </select>
-        <div class="hint">يتم تطبيق هذا الخط على عناوين الأقسام وأسماء العطور لتغيير شكلها بالكامل.</div>
       </div>
 
       <div class="form-card">
@@ -464,7 +465,7 @@ async function fetchSettings() {
       generalSettings = Object.assign(generalSettings, genDoc.data);
       if(!generalSettings.categories) generalSettings.categories = [];
       
-      // حذف عطور فاخرة جذرياً من القائمة المحفوظة
+      // حذف عطور فاخرة جذرياً من الكاتجري
       generalSettings.categories = generalSettings.categories.filter(c => c !== 'عطور فاخرة' && c !== 'منتجات أخرى' && c !== 'عطور فاخره');
 
       if(!generalSettings.brands) generalSettings.brands = [];
@@ -578,6 +579,7 @@ function removeCoupon(index) {
 }
 
 function renderAdminCatList() {
+  adminCatArray = adminCatArray.filter(c => c !== 'عطور فاخرة' && c !== 'عطور فاخره');
   const box = document.getElementById('adminCategoryList');
   box.innerHTML = adminCatArray.map((c, i) => `
     <div class="admin-cat-pill">
@@ -592,7 +594,7 @@ function renderAdminCatList() {
 
 async function addNewCategory() {
   const v = document.getElementById('newCategoryInput').value.trim();
-  if(v && !adminCatArray.includes(v)) { 
+  if(v && v !== 'عطور فاخرة' && v !== 'عطور فاخره' && !adminCatArray.includes(v)) { 
       adminCatArray.push(v); 
       generalSettings.categories = adminCatArray;
       const { error } = await client.from('settings').update({ data: generalSettings }).eq('id', 'general');
@@ -700,7 +702,7 @@ async function saveProduct(){
   }  
   
   const productData = {  
-    name, category: document.getElementById('pfCategory').value || 'أخرى',  
+    name, category: document.getElementById('pfCategory').value || 'منتجات أخرى',  
     brand: document.getElementById('pfBrand').value || '',
     description: document.getElementById('pfDesc').value.trim(), price,  
     currency: document.getElementById('pfCurrency').value || 'ر.ي',
@@ -841,12 +843,14 @@ async function saveGeneralSettings(){
     pendingBgFile = null;
   }
 
+  const cleanCategories = adminCatArray.filter(c => c !== 'عطور فاخرة' && c !== 'عطور فاخره');
+
   const newData = { 
     whatsapp: document.getElementById('setWhatsapp').value.trim(), facebook: document.getElementById('setFacebook').value.trim(), 
     instagram: document.getElementById('setInstagram').value.trim(), telegram: document.getElementById('setTelegram').value.trim(), 
     twitter: document.getElementById('setTwitter').value.trim(), tiktok: document.getElementById('setTiktok').value.trim(),
     productFont: document.getElementById('setProductFont').value, cardWidth: Number(document.getElementById('setCardWidth').value.trim() || 180), 
-    categories: adminCatArray, brands: adminBrandArray, sloganTitle: document.getElementById('setSloganTitle').value.trim(),
+    categories: cleanCategories, brands: adminBrandArray, sloganTitle: document.getElementById('setSloganTitle').value.trim(),
     sloganDesc: document.getElementById('setSloganDesc').value.trim(), aboutText: document.getElementById('setAboutText').value.trim(), 
     policies: document.getElementById('setStorePolicies').value.trim(), adMedia: savedAdUrls, adType: savedAdType,
     adLink: document.getElementById('setAdLink').value.trim(), bgImage: bgImageUrl, 
