@@ -178,8 +178,19 @@
   .horizontal-scroll::-webkit-scrollbar-thumb { background: var(--line); border-radius: 10px; }
   .horizontal-scroll::-webkit-scrollbar-thumb:hover { background: var(--gold-soft); }
 
-  /* Product Card within Horizontal Scroll */
-  .card{ background:transparent; border:none; box-shadow:none; display:flex; flex-direction:column; align-items:center; text-align:center; transition:transform .25s ease; position:relative; min-width: var(--card-width); scroll-snap-align: start; flex-shrink: 0;}  
+  /* الحل الدذري لمشكلة تمدد حجم الكرت */
+  .card { 
+      background: transparent; border: none; box-shadow: none; 
+      display: flex; flex-direction: column; align-items: center; 
+      text-align: center; transition: transform .25s ease; position: relative; 
+      
+      /* هذه الأسطر تجبر الكرت على الالتزام بالحجم المحدد وتمنعه من التمدد لملء الشاشة */
+      flex: 0 0 var(--card-width); 
+      width: var(--card-width); 
+      max-width: var(--card-width); 
+      
+      scroll-snap-align: start; 
+  }  
   .card .imgwrap{ aspect-ratio:1/1; background:transparent; position:relative; overflow:visible; width:100%; cursor:pointer; }  
   .card .imgwrap img{ width:100%; height:100%; object-fit:contain; padding:10px; transition:transform 0.4s ease; }  
   .card .imgwrap:hover img { transform: scale(1.08); }
@@ -187,7 +198,15 @@
   /* Skeleton Loading Styles */
   .skeleton { background: linear-gradient(90deg, var(--card) 25%, var(--cream) 50%, var(--card) 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 12px; }
   @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
-  .skel-card { min-width: var(--card-width); display:flex; flex-direction:column; gap:10px; flex-shrink: 0;}
+  
+  .skel-card { 
+      display: flex; flex-direction: column; gap: 10px; 
+      /* تطبيق نفس قواعد التثبيت على شاشة التحميل الوهمية */
+      flex: 0 0 var(--card-width); 
+      width: var(--card-width); 
+      max-width: var(--card-width);
+  }
+  
   .skel-img { width:100%; aspect-ratio:1/1; border-radius:12px; }
   .skel-line { width:80%; height:20px; border-radius:6px; margin:0 auto; }
   .skel-btn { width:100%; height:40px; border-radius:12px; margin-top:10px; }
@@ -593,7 +612,7 @@ async function fetchSettings() {
       if (genDoc && genDoc.data) {
         generalSettings = genDoc.data;
         if(!generalSettings.categories) generalSettings.categories = ['المنتجات الجديدة', 'عطور فاخرة', 'منتجات أخرى'];
-        if(!generalSettings.categoryFonts) generalSettings.categoryFonts = {}; // جديد: للخطوط
+        if(!generalSettings.categoryFonts) generalSettings.categoryFonts = {}; 
         if(!generalSettings.reviews) generalSettings.reviews = [];
         if(!generalSettings.customNotifs) generalSettings.customNotifs = [];
         if(!generalSettings.coupons) generalSettings.coupons = [];
