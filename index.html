@@ -160,8 +160,26 @@
   .tools-row input:focus, .tools-row select:focus { border-color:var(--ink); box-shadow: 0 0 0 3px rgba(32,48,28,0.1); }
   .tools-row select { cursor:pointer; font-weight:700; }
 
-  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(var(--card-width),1fr)); gap:22px;}  
-  .card{ background:transparent; border:none; box-shadow:none; display:flex; flex-direction:column; align-items:center; text-align:center; transition:transform .25s ease; position:relative;}  
+  /* Horizontal Products Layout Classes */
+  .product-rows-container { display: flex; flex-direction: column; gap: 40px; width: 100%; }
+  .category-row { width: 100%; }
+  .category-title { 
+      font-size: 34px; margin: 0 0 16px 0; 
+      padding-bottom: 8px; color: var(--ink); 
+      display: inline-block;
+  }
+  .horizontal-scroll {
+      display: flex; gap: 22px; overflow-x: auto; 
+      padding-bottom: 20px; scroll-snap-type: x mandatory;
+      direction: rtl; /* يضمن السحب من اليمين لليسار */
+  }
+  .horizontal-scroll::-webkit-scrollbar { height: 8px; }
+  .horizontal-scroll::-webkit-scrollbar-track { background: transparent; border-radius: 10px; }
+  .horizontal-scroll::-webkit-scrollbar-thumb { background: var(--line); border-radius: 10px; }
+  .horizontal-scroll::-webkit-scrollbar-thumb:hover { background: var(--gold-soft); }
+
+  /* Product Card within Horizontal Scroll */
+  .card{ background:transparent; border:none; box-shadow:none; display:flex; flex-direction:column; align-items:center; text-align:center; transition:transform .25s ease; position:relative; min-width: var(--card-width); scroll-snap-align: start; flex-shrink: 0;}  
   .card .imgwrap{ aspect-ratio:1/1; background:transparent; position:relative; overflow:visible; width:100%; cursor:pointer; }  
   .card .imgwrap img{ width:100%; height:100%; object-fit:contain; padding:10px; transition:transform 0.4s ease; }  
   .card .imgwrap:hover img { transform: scale(1.08); }
@@ -169,7 +187,7 @@
   /* Skeleton Loading Styles */
   .skeleton { background: linear-gradient(90deg, var(--card) 25%, var(--cream) 50%, var(--card) 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 12px; }
   @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
-  .skel-card { width:100%; display:flex; flex-direction:column; gap:10px; }
+  .skel-card { min-width: var(--card-width); display:flex; flex-direction:column; gap:10px; flex-shrink: 0;}
   .skel-img { width:100%; aspect-ratio:1/1; border-radius:12px; }
   .skel-line { width:80%; height:20px; border-radius:6px; margin:0 auto; }
   .skel-btn { width:100%; height:40px; border-radius:12px; margin-top:10px; }
@@ -193,7 +211,7 @@
   .price-old{font-size:13px; color:var(--ink-soft); text-decoration:line-through; opacity:.7; direction:ltr;}  
   .addbtn{ margin-top:6px; width:100%; background:var(--ink); color:var(--cream); border:none; padding:11px; border-radius:12px; font-weight:700; font-size:14px; }  
   .addbtn:disabled{background:var(--line); color:var(--ink-soft);}  
-  .empty{text-align:center; padding:60px 20px; color:var(--ink-soft); grid-column: 1 / -1; width:100%;}  
+  .empty{text-align:center; padding:60px 20px; color:var(--ink-soft); width:100%; grid-column: 1 / -1;}  
   
   footer{border-top:1px solid var(--line); padding:36px 22px; text-align:center; color:var(--ink-soft); font-size:13px;}  
   .social-links { display: flex; justify-content: center; gap: 16px; margin-top: 20px; flex-wrap: wrap; }
@@ -331,7 +349,8 @@
         </div>
     </div>
 
-    <div class="grid" id="productGrid">
+    <!-- Product Grid transformed to Horizontal Rows Container -->
+    <div id="productGrid" class="product-rows-container">
       <div class="empty">جارِ تحميل المنتجات…</div>
     </div>  
   </section>  
@@ -463,14 +482,20 @@ document.getElementById('yr').textContent = new Date().getFullYear();
   
 function renderSkeletons() {
     const grid = document.getElementById('productGrid');
-    grid.innerHTML = Array(4).fill(0).map(() => `
-        <div class="skel-card">
-            <div class="skel-img skeleton"></div>
-            <div class="skel-line skeleton" style="width:60%;"></div>
-            <div class="skel-line skeleton"></div>
-            <div class="skel-btn skeleton"></div>
+    grid.innerHTML = `
+        <div class="category-row">
+            <div class="horizontal-scroll">
+                ${Array(4).fill(0).map(() => `
+                <div class="skel-card">
+                    <div class="skel-img skeleton"></div>
+                    <div class="skel-line skeleton" style="width:60%;"></div>
+                    <div class="skel-line skeleton"></div>
+                    <div class="skel-btn skeleton"></div>
+                </div>
+                `).join('')}
+            </div>
         </div>
-    `).join('');
+    `;
 }
 
 // Track Visit using simple public counter API
@@ -568,6 +593,7 @@ async function fetchSettings() {
       if (genDoc && genDoc.data) {
         generalSettings = genDoc.data;
         if(!generalSettings.categories) generalSettings.categories = ['المنتجات الجديدة', 'عطور فاخرة', 'منتجات أخرى'];
+        if(!generalSettings.categoryFonts) generalSettings.categoryFonts = {}; // جديد: للخطوط
         if(!generalSettings.reviews) generalSettings.reviews = [];
         if(!generalSettings.customNotifs) generalSettings.customNotifs = [];
         if(!generalSettings.coupons) generalSettings.coupons = [];
@@ -762,35 +788,71 @@ function renderProducts(){
   
   const showWishBtn = generalSettings.featureWish === true;
 
-  grid.innerHTML = list.map(p=>{  
-    const price = Number(p.price||0);  
-    const disc = Number(p.discount||0);  
-    const finalPrice = disc>0 ? price*(1-disc/100) : price;  
-    const img = (p.images && p.images[0]) || '';  
-    const out = Number(p.stock||0) <= 0;  
-    const currency = p.currency || 'ر.ي';
-    const isFav = wishlist.includes(p.id);
+  // Group products by category (تجميع المنتجات حسب القسم لعرضها كأسطر)
+  const groupedProducts = {};
+  if (activeCategory === 'الكل') {
+      list.forEach(p => {
+          const cat = p.category || 'أخرى';
+          if (!groupedProducts[cat]) groupedProducts[cat] = [];
+          groupedProducts[cat].push(p);
+      });
+  } else {
+      groupedProducts[activeCategory] = list;
+  }
 
-    return `  
-    <div class="card">  
-      <div class="imgwrap" onclick='openProductModal(${JSON.stringify(p.id)})'>  
-        ${showWishBtn ? `<button class="fav-btn" onclick="toggleWishlist('${p.id}', event)">${isFav ? '❤️' : '🤍'}</button>` : ''}
-        ${img?`<img src="${img}" alt="${p.name}">`:''}  
-        ${disc>0?`<div class="badge-discount">خصم ${disc}%</div>`:''}  
-        ${out?`<div class="badge-out">نفدت الكمية</div>`:''}  
-      </div>  
-      <div class="body">  
-        <p class="name">${p.name||''}</p>  
-        <div class="price-row">  
-          <span class="price">${finalPrice.toFixed(2)} ${currency}</span>  
-          ${disc>0?`<span class="price-old">${price.toFixed(2)}</span>`:''}  
-        </div>  
-        <div style="display:none;" data-role="colors">${(p.colors||[]).map((c,i)=>`<span class="swatch ${i===0?'sel':''}">${c}</span>`).join('')}</div>
-        <div style="display:none;" data-role="sizes">${(p.sizes||[]).map((s,i)=>`<span class="swatch ${i===0?'sel':''}">${s}</span>`).join('')}</div>
-        <button class="addbtn" ${out?'disabled':''} onclick='addToCart(${JSON.stringify(p.id)}, this)'>${out?'غير متوفر':'أضف للسلة'}</button>  
-      </div>  
-    </div>`;  
-  }).join('');  
+  let finalHtml = '';
+
+  for (const [catName, catList] of Object.entries(groupedProducts)) {
+      if (catList.length === 0) continue;
+      
+      // جلب الخط المخصص لهذا القسم، أو الخط الافتراضي
+      let customFont = "var(--product-font)";
+      if (generalSettings.categoryFonts && generalSettings.categoryFonts[catName]) {
+          customFont = generalSettings.categoryFonts[catName];
+      }
+
+      // بناء سطر المنتجات الأفقي
+      const cardsHtml = catList.map(p => {  
+        const price = Number(p.price||0);  
+        const disc = Number(p.discount||0);  
+        const finalPrice = disc>0 ? price*(1-disc/100) : price;  
+        const img = (p.images && p.images[0]) || '';  
+        const out = Number(p.stock||0) <= 0;  
+        const currency = p.currency || 'ر.ي';
+        const isFav = wishlist.includes(p.id);
+
+        return `  
+        <div class="card">  
+          <div class="imgwrap" onclick='openProductModal(${JSON.stringify(p.id)})'>  
+            ${showWishBtn ? `<button class="fav-btn" onclick="toggleWishlist('${p.id}', event)">${isFav ? '❤️' : '🤍'}</button>` : ''}
+            ${img?`<img src="${img}" alt="${p.name}">`:''}  
+            ${disc>0?`<div class="badge-discount">خصم ${disc}%</div>`:''}  
+            ${out?`<div class="badge-out">نفدت الكمية</div>`:''}  
+          </div>  
+          <div class="body">  
+            <p class="name">${p.name||''}</p>  
+            <div class="price-row">  
+              <span class="price">${finalPrice.toFixed(2)} ${currency}</span>  
+              ${disc>0?`<span class="price-old">${price.toFixed(2)}</span>`:''}  
+            </div>  
+            <div style="display:none;" data-role="colors">${(p.colors||[]).map((c,i)=>`<span class="swatch ${i===0?'sel':''}">${c}</span>`).join('')}</div>
+            <div style="display:none;" data-role="sizes">${(p.sizes||[]).map((s,i)=>`<span class="swatch ${i===0?'sel':''}">${s}</span>`).join('')}</div>
+            <button class="addbtn" ${out?'disabled':''} onclick='addToCart(${JSON.stringify(p.id)}, this)'>${out?'غير متوفر':'أضف للسلة'}</button>  
+          </div>  
+        </div>`;  
+      }).join('');
+
+      finalHtml += `
+      <div class="category-row">
+          <h3 class="category-title" style="font-family: ${customFont};">${catName}</h3>
+          <div class="horizontal-scroll">
+              ${cardsHtml}
+          </div>
+      </div>
+      `;
+  }
+
+  grid.innerHTML = finalHtml;
 }  
 
 function openProductModal(id) {
