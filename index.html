@@ -679,10 +679,13 @@ async function fetchSettings() {
       if (payDoc) { paymentSettings = payDoc.data || {}; }
       if (genDoc && genDoc.data) {
         generalSettings = genDoc.data;
+        
+        // إزالة "عطور فاخرة" نهائياً من العرض
         if(generalSettings.categories) {
             generalSettings.categories = generalSettings.categories.filter(c => c !== 'عطور فاخرة' && c !== 'منتجات أخرى' && c !== 'عطور فاخره');
         }
         if(!generalSettings.categories) generalSettings.categories = [];
+        
         if(!generalSettings.reviews) generalSettings.reviews = [];
         if(!generalSettings.customNotifs) generalSettings.customNotifs = [];
         if(!generalSettings.coupons) generalSettings.coupons = [];
@@ -776,7 +779,7 @@ client.channel('public-tables')
 
 /* ---------------- Storefront logic ---------------- */  
 function renderCategories(){  
-  const cats = generalSettings.categories || [];
+  const cats = (generalSettings.categories || []).filter(c => c !== 'عطور فاخرة' && c !== 'منتجات أخرى' && c !== 'عطور فاخره');
   if(!cats.includes(activeCategory) && activeCategory !== 'الكل' && activeCategory !== 'wishlist') activeCategory = 'الكل';
   const box = document.getElementById('catFilters');  
   let html = ['الكل', ...cats].map(c=>`<button class="${c===activeCategory?'active':''}" onclick="setCategory('${c.replace(/'/g,"'")}')">${c}</button>`).join('');  
@@ -912,7 +915,7 @@ function renderProducts(){
       return;
   }
 
-  // فلترة الأقسام الافتراضية لمنع ظهور "عطور فاخرة" نهائياً
+  // فلترة نهائية تمنع ظهور "عطور فاخرة" كلياً
   const configuredCategories = (generalSettings.categories || []).filter(c => c !== 'عطور فاخرة' && c !== 'منتجات أخرى' && c !== 'عطور فاخره');
   const actualCategories = [...new Set(list.map(p => p.category).filter(Boolean))].filter(c => c !== 'عطور فاخرة' && c !== 'منتجات أخرى' && c !== 'عطور فاخره');
   const allCategories = [...new Set([...configuredCategories, ...actualCategories])];
@@ -959,23 +962,6 @@ function renderProducts(){
             </div>`;
       }
   });
-
-  const unassignedProducts = list.filter(p => !p.category || p.category === 'عطور فاخرة' || p.category === 'منتجات أخرى' || p.category === 'عطور فاخره');
-  if(unassignedProducts.length > 0) {
-      fullHTML += `
-        <div class="category-group">
-          <div class="category-header">
-             <h3 class="category-title-text">منتجات أخرى</h3>
-             <div class="scroll-controls">
-                <button class="scroll-btn" onclick="scrollCategory('other_cats', 'right')">❯</button>
-                <button class="scroll-btn" onclick="scrollCategory('other_cats', 'left')">❮</button>
-             </div>
-          </div>
-          <div class="horizontal-scroll-container" id="scroll-container-other_cats">
-             ${unassignedProducts.map(p => buildCardHTML(p, showWishBtn)).join('')}
-          </div>
-        </div>`;
-  }
 
   container.innerHTML = fullHTML || '<div class="empty">لا توجد منتجات مطابقة لطلبك.</div>';
 }  
