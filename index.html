@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
 
 <meta charset="UTF-8">
@@ -10,12 +9,12 @@ name="viewport"
 content="width=device-width,initial-scale=1,viewport-fit=cover"
 >
 
-<title>متجر عُمراء | Omara Store</title>
+<title>متجر الشعيبي | Alshuaibe Store</title>
 
 <meta
 id="metaDesc"
 name="description"
-content="متجر عُمراء"
+content="متجر الشعيبي"
 >
 
 <meta property="og:type" content="website">
@@ -23,13 +22,13 @@ content="متجر عُمراء"
 <meta
 id="ogTitle"
 property="og:title"
-content="متجر عُمراء"
+content="متجر الشعيبي"
 >
 
 <meta
 id="ogDesc"
 property="og:description"
-content="متجر عُمراء"
+content="متجر الشعيبي"
 >
 
 <link id="dynamicManifest" rel="manifest" href="">
@@ -41,9 +40,63 @@ href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ru
 rel="stylesheet"
 >
 
+
+<!-- =========================
+     ONESIGNAL WEB PUSH
+========================= -->
+
+<script
+src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js"
+defer>
+</script>
+
+<script>
+
+window.OneSignalDeferred =
+window.OneSignalDeferred || [];
+
+OneSignalDeferred.push(
+async function(OneSignal){
+
+try{
+
+await OneSignal.init({
+
+appId:
+"3fe0707f-ffa3-48ca-9737-11425770bcc2",
+
+serviceWorkerPath:
+"OneSignalSDKWorker.js",
+
+serviceWorkerParam:{
+scope:"/"
+}
+
+});
+
+console.log(
+"OneSignal جاهز"
+);
+
+}catch(error){
+
+console.error(
+"OneSignal init error:",
+error
+);
+
+}
+
+}
+);
+
+</script>
+
+
 <style>
 
 :root{
+
 --cream:#F8EACB;
 --cream-deep:#F1DDA6;
 --card:#FFFBF0;
@@ -56,39 +109,59 @@ rel="stylesheet"
 --ok:#4C6B3E;
 --blue:#2C5A82;
 --shadow:0 10px 30px rgba(32,48,28,.10);
+
 --card-width:180px;
---product-font:'Aref Ruqaa',serif;
+
+--product-font:
+'Aref Ruqaa',serif;
+
 }
+
 
 *{
 box-sizing:border-box;
 }
 
+
 html{
 scroll-behavior:smooth;
 }
 
+
 html,
 body{
+
 margin:0;
 padding:0;
 width:100%;
 max-width:100%;
 overflow-x:hidden;
+
 }
 
+
 body{
+
 min-height:100vh;
+
 background:
 radial-gradient(
-1200px 500px at 50% -10%,
+1200px 500px
+at 50% -10%,
 var(--cream-deep),
 transparent 60%
 ),
 var(--cream);
-color:var(--ink);
-font-family:'Tajawal',sans-serif;
+
+color:
+var(--ink);
+
+font-family:
+'Tajawal',
+sans-serif;
+
 }
+
 
 button,
 input,
@@ -97,363 +170,1055 @@ select{
 font:inherit;
 }
 
+
 button{
 cursor:pointer;
 }
+
 
 a{
 color:inherit;
 text-decoration:none;
 }
 
+
 img{
 max-width:100%;
 }
 
+
 #customBackground{
+
 position:fixed;
 inset:0;
 z-index:-3;
+
 pointer-events:none;
+
 background-position:center;
 background-size:cover;
 background-repeat:no-repeat;
+
 display:none;
+
 }
 
+
 #watermark{
+
 position:fixed;
 inset:0;
 z-index:-2;
+
 pointer-events:none;
+
 background-position:center;
 background-repeat:repeat;
+
 display:none;
+
 }
+
+
+/* =========================
+   INTRO
+========================= */
+
+#introScreen{
+
+position:fixed;
+inset:0;
+
+z-index:999999;
+
+background:
+
+radial-gradient(
+circle at center,
+rgba(241,221,166,.95),
+var(--cream) 62%
+);
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+transition:
+opacity .75s ease,
+visibility .75s ease;
+
+}
+
+
+#introScreen.hide{
+
+opacity:0;
+visibility:hidden;
+pointer-events:none;
+
+}
+
+
+.intro-inner{
+
+text-align:center;
+
+animation:
+introScale 1.8s
+cubic-bezier(.2,.8,.2,1);
+
+}
+
+
+.intro-logo-image{
+
+width:150px;
+height:150px;
+
+object-fit:contain;
+
+display:none;
+
+margin:
+0 auto 12px;
+
+filter:
+drop-shadow(
+0 18px 28px
+rgba(32,48,28,.18)
+);
+
+animation:
+introLogoFloat
+2.2s ease-in-out infinite;
+
+}
+
+
+.intro-brand{
+
+font-family:
+'Aref Ruqaa',
+serif;
+
+font-size:
+clamp(
+52px,
+15vw,
+90px
+);
+
+font-weight:700;
+
+line-height:1;
+
+letter-spacing:.02em;
+
+}
+
+
+.intro-en{
+
+margin-top:13px;
+
+font-size:13px;
+
+font-weight:700;
+
+letter-spacing:.32em;
+
+color:
+var(--gold);
+
+direction:ltr;
+
+}
+
+
+.intro-line{
+
+width:0;
+height:2px;
+
+margin:
+18px auto 0;
+
+background:
+linear-gradient(
+90deg,
+transparent,
+var(--gold),
+transparent
+);
+
+animation:
+introLine 1.8s
+ease forwards;
+
+}
+
+
+@keyframes introScale{
+
+0%{
+opacity:0;
+transform:
+scale(.7)
+translateY(20px);
+}
+
+50%{
+opacity:1;
+transform:
+scale(1.05)
+translateY(0);
+}
+
+100%{
+transform:
+scale(1);
+}
+
+}
+
+
+@keyframes introLogoFloat{
+
+0%,
+100%{
+transform:translateY(0);
+}
+
+50%{
+transform:translateY(-8px);
+}
+
+}
+
+
+@keyframes introLine{
+
+to{
+width:190px;
+}
+
+}
+
+
+/* =========================
+   PUSH CARD
+========================= */
+
+.push-card{
+
+position:fixed;
+
+right:14px;
+left:14px;
+bottom:18px;
+
+margin:auto;
+
+z-index:9999;
+
+width:min(
+430px,
+calc(100% - 28px)
+);
+
+background:
+var(--card);
+
+border:
+1px solid
+var(--line);
+
+border-radius:22px;
+
+box-shadow:
+0 25px 80px
+rgba(0,0,0,.25);
+
+padding:19px;
+
+display:none;
+
+}
+
+
+.push-card.show{
+display:block;
+animation:
+pushUp .4s ease;
+}
+
+
+@keyframes pushUp{
+
+from{
+opacity:0;
+transform:translateY(30px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+
+.push-icon{
+
+width:54px;
+height:54px;
+
+margin:
+0 auto 10px;
+
+border-radius:50%;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:26px;
+
+background:
+var(--cream-deep);
+
+}
+
+
+.push-card h3{
+
+margin:
+0 0 8px;
+
+text-align:center;
+
+font-family:
+'Aref Ruqaa',
+serif;
+
+font-size:25px;
+
+}
+
+
+.push-card p{
+
+margin:0;
+
+font-size:13px;
+
+color:
+var(--ink-soft);
+
+line-height:1.8;
+
+text-align:center;
+
+}
+
+
+.push-actions{
+
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:8px;
+
+margin-top:15px;
+
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
 
 .btn{
+
 border:0;
-padding:12px 18px;
-border-radius:12px;
+
+padding:
+12px 18px;
+
+border-radius:
+12px;
+
 font-weight:700;
-background:var(--ink);
-color:var(--cream);
+
+background:
+var(--ink);
+
+color:
+var(--cream);
+
 }
+
 
 .btn.secondary{
-background:transparent;
-border:1px solid var(--ink);
-color:var(--ink);
+
+background:
+transparent;
+
+border:
+1px solid
+var(--ink);
+
+color:
+var(--ink);
+
 }
+
 
 .btn.gold{
-background:var(--gold);
+
+background:
+var(--gold);
+
 color:#fff;
+
 }
+
 
 .btn.green{
-background:var(--ok);
+
+background:
+var(--ok);
+
 color:#fff;
+
 }
+
 
 .btn.blue{
-background:var(--blue);
+
+background:
+var(--blue);
+
 color:#fff;
+
 }
+
 
 .btn.red{
-background:var(--danger);
+
+background:
+var(--danger);
+
 color:#fff;
+
 }
+
 
 .btn.small{
-padding:8px 13px;
-font-size:12px;
+
+padding:
+8px 13px;
+
+font-size:
+12px;
+
 }
 
+
 .btn:disabled{
+
 opacity:.55;
 cursor:not-allowed;
+
 }
 
 
 /* ================= HEADER ================= */
 
 .topbar{
+
 position:sticky;
 top:0;
 z-index:50;
-border-bottom:1px solid var(--line);
-background:rgba(255,251,240,.88);
-backdrop-filter:blur(14px);
+
+border-bottom:
+1px solid
+var(--line);
+
+background:
+rgba(255,251,240,.88);
+
+backdrop-filter:
+blur(14px);
+
 }
 
+
 .topbar-inner{
+
 width:100%;
 max-width:1180px;
-margin:0 auto;
-padding:13px 20px;
+
+margin:
+0 auto;
+
+padding:
+13px 20px;
+
 display:flex;
 align-items:center;
 justify-content:space-between;
+
 gap:12px;
+
 }
+
 
 .brand{
+
 display:flex;
 align-items:center;
+
 gap:9px;
-flex:0 0 auto;
+
+flex:
+0 0 auto;
+
 }
+
+
+.store-logo{
+
+width:43px;
+height:43px;
+
+object-fit:contain;
+
+border-radius:
+50%;
+
+display:none;
+
+}
+
 
 .brand-name{
-font-family:'Aref Ruqaa',serif;
-font-size:30px;
+
+font-family:
+'Aref Ruqaa',
+serif;
+
+font-size:
+30px;
+
 font-weight:700;
+
 line-height:1;
+
 }
+
 
 .brand-en{
-color:var(--ink-soft);
-font-size:10px;
-letter-spacing:.16em;
+
+color:
+var(--ink-soft);
+
+font-size:
+10px;
+
+letter-spacing:
+.16em;
+
+direction:ltr;
+
 }
 
+
 .main-nav{
+
 display:flex;
 align-items:center;
+
 gap:6px;
+
 padding:5px;
-border:1px solid var(--line);
-border-radius:999px;
-background:var(--card);
+
+border:
+1px solid
+var(--line);
+
+border-radius:
+999px;
+
+background:
+var(--card);
+
 overflow-x:auto;
+
 scrollbar-width:none;
+
 }
+
 
 .main-nav::-webkit-scrollbar{
 display:none;
 }
 
+
 .main-nav button{
-flex:0 0 auto;
+
+flex:
+0 0 auto;
+
 border:0;
-background:transparent;
-border-radius:999px;
-padding:8px 15px;
-color:var(--ink-soft);
+
+background:
+transparent;
+
+border-radius:
+999px;
+
+padding:
+8px 15px;
+
+color:
+var(--ink-soft);
+
 font-weight:700;
+
 white-space:nowrap;
+
 }
+
 
 .main-nav button.active,
 .main-nav button:hover{
-background:var(--ink);
-color:var(--cream);
+
+background:
+var(--ink);
+
+color:
+var(--cream);
+
 }
+
 
 .header-actions{
+
 display:flex;
 align-items:center;
+
 gap:8px;
+
 position:relative;
+
 }
 
+
 .round-btn{
+
 width:42px;
 height:42px;
+
 display:flex;
 align-items:center;
 justify-content:center;
+
 border-radius:50%;
-border:1px solid var(--line);
-background:var(--card);
-color:var(--ink);
-box-shadow:var(--shadow);
+
+border:
+1px solid
+var(--line);
+
+background:
+var(--card);
+
+color:
+var(--ink);
+
+box-shadow:
+var(--shadow);
+
 position:relative;
+
 }
 
+
 .notification-dot{
+
 width:10px;
 height:10px;
+
 border-radius:50%;
-background:var(--danger);
+
+background:
+var(--danger);
+
 position:absolute;
+
 right:1px;
 top:1px;
+
 display:none;
+
 }
+
 
 .notification-dot.show{
 display:block;
 }
 
+
 .cart-btn{
+
 border:0;
-border-radius:999px;
-padding:11px 17px;
+
+border-radius:
+999px;
+
+padding:
+11px 17px;
+
 display:flex;
 align-items:center;
+
 gap:7px;
-background:var(--ink);
-color:var(--cream);
+
+background:
+var(--ink);
+
+color:
+var(--cream);
+
 font-weight:700;
-box-shadow:var(--shadow);
+
+box-shadow:
+var(--shadow);
+
 white-space:nowrap;
+
 }
 
+
 .cart-count{
+
 min-width:20px;
 height:20px;
-padding:0 5px;
-border-radius:999px;
-background:var(--gold);
+
+padding:
+0 5px;
+
+border-radius:
+999px;
+
+background:
+var(--gold);
+
 color:white;
+
 display:inline-flex;
 align-items:center;
 justify-content:center;
+
 font-size:11px;
+
 }
 
+
 .notifications-panel{
+
 position:absolute;
+
 top:50px;
 left:0;
-width:min(340px,88vw);
-max-height:430px;
+
+width:
+min(
+340px,
+88vw
+);
+
+max-height:
+430px;
+
 overflow:auto;
-background:var(--card);
-border:1px solid var(--line);
-border-radius:18px;
-padding:14px;
-box-shadow:0 20px 60px rgba(0,0,0,.18);
+
+background:
+var(--card);
+
+border:
+1px solid
+var(--line);
+
+border-radius:
+18px;
+
+padding:
+14px;
+
+box-shadow:
+0 20px 60px
+rgba(0,0,0,.18);
+
 display:none;
+
 }
+
 
 .notifications-panel.show{
 display:block;
 }
 
+
 .notification-item{
-padding:11px;
-border-bottom:1px solid var(--line);
+
+padding:
+11px;
+
+border-bottom:
+1px solid
+var(--line);
+
 display:flex;
+
 gap:10px;
+
 cursor:pointer;
+
 }
+
 
 .notification-item:last-child{
 border-bottom:0;
 }
 
+
 .notification-item img{
+
 width:52px;
 height:52px;
+
 object-fit:cover;
-border-radius:9px;
+
+border-radius:
+9px;
+
 }
+
 
 .notification-title{
+
 font-weight:700;
 font-size:13px;
+
 }
 
+
 .notification-message{
+
 font-size:12px;
-color:var(--ink-soft);
-margin-top:3px;
-line-height:1.6;
+
+color:
+var(--ink-soft);
+
+margin-top:
+3px;
+
+line-height:
+1.6;
+
 }
 
 
 /* ================= HERO ================= */
 
 .hero{
-max-width:900px;
-margin:55px auto 20px;
-padding:0 20px;
+
+max-width:
+900px;
+
+margin:
+55px auto 20px;
+
+padding:
+0 20px;
+
 text-align:center;
+
 }
+
 
 .hero-eyebrow{
-color:var(--gold);
-font-family:'Markazi Text',serif;
-font-size:20px;
+
+color:
+var(--gold);
+
+font-family:
+'Markazi Text',
+serif;
+
+font-size:
+20px;
+
 }
+
 
 .hero h1{
-margin:5px 0 12px;
-font-family:'Aref Ruqaa',serif;
-font-size:clamp(42px,8vw,68px);
-line-height:1.3;
+
+margin:
+5px 0 12px;
+
+font-family:
+'Aref Ruqaa',
+serif;
+
+font-size:
+clamp(
+42px,
+8vw,
+68px
+);
+
+line-height:
+1.3;
+
 }
+
 
 .hero p{
-max-width:600px;
-margin:0 auto;
-color:var(--ink-soft);
-font-size:16px;
-line-height:2;
-white-space:pre-line;
+
+max-width:
+600px;
+
+margin:
+0 auto;
+
+color:
+var(--ink-soft);
+
+font-size:
+16px;
+
+line-height:
+2;
+
+white-space:
+pre-line;
+
 }
+
 
 .hero-buttons{
-margin-top:20px;
+
+margin-top:
+20px;
+
 display:flex;
+
 justify-content:center;
+
 gap:9px;
+
 flex-wrap:wrap;
+
 }
 
+
 .hero-buttons a{
+
 display:inline-flex;
 align-items:center;
 justify-content:center;
+
 }
+
 
 .sunrise{
+
 width:100%;
+
 display:flex;
 justify-content:center;
-margin:4px 0 12px;
+
+margin:
+4px 0 12px;
+
 }
 
+
 .sunrise svg{
-width:260px;
-max-width:70vw;
+
+width:
+260px;
+
+max-width:
+70vw;
+
 opacity:.7;
+
 }
 
 
 /* ================= AD ================= */
 
 .ad-section{
-width:min(900px,calc(100% - 30px));
-margin:15px auto 35px;
+
+width:
+min(
+900px,
+calc(100% - 30px)
+);
+
+margin:
+15px auto 35px;
+
 display:none;
+
 }
 
+
 .ad-wrap{
+
 width:100%;
-border-radius:20px;
+
+border-radius:
+20px;
+
 overflow:hidden;
-border:1px solid var(--line);
-background:var(--cream-deep);
-box-shadow:var(--shadow);
+
+border:
+1px solid
+var(--line);
+
+background:
+var(--cream-deep);
+
+box-shadow:
+var(--shadow);
+
 position:relative;
+
 }
+
 
 .ad-wrap img,
 .ad-wrap video{
+
 display:block;
+
 width:100%;
-max-height:420px;
+
+max-height:
+420px;
+
 object-fit:cover;
+
 }
+
 
 .ad-slide{
 display:none;
 }
+
 
 .ad-slide.active{
 display:block;
@@ -463,750 +1228,1579 @@ display:block;
 /* ================= SHOP ================= */
 
 .section{
-max-width:1180px;
-margin:0 auto;
-padding:35px 20px 65px;
+
+max-width:
+1180px;
+
+margin:
+0 auto;
+
+padding:
+35px 20px 65px;
+
 }
+
 
 .section-head{
+
 display:flex;
+
 align-items:center;
 justify-content:space-between;
+
 gap:12px;
+
 flex-wrap:wrap;
-margin-bottom:18px;
+
+margin-bottom:
+18px;
+
 }
+
 
 .section-head h2{
+
 margin:0;
-font-family:'Aref Ruqaa',serif;
-font-size:35px;
+
+font-family:
+'Aref Ruqaa',
+serif;
+
+font-size:
+35px;
+
 }
 
+
 .category-filters{
+
 display:flex;
 align-items:center;
+
 gap:7px;
+
 overflow-x:auto;
-max-width:100%;
+
+max-width:
+100%;
+
 scrollbar-width:none;
+
 }
+
 
 .category-filters::-webkit-scrollbar{
 display:none;
 }
 
+
 .category-filters button{
-flex:0 0 auto;
-border:1px solid var(--line);
-border-radius:999px;
-padding:8px 15px;
-background:var(--card);
-color:var(--ink-soft);
+
+flex:
+0 0 auto;
+
+border:
+1px solid
+var(--line);
+
+border-radius:
+999px;
+
+padding:
+8px 15px;
+
+background:
+var(--card);
+
+color:
+var(--ink-soft);
+
 font-weight:700;
+
 white-space:nowrap;
+
 }
+
 
 .category-filters button.active{
-background:var(--ink);
-color:var(--cream);
+
+background:
+var(--ink);
+
+color:
+var(--cream);
+
 }
 
+
 .tools{
+
 display:none;
+
 gap:9px;
+
 flex-wrap:wrap;
-margin-bottom:22px;
+
+margin-bottom:
+22px;
+
 }
+
 
 .tools input,
 .tools select{
-padding:10px 14px;
-border:1px solid var(--line);
-border-radius:999px;
-background:var(--card);
-color:var(--ink);
+
+padding:
+10px 14px;
+
+border:
+1px solid
+var(--line);
+
+border-radius:
+999px;
+
+background:
+var(--card);
+
+color:
+var(--ink);
+
 }
 
+
 .search-wrap{
+
 flex:1;
-min-width:220px;
+
+min-width:
+220px;
+
 }
+
 
 .products-area{
 width:100%;
 }
 
+
 .category-group{
 margin-bottom:42px;
 }
 
+
 .category-title{
-margin:0 0 14px;
-font-size:31px;
-color:var(--ink);
+
+margin:
+0 0 14px;
+
+font-size:
+31px;
+
+color:
+var(--ink);
+
 }
+
 
 .product-row{
+
 width:100%;
+
 display:flex;
+
 gap:20px;
+
 overflow-x:auto;
-padding:8px 3px 18px;
-scroll-snap-type:x mandatory;
--webkit-overflow-scrolling:touch;
+
+padding:
+8px 3px 18px;
+
+scroll-snap-type:
+x mandatory;
+
+-webkit-overflow-scrolling:
+touch;
+
 scrollbar-width:thin;
+
 }
+
 
 .product-card{
-flex:0 0 min(var(--card-width),42vw);
-width:min(var(--card-width),42vw);
-max-width:min(var(--card-width),42vw);
+
+flex:
+0 0
+min(
+var(--card-width),
+42vw
+);
+
+width:
+min(
+var(--card-width),
+42vw
+);
+
+max-width:
+min(
+var(--card-width),
+42vw
+);
+
 scroll-snap-align:start;
+
 text-align:center;
+
 }
+
 
 .product-image{
+
 width:100%;
-aspect-ratio:1/1;
+
+aspect-ratio:
+1/1;
+
 position:relative;
+
 cursor:pointer;
-border-radius:18px;
+
+border-radius:
+18px;
+
 }
 
+
 .product-image img{
+
 width:100%;
 height:100%;
+
 object-fit:contain;
+
 padding:8px;
+
 transition:.3s;
+
 }
+
 
 .product-image:hover img{
 transform:scale(1.06);
 }
 
+
 .favorite-btn{
+
 position:absolute;
+
 z-index:4;
+
 top:7px;
 left:7px;
+
 width:34px;
 height:34px;
+
 border:0;
+
 border-radius:50%;
-background:rgba(255,255,255,.9);
-box-shadow:0 4px 10px rgba(0,0,0,.1);
+
+background:
+rgba(255,255,255,.9);
+
+box-shadow:
+0 4px 10px
+rgba(0,0,0,.1);
+
 }
+
 
 .discount-badge{
+
 position:absolute;
+
 top:7px;
 right:7px;
-background:var(--danger);
+
+background:
+var(--danger);
+
 color:white;
-border-radius:999px;
-padding:4px 8px;
-font-size:11px;
+
+border-radius:
+999px;
+
+padding:
+4px 8px;
+
+font-size:
+11px;
+
 font-weight:700;
+
 }
+
 
 .new-badge{
+
 position:absolute;
+
 bottom:7px;
 right:7px;
-background:var(--gold);
+
+background:
+var(--gold);
+
 color:white;
-border-radius:999px;
-padding:4px 8px;
-font-size:10px;
+
+border-radius:
+999px;
+
+padding:
+4px 8px;
+
+font-size:
+10px;
+
 }
+
 
 .out-layer{
+
 position:absolute;
 inset:0;
-border-radius:18px;
-background:rgba(32,48,28,.58);
+
+border-radius:
+18px;
+
+background:
+rgba(32,48,28,.58);
+
 color:white;
+
 display:flex;
 align-items:center;
 justify-content:center;
+
 font-weight:700;
+
 }
+
 
 .product-card h3{
-font-family:var(--product-font);
-font-size:23px;
-line-height:1.4;
-margin:9px 0 5px;
+
+font-family:
+var(--product-font);
+
+font-size:
+23px;
+
+line-height:
+1.4;
+
+margin:
+9px 0 5px;
+
 }
+
 
 .price-row{
+
 display:flex;
+
 justify-content:center;
 align-items:center;
+
 flex-wrap:wrap;
+
 gap:6px;
+
 }
+
 
 .price{
-font-size:17px;
-font-weight:900;
+
+font-size:
+17px;
+
+font-weight:
+900;
+
 direction:ltr;
+
 }
+
 
 .old-price{
-font-size:12px;
-text-decoration:line-through;
-color:var(--ink-soft);
+
+font-size:
+12px;
+
+text-decoration:
+line-through;
+
+color:
+var(--ink-soft);
+
 direction:ltr;
+
 }
+
 
 .add-btn{
+
 width:100%;
-margin-top:9px;
+
+margin-top:
+9px;
+
 border:0;
-background:var(--ink);
-color:var(--cream);
-border-radius:11px;
-padding:10px;
+
+background:
+var(--ink);
+
+color:
+var(--cream);
+
+border-radius:
+11px;
+
+padding:
+10px;
+
 font-weight:700;
+
 }
 
+
 .empty{
+
 width:100%;
+
 text-align:center;
-padding:45px 15px;
-color:var(--ink-soft);
+
+padding:
+45px 15px;
+
+color:
+var(--ink-soft);
+
 }
 
 
 /* ================= REVIEWS ================= */
 
 .reviews-row{
+
 display:flex;
+
 gap:14px;
+
 overflow-x:auto;
-padding-bottom:10px;
-scroll-snap-type:x mandatory;
+
+padding-bottom:
+10px;
+
+scroll-snap-type:
+x mandatory;
+
 }
+
 
 .review-card{
-flex:0 0 290px;
-max-width:84vw;
-padding:18px;
-background:var(--card);
-border:1px solid var(--line);
-border-radius:16px;
-box-shadow:var(--shadow);
+
+flex:
+0 0 290px;
+
+max-width:
+84vw;
+
+padding:
+18px;
+
+background:
+var(--card);
+
+border:
+1px solid
+var(--line);
+
+border-radius:
+16px;
+
+box-shadow:
+var(--shadow);
+
 scroll-snap-align:start;
+
 }
+
 
 .review-stars{
-color:var(--gold);
-margin-bottom:8px;
-font-size:18px;
+
+color:
+var(--gold);
+
+margin-bottom:
+8px;
+
+font-size:
+18px;
+
 }
+
 
 .review-text{
-color:var(--ink-soft);
-line-height:1.8;
+
+color:
+var(--ink-soft);
+
+line-height:
+1.8;
+
 }
+
 
 .review-name{
-margin-top:10px;
-font-weight:700;
+
+margin-top:
+10px;
+
+font-weight:
+700;
+
 }
+
 
 .verified{
+
 display:inline-flex;
-margin-top:7px;
-padding:4px 8px;
-border-radius:999px;
-background:#D6E7CC;
-color:var(--ok);
-font-size:10px;
+
+margin-top:
+7px;
+
+padding:
+4px 8px;
+
+border-radius:
+999px;
+
+background:
+#D6E7CC;
+
+color:
+var(--ok);
+
+font-size:
+10px;
+
 font-weight:700;
+
 }
+
 
 .about-box{
-max-width:700px;
-margin:0 auto;
+
+max-width:
+700px;
+
+margin:
+0 auto;
+
 text-align:center;
+
 }
 
+
 .about-box p{
-white-space:pre-line;
-line-height:2;
-color:var(--ink-soft);
+
+white-space:
+pre-line;
+
+line-height:
+2;
+
+color:
+var(--ink-soft);
+
 }
 
 
 /* ================= FOOTER ================= */
 
 footer{
-border-top:1px solid var(--line);
-padding:35px 20px;
+
+border-top:
+1px solid
+var(--line);
+
+padding:
+35px 20px;
+
 text-align:center;
-color:var(--ink-soft);
+
+color:
+var(--ink-soft);
+
 }
+
 
 .socials{
-margin-top:18px;
+
+margin-top:
+18px;
+
 display:flex;
+
 justify-content:center;
+
 gap:8px;
+
 flex-wrap:wrap;
+
 }
 
+
 .socials a{
-min-width:42px;
-height:42px;
-padding:0 12px;
-border:1px solid var(--line);
-border-radius:999px;
-background:var(--card);
+
+min-width:
+42px;
+
+height:
+42px;
+
+padding:
+0 12px;
+
+border:
+1px solid
+var(--line);
+
+border-radius:
+999px;
+
+background:
+var(--card);
+
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:12px;
+
+font-size:
+12px;
+
 font-weight:700;
+
 }
 
 
 /* ================= DRAWER ================= */
 
 .scrim{
+
 position:fixed;
 inset:0;
+
 z-index:80;
-background:rgba(16,22,13,.55);
-backdrop-filter:blur(3px);
+
+background:
+rgba(16,22,13,.55);
+
+backdrop-filter:
+blur(3px);
+
 display:none;
+
 }
+
 
 .scrim.show{
 display:block;
 }
 
+
 .drawer{
+
 position:fixed;
+
 z-index:90;
+
 top:0;
 bottom:0;
 left:0;
-width:min(420px,94vw);
-background:var(--card);
-transform:translateX(-100%);
-transition:.3s;
+
+width:
+min(
+420px,
+94vw
+);
+
+background:
+var(--card);
+
+transform:
+translateX(-100%);
+
+transition:
+.3s;
+
 display:flex;
 flex-direction:column;
-box-shadow:20px 0 50px rgba(0,0,0,.18);
+
+box-shadow:
+20px 0 50px
+rgba(0,0,0,.18);
+
 }
+
 
 .drawer.show{
 transform:translateX(0);
 }
 
+
 .drawer-head{
-padding:18px;
-border-bottom:1px solid var(--line);
+
+padding:
+18px;
+
+border-bottom:
+1px solid
+var(--line);
+
 display:flex;
+
 align-items:center;
 justify-content:space-between;
+
 }
+
 
 .drawer-head h3{
 margin:0;
 }
 
+
 .close-btn{
+
 border:0;
+
 background:none;
+
 font-size:22px;
+
 }
+
 
 .drawer-body{
+
 flex:1;
+
 overflow:auto;
-padding:12px 18px;
+
+padding:
+12px 18px;
+
 }
+
 
 .drawer-foot{
-padding:17px;
-border-top:1px solid var(--line);
-background:var(--cream);
+
+padding:
+17px;
+
+border-top:
+1px solid
+var(--line);
+
+background:
+var(--cream);
+
 }
+
 
 .cart-item{
+
 display:flex;
+
 gap:10px;
-padding:11px 0;
-border-bottom:1px solid var(--line);
+
+padding:
+11px 0;
+
+border-bottom:
+1px solid
+var(--line);
+
 }
 
+
 .cart-item img{
+
 width:65px;
 height:65px;
+
 object-fit:cover;
-border-radius:9px;
+
+border-radius:
+9px;
+
 }
+
 
 .cart-info{
 flex:1;
 }
 
+
 .cart-name{
 font-weight:700;
 }
 
+
 .cart-meta{
+
 font-size:11px;
-color:var(--ink-soft);
-margin:3px 0;
+
+color:
+var(--ink-soft);
+
+margin:
+3px 0;
+
 }
+
 
 .qty{
+
 display:flex;
+
 align-items:center;
+
 gap:6px;
-margin-top:6px;
+
+margin-top:
+6px;
+
 }
+
 
 .qty button{
+
 width:27px;
 height:27px;
-border:1px solid var(--line);
-background:var(--cream);
-border-radius:7px;
+
+border:
+1px solid
+var(--line);
+
+background:
+var(--cream);
+
+border-radius:
+7px;
+
 }
+
 
 .cart-total{
+
 display:flex;
+
 justify-content:space-between;
 align-items:center;
-margin-bottom:12px;
-font-size:18px;
-font-weight:900;
+
+margin-bottom:
+12px;
+
+font-size:
+18px;
+
+font-weight:
+900;
+
 }
 
 
-/* ================= MODALS ================= */
+/* ================= MODAL ================= */
 
 .modal{
+
 position:fixed;
+
 z-index:95;
+
 top:50%;
 left:50%;
-transform:translate(-50%,-50%);
-width:min(550px,94vw);
-max-height:90vh;
+
+transform:
+translate(-50%,-50%);
+
+width:
+min(
+550px,
+94vw
+);
+
+max-height:
+90vh;
+
 overflow:auto;
-background:var(--card);
-border-radius:20px;
-padding:22px;
-box-shadow:0 30px 70px rgba(0,0,0,.25);
+
+background:
+var(--card);
+
+border-radius:
+20px;
+
+padding:
+22px;
+
+box-shadow:
+0 30px 70px
+rgba(0,0,0,.25);
+
 display:none;
+
 }
+
 
 .modal.show{
 display:block;
 }
 
+
 .modal h3{
 margin-top:0;
 }
 
+
 .modal label{
+
 display:block;
-margin:11px 0 5px;
-font-size:12px;
-font-weight:700;
-color:var(--ink-soft);
+
+margin:
+11px 0 5px;
+
+font-size:
+12px;
+
+font-weight:
+700;
+
+color:
+var(--ink-soft);
+
 }
+
 
 .modal input,
 .modal textarea,
 .modal select{
+
 width:100%;
-padding:10px 11px;
-border:1px solid var(--line);
-border-radius:10px;
-background:var(--cream);
-color:var(--ink);
+
+padding:
+10px 11px;
+
+border:
+1px solid
+var(--line);
+
+border-radius:
+10px;
+
+background:
+var(--cream);
+
+color:
+var(--ink);
+
 }
+
 
 .modal textarea{
-min-height:70px;
+
+min-height:
+70px;
+
 resize:vertical;
+
 }
+
 
 .product-modal{
-width:min(860px,95vw);
+
+width:
+min(
+860px,
+95vw
+);
+
 padding:0;
+
 overflow:hidden;
+
 }
+
 
 .product-detail{
+
 display:grid;
-grid-template-columns:1fr 1fr;
+
+grid-template-columns:
+1fr 1fr;
+
 }
+
 
 .product-detail-image{
-padding:25px;
-background:var(--cream);
+
+padding:
+25px;
+
+background:
+var(--cream);
+
 display:flex;
+
 align-items:center;
 justify-content:center;
+
 }
+
 
 .product-detail-image img{
+
 width:100%;
-max-height:440px;
+
+max-height:
+440px;
+
 object-fit:contain;
+
 }
+
 
 .product-detail-info{
-padding:30px 25px;
+
+padding:
+30px 25px;
+
 overflow:auto;
+
 }
+
 
 .product-detail-info h2{
-margin:0 0 10px;
-font-family:var(--product-font);
-font-size:36px;
+
+margin:
+0 0 10px;
+
+font-family:
+var(--product-font);
+
+font-size:
+36px;
+
 }
+
 
 .swatches{
+
 display:flex;
+
 gap:6px;
+
 flex-wrap:wrap;
+
 }
+
 
 .swatch{
-border:1px solid var(--line);
-border-radius:999px;
-padding:6px 11px;
-background:var(--cream);
-font-size:12px;
+
+border:
+1px solid
+var(--line);
+
+border-radius:
+999px;
+
+padding:
+6px 11px;
+
+background:
+var(--cream);
+
+font-size:
+12px;
+
 cursor:pointer;
+
 }
+
 
 .swatch.active{
-background:var(--ink);
-color:var(--cream);
+
+background:
+var(--ink);
+
+color:
+var(--cream);
+
 }
+
 
 .pay-box{
-margin-top:10px;
-padding:11px;
-border:1px dashed var(--gold);
-border-radius:11px;
-background:var(--cream);
-white-space:pre-line;
-line-height:1.8;
-font-size:12px;
+
+margin-top:
+10px;
+
+padding:
+11px;
+
+border:
+1px dashed
+var(--gold);
+
+border-radius:
+11px;
+
+background:
+var(--cream);
+
+white-space:
+pre-line;
+
+line-height:
+1.8;
+
+font-size:
+12px;
+
 }
 
+
 .coupon-message{
-min-height:18px;
-margin-top:4px;
-font-size:12px;
-font-weight:700;
+
+min-height:
+18px;
+
+margin-top:
+4px;
+
+font-size:
+12px;
+
+font-weight:
+700;
+
 }
 
 
 /* ================= MY ORDERS ================= */
 
 .orders-modal{
-width:min(800px,95vw);
+
+width:
+min(
+800px,
+95vw
+);
+
 }
 
+
 .my-orders-title{
+
 display:flex;
+
 justify-content:space-between;
+
 align-items:center;
+
 gap:10px;
-margin-bottom:15px;
+
+margin-bottom:
+15px;
+
 }
+
 
 .my-orders-title h3{
 margin:0;
 }
 
+
 .orders-search{
+
 display:flex;
+
 gap:8px;
+
 }
+
 
 .customer-order{
-border:1px solid var(--line);
-border-radius:17px;
+
+border:
+1px solid
+var(--line);
+
+border-radius:
+17px;
+
 background:#fff;
+
 overflow:hidden;
-margin-top:14px;
+
+margin-top:
+14px;
+
 }
+
 
 .customer-order-head{
-padding:14px;
-background:var(--cream);
+
+padding:
+14px;
+
+background:
+var(--cream);
+
 display:flex;
-justify-content:space-between;
+
+justify-content:
+space-between;
+
 gap:12px;
+
 align-items:flex-start;
+
 flex-wrap:wrap;
-border-bottom:1px solid var(--line);
+
+border-bottom:
+1px solid
+var(--line);
+
 }
+
 
 .order-number{
-font-size:17px;
-font-weight:900;
+
+font-size:
+17px;
+
+font-weight:
+900;
+
 }
+
 
 .order-date{
-font-size:11px;
-color:var(--ink-soft);
-margin-top:4px;
+
+font-size:
+11px;
+
+color:
+var(--ink-soft);
+
+margin-top:
+4px;
+
 }
+
 
 .order-status{
+
 display:inline-flex;
-padding:6px 11px;
-border-radius:999px;
-font-size:11px;
-font-weight:700;
+
+padding:
+6px 11px;
+
+border-radius:
+999px;
+
+font-size:
+11px;
+
+font-weight:
+700;
+
 }
+
 
 .order-status.pending{
-background:#F3E3B8;
-color:#7A5B10;
+
+background:
+#F3E3B8;
+
+color:
+#7A5B10;
+
 }
+
 
 .order-status.confirmed{
-background:#D6E7CC;
-color:#456A39;
+
+background:
+#D6E7CC;
+
+color:
+#456A39;
+
 }
+
 
 .order-status.processing{
-background:#E5DBF4;
-color:#644A83;
+
+background:
+#E5DBF4;
+
+color:
+#644A83;
+
 }
+
 
 .order-status.shipped{
-background:#CFE1F0;
-color:#2C5A82;
+
+background:
+#CFE1F0;
+
+color:
+#2C5A82;
+
 }
 
+
 .order-status.delivered{
-background:#CFE8D2;
-color:#35613D;
+
+background:
+#CFE8D2;
+
+color:
+#35613D;
+
 }
+
 
 .order-status.cancelled,
 .order-status.refunded{
-background:#F0D5D0;
-color:#8B3328;
+
+background:
+#F0D5D0;
+
+color:
+#8B3328;
+
 }
+
 
 .customer-order-body{
 padding:14px;
 }
 
+
 .order-info-grid{
+
 display:grid;
-grid-template-columns:repeat(3,1fr);
+
+grid-template-columns:
+repeat(
+3,
+1fr
+);
+
 gap:8px;
-margin-bottom:14px;
+
+margin-bottom:
+14px;
+
 }
+
 
 .order-info-box{
-border:1px solid var(--line);
-border-radius:10px;
-padding:9px;
-background:var(--card);
+
+border:
+1px solid
+var(--line);
+
+border-radius:
+10px;
+
+padding:
+9px;
+
+background:
+var(--card);
+
 }
 
+
 .order-info-box small{
+
 display:block;
-font-size:10px;
-color:var(--ink-soft);
-margin-bottom:3px;
+
+font-size:
+10px;
+
+color:
+var(--ink-soft);
+
+margin-bottom:
+3px;
+
 }
+
 
 .order-info-box strong{
 font-size:12px;
 }
 
+
 .customer-order-item{
+
 display:flex;
+
 gap:10px;
+
 align-items:center;
-padding:10px 0;
-border-top:1px solid var(--line);
+
+padding:
+10px 0;
+
+border-top:
+1px solid
+var(--line);
+
 }
+
 
 .customer-order-item:first-child{
 border-top:0;
 }
 
+
 .customer-order-item img{
+
 width:60px;
 height:60px;
+
 object-fit:cover;
-border-radius:10px;
-background:var(--cream);
+
+border-radius:
+10px;
+
+background:
+var(--cream);
+
 }
+
 
 .customer-order-product{
 flex:1;
 }
 
+
 .customer-order-product strong{
 display:block;
 }
 
+
 .customer-order-product small{
+
 display:block;
-color:var(--ink-soft);
-margin-top:3px;
+
+color:
+var(--ink-soft);
+
+margin-top:
+3px;
+
 }
+
 
 .order-buttons{
+
 display:flex;
+
 gap:7px;
+
 flex-wrap:wrap;
-margin-top:12px;
+
+margin-top:
+12px;
+
 }
 
+
 .tracking-box{
-background:var(--cream);
-border:1px dashed var(--gold);
-border-radius:12px;
-padding:11px;
-margin-top:12px;
-font-size:12px;
-line-height:1.8;
+
+background:
+var(--cream);
+
+border:
+1px dashed
+var(--gold);
+
+border-radius:
+12px;
+
+padding:
+11px;
+
+margin-top:
+12px;
+
+font-size:
+12px;
+
+line-height:
+1.8;
+
 }
 
 
 /* ================= REVIEW ================= */
 
 .review-stars-select{
+
 display:flex;
+
 justify-content:center;
+
 gap:5px;
+
 direction:ltr;
-font-size:36px;
-margin:10px 0;
+
+font-size:
+36px;
+
+margin:
+10px 0;
+
 }
 
+
 .review-star{
+
 border:0;
+
 background:none;
+
 padding:0;
-font-size:36px;
-color:#c8c0ad;
+
+font-size:
+36px;
+
+color:
+#c8c0ad;
+
 }
+
 
 .review-star.active{
 color:var(--gold);
@@ -1216,156 +2810,252 @@ color:var(--gold);
 /* ================= INVOICE ================= */
 
 .invoice-modal{
-width:min(850px,96vw);
+
+width:
+min(
+850px,
+96vw
+);
+
 }
+
 
 .invoice-sheet{
+
 background:#fff;
+
 color:#1f1f1f;
-padding:25px;
-border-radius:15px;
+
+padding:
+25px;
+
+border-radius:
+15px;
+
 }
+
 
 .invoice-head{
+
 display:flex;
+
 justify-content:space-between;
+
 gap:15px;
+
 align-items:flex-start;
-padding-bottom:14px;
-border-bottom:2px solid #222;
+
+padding-bottom:
+14px;
+
+border-bottom:
+2px solid #222;
+
 }
+
 
 .invoice-brand{
-font-family:'Aref Ruqaa';
-font-weight:700;
-font-size:36px;
+
+font-family:
+'Aref Ruqaa';
+
+font-weight:
+700;
+
+font-size:
+36px;
+
 }
+
 
 .invoice-title{
-font-size:21px;
-font-weight:900;
+
+font-size:
+21px;
+
+font-weight:
+900;
+
 }
+
 
 .invoice-grid{
+
 display:grid;
-grid-template-columns:1fr 1fr;
+
+grid-template-columns:
+1fr 1fr;
+
 gap:10px;
-margin:15px 0;
+
+margin:
+15px 0;
+
 }
 
+
 .invoice-info{
-border:1px solid #ddd;
-padding:11px;
-border-radius:10px;
-font-size:12px;
-line-height:1.9;
+
+border:
+1px solid #ddd;
+
+padding:
+11px;
+
+border-radius:
+10px;
+
+font-size:
+12px;
+
+line-height:
+1.9;
+
 }
+
 
 .invoice-table-wrap{
 overflow-x:auto;
 }
 
+
 .invoice-table{
+
 width:100%;
-border-collapse:collapse;
-margin-top:12px;
-min-width:600px;
+
+border-collapse:
+collapse;
+
+margin-top:
+12px;
+
+min-width:
+600px;
+
 }
+
 
 .invoice-table th,
 .invoice-table td{
-padding:8px;
-border:1px solid #ddd;
-font-size:11px;
+
+padding:
+8px;
+
+border:
+1px solid #ddd;
+
+font-size:
+11px;
+
 text-align:right;
+
 }
+
 
 .invoice-table th{
 background:#f2ecdf;
 }
 
+
 .invoice-totals{
-width:min(330px,100%);
-margin:15px 0 0 auto;
+
+width:
+min(
+330px,
+100%
+);
+
+margin:
+15px 0 0 auto;
+
 }
+
 
 .invoice-totals div{
+
 display:flex;
+
 justify-content:space-between;
-padding:6px 0;
-border-bottom:1px solid #ddd;
+
+padding:
+6px 0;
+
+border-bottom:
+1px solid #ddd;
+
 }
 
+
 .invoice-totals .grand{
-font-size:17px;
-font-weight:900;
-border-top:2px solid #222;
-border-bottom:0;
+
+font-size:
+17px;
+
+font-weight:
+900;
+
+border-top:
+2px solid #222;
+
+border-bottom:
+0;
+
 }
 
 
 /* ================= TOAST ================= */
 
 .toast{
+
 position:fixed;
+
 z-index:300;
+
 left:50%;
 bottom:20px;
-transform:translateX(-50%);
-max-width:90vw;
-background:var(--ink);
-color:var(--cream);
-border-radius:999px;
-padding:11px 20px;
-font-weight:700;
-font-size:13px;
+
+transform:
+translateX(-50%);
+
+max-width:
+90vw;
+
+background:
+var(--ink);
+
+color:
+var(--cream);
+
+border-radius:
+999px;
+
+padding:
+11px 20px;
+
+font-weight:
+700;
+
+font-size:
+13px;
+
 opacity:0;
+
 pointer-events:none;
-transition:.25s;
+
+transition:
+.25s;
+
 text-align:center;
+
 }
+
 
 .toast.show{
+
 opacity:1;
+
 bottom:32px;
-}
 
-
-/* ================= SKELETON ================= */
-
-.skeleton{
-background:
-linear-gradient(
-90deg,
-var(--card) 25%,
-var(--cream) 50%,
-var(--card) 75%
-);
-background-size:200% 100%;
-animation:shimmer 1.4s infinite;
-}
-
-@keyframes shimmer{
-0%{background-position:200% 0;}
-100%{background-position:-200% 0;}
-}
-
-.skeleton-card{
-flex:0 0 var(--card-width);
-width:var(--card-width);
-}
-
-.skeleton-image{
-width:100%;
-aspect-ratio:1;
-border-radius:16px;
-}
-
-.skeleton-line{
-width:75%;
-height:18px;
-margin:8px auto;
-border-radius:8px;
 }
 
 
@@ -1374,8 +3064,12 @@ border-radius:8px;
 @media(max-width:768px){
 
 .topbar-inner{
-padding:9px 10px;
+
+padding:
+9px 10px;
+
 flex-wrap:wrap;
+
 }
 
 .brand{
@@ -1387,26 +3081,49 @@ font-size:25px;
 }
 
 .main-nav{
+
 order:3;
+
 width:100%;
+
 border:0;
-background:transparent;
+
+background:
+transparent;
+
 padding:0;
+
 }
 
 .main-nav button{
-background:var(--card);
-border:1px solid var(--line);
+
+background:
+var(--card);
+
+border:
+1px solid
+var(--line);
+
 }
 
 .cart-btn{
-padding:10px 12px;
-font-size:12px;
+
+padding:
+10px 12px;
+
+font-size:
+12px;
+
 }
 
 .hero{
-margin-top:35px;
-padding:0 14px;
+
+margin-top:
+35px;
+
+padding:
+0 14px;
+
 }
 
 .hero p{
@@ -1414,7 +3131,10 @@ font-size:14px;
 }
 
 .section{
-padding:28px 12px 52px;
+
+padding:
+28px 12px 52px;
+
 }
 
 .section-head h2{
@@ -1422,9 +3142,26 @@ font-size:29px;
 }
 
 .product-card{
-flex:0 0 min(var(--card-width),44vw);
-width:min(var(--card-width),44vw);
-max-width:min(var(--card-width),44vw);
+
+flex:
+0 0
+min(
+var(--card-width),
+44vw
+);
+
+width:
+min(
+var(--card-width),
+44vw
+);
+
+max-width:
+min(
+var(--card-width),
+44vw
+);
+
 }
 
 .product-card h3{
@@ -1468,15 +3205,16 @@ grid-template-columns:1fr;
 flex-direction:column;
 }
 
-.customer-order-head{
-align-items:flex-start;
-}
-
 .invoice-sheet{
 padding:13px;
 }
 
+.push-card{
+bottom:10px;
 }
+
+}
+
 
 @media(max-width:420px){
 
@@ -1489,8 +3227,20 @@ gap:12px;
 }
 
 .product-card{
-flex:0 0 min(var(--card-width),46vw);
-width:min(var(--card-width),46vw);
+
+flex:
+0 0
+min(
+var(--card-width),
+46vw
+);
+
+width:
+min(
+var(--card-width),
+46vw
+);
+
 }
 
 .round-btn{
@@ -1507,6 +3257,84 @@ height:38px;
 
 <body>
 
+
+<!-- =========================
+     INTRO
+========================= -->
+
+<div id="introScreen">
+
+<div class="intro-inner">
+
+<img
+id="introLogo"
+class="intro-logo-image"
+alt="شعار المتجر"
+>
+
+<div
+id="introStoreName"
+class="intro-brand"
+>
+الشعيبي
+</div>
+
+<div
+id="introStoreNameEn"
+class="intro-en"
+>
+ALSHUAIBE STORE
+</div>
+
+<div class="intro-line"></div>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     PUSH ARABIC MESSAGE
+========================= -->
+
+<div
+id="pushCard"
+class="push-card"
+>
+
+<div class="push-icon">
+🔔
+</div>
+
+<h3>
+فعّل إشعارات متجر الشعيبي
+</h3>
+
+<p>
+احصل على تحديثات طلباتك والعروض والخصومات والمنتجات الجديدة حتى بعد إغلاق الموقع.
+</p>
+
+<div class="push-actions">
+
+<button
+class="btn secondary"
+onclick="closePushCard()"
+>
+ليس الآن
+</button>
+
+<button
+class="btn"
+onclick="enablePushNotifications()"
+>
+تفعيل الإشعارات
+</button>
+
+</div>
+
+</div>
+
+
 <div id="customBackground"></div>
 <div id="watermark"></div>
 
@@ -1517,18 +3345,37 @@ height:38px;
 
 <div class="brand">
 
-<div class="brand-name">
-عُمراء
+<img
+id="headerStoreLogo"
+class="store-logo"
+alt=""
+>
+
+<div>
+
+<div
+id="brandName"
+class="brand-name"
+>
+الشعيبي
 </div>
 
-<div class="brand-en">
-OMARA STORE
+<div
+id="brandEn"
+class="brand-en"
+>
+ALSHUAIBE STORE
 </div>
 
 </div>
 
+</div>
 
-<nav class="main-nav" id="mainNav">
+
+<nav
+class="main-nav"
+id="mainNav"
+>
 
 <button
 class="active"
@@ -1551,7 +3398,9 @@ onclick="showFavorites()"
 ❤️ المفضلة
 </button>
 
-<button onclick="openMyOrders()">
+<button
+onclick="openMyOrders()"
+>
 📦 طلباتي
 </button>
 
@@ -1615,12 +3464,15 @@ class="cart-count"
 
 <section class="hero">
 
-<div class="hero-eyebrow">
-متجر عُمراء
+<div
+id="heroEyebrow"
+class="hero-eyebrow"
+>
+متجر الشعيبي
 </div>
 
 <h1 id="heroTitle">
-عطور تُروى، لا تُقال
+أناقة تُختار بعناية
 </h1>
 
 <p id="heroDesc">
@@ -1651,6 +3503,13 @@ onclick="openMyOrders()"
 📦 مراجعة طلباتي
 </button>
 
+<button
+class="btn secondary"
+onclick="enablePushNotifications()"
+>
+🔔 تفعيل الإشعارات
+</button>
+
 </div>
 
 </section>
@@ -1664,8 +3523,13 @@ fill="none"
 stroke="currentColor"
 >
 
-<path d="M100 70 A45 45 0 0 1 10 70"/>
-<path d="M20 74 Q60 60 100 74 Q140 60 180 74"/>
+<path
+d="M100 70 A45 45 0 0 1 10 70"
+/>
+
+<path
+d="M20 74 Q60 60 100 74 Q140 60 180 74"
+/>
 
 <circle
 cx="70"
@@ -1706,7 +3570,10 @@ class="ad-wrap"
 </section>
 
 
-<section class="section" id="shop">
+<section
+class="section"
+id="shop"
+>
 
 <div class="section-head">
 
@@ -1786,21 +3653,25 @@ class="products-area"
 </section>
 
 
-<section class="section" id="about">
+<section
+class="section"
+id="about"
+>
 
 <div class="about-box">
 
 <h2
+id="aboutHeading"
 style="
 font-family:'Aref Ruqaa';
 font-size:32px
 "
 >
-قصة عُمراء
+قصة الشعيبي
 </h2>
 
 <p id="aboutText">
-متجر عُمراء.
+متجر الشعيبي.
 </p>
 
 </div>
@@ -1833,8 +3704,14 @@ class="reviews-row"
 
 <div>
 
-متجر عُمراء ©
+<span id="footerStoreName">
+متجر الشعيبي
+</span>
+
+©
+
 <span id="year"></span>
+
 — جميع الحقوق محفوظة
 
 </div>
@@ -1884,7 +3761,6 @@ onclick="closeCart()"
 
 </div>
 
-
 <div
 id="cartBody"
 class="drawer-body"
@@ -1918,8 +3794,6 @@ onclick="openCheckout()"
 </div>
 
 
-<!-- GENERAL MODAL SCRIM -->
-
 <div
 id="modalScrim"
 class="scrim"
@@ -1927,7 +3801,7 @@ onclick="closeAllModals()"
 ></div>
 
 
-<!-- PRODUCT MODAL -->
+<!-- PRODUCT -->
 
 <div
 id="productModal"
@@ -1950,7 +3824,10 @@ alt=""
 
 <button
 class="close-btn"
-style="float:left;margin-bottom:10px"
+style="
+float:left;
+margin-bottom:10px
+"
 onclick="closeProductModal()"
 >
 ✕
@@ -2042,14 +3919,21 @@ type="text"
 ملاحظات
 </label>
 
-<textarea id="checkoutNotes"></textarea>
+<textarea
+id="checkoutNotes"
+></textarea>
 
 
 <label>
 كود الخصم
 </label>
 
-<div style="display:flex;gap:7px">
+<div
+style="
+display:flex;
+gap:7px
+"
+>
 
 <input
 id="couponInput"
@@ -2182,7 +4066,7 @@ style="margin-top:10px"
 </div>
 
 
-<!-- REVIEW MODAL -->
+<!-- REVIEW -->
 
 <div
 id="reviewModal"
@@ -2210,6 +4094,7 @@ onclick="closeReviewModal()"
 
 </div>
 
+
 <div
 id="reviewProductName"
 style="
@@ -2218,6 +4103,7 @@ font-weight:700;
 margin-bottom:8px
 "
 ></div>
+
 
 <div
 class="review-stars-select"
@@ -2260,6 +4146,7 @@ onclick="setReviewRating(5)"
 </button>
 
 </div>
+
 
 <div
 id="reviewRatingText"
@@ -2309,7 +4196,7 @@ onclick="submitVerifiedReview()"
 </div>
 
 
-<!-- INVOICE MODAL -->
+<!-- INVOICE -->
 
 <div
 id="invoiceModal"
@@ -2379,7 +4266,12 @@ class="toast"
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+
 <script>
+
+/* =====================================================
+   SUPABASE
+===================================================== */
 
 const SUPABASE_URL =
 "https://bpxklyjahdjbnkxwtqig.supabase.co";
@@ -2396,6 +4288,10 @@ SUPABASE_KEY
 );
 
 
+/* =====================================================
+   STATE
+===================================================== */
+
 let products = [];
 let categories = [];
 let reviews = [];
@@ -2407,104 +4303,38 @@ let paymentSettings = {};
 let designSettings = {};
 let adSettings = {};
 
-let activeCategory = "الكل";
+let activeCategory =
+"الكل";
 
-let searchText = "";
+let searchText =
+"";
 
-let sortMode = "newest";
+let sortMode =
+"newest";
 
-let currentProduct = null;
+let currentProduct =
+null;
 
-let currentCoupon = null;
+let currentCoupon =
+null;
 
-let adTimer = null;
+let adTimer =
+null;
 
-let customerOrders = [];
-
-let currentCustomerPhone = "";
-
-let currentInvoiceData = null;
-
-let reviewContext = null;
-
-let reviewRating = 5;
-
-
-/* ================= CART ================= */
-
-let cart = [];
-
-try{
-
-const savedCart =
-localStorage.getItem(
-"omara_cart"
-);
-
-if(savedCart){
-
-const parsed =
-JSON.parse(savedCart);
-
-cart =
-Array.isArray(parsed)
-?
-parsed.filter(
-item =>
-item &&
-item.id &&
-Number(item.qty || 0) > 0
-)
-:
+let customerOrders =
 [];
 
-}
+let currentCustomerPhone =
+"";
 
-}catch(error){
+let currentInvoiceData =
+null;
 
-cart = [];
+let reviewContext =
+null;
 
-localStorage.removeItem(
-"omara_cart"
-);
-
-}
-
-
-/* ================= FAVORITES ================= */
-
-let favorites = [];
-
-try{
-
-const savedFavorites =
-localStorage.getItem(
-"omara_favorites"
-);
-
-const parsed =
-savedFavorites
-?
-JSON.parse(savedFavorites)
-:
-[];
-
-favorites =
-Array.isArray(parsed)
-?
-parsed
-:
-[];
-
-}catch(error){
-
-favorites = [];
-
-localStorage.removeItem(
-"omara_favorites"
-);
-
-}
+let reviewRating =
+5;
 
 
 const $ =
@@ -2513,8 +4343,104 @@ document.getElementById(id);
 
 
 $("year").textContent =
-new Date().getFullYear();
+new Date()
+.getFullYear();
 
+
+/* =====================================================
+   STORE NAME
+===================================================== */
+
+function storeName(){
+
+return (
+generalSettings.storeName
+||
+generalSettings.name
+||
+"الشعيبي"
+);
+
+}
+
+
+function storeNameEn(){
+
+return (
+generalSettings.storeNameEn
+||
+generalSettings.englishName
+||
+"ALSHUAIBE STORE"
+);
+
+}
+
+
+function storeFullName(){
+
+return (
+generalSettings.storeFullName
+||
+"متجر "
++
+storeName()
+);
+
+}
+
+
+function storeLogo(){
+
+return (
+generalSettings.logoUrl
+||
+generalSettings.logo
+||
+generalSettings.storeLogo
+||
+""
+);
+
+}
+
+
+/* =====================================================
+   INTRO
+===================================================== */
+
+function hideIntro(){
+
+setTimeout(
+() => {
+
+const intro =
+$("introScreen");
+
+if(intro){
+
+intro.classList.add(
+"hide"
+);
+
+}
+
+},
+2300
+);
+
+}
+
+
+window.addEventListener(
+"load",
+hideIntro
+);
+
+
+/* =====================================================
+   TOAST
+===================================================== */
 
 function toast(message){
 
@@ -2539,6 +4465,248 @@ el.classList.remove(
 }
 
 
+/* =====================================================
+   PUSH NOTIFICATIONS
+===================================================== */
+
+function shouldShowPushPrompt(){
+
+if(
+!("Notification" in window)
+){
+
+return false;
+
+}
+
+
+if(
+Notification.permission ===
+"granted"
+){
+
+return false;
+
+}
+
+
+if(
+Notification.permission ===
+"denied"
+){
+
+return false;
+
+}
+
+
+const later =
+Number(
+localStorage.getItem(
+"alshuaibe_push_later"
+)
+||
+0
+);
+
+
+if(later){
+
+const wait =
+3 * 24 * 60 * 60 * 1000;
+
+
+if(
+Date.now() - later <
+wait
+){
+
+return false;
+
+}
+
+}
+
+
+return true;
+
+}
+
+
+function showPushCard(){
+
+if(
+!shouldShowPushPrompt()
+){
+
+return;
+
+}
+
+
+const box =
+$("pushCard");
+
+
+if(box){
+
+box.classList.add(
+"show"
+);
+
+}
+
+}
+
+
+function closePushCard(){
+
+$("pushCard")
+?.classList.remove(
+"show"
+);
+
+
+localStorage.setItem(
+"alshuaibe_push_later",
+String(Date.now())
+);
+
+}
+
+
+async function enablePushNotifications(){
+
+$("pushCard")
+?.classList.remove(
+"show"
+);
+
+
+try{
+
+if(
+!("Notification" in window)
+){
+
+toast(
+"هذا المتصفح لا يدعم الإشعارات"
+);
+
+return;
+
+}
+
+
+window.OneSignalDeferred =
+window.OneSignalDeferred || [];
+
+
+OneSignalDeferred.push(
+async function(OneSignal){
+
+try{
+
+if(
+OneSignal.Notifications.permission ===
+true
+){
+
+toast(
+"الإشعارات مفعلة بالفعل 🔔"
+);
+
+return;
+
+}
+
+
+await OneSignal.Notifications
+.requestPermission();
+
+
+if(
+OneSignal.Notifications.permission ===
+true
+||
+Notification.permission ===
+"granted"
+){
+
+localStorage.removeItem(
+"alshuaibe_push_later"
+);
+
+
+toast(
+"تم تفعيل إشعارات "
++
+storeFullName()
++
+" 🔔"
+);
+
+}else{
+
+localStorage.setItem(
+"alshuaibe_push_later",
+String(Date.now())
+);
+
+toast(
+"لم يتم السماح بالإشعارات"
+);
+
+}
+
+}
+catch(error){
+
+console.error(
+"OneSignal permission:",
+error
+);
+
+toast(
+"تعذر تفعيل الإشعارات"
+);
+
+}
+
+}
+);
+
+}
+catch(error){
+
+console.error(error);
+
+toast(
+"تعذر تشغيل الإشعارات"
+);
+
+}
+
+}
+
+
+window.addEventListener(
+"load",
+() => {
+
+setTimeout(
+showPushCard,
+7000
+);
+
+}
+);
+
+
+/* =====================================================
+   HELPERS
+===================================================== */
+
 function escapeHTML(value){
 
 return String(
@@ -2547,13 +4715,11 @@ value ?? ""
 .replace(
 /[&<>"']/g,
 char => ({
-
 "&":"&amp;",
 "<":"&lt;",
 ">":"&gt;",
 '"':"&quot;",
 "'":"&#039;"
-
 }[char])
 );
 
@@ -2621,23 +4787,115 @@ scrollSection(
 }
 
 
-/* =========================================================
-   CART STORAGE
-========================================================= */
+/* =====================================================
+   CART
+===================================================== */
+
+let cart = [];
+
+try{
+
+const savedCart =
+localStorage.getItem(
+"omara_cart"
+);
+
+if(savedCart){
+
+const parsed =
+JSON.parse(
+savedCart
+);
+
+cart =
+Array.isArray(parsed)
+?
+parsed.filter(
+item =>
+item
+&&
+item.id
+&&
+Number(
+item.qty || 0
+)
+>
+0
+)
+:
+[];
+
+}
+
+}catch(error){
+
+cart = [];
+
+localStorage.removeItem(
+"omara_cart"
+);
+
+}
+
+
+let favorites = [];
+
+try{
+
+const savedFavorites =
+localStorage.getItem(
+"omara_favorites"
+);
+
+
+const parsed =
+savedFavorites
+?
+JSON.parse(
+savedFavorites
+)
+:
+[];
+
+
+favorites =
+Array.isArray(parsed)
+?
+parsed
+:
+[];
+
+}catch(error){
+
+favorites = [];
+
+localStorage.removeItem(
+"omara_favorites"
+);
+
+}
+
 
 function saveCart(){
 
 cart =
 cart.filter(
 item =>
-item &&
-item.id &&
-Number(item.qty || 0) > 0
+item
+&&
+item.id
+&&
+Number(
+item.qty || 0
+)
+>
+0
 );
 
 
 if(
-cart.length === 0
+cart.length ===
+0
 ){
 
 localStorage.removeItem(
@@ -2679,26 +4937,22 @@ String(product.id)
 );
 
 
-const previousLength =
-cart.length;
-
-
 cart =
 cart.filter(
 item =>
-item &&
-item.id &&
+item
+&&
+item.id
+&&
 validIds.has(
 String(item.id)
 )
 &&
-Number(item.qty || 0) > 0
+Number(item.qty || 0)
+>
+0
 );
 
-
-if(
-cart.length !== previousLength
-){
 
 if(cart.length){
 
@@ -2711,12 +4965,6 @@ JSON.stringify(cart)
 
 localStorage.removeItem(
 "omara_cart"
-);
-
-}
-
-toast(
-"تم تنظيف السلة من منتجات قديمة"
 );
 
 }
@@ -2755,7 +5003,8 @@ productId
 favorites =
 favorites.filter(
 id =>
-id !== productId
+id !==
+productId
 );
 
 }else{
@@ -2778,9 +5027,9 @@ renderProducts();
 }
 
 
-/* =========================================================
+/* =====================================================
    SETTINGS
-========================================================= */
+===================================================== */
 
 async function fetchSettings(){
 
@@ -2809,7 +5058,8 @@ data || [];
 generalSettings =
 docs.find(
 x =>
-x.id === "general"
+x.id ===
+"general"
 )
 ?.data
 ||
@@ -2819,7 +5069,8 @@ x.id === "general"
 paymentSettings =
 docs.find(
 x =>
-x.id === "payment"
+x.id ===
+"payment"
 )
 ?.data
 ||
@@ -2829,7 +5080,8 @@ x.id === "payment"
 designSettings =
 docs.find(
 x =>
-x.id === "design"
+x.id ===
+"design"
 )
 ?.data
 ||
@@ -2839,7 +5091,8 @@ x.id === "design"
 adSettings =
 docs.find(
 x =>
-x.id === "ads"
+x.id ===
+"ads"
 )
 ?.data
 ||
@@ -2853,16 +5106,16 @@ applySettings();
 
 function applySettings(){
 
+const root =
+document.documentElement;
+
+
 const colors =
 designSettings.colors
 ||
 generalSettings.colors
 ||
 {};
-
-
-const root =
-document.documentElement;
 
 
 if(colors.cream){
@@ -2905,19 +5158,17 @@ colors.gold
 }
 
 
-const cardWidth =
+root.style.setProperty(
+"--card-width",
 Number(
 designSettings.cardWidth
 ||
 generalSettings.cardWidth
 ||
 180
-);
-
-
-root.style.setProperty(
-"--card-width",
-cardWidth + "px"
+)
++
+"px"
 );
 
 
@@ -2930,6 +5181,73 @@ generalSettings.productFont
 "'Aref Ruqaa', serif"
 );
 
+
+/* BRAND */
+
+$("brandName")
+.textContent =
+storeName();
+
+
+$("brandEn")
+.textContent =
+storeNameEn();
+
+
+$("heroEyebrow")
+.textContent =
+storeFullName();
+
+
+$("introStoreName")
+.textContent =
+storeName();
+
+
+$("introStoreNameEn")
+.textContent =
+storeNameEn();
+
+
+$("footerStoreName")
+.textContent =
+storeFullName();
+
+
+$("aboutHeading")
+.textContent =
+"قصة "
++
+storeName();
+
+
+const logo =
+storeLogo();
+
+
+if(logo){
+
+$("headerStoreLogo")
+.src =
+logo;
+
+$("headerStoreLogo")
+.style.display =
+"block";
+
+
+$("introLogo")
+.src =
+logo;
+
+$("introLogo")
+.style.display =
+"block";
+
+}
+
+
+/* BACKGROUND */
 
 const background =
 designSettings.backgroundUrl
@@ -2945,6 +5263,7 @@ $("customBackground")
 .style.backgroundImage =
 `url("${background}")`;
 
+
 $("customBackground")
 .style.opacity =
 String(
@@ -2952,6 +5271,7 @@ designSettings.backgroundOpacity
 ??
 .15
 );
+
 
 $("customBackground")
 .style.display =
@@ -2965,6 +5285,8 @@ $("customBackground")
 
 }
 
+
+/* WATERMARK */
 
 const watermark =
 designSettings.watermarkUrl
@@ -2978,9 +5300,11 @@ $("watermark")
 .style.backgroundImage =
 `url("${watermark}")`;
 
+
 $("watermark")
 .style.backgroundSize =
 "180px auto";
+
 
 $("watermark")
 .style.opacity =
@@ -2990,17 +5314,10 @@ designSettings.watermarkOpacity
 .1
 );
 
+
 $("watermark")
 .style.display =
 "block";
-
-}else if(
-generalSettings.watermarkText
-){
-
-createTextWatermark(
-generalSettings.watermarkText
-);
 
 }else{
 
@@ -3011,11 +5328,13 @@ $("watermark")
 }
 
 
+/* TEXT */
+
 $("heroTitle")
 .textContent =
 generalSettings.sloganTitle
 ||
-"عطور تُروى، لا تُقال";
+"أناقة تُختار بعناية";
 
 
 $("heroDesc")
@@ -3029,7 +5348,9 @@ $("aboutText")
 .textContent =
 generalSettings.aboutText
 ||
-"متجر عُمراء، وجهتك للمنتجات المختارة بعناية.";
+storeFullName()
++
+"، وجهتك للمنتجات المختارة بعناية.";
 
 
 $("policiesText")
@@ -3038,6 +5359,8 @@ generalSettings.policies
 ||
 "";
 
+
+/* WHATSAPP */
 
 const whatsapp =
 generalSettings.whatsapp
@@ -3056,6 +5379,7 @@ whatsapp.replace(
 ""
 );
 
+
 $("whatsappButton")
 .style.display =
 "inline-flex";
@@ -3068,6 +5392,8 @@ $("whatsappButton")
 
 }
 
+
+/* FEATURES */
 
 const enableSearch =
 generalSettings.enableSearch
@@ -3123,7 +5449,8 @@ generalSettings.featureWish
 $("reviewsSection")
 .style.display =
 generalSettings.featureReviews
-=== false
+===
+false
 ?
 "none"
 :
@@ -3141,65 +5468,12 @@ renderAdvertisement();
 }
 
 
-function createTextWatermark(text){
-
-const svg = `
-<svg
-xmlns="http://www.w3.org/2000/svg"
-width="350"
-height="350"
->
-<text
-x="50%"
-y="50%"
-dominant-baseline="middle"
-text-anchor="middle"
-transform="rotate(-35 175 175)"
-font-family="Tajawal"
-font-size="30"
-font-weight="700"
-fill="#20301C"
-fill-opacity=".08"
->
-${escapeHTML(text)}
-</text>
-</svg>
-`;
-
-
-const encoded =
-"data:image/svg+xml;base64,"
-+
-btoa(
-unescape(
-encodeURIComponent(svg)
-)
-);
-
-
-$("watermark")
-.style.backgroundImage =
-`url("${encoded}")`;
-
-$("watermark")
-.style.opacity =
-"1";
-
-$("watermark")
-.style.display =
-"block";
-
-}
-
-
 function applySEO(){
 
 const title =
 generalSettings.seoTitle
 ||
-generalSettings.sloganTitle
-||
-"متجر عُمراء";
+storeFullName();
 
 
 const desc =
@@ -3207,13 +5481,15 @@ generalSettings.seoDescription
 ||
 generalSettings.sloganDesc
 ||
-"متجر عُمراء";
+storeFullName();
 
 
 document.title =
 title
 +
-" | Omara Store";
+" | "
++
+storeNameEn();
 
 
 $("metaDesc")
@@ -3249,7 +5525,10 @@ const socialMap = [
 value =>
 "https://wa.me/"
 +
-value.replace(/\D/g,"")
+value.replace(
+/\D/g,
+""
+)
 ],
 
 [
@@ -3342,18 +5621,25 @@ return;
 const manifest = {
 
 name:
-generalSettings.storeName
-||
-"متجر عُمراء",
+storeFullName(),
 
 short_name:
-"عُمراء",
+storeName(),
 
 start_url:
-".",
+"/",
+
+scope:
+"/",
 
 display:
 "standalone",
+
+dir:
+"rtl",
+
+lang:
+"ar",
 
 background_color:
 getComputedStyle(
@@ -3379,17 +5665,22 @@ document.documentElement
 const blob =
 new Blob(
 [
-JSON.stringify(manifest)
+JSON.stringify(
+manifest
+)
 ],
 {
-type:"application/json"
+type:
+"application/json"
 }
 );
 
 
 $("dynamicManifest")
 .href =
-URL.createObjectURL(blob);
+URL.createObjectURL(
+blob
+);
 
 }
 
@@ -3398,7 +5689,9 @@ function renderAdvertisement(){
 
 if(adTimer){
 
-clearInterval(adTimer);
+clearInterval(
+adTimer
+);
 
 }
 
@@ -3410,7 +5703,8 @@ adSettings.enabled
 generalSettings.adType
 &&
 generalSettings.adType
-!== "none"
+!==
+"none"
 );
 
 
@@ -3472,7 +5766,10 @@ link
 "none";
 
 
-if(type === "video"){
+if(
+type ===
+"video"
+){
 
 $("adWrap")
 .innerHTML = `
@@ -3491,7 +5788,8 @@ return;
 
 
 if(
-type === "slider"
+type ===
+"slider"
 ||
 media.length > 1
 ){
@@ -3535,7 +5833,10 @@ $("adWrap")
 );
 
 
-if(slides.length < 2){
+if(
+slides.length <
+2
+){
 
 return;
 
@@ -3549,7 +5850,9 @@ slides[current]
 
 
 current =
-(current + 1)
+(
+current + 1
+)
 %
 slides.length;
 
@@ -3562,7 +5865,6 @@ slides[current]
 },
 3500
 );
-
 
 return;
 
@@ -3579,9 +5881,9 @@ src="${escapeHTML(media[0])}"
 }
 
 
-/* =========================================================
+/* =====================================================
    DATABASE
-========================================================= */
+===================================================== */
 
 async function fetchCategories(){
 
@@ -3653,6 +5955,7 @@ if(error){
 
 console.error(error);
 
+
 $("productsArea")
 .innerHTML = `
 <div class="empty">
@@ -3670,23 +5973,6 @@ data || [];
 
 
 cleanCartAgainstProducts();
-
-
-if(cart.length){
-
-localStorage.setItem(
-"omara_cart",
-JSON.stringify(cart)
-);
-
-}else{
-
-localStorage.removeItem(
-"omara_cart"
-);
-
-}
-
 
 renderCart();
 
@@ -3805,9 +6091,9 @@ data || [];
 }
 
 
-/* =========================================================
-   CATEGORY + PRODUCTS
-========================================================= */
+/* =====================================================
+   CATEGORY
+===================================================== */
 
 function renderCategoryFilters(){
 
@@ -3816,7 +6102,9 @@ const buttons = [
 `
 <button
 class="${
-activeCategory === "الكل"
+activeCategory
+===
+"الكل"
 ?
 "active"
 :
@@ -3838,7 +6126,8 @@ buttons.push(
 `
 <button
 class="${
-activeCategory ===
+activeCategory
+===
 category.name
 ?
 "active"
@@ -3887,6 +6176,7 @@ $("searchInput")
 .trim()
 .toLowerCase();
 
+
 renderProducts();
 
 }
@@ -3898,6 +6188,7 @@ sortMode =
 $("sortSelect")
 .value;
 
+
 renderProducts();
 
 }
@@ -3906,11 +6197,14 @@ renderProducts();
 function filteredProducts(){
 
 let list =
-[...products];
+[
+...products
+];
 
 
 if(
-activeCategory ===
+activeCategory
+===
 "__favorites__"
 ){
 
@@ -3923,14 +6217,16 @@ product.id
 );
 
 }else if(
-activeCategory !==
+activeCategory
+!==
 "الكل"
 ){
 
 list =
 list.filter(
 product =>
-product.category ===
+product.category
+===
 activeCategory
 );
 
@@ -3945,7 +6241,7 @@ product => {
 
 const haystack =
 (
-product.name
+(product.name || "")
 +
 " "
 +
@@ -3972,46 +6268,69 @@ list.sort(
 (a,b) => {
 
 const aPrice =
-Number(a.price || 0)
+Number(
+a.price || 0
+)
 *
 (
 1
 -
-Number(a.discount || 0)
+Number(
+a.discount || 0
+)
 /
 100
 );
 
 
 const bPrice =
-Number(b.price || 0)
+Number(
+b.price || 0
+)
 *
 (
 1
 -
-Number(b.discount || 0)
+Number(
+b.discount || 0
+)
 /
 100
 );
 
 
-if(sortMode === "priceAsc"){
+if(
+sortMode ===
+"priceAsc"
+){
 
-return aPrice - bPrice;
-
-}
-
-
-if(sortMode === "priceDesc"){
-
-return bPrice - aPrice;
+return aPrice
+-
+bPrice;
 
 }
 
 
-if(sortMode === "name"){
+if(
+sortMode ===
+"priceDesc"
+){
 
-return String(a.name)
+return bPrice
+-
+aPrice;
+
+}
+
+
+if(
+sortMode ===
+"name"
+){
+
+return String(
+a.name
+)
 .localeCompare(
 String(b.name),
 "ar"
@@ -4020,9 +6339,13 @@ String(b.name),
 }
 
 
-return new Date(b.created_at)
+return new Date(
+b.created_at
+)
 -
-new Date(a.created_at);
+new Date(
+a.created_at
+);
 
 }
 );
@@ -4036,11 +6359,15 @@ return list;
 function productCard(product){
 
 const price =
-Number(product.price || 0);
+Number(
+product.price || 0
+);
 
 
 const discount =
-Number(product.discount || 0);
+Number(
+product.discount || 0
+);
 
 
 const finalPrice =
@@ -4060,7 +6387,9 @@ product.images?.[0]
 
 
 const out =
-Number(product.stock || 0)
+Number(
+product.stock || 0
+)
 <=
 0;
 
@@ -4222,14 +6551,17 @@ if(!list.length){
 $("productsArea")
 .innerHTML = `
 <div class="empty">
+
 ${
-activeCategory ===
+activeCategory
+===
 "__favorites__"
 ?
 "قائمة المفضلة فارغة."
 :
 "لا توجد منتجات مطابقة."
 }
+
 </div>
 `;
 
@@ -4239,12 +6571,14 @@ return;
 
 
 if(
-activeCategory !==
+activeCategory
+!==
 "الكل"
 ){
 
 const title =
-activeCategory ===
+activeCategory
+===
 "__favorites__"
 ?
 "المفضلة"
@@ -4254,6 +6588,7 @@ activeCategory;
 
 $("productsArea")
 .innerHTML = `
+
 <div class="category-group">
 
 <h3 class="category-title">
@@ -4273,7 +6608,6 @@ list
 </div>
 `;
 
-
 return;
 
 }
@@ -4289,7 +6623,8 @@ category => {
 const items =
 list.filter(
 product =>
-product.category ===
+product.category
+===
 category.name
 );
 
@@ -4319,7 +6654,8 @@ list.filter(
 product =>
 !groups.some(
 group =>
-group.name ===
+group.name
+===
 product.category
 )
 );
@@ -4384,16 +6720,17 @@ group.items
 }
 
 
-/* =========================================================
-   PRODUCT MODAL
-========================================================= */
+/* =====================================================
+   PRODUCT
+===================================================== */
 
 function quickAdd(productId){
 
 const product =
 products.find(
 item =>
-String(item.id) ===
+String(item.id)
+===
 String(productId)
 );
 
@@ -4438,7 +6775,8 @@ function openProduct(productId){
 const product =
 products.find(
 item =>
-String(item.id) ===
+String(item.id)
+===
 String(productId)
 );
 
@@ -4469,11 +6807,15 @@ product.name
 
 
 const price =
-Number(product.price || 0);
+Number(
+product.price || 0
+);
 
 
 const discount =
-Number(product.discount || 0);
+Number(
+product.discount || 0
+);
 
 
 const finalPrice =
@@ -4626,7 +6968,9 @@ $("modalAddButton");
 
 
 button.disabled =
-Number(product.stock || 0)
+Number(
+product.stock || 0
+)
 <=
 0;
 
@@ -4644,6 +6988,7 @@ addCurrentProduct;
 
 
 showMainScrim();
+
 
 $("productModal")
 .classList.add(
@@ -4715,9 +7060,9 @@ closeProductModal();
 }
 
 
-/* =========================================================
+/* =====================================================
    CART
-========================================================= */
+===================================================== */
 
 function addCartItem(
 product,
@@ -4741,7 +7086,9 @@ return;
 
 
 if(
-Number(product.stock || 0)
+Number(
+product.stock || 0
+)
 <=
 0
 ){
@@ -4770,7 +7117,8 @@ String(product.id)
 const existing =
 cart.find(
 item =>
-item.key ===
+item.key
+===
 key
 );
 
@@ -4778,8 +7126,11 @@ key
 if(existing){
 
 if(
-existing.qty <
-Number(product.stock || 0)
+existing.qty
+<
+Number(
+product.stock || 0
+)
 ){
 
 existing.qty++;
@@ -4799,7 +7150,9 @@ cart.push({
 key,
 
 id:
-String(product.id),
+String(
+product.id
+),
 
 name:
 product.name,
@@ -4813,7 +7166,8 @@ color,
 
 size,
 
-qty:1
+qty:
+1
 
 });
 
@@ -4834,7 +7188,8 @@ openCart();
 function renderCart(){
 
 if(
-products.length > 0
+products.length >
+0
 ){
 
 const validProductIds =
@@ -4849,13 +7204,19 @@ String(product.id)
 cart =
 cart.filter(
 item =>
-item &&
-item.id &&
+item
+&&
+item.id
+&&
 validProductIds.has(
 String(item.id)
 )
 &&
-Number(item.qty || 0) > 0
+Number(
+item.qty || 0
+)
+>
+0
 );
 
 }
@@ -4869,18 +7230,23 @@ item
 ) =>
 total
 +
-Number(item.qty || 0),
+Number(
+item.qty || 0
+),
 0
 );
 
 
 $("cartCount")
 .textContent =
-String(count);
+String(
+count
+);
 
 
 if(
-cart.length === 0
+cart.length ===
+0
 ){
 
 localStorage.removeItem(
@@ -4919,7 +7285,8 @@ item => {
 const product =
 products.find(
 product =>
-String(product.id) ===
+String(product.id)
+===
 String(item.id)
 );
 
@@ -4932,11 +7299,15 @@ return "";
 
 
 const price =
-Number(product.price || 0);
+Number(
+product.price || 0
+);
 
 
 const discount =
-Number(product.discount || 0);
+Number(
+product.discount || 0
+);
 
 
 const finalPrice =
@@ -4965,7 +7336,9 @@ totals[currency]
 (
 finalPrice
 *
-Number(item.qty || 1)
+Number(
+item.qty || 1
+)
 );
 
 
@@ -4989,6 +7362,7 @@ alt="${escapeHTML(item.name || "")}"
 <div class="cart-info">
 
 <div class="cart-name">
+
 ${escapeHTML(
 item.name
 ||
@@ -4996,6 +7370,7 @@ product.name
 ||
 ""
 )}
+
 </div>
 
 <div class="cart-meta">
@@ -5061,7 +7436,6 @@ color:var(--danger)
 </div>
 
 </div>
-
 `;
 
 }
@@ -5070,7 +7444,9 @@ color:var(--danger)
 
 
 const totalText =
-Object.entries(totals)
+Object.entries(
+totals
+)
 .map(
 (
 [
@@ -5104,7 +7480,8 @@ change
 const item =
 cart.find(
 item =>
-item.key === key
+item.key ===
+key
 );
 
 
@@ -5129,9 +7506,11 @@ if(!product){
 cart =
 cart.filter(
 cartItem =>
-cartItem.key !==
+cartItem.key
+!==
 key
 );
+
 
 saveCart();
 
@@ -5141,18 +7520,28 @@ return;
 
 
 item.qty =
-Number(item.qty || 0)
+Number(
+item.qty || 0
+)
 +
-Number(change || 0);
+Number(
+change || 0
+);
 
 
 if(
-item.qty >
-Number(product.stock || 0)
+item.qty
+>
+Number(
+product.stock || 0
+)
 ){
 
 item.qty =
-Number(product.stock || 0);
+Number(
+product.stock || 0
+);
+
 
 toast(
 "وصلت للكمية المتوفرة"
@@ -5162,13 +7551,15 @@ toast(
 
 
 if(
-item.qty <= 0
+item.qty <=
+0
 ){
 
 cart =
 cart.filter(
 cartItem =>
-cartItem.key !==
+cartItem.key
+!==
 key
 );
 
@@ -5185,7 +7576,9 @@ function removeCartItem(key){
 cart =
 cart.filter(
 item =>
-item.key !== key
+item.key
+!==
+key
 );
 
 
@@ -5198,10 +7591,12 @@ function openCart(){
 
 renderCart();
 
+
 $("cartScrim")
 .classList.add(
 "show"
 );
+
 
 $("cartDrawer")
 .classList.add(
@@ -5218,6 +7613,7 @@ $("cartScrim")
 "show"
 );
 
+
 $("cartDrawer")
 .classList.remove(
 "show"
@@ -5226,9 +7622,9 @@ $("cartDrawer")
 }
 
 
-/* =========================================================
+/* =====================================================
    MODALS
-========================================================= */
+===================================================== */
 
 function showMainScrim(){
 
@@ -5275,8 +7671,10 @@ $("productModal")
 "show"
 );
 
+
 currentProduct =
 null;
+
 
 updateMainScrim();
 
@@ -5285,39 +7683,33 @@ updateMainScrim();
 
 function closeAllModals(){
 
-$("productModal")
+[
+"productModal",
+"checkoutModal",
+"myOrdersModal",
+"reviewModal",
+"invoiceModal"
+]
+.forEach(
+id =>
+$(id)
 .classList.remove(
 "show"
+)
 );
 
-$("checkoutModal")
-.classList.remove(
-"show"
-);
-
-$("myOrdersModal")
-.classList.remove(
-"show"
-);
-
-$("reviewModal")
-.classList.remove(
-"show"
-);
-
-$("invoiceModal")
-.classList.remove(
-"show"
-);
 
 currentProduct =
 null;
 
+
 reviewContext =
 null;
 
+
 currentInvoiceData =
 null;
+
 
 updateMainScrim();
 
@@ -5331,7 +7723,9 @@ cleanCartAgainstProducts();
 saveCart();
 
 
-if(!cart.length){
+if(
+!cart.length
+){
 
 toast(
 "السلة فارغة"
@@ -5380,14 +7774,15 @@ $("checkoutModal")
 "show"
 );
 
+
 updateMainScrim();
 
 }
 
 
-/* =========================================================
-   TOTAL + COUPONS
-========================================================= */
+/* =====================================================
+   TOTAL
+===================================================== */
 
 function calculateCart(){
 
@@ -5405,7 +7800,8 @@ item => {
 const product =
 products.find(
 product =>
-String(product.id) ===
+String(product.id)
+===
 String(item.id)
 );
 
@@ -5418,12 +7814,16 @@ return;
 
 
 const price =
-Number(product.price || 0)
+Number(
+product.price || 0
+)
 *
 (
 1
 -
-Number(product.discount || 0)
+Number(
+product.discount || 0
+)
 /
 100
 );
@@ -5432,7 +7832,9 @@ Number(product.discount || 0)
 subtotal +=
 price
 *
-Number(item.qty || 1);
+Number(
+item.qty || 1
+);
 
 
 currency =
@@ -5469,7 +7871,8 @@ const type =
 currentCoupon.discount_type
 ||
 (
-currentCoupon.type ===
+currentCoupon.type
+===
 "fixed"
 ?
 "fixed"
@@ -5488,7 +7891,10 @@ currentCoupon.discount_value
 );
 
 
-if(type === "fixed"){
+if(
+type ===
+"fixed"
+){
 
 discount =
 Math.min(
@@ -5507,7 +7913,8 @@ value / 100
 
 
 if(
-currentCoupon.max_discount !=
+currentCoupon.max_discount
+!=
 null
 ){
 
@@ -5541,7 +7948,9 @@ subtotal - discount
 ),
 
 currency:
-currency || "ر.ي"
+currency
+||
+"ر.ي"
 
 };
 
@@ -5562,9 +7971,11 @@ if(!code){
 currentCoupon =
 null;
 
+
 $("couponMessage")
 .textContent =
 "";
+
 
 renderPaymentDetails();
 
@@ -5576,7 +7987,9 @@ return;
 const coupon =
 coupons.find(
 coupon =>
-String(coupon.code)
+String(
+coupon.code
+)
 .toUpperCase()
 ===
 code
@@ -5588,13 +8001,16 @@ if(!coupon){
 currentCoupon =
 null;
 
+
 $("couponMessage")
 .style.color =
 "var(--danger)";
 
+
 $("couponMessage")
 .textContent =
 "الكوبون غير صحيح.";
+
 
 renderPaymentDetails();
 
@@ -5606,7 +8022,9 @@ return;
 if(
 coupon.expires_at
 &&
-new Date(coupon.expires_at)
+new Date(
+coupon.expires_at
+)
 <
 new Date()
 ){
@@ -5614,9 +8032,11 @@ new Date()
 currentCoupon =
 null;
 
+
 $("couponMessage")
 .style.color =
 "var(--danger)";
+
 
 $("couponMessage")
 .textContent =
@@ -5646,9 +8066,9 @@ renderPaymentDetails();
 }
 
 
-/* =========================================================
+/* =====================================================
    PAYMENT
-========================================================= */
+===================================================== */
 
 function renderPaymentDetails(){
 
@@ -5665,7 +8085,10 @@ let text =
 "";
 
 
-if(method === "bank"){
+if(
+method ===
+"bank"
+){
 
 text = `البنك: ${
 paymentSettings.bankName
@@ -5731,9 +8154,9 @@ total.currency;
 }
 
 
-/* =========================================================
-   CREATE ORDER
-========================================================= */
+/* =====================================================
+   ORDER
+===================================================== */
 
 async function submitOrder(){
 
@@ -5779,77 +8202,7 @@ return;
 }
 
 
-const invalidCartItems =
-cart.filter(
-item => {
-
-const product =
-products.find(
-product =>
-String(product.id)
-===
-String(item.id)
-);
-
-
-return (
-!product
-||
-product.is_active === false
-||
-Number(product.stock || 0)
-<=
-0
-||
-Number(item.qty || 0)
->
-Number(product.stock || 0)
-);
-
-}
-);
-
-
-if(
-invalidCartItems.length
-){
-
-const invalidKeys =
-new Set(
-invalidCartItems.map(
-item =>
-item.key
-)
-);
-
-
-cart =
-cart.filter(
-item =>
-!invalidKeys.has(
-item.key
-)
-);
-
-
-saveCart();
-
-
-await fetchProducts();
-
-
-alert(
-"كان في السلة منتج قديم أو غير متوفر.\n"
-+
-"تم حذفه تلقائياً.\n"
-+
-"أضف المنتج من جديد ثم حاول إرسال الطلب."
-);
-
-
-return;
-
-}
+cleanCartAgainstProducts();
 
 
 if(!cart.length){
@@ -5948,7 +8301,9 @@ data?.order_number
 
 
 const oldCart =
-[...cart];
+[
+...cart
+];
 
 
 cart =
@@ -5981,14 +8336,15 @@ await fetchProducts();
 
 
 if(
-generalSettings.featureWaCheck ===
+generalSettings.featureWaCheck
+===
 true
 &&
 generalSettings.whatsapp
 ){
 
 let message =
-`طلب جديد من متجر عُمراء 🛍️
+`طلب جديد من ${storeFullName()} 🛍️
 
 رقم الطلب: #${orderNumber}
 
@@ -6032,7 +8388,9 @@ message +=
 
 message +=
 `\nالإجمالي: ${
-Number(data?.total || 0)
+Number(
+data?.total || 0
+)
 .toFixed(2)
 } ${
 data?.currency || ""
@@ -6044,11 +8402,16 @@ window.open(
 "https://wa.me/"
 +
 generalSettings.whatsapp
-.replace(/\D/g,"")
+.replace(
+/\D/g,
+""
+)
 +
 "?text="
 +
-encodeURIComponent(message),
+encodeURIComponent(
+message
+),
 
 "_blank"
 
@@ -6072,7 +8435,9 @@ $("ordersPhone")
 .value =
 phone;
 
+
 openMyOrders();
+
 
 await loadCustomerOrders();
 
@@ -6107,35 +8472,20 @@ button.textContent =
 }
 
 
-/* =========================================================
+/* =====================================================
    MY ORDERS
-========================================================= */
+===================================================== */
 
 function orderStatusText(status){
 
 return ({
-
-pending:
-"قيد الانتظار",
-
-confirmed:
-"تم التأكيد",
-
-processing:
-"قيد التجهيز",
-
-shipped:
-"تم الشحن",
-
-delivered:
-"تم التسليم",
-
-cancelled:
-"ملغي",
-
-refunded:
-"مسترجع"
-
+pending:"قيد الانتظار",
+confirmed:"تم التأكيد",
+processing:"قيد التجهيز",
+shipped:"تم الشحن",
+delivered:"تم التسليم",
+cancelled:"ملغي",
+refunded:"مسترجع"
 })[
 status
 ]
@@ -6150,19 +8500,10 @@ status
 function paymentStatusText(status){
 
 return ({
-
-unpaid:
-"غير مدفوع",
-
-paid:
-"مدفوع",
-
-failed:
-"فشل الدفع",
-
-refunded:
-"مسترجع"
-
+unpaid:"غير مدفوع",
+paid:"مدفوع",
+failed:"فشل الدفع",
+refunded:"مسترجع"
 })[
 status
 ]
@@ -6177,16 +8518,9 @@ status
 function paymentMethodText(method){
 
 return ({
-
-bank:
-"تحويل بنكي",
-
-deposit:
-"إيداع بنكي",
-
-cash:
-"نقداً"
-
+bank:"تحويل بنكي",
+deposit:"إيداع بنكي",
+cash:"نقداً"
 })[
 method
 ]
@@ -6241,6 +8575,7 @@ $("myOrdersModal")
 .classList.remove(
 "show"
 );
+
 
 updateMainScrim();
 
@@ -6299,11 +8634,19 @@ if(error){
 
 console.error(error);
 
+
 $("customerOrdersResults")
 .innerHTML = `
 <div class="empty">
-تعذر تحميل الطلبات.<br>
-${escapeHTML(error.message || "")}
+
+تعذر تحميل الطلبات.
+
+<br>
+
+${escapeHTML(
+error.message || ""
+)}
+
 </div>
 `;
 
@@ -6345,7 +8688,9 @@ customerOrders.map(
 order => {
 
 const items =
-Array.isArray(order.items)
+Array.isArray(
+order.items
+)
 ?
 order.items
 :
@@ -6369,8 +8714,12 @@ return `
 ${
 order.created_at
 ?
-new Date(order.created_at)
-.toLocaleString("ar")
+new Date(
+order.created_at
+)
+.toLocaleString(
+"ar"
+)
 :
 ""
 }
@@ -6391,6 +8740,7 @@ ${escapeHTML(orderStatusText(order.status))}
 
 <div class="customer-order-body">
 
+
 <div class="order-info-grid">
 
 <div class="order-info-box">
@@ -6402,6 +8752,7 @@ ${escapeHTML(orderStatusText(order.status))}
 <strong>
 
 ${Number(order.total || 0).toFixed(2)}
+
 ${escapeHTML(order.currency || "")}
 
 </strong>
@@ -6457,27 +8808,6 @@ ${escapeHTML(order.address)}
 
 
 ${
-order.coupon_code
-?
-`
-<div class="order-info-box">
-
-<small>
-كود الخصم
-</small>
-
-<strong>
-${escapeHTML(order.coupon_code)}
-</strong>
-
-</div>
-`
-:
-""
-}
-
-
-${
 order.invoice_number
 ?
 `
@@ -6500,11 +8830,10 @@ order.invoice_number
 </div>
 
 
-<div>
-
 <h4 style="margin:4px 0 8px">
 المنتجات
 </h4>
+
 
 ${
 items.length
@@ -6567,7 +8896,9 @@ item.size
 
 
 ${
-order.status === "delivered"
+order.status
+===
+"delivered"
 ?
 (
 item.reviewed
@@ -6607,8 +8938,6 @@ ${JSON.stringify(item.product_name || "")}
 '<div class="hint">لا توجد تفاصيل منتجات.</div>'
 }
 
-</div>
-
 
 ${
 order.tracking_code
@@ -6627,10 +8956,13 @@ order.shipping_company
 ?
 `
 <div>
+
 شركة الشحن:
+
 <b>
 ${escapeHTML(order.shipping_company)}
 </b>
+
 </div>
 `
 :
@@ -6642,10 +8974,13 @@ order.tracking_code
 ?
 `
 <div>
+
 رقم التتبع:
+
 <b>
 ${escapeHTML(order.tracking_code)}
 </b>
+
 </div>
 `
 :
@@ -6671,6 +9006,7 @@ onclick="loadCustomerOrders()"
 >
 ↻ تحديث الحالة
 </button>
+
 
 ${
 order.invoice_id
@@ -6703,7 +9039,6 @@ disabled
 </div>
 
 </div>
-
 `;
 
 }
@@ -6713,9 +9048,9 @@ disabled
 }
 
 
-/* =========================================================
-   VERIFIED REVIEW
-========================================================= */
+/* =====================================================
+   REVIEW
+===================================================== */
 
 function openReviewModal(
 orderNumber,
@@ -6737,9 +9072,7 @@ return;
 reviewContext = {
 
 orderNumber,
-
 productId,
-
 productName
 
 };
@@ -6800,7 +9133,9 @@ updateMainScrim();
 function setReviewRating(rating){
 
 reviewRating =
-Number(rating);
+Number(
+rating
+);
 
 
 document
@@ -6940,7 +9275,7 @@ await loadCustomerOrders();
 
 
 alert(
-"شكراً لتقييمك 🌟\nسيظهر التقييم في المتجر بعد اعتماده من الإدارة."
+"شكراً لتقييمك 🌟\nسيظهر التقييم بعد اعتماده من الإدارة."
 );
 
 }
@@ -6974,9 +9309,9 @@ button.textContent =
 }
 
 
-/* =========================================================
+/* =====================================================
    CUSTOMER INVOICE
-========================================================= */
+===================================================== */
 
 function openCustomerInvoice(orderId){
 
@@ -7096,11 +9431,11 @@ id="printInvoiceSheet"
 <div>
 
 <div class="invoice-brand">
-عُمراء
+${escapeHTML(storeName())}
 </div>
 
 <div>
-OMARA STORE
+${escapeHTML(storeNameEn())}
 </div>
 
 </div>
@@ -7169,19 +9504,6 @@ ${escapeHTML(customer.phone || "—")}
 ${escapeHTML(customer.address || "—")}
 </div>
 
-${
-customer.city
-?
-`
-<div>
-المدينة:
-${escapeHTML(customer.city)}
-</div>
-`
-:
-""
-}
-
 </div>
 
 
@@ -7192,31 +9514,23 @@ ${escapeHTML(customer.city)}
 </strong>
 
 <div>
-
 رقم الطلب:
 #${snapshot.order_number || "—"}
-
 </div>
 
 <div>
-
 الحالة:
 ${escapeHTML(orderStatusText(order.status))}
-
 </div>
 
 <div>
-
 حالة الدفع:
 ${escapeHTML(paymentStatusText(order.payment_status))}
-
 </div>
 
 <div>
-
 طريقة الدفع:
 ${escapeHTML(paymentMethodText(order.pay_method))}
-
 </div>
 
 ${
@@ -7258,25 +9572,11 @@ ${escapeHTML(order.tracking_code)}
 
 <tr>
 
-<th>
-المنتج
-</th>
-
-<th>
-الخيارات
-</th>
-
-<th>
-الكمية
-</th>
-
-<th>
-سعر الوحدة
-</th>
-
-<th>
-الإجمالي
-</th>
+<th>المنتج</th>
+<th>الخيارات</th>
+<th>الكمية</th>
+<th>سعر الوحدة</th>
+<th>الإجمالي</th>
 
 </tr>
 
@@ -7334,7 +9634,6 @@ ${escapeHTML(item.currency || totals.currency || "")}
 </td>
 
 </tr>
-
 `
 )
 .join("")
@@ -7423,11 +9722,11 @@ margin-top:25px;
 color:#666
 "
 >
-شكراً لتسوقكم من متجر عُمراء
+شكراً لتسوقكم من
+${escapeHTML(storeFullName())}
 </div>
 
 </div>
-
 `;
 
 }
@@ -7467,7 +9766,7 @@ window.open(
 if(!popup){
 
 alert(
-"المتصفح منع نافذة الطباعة. اسمح بالنوافذ المنبثقة ثم حاول مرة أخرى."
+"المتصفح منع نافذة الطباعة."
 );
 
 return;
@@ -7489,7 +9788,7 @@ dir="rtl"
 <meta charset="UTF-8">
 
 <title>
-فاتورة عُمراء #${currentInvoiceData.invoice_number || ""}
+فاتورة ${storeName()} #${currentInvoiceData.invoice_number || ""}
 </title>
 
 <link
@@ -7550,10 +9849,6 @@ font-size:12px;
 line-height:1.9;
 }
 
-.invoice-table-wrap{
-overflow:visible;
-}
-
 .invoice-table{
 width:100%;
 border-collapse:collapse;
@@ -7610,11 +9905,14 @@ ${sheet.outerHTML}
 
 <script>
 
-window.onload = function(){
+window.onload =
+function(){
 
 setTimeout(
 function(){
+
 window.print();
+
 },
 400
 );
@@ -7626,7 +9924,6 @@ window.print();
 </body>
 
 </html>
-
 `);
 
 
@@ -7635,9 +9932,9 @@ popup.document.close();
 }
 
 
-/* =========================================================
+/* =====================================================
    REVIEWS DISPLAY
-========================================================= */
+===================================================== */
 
 function renderReviews(){
 
@@ -7666,18 +9963,24 @@ review =>
 <div class="review-stars">
 
 ${
-"★".repeat(
-Number(review.rating || 0)
+"★"
+.repeat(
+Number(
+review.rating || 0
+)
 )
 }
 
 ${
-"☆".repeat(
+"☆"
+.repeat(
 Math.max(
 0,
 5
 -
-Number(review.rating || 0)
+Number(
+review.rating || 0
+)
 )
 )
 }
@@ -7728,9 +10031,9 @@ review.is_verified_purchase
 }
 
 
-/* =========================================================
+/* =====================================================
    NOTIFICATIONS
-========================================================= */
+===================================================== */
 
 function renderNotifications(){
 
@@ -7840,95 +10143,9 @@ $("notificationDot")
 }
 
 
-document.addEventListener(
-"click",
-event => {
-
-const panel =
-$("notificationsPanel");
-
-
-const button =
-event.target.closest(
-".round-btn"
-);
-
-
-if(
-!panel.contains(event.target)
-&&
-!button
-){
-
-panel.classList.remove(
-"show"
-);
-
-}
-
-}
-);
-
-
-/* =========================================================
-   SKELETON
-========================================================= */
-
-function renderSkeletons(){
-
-if(
-generalSettings.featureSkel
-!== true
-){
-
-return;
-
-}
-
-
-$("productsArea")
-.innerHTML = `
-<div class="category-group">
-
-<div class="product-row">
-
-${
-Array(5)
-.fill(0)
-.map(
-() =>
-`
-<div class="skeleton-card">
-
-<div
-class="skeleton skeleton-image"
-></div>
-
-<div
-class="skeleton skeleton-line"
-></div>
-
-<div
-class="skeleton skeleton-line"
-></div>
-
-</div>
-`
-)
-.join("")
-}
-
-</div>
-
-</div>
-`;
-
-}
-
-
-/* =========================================================
+/* =====================================================
    START
-========================================================= */
+===================================================== */
 
 async function initializeStore(){
 
@@ -7938,9 +10155,6 @@ $("cartCount")
 
 
 await fetchSettings();
-
-
-renderSkeletons();
 
 
 await Promise.all([
@@ -7965,10 +10179,11 @@ saveCart();
 
 client
 .channel(
-"omara-live"
+"alshuaibe-live"
 )
 
 .on(
+
 "postgres_changes",
 
 {
@@ -7977,15 +10192,12 @@ schema:"public",
 table:"products"
 },
 
-async () => {
-
-await fetchProducts();
-
-}
+fetchProducts
 
 )
 
 .on(
+
 "postgres_changes",
 
 {
@@ -8005,6 +10217,7 @@ renderProducts();
 )
 
 .on(
+
 "postgres_changes",
 
 {
@@ -8024,6 +10237,7 @@ renderProducts();
 )
 
 .on(
+
 "postgres_changes",
 
 {
@@ -8037,6 +10251,7 @@ fetchNotifications
 )
 
 .on(
+
 "postgres_changes",
 
 {
@@ -8048,6 +10263,7 @@ table:"reviews"
 async () => {
 
 await fetchReviews();
+
 
 if(
 currentCustomerPhone
@@ -8067,6 +10283,7 @@ await loadCustomerOrders();
 )
 
 .on(
+
 "postgres_changes",
 
 {
@@ -8104,5 +10321,4 @@ initializeStore();
 </script>
 
 </body>
-
 </html>
