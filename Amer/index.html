@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+
+<meta
+name="viewport"
+content="width=device-width,initial-scale=1,viewport-fit=cover"
+>
 
 <title>لوحة إدارة الشعيبي</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@400;600;700&family=Markazi+Text:wght@400;600;700&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link
+href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@400;600;700&family=Markazi+Text:wght@400;600;700&family=Tajawal:wght@400;500;700;900&display=swap"
+rel="stylesheet"
+>
 
 <style>
+
 :root{
 --cream:#F8EACB;
 --deep:#F1DDA6;
@@ -20,232 +30,1200 @@
 --danger:#9B3A2E;
 --ok:#4C6B3E;
 --blue:#2C5A82;
---shadow:0 10px 30px rgba(32,48,28,.1)
+--shadow:0 10px 30px rgba(32,48,28,.10)
 }
-*{box-sizing:border-box}
-html,body{margin:0;padding:0;max-width:100%;overflow-x:hidden}
-body{background:var(--cream);color:var(--ink);font-family:Tajawal,sans-serif;min-height:100vh}
-button,input,textarea,select{font:inherit}
-button{cursor:pointer}
-input,textarea,select{
-width:100%;padding:11px;border:1px solid var(--line);
-border-radius:10px;background:#fff;color:var(--ink)
+
+*{
+box-sizing:border-box
 }
-textarea{min-height:90px;resize:vertical}
-label{display:block;font-size:12px;font-weight:700;margin:11px 0 5px;color:var(--soft)}
-.btn{border:0;border-radius:11px;padding:11px 16px;background:var(--ink);color:var(--cream);font-weight:700}
-.btn.out{background:transparent;color:var(--ink);border:1px solid var(--ink)}
-.btn.red{background:var(--danger);color:#fff}
-.btn.gold{background:var(--gold);color:#fff}
-.btn.green{background:var(--ok);color:#fff}
-.btn.blue{background:var(--blue);color:#fff}
-.btn.sm{padding:7px 11px;font-size:12px}
-.btn:disabled{opacity:.5;cursor:not-allowed}
-.hidden{display:none!important}
-.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:20px;box-shadow:var(--shadow)}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-.hint{font-size:11px;color:var(--soft)}
-.empty{text-align:center;padding:35px;color:var(--soft)}
 
-#login{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
-.loginbox{width:min(430px,100%);background:var(--card);padding:28px;border-radius:24px;border:1px solid var(--line);box-shadow:var(--shadow)}
-.logo{font-family:"Aref Ruqaa";font-size:42px;text-align:center;font-weight:700}
-
-header{position:sticky;top:0;z-index:50;background:rgba(255,251,240,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-.head{max-width:1280px;margin:auto;padding:11px 16px;display:flex;align-items:center;gap:10px}
-.brand{font-family:"Aref Ruqaa";font-size:27px;font-weight:700;white-space:nowrap}
-.nav{display:flex;gap:6px;overflow:auto;flex:1}
-.nav button{white-space:nowrap;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:8px 13px;font-weight:700;color:var(--soft)}
-.nav button.active{background:var(--ink);color:var(--cream)}
-
-main{max-width:1280px;margin:auto;padding:22px 16px 60px}
-.stat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;text-align:center}
-.stat b{display:block;font-size:35px;color:var(--gold);margin-top:7px}
-
-.tablewrap{overflow:auto;border-radius:15px}
-table{width:100%;min-width:900px;border-collapse:collapse;background:var(--card)}
-th,td{padding:10px;border-bottom:1px solid var(--line);font-size:13px;text-align:right}
-th{background:var(--deep)}
-.thumb{width:50px;height:50px;object-fit:cover;border-radius:8px}
-
-.imgs{display:flex;gap:7px;flex-wrap:wrap}
-.imgs div{position:relative}
-.imgs img{width:72px;height:72px;object-fit:cover;border-radius:9px}
-.imgs button{position:absolute;top:-5px;left:-5px;border:0;border-radius:50%;background:var(--danger);color:#fff;width:21px;height:21px}
-
-.pill{display:inline-flex;align-items:center;gap:7px;padding:6px 10px;border:1px solid var(--line);border-radius:999px;margin:3px;background:var(--cream)}
-.pill button{border:0;background:none;color:var(--danger)}
-
-.toast{
-position:fixed;left:50%;bottom:20px;transform:translateX(-50%);
-background:var(--ink);color:var(--cream);padding:11px 20px;border-radius:999px;
-opacity:0;z-index:2000;transition:.2s
+html,
+body{
+margin:0;
+padding:0;
+max-width:100%;
+overflow-x:hidden
 }
-.toast.show{opacity:1;bottom:32px}
 
-.push-status{
-padding:12px;
-border-radius:12px;
-margin:12px 0;
+body{
+background:
+radial-gradient(
+1200px 500px at 50% -10%,
+var(--deep),
+transparent 60%
+),
+var(--cream);
+color:var(--ink);
+font-family:Tajawal,sans-serif;
+min-height:100vh
+}
+
+button,
+input,
+textarea,
+select{
+font:inherit
+}
+
+button{
+cursor:pointer
+}
+
+input,
+textarea,
+select{
+width:100%;
+padding:11px;
+border:1px solid var(--line);
+border-radius:10px;
+background:#fff;
+color:var(--ink)
+}
+
+textarea{
+min-height:90px;
+resize:vertical
+}
+
+label{
+display:block;
 font-size:12px;
 font-weight:700;
+margin:11px 0 5px;
+color:var(--soft)
+}
+
+.btn{
+border:0;
+border-radius:11px;
+padding:11px 16px;
+background:var(--ink);
+color:var(--cream);
+font-weight:700
+}
+
+.btn.out{
+background:transparent;
+color:var(--ink);
+border:1px solid var(--ink)
+}
+
+.btn.red{
+background:var(--danger);
+color:#fff
+}
+
+.btn.gold{
+background:var(--gold);
+color:#fff
+}
+
+.btn.green{
+background:var(--ok);
+color:#fff
+}
+
+.btn.blue{
+background:var(--blue);
+color:#fff
+}
+
+.btn.sm{
+padding:7px 11px;
+font-size:12px
+}
+
+.btn:disabled{
+opacity:.5;
+cursor:not-allowed
+}
+
+.hidden{
+display:none!important
+}
+
+.card{
+background:var(--card);
+border:1px solid var(--line);
+border-radius:18px;
+padding:20px;
+margin-bottom:20px;
+box-shadow:var(--shadow)
+}
+
+.grid2{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px
+}
+
+.grid3{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:12px
+}
+
+.grid4{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:12px
+}
+
+.actions{
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+margin-top:14px
+}
+
+.hint{
+font-size:11px;
+color:var(--soft);
+line-height:1.7
+}
+
+.empty{
+text-align:center;
+padding:35px;
+color:var(--soft)
+}
+
+hr{
+border:0;
+border-top:1px solid var(--line);
+margin:22px 0
+}
+
+
+/* LOGIN */
+
+#login{
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:20px
+}
+
+.loginbox{
+width:min(430px,100%);
+background:var(--card);
+padding:28px;
+border-radius:24px;
+border:1px solid var(--line);
+box-shadow:var(--shadow)
+}
+
+.logo{
+font-family:"Aref Ruqaa";
+font-size:42px;
+text-align:center;
+font-weight:700
+}
+
+
+/* HEADER */
+
+header{
+position:sticky;
+top:0;
+z-index:50;
+background:rgba(255,251,240,.95);
+backdrop-filter:blur(12px);
+border-bottom:1px solid var(--line)
+}
+
+.head{
+max-width:1380px;
+margin:auto;
+padding:11px 16px;
+display:flex;
+align-items:center;
+gap:10px
+}
+
+.brand-wrap{
+display:flex;
+align-items:center;
+gap:8px;
+flex:0 0 auto
+}
+
+.admin-brand-logo{
+width:42px;
+height:42px;
+object-fit:contain;
+border-radius:10px;
 display:none
 }
-.push-status.ok{display:block;background:#D6E7CC;color:var(--ok)}
-.push-status.error{display:block;background:#F0D5D0;color:var(--danger)}
+
+.brand{
+font-family:"Aref Ruqaa";
+font-size:27px;
+font-weight:700;
+white-space:nowrap
+}
+
+.nav{
+display:flex;
+gap:6px;
+overflow:auto;
+flex:1;
+scrollbar-width:none
+}
+
+.nav::-webkit-scrollbar{
+display:none
+}
+
+.nav button{
+white-space:nowrap;
+border:1px solid var(--line);
+background:var(--card);
+border-radius:999px;
+padding:8px 13px;
+font-weight:700;
+color:var(--soft)
+}
+
+.nav button.active{
+background:var(--ink);
+color:var(--cream)
+}
+
+main{
+max-width:1380px;
+margin:auto;
+padding:22px 16px 60px
+}
+
+
+/* STATS */
+
+.stat{
+background:var(--card);
+border:1px solid var(--line);
+border-radius:16px;
+padding:18px;
+text-align:center
+}
+
+.stat b{
+display:block;
+font-size:35px;
+color:var(--gold);
+margin-top:7px
+}
+
+
+/* TABLES */
+
+.tablewrap{
+overflow:auto;
+border-radius:15px
+}
+
+table{
+width:100%;
+min-width:900px;
+border-collapse:collapse;
+background:var(--card)
+}
+
+th,
+td{
+padding:10px;
+border-bottom:1px solid var(--line);
+font-size:13px;
+text-align:right
+}
+
+th{
+background:var(--deep)
+}
+
+.thumb{
+width:50px;
+height:50px;
+object-fit:cover;
+border-radius:8px
+}
+
+
+/* IMAGES */
+
+.imgs{
+display:flex;
+gap:7px;
+flex-wrap:wrap;
+margin-top:10px
+}
+
+.imgs div{
+position:relative
+}
+
+.imgs img,
+.identity-preview{
+width:90px;
+height:90px;
+object-fit:contain;
+border-radius:12px;
+border:1px solid var(--line);
+background:#fff;
+padding:4px
+}
+
+.imgs button{
+position:absolute;
+top:-5px;
+left:-5px;
+border:0;
+border-radius:50%;
+background:var(--danger);
+color:#fff;
+width:21px;
+height:21px
+}
+
+.preview-box{
+display:flex;
+gap:12px;
+align-items:center;
+padding:12px;
+border:1px dashed var(--line);
+border-radius:14px;
+background:var(--cream);
+margin-top:10px
+}
+
+.preview-box strong{
+display:block;
+margin-bottom:3px
+}
+
+
+/* PILLS */
+
+.pill{
+display:inline-flex;
+align-items:center;
+gap:7px;
+padding:6px 10px;
+border:1px solid var(--line);
+border-radius:999px;
+margin:3px;
+background:var(--cream)
+}
+
+.pill button{
+border:0;
+background:none;
+color:var(--danger)
+}
+
+
+/* TOAST */
+
+.toast{
+position:fixed;
+left:50%;
+bottom:20px;
+transform:translateX(-50%);
+background:var(--ink);
+color:var(--cream);
+padding:11px 20px;
+border-radius:999px;
+opacity:0;
+z-index:3000;
+transition:.2s;
+text-align:center;
+max-width:90vw
+}
+
+.toast.show{
+opacity:1;
+bottom:32px
+}
+
 
 /* ORDER MODAL */
+
 .admin-scrim{
-position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:900;
-display:none;backdrop-filter:blur(4px)
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.55);
+z-index:900;
+display:none;
+backdrop-filter:blur(4px)
 }
-.admin-scrim.show{display:block}
+
+.admin-scrim.show{
+display:block
+}
+
 .order-modal{
-position:fixed;z-index:901;top:50%;left:50%;transform:translate(-50%,-50%);
-width:min(900px,95vw);max-height:92vh;overflow:auto;background:var(--card);
-border-radius:22px;padding:22px;box-shadow:0 30px 80px rgba(0,0,0,.3);display:none
+position:fixed;
+z-index:901;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:min(900px,95vw);
+max-height:92vh;
+overflow:auto;
+background:var(--card);
+border-radius:22px;
+padding:22px;
+box-shadow:0 30px 80px rgba(0,0,0,.3);
+display:none
 }
-.order-modal.show{display:block}
-.modal-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:15px}
-.modal-head h2{margin:0}
-.order-info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
-.order-info-box{background:var(--cream);border:1px solid var(--line);border-radius:13px;padding:12px}
-.order-info-box small{display:block;font-size:11px;color:var(--soft);margin-bottom:4px}
 
-.order-product{display:flex;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line)}
-.order-product:last-child{border-bottom:0}
-.order-product img{width:65px;height:65px;object-fit:cover;border-radius:10px;background:var(--cream)}
+.order-modal.show{
+display:block
+}
 
-.status-badge{display:inline-block;padding:5px 10px;border-radius:999px;font-size:11px;font-weight:700}
-.status-pending{background:#F3E3B8;color:#7A5B10}
-.status-confirmed{background:#D6E7CC;color:#456A39}
-.status-processing{background:#E5DBF4;color:#644A83}
-.status-shipped{background:#CFE1F0;color:#2C5A82}
-.status-delivered{background:#CFE8D2;color:#35613D}
-.status-cancelled,.status-refunded{background:#F0D5D0;color:#8B3328}
+.modal-head{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+margin-bottom:15px
+}
+
+.modal-head h2{
+margin:0
+}
+
+.order-info-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:9px
+}
+
+.order-info-box{
+background:var(--cream);
+border:1px solid var(--line);
+border-radius:13px;
+padding:12px
+}
+
+.order-info-box small{
+display:block;
+font-size:11px;
+color:var(--soft);
+margin-bottom:4px
+}
+
+.order-product{
+display:flex;
+gap:12px;
+align-items:center;
+padding:11px 0;
+border-bottom:1px solid var(--line)
+}
+
+.order-product:last-child{
+border-bottom:0
+}
+
+.order-product img{
+width:65px;
+height:65px;
+object-fit:cover;
+border-radius:10px;
+background:var(--cream)
+}
+
 
 /* INVOICE */
-.invoice-preview{background:#fff;color:#222;padding:25px;border-radius:15px}
-.invoice-head{display:flex;justify-content:space-between;gap:15px;align-items:flex-start;padding-bottom:15px;border-bottom:2px solid #222}
-.invoice-brand{font-family:"Aref Ruqaa";font-size:36px;font-weight:700}
-.invoice-title{font-size:23px;font-weight:900}
-.invoice-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:15px 0}
-.invoice-box{border:1px solid #ddd;padding:12px;border-radius:10px;font-size:12px;line-height:1.9}
-.invoice-table-wrap{overflow:auto}
-.invoice-table{width:100%;min-width:600px;border-collapse:collapse;margin-top:12px}
-.invoice-table th,.invoice-table td{border:1px solid #ddd;padding:8px;font-size:12px}
-.invoice-table th{background:#f3ecdc}
-.invoice-totals{width:min(360px,100%);margin:15px 0 0 auto}
-.invoice-totals div{display:flex;justify-content:space-between;gap:15px;padding:7px 0;border-bottom:1px solid #ddd}
-.invoice-totals .grand{border-top:2px solid #222;font-size:18px;font-weight:900}
+
+.invoice-preview{
+background:#fff;
+color:#222;
+padding:25px;
+border-radius:15px
+}
+
+.invoice-head{
+display:flex;
+justify-content:space-between;
+gap:15px;
+align-items:flex-start;
+padding-bottom:15px;
+border-bottom:2px solid #222
+}
+
+.invoice-logo{
+width:80px;
+height:80px;
+object-fit:contain;
+display:none;
+margin-bottom:5px
+}
+
+.invoice-brand{
+font-family:"Aref Ruqaa";
+font-size:36px;
+font-weight:700
+}
+
+.invoice-brand-en{
+font-size:10px;
+letter-spacing:.15em;
+direction:ltr
+}
+
+.invoice-title{
+font-size:23px;
+font-weight:900
+}
+
+.invoice-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+margin:15px 0
+}
+
+.invoice-box{
+border:1px solid #ddd;
+padding:12px;
+border-radius:10px;
+font-size:12px;
+line-height:1.9
+}
+
+.invoice-table-wrap{
+overflow:auto
+}
+
+.invoice-table{
+width:100%;
+min-width:600px;
+border-collapse:collapse;
+margin-top:12px
+}
+
+.invoice-table th,
+.invoice-table td{
+border:1px solid #ddd;
+padding:8px;
+font-size:12px
+}
+
+.invoice-table th{
+background:#f3ecdc
+}
+
+.invoice-totals{
+width:min(360px,100%);
+margin:15px 0 0 auto
+}
+
+.invoice-totals div{
+display:flex;
+justify-content:space-between;
+gap:15px;
+padding:7px 0;
+border-bottom:1px solid #ddd
+}
+
+.invoice-totals .grand{
+border-top:2px solid #222;
+font-size:18px;
+font-weight:900
+}
+
+
+/* IDENTITY */
+
+.identity-demo{
+min-height:230px;
+border-radius:20px;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+background:
+radial-gradient(circle,#fff9e8,var(--deep));
+border:1px solid var(--line);
+overflow:hidden;
+position:relative
+}
+
+.identity-demo img{
+max-width:80%;
+max-height:180px;
+object-fit:contain
+}
+
+.identity-demo-text{
+font-family:"Aref Ruqaa";
+font-size:55px;
+font-weight:700
+}
+
+
+/* MOBILE */
 
 @media(max-width:850px){
-.grid2,.grid3,.grid4,.order-info-grid,.invoice-grid{grid-template-columns:1fr}
-.head{flex-wrap:wrap;padding:8px 10px}
-.nav{order:3;width:100%}
-main{padding:14px 10px 45px}
-.card{padding:14px}
-.order-modal{padding:14px}
-.invoice-preview{padding:13px}
+
+.grid2,
+.grid3,
+.grid4,
+.order-info-grid,
+.invoice-grid{
+grid-template-columns:1fr
 }
+
+.head{
+flex-wrap:wrap;
+padding:8px 10px
+}
+
+.nav{
+order:3;
+width:100%
+}
+
+main{
+padding:14px 10px 45px
+}
+
+.card{
+padding:14px
+}
+
+.order-modal{
+padding:14px
+}
+
+.invoice-preview{
+padding:13px
+}
+
+}
+
 </style>
+
 </head>
+
 
 <body>
 
+
+<!-- LOGIN -->
+
 <div id="login">
+
 <div class="loginbox">
 
-<div class="logo">الشعيبي</div>
-
-<h2 style="text-align:center">لوحة الإدارة</h2>
-
-<label>البريد الإلكتروني</label>
-<input id="email" type="email" value="omara1store@gmail.com">
-
-<label>كلمة المرور</label>
-<input id="password" type="password" onkeydown="if(event.key==='Enter')login()">
-
-<div id="loginMsg" style="color:var(--danger);font-size:12px;margin:8px 0"></div>
-
-<button class="btn" style="width:100%" onclick="login()">دخول</button>
-
-</div>
+<div
+id="loginStoreName"
+class="logo"
+>
+الشعيبي
 </div>
 
+<h2 style="text-align:center">
+لوحة الإدارة
+</h2>
 
-<div id="app" class="hidden">
+<label>
+البريد الإلكتروني
+</label>
+
+<input
+id="email"
+type="email"
+value="omara1store@gmail.com"
+>
+
+<label>
+كلمة المرور
+</label>
+
+<input
+id="password"
+type="password"
+onkeydown="if(event.key==='Enter')login()"
+>
+
+<div
+id="loginMsg"
+style="
+color:var(--danger);
+font-size:12px;
+margin:8px 0
+"
+></div>
+
+<button
+class="btn"
+style="width:100%"
+onclick="login()"
+>
+دخول
+</button>
+
+</div>
+
+</div>
+
+
+<!-- APP -->
+
+<div
+id="app"
+class="hidden"
+>
 
 <header>
+
 <div class="head">
 
-<div class="brand">الشعيبي</div>
+<div class="brand-wrap">
+
+<img
+id="adminHeaderLogo"
+class="admin-brand-logo"
+alt="شعار المتجر"
+>
+
+<div
+id="adminHeaderName"
+class="brand"
+>
+الشعيبي
+</div>
+
+</div>
+
 
 <div class="nav">
 
-<button class="active" onclick="tab('home',this)">الرئيسية</button>
-<button onclick="tab('products',this)">المنتجات</button>
-<button onclick="tab('orders',this)">الطلبات</button>
-<button onclick="tab('categories',this)">الأقسام</button>
-<button onclick="tab('coupons',this)">الكوبونات</button>
-<button onclick="tab('reviews',this)">التقييمات</button>
-<button onclick="tab('notifications',this)">الإشعارات</button>
-<button onclick="tab('payment',this)">الدفع</button>
-<button onclick="tab('ads',this)">الإعلانات</button>
-<button onclick="tab('design',this)">التصميم</button>
-<button onclick="tab('settings',this)">الإعدادات</button>
+<button
+class="active"
+onclick="tab('home',this)"
+>
+الرئيسية
+</button>
+
+<button onclick="tab('identity',this)">
+هوية المتجر
+</button>
+
+<button onclick="tab('products',this)">
+المنتجات
+</button>
+
+<button onclick="tab('orders',this)">
+الطلبات
+</button>
+
+<button onclick="tab('categories',this)">
+الأقسام
+</button>
+
+<button onclick="tab('coupons',this)">
+الكوبونات
+</button>
+
+<button onclick="tab('reviews',this)">
+التقييمات
+</button>
+
+<button onclick="tab('notifications',this)">
+الإشعارات
+</button>
+
+<button onclick="tab('payment',this)">
+الدفع
+</button>
+
+<button onclick="tab('ads',this)">
+الإعلانات
+</button>
+
+<button onclick="tab('design',this)">
+التصميم
+</button>
+
+<button onclick="tab('settings',this)">
+الإعدادات
+</button>
 
 </div>
 
-<button class="btn out sm" onclick="logout()">خروج</button>
+
+<button
+class="btn out sm"
+onclick="logout()"
+>
+خروج
+</button>
 
 </div>
+
 </header>
 
 
 <main>
 
-<section id="home" class="page">
+
+<!-- HOME -->
+
+<section
+id="home"
+class="page"
+>
 
 <div class="grid4">
-<div class="stat">المنتجات<b id="sProducts">0</b></div>
-<div class="stat">الطلبات<b id="sOrders">0</b></div>
-<div class="stat">المخزون المنخفض<b id="sLow">0</b></div>
-<div class="stat">الوحدات بالمخزون<b id="sStock">0</b></div>
+
+<div class="stat">
+المنتجات
+<b id="sProducts">0</b>
 </div>
 
-<div class="card" style="margin-top:20px">
-<h2>لوحة التحكم الشاملة</h2>
-<p>إدارة جميع محتويات متجر الشعيبي من مكان واحد.</p>
+<div class="stat">
+الطلبات
+<b id="sOrders">0</b>
+</div>
+
+<div class="stat">
+المخزون المنخفض
+<b id="sLow">0</b>
+</div>
+
+<div class="stat">
+الوحدات بالمخزون
+<b id="sStock">0</b>
+</div>
+
+</div>
+
+
+<div
+class="card"
+style="margin-top:20px"
+>
+
+<h2>
+لوحة التحكم
+</h2>
+
+<p>
+إدارة متجر
+<strong id="dashboardStoreName">
+الشعيبي
+</strong>
+من مكان واحد.
+</p>
+
+<div class="actions">
+
+<a
+class="btn"
+href="../"
+target="_blank"
+>
+فتح المتجر
+</a>
+
+<button
+class="btn gold"
+onclick="tab('identity',document.querySelector('[onclick*=identity]'))"
+>
+تعديل هوية المتجر
+</button>
+
+</div>
+
 </div>
 
 </section>
 
 
-<section id="products" class="page hidden">
+<!-- STORE IDENTITY -->
+
+<section
+id="identity"
+class="page hidden"
+>
 
 <div class="card">
 
-<h2>إضافة / تعديل منتج</h2>
+<h2>
+هوية المتجر
+</h2>
 
-<input id="pid" type="hidden">
+<p class="hint">
+من هنا تستطيع تغيير اسم المتجر والشعار وشاشة البداية في أي وقت بدون تعديل كود المتجر.
+</p>
 
-<div class="grid2">
-<div><label>اسم المنتج</label><input id="pname"></div>
-<div><label>الرابط المختصر Slug</label><input id="pslug"></div>
+
+<div class="grid3">
+
+<div>
+
+<label>
+اسم المتجر بالعربي
+</label>
+
+<input
+id="storeName"
+placeholder="الشعيبي"
+>
+
 </div>
 
-<label>القسم</label>
+
+<div>
+
+<label>
+اسم المتجر بالإنجليزي
+</label>
+
+<input
+id="storeNameEn"
+placeholder="ALSHUAIIBE STORE"
+>
+
+</div>
+
+
+<div>
+
+<label>
+النص الصغير فوق العنوان
+</label>
+
+<input
+id="storeEyebrow"
+placeholder="متجر الشعيبي"
+>
+
+</div>
+
+</div>
+
+
+<hr>
+
+
+<h3>
+الشعار الرئيسي
+</h3>
+
+<label>
+رفع شعار المتجر
+</label>
+
+<input
+id="storeLogoFile"
+type="file"
+accept="image/*"
+>
+
+<label>
+رابط الشعار الحالي
+</label>
+
+<input
+id="storeLogoUrl"
+placeholder="https://..."
+>
+
+<div class="preview-box">
+
+<img
+id="storeLogoPreview"
+class="identity-preview"
+alt="معاينة الشعار"
+>
+
+<div>
+
+<strong>
+الشعار الرئيسي
+</strong>
+
+<div class="hint">
+سيظهر في أعلى المتجر والفواتير.
+</div>
+
+</div>
+
+</div>
+
+
+<hr>
+
+
+<h3>
+شاشة بداية المتجر</h3>
+
+<label>
+رفع شعار شاشة البداية
+</label>
+
+<input
+id="splashLogoFile"
+type="file"
+accept="image/*"
+>
+
+<label>
+رابط شعار شاشة البداية
+</label>
+
+<input
+id="splashLogoUrl"
+placeholder="إذا تركته فارغًا سيستخدم الشعار الرئيسي"
+>
+
+
+<div class="grid2">
+
+<div>
+
+<label>
+عرض الشعار في شاشة البداية بالبكسل
+</label>
+
+<input
+id="splashLogoWidth"
+type="number"
+min="120"
+max="700"
+value="330"
+>
+
+<div class="hint">
+مثال: 250 صغير — 330 متوسط — 450 كبير.
+</div>
+
+</div>
+
+
+<div>
+
+<label>
+مدة شاشة البداية بالمللي ثانية
+</label>
+
+<input
+id="splashDuration"
+type="number"
+min="700"
+max="10000"
+value="2300"
+>
+
+<div class="hint">
+1000 = ثانية واحدة، 2500 = ثانيتان ونصف.
+</div>
+
+</div>
+
+</div>
+
+
+<div class="identity-demo">
+
+<img
+id="splashLogoPreview"
+style="display:none"
+alt="شعار شاشة البداية"
+>
+
+<div
+id="splashTextPreview"
+class="identity-demo-text"
+>
+الشعيبي
+</div>
+
+</div>
+
+
+<div class="actions">
+
+<button
+id="saveIdentityBtn"
+class="btn gold"
+onclick="saveIdentity()"
+>
+حفظ هوية المتجر
+</button>
+
+<button
+class="btn out"
+onclick="previewIdentity()"
+>
+تحديث المعاينة
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PRODUCTS -->
+
+<section
+id="products"
+class="page hidden"
+>
+
+<div class="card">
+
+<h2>
+إضافة / تعديل منتج
+</h2>
+
+<input
+id="pid"
+type="hidden"
+>
+
+<div class="grid2">
+
+<div>
+<label>اسم المنتج</label>
+<input id="pname">
+</div>
+
+<div>
+<label>الرابط المختصر Slug</label>
+<input id="pslug">
+</div>
+
+</div>
+
+
+<label>
+القسم
+</label>
+
 <select id="pcategory"></select>
 
-<label>الوصف</label>
+
+<label>
+الوصف
+</label>
+
 <textarea id="pdesc"></textarea>
 
-<label>الوصف المختصر</label>
+
+<label>
+الوصف المختصر
+</label>
+
 <textarea id="pshort"></textarea>
+
 
 <div class="grid4">
 
@@ -260,7 +1238,11 @@ main{padding:14px 10px 45px}
 </div>
 
 <div>
-<label>العملة</label>
+
+<label>
+العملة
+</label>
+
 <select id="pcurrency">
 <option>ر.ي</option>
 <option>ر.س</option>
@@ -268,6 +1250,7 @@ main{padding:14px 10px 45px}
 <option>د.إ</option>
 <option>USD</option>
 </select>
+
 </div>
 
 <div>
@@ -276,6 +1259,7 @@ main{padding:14px 10px 45px}
 </div>
 
 </div>
+
 
 <div class="grid3">
 
@@ -296,47 +1280,102 @@ main{padding:14px 10px 45px}
 
 </div>
 
+
 <div class="grid2">
-<div><label>الألوان</label><input id="pcolors" placeholder="أسود، ذهبي"></div>
-<div><label>الأحجام</label><input id="psizes" placeholder="50ml، 100ml"></div>
+
+<div>
+<label>الألوان</label>
+<input id="pcolors" placeholder="أسود، ذهبي، كهرماني">
 </div>
+
+<div>
+<label>الأحجام</label>
+<input id="psizes" placeholder="50ml، 100ml">
+</div>
+
+</div>
+
 
 <div class="grid3">
 
 <div>
-<label>الحالة</label>
+
+<label>
+الحالة
+</label>
+
 <select id="pactive">
 <option value="true">ظاهر</option>
 <option value="false">مخفي</option>
 </select>
+
 </div>
 
+
 <div>
-<label>منتج مميز</label>
+
+<label>
+منتج مميز
+</label>
+
 <select id="pfeatured">
 <option value="false">لا</option>
 <option value="true">نعم</option>
 </select>
+
 </div>
 
+
 <div>
-<label>جديد</label>
+
+<label>
+جديد
+</label>
+
 <select id="pnew">
 <option value="true">نعم</option>
 <option value="false">لا</option>
 </select>
-</div>
 
 </div>
 
-<label>صور المنتج</label>
-<input id="pfiles" type="file" accept="image/*" multiple>
+</div>
 
-<div id="imagePreview" class="imgs"></div>
+
+<label>
+صور المنتج
+</label>
+
+<input
+id="pfiles"
+type="file"
+accept="image/*"
+multiple
+>
+
+<div
+id="imagePreview"
+class="imgs"
+></div>
+
 
 <div class="actions">
-<button id="saveProductBtn" class="btn" onclick="saveProduct()">حفظ المنتج</button>
-<button class="btn out" onclick="resetProduct()">إلغاء / جديد</button>
+
+<button
+id="saveProductBtn"
+class="btn"
+onclick="saveProduct()"
+>
+حفظ المنتج
+</button>
+
+<button
+class="btn out"
+onclick="resetProduct()"
+>
+إلغاء / جديد
+</button>
+
 </div>
 
 </div>
@@ -344,12 +1383,16 @@ main{padding:14px 10px 45px}
 
 <div class="card">
 
-<h2>جميع المنتجات</h2>
+<h2>
+جميع المنتجات
+</h2>
 
 <div class="tablewrap">
+
 <table>
 
 <thead>
+
 <tr>
 <th>صورة</th>
 <th>الاسم</th>
@@ -360,11 +1403,13 @@ main{padding:14px 10px 45px}
 <th>الحالة</th>
 <th>تحكم</th>
 </tr>
+
 </thead>
 
 <tbody id="productsBody"></tbody>
 
 </table>
+
 </div>
 
 </div>
@@ -372,23 +1417,48 @@ main{padding:14px 10px 45px}
 </section>
 
 
-<section id="orders" class="page hidden">
+<!-- ORDERS -->
+
+<section
+id="orders"
+class="page hidden"
+>
 
 <div class="card">
 
-<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+<div
+style="
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+flex-wrap:wrap
+"
+>
 
-<h2 style="margin:0">إدارة الطلبات</h2>
+<h2 style="margin:0">
+إدارة الطلبات
+</h2>
 
-<button class="btn sm" onclick="loadOrders()">↻ تحديث</button>
+<button
+class="btn sm"
+onclick="loadOrders()"
+>
+↻ تحديث
+</button>
 
 </div>
 
-<div class="tablewrap" style="margin-top:15px">
+
+<div
+class="tablewrap"
+style="margin-top:15px"
+>
 
 <table>
 
 <thead>
+
 <tr>
 <th>الطلب</th>
 <th>العميل</th>
@@ -399,6 +1469,7 @@ main{padding:14px 10px 45px}
 <th>التاريخ</th>
 <th>تحكم</th>
 </tr>
+
 </thead>
 
 <tbody id="ordersBody"></tbody>
@@ -412,13 +1483,23 @@ main{padding:14px 10px 45px}
 </section>
 
 
-<section id="categories" class="page hidden">
+<!-- CATEGORIES -->
+
+<section
+id="categories"
+class="page hidden"
+>
 
 <div class="card">
 
-<h2>الأقسام</h2>
+<h2>
+الأقسام
+</h2>
 
-<input id="catId" type="hidden">
+<input
+id="catId"
+type="hidden"
+>
 
 <div class="grid3">
 
@@ -439,147 +1520,318 @@ main{padding:14px 10px 45px}
 
 </div>
 
+
 <div class="grid2">
 
 <div>
-<label>خط القسم</label>
+
+<label>
+خط القسم
+</label>
+
 <select id="catFont">
-<option value="'Aref Ruqaa',serif">عارف رقعة</option>
-<option value="'Tajawal',sans-serif">تجوال</option>
-<option value="'Cairo',sans-serif">كايرو</option>
-<option value="'Amiri',serif">أميري</option>
-<option value="'Markazi Text',serif">مركزي</option>
+
+<option value="'Aref Ruqaa',serif">
+عارف رقعة
+</option>
+
+<option value="'Tajawal',sans-serif">
+تجوال
+</option>
+
+<option value="'Cairo',sans-serif">
+كايرو
+</option>
+
+<option value="'Amiri',serif">
+أميري
+</option>
+
+<option value="'Markazi Text',serif">
+مركزي
+</option>
+
 </select>
+
 </div>
 
+
 <div>
-<label>ظاهر</label>
+
+<label>
+ظاهر
+</label>
+
 <select id="catActive">
 <option value="true">نعم</option>
 <option value="false">لا</option>
 </select>
-</div>
 
 </div>
 
-<label>وصف القسم</label>
+</div>
+
+
+<label>
+وصف القسم
+</label>
+
 <textarea id="catDesc"></textarea>
 
-<div class="actions">
-<button class="btn" onclick="saveCategory()">حفظ القسم</button>
-<button class="btn out" onclick="resetCategory()">جديد</button>
-</div>
-
-<div id="categoriesList" style="margin-top:15px"></div>
-
-</div>
-
-</section>
-
-
-<section id="coupons" class="page hidden">
-
-<div class="card">
-
-<h2>الكوبونات</h2>
-
-<input id="couponId" type="hidden">
-
-<div class="grid4">
-
-<div><label>الكود</label><input id="couponCode"></div>
-
-<div>
-<label>النوع</label>
-<select id="couponType">
-<option value="percentage">نسبة %</option>
-<option value="fixed">مبلغ ثابت</option>
-</select>
-</div>
-
-<div><label>القيمة</label><input id="couponValue" type="number"></div>
-
-<div><label>الحد الأدنى</label><input id="couponMin" type="number" value="0"></div>
-
-</div>
-
-<div class="grid3">
-
-<div><label>عدد الاستخدامات</label><input id="couponLimit" type="number"></div>
-
-<div><label>تاريخ الانتهاء</label><input id="couponExpiry" type="text" placeholder="2026-12-31"></div>
-
-<div>
-<label>فعال</label>
-<select id="couponActive">
-<option value="true">نعم</option>
-<option value="false">لا</option>
-</select>
-</div>
-
-</div>
-
-<div class="actions">
-<button class="btn" onclick="saveCoupon()">حفظ</button>
-</div>
-
-<div id="couponsList"></div>
-
-</div>
-
-</section>
-
-
-<section id="reviews" class="page hidden">
-
-<div class="card">
-<h2>آراء العملاء</h2>
-<div id="reviewsList"></div>
-</div>
-
-</section>
-
-
-<!-- PUSH NOTIFICATIONS -->
-
-<section id="notifications" class="page hidden">
-
-<div class="card">
-
-<h2>🔔 إشعارات العملاء</h2>
-
-<p class="hint">
-سيتم حفظ الإشعار داخل المتجر وإرساله أيضاً كإشعار Push للمشتركين عبر OneSignal.
-</p>
-
-<label>عنوان الإشعار</label>
-<input id="notifTitle" placeholder="مثال: عرض جديد 🔥">
-
-<label>نص الإشعار</label>
-<textarea id="notifText" placeholder="اكتب نص الإشعار الذي سيصل للعميل"></textarea>
-
-<label>رابط صورة — اختياري</label>
-<input id="notifImage" placeholder="https://...">
-
-<label>الرابط عند الضغط — اختياري</label>
-<input id="notifLink" placeholder="https://alshuaiibe.github.io">
-
-<div id="pushStatus" class="push-status"></div>
 
 <div class="actions">
 
-<button id="sendNotificationBtn" class="btn green" onclick="saveNotification()">
-🔔 إرسال الإشعار للعملاء
+<button
+class="btn"
+onclick="saveCategory()"
+>
+حفظ القسم
+</button>
+
+<button
+class="btn out"
+onclick="resetCategory()"
+>
+جديد
 </button>
 
 </div>
 
+
+<div
+id="categoriesList"
+style="margin-top:15px"
+></div>
+
 </div>
 
+</section>
+
+
+<!-- COUPONS -->
+
+<section
+id="coupons"
+class="page hidden"
+>
 
 <div class="card">
 
-<h2>الإشعارات السابقة</h2>
+<h2>
+الكوبونات
+</h2>
+
+<input
+id="couponId"
+type="hidden"
+>
+
+<div class="grid4">
+
+<div>
+<label>الكود</label>
+<input id="couponCode">
+</div>
+
+<div>
+
+<label>
+النوع
+</label>
+
+<select id="couponType">
+<option value="percentage">نسبة %</option>
+<option value="fixed">مبلغ ثابت</option>
+</select>
+
+</div>
+
+<div>
+<label>القيمة</label>
+<input id="couponValue" type="number">
+</div>
+
+<div>
+<label>الحد الأدنى</label>
+<input id="couponMin" type="number" value="0">
+</div>
+
+</div>
+
+
+<div class="grid3">
+
+<div>
+<label>عدد الاستخدامات</label>
+<input id="couponLimit" type="number">
+</div>
+
+<div>
+<label>تاريخ الانتهاء</label>
+<input id="couponExpiry" type="date">
+</div>
+
+<div>
+
+<label>
+فعال
+</label>
+
+<select id="couponActive">
+<option value="true">نعم</option>
+<option value="false">لا</option>
+</select>
+
+</div>
+
+</div>
+
+
+<div class="actions">
+
+<button
+class="btn"
+onclick="saveCoupon()"
+>
+حفظ الكوبون
+</button>
+
+</div>
+
+
+<div
+id="couponsList"
+style="margin-top:15px"
+></div>
+
+</div>
+
+</section>
+
+
+<!-- REVIEWS -->
+
+<section
+id="reviews"
+class="page hidden"
+>
+
+<div class="card">
+
+<div
+style="
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+flex-wrap:wrap
+"
+>
+
+<h2 style="margin:0">
+آراء العملاء
+</h2>
+
+<button
+class="btn sm"
+onclick="loadReviews()"
+>
+↻ تحديث
+</button>
+
+</div>
+
+<div
+id="reviewsList"
+style="margin-top:15px"
+></div>
+
+</div>
+
+</section>
+
+
+<!-- NOTIFICATIONS -->
+
+<section
+id="notifications"
+class="page hidden"
+>
+
+<div class="card">
+
+<h2>
+إرسال إشعار للعملاء
+</h2>
+
+<p class="hint">
+سيتم حفظ الإشعار داخل المتجر، ويمكنك أيضًا إرساله Push إلى الأجهزة المشتركة حتى عندما يكون الموقع مغلقًا.
+</p>
+
+<label>
+عنوان الإشعار
+</label>
+
+<input
+id="notifTitle"
+placeholder="مثال: وصل الجديد ✨"
+>
+
+<label>
+نص الإشعار
+</label>
+
+<textarea
+id="notifText"
+placeholder="اكتب نص الإشعار..."
+></textarea>
+
+<label>
+رابط صورة اختياري
+</label>
+
+<input
+id="notifImage"
+placeholder="https://..."
+>
+
+<label>
+الرابط عند الضغط على الإشعار
+</label>
+
+<input
+id="notifLink"
+placeholder="https://alshuaiibe.github.io/"
+>
+
+
+<div class="actions">
+
+<button
+id="saveNotifBtn"
+class="btn"
+onclick="saveNotification(false)"
+>
+حفظ داخل المتجر
+</button>
+
+<button
+id="pushNotifBtn"
+class="btn gold"
+onclick="saveNotification(true)"
+>
+🔔 نشر وإرسال Push
+</button>
+
+</div>
+
+
+<hr>
+
+
+<h3>
+الإشعارات السابقة
+</h3>
 
 <div id="notificationsList"></div>
 
@@ -588,30 +1840,72 @@ main{padding:14px 10px 45px}
 </section>
 
 
-<section id="payment" class="page hidden">
+<!-- PAYMENT -->
+
+<section
+id="payment"
+class="page hidden"
+>
 
 <div class="card">
 
-<h2>إعدادات الدفع</h2>
+<h2>
+إعدادات الدفع
+</h2>
 
 <div class="grid2">
-<div><label>اسم البنك للتحويل</label><input id="bankName"></div>
-<div><label>اسم صاحب الحساب</label><input id="bankHolder"></div>
+
+<div>
+<label>اسم البنك للتحويل</label>
+<input id="bankName">
 </div>
+
+<div>
+<label>اسم صاحب الحساب</label>
+<input id="bankHolder">
+</div>
+
+</div>
+
 
 <div class="grid2">
-<div><label>رقم الحساب</label><input id="bankAccount"></div>
-<div><label>IBAN</label><input id="bankIban"></div>
+
+<div>
+<label>رقم الحساب</label>
+<input id="bankAccount">
 </div>
 
-<label>تعليمات التحويل</label>
+<div>
+<label>IBAN</label>
+<input id="bankIban">
+</div>
+
+</div>
+
+
+<label>
+تعليمات التحويل
+</label>
+
 <textarea id="bankInstructions"></textarea>
 
-<label>تفاصيل الإيداع البنكي</label>
+
+<label>
+تفاصيل الإيداع البنكي
+</label>
+
 <textarea id="depositDetails"></textarea>
 
+
 <div class="actions">
-<button class="btn" onclick="savePayment()">حفظ إعدادات الدفع</button>
+
+<button
+class="btn"
+onclick="savePayment()"
+>
+حفظ إعدادات الدفع
+</button>
+
 </div>
 
 </div>
@@ -619,35 +1913,74 @@ main{padding:14px 10px 45px}
 </section>
 
 
-<section id="ads" class="page hidden">
+<!-- ADS -->
+
+<section
+id="ads"
+class="page hidden"
+>
 
 <div class="card">
 
-<h2>الإعلانات</h2>
+<h2>
+الإعلانات
+</h2>
 
-<label>تشغيل الإعلان</label>
+<label>
+تشغيل الإعلان
+</label>
+
 <select id="adEnabled">
 <option value="false">متوقف</option>
 <option value="true">يعمل</option>
 </select>
 
-<label>نوع الإعلان</label>
+
+<label>
+نوع الإعلان
+</label>
+
 <select id="adType">
 <option value="image">صورة واحدة</option>
 <option value="slider">سلايدر صور</option>
 <option value="video">فيديو</option>
 </select>
 
-<label>رابط الإعلان عند الضغط</label>
+
+<label>
+رابط الإعلان عند الضغط
+</label>
+
 <input id="adLink">
 
-<label>ملفات الإعلان</label>
-<input id="adFiles" type="file" accept="image/*,video/*" multiple>
 
-<div id="adPreview" class="imgs"></div>
+<label>
+ملفات الإعلان
+</label>
+
+<input
+id="adFiles"
+type="file"
+accept="image/*,video/*"
+multiple
+>
+
+
+<div
+id="adPreview"
+class="imgs"
+></div>
+
 
 <div class="actions">
-<button class="btn" onclick="saveAds()">حفظ الإعلان</button>
+
+<button
+class="btn"
+onclick="saveAds()"
+>
+حفظ الإعلان
+</button>
+
 </div>
 
 </div>
@@ -655,11 +1988,19 @@ main{padding:14px 10px 45px}
 </section>
 
 
-<section id="design" class="page hidden">
+<!-- DESIGN -->
+
+<section
+id="design"
+class="page hidden"
+>
 
 <div class="card">
 
-<h2>تصميم واجهة المتجر</h2>
+<h2>
+تصميم واجهة المتجر
+</h2>
+
 
 <div class="grid4">
 
@@ -685,54 +2026,143 @@ main{padding:14px 10px 45px}
 
 </div>
 
+
 <div class="grid2">
 
 <div>
-<label>عرض كرت المنتج</label>
-<input id="cardWidth" type="number" min="130" max="400">
+
+<label>
+عرض كرت المنتج
+</label>
+
+<input
+id="cardWidth"
+type="number"
+min="130"
+max="400"
+>
+
 </div>
+
 
 <div>
-<label>خط المنتجات</label>
+
+<label>
+خط المنتجات
+</label>
+
 <select id="productFont">
-<option value="'Aref Ruqaa', serif">عارف رقعة</option>
-<option value="'Tajawal', sans-serif">تجوال</option>
-<option value="'Cairo', sans-serif">كايرو</option>
-<option value="'Amiri', serif">أميري</option>
-<option value="'Markazi Text', serif">مركزي</option>
+
+<option value="'Aref Ruqaa', serif">
+عارف رقعة
+</option>
+
+<option value="'Tajawal', sans-serif">
+تجوال
+</option>
+
+<option value="'Cairo', sans-serif">
+كايرو
+</option>
+
+<option value="'Amiri', serif">
+أميري
+</option>
+
+<option value="'Markazi Text', serif">
+مركزي
+</option>
+
 </select>
-</div>
 
 </div>
 
-<label>صورة خلفية المتجر</label>
-<input id="backgroundFile" type="file" accept="image/*">
+</div>
 
-<label>رابط الخلفية الحالية</label>
+
+<label>
+صورة خلفية المتجر
+</label>
+
+<input
+id="backgroundFile"
+type="file"
+accept="image/*"
+>
+
+
+<label>
+رابط الخلفية الحالية
+</label>
+
 <input id="backgroundUrl">
 
-<label>العلامة المائية / الشعار</label>
-<input id="watermarkFile" type="file" accept="image/*">
 
-<label>رابط العلامة الحالية</label>
+<label>
+العلامة المائية
+</label>
+
+<input
+id="watermarkFile"
+type="file"
+accept="image/*"
+>
+
+
+<label>
+رابط العلامة المائية الحالية
+</label>
+
 <input id="watermarkUrl">
+
 
 <div class="grid2">
 
 <div>
-<label>شفافية الخلفية</label>
-<input id="backgroundOpacity" type="number" min="0" max="1" step=".05">
+
+<label>
+شفافية الخلفية
+</label>
+
+<input
+id="backgroundOpacity"
+type="number"
+min="0"
+max="1"
+step=".05"
+>
+
 </div>
+
 
 <div>
-<label>شفافية العلامة المائية</label>
-<input id="watermarkOpacity" type="number" min="0" max="1" step=".05">
+
+<label>
+شفافية العلامة المائية
+</label>
+
+<input
+id="watermarkOpacity"
+type="number"
+min="0"
+max="1"
+step=".05"
+>
+
 </div>
 
 </div>
+
 
 <div class="actions">
-<button class="btn" onclick="saveDesign()">حفظ التصميم</button>
+
+<button
+class="btn"
+onclick="saveDesign()"
+>
+حفظ التصميم
+</button>
+
 </div>
 
 </div>
@@ -740,163 +2170,365 @@ main{padding:14px 10px 45px}
 </section>
 
 
-<section id="settings" class="page hidden">
+<!-- SETTINGS -->
+
+<section
+id="settings"
+class="page hidden"
+>
 
 <div class="card">
 
-<h2>إعدادات متجر الشعيبي</h2>
+<h2>
+إعدادات المتجر
+</h2>
 
-<label>رقم واتساب</label>
+<label>
+رقم واتساب
+</label>
+
 <input id="whatsapp">
 
-<label>العنوان الرئيسي</label>
+
+<label>
+العنوان الرئيسي
+</label>
+
 <input id="sloganTitle">
 
-<label>الوصف الرئيسي</label>
+
+<label>
+الوصف الرئيسي
+</label>
+
 <textarea id="sloganDesc"></textarea>
 
-<label>من نحن</label>
+
+<label>
+من نحن
+</label>
+
 <textarea id="aboutText"></textarea>
 
-<label>سياسات المتجر</label>
+
+<label>
+سياسات المتجر
+</label>
+
 <textarea id="policies"></textarea>
 
-<h3>روابط التواصل</h3>
 
-<div class="grid3">
-<div><label>Instagram</label><input id="instagram"></div>
-<div><label>Facebook</label><input id="facebook"></div>
-<div><label>TikTok</label><input id="tiktok"></div>
-<div><label>X / Twitter</label><input id="twitter"></div>
-<div><label>Telegram</label><input id="telegram"></div>
-<div><label>Snapchat</label><input id="snapchat"></div>
-</div>
+<h3>
+روابط التواصل
+</h3>
 
-<h3>خصائص واجهة العميل</h3>
 
 <div class="grid3">
 
 <div>
-<label>البحث</label>
+<label>Instagram</label>
+<input id="instagram">
+</div>
+
+<div>
+<label>Facebook</label>
+<input id="facebook">
+</div>
+
+<div>
+<label>TikTok</label>
+<input id="tiktok">
+</div>
+
+<div>
+<label>X / Twitter</label>
+<input id="twitter">
+</div>
+
+<div>
+<label>Telegram</label>
+<input id="telegram">
+</div>
+
+<div>
+<label>Snapchat</label>
+<input id="snapchat">
+</div>
+
+</div>
+
+
+<h3>
+خصائص واجهة العميل
+</h3>
+
+
+<div class="grid3">
+
+<div>
+
+<label>
+البحث
+</label>
+
 <select id="enableSearch">
 <option value="true">تشغيل</option>
 <option value="false">إيقاف</option>
 </select>
+
 </div>
 
+
 <div>
-<label>الفرز</label>
+
+<label>
+الفرز
+</label>
+
 <select id="enableSort">
 <option value="true">تشغيل</option>
 <option value="false">إيقاف</option>
 </select>
+
 </div>
 
+
 <div>
-<label>المفضلة</label>
+
+<label>
+المفضلة
+</label>
+
 <select id="featureWish">
 <option value="true">تشغيل</option>
 <option value="false">إيقاف</option>
 </select>
+
 </div>
 
+
 <div>
-<label>Skeleton Loading</label>
+
+<label>
+Skeleton Loading
+</label>
+
 <select id="featureSkel">
 <option value="true">تشغيل</option>
 <option value="false">إيقاف</option>
 </select>
+
 </div>
 
+
 <div>
-<label>PWA</label>
+
+<label>
+PWA
+</label>
+
 <select id="featurePwa">
 <option value="true">تشغيل</option>
 <option value="false">إيقاف</option>
 </select>
+
 </div>
 
+
 <div>
-<label>إظهار التقييمات</label>
+
+<label>
+إظهار التقييمات
+</label>
+
 <select id="featureReviews">
 <option value="true">تشغيل</option>
 <option value="false">إيقاف</option>
 </select>
-</div>
 
 </div>
 
-<h3>SEO</h3>
+</div>
 
-<label>عنوان الصفحة</label>
+
+<h3>
+SEO
+</h3>
+
+<label>
+عنوان الصفحة
+</label>
+
 <input id="seoTitle">
 
-<label>وصف محركات البحث</label>
+
+<label>
+وصف محركات البحث
+</label>
+
 <textarea id="seoDescription"></textarea>
 
+
 <div class="actions">
-<button class="btn" onclick="saveGeneral()">حفظ جميع الإعدادات</button>
+
+<button
+class="btn"
+onclick="saveGeneral()"
+>
+حفظ جميع الإعدادات
+</button>
+
 </div>
 
 </div>
 
 </section>
 
+
 </main>
+
 </div>
 
 
 <!-- ORDER DETAILS -->
 
-<div id="orderScrim" class="admin-scrim" onclick="closeOrderDetails()"></div>
+<div
+id="orderScrim"
+class="admin-scrim"
+onclick="closeOrderDetails()"
+></div>
 
-<div id="orderModal" class="order-modal">
+
+<div
+id="orderModal"
+class="order-modal"
+>
 
 <div class="modal-head">
-<h2>تفاصيل الطلب</h2>
-<button class="btn out sm" onclick="closeOrderDetails()">✕ إغلاق</button>
+
+<h2>
+تفاصيل الطلب
+</h2>
+
+<button
+class="btn out sm"
+onclick="closeOrderDetails()"
+>
+✕ إغلاق
+</button>
+
 </div>
 
-<input id="currentOrderId" type="hidden">
+
+<input
+id="currentOrderId"
+type="hidden"
+>
+
 
 <div id="orderCustomerInfo"></div>
 
-<div class="card" style="box-shadow:none;margin-top:14px">
-<h3>📦 المنتجات</h3>
+
+<div
+class="card"
+style="
+box-shadow:none;
+margin-top:14px
+"
+>
+
+<h3>
+📦 المنتجات
+</h3>
+
 <div id="orderItemsList"></div>
+
 </div>
 
 
-<div class="card" style="box-shadow:none">
+<div
+class="card"
+style="box-shadow:none"
+>
 
-<h3>إدارة الطلب</h3>
+<h3>
+إدارة الطلب
+</h3>
+
 
 <div class="grid2">
 
 <div>
-<label>حالة الطلب</label>
+
+<label>
+حالة الطلب
+</label>
+
 <select id="detailOrderStatus">
-<option value="pending">قيد الانتظار</option>
-<option value="confirmed">تم التأكيد</option>
-<option value="processing">قيد التجهيز</option>
-<option value="shipped">تم الشحن</option>
-<option value="delivered">تم التسليم</option>
-<option value="cancelled">ملغي</option>
-<option value="refunded">مسترجع</option>
+
+<option value="pending">
+قيد الانتظار
+</option>
+
+<option value="confirmed">
+تم التأكيد
+</option>
+
+<option value="processing">
+قيد التجهيز
+</option>
+
+<option value="shipped">
+تم الشحن
+</option>
+
+<option value="delivered">
+تم التسليم
+</option>
+
+<option value="cancelled">
+ملغي
+</option>
+
+<option value="refunded">
+مسترجع
+</option>
+
 </select>
+
 </div>
+
 
 <div>
-<label>حالة الدفع</label>
+
+<label>
+حالة الدفع
+</label>
+
 <select id="detailPaymentStatus">
-<option value="unpaid">غير مدفوع</option>
-<option value="paid">مدفوع</option>
-<option value="failed">فشل الدفع</option>
-<option value="refunded">مسترجع</option>
+
+<option value="unpaid">
+غير مدفوع
+</option>
+
+<option value="paid">
+مدفوع
+</option>
+
+<option value="failed">
+فشل الدفع
+</option>
+
+<option value="refunded">
+مسترجع
+</option>
+
 </select>
+
 </div>
 
 </div>
+
 
 <div class="grid2">
 
@@ -912,33 +2544,67 @@ main{padding:14px 10px 45px}
 
 </div>
 
-<label>ملاحظات الإدارة</label>
+
+<label>
+ملاحظات الإدارة
+</label>
+
 <textarea id="detailAdminNotes"></textarea>
 
+
 <div class="actions">
-<button class="btn" onclick="saveOrderDetails()">💾 حفظ بيانات الطلب</button>
+
+<button
+class="btn"
+onclick="saveOrderDetails()"
+>
+💾 حفظ بيانات الطلب
+</button>
+
 </div>
 
 </div>
 
 
-<div class="card" style="box-shadow:none">
+<div
+class="card"
+style="box-shadow:none"
+>
 
-<h3>🧾 الفاتورة</h3>
+<h3>
+🧾 الفاتورة
+</h3>
 
-<div id="invoiceStatusBox">جارِ التحقق...</div>
+<div id="invoiceStatusBox">
+جارِ التحقق...
+</div>
+
 
 <div class="actions">
 
-<button id="issueInvoiceBtn" class="btn gold" onclick="issueCurrentInvoice()">
+<button
+id="issueInvoiceBtn"
+class="btn gold"
+onclick="issueCurrentInvoice()"
+>
 🧾 إصدار فاتورة
 </button>
 
-<button id="viewInvoiceBtn" class="btn blue" style="display:none" onclick="viewCurrentInvoice()">
+<button
+id="viewInvoiceBtn"
+class="btn blue"
+style="display:none"
+onclick="viewCurrentInvoice()"
+>
 👁 عرض الفاتورة
 </button>
 
-<button id="printInvoiceBtn" class="btn out" style="display:none" onclick="printCurrentInvoice()">
+<button
+id="printInvoiceBtn"
+class="btn out"
+style="display:none"
+onclick="printCurrentInvoice()"
+>
 🖨 طباعة / PDF
 </button>
 
@@ -949,36 +2615,75 @@ main{padding:14px 10px 45px}
 </div>
 
 
-<div id="invoiceScrim" class="admin-scrim" onclick="closeInvoicePreview()"></div>
+<!-- INVOICE MODAL -->
 
-<div id="invoiceModal" class="order-modal">
+<div
+id="invoiceScrim"
+class="admin-scrim"
+onclick="closeInvoicePreview()"
+></div>
+
+
+<div
+id="invoiceModal"
+class="order-modal"
+>
 
 <div class="modal-head">
-<h2>🧾 الفاتورة</h2>
-<button class="btn out sm" onclick="closeInvoicePreview()">✕ إغلاق</button>
+
+<h2>
+🧾 الفاتورة
+</h2>
+
+<button
+class="btn out sm"
+onclick="closeInvoicePreview()"
+>
+✕ إغلاق
+</button>
+
 </div>
+
 
 <div id="invoicePreviewContainer"></div>
 
+
 <div class="actions">
-<button class="btn gold" onclick="printCurrentInvoice()">🖨 طباعة / حفظ PDF</button>
-</div>
+
+<button
+class="btn gold"
+onclick="printCurrentInvoice()"
+>
+🖨 طباعة / حفظ PDF
+</button>
 
 </div>
 
+</div>
 
-<div id="toast" class="toast"></div>
+
+<div
+id="toast"
+class="toast"
+></div>
 
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+
 <script>
+
+/* =========================================================
+   CONFIG
+========================================================= */
 
 const SUPABASE_URL =
 "https://bpxklyjahdjbnkxwtqig.supabase.co";
 
+
 const SUPABASE_ANON_KEY =
 "sb_publishable_7hoVcUR8Twi6s9IRATiruw_ICTw6wXn";
+
 
 const db =
 supabase.createClient(
@@ -986,126 +2691,287 @@ SUPABASE_URL,
 SUPABASE_ANON_KEY
 );
 
+
 const BUCKET =
 "store-images";
 
 
-let products=[];
-let categories=[];
-let orders=[];
-let coupons=[];
-let reviews=[];
-let notifications=[];
+const DEFAULT_STORE = {
 
-let productImages=[];
-let adMedia=[];
+name:
+"الشعيبي",
 
-let settings={
+nameEn:
+"ALSHUAIIBE STORE",
+
+eyebrow:
+"متجر الشعيبي"
+
+};
+
+
+/* =========================================================
+   DATA
+========================================================= */
+
+let products = [];
+let categories = [];
+let orders = [];
+let coupons = [];
+let reviews = [];
+let notifications = [];
+
+let productImages = [];
+let adMedia = [];
+
+let settings = {
+
 general:{},
 payment:{},
 design:{},
 ads:{}
+
 };
 
-let openedOrder=null;
-let openedOrderItems=[];
-let openedInvoice=null;
+
+let openedOrder = null;
+let openedOrderItems = [];
+let openedInvoice = null;
 
 
-const $=id=>document.getElementById(id);
+const $ =
+id =>
+document.getElementById(id);
 
 
-function toast(x){
+/* =========================================================
+   HELPERS
+========================================================= */
 
-$("toast").textContent=x;
-$("toast").classList.add("show");
+function toast(message){
+
+$("toast")
+.textContent =
+message;
+
+
+$("toast")
+.classList.add(
+"show"
+);
+
 
 setTimeout(
-()=>$("toast").classList.remove("show"),
+() =>
+$("toast")
+.classList.remove(
+"show"
+),
 2300
 );
 
 }
 
 
-function bool(v){
-return v===true||v==="true";
-}
+function bool(value){
 
-
-function arr(v){
-
-return String(v||"")
-.split(/[,،]/)
-.map(x=>x.trim())
-.filter(Boolean);
-
-}
-
-
-function slugify(x){
-
-return String(x||"")
-.trim()
-.toLowerCase()
-.replace(/\s+/g,"-")
-.replace(/[^\u0600-\u06FFa-z0-9-_]/gi,"");
-
-}
-
-
-function safeHTML(v){
-
-return String(v??"")
-.replace(
-/[&<>"']/g,
-c=>({
-"&":"&amp;",
-"<":"&lt;",
-">":"&gt;",
-'"':"&quot;",
-"'":"&#039;"
-}[c])
+return (
+value === true
+||
+value === "true"
 );
 
 }
 
 
-function tab(id,b){
+function arr(value){
 
-document
-.querySelectorAll(".page")
-.forEach(x=>x.classList.add("hidden"));
-
-$(id).classList.remove("hidden");
-
-document
-.querySelectorAll(".nav button")
-.forEach(x=>x.classList.remove("active"));
-
-if(b)b.classList.add("active");
+return String(
+value || ""
+)
+.split(/[,،]/)
+.map(
+x =>
+x.trim()
+)
+.filter(Boolean);
 
 }
 
 
-/* AUTH */
+function slugify(value){
+
+return String(
+value || ""
+)
+.trim()
+.toLowerCase()
+.replace(
+/\s+/g,
+"-"
+)
+.replace(
+/[^\u0600-\u06FFa-z0-9-_]/gi,
+""
+);
+
+}
+
+
+function safeHTML(value){
+
+return String(
+value ?? ""
+)
+.replace(
+/[&<>"']/g,
+char => ({
+
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
+
+}[char])
+);
+
+}
+
+
+function getStoreName(){
+
+return (
+settings.general?.storeName
+||
+DEFAULT_STORE.name
+);
+
+}
+
+
+function getStoreNameEn(){
+
+return (
+settings.general?.storeNameEn
+||
+DEFAULT_STORE.nameEn
+);
+
+}
+
+
+function getStoreEyebrow(){
+
+return (
+settings.general?.storeEyebrow
+||
+(
+"متجر "
++
+getStoreName()
+)
+);
+
+}
+
+
+function getStoreLogo(){
+
+return (
+settings.general?.logoUrl
+||
+""
+);
+
+}
+
+
+function tab(
+id,
+button
+){
+
+document
+.querySelectorAll(
+".page"
+)
+.forEach(
+page =>
+page.classList.add(
+"hidden"
+)
+);
+
+
+$(id)
+.classList.remove(
+"hidden"
+);
+
+
+document
+.querySelectorAll(
+".nav button"
+)
+.forEach(
+item =>
+item.classList.remove(
+"active"
+)
+);
+
+
+if(button){
+
+button.classList.add(
+"active"
+);
+
+}
+
+}
+
+
+/* =========================================================
+   AUTH
+========================================================= */
 
 async function login(){
 
-$("loginMsg").textContent="";
+$("loginMsg")
+.textContent =
+"";
 
-const {error}=
-await db.auth.signInWithPassword({
-email:$("email").value.trim(),
-password:$("password").value
+
+const {
+error
+} =
+await db.auth
+.signInWithPassword({
+
+email:
+$("email")
+.value
+.trim(),
+
+password:
+$("password")
+.value
+
 });
+
 
 if(error){
 
-$("loginMsg").textContent=error.message;
+$("loginMsg")
+.textContent =
+error.message;
+
 return;
 
 }
+
 
 await boot();
 
@@ -1114,7 +2980,10 @@ await boot();
 
 async function logout(){
 
-await db.auth.signOut();
+await db.auth
+.signOut();
+
+
 location.reload();
 
 }
@@ -1122,46 +2991,115 @@ location.reload();
 
 async function boot(){
 
-const {data:{session}}=
-await db.auth.getSession();
+const {
+data:{
+session
+}
+} =
+await db.auth
+.getSession();
 
-if(!session)return;
 
-$("login").classList.add("hidden");
-$("app").classList.remove("hidden");
+if(!session){
+
+return;
+
+}
+
+
+$("login")
+.classList.add(
+"hidden"
+);
+
+
+$("app")
+.classList.remove(
+"hidden"
+);
+
+
+await loadSettings();
+
 
 await Promise.all([
+
 loadCategories(),
+
 loadProducts(),
+
 loadOrders(),
+
 loadCoupons(),
+
 loadReviews(),
-loadNotifications(),
-loadSettings()
+
+loadNotifications()
+
 ]);
+
 
 updateStats();
 
 }
 
+
+db.auth
+.onAuthStateChange(
+event => {
+
+if(
+event ===
+"SIGNED_OUT"
+){
+
+location.reload();
+
+}
+
+}
+);
+
+
 boot();
 
 
-/* STORAGE */
+/* =========================================================
+   STORAGE
+========================================================= */
 
-async function uploadFiles(files,folder="products"){
+async function uploadFiles(
+files,
+folder="products"
+){
 
-const urls=[];
+const urls =
+[];
 
-for(const file of files){
 
-const ext=
-(file.name.split(".").pop()||"jpg").toLowerCase();
+for(
+const file
+of files
+){
 
-const path=
+const ext =
+(
+file.name
+.split(".")
+.pop()
+||
+"jpg"
+)
+.toLowerCase();
+
+
+const path =
 `${folder}/${Date.now()}-${crypto.randomUUID()}.${ext}`;
 
-const {error}=
+
+const {
+error
+} =
 await db.storage
 .from(BUCKET)
 .upload(
@@ -1173,40 +3111,902 @@ upsert:false
 }
 );
 
-if(error)throw error;
 
-const {data}=
-db.storage
-.from(BUCKET)
-.getPublicUrl(path);
+if(error){
 
-urls.push(data.publicUrl);
+throw error;
 
 }
+
+
+const {
+data
+} =
+db.storage
+.from(BUCKET)
+.getPublicUrl(
+path
+);
+
+
+urls.push(
+data.publicUrl
+);
+
+}
+
 
 return urls;
 
 }
 
 
-/* PRODUCTS */
+/* =========================================================
+   SETTINGS LOAD
+========================================================= */
+
+async function loadSettings(){
+
+const {
+data,
+error
+} =
+await db
+.from("settings")
+.select("*");
+
+
+if(error){
+
+console.error(error);
+
+return;
+
+}
+
+
+settings = {
+
+general:{},
+payment:{},
+design:{},
+ads:{}
+
+};
+
+
+(data || [])
+.forEach(
+row => {
+
+settings[
+row.id
+] =
+row.data
+||
+{};
+
+}
+);
+
+
+const g =
+settings.general
+||
+{};
+
+
+const p =
+settings.payment
+||
+{};
+
+
+const d =
+settings.design
+||
+{};
+
+
+const a =
+settings.ads
+||
+{};
+
+
+/* IDENTITY */
+
+$("storeName").value =
+g.storeName
+||
+DEFAULT_STORE.name;
+
+
+$("storeNameEn").value =
+g.storeNameEn
+||
+DEFAULT_STORE.nameEn;
+
+
+$("storeEyebrow").value =
+g.storeEyebrow
+||
+DEFAULT_STORE.eyebrow;
+
+
+$("storeLogoUrl").value =
+g.logoUrl
+||
+"";
+
+
+$("splashLogoUrl").value =
+g.splashLogoUrl
+||
+"";
+
+
+$("splashLogoWidth").value =
+Number(
+g.splashLogoWidth
+||
+330
+);
+
+
+$("splashDuration").value =
+Number(
+g.splashDuration
+||
+2300
+);
+
+
+/* GENERAL */
+
+$("whatsapp").value =
+g.whatsapp
+||
+"";
+
+
+$("sloganTitle").value =
+g.sloganTitle
+||
+"";
+
+
+$("sloganDesc").value =
+g.sloganDesc
+||
+"";
+
+
+$("aboutText").value =
+g.aboutText
+||
+"";
+
+
+$("policies").value =
+g.policies
+||
+"";
+
+
+[
+"instagram",
+"facebook",
+"tiktok",
+"twitter",
+"telegram",
+"snapchat"
+]
+.forEach(
+id => {
+
+$(id).value =
+g[id]
+||
+"";
+
+}
+);
+
+
+$("enableSearch").value =
+String(
+g.enableSearch
+!== false
+);
+
+
+$("enableSort").value =
+String(
+g.enableSort
+!== false
+);
+
+
+$("featureWish").value =
+String(
+g.featureWish
+!== false
+);
+
+
+$("featureSkel").value =
+String(
+g.featureSkel
+!== false
+);
+
+
+$("featurePwa").value =
+String(
+!!g.featurePwa
+);
+
+
+$("featureReviews").value =
+String(
+g.featureReviews
+!== false
+);
+
+
+$("seoTitle").value =
+g.seoTitle
+||
+"";
+
+
+$("seoDescription").value =
+g.seoDescription
+||
+"";
+
+
+/* PAYMENT */
+
+$("bankName").value =
+p.bankName
+||
+"";
+
+
+$("bankHolder").value =
+p.bankHolder
+||
+"";
+
+
+$("bankAccount").value =
+p.bankAccount
+||
+"";
+
+
+$("bankIban").value =
+p.bankIban
+||
+"";
+
+
+$("bankInstructions").value =
+p.bankInstructions
+||
+"";
+
+
+$("depositDetails").value =
+p.depositDetails
+||
+"";
+
+
+/* DESIGN */
+
+const colors =
+d.colors
+||
+{};
+
+
+$("colorCream").value =
+colors.cream
+||
+"#F8EACB";
+
+
+$("colorCard").value =
+colors.card
+||
+"#FFFBF0";
+
+
+$("colorInk").value =
+colors.ink
+||
+"#20301C";
+
+
+$("colorGold").value =
+colors.gold
+||
+"#A9793C";
+
+
+$("cardWidth").value =
+d.cardWidth
+||
+180;
+
+
+$("productFont").value =
+d.productFont
+||
+"'Aref Ruqaa', serif";
+
+
+$("backgroundUrl").value =
+d.backgroundUrl
+||
+"";
+
+
+$("watermarkUrl").value =
+d.watermarkUrl
+||
+"";
+
+
+$("backgroundOpacity").value =
+d.backgroundOpacity
+??
+.15;
+
+
+$("watermarkOpacity").value =
+d.watermarkOpacity
+??
+.1;
+
+
+/* ADS */
+
+$("adEnabled").value =
+String(
+!!a.enabled
+);
+
+
+$("adType").value =
+a.type
+||
+"image";
+
+
+$("adLink").value =
+a.link
+||
+"";
+
+
+adMedia =
+Array.isArray(
+a.media
+)
+?
+a.media
+:
+[];
+
+
+renderAdPreview();
+
+
+applyAdminIdentity();
+
+previewIdentity();
+
+}
+
+
+/* =========================================================
+   ADMIN IDENTITY DISPLAY
+========================================================= */
+
+function applyAdminIdentity(){
+
+const name =
+getStoreName();
+
+
+const logo =
+getStoreLogo();
+
+
+$("adminHeaderName")
+.textContent =
+name;
+
+
+$("dashboardStoreName")
+.textContent =
+name;
+
+
+$("loginStoreName")
+.textContent =
+name;
+
+
+document.title =
+"لوحة إدارة "
++
+name;
+
+
+const image =
+$("adminHeaderLogo");
+
+
+if(logo){
+
+image.src =
+logo;
+
+image.style.display =
+"block";
+
+}else{
+
+image.removeAttribute(
+"src"
+);
+
+image.style.display =
+"none";
+
+}
+
+}
+
+
+function previewIdentity(){
+
+const name =
+$("storeName")
+.value
+.trim()
+||
+DEFAULT_STORE.name;
+
+
+const logo =
+$("splashLogoUrl")
+.value
+.trim()
+||
+$("storeLogoUrl")
+.value
+.trim();
+
+
+const previewImage =
+$("splashLogoPreview");
+
+
+const previewText =
+$("splashTextPreview");
+
+
+const width =
+Math.max(
+120,
+Math.min(
+700,
+Number(
+$("splashLogoWidth")
+.value
+||
+330
+)
+)
+);
+
+
+if(logo){
+
+previewImage.src =
+logo;
+
+previewImage.style.display =
+"block";
+
+previewImage.style.width =
+Math.min(
+width,
+500
+)
++
+"px";
+
+
+previewText.style.display =
+"none";
+
+}else{
+
+previewImage.style.display =
+"none";
+
+
+previewText.style.display =
+"block";
+
+
+previewText.textContent =
+name;
+
+}
+
+
+const storeLogo =
+$("storeLogoPreview");
+
+
+const mainLogo =
+$("storeLogoUrl")
+.value
+.trim();
+
+
+if(mainLogo){
+
+storeLogo.src =
+mainLogo;
+
+storeLogo.style.visibility =
+"visible";
+
+}else{
+
+storeLogo.removeAttribute(
+"src"
+);
+
+storeLogo.style.visibility =
+"hidden";
+
+}
+
+}
+
+
+$("storeName")
+.addEventListener(
+"input",
+previewIdentity
+);
+
+
+$("storeLogoUrl")
+.addEventListener(
+"input",
+previewIdentity
+);
+
+
+$("splashLogoUrl")
+.addEventListener(
+"input",
+previewIdentity
+);
+
+
+$("splashLogoWidth")
+.addEventListener(
+"input",
+previewIdentity
+);
+
+
+/* =========================================================
+   UPSERT SETTINGS
+========================================================= */
+
+async function upsertSetting(
+id,
+data
+){
+
+const {
+error
+} =
+await db
+.from("settings")
+.upsert(
+{
+
+id,
+
+data,
+
+updated_at:
+new Date()
+.toISOString()
+
+},
+{
+onConflict:"id"
+}
+);
+
+
+if(error){
+
+throw error;
+
+}
+
+}
+
+
+/* =========================================================
+   SAVE IDENTITY
+========================================================= */
+
+async function saveIdentity(){
+
+const button =
+$("saveIdentityBtn");
+
+
+button.disabled =
+true;
+
+
+button.textContent =
+"جارِ الحفظ...";
+
+
+try{
+
+let logoUrl =
+$("storeLogoUrl")
+.value
+.trim();
+
+
+let splashLogoUrl =
+$("splashLogoUrl")
+.value
+.trim();
+
+
+if(
+$("storeLogoFile")
+.files
+.length
+){
+
+logoUrl =
+(
+await uploadFiles(
+[
+...$("storeLogoFile").files
+],
+"identity"
+)
+)[0];
+
+}
+
+
+if(
+$("splashLogoFile")
+.files
+.length
+){
+
+splashLogoUrl =
+(
+await uploadFiles(
+[
+...$("splashLogoFile").files
+],
+"identity"
+)
+)[0];
+
+}
+
+
+const storeName =
+$("storeName")
+.value
+.trim()
+||
+DEFAULT_STORE.name;
+
+
+const storeNameEn =
+$("storeNameEn")
+.value
+.trim()
+||
+DEFAULT_STORE.nameEn;
+
+
+const storeEyebrow =
+$("storeEyebrow")
+.value
+.trim()
+||
+(
+"متجر "
++
+storeName
+);
+
+
+const splashLogoWidth =
+Math.max(
+120,
+Math.min(
+700,
+Number(
+$("splashLogoWidth")
+.value
+||
+330
+)
+)
+);
+
+
+const splashDuration =
+Math.max(
+700,
+Math.min(
+10000,
+Number(
+$("splashDuration")
+.value
+||
+2300
+)
+)
+);
+
+
+const general = {
+
+...settings.general,
+
+storeName,
+
+storeNameEn,
+
+storeEyebrow,
+
+logoUrl,
+
+splashLogoUrl,
+
+splashLogoWidth,
+
+splashDuration
+
+};
+
+
+await upsertSetting(
+"general",
+general
+);
+
+
+settings.general =
+general;
+
+
+$("storeLogoUrl").value =
+logoUrl;
+
+
+$("splashLogoUrl").value =
+splashLogoUrl;
+
+
+$("storeLogoFile").value =
+"";
+
+
+$("splashLogoFile").value =
+"";
+
+
+applyAdminIdentity();
+
+previewIdentity();
+
+
+toast(
+"تم حفظ هوية المتجر ✓"
+);
+
+}
+catch(error){
+
+console.error(error);
+
+
+alert(
+"تعذر حفظ هوية المتجر:\n"
++
+(
+error.message
+||
+"حدث خطأ"
+)
+);
+
+}
+finally{
+
+button.disabled =
+false;
+
+
+button.textContent =
+"حفظ هوية المتجر";
+
+}
+
+}
+
+
+/* =========================================================
+   PRODUCTS
+========================================================= */
 
 async function loadProducts(){
 
-const {data,error}=
+const {
+data,
+error
+} =
 await db
 .from("products")
 .select("*")
-.order("created_at",{ascending:false});
+.order(
+"created_at",
+{
+ascending:false
+}
+);
+
 
 if(error){
+
 console.error(error);
+
 return;
+
 }
 
-products=data||[];
+
+products =
+data
+||
+[];
+
 
 renderProducts();
+
 updateStats();
 
 }
@@ -1214,46 +4014,90 @@ updateStats();
 
 function renderProducts(){
 
-$("productsBody").innerHTML=
+$("productsBody")
+.innerHTML =
 products.length
 ?
-products.map(p=>`
-
+products.map(
+product =>
+`
 <tr>
 
 <td>
-${p.images?.[0]?`<img class="thumb" src="${safeHTML(p.images[0])}">`:"—"}
+
+${
+product.images?.[0]
+?
+`
+<img
+class="thumb"
+src="${safeHTML(product.images[0])}"
+>
+`
+:
+"—"
+}
+
 </td>
 
-<td>${safeHTML(p.name||"")}</td>
-<td>${safeHTML(p.category||"")}</td>
-
 <td>
-${Number(p.price||0).toFixed(2)}
-${safeHTML(p.currency||"")}
+${safeHTML(product.name || "")}
 </td>
 
-<td>${p.discount||0}%</td>
-<td>${p.stock||0}</td>
-<td>${p.is_active===false?"مخفي":"ظاهر"}</td>
+<td>
+${safeHTML(product.category || "")}
+</td>
+
+<td>
+${Number(product.price || 0).toFixed(2)}
+${safeHTML(product.currency || "")}
+</td>
+
+<td>
+${Number(product.discount || 0)}%
+</td>
+
+<td>
+${Number(product.stock || 0)}
+</td>
+
+<td>
+${product.is_active === false ? "مخفي" : "ظاهر"}
+</td>
 
 <td>
 
-<button class="btn sm" onclick="editProduct('${p.id}')">
+<button
+class="btn sm"
+onclick="editProduct('${product.id}')"
+>
 تعديل
 </button>
 
-<button class="btn red sm" onclick="deleteProduct('${p.id}')">
+<button
+class="btn red sm"
+onclick="deleteProduct('${product.id}')"
+>
 حذف
 </button>
 
 </td>
 
 </tr>
-
-`).join("")
+`
+)
+.join("")
 :
-`<tr><td colspan="8" class="empty">لا توجد منتجات</td></tr>`;
+`
+<tr>
+<td
+colspan="8"
+class="empty"
+>
+لا توجد منتجات
+</td>
+</tr>
+`;
 
 }
 
@@ -1261,21 +4105,64 @@ ${safeHTML(p.currency||"")}
 function resetProduct(){
 
 [
-"pid","pname","pslug","pdesc",
-"pshort","psku","pcolors","psizes"
-].forEach(x=>$(x).value="");
+"pid",
+"pname",
+"pslug",
+"pdesc",
+"pshort",
+"psku",
+"pcolors",
+"psizes"
+]
+.forEach(
+id => {
 
-$("pprice").value="";
-$("pdiscount").value=0;
-$("pstock").value=0;
-$("plow").value=5;
-$("psort").value=0;
-$("pactive").value="true";
-$("pfeatured").value="false";
-$("pnew").value="true";
-$("pfiles").value="";
+$(id).value =
+"";
 
-productImages=[];
+}
+);
+
+
+$("pprice").value =
+"";
+
+
+$("pdiscount").value =
+0;
+
+
+$("pstock").value =
+0;
+
+
+$("plow").value =
+5;
+
+
+$("psort").value =
+0;
+
+
+$("pactive").value =
+"true";
+
+
+$("pfeatured").value =
+"false";
+
+
+$("pnew").value =
+"true";
+
+
+$("pfiles").value =
+"";
+
+
+productImages =
+[];
+
 
 renderProductImages();
 
@@ -1284,161 +4171,423 @@ renderProductImages();
 
 function renderProductImages(){
 
-$("imagePreview").innerHTML=
-productImages.map((u,i)=>`
-
+$("imagePreview")
+.innerHTML =
+productImages
+.map(
+(
+url,
+index
+) =>
+`
 <div>
 
-<img src="${safeHTML(u)}">
+<img
+src="${safeHTML(url)}"
+>
 
-<button onclick="productImages.splice(${i},1);renderProductImages()">
+<button
+type="button"
+onclick="
+productImages.splice(${index},1);
+renderProductImages();
+"
+>
 ×
 </button>
 
 </div>
-
-`).join("");
+`
+)
+.join("");
 
 }
 
 
 function editProduct(id){
 
-const p=products.find(x=>x.id===id);
+const product =
+products.find(
+item =>
+String(item.id)
+===
+String(id)
+);
 
-if(!p)return;
 
-$("pid").value=p.id;
-$("pname").value=p.name||"";
-$("pslug").value=p.slug||"";
-$("pcategory").value=p.category||"";
-$("pdesc").value=p.description||"";
-$("pshort").value=p.short_description||"";
-$("psku").value=p.sku||"";
-$("pprice").value=p.price||0;
-$("pcurrency").value=p.currency||"ر.ي";
-$("pdiscount").value=p.discount||0;
-$("pstock").value=p.stock||0;
-$("plow").value=p.low_stock_threshold||5;
-$("psort").value=p.sort_order||0;
-$("pcolors").value=(p.colors||[]).join("، ");
-$("psizes").value=(p.sizes||[]).join("، ");
-$("pactive").value=String(p.is_active!==false);
-$("pfeatured").value=String(!!p.is_featured);
-$("pnew").value=String(!!p.is_new);
+if(!product){
 
-productImages=p.images||[];
+return;
+
+}
+
+
+$("pid").value =
+product.id;
+
+
+$("pname").value =
+product.name
+||
+"";
+
+
+$("pslug").value =
+product.slug
+||
+"";
+
+
+$("pcategory").value =
+product.category
+||
+"";
+
+
+$("pdesc").value =
+product.description
+||
+"";
+
+
+$("pshort").value =
+product.short_description
+||
+"";
+
+
+$("psku").value =
+product.sku
+||
+"";
+
+
+$("pprice").value =
+product.price
+||
+0;
+
+
+$("pcurrency").value =
+product.currency
+||
+"ر.ي";
+
+
+$("pdiscount").value =
+product.discount
+||
+0;
+
+
+$("pstock").value =
+product.stock
+||
+0;
+
+
+$("plow").value =
+product.low_stock_threshold
+||
+5;
+
+
+$("psort").value =
+product.sort_order
+||
+0;
+
+
+$("pcolors").value =
+(
+product.colors
+||
+[]
+)
+.join(
+"، "
+);
+
+
+$("psizes").value =
+(
+product.sizes
+||
+[]
+)
+.join(
+"، "
+);
+
+
+$("pactive").value =
+String(
+product.is_active
+!== false
+);
+
+
+$("pfeatured").value =
+String(
+!!product.is_featured
+);
+
+
+$("pnew").value =
+String(
+!!product.is_new
+);
+
+
+productImages =
+product.images
+||
+[];
+
 
 renderProductImages();
 
+
 tab(
 "products",
-document.querySelector('[onclick*="products"]')
+document.querySelector(
+'[onclick*="products"]'
+)
 );
 
-scrollTo({top:0,behavior:"smooth"});
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
 
 }
 
 
 async function saveProduct(){
 
-const btn=$("saveProductBtn");
+const button =
+$("saveProductBtn");
+
+
+button.disabled =
+true;
+
+
+button.textContent =
+"جارِ الحفظ...";
+
 
 try{
 
-btn.disabled=true;
-btn.textContent="جارِ الحفظ...";
+if(
+$("pfiles")
+.files
+.length
+){
 
-if($("pfiles").files.length){
+const uploads =
+await uploadFiles(
+[
+...$("pfiles").files
+],
+"products"
+);
 
-const u=
-await uploadFiles([...$("pfiles").files]);
 
-productImages.push(...u);
+productImages.push(
+...uploads
+);
 
 }
 
-const name=$("pname").value.trim();
 
-if(!name)throw new Error("اكتب اسم المنتج");
+const name =
+$("pname")
+.value
+.trim();
 
-const category=$("pcategory").value;
 
-const categoryObj=
-categories.find(c=>c.name===category);
+if(!name){
 
-const payload={
+throw new Error(
+"اكتب اسم المنتج"
+);
+
+}
+
+
+const category =
+$("pcategory")
+.value;
+
+
+const categoryObject =
+categories.find(
+item =>
+item.name ===
+category
+);
+
+
+const payload = {
 
 name,
 
-slug:$("pslug").value.trim()||slugify(name),
+slug:
+$("pslug")
+.value
+.trim()
+||
+slugify(name),
 
 category,
 
-category_id:categoryObj?.id||null,
+category_id:
+categoryObject?.id
+||
+null,
 
-description:$("pdesc").value,
+description:
+$("pdesc").value,
 
-short_description:$("pshort").value,
+short_description:
+$("pshort").value,
 
-sku:$("psku").value||null,
+sku:
+$("psku").value
+||
+null,
 
-price:Number($("pprice").value||0),
+price:
+Number(
+$("pprice").value
+||
+0
+),
 
-currency:$("pcurrency").value,
+currency:
+$("pcurrency").value,
 
-discount:Number($("pdiscount").value||0),
+discount:
+Number(
+$("pdiscount").value
+||
+0
+),
 
-stock:Number($("pstock").value||0),
+stock:
+Number(
+$("pstock").value
+||
+0
+),
 
-low_stock_threshold:Number($("plow").value||5),
+low_stock_threshold:
+Number(
+$("plow").value
+||
+5
+),
 
-colors:arr($("pcolors").value),
+colors:
+arr(
+$("pcolors").value
+),
 
-sizes:arr($("psizes").value),
+sizes:
+arr(
+$("psizes").value
+),
 
-images:productImages,
+images:
+productImages,
 
-is_active:bool($("pactive").value),
+is_active:
+bool(
+$("pactive").value
+),
 
-is_featured:bool($("pfeatured").value),
+is_featured:
+bool(
+$("pfeatured").value
+),
 
-is_new:bool($("pnew").value),
+is_new:
+bool(
+$("pnew").value
+),
 
-sort_order:Number($("psort").value||0),
+sort_order:
+Number(
+$("psort").value
+||
+0
+),
 
-updated_at:new Date().toISOString()
+updated_at:
+new Date()
+.toISOString()
 
 };
 
-const id=$("pid").value;
 
-const res=
+const id =
+$("pid")
+.value;
+
+
+const result =
 id
 ?
-await db.from("products").update(payload).eq("id",id)
+await db
+.from("products")
+.update(payload)
+.eq(
+"id",
+id
+)
 :
-await db.from("products").insert(payload);
+await db
+.from("products")
+.insert(payload);
 
-if(res.error)throw res.error;
 
-toast("تم حفظ المنتج بنجاح");
+if(result.error){
+
+throw result.error;
+
+}
+
+
+toast(
+"تم حفظ المنتج ✓"
+);
+
 
 resetProduct();
+
 
 await loadProducts();
 
 }
-catch(e){
+catch(error){
 
-alert("لم يتم حفظ المنتج:\n"+e.message);
+alert(
+"لم يتم حفظ المنتج:\n"
++
+error.message
+);
 
 }
 finally{
 
-btn.disabled=false;
-btn.textContent="حفظ المنتج";
+button.disabled =
+false;
+
+
+button.textContent =
+"حفظ المنتج";
 
 }
 
@@ -1447,42 +4596,85 @@ btn.textContent="حفظ المنتج";
 
 async function deleteProduct(id){
 
-if(!confirm("حذف المنتج نهائياً؟"))return;
+if(
+!confirm(
+"حذف المنتج نهائياً؟"
+)
+){
 
-const {error}=
+return;
+
+}
+
+
+const {
+error
+} =
 await db
 .from("products")
 .delete()
-.eq("id",id);
+.eq(
+"id",
+id
+);
+
 
 if(error){
-alert(error.message);
+
+alert(
+error.message
+);
+
 return;
+
 }
+
 
 await loadProducts();
 
-toast("تم الحذف");
+
+toast(
+"تم حذف المنتج"
+);
 
 }
 
 
-/* CATEGORIES */
+/* =========================================================
+   CATEGORIES
+========================================================= */
 
 async function loadCategories(){
 
-const {data,error}=
+const {
+data,
+error
+} =
 await db
 .from("categories")
 .select("*")
-.order("sort_order",{ascending:true});
+.order(
+"sort_order",
+{
+ascending:true
+}
+);
+
 
 if(error){
+
 console.error(error);
+
 return;
+
 }
 
-categories=data||[];
+
+categories =
+data
+||
+[];
+
 
 renderCategories();
 
@@ -1491,25 +4683,51 @@ renderCategories();
 
 function renderCategories(){
 
-$("pcategory").innerHTML=
+$("pcategory")
+.innerHTML =
 categories
-.filter(c=>c.is_active!==false)
-.map(c=>`<option>${safeHTML(c.name)}</option>`)
+.filter(
+category =>
+category.is_active
+!== false
+)
+.map(
+category =>
+`
+<option value="${safeHTML(category.name)}">
+${safeHTML(category.name)}
+</option>
+`
+)
 .join("");
 
-$("categoriesList").innerHTML=
-categories.map(c=>`
 
+$("categoriesList")
+.innerHTML =
+categories
+.map(
+category =>
+`
 <span class="pill">
 
-${safeHTML(c.name)}
+${safeHTML(category.name)}
 
-<button onclick="editCategory('${c.id}')">✎</button>
-<button onclick="deleteCategory('${c.id}')">×</button>
+<button
+onclick="editCategory('${category.id}')"
+>
+✎
+</button>
+
+<button
+onclick="deleteCategory('${category.id}')"
+>
+×
+</button>
 
 </span>
-
-`).join("")
+`
+)
+.join("")
 ||
 '<div class="empty">لا توجد أقسام</div>';
 
@@ -1518,154 +4736,213 @@ ${safeHTML(c.name)}
 
 function resetCategory(){
 
-$("catId").value="";
-$("catName").value="";
-$("catSlug").value="";
-$("catDesc").value="";
-$("catSort").value=0;
+$("catId").value =
+"";
+
+
+$("catName").value =
+"";
+
+
+$("catSlug").value =
+"";
+
+
+$("catDesc").value =
+"";
+
+
+$("catSort").value =
+0;
 
 }
 
 
 function editCategory(id){
 
-const c=categories.find(x=>x.id===id);
+const category =
+categories.find(
+item =>
+String(item.id)
+===
+String(id)
+);
 
-if(!c)return;
 
-$("catId").value=c.id;
-$("catName").value=c.name||"";
-$("catSlug").value=c.slug||"";
-$("catDesc").value=c.description||"";
-$("catSort").value=c.sort_order||0;
-$("catFont").value=c.font_family||"'Aref Ruqaa',serif";
-$("catActive").value=String(c.is_active!==false);
+if(!category){
+
+return;
+
+}
+
+
+$("catId").value =
+category.id;
+
+
+$("catName").value =
+category.name
+||
+"";
+
+
+$("catSlug").value =
+category.slug
+||
+"";
+
+
+$("catDesc").value =
+category.description
+||
+"";
+
+
+$("catSort").value =
+category.sort_order
+||
+0;
+
+
+$("catFont").value =
+category.font_family
+||
+"'Aref Ruqaa',serif";
+
+
+$("catActive").value =
+String(
+category.is_active
+!== false
+);
 
 }
 
 
 async function saveCategory(){
 
-const name=$("catName").value.trim();
+const name =
+$("catName")
+.value
+.trim();
+
 
 if(!name){
-toast("اكتب اسم القسم");
+
+toast(
+"اكتب اسم القسم"
+);
+
 return;
+
 }
 
-const payload={
+
+const payload = {
 
 name,
 
-slug:$("catSlug").value||slugify(name),
+slug:
+$("catSlug")
+.value
+.trim()
+||
+slugify(name),
 
-description:$("catDesc").value,
+description:
+$("catDesc").value,
 
-sort_order:Number($("catSort").value||0),
+sort_order:
+Number(
+$("catSort").value
+||
+0
+),
 
-font_family:$("catFont").value,
+font_family:
+$("catFont").value,
 
-is_active:bool($("catActive").value)
+is_active:
+bool(
+$("catActive").value
+)
 
 };
 
-const id=$("catId").value;
 
-const r=
+const id =
+$("catId")
+.value;
+
+
+const result =
 id
 ?
-await db.from("categories").update(payload).eq("id",id)
+await db
+.from("categories")
+.update(payload)
+.eq(
+"id",
+id
+)
 :
-await db.from("categories").insert(payload);
+await db
+.from("categories")
+.insert(payload);
 
-if(r.error){
-alert(r.error.message);
+
+if(result.error){
+
+alert(
+result.error.message
+);
+
 return;
+
 }
+
 
 resetCategory();
 
+
 await loadCategories();
 
-toast("تم حفظ القسم");
+
+toast(
+"تم حفظ القسم"
+);
 
 }
 
 
 async function deleteCategory(id){
 
-if(!confirm("حذف القسم؟"))return;
+if(
+!confirm(
+"حذف القسم؟"
+)
+){
 
-const r=
+return;
+
+}
+
+
+const {
+error
+} =
 await db
 .from("categories")
 .delete()
-.eq("id",id);
+.eq(
+"id",
+id
+);
 
-if(r.error){
-alert(r.error.message);
-return;
-}
-
-await loadCategories();
-
-}
-
-
-/* ORDERS */
-
-function orderStatusArabic(status){
-
-return ({
-pending:"قيد الانتظار",
-confirmed:"تم التأكيد",
-processing:"قيد التجهيز",
-shipped:"تم الشحن",
-delivered:"تم التسليم",
-cancelled:"ملغي",
-refunded:"مسترجع"
-})[status]||status||"—";
-
-}
-
-
-function paymentStatusArabic(status){
-
-return ({
-unpaid:"غير مدفوع",
-paid:"مدفوع",
-failed:"فشل الدفع",
-refunded:"مسترجع"
-})[status]||status||"—";
-
-}
-
-
-function paymentMethodArabic(method){
-
-return ({
-bank:"تحويل بنكي",
-deposit:"إيداع بنكي",
-cash:"نقداً"
-})[method]||method||"—";
-
-}
-
-
-async function loadOrders(){
-
-const {data,error}=
-await db
-.from("orders")
-.select("*")
-.order("created_at",{ascending:false});
 
 if(error){
 
-console.error(error);
-
 alert(
-"تعذر تحميل الطلبات:\n"+
 error.message
 );
 
@@ -1673,9 +4950,148 @@ return;
 
 }
 
-orders=data||[];
+
+await loadCategories();
+
+}
+
+
+/* =========================================================
+   ORDER TRANSLATION
+========================================================= */
+
+function orderStatusArabic(status){
+
+return ({
+
+pending:
+"قيد الانتظار",
+
+confirmed:
+"تم التأكيد",
+
+processing:
+"قيد التجهيز",
+
+shipped:
+"تم الشحن",
+
+delivered:
+"تم التسليم",
+
+cancelled:
+"ملغي",
+
+refunded:
+"مسترجع"
+
+})[
+status
+]
+||
+status
+||
+"—";
+
+}
+
+
+function paymentStatusArabic(status){
+
+return ({
+
+unpaid:
+"غير مدفوع",
+
+paid:
+"مدفوع",
+
+failed:
+"فشل الدفع",
+
+refunded:
+"مسترجع"
+
+})[
+status
+]
+||
+status
+||
+"—";
+
+}
+
+
+function paymentMethodArabic(method){
+
+return ({
+
+bank:
+"تحويل بنكي",
+
+deposit:
+"إيداع بنكي",
+
+cash:
+"نقداً"
+
+})[
+method
+]
+||
+method
+||
+"—";
+
+}
+
+
+/* =========================================================
+   ORDERS
+========================================================= */
+
+async function loadOrders(){
+
+const {
+data,
+error
+} =
+await db
+.from("orders")
+.select("*")
+.order(
+"created_at",
+{
+ascending:false
+}
+);
+
+
+if(error){
+
+console.error(error);
+
+
+alert(
+"تعذر تحميل الطلبات:\n"
++
+error.message
+);
+
+return;
+
+}
+
+
+orders =
+data
+||
+[];
+
 
 renderOrders();
+
 updateStats();
 
 }
@@ -1683,80 +5099,138 @@ updateStats();
 
 function renderOrders(){
 
-$("ordersBody").innerHTML=
+$("ordersBody")
+.innerHTML =
 orders.length
 ?
-orders.map(o=>`
-
+orders.map(
+order =>
+`
 <tr>
-
-<td><strong>#${o.order_number||""}</strong></td>
-
-<td>
-<strong>${safeHTML(o.name||"")}</strong>
-<div class="hint">${safeHTML(o.address||"")}</div>
-</td>
-
-<td>${safeHTML(o.phone||"")}</td>
 
 <td>
 <strong>
-${Number(o.total||0).toFixed(2)}
-${safeHTML(o.currency||"")}
+#${safeHTML(order.order_number || "")}
 </strong>
 </td>
 
 <td>
 
+<strong>
+${safeHTML(order.name || "")}
+</strong>
+
+<div class="hint">
+${safeHTML(order.address || "")}
+</div>
+
+</td>
+
+<td>
+${safeHTML(order.phone || "")}
+</td>
+
+<td>
+
+<strong>
+${Number(order.total || 0).toFixed(2)}
+${safeHTML(order.currency || "")}
+</strong>
+
+</td>
+
+<td>
+
 <div>
-${safeHTML(paymentMethodArabic(o.pay_method))}
+${safeHTML(paymentMethodArabic(order.pay_method))}
 </div>
 
 <div class="hint">
-${safeHTML(paymentStatusArabic(o.payment_status))}
+${safeHTML(paymentStatusArabic(order.payment_status))}
 </div>
 
 </td>
 
 <td>
 
-<select onchange="setOrderStatus('${o.id}',this.value)">
+<select
+onchange="setOrderStatus(
+'${order.id}',
+this.value
+)"
+>
 
 ${[
-"pending","confirmed","processing",
-"shipped","delivered","cancelled","refunded"
-].map(status=>`
-
+"pending",
+"confirmed",
+"processing",
+"shipped",
+"delivered",
+"cancelled",
+"refunded"
+]
+.map(
+status =>
+`
 <option
 value="${status}"
-${o.status===status?"selected":""}
+${order.status === status ? "selected" : ""}
 >
 ${orderStatusArabic(status)}
 </option>
-
-`).join("")}
+`
+)
+.join("")}
 
 </select>
 
 </td>
 
 <td>
-${o.created_at?new Date(o.created_at).toLocaleString("ar"):""}
+
+${
+order.created_at
+?
+new Date(
+order.created_at
+)
+.toLocaleString(
+"ar"
+)
+:
+""
+}
+
 </td>
 
 <td>
 
-<div style="display:flex;gap:5px;flex-wrap:wrap">
+<div
+style="
+display:flex;
+gap:5px;
+flex-wrap:wrap
+"
+>
 
-<button class="btn sm" onclick="openOrderDetails('${o.id}')">
+<button
+class="btn sm"
+onclick="openOrderDetails('${order.id}')"
+>
 فتح
 </button>
 
-<button class="btn gold sm" onclick="quickIssueInvoice('${o.id}')">
+<button
+class="btn gold sm"
+onclick="quickIssueInvoice('${order.id}')"
+>
 🧾 فاتورة
 </button>
 
-<button class="btn red sm" onclick="deleteOrder('${o.id}')">
+<button
+class="btn red sm"
+onclick="deleteOrder('${order.id}')"
+>
 حذف
 </button>
 
@@ -1765,103 +5239,170 @@ ${o.created_at?new Date(o.created_at).toLocaleString("ar"):""}
 </td>
 
 </tr>
-
-`).join("")
+`
+)
+.join("")
 :
-`<tr><td colspan="8" class="empty">لا توجد طلبات</td></tr>`;
+`
+<tr>
+<td
+colspan="8"
+class="empty"
+>
+لا توجد طلبات
+</td>
+</tr>
+`;
 
 }
 
 
-async function setOrderStatus(id,status){
+async function setOrderStatus(
+id,
+status
+){
 
-const {error}=
+const {
+error
+} =
 await db
 .from("orders")
 .update({
+
 status,
-updated_at:new Date().toISOString()
+
+updated_at:
+new Date()
+.toISOString()
+
 })
-.eq("id",id);
+.eq(
+"id",
+id
+);
+
 
 if(error){
 
-alert(error.message);
+alert(
+error.message
+);
+
 return;
 
 }
 
-toast("تم تحديث حالة الطلب");
 
-const found=
-orders.find(o=>o.id===id);
+const order =
+orders.find(
+item =>
+String(item.id)
+===
+String(id)
+);
 
-if(found)found.status=status;
+
+if(order){
+
+order.status =
+status;
+
+}
+
+
+toast(
+"تم تحديث حالة الطلب"
+);
 
 }
 
 
 async function openOrderDetails(id){
 
-openedOrder=
+openedOrder =
 orders.find(
-o=>String(o.id)===String(id)
+item =>
+String(item.id)
+===
+String(id)
 );
+
 
 if(!openedOrder){
 
-toast("الطلب غير موجود");
+toast(
+"الطلب غير موجود"
+);
+
 return;
 
 }
 
-$("currentOrderId").value=openedOrder.id;
 
-$("detailOrderStatus").value=
-openedOrder.status||"pending";
-
-$("detailPaymentStatus").value=
-openedOrder.payment_status||"unpaid";
-
-$("detailShippingCompany").value=
-openedOrder.shipping_company||"";
-
-$("detailTrackingCode").value=
-openedOrder.tracking_code||"";
-
-$("detailAdminNotes").value=
-openedOrder.admin_notes||"";
+$("currentOrderId").value =
+openedOrder.id;
 
 
-$("orderCustomerInfo").innerHTML=`
+$("detailOrderStatus").value =
+openedOrder.status
+||
+"pending";
+
+
+$("detailPaymentStatus").value =
+openedOrder.payment_status
+||
+"unpaid";
+
+
+$("detailShippingCompany").value =
+openedOrder.shipping_company
+||
+"";
+
+
+$("detailTrackingCode").value =
+openedOrder.tracking_code
+||
+"";
+
+
+$("detailAdminNotes").value =
+openedOrder.admin_notes
+||
+"";
+
+
+$("orderCustomerInfo")
+.innerHTML = `
 
 <div class="order-info-grid">
 
 <div class="order-info-box">
 <small>رقم الطلب</small>
-<strong>#${openedOrder.order_number}</strong>
+<strong>#${safeHTML(openedOrder.order_number || "")}</strong>
 </div>
 
 <div class="order-info-box">
 <small>العميل</small>
-<strong>${safeHTML(openedOrder.name||"—")}</strong>
+<strong>${safeHTML(openedOrder.name || "—")}</strong>
 </div>
 
 <div class="order-info-box">
 <small>الهاتف</small>
-<strong>${safeHTML(openedOrder.phone||"—")}</strong>
+<strong>${safeHTML(openedOrder.phone || "—")}</strong>
 </div>
 
 <div class="order-info-box">
 <small>العنوان</small>
-<strong>${safeHTML(openedOrder.address||"—")}</strong>
+<strong>${safeHTML(openedOrder.address || "—")}</strong>
 </div>
 
 <div class="order-info-box">
 <small>الإجمالي</small>
 <strong>
-${Number(openedOrder.total||0).toFixed(2)}
-${safeHTML(openedOrder.currency||"")}
+${Number(openedOrder.total || 0).toFixed(2)}
+${safeHTML(openedOrder.currency || "")}
 </strong>
 </div>
 
@@ -1872,9 +5413,7 @@ ${safeHTML(openedOrder.currency||"")}
 
 <div class="order-info-box">
 <small>حالة الطلب</small>
-<span class="status-badge status-${safeHTML(openedOrder.status||"pending")}">
-${safeHTML(orderStatusArabic(openedOrder.status))}
-</span>
+<strong>${safeHTML(orderStatusArabic(openedOrder.status))}</strong>
 </div>
 
 <div class="order-info-box">
@@ -1884,157 +5423,285 @@ ${safeHTML(orderStatusArabic(openedOrder.status))}
 
 <div class="order-info-box">
 <small>الكوبون</small>
-<strong>${safeHTML(openedOrder.coupon_code||"—")}</strong>
+<strong>${safeHTML(openedOrder.coupon_code || "—")}</strong>
 </div>
 
 </div>
-
 `;
 
-$("orderItemsList").innerHTML=
+
+$("orderItemsList")
+.innerHTML =
 '<div class="empty">جارِ تحميل المنتجات...</div>';
 
-$("invoiceStatusBox").innerHTML=
+
+$("invoiceStatusBox")
+.innerHTML =
 "جارِ التحقق من الفاتورة...";
 
-$("orderScrim").classList.add("show");
-$("orderModal").classList.add("show");
 
-await loadOrderItems(openedOrder.id);
-await loadOrderInvoice(openedOrder.id);
+$("orderScrim")
+.classList.add(
+"show"
+);
+
+
+$("orderModal")
+.classList.add(
+"show"
+);
+
+
+await loadOrderItems(
+openedOrder.id
+);
+
+
+await loadOrderInvoice(
+openedOrder.id
+);
 
 }
 
 
 function closeOrderDetails(){
 
-$("orderScrim").classList.remove("show");
-$("orderModal").classList.remove("show");
+$("orderScrim")
+.classList.remove(
+"show"
+);
 
-openedOrder=null;
-openedOrderItems=[];
-openedInvoice=null;
+
+$("orderModal")
+.classList.remove(
+"show"
+);
+
+
+openedOrder =
+null;
+
+
+openedOrderItems =
+[];
+
+
+openedInvoice =
+null;
 
 }
 
 
 async function loadOrderItems(orderId){
 
-const {data,error}=
+const {
+data,
+error
+} =
 await db
 .from("order_items")
 .select("*")
-.eq("order_id",orderId)
-.order("created_at",{ascending:true});
+.eq(
+"order_id",
+orderId
+)
+.order(
+"created_at",
+{
+ascending:true
+}
+);
+
 
 if(error){
 
 console.error(error);
 
-$("orderItemsList").innerHTML=
+
+$("orderItemsList")
+.innerHTML =
 '<div class="empty">تعذر تحميل المنتجات.</div>';
 
+
 return;
 
 }
 
-openedOrderItems=data||[];
 
-if(!openedOrderItems.length){
+openedOrderItems =
+data
+||
+[];
 
-$("orderItemsList").innerHTML=
+
+if(
+!openedOrderItems.length
+){
+
+$("orderItemsList")
+.innerHTML =
 '<div class="empty">لا توجد منتجات مسجلة لهذا الطلب.</div>';
 
+
 return;
 
 }
 
-$("orderItemsList").innerHTML=
-openedOrderItems.map(item=>`
 
+$("orderItemsList")
+.innerHTML =
+openedOrderItems
+.map(
+item =>
+`
 <div class="order-product">
 
 ${
 item.product_image
 ?
-`<img src="${safeHTML(item.product_image)}">`
+`
+<img
+src="${safeHTML(item.product_image)}"
+>
+`
 :
-`<div style="width:65px;height:65px;border-radius:10px;background:var(--cream)"></div>`
+`
+<div
+style="
+width:65px;
+height:65px;
+border-radius:10px;
+background:var(--cream)
+"
+></div>
+`
 }
 
 <div style="flex:1">
 
 <strong>
-${safeHTML(item.product_name||"")}
+${safeHTML(item.product_name || "")}
 </strong>
 
 <div class="hint">
 
 الكمية:
-${item.quantity||1}
+${Number(item.quantity || 1)}
 
-${item.color?" · "+safeHTML(item.color):""}
-${item.size?" · "+safeHTML(item.size):""}
+${
+item.color
+?
+" · "
++
+safeHTML(item.color)
+:
+""
+}
+
+${
+item.size
+?
+" · "
++
+safeHTML(item.size)
+:
+""
+}
 
 </div>
 
-<div style="margin-top:5px;font-weight:700">
+<div
+style="
+margin-top:5px;
+font-weight:700
+"
+>
 
-${Number(item.unit_price||0).toFixed(2)}
-${safeHTML(item.currency||"")}
+${Number(item.unit_price || 0).toFixed(2)}
+${safeHTML(item.currency || "")}
 
 ×
-${item.quantity||1}
+${Number(item.quantity || 1)}
 
 =
 
-${Number(item.total_price||0).toFixed(2)}
-${safeHTML(item.currency||"")}
+${Number(item.total_price || 0).toFixed(2)}
+${safeHTML(item.currency || "")}
 
 </div>
 
 </div>
 
 </div>
-
-`).join("");
+`
+)
+.join("");
 
 }
 
 
 async function saveOrderDetails(){
 
-if(!openedOrder)return;
+if(!openedOrder){
 
-const payload={
+return;
 
-status:$("detailOrderStatus").value,
+}
 
-payment_status:$("detailPaymentStatus").value,
+
+const payload = {
+
+status:
+$("detailOrderStatus").value,
+
+payment_status:
+$("detailPaymentStatus").value,
 
 shipping_company:
-$("detailShippingCompany").value.trim()||null,
+$("detailShippingCompany")
+.value
+.trim()
+||
+null,
 
 tracking_code:
-$("detailTrackingCode").value.trim()||null,
+$("detailTrackingCode")
+.value
+.trim()
+||
+null,
 
 admin_notes:
-$("detailAdminNotes").value.trim()||null,
+$("detailAdminNotes")
+.value
+.trim()
+||
+null,
 
-updated_at:new Date().toISOString()
+updated_at:
+new Date()
+.toISOString()
 
 };
 
-const {error}=
+
+const {
+error
+} =
 await db
 .from("orders")
 .update(payload)
-.eq("id",openedOrder.id);
+.eq(
+"id",
+openedOrder.id
+);
+
 
 if(error){
 
 alert(
-"تعذر حفظ الطلب:\n"+
+"تعذر حفظ الطلب:\n"
++
 error.message
 );
 
@@ -2042,75 +5709,148 @@ return;
 
 }
 
-toast("تم حفظ بيانات الطلب ✓");
 
-Object.assign(openedOrder,payload);
+Object.assign(
+openedOrder,
+payload
+);
+
+
+toast(
+"تم حفظ بيانات الطلب ✓"
+);
+
 
 await loadOrders();
 
-const orderId=
-$("currentOrderId").value;
 
-openedOrder=
+const orderId =
+$("currentOrderId")
+.value;
+
+
+openedOrder =
 orders.find(
-o=>String(o.id)===String(orderId)
-);
+order =>
+String(order.id)
+===
+String(orderId)
+)
+||
+openedOrder;
 
-await loadOrderInvoice(orderId);
+
+await loadOrderInvoice(
+orderId
+);
 
 }
 
 
+/* =========================================================
+   INVOICES
+========================================================= */
+
 async function loadOrderInvoice(orderId){
 
-openedInvoice=null;
+openedInvoice =
+null;
 
-$("issueInvoiceBtn").style.display="inline-block";
-$("issueInvoiceBtn").textContent="🧾 إصدار فاتورة";
 
-$("viewInvoiceBtn").style.display="none";
-$("printInvoiceBtn").style.display="none";
+$("issueInvoiceBtn").style.display =
+"inline-block";
 
-const {data,error}=
+
+$("issueInvoiceBtn").textContent =
+"🧾 إصدار فاتورة";
+
+
+$("viewInvoiceBtn").style.display =
+"none";
+
+
+$("printInvoiceBtn").style.display =
+"none";
+
+
+const {
+data,
+error
+} =
 await db
 .from("invoices")
 .select("*")
-.eq("order_id",orderId)
-.eq("status","issued")
+.eq(
+"order_id",
+orderId
+)
+.eq(
+"status",
+"issued"
+)
 .maybeSingle();
+
 
 if(error){
 
 console.error(error);
 
-$("invoiceStatusBox").innerHTML=`
-<div style="color:var(--danger);font-weight:700">
+
+$("invoiceStatusBox")
+.innerHTML = `
+<div
+style="
+color:var(--danger);
+font-weight:700
+"
+>
 تعذر التحقق من الفاتورة:
 ${safeHTML(error.message)}
 </div>
 `;
 
+
 return;
 
 }
 
+
 if(!data){
 
-$("invoiceStatusBox").innerHTML=`
-<div style="padding:12px;background:var(--cream);border-radius:10px">
+$("invoiceStatusBox")
+.innerHTML = `
+<div
+style="
+padding:12px;
+background:var(--cream);
+border-radius:10px
+"
+>
 لم يتم إصدار فاتورة لهذا الطلب بعد.
 </div>
 `;
 
+
 return;
 
 }
 
-openedInvoice=data;
 
-$("invoiceStatusBox").innerHTML=`
+openedInvoice =
+data;
 
-<div style="padding:12px;background:#D6E7CC;color:var(--ok);border-radius:10px">
+
+$("invoiceStatusBox")
+.innerHTML = `
+
+<div
+style="
+padding:12px;
+background:#D6E7CC;
+color:var(--ok);
+border-radius:10px
+"
+>
 
 <strong>
 ✓ تم إصدار الفاتورة
@@ -2118,22 +5858,43 @@ $("invoiceStatusBox").innerHTML=`
 
 <div style="margin-top:5px">
 رقم الفاتورة:
-#${data.invoice_number}
+#${safeHTML(data.invoice_number || "")}
 </div>
 
 <div class="hint">
-${data.issued_at?new Date(data.issued_at).toLocaleString("ar"):""}
-</div>
+
+${
+data.issued_at
+?
+new Date(
+data.issued_at
+)
+.toLocaleString(
+"ar"
+)
+:
+""
+}
 
 </div>
 
+</div>
 `;
 
-$("issueInvoiceBtn").textContent=
+
+$("issueInvoiceBtn")
+.textContent =
 "↻ إعادة إصدار الفاتورة";
 
-$("viewInvoiceBtn").style.display="inline-block";
-$("printInvoiceBtn").style.display="inline-block";
+
+$("viewInvoiceBtn")
+.style.display =
+"inline-block";
+
+
+$("printInvoiceBtn")
+.style.display =
+"inline-block";
 
 }
 
@@ -2142,44 +5903,87 @@ async function issueCurrentInvoice(){
 
 if(!openedOrder){
 
-toast("افتح الطلب أولاً");
+toast(
+"افتح الطلب أولاً"
+);
+
 return;
 
 }
 
-const button=$("issueInvoiceBtn");
 
-button.disabled=true;
-button.textContent="جارِ إصدار الفاتورة...";
+const button =
+$("issueInvoiceBtn");
+
+
+button.disabled =
+true;
+
+
+button.textContent =
+"جارِ إصدار الفاتورة...";
+
 
 try{
 
-const {data,error}=
+const {
+data,
+error
+} =
 await db.rpc(
 "issue_invoice",
 {
-p_order_id:openedOrder.id
+p_order_id:
+openedOrder.id
 }
 );
 
-if(error)throw error;
 
-toast("تم إصدار الفاتورة بنجاح ✓");
+if(error){
 
-await loadOrderInvoice(openedOrder.id);
+throw error;
 
-if(data?.snapshot){
+}
 
-openedInvoice={
-id:data.invoice_id,
-invoice_number:data.invoice_number,
-issued_at:data.issued_at,
-snapshot:data.snapshot,
-order_id:openedOrder.id,
-status:"issued"
+
+toast(
+"تم إصدار الفاتورة بنجاح ✓"
+);
+
+
+await loadOrderInvoice(
+openedOrder.id
+);
+
+
+if(
+data?.snapshot
+){
+
+openedInvoice = {
+
+id:
+data.invoice_id,
+
+invoice_number:
+data.invoice_number,
+
+issued_at:
+data.issued_at,
+
+snapshot:
+data.snapshot,
+
+order_id:
+openedOrder.id,
+
+status:
+"issued"
+
 };
 
 }
+
 
 viewCurrentInvoice();
 
@@ -2188,17 +5992,25 @@ catch(error){
 
 console.error(error);
 
+
 alert(
-"تعذر إصدار الفاتورة:\n"+
-(error.message||"حدث خطأ")
+"تعذر إصدار الفاتورة:\n"
++
+(
+error.message
+||
+"حدث خطأ"
+)
 );
 
 }
 finally{
 
-button.disabled=false;
+button.disabled =
+false;
 
-button.textContent=
+
+button.textContent =
 openedInvoice
 ?
 "↻ إعادة إصدار الفاتورة"
@@ -2212,45 +6024,80 @@ openedInvoice
 
 async function quickIssueInvoice(orderId){
 
-const order=
+const order =
 orders.find(
-o=>String(o.id)===String(orderId)
+item =>
+String(item.id)
+===
+String(orderId)
 );
 
-if(!order)return;
+
+if(!order){
+
+return;
+
+}
+
 
 if(
 !confirm(
-"إصدار فاتورة للطلب #"+
-order.order_number+
+"إصدار فاتورة للطلب #"
++
+order.order_number
++
 "؟"
 )
-)return;
+){
+
+return;
+
+}
+
 
 try{
 
-const {data,error}=
+const {
+data,
+error
+} =
 await db.rpc(
 "issue_invoice",
 {
-p_order_id:orderId
+p_order_id:
+orderId
 }
 );
 
-if(error)throw error;
+
+if(error){
+
+throw error;
+
+}
+
 
 toast(
-"تم إصدار الفاتورة #"+
-(data?.invoice_number||"")
+"تم إصدار الفاتورة #"
++
+(
+data?.invoice_number
+||
+""
+)
 );
 
-await openOrderDetails(orderId);
+
+await openOrderDetails(
+orderId
+);
 
 }
 catch(error){
 
 alert(
-"تعذر إصدار الفاتورة:\n"+
+"تعذر إصدار الفاتورة:\n"
++
 error.message
 );
 
@@ -2262,68 +6109,162 @@ error.message
 function viewCurrentInvoice(){
 
 if(
-!openedInvoice||
+!openedInvoice
+||
 !openedInvoice.snapshot
 ){
 
-toast("لا توجد فاتورة");
+toast(
+"لا توجد فاتورة"
+);
+
 return;
 
 }
 
-renderInvoice(openedInvoice);
 
-$("invoiceScrim").classList.add("show");
-$("invoiceModal").classList.add("show");
+renderInvoice(
+openedInvoice
+);
+
+
+$("invoiceScrim")
+.classList.add(
+"show"
+);
+
+
+$("invoiceModal")
+.classList.add(
+"show"
+);
 
 }
 
 
 function closeInvoicePreview(){
 
-$("invoiceScrim").classList.remove("show");
-$("invoiceModal").classList.remove("show");
+$("invoiceScrim")
+.classList.remove(
+"show"
+);
+
+
+$("invoiceModal")
+.classList.remove(
+"show"
+);
 
 }
 
 
 function renderInvoice(invoice){
 
-const snapshot=invoice.snapshot||{};
-const customer=snapshot.customer||{};
-const order=snapshot.order||{};
-const totals=snapshot.totals||{};
+const snapshot =
+invoice.snapshot
+||
+{};
 
-const items=
-Array.isArray(snapshot.items)
+
+const customer =
+snapshot.customer
+||
+{};
+
+
+const order =
+snapshot.order
+||
+{};
+
+
+const totals =
+snapshot.totals
+||
+{};
+
+
+const items =
+Array.isArray(
+snapshot.items
+)
 ?
 snapshot.items
 :
 [];
 
-$("invoicePreviewContainer").innerHTML=`
 
-<div class="invoice-preview" id="printableInvoice">
+const logo =
+getStoreLogo();
+
+
+$("invoicePreviewContainer")
+.innerHTML = `
+
+<div
+class="invoice-preview"
+id="printableInvoice"
+>
 
 <div class="invoice-head">
 
 <div>
-<div class="invoice-brand">الشعيبي</div>
-<div>ALSHUAIBE STORE</div>
+
+${
+logo
+?
+`
+<img
+class="invoice-logo"
+style="display:block"
+src="${safeHTML(logo)}"
+>
+`
+:
+""
+}
+
+<div class="invoice-brand">
+${safeHTML(getStoreName())}
 </div>
+
+<div class="invoice-brand-en">
+${safeHTML(getStoreNameEn())}
+</div>
+
+</div>
+
 
 <div style="text-align:left">
 
-<div class="invoice-title">فاتورة</div>
-
-<div>
-رقم الفاتورة:
-<strong>#${invoice.invoice_number||""}</strong>
+<div class="invoice-title">
+فاتورة
 </div>
 
 <div>
+رقم الفاتورة:
+<strong>
+#${safeHTML(invoice.invoice_number || "")}
+</strong>
+</div>
+
+<div>
+
 تاريخ الإصدار:
-${invoice.issued_at?new Date(invoice.issued_at).toLocaleString("ar"):"—"}
+
+${
+invoice.issued_at
+?
+new Date(
+invoice.issued_at
+)
+.toLocaleString(
+"ar"
+)
+:
+"—"
+}
+
 </div>
 
 </div>
@@ -2335,22 +6276,38 @@ ${invoice.issued_at?new Date(invoice.issued_at).toLocaleString("ar"):"—"}
 
 <div class="invoice-box">
 
-<strong>بيانات العميل</strong>
+<strong>
+بيانات العميل
+</strong>
 
-<div>الاسم: ${safeHTML(customer.name||"—")}</div>
-<div>الهاتف: ${safeHTML(customer.phone||"—")}</div>
-<div>العنوان: ${safeHTML(customer.address||"—")}</div>
+<div>
+الاسم:
+${safeHTML(customer.name || "—")}
+</div>
 
-${customer.city?`<div>المدينة: ${safeHTML(customer.city)}</div>`:""}
+<div>
+الهاتف:
+${safeHTML(customer.phone || "—")}
+</div>
+
+<div>
+العنوان:
+${safeHTML(customer.address || "—")}
+</div>
 
 </div>
 
 
 <div class="invoice-box">
 
-<strong>بيانات الطلب</strong>
+<strong>
+بيانات الطلب
+</strong>
 
-<div>رقم الطلب: #${snapshot.order_number||"—"}</div>
+<div>
+رقم الطلب:
+#${safeHTML(snapshot.order_number || "—")}
+</div>
 
 <div>
 الحالة:
@@ -2367,9 +6324,31 @@ ${safeHTML(paymentStatusArabic(order.payment_status))}
 ${safeHTML(paymentMethodArabic(order.pay_method))}
 </div>
 
-${order.shipping_company?`<div>شركة الشحن: ${safeHTML(order.shipping_company)}</div>`:""}
+${
+order.shipping_company
+?
+`
+<div>
+شركة الشحن:
+${safeHTML(order.shipping_company)}
+</div>
+`
+:
+""
+}
 
-${order.tracking_code?`<div>رقم التتبع: ${safeHTML(order.tracking_code)}</div>`:""}
+${
+order.tracking_code
+?
+`
+<div>
+رقم التتبع:
+${safeHTML(order.tracking_code)}
+</div>
+`
+:
+""
+}
 
 </div>
 
@@ -2381,6 +6360,7 @@ ${order.tracking_code?`<div>رقم التتبع: ${safeHTML(order.tracking_code)
 <table class="invoice-table">
 
 <thead>
+
 <tr>
 <th>المنتج</th>
 <th>الخيارات</th>
@@ -2388,44 +6368,62 @@ ${order.tracking_code?`<div>رقم التتبع: ${safeHTML(order.tracking_code)
 <th>سعر الوحدة</th>
 <th>الإجمالي</th>
 </tr>
+
 </thead>
+
 
 <tbody>
 
-${items.map(item=>`
-
+${
+items
+.map(
+item =>
+`
 <tr>
 
-<td>${safeHTML(item.product_name||"")}</td>
+<td>
+${safeHTML(item.product_name || "")}
+</td>
 
 <td>
+
 ${
-[item.color,item.size]
+[
+item.color,
+item.size
+]
 .filter(Boolean)
 .map(safeHTML)
 .join(" / ")
 ||
 "—"
 }
-</td>
 
-<td>${Number(item.quantity||1)}</td>
-
-<td>
-${Number(item.unit_price||0).toFixed(2)}
-${safeHTML(item.currency||totals.currency||"")}
 </td>
 
 <td>
+${Number(item.quantity || 1)}
+</td>
+
+<td>
+${Number(item.unit_price || 0).toFixed(2)}
+${safeHTML(item.currency || totals.currency || "")}
+</td>
+
+<td>
+
 <strong>
-${Number(item.total_price||0).toFixed(2)}
-${safeHTML(item.currency||totals.currency||"")}
+${Number(item.total_price || 0).toFixed(2)}
+${safeHTML(item.currency || totals.currency || "")}
 </strong>
+
 </td>
 
 </tr>
-
-`).join("")}
+`
+)
+.join("")
+}
 
 </tbody>
 
@@ -2439,43 +6437,50 @@ ${safeHTML(item.currency||totals.currency||"")}
 <div>
 <span>المجموع</span>
 <span>
-${Number(totals.subtotal||0).toFixed(2)}
-${safeHTML(totals.currency||"")}
+${Number(totals.subtotal || 0).toFixed(2)}
+${safeHTML(totals.currency || "")}
 </span>
 </div>
 
 <div>
 <span>الخصم</span>
 <span>
-${Number(totals.discount_amount||0).toFixed(2)}
-${safeHTML(totals.currency||"")}
+${Number(totals.discount_amount || 0).toFixed(2)}
+${safeHTML(totals.currency || "")}
 </span>
 </div>
 
 <div>
 <span>الشحن</span>
 <span>
-${Number(totals.shipping_amount||0).toFixed(2)}
-${safeHTML(totals.currency||"")}
+${Number(totals.shipping_amount || 0).toFixed(2)}
+${safeHTML(totals.currency || "")}
 </span>
 </div>
 
 <div class="grand">
 <span>الإجمالي</span>
 <span>
-${Number(totals.total||0).toFixed(2)}
-${safeHTML(totals.currency||"")}
+${Number(totals.total || 0).toFixed(2)}
+${safeHTML(totals.currency || "")}
 </span>
 </div>
 
 </div>
 
-<div style="text-align:center;font-size:11px;margin-top:25px;color:#666">
-شكراً لتسوقكم من متجر الشعيبي
+
+<div
+style="
+text-align:center;
+font-size:11px;
+margin-top:25px;
+color:#666
+"
+>
+شكراً لتسوقكم من ${safeHTML(getStoreEyebrow())}
 </div>
 
 </div>
-
 `;
 
 }
@@ -2485,48 +6490,82 @@ function printCurrentInvoice(){
 
 if(!openedInvoice){
 
-toast("لا توجد فاتورة");
+toast(
+"لا توجد فاتورة"
+);
+
 return;
 
 }
 
-if(!$("printableInvoice")){
-renderInvoice(openedInvoice);
+
+if(
+!$("printableInvoice")
+){
+
+renderInvoice(
+openedInvoice
+);
+
 }
 
-const sheet=$("printableInvoice");
 
-if(!sheet)return;
+const sheet =
+$("printableInvoice");
 
-const popup=
-window.open("","_blank");
+
+if(!sheet){
+
+return;
+
+}
+
+
+const popup =
+window.open(
+"",
+"_blank"
+);
+
 
 if(!popup){
 
-alert("المتصفح منع نافذة الطباعة.");
+alert(
+"المتصفح منع نافذة الطباعة."
+);
+
 return;
 
 }
+
 
 popup.document.write(`
 
 <!DOCTYPE html>
 
-<html lang="ar" dir="rtl">
+<html
+lang="ar"
+dir="rtl"
+>
 
 <head>
 
 <meta charset="UTF-8">
 
 <title>
-فاتورة الشعيبي #${openedInvoice.invoice_number||""}
+فاتورة ${safeHTML(getStoreName())} #${safeHTML(openedInvoice.invoice_number || "")}
 </title>
 
-<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link
+href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Tajawal:wght@400;500;700;900&display=swap"
+rel="stylesheet"
+>
 
 <style>
 
-*{box-sizing:border-box}
+*{
+box-sizing:border-box
+}
 
 body{
 font-family:Tajawal,sans-serif;
@@ -2549,10 +6588,23 @@ padding-bottom:15px;
 border-bottom:2px solid #222
 }
 
+.invoice-logo{
+width:80px;
+height:80px;
+object-fit:contain;
+display:block
+}
+
 .invoice-brand{
 font-family:"Aref Ruqaa";
 font-size:36px;
 font-weight:700
+}
+
+.invoice-brand-en{
+font-size:10px;
+letter-spacing:.15em;
+direction:ltr
 }
 
 .invoice-title{
@@ -2612,7 +6664,11 @@ font-weight:900
 }
 
 @media print{
-body{padding:0}
+
+body{
+padding:0
+}
+
 }
 
 </style>
@@ -2625,11 +6681,14 @@ ${sheet.outerHTML}
 
 <script>
 
-window.onload=function(){
+window.onload = function(){
 
-setTimeout(function(){
+setTimeout(
+function(){
 window.print();
-},400);
+},
+400
+);
 
 };
 
@@ -2638,54 +6697,99 @@ window.print();
 </body>
 
 </html>
-
 `);
+
 
 popup.document.close();
 
 }
 
 
+/* =========================================================
+   DELETE ORDER
+========================================================= */
+
 async function deleteOrder(id){
 
-if(!confirm("حذف الطلب نهائياً؟"))return;
+if(
+!confirm(
+"حذف الطلب نهائياً؟"
+)
+){
 
-const {error}=
+return;
+
+}
+
+
+const {
+error
+} =
 await db
 .from("orders")
 .delete()
-.eq("id",id);
+.eq(
+"id",
+id
+);
+
 
 if(error){
 
-alert(error.message);
+alert(
+error.message
+);
+
 return;
 
 }
+
 
 await loadOrders();
 
-toast("تم حذف الطلب");
+
+toast(
+"تم حذف الطلب"
+);
 
 }
 
 
-/* COUPONS */
+/* =========================================================
+   COUPONS
+========================================================= */
 
 async function loadCoupons(){
 
-const {data,error}=
+const {
+data,
+error
+} =
 await db
 .from("coupons")
 .select("*")
-.order("created_at",{ascending:false});
+.order(
+"created_at",
+{
+ascending:false
+}
+);
+
 
 if(error){
+
 console.error(error);
+
 return;
+
 }
 
-coupons=data||[];
+
+coupons =
+data
+||
+[];
+
 
 renderCoupons();
 
@@ -2694,127 +6798,250 @@ renderCoupons();
 
 function renderCoupons(){
 
-$("couponsList").innerHTML=
-coupons.map(c=>`
-
+$("couponsList")
+.innerHTML =
+coupons
+.map(
+coupon =>
+`
 <div class="pill">
 
-${safeHTML(c.code)}
+${safeHTML(coupon.code)}
+
 —
-${Number(c.value||0)}
 
-${c.discount_type==="percentage"?"%":""}
+${Number(coupon.value || 0)}
 
-<button onclick="deleteCoupon('${c.id}')">
+${
+coupon.discount_type ===
+"percentage"
+?
+"%"
+:
+""
+}
+
+<button
+onclick="deleteCoupon('${coupon.id}')"
+>
 ×
 </button>
 
 </div>
-
-`).join("");
+`
+)
+.join("")
+||
+'<div class="empty">لا توجد كوبونات</div>';
 
 }
 
 
 async function saveCoupon(){
 
-const payload={
+const payload = {
 
-code:$("couponCode").value.trim().toUpperCase(),
+code:
+$("couponCode")
+.value
+.trim()
+.toUpperCase(),
 
-discount_type:$("couponType").value,
+discount_type:
+$("couponType").value,
 
-value:Number($("couponValue").value||0),
+value:
+Number(
+$("couponValue").value
+||
+0
+),
 
-min_order:Number($("couponMin").value||0),
+min_order:
+Number(
+$("couponMin").value
+||
+0
+),
 
 usage_limit:
 $("couponLimit").value
 ?
-Number($("couponLimit").value)
+Number(
+$("couponLimit").value
+)
 :
 null,
 
-expires_at:$("couponExpiry").value||null,
+expires_at:
+$("couponExpiry").value
+||
+null,
 
-is_active:bool($("couponActive").value)
+is_active:
+bool(
+$("couponActive").value
+)
 
 };
 
+
 if(!payload.code){
 
-toast("اكتب كود الخصم");
+toast(
+"اكتب كود الخصم"
+);
+
 return;
 
 }
 
-const {error}=
+
+const {
+error
+} =
 await db
 .from("coupons")
 .insert(payload);
 
+
 if(error){
 
-alert(error.message);
+alert(
+error.message
+);
+
 return;
 
 }
 
+
+$("couponCode").value =
+"";
+
+
+$("couponValue").value =
+"";
+
+
+$("couponLimit").value =
+"";
+
+
+$("couponExpiry").value =
+"";
+
+
 await loadCoupons();
 
-toast("تم حفظ الكوبون");
+
+toast(
+"تم حفظ الكوبون"
+);
 
 }
 
 
 async function deleteCoupon(id){
 
-if(!confirm("حذف الكوبون؟"))return;
+if(
+!confirm(
+"حذف الكوبون؟"
+)
+){
 
+return;
+
+}
+
+
+const {
+error
+} =
 await db
 .from("coupons")
 .delete()
-.eq("id",id);
+.eq(
+"id",
+id
+);
+
+
+if(error){
+
+alert(
+error.message
+);
+
+return;
+
+}
+
 
 await loadCoupons();
 
 }
 
 
-/* REVIEWS */
+/* =========================================================
+   REVIEWS
+========================================================= */
 
 async function loadReviews(){
 
-const {data,error}=
+const {
+data,
+error
+} =
 await db
 .from("reviews")
 .select("*")
-.order("created_at",{ascending:false});
+.order(
+"created_at",
+{
+ascending:false
+}
+);
+
 
 if(error){
+
 console.error(error);
+
 return;
+
 }
 
-reviews=data||[];
 
-$("reviewsList").innerHTML=
-reviews.map(r=>`
+reviews =
+data
+||
+[];
 
+
+$("reviewsList")
+.innerHTML =
+reviews.length
+?
+reviews
+.map(
+review =>
+`
 <div class="card">
 
 <b>
-${safeHTML(r.customer_name||r.name||"عميل")}
+${safeHTML(review.customer_name || review.name || "عميل")}
 </b>
 
 —
-⭐ ${r.rating||5}
+⭐ ${Number(review.rating || 5)}
 
 ${
-r.is_verified_purchase
+review.is_verified_purchase
 ?
 `
-<span style="
+<span
+style="
 display:inline-block;
 background:#D6E7CC;
 color:var(--ok);
@@ -2822,7 +7049,8 @@ font-size:10px;
 padding:4px 8px;
 border-radius:999px;
 margin-right:5px
-">
+"
+>
 ✓ شراء موثق
 </span>
 `
@@ -2831,46 +7059,66 @@ margin-right:5px
 }
 
 <p>
-${safeHTML(r.text||r.comment||"")}
+${safeHTML(review.text || review.comment || "")}
 </p>
 
 <button
 class="btn sm"
-onclick="toggleReview('${r.id}',${!r.is_approved})"
+onclick="toggleReview(
+'${review.id}',
+${!review.is_approved}
+)"
 >
-${r.is_approved?"إخفاء":"اعتماد"}
+${review.is_approved ? "إخفاء" : "اعتماد"}
 </button>
 
 <button
 class="btn red sm"
-onclick="deleteReview('${r.id}')"
+onclick="deleteReview('${review.id}')"
 >
 حذف
 </button>
 
 </div>
-
-`).join("")
-||
+`
+)
+.join("")
+:
 '<div class="empty">لا توجد تقييمات</div>';
 
 }
 
 
-async function toggleReview(id,v){
+async function toggleReview(
+id,
+approved
+){
 
-const {error}=
+const {
+error
+} =
 await db
 .from("reviews")
-.update({is_approved:v})
-.eq("id",id);
+.update({
+is_approved:
+approved
+})
+.eq(
+"id",
+id
+);
+
 
 if(error){
 
-alert(error.message);
+alert(
+error.message
+);
+
 return;
 
 }
+
 
 await loadReviews();
 
@@ -2879,70 +7127,137 @@ await loadReviews();
 
 async function deleteReview(id){
 
-if(!confirm("حذف التقييم؟"))return;
+if(
+!confirm(
+"حذف التقييم؟"
+)
+){
 
+return;
+
+}
+
+
+const {
+error
+} =
 await db
 .from("reviews")
 .delete()
-.eq("id",id);
+.eq(
+"id",
+id
+);
+
+
+if(error){
+
+alert(
+error.message
+);
+
+return;
+
+}
+
 
 await loadReviews();
 
 }
 
 
-/* =====================================================
-   PUSH NOTIFICATIONS
-===================================================== */
+/* =========================================================
+   NOTIFICATIONS
+========================================================= */
 
 async function loadNotifications(){
 
-const {data,error}=
+const {
+data,
+error
+} =
 await db
 .from("notifications")
 .select("*")
-.order("created_at",{ascending:false});
+.order(
+"created_at",
+{
+ascending:false
+}
+);
+
 
 if(error){
 
 console.error(error);
+
 return;
 
 }
 
-notifications=data||[];
 
-$("notificationsList").innerHTML=
-notifications.map(n=>`
+notifications =
+data
+||
+[];
 
+
+$("notificationsList")
+.innerHTML =
+notifications.length
+?
+notifications
+.map(
+notification =>
+`
 <div class="card">
 
 <b>
-${safeHTML(n.title||"")}
+${safeHTML(notification.title || "")}
 </b>
 
 <p>
-${safeHTML(n.message||n.text||"")}
+${safeHTML(notification.message || notification.text || "")}
 </p>
 
-${n.image_url?`
-<img
-src="${safeHTML(n.image_url)}"
-style="
-width:100px;
-height:100px;
-object-fit:cover;
-border-radius:10px;
-margin-bottom:8px
-"
->
-`:""}
+<div class="hint">
 
-<div>
+${
+notification.created_at
+?
+new Date(
+notification.created_at
+)
+.toLocaleString(
+"ar"
+)
+:
+""
+}
+
+</div>
+
+<div class="actions">
+
+${
+notification.link
+?
+`
+<a
+class="btn out sm"
+href="${safeHTML(notification.link)}"
+target="_blank"
+>
+فتح الرابط
+</a>
+`
+:
+""
+}
 
 <button
 class="btn red sm"
-onclick="deleteNotification('${n.id}')"
+onclick="deleteNotification('${notification.id}')"
 >
 حذف
 </button>
@@ -2950,73 +7265,174 @@ onclick="deleteNotification('${n.id}')"
 </div>
 
 </div>
-
-`).join("")
-||
+`
+)
+.join("")
+:
 '<div class="empty">لا توجد إشعارات</div>';
 
 }
 
 
-/*
-هذه الدالة:
-1- تحفظ الإشعار داخل قاعدة البيانات.
-2- تستدعي Edge Function.
-3- Edge Function ترسل الإشعار عبر OneSignal.
-*/
+/* =========================================================
+   PUSH VIA EDGE FUNCTION
+========================================================= */
 
-async function saveNotification(){
+async function sendPushNotification(
+title,
+message,
+image,
+link
+){
 
-const title=
-$("notifTitle").value.trim();
+const {
+data,
+error
+} =
+await db.functions
+.invoke(
+"send-notification",
+{
 
-const message=
-$("notifText").value.trim();
+body:{
 
-const image_url=
-$("notifImage").value.trim();
+title,
 
-const link=
-$("notifLink").value.trim();
+message,
+
+image:
+image
+||
+null,
+
+url:
+link
+||
+"https://alshuaiibe.github.io/",
+
+link:
+link
+||
+"https://alshuaiibe.github.io/"
+
+}
+
+}
+);
 
 
-if(!title||!message){
+if(error){
 
-toast("اكتب عنوان ونص الإشعار");
+throw error;
+
+}
+
+
+if(
+data?.error
+){
+
+throw new Error(
+typeof data.error ===
+"string"
+?
+data.error
+:
+JSON.stringify(
+data.error
+)
+);
+
+}
+
+
+return data;
+
+}
+
+
+/* =========================================================
+   SAVE NOTIFICATION
+========================================================= */
+
+async function saveNotification(
+sendPush=false
+){
+
+const title =
+$("notifTitle")
+.value
+.trim();
+
+
+const message =
+$("notifText")
+.value
+.trim();
+
+
+const image =
+$("notifImage")
+.value
+.trim();
+
+
+const link =
+$("notifLink")
+.value
+.trim();
+
+
+if(!title){
+
+toast(
+"اكتب عنوان الإشعار"
+);
+
 return;
 
 }
 
 
-const btn=
-$("sendNotificationBtn");
+if(!message){
 
-const statusBox=
-$("pushStatus");
+toast(
+"اكتب نص الإشعار"
+);
 
+return;
 
-btn.disabled=true;
-btn.textContent="جارِ إرسال الإشعار...";
-
-
-statusBox.className=
-"push-status";
-
-statusBox.textContent=
-"";
+}
 
 
-let savedNotificationId=
-null;
+const button =
+sendPush
+?
+$("pushNotifBtn")
+:
+$("saveNotifBtn");
+
+
+button.disabled =
+true;
+
+
+const previousText =
+button.textContent;
+
+
+button.textContent =
+sendPush
+?
+"جارِ الإرسال..."
+:
+"جارِ الحفظ...";
 
 
 try{
 
-/* حفظ الإشعار في Supabase */
-
 const {
-data:savedNotification,
-error:saveError
+error
 } =
 await db
 .from("notifications")
@@ -3027,123 +7443,66 @@ title,
 message,
 
 image_url:
-image_url||null,
+image
+||
+null,
 
 link:
-link||null,
-
-is_active:true
-
-})
-.select()
-.single();
-
-
-if(saveError){
-
-throw saveError;
-
-}
-
-
-savedNotificationId=
-savedNotification?.id||null;
-
-
-/* إرسال Push عبر Edge Function */
-
-const {
-data:pushResult,
-error:pushError
-} =
-await db.functions.invoke(
-"send-notification",
-{
-
-body:{
-
-title,
-
-message,
-
-image_url,
-
 link
+||
+null,
 
-}
+is_active:
+true
 
-}
-);
+});
 
 
-if(pushError){
+if(error){
 
-console.error(
-"Push Function error:",
-pushError
-);
-
-throw new Error(
-"تم حفظ الإشعار داخل المتجر، لكن تعذر إرسال Push: "+
-pushError.message
-);
+throw error;
 
 }
 
 
-if(
-pushResult &&
-pushResult.success===false
-){
+if(sendPush){
 
-console.error(
-"OneSignal response:",
-pushResult
-);
-
-throw new Error(
-pushResult.error||
-"تعذر إرسال إشعار OneSignal"
+await sendPushNotification(
+title,
+message,
+image,
+link
 );
 
 }
 
 
-/* نجاح كامل */
+$("notifTitle").value =
+"";
 
-$("notifTitle").value="";
-$("notifText").value="";
-$("notifImage").value="";
-$("notifLink").value="";
+
+$("notifText").value =
+"";
+
+
+$("notifImage").value =
+"";
+
+
+$("notifLink").value =
+"";
 
 
 await loadNotifications();
 
 
-statusBox.className=
-"push-status ok";
-
-
-if(
-pushResult?.recipients!=null
-){
-
-statusBox.textContent=
-"✓ تم إرسال الإشعار بنجاح. عدد المستلمين: "+
-pushResult.recipients;
-
-}else{
-
-statusBox.textContent=
-"✓ تم إرسال الإشعار إلى OneSignal بنجاح.";
-
-}
-
-
 toast(
-"تم نشر وإرسال الإشعار للعملاء ✓"
+sendPush
+?
+"تم نشر وإرسال الإشعار 🔔"
+:
+"تم حفظ الإشعار داخل المتجر"
 );
-
 
 }
 catch(error){
@@ -3151,28 +7510,37 @@ catch(error){
 console.error(error);
 
 
-statusBox.className=
-"push-status error";
-
-
-statusBox.textContent=
-error.message||
-"تعذر إرسال الإشعار";
-
+if(sendPush){
 
 alert(
-"حدث خطأ:\n"+
-(error.message||error)
+"تمت محاولة إرسال الإشعار، لكن حدث خطأ:\n"
++
+(
+error.message
+||
+"تعذر الاتصال بخدمة Push"
+)
 );
 
+}else{
+
+alert(
+"تعذر حفظ الإشعار:\n"
++
+error.message
+);
+
+}
 
 }
 finally{
 
-btn.disabled=false;
+button.disabled =
+false;
 
-btn.textContent=
-"🔔 إرسال الإشعار للعملاء";
+
+button.textContent =
+previousText;
 
 }
 
@@ -3181,369 +7549,389 @@ btn.textContent=
 
 async function deleteNotification(id){
 
-if(!confirm("حذف الإشعار؟"))return;
+if(
+!confirm(
+"حذف الإشعار؟"
+)
+){
 
-const {error}=
+return;
+
+}
+
+
+const {
+error
+} =
 await db
 .from("notifications")
 .delete()
-.eq("id",id);
+.eq(
+"id",
+id
+);
+
 
 if(error){
 
-alert(error.message);
+alert(
+error.message
+);
+
 return;
 
 }
+
 
 await loadNotifications();
 
-toast("تم حذف الإشعار");
-
 }
 
 
-/* SETTINGS */
-
-async function loadSettings(){
-
-const {data,error}=
-await db
-.from("settings")
-.select("*");
-
-if(error){
-console.error(error);
-return;
-}
-
-(data||[]).forEach(
-x=>settings[x.id]=x.data||{}
-);
-
-const g=settings.general||{};
-const p=settings.payment||{};
-const d=settings.design||{};
-const a=settings.ads||{};
-
-$("whatsapp").value=g.whatsapp||"";
-$("sloganTitle").value=g.sloganTitle||"";
-$("sloganDesc").value=g.sloganDesc||"";
-$("aboutText").value=g.aboutText||"";
-$("policies").value=g.policies||"";
-
-[
-"instagram",
-"facebook",
-"tiktok",
-"twitter",
-"telegram",
-"snapchat"
-].forEach(
-x=>$(x).value=g[x]||""
-);
-
-$("enableSearch").value=
-String(g.enableSearch!==false);
-
-$("enableSort").value=
-String(g.enableSort!==false);
-
-$("featureWish").value=
-String(g.featureWish!==false);
-
-$("featureSkel").value=
-String(g.featureSkel!==false);
-
-$("featurePwa").value=
-String(!!g.featurePwa);
-
-$("featureReviews").value=
-String(g.featureReviews!==false);
-
-$("seoTitle").value=g.seoTitle||"";
-$("seoDescription").value=g.seoDescription||"";
-
-$("bankName").value=p.bankName||"";
-$("bankHolder").value=p.bankHolder||"";
-$("bankAccount").value=p.bankAccount||"";
-$("bankIban").value=p.bankIban||"";
-$("bankInstructions").value=p.bankInstructions||"";
-$("depositDetails").value=p.depositDetails||"";
-
-const colors=
-d.colors||g.colors||{};
-
-$("colorCream").value=
-colors.cream||"#F8EACB";
-
-$("colorCard").value=
-colors.card||"#FFFBF0";
-
-$("colorInk").value=
-colors.ink||"#20301C";
-
-$("colorGold").value=
-colors.gold||"#A9793C";
-
-$("cardWidth").value=
-d.cardWidth||g.cardWidth||180;
-
-$("productFont").value=
-d.productFont||g.productFont||"'Aref Ruqaa', serif";
-
-$("backgroundUrl").value=
-d.backgroundUrl||"";
-
-$("watermarkUrl").value=
-d.watermarkUrl||"";
-
-$("backgroundOpacity").value=
-d.backgroundOpacity??.15;
-
-$("watermarkOpacity").value=
-d.watermarkOpacity??.1;
-
-$("adEnabled").value=
-String(!!a.enabled);
-
-$("adType").value=
-a.type||"image";
-
-$("adLink").value=
-a.link||"";
-
-adMedia=
-a.media||[];
-
-renderAdPreview();
-
-}
-
-
-async function upsertSetting(id,data){
-
-const {error}=
-await db
-.from("settings")
-.upsert(
-{
-id,
-data,
-updated_at:new Date().toISOString()
-},
-{
-onConflict:"id"
-}
-);
-
-if(error)throw error;
-
-}
-
+/* =========================================================
+   SAVE GENERAL
+========================================================= */
 
 async function saveGeneral(){
 
 try{
 
-const g={
+const general = {
 
 ...settings.general,
 
-whatsapp:$("whatsapp").value,
+whatsapp:
+$("whatsapp").value,
 
-sloganTitle:$("sloganTitle").value,
+sloganTitle:
+$("sloganTitle").value,
 
-sloganDesc:$("sloganDesc").value,
+sloganDesc:
+$("sloganDesc").value,
 
-aboutText:$("aboutText").value,
+aboutText:
+$("aboutText").value,
 
-policies:$("policies").value,
+policies:
+$("policies").value,
 
-instagram:$("instagram").value,
+instagram:
+$("instagram").value,
 
-facebook:$("facebook").value,
+facebook:
+$("facebook").value,
 
-tiktok:$("tiktok").value,
+tiktok:
+$("tiktok").value,
 
-twitter:$("twitter").value,
+twitter:
+$("twitter").value,
 
-telegram:$("telegram").value,
+telegram:
+$("telegram").value,
 
-snapchat:$("snapchat").value,
+snapchat:
+$("snapchat").value,
 
 enableSearch:
-bool($("enableSearch").value),
+bool(
+$("enableSearch").value
+),
 
 enableSort:
-bool($("enableSort").value),
+bool(
+$("enableSort").value
+),
 
 featureWish:
-bool($("featureWish").value),
+bool(
+$("featureWish").value
+),
 
 featureSkel:
-bool($("featureSkel").value),
+bool(
+$("featureSkel").value
+),
 
 featurePwa:
-bool($("featurePwa").value),
+bool(
+$("featurePwa").value
+),
 
 featureReviews:
-bool($("featureReviews").value),
+bool(
+$("featureReviews").value
+),
 
-seoTitle:$("seoTitle").value,
+seoTitle:
+$("seoTitle").value,
 
-seoDescription:$("seoDescription").value
+seoDescription:
+$("seoDescription").value
 
 };
 
-await upsertSetting("general",g);
 
-settings.general=g;
+await upsertSetting(
+"general",
+general
+);
 
-toast("تم حفظ إعدادات المتجر");
+
+settings.general =
+general;
+
+
+toast(
+"تم حفظ إعدادات المتجر"
+);
 
 }
-catch(e){
+catch(error){
 
-alert(e.message);
+alert(
+error.message
+);
 
 }
 
 }
 
+
+/* =========================================================
+   PAYMENT
+========================================================= */
 
 async function savePayment(){
 
 try{
 
-const p={
+const payment = {
 
-bankName:$("bankName").value,
+bankName:
+$("bankName").value,
 
-bankHolder:$("bankHolder").value,
+bankHolder:
+$("bankHolder").value,
 
-bankAccount:$("bankAccount").value,
+bankAccount:
+$("bankAccount").value,
 
-bankIban:$("bankIban").value,
+bankIban:
+$("bankIban").value,
 
-bankInstructions:$("bankInstructions").value,
+bankInstructions:
+$("bankInstructions").value,
 
-depositDetails:$("depositDetails").value
+depositDetails:
+$("depositDetails").value
 
 };
 
-await upsertSetting("payment",p);
 
-settings.payment=p;
+await upsertSetting(
+"payment",
+payment
+);
 
-toast("تم حفظ إعدادات الدفع");
+
+settings.payment =
+payment;
+
+
+toast(
+"تم حفظ إعدادات الدفع"
+);
 
 }
-catch(e){
+catch(error){
 
-alert(e.message);
+alert(
+error.message
+);
 
 }
 
 }
 
+
+/* =========================================================
+   DESIGN
+========================================================= */
 
 async function saveDesign(){
 
 try{
 
-let bg=$("backgroundUrl").value;
-let wm=$("watermarkUrl").value;
+let background =
+$("backgroundUrl")
+.value
+.trim();
 
-if($("backgroundFile").files.length){
 
-bg=
+let watermark =
+$("watermarkUrl")
+.value
+.trim();
+
+
+if(
+$("backgroundFile")
+.files
+.length
+){
+
+background =
 (
 await uploadFiles(
-[...$("backgroundFile").files],
+[
+...$("backgroundFile").files
+],
 "design"
 )
 )[0];
 
 }
 
-if($("watermarkFile").files.length){
 
-wm=
+if(
+$("watermarkFile")
+.files
+.length
+){
+
+watermark =
 (
 await uploadFiles(
-[...$("watermarkFile").files],
+[
+...$("watermarkFile").files
+],
 "design"
 )
 )[0];
 
 }
 
-const d={
+
+const design = {
 
 colors:{
 
-cream:$("colorCream").value,
+cream:
+$("colorCream").value,
 
-card:$("colorCard").value,
+card:
+$("colorCard").value,
 
-ink:$("colorInk").value,
+ink:
+$("colorInk").value,
 
-gold:$("colorGold").value
+gold:
+$("colorGold").value
 
 },
 
-cardWidth:Number($("cardWidth").value||180),
+cardWidth:
+Number(
+$("cardWidth").value
+||
+180
+),
 
-productFont:$("productFont").value,
+productFont:
+$("productFont").value,
 
-backgroundUrl:bg,
+backgroundUrl:
+background,
 
-watermarkUrl:wm,
+watermarkUrl:
+watermark,
 
 backgroundOpacity:
-Number($("backgroundOpacity").value||0),
+Number(
+$("backgroundOpacity").value
+||
+0
+),
 
 watermarkOpacity:
-Number($("watermarkOpacity").value||0)
+Number(
+$("watermarkOpacity").value
+||
+0
+)
 
 };
 
-await upsertSetting("design",d);
 
-settings.design=d;
+await upsertSetting(
+"design",
+design
+);
 
-$("backgroundUrl").value=bg;
-$("watermarkUrl").value=wm;
 
-toast("تم حفظ التصميم");
+settings.design =
+design;
+
+
+$("backgroundUrl").value =
+background;
+
+
+$("watermarkUrl").value =
+watermark;
+
+
+toast(
+"تم حفظ التصميم"
+);
 
 }
-catch(e){
+catch(error){
 
-alert(e.message);
+alert(
+error.message
+);
 
 }
 
 }
 
+
+/* =========================================================
+   ADS
+========================================================= */
 
 function renderAdPreview(){
 
-$("adPreview").innerHTML=
-adMedia.map((u,i)=>`
-
+$("adPreview")
+.innerHTML =
+adMedia
+.map(
+(
+url,
+index
+) =>
+`
 <div>
 
-<img src="${safeHTML(u)}">
+<img
+src="${safeHTML(url)}"
+>
 
-<button onclick="adMedia.splice(${i},1);renderAdPreview()">
+<button
+onclick="
+adMedia.splice(${index},1);
+renderAdPreview();
+"
+>
 ×
 </button>
 
 </div>
-
-`).join("");
+`
+)
+.join("");
 
 }
 
@@ -3552,70 +7940,124 @@ async function saveAds(){
 
 try{
 
-if($("adFiles").files.length){
+if(
+$("adFiles")
+.files
+.length
+){
 
 adMedia.push(
 ...
 await uploadFiles(
-[...$("adFiles").files],
+[
+...$("adFiles").files
+],
 "ads"
 )
 );
 
 }
 
-const a={
+
+const ads = {
 
 enabled:
-bool($("adEnabled").value),
+bool(
+$("adEnabled").value
+),
 
-type:$("adType").value,
+type:
+$("adType").value,
 
-link:$("adLink").value,
+link:
+$("adLink").value,
 
-media:adMedia
+media:
+adMedia
 
 };
 
-await upsertSetting("ads",a);
 
-settings.ads=a;
+await upsertSetting(
+"ads",
+ads
+);
+
+
+settings.ads =
+ads;
+
 
 renderAdPreview();
 
-toast("تم حفظ الإعلان");
+
+toast(
+"تم حفظ الإعلان"
+);
 
 }
-catch(e){
+catch(error){
 
-alert(e.message);
+alert(
+error.message
+);
 
 }
 
 }
 
 
-/* STATS */
+/* =========================================================
+   STATS
+========================================================= */
 
 function updateStats(){
 
-$("sProducts").textContent=
+$("sProducts")
+.textContent =
 products.length;
 
-$("sOrders").textContent=
+
+$("sOrders")
+.textContent =
 orders.length;
 
-$("sLow").textContent=
-products.filter(
-p=>
-Number(p.stock||0)
-<=
-Number(p.low_stock_threshold||5)
-).length;
 
-$("sStock").textContent=
-products.reduce(
-(s,p)=>s+Number(p.stock||0),
+$("sLow")
+.textContent =
+products
+.filter(
+product =>
+Number(
+product.stock
+||
+0
+)
+<=
+Number(
+product.low_stock_threshold
+||
+5
+)
+)
+.length;
+
+
+$("sStock")
+.textContent =
+products
+.reduce(
+(
+sum,
+product
+) =>
+sum
++
+Number(
+product.stock
+||
+0
+),
 0
 );
 
@@ -3624,4 +8066,5 @@ products.reduce(
 </script>
 
 </body>
+
 </html>
