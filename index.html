@@ -5,35 +5,30 @@
 <meta charset="UTF-8">
 
 <meta
-  name="viewport"
-  content="width=device-width,initial-scale=1,viewport-fit=cover"
+name="viewport"
+content="width=device-width,initial-scale=1,viewport-fit=cover"
 >
-
-<meta name="theme-color" content="#20301C">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="الشعيبي">
 
 <title>متجر الشعيبي | ALSHUAIIBE STORE</title>
 
 <meta
-  id="metaDesc"
-  name="description"
-  content="متجر الشعيبي"
+id="metaDesc"
+name="description"
+content="متجر الشعيبي"
 >
 
 <meta property="og:type" content="website">
 
 <meta
-  id="ogTitle"
-  property="og:title"
-  content="متجر الشعيبي"
+id="ogTitle"
+property="og:title"
+content="متجر الشعيبي"
 >
 
 <meta
-  id="ogDesc"
-  property="og:description"
-  content="متجر الشعيبي"
+id="ogDesc"
+property="og:description"
+content="متجر الشعيبي"
 >
 
 <link id="dynamicManifest" rel="manifest" href="">
@@ -46,9 +41,7 @@ rel="stylesheet"
 >
 
 
-<!-- =====================================================
-     ONESIGNAL
-===================================================== -->
+<!-- ================= ONESIGNAL ================= -->
 
 <script
 src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js"
@@ -60,54 +53,44 @@ defer
 window.OneSignalDeferred =
 window.OneSignalDeferred || [];
 
-window.OneSignalDeferred.push(
+OneSignalDeferred.push(
 async function(OneSignal){
 
-  try{
+try{
 
-    await OneSignal.init({
+await OneSignal.init({
 
-      appId:
-      "3fe0707f-ffa3-48ca-9737-11425770bcc2",
+appId:
+"3fe0707f-ffa3-48ca-9737-11425770bcc2",
 
-      notifyButton:{
-        enable:false
-      },
+notifyButton:{
+enable:false
+},
 
-      welcomeNotification:{
-        disable:true
-      }
+welcomeNotification:{
+disable:true
+}
 
-    });
+});
 
+window.__ALSHUAIIBE_ONESIGNAL__ =
+OneSignal;
 
-    window.__ALSHUAIIBE_ONESIGNAL__ =
-    OneSignal;
+window.dispatchEvent(
+new Event(
+"alshuaiibe-onesignal-ready"
+)
+);
 
+}
+catch(error){
 
-    window.dispatchEvent(
-      new Event(
-        "alshuaiibe-onesignal-ready"
-      )
-    );
+console.error(
+"OneSignal initialization error:",
+error
+);
 
-
-    console.log(
-      "OneSignal ready"
-    );
-
-  }
-  catch(error){
-
-    console.error(
-      "OneSignal initialization error:",
-      error
-    );
-
-    window.__ALSHUAIIBE_ONESIGNAL_ERROR__ =
-    error;
-
-  }
+}
 
 }
 );
@@ -254,9 +237,7 @@ cursor:not-allowed;
 }
 
 
-/* =========================================================
-   SPLASH
-========================================================= */
+/* ================= SPLASH ================= */
 
 #storeSplash{
 position:fixed;
@@ -364,57 +345,61 @@ direction:ltr;
 }
 
 @keyframes splashLogoEnter{
+
 0%{
 opacity:0;
 transform:scale(.42) translateY(30px) rotate(-7deg);
 filter:blur(16px);
 }
+
 55%{
 opacity:1;
 transform:scale(1.08) translateY(-6px) rotate(1deg);
 filter:blur(0);
 }
+
 100%{
 transform:scale(1) translateY(0) rotate(0);
 }
+
 }
 
 @keyframes splashGlow{
+
 from{
 opacity:.28;
 transform:scale(.75);
 }
+
 to{
 opacity:.85;
 transform:scale(1.18);
 }
+
 }
 
 @keyframes splashRing{
+
 from{
 transform:scale(.82) rotate(0deg);
 opacity:.35;
 }
+
 to{
 transform:scale(1.08) rotate(8deg);
 opacity:.9;
 }
+
 }
 
 
-/* =========================================================
-   PUSH PERMISSION
-========================================================= */
+/* ================= PUSH ================= */
 
 #pushPermissionBox{
 position:fixed;
 z-index:99990;
 left:50%;
-bottom:
-max(
-20px,
-env(safe-area-inset-bottom)
-);
+bottom:20px;
 transform:
 translateX(-50%)
 translateY(150%);
@@ -456,7 +441,6 @@ align-items:center;
 justify-content:center;
 background:var(--cream-deep);
 font-size:21px;
-flex:0 0 auto;
 }
 
 .push-message{
@@ -475,7 +459,6 @@ flex-wrap:wrap;
 
 .push-actions .btn{
 flex:1;
-min-width:150px;
 }
 
 
@@ -1660,48 +1643,6 @@ bottom:32px;
 }
 
 
-/* ================= SKELETON ================= */
-
-.skeleton{
-background:
-linear-gradient(
-90deg,
-var(--card) 25%,
-var(--cream) 50%,
-var(--card) 75%
-);
-background-size:200% 100%;
-animation:shimmer 1.4s infinite;
-}
-
-@keyframes shimmer{
-0%{
-background-position:200% 0;
-}
-100%{
-background-position:-200% 0;
-}
-}
-
-.skeleton-card{
-flex:0 0 var(--card-width);
-width:var(--card-width);
-}
-
-.skeleton-image{
-width:100%;
-aspect-ratio:1;
-border-radius:16px;
-}
-
-.skeleton-line{
-width:75%;
-height:18px;
-margin:8px auto;
-border-radius:8px;
-}
-
-
 /* ================= MOBILE ================= */
 
 @media(max-width:768px){
@@ -1935,7 +1876,6 @@ onclick="dismissPushPermission()"
 
 <div class="topbar-inner">
 
-
 <div class="brand">
 
 <img
@@ -2145,10 +2085,7 @@ class="ad-wrap"
 </section>
 
 
-<section
-class="section"
-id="shop"
->
+<section class="section" id="shop">
 
 <div class="section-head">
 
@@ -2190,21 +2127,10 @@ id="sortSelect"
 onchange="handleSort()"
 >
 
-<option value="newest">
-الأحدث
-</option>
-
-<option value="priceAsc">
-الأقل سعراً
-</option>
-
-<option value="priceDesc">
-الأعلى سعراً
-</option>
-
-<option value="name">
-الاسم
-</option>
+<option value="newest">الأحدث</option>
+<option value="priceAsc">الأقل سعراً</option>
+<option value="priceDesc">الأعلى سعراً</option>
+<option value="name">الاسم</option>
 
 </select>
 
@@ -2227,10 +2153,7 @@ class="products-area"
 </section>
 
 
-<section
-class="section"
-id="about"
->
+<section class="section" id="about">
 
 <div class="about-box">
 
@@ -2314,6 +2237,7 @@ class="scrim"
 onclick="closeCart()"
 ></div>
 
+
 <div
 id="cartDrawer"
 class="drawer"
@@ -2365,6 +2289,8 @@ onclick="openCheckout()"
 
 </div>
 
+
+<!-- ================= SCRIM ================= -->
 
 <div
 id="modalScrim"
@@ -2512,6 +2438,7 @@ id="couponMessage"
 class="coupon-message"
 ></div>
 
+
 <label>
 طريقة الدفع
 </label>
@@ -2531,10 +2458,12 @@ onchange="renderPaymentDetails()"
 
 </select>
 
+
 <div
 id="paymentDetails"
 class="pay-box"
 ></div>
+
 
 <button
 id="submitOrderButton"
@@ -2592,6 +2521,7 @@ onclick="closeMyOrders()"
 
 </div>
 
+
 <div class="orders-search">
 
 <input
@@ -2608,6 +2538,7 @@ onclick="loadCustomerOrders()"
 </button>
 
 </div>
+
 
 <div
 id="customerOrdersResults"
@@ -2678,6 +2609,7 @@ color:var(--gold)
 5 من 5
 </div>
 
+
 <label>
 اسمك
 </label>
@@ -2688,6 +2620,7 @@ type="text"
 placeholder="اسم العميل"
 >
 
+
 <label>
 رأيك في المنتج
 </label>
@@ -2696,6 +2629,7 @@ placeholder="اسم العميل"
 id="reviewText"
 placeholder="اكتب تجربتك مع المنتج..."
 ></textarea>
+
 
 <button
 id="submitReviewButton"
@@ -2772,10 +2706,7 @@ onclick="closeInvoiceModal()"
 </div>
 
 
-<div
-id="toast"
-class="toast"
-></div>
+<div id="toast" class="toast"></div>
 
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -2790,8 +2721,10 @@ class="toast"
 const SUPABASE_URL =
 "https://bpxklyjahdjbnkxwtqig.supabase.co";
 
+
 const SUPABASE_KEY =
 "sb_publishable_7hoVcUR8Twi6s9IRATiruw_ICTw6wXn";
+
 
 const client =
 supabase.createClient(
@@ -2801,7 +2734,7 @@ SUPABASE_KEY
 
 
 /* =========================================================
-   STORE
+   DEFAULT STORE
 ========================================================= */
 
 const DEFAULT_STORE = {
@@ -2833,28 +2766,46 @@ let paymentSettings = {};
 let designSettings = {};
 let adSettings = {};
 
-let activeCategory = "الكل";
-let searchText = "";
-let sortMode = "newest";
+let activeCategory =
+"الكل";
 
-let currentProduct = null;
-let currentCoupon = null;
-let adTimer = null;
+let searchText =
+"";
 
-let customerOrders = [];
-let currentCustomerPhone = "";
+let sortMode =
+"newest";
 
-let currentInvoiceData = null;
+let currentProduct =
+null;
 
-let reviewContext = null;
-let reviewRating = 5;
+let currentCoupon =
+null;
+
+let adTimer =
+null;
+
+let customerOrders =
+[];
+
+let currentCustomerPhone =
+"";
+
+let currentInvoiceData =
+null;
+
+let reviewContext =
+null;
+
+let reviewRating =
+5;
 
 
 /* =========================================================
    CART
 ========================================================= */
 
-let cart = [];
+let cart =
+[];
 
 try{
 
@@ -2899,7 +2850,8 @@ localStorage.removeItem(
    FAVORITES
 ========================================================= */
 
-let favorites = [];
+let favorites =
+[];
 
 try{
 
@@ -3098,7 +3050,7 @@ scrollSection(
 
 
 /* =========================================================
-   PUSH NOTIFICATIONS - FIXED
+   PUSH NOTIFICATIONS
 ========================================================= */
 
 function isIOSDevice(){
@@ -3136,16 +3088,10 @@ window.navigator.standalone === true
 
 function dismissPushPermission(){
 
-const box =
-$("pushPermissionBox");
-
-if(box){
-
-box.classList.remove(
+$("pushPermissionBox")
+?.classList.remove(
 "show"
 );
-
-}
 
 localStorage.setItem(
 "alshuaiibe_push_prompt_dismissed",
@@ -3174,24 +3120,12 @@ return;
 }
 
 
-const title =
-$("pushPermissionTitle");
-
-const message =
-$("pushPermissionMessage");
-
-
-if(title){
-
-title.textContent =
+$("pushPermissionTitle")
+.textContent =
 "فعّل إشعارات "
 +
 getStoreEyebrow();
 
-}
-
-
-if(message){
 
 if(
 isIOSDevice()
@@ -3199,21 +3133,21 @@ isIOSDevice()
 !isStandalonePWA()
 ){
 
-message.textContent =
+$("pushPermissionMessage")
+.textContent =
 "على iPhone أو iPad: أضف المتجر إلى الشاشة الرئيسية أولاً، ثم افتحه من أيقونة المتجر واضغط «تفعيل الإشعارات».";
 
 }else{
 
-message.textContent =
+$("pushPermissionMessage")
+.textContent =
 "اسمح لنا بإرسال إشعارات حالة طلبك والعروض والمنتجات الجديدة حتى عندما يكون الموقع مغلقًا.";
-
-}
 
 }
 
 
 $("pushPermissionBox")
-?.classList.add(
+.classList.add(
 "show"
 );
 
@@ -3235,87 +3169,47 @@ window.__ALSHUAIIBE_ONESIGNAL__
 }
 
 
-if(
-window.__ALSHUAIIBE_ONESIGNAL_ERROR__
-){
-
-return Promise.reject(
-window.__ALSHUAIIBE_ONESIGNAL_ERROR__
-);
-
-}
-
-
 return new Promise(
 (
 resolve,
 reject
 ) => {
 
-let finished =
-false;
+const start =
+Date.now();
 
 
-const done =
-OneSignal => {
-
-if(finished){
-return;
-}
-
-finished =
-true;
-
-clearTimeout(timer);
-
-window.removeEventListener(
-"alshuaiibe-onesignal-ready",
-readyHandler
-);
-
-resolve(
-OneSignal
-);
-
-};
-
-
-const readyHandler =
+const timer =
+setInterval(
 () => {
 
 if(
 window.__ALSHUAIIBE_ONESIGNAL__
 ){
 
-done(
+clearInterval(
+timer
+);
+
+resolve(
 window.__ALSHUAIIBE_ONESIGNAL__
 );
 
-}
-
-};
-
-
-window.addEventListener(
-"alshuaiibe-onesignal-ready",
-readyHandler
-);
-
-
-const timer =
-setTimeout(
-() => {
-
-if(finished){
 return;
+
 }
 
-finished =
-true;
 
-window.removeEventListener(
-"alshuaiibe-onesignal-ready",
-readyHandler
+if(
+Date.now()
+-
+start
+>
+timeout
+){
+
+clearInterval(
+timer
 );
 
 reject(
@@ -3324,77 +3218,14 @@ new Error(
 )
 );
 
+}
+
 },
-timeout
-);
-
-
-if(
-window.__ALSHUAIIBE_ONESIGNAL__
-){
-
-done(
-window.__ALSHUAIIBE_ONESIGNAL__
+100
 );
 
 }
-
-}
 );
-
-}
-
-
-async function syncPushState(){
-
-try{
-
-const OneSignal =
-await waitForOneSignal(
-5000
-);
-
-
-const permission =
-OneSignal
-.Notifications
-.permission;
-
-
-if(permission){
-
-localStorage.setItem(
-"alshuaiibe_push_subscribed",
-"true"
-);
-
-$("pushPermissionBox")
-?.classList.remove(
-"show"
-);
-
-return true;
-
-}
-
-
-localStorage.removeItem(
-"alshuaiibe_push_subscribed"
-);
-
-return false;
-
-}
-catch(error){
-
-console.warn(
-"Push state:",
-error
-);
-
-return false;
-
-}
 
 }
 
@@ -3410,17 +3241,10 @@ $("enablePushButton");
 
 
 const oldText =
-button
-?
-button.innerHTML
-:
-"";
+button?.innerHTML
+||
+"🔔 نعم، فعّل الإشعارات";
 
-
-/*
-iPhone / iPad:
-Web Push يحتاج فتح الموقع من الشاشة الرئيسية.
-*/
 
 if(
 isIOSDevice()
@@ -3434,7 +3258,7 @@ box?.classList.remove(
 
 
 alert(
-"📱 لتفعيل إشعارات متجر الشعيبي على iPhone أو iPad:\n\n"
+"📱 لتفعيل الإشعارات على iPhone أو iPad:\n\n"
 +
 "1- افتح المتجر في Safari.\n"
 +
@@ -3442,61 +3266,9 @@ alert(
 +
 "3- اختر «إضافة إلى الشاشة الرئيسية».\n"
 +
-"4- اضغط «إضافة».\n"
+"4- افتح المتجر من الأيقونة الجديدة.\n"
 +
-"5- أغلق Safari.\n"
-+
-"6- افتح المتجر من الأيقونة الموجودة على الشاشة الرئيسية.\n"
-+
-"7- اضغط «تفعيل الإشعارات» مرة أخرى.\n\n"
-+
-"بعدها سيظهر لك طلب السماح بالإشعارات من الجهاز."
-);
-
-return;
-
-}
-
-
-/*
-إذا المتصفح لا يحتوي Notification API
-*/
-
-if(
-typeof Notification ===
-"undefined"
-){
-
-box?.classList.remove(
-"show"
-);
-
-alert(
-"هذا المتصفح لا يدعم إشعارات الويب."
-);
-
-return;
-
-}
-
-
-/*
-إذا حظر المستخدم الإشعارات سابقاً
-*/
-
-if(
-Notification.permission ===
-"denied"
-){
-
-box?.classList.remove(
-"show"
-);
-
-alert(
-"الإشعارات محظورة لهذا الموقع.\n\n"
-+
-"افتح إعدادات المتصفح أو إعدادات الجهاز واسمح بالإشعارات لمتجر الشعيبي، ثم حاول مرة أخرى."
+"5- اضغط «تفعيل الإشعارات» مرة أخرى."
 );
 
 return;
@@ -3521,15 +3293,8 @@ const OneSignal =
 await waitForOneSignal();
 
 
-/*
-إذا الإذن ممنوح بالفعل
-*/
-
 if(
 OneSignal.Notifications.permission
-||
-Notification.permission ===
-"granted"
 ){
 
 try{
@@ -3539,14 +3304,7 @@ await OneSignal
 .PushSubscription
 .optIn();
 
-}catch(error){
-
-console.warn(
-"optIn:",
-error
-);
-
-}
+}catch(error){}
 
 
 localStorage.setItem(
@@ -3554,24 +3312,21 @@ localStorage.setItem(
 "true"
 );
 
+
 box?.classList.remove(
 "show"
 );
+
 
 toast(
 "الإشعارات مفعلة بالفعل 🔔"
 );
 
+
 return;
 
 }
 
-
-/*
-مهم:
-يجب استدعاء requestPermission
-داخل حدث الضغط نفسه.
-*/
 
 await OneSignal
 .Notifications
@@ -3587,14 +3342,9 @@ resolve,
 );
 
 
-const permissionGranted =
+if(
 OneSignal.Notifications.permission
-||
-Notification.permission ===
-"granted";
-
-
-if(permissionGranted){
+){
 
 try{
 
@@ -3603,24 +3353,12 @@ await OneSignal
 .PushSubscription
 .optIn();
 
-}catch(error){
-
-console.warn(
-"OneSignal optIn:",
-error
-);
-
-}
+}catch(error){}
 
 
 localStorage.setItem(
 "alshuaiibe_push_subscribed",
 "true"
-);
-
-
-localStorage.removeItem(
-"alshuaiibe_push_prompt_dismissed"
 );
 
 
@@ -3640,22 +3378,9 @@ box?.classList.remove(
 );
 
 
-if(
-Notification.permission ===
-"denied"
-){
-
 alert(
-"تم رفض الإشعارات.\n\nيمكنك السماح بها لاحقًا من إعدادات المتصفح أو الجهاز."
+"لم يتم السماح بالإشعارات.\nيمكنك تفعيلها لاحقاً."
 );
-
-}else{
-
-alert(
-"لم يتم تفعيل الإشعارات.\n\nاضغط زر «تفعيل الإشعارات» وحاول مرة أخرى."
-);
-
-}
 
 }
 
@@ -3663,7 +3388,6 @@ alert(
 catch(error){
 
 console.error(
-"OneSignal Push Error:",
 error
 );
 
@@ -3673,22 +3397,9 @@ box?.classList.remove(
 );
 
 
-if(
-error?.message ===
-"ONESIGNAL_TIMEOUT"
-){
-
 alert(
-"خدمة الإشعارات لم تكتمل من التحميل.\n\nتحقق من اتصال الإنترنت ثم أعد تحميل الصفحة وحاول مرة أخرى."
+"تعذر تشغيل الإشعارات حالياً."
 );
-
-}else{
-
-alert(
-"تعذر تشغيل الإشعارات حالياً.\n\nأعد تحميل المتجر ثم حاول مرة أخرى."
-);
-
-}
 
 }
 finally{
@@ -3699,110 +3410,13 @@ button.disabled =
 false;
 
 button.innerHTML =
-oldText
-||
-"🔔 نعم، فعّل الإشعارات";
+oldText;
 
 }
 
 }
 
 }
-
-
-/* الاستماع لتغييرات OneSignal */
-
-window.addEventListener(
-"alshuaiibe-onesignal-ready",
-async () => {
-
-const OneSignal =
-window.__ALSHUAIIBE_ONESIGNAL__;
-
-
-if(!OneSignal){
-return;
-}
-
-
-try{
-
-OneSignal
-.Notifications
-.addEventListener(
-"permissionChange",
-permission => {
-
-if(permission){
-
-localStorage.setItem(
-"alshuaiibe_push_subscribed",
-"true"
-);
-
-$("pushPermissionBox")
-?.classList.remove(
-"show"
-);
-
-}else{
-
-localStorage.removeItem(
-"alshuaiibe_push_subscribed"
-);
-
-}
-
-}
-);
-
-}catch(error){
-
-console.warn(
-"permissionChange listener:",
-error
-);
-
-}
-
-
-try{
-
-OneSignal
-.User
-.PushSubscription
-.addEventListener(
-"change",
-event => {
-
-if(
-event?.current?.optedIn
-){
-
-localStorage.setItem(
-"alshuaiibe_push_subscribed",
-"true"
-);
-
-}
-
-}
-);
-
-}catch(error){
-
-console.warn(
-"subscription listener:",
-error
-);
-
-}
-
-
-await syncPushState();
-
-}
-);
 
 
 /* =========================================================
@@ -3823,7 +3437,8 @@ Number(item.qty || 0) > 0
 
 
 if(
-cart.length === 0
+cart.length ===
+0
 ){
 
 localStorage.removeItem(
@@ -4093,16 +3708,6 @@ $("splashSubtitle")
 storeNameEn;
 
 
-document
-.querySelector(
-'meta[name="apple-mobile-web-app-title"]'
-)
-?.setAttribute(
-"content",
-storeName
-);
-
-
 const headerLogo =
 $("headerStoreLogo");
 
@@ -4180,13 +3785,16 @@ setTimeout(
 const splash =
 $("storeSplash");
 
+
 if(!splash){
 return;
 }
 
+
 splash.classList.add(
 "hide"
 );
+
 
 setTimeout(
 () => {
@@ -4258,19 +3866,17 @@ colors.gold
 }
 
 
-const cardWidth =
+root.style.setProperty(
+"--card-width",
 Number(
 designSettings.cardWidth
 ||
 generalSettings.cardWidth
 ||
 180
-);
-
-
-root.style.setProperty(
-"--card-width",
-cardWidth + "px"
+)
++
+"px"
 );
 
 
@@ -4296,6 +3902,7 @@ $("customBackground")
 .style.backgroundImage =
 `url("${background}")`;
 
+
 $("customBackground")
 .style.opacity =
 String(
@@ -4303,6 +3910,7 @@ designSettings.backgroundOpacity
 ??
 .15
 );
+
 
 $("customBackground")
 .style.display =
@@ -4329,9 +3937,11 @@ $("watermark")
 .style.backgroundImage =
 `url("${watermark}")`;
 
+
 $("watermark")
 .style.backgroundSize =
 "180px auto";
+
 
 $("watermark")
 .style.opacity =
@@ -4340,6 +3950,7 @@ designSettings.watermarkOpacity
 ??
 .1
 );
+
 
 $("watermark")
 .style.display =
@@ -4402,6 +4013,7 @@ whatsapp.replace(
 /\D/g,
 ""
 );
+
 
 $("whatsappButton")
 .style.display =
@@ -4633,10 +4245,7 @@ short_name:
 getStoreName(),
 
 start_url:
-"./",
-
-scope:
-"./",
+".",
 
 display:
 "standalone",
@@ -4662,27 +4271,6 @@ document.documentElement
 };
 
 
-if(getStoreLogo()){
-
-manifest.icons = [
-
-{
-src:getStoreLogo(),
-sizes:"192x192",
-type:"image/png"
-},
-
-{
-src:getStoreLogo(),
-sizes:"512x512",
-type:"image/png"
-}
-
-];
-
-}
-
-
 const blob =
 new Blob(
 [
@@ -4692,7 +4280,7 @@ manifest
 ],
 {
 type:
-"application/manifest+json"
+"application/json"
 }
 );
 
@@ -4837,7 +4425,8 @@ $("adWrap")
 
 
 if(
-slides.length < 2
+slides.length <
+2
 ){
 return;
 }
@@ -5235,19 +4824,11 @@ product.name
 +
 " "
 +
-(
-product.description
-||
-""
-)
+(product.description || "")
 +
 " "
 +
-(
-product.category
-||
-""
-)
+(product.category || "")
 )
 .toLowerCase();
 
@@ -5263,17 +4844,13 @@ searchText
 
 
 list.sort(
-(
-a,
-b
-) => {
+(a,b) => {
 
 const aPrice =
 Number(a.price || 0)
 *
 (
-1
--
+1 -
 Number(a.discount || 0)
 /
 100
@@ -5284,8 +4861,7 @@ const bPrice =
 Number(b.price || 0)
 *
 (
-1
--
+1 -
 Number(b.discount || 0)
 /
 100
@@ -5297,9 +4873,7 @@ sortMode ===
 "priceAsc"
 ){
 
-return aPrice
--
-bPrice;
+return aPrice - bPrice;
 
 }
 
@@ -5309,9 +4883,7 @@ sortMode ===
 "priceDesc"
 ){
 
-return bPrice
--
-aPrice;
+return bPrice - aPrice;
 
 }
 
@@ -5361,8 +4933,7 @@ const finalPrice =
 price
 *
 (
-1
--
+1 -
 discount / 100
 );
 
@@ -5793,8 +5364,7 @@ const finalPrice =
 price
 *
 (
-1
--
+1 -
 discount / 100
 );
 
@@ -6225,8 +5795,7 @@ const finalPrice =
 price
 *
 (
-1
--
+1 -
 discount / 100
 );
 
@@ -6384,8 +5953,7 @@ change
 const item =
 cart.find(
 item =>
-item.key ===
-key
+item.key === key
 );
 
 
@@ -6464,7 +6032,8 @@ function removeCartItem(key){
 cart =
 cart.filter(
 item =>
-item.key !== key
+item.key !==
+key
 );
 
 
@@ -6693,8 +6262,7 @@ const price =
 Number(product.price || 0)
 *
 (
-1
--
+1 -
 Number(product.discount || 0)
 /
 100
@@ -7527,6 +7095,11 @@ renderCustomerOrders();
 }
 
 
+/* =========================================================
+   RENDER ORDERS
+   ★ تم إصلاح زر التقييم هنا
+========================================================= */
+
 function renderCustomerOrders(){
 
 $("customerOrdersResults")
@@ -7753,13 +7326,12 @@ item.reviewed
 :
 `
 <button
-class="btn small gold"
+class="btn small gold review-product-btn"
+type="button"
 style="margin-top:7px"
-onclick="openReviewModal(
-${Number(order.order_number)},
-'${item.product_id}',
-${JSON.stringify(item.product_name || "")}
-)"
+data-order-number="${Number(order.order_number || 0)}"
+data-product-id="${escapeHTML(String(item.product_id || ""))}"
+data-product-name="${escapeHTML(String(item.product_name || ""))}"
 >
 ⭐ قيّم المنتج
 </button>
@@ -7883,6 +7455,65 @@ disabled
 
 
 /* =========================================================
+   REVIEW BUTTON HANDLER
+   هذا هو الإصلاح الأساسي
+========================================================= */
+
+document.addEventListener(
+"click",
+function(event){
+
+const button =
+event.target.closest(
+".review-product-btn"
+);
+
+
+if(!button){
+return;
+}
+
+
+event.preventDefault();
+
+event.stopPropagation();
+
+
+const orderNumber =
+Number(
+button.dataset.orderNumber
+||
+0
+);
+
+
+const productId =
+String(
+button.dataset.productId
+||
+""
+);
+
+
+const productName =
+String(
+button.dataset.productName
+||
+""
+);
+
+
+openReviewModal(
+orderNumber,
+productId,
+productName
+);
+
+}
+);
+
+
+/* =========================================================
    REVIEW
 ========================================================= */
 
@@ -7892,7 +7523,9 @@ productId,
 productName
 ){
 
-if(!currentCustomerPhone){
+if(
+!currentCustomerPhone
+){
 
 toast(
 "أعد البحث عن طلباتك أولاً"
@@ -7903,13 +7536,42 @@ return;
 }
 
 
+if(
+!Number(orderNumber)
+){
+
+toast(
+"تعذر تحديد رقم الطلب"
+);
+
+return;
+
+}
+
+
+if(
+!String(productId || "")
+){
+
+toast(
+"تعذر تحديد المنتج"
+);
+
+return;
+
+}
+
+
 reviewContext = {
 
-orderNumber,
+orderNumber:
+Number(orderNumber),
 
-productId,
+productId:
+String(productId),
 
-productName
+productName:
+String(productName || "")
 
 };
 
@@ -7920,7 +7582,11 @@ reviewRating =
 
 $("reviewProductName")
 .textContent =
-productName;
+String(
+productName
+||
+"المنتج"
+);
 
 
 $("reviewCustomerName")
@@ -7969,7 +7635,13 @@ updateMainScrim();
 function setReviewRating(rating){
 
 reviewRating =
-Number(rating);
+Math.max(
+1,
+Math.min(
+5,
+Number(rating || 5)
+)
+);
 
 
 document
@@ -8002,7 +7674,13 @@ $("reviewRatingText")
 async function submitVerifiedReview(){
 
 if(!reviewContext){
+
+toast(
+"تعذر تحديد المنتج المراد تقييمه"
+);
+
 return;
+
 }
 
 
@@ -8071,13 +7749,17 @@ p_phone:
 currentCustomerPhone,
 
 p_product_id:
-reviewContext.productId,
+String(
+reviewContext.productId
+),
 
 p_customer_name:
 customerName,
 
 p_rating:
-reviewRating,
+Number(
+reviewRating
+),
 
 p_text:
 text
@@ -8087,7 +7769,9 @@ text
 
 
 if(error){
+
 throw error;
+
 }
 
 
@@ -8104,14 +7788,20 @@ closeReviewModal();
 await loadCustomerOrders();
 
 
+await fetchReviews();
+
+
 alert(
-"شكراً لتقييمك 🌟\nسيظهر التقييم بعد اعتماده من الإدارة."
+"شكراً لتقييمك 🌟\nسيظهر التقييم في المتجر بعد اعتماده من الإدارة."
 );
 
 }
 catch(error){
 
-console.error(error);
+console.error(
+"Review error:",
+error
+);
 
 
 alert(
@@ -8120,7 +7810,7 @@ alert(
 (
 error.message
 ||
-"حدث خطأ"
+"حدث خطأ أثناء إرسال التقييم"
 )
 );
 
@@ -8140,7 +7830,7 @@ button.textContent =
 
 
 /* =========================================================
-   INVOICE
+   CUSTOMER INVOICE
 ========================================================= */
 
 function openCustomerInvoice(orderId){
@@ -8420,15 +8110,30 @@ ${escapeHTML(order.tracking_code)}
 
 <tr>
 
-<th>المنتج</th>
-<th>الخيارات</th>
-<th>الكمية</th>
-<th>سعر الوحدة</th>
-<th>الإجمالي</th>
+<th>
+المنتج
+</th>
+
+<th>
+الخيارات
+</th>
+
+<th>
+الكمية
+</th>
+
+<th>
+سعر الوحدة
+</th>
+
+<th>
+الإجمالي
+</th>
 
 </tr>
 
 </thead>
+
 
 <tbody>
 
@@ -8503,8 +8208,10 @@ ${escapeHTML(item.currency || totals.currency || "")}
 </span>
 
 <span>
+
 ${Number(totals.subtotal || 0).toFixed(2)}
 ${escapeHTML(totals.currency || "")}
+
 </span>
 
 </div>
@@ -8517,8 +8224,10 @@ ${escapeHTML(totals.currency || "")}
 </span>
 
 <span>
+
 ${Number(totals.discount_amount || 0).toFixed(2)}
 ${escapeHTML(totals.currency || "")}
+
 </span>
 
 </div>
@@ -8531,8 +8240,10 @@ ${escapeHTML(totals.currency || "")}
 </span>
 
 <span>
+
 ${Number(totals.shipping_amount || 0).toFixed(2)}
 ${escapeHTML(totals.currency || "")}
+
 </span>
 
 </div>
@@ -8545,8 +8256,10 @@ ${escapeHTML(totals.currency || "")}
 </span>
 
 <span>
+
 ${Number(totals.total || 0).toFixed(2)}
 ${escapeHTML(totals.currency || "")}
+
 </span>
 
 </div>
@@ -8616,7 +8329,10 @@ popup.document.write(`
 
 <!DOCTYPE html>
 
-<html lang="ar" dir="rtl">
+<html
+lang="ar"
+dir="rtl"
+>
 
 <head>
 
@@ -8753,7 +8469,8 @@ ${sheet.outerHTML}
 
 <script>
 
-window.onload = function(){
+window.onload =
+function(){
 
 setTimeout(
 function(){
@@ -9052,14 +8769,11 @@ Array(5)
 
 <div
 class="skeleton skeleton-image"
-></div>
-
-<div
-class="skeleton skeleton-line"
-></div>
-
-<div
-class="skeleton skeleton-line"
+style="
+width:100%;
+aspect-ratio:1;
+border-radius:16px
+"
 ></div>
 
 </div>
@@ -9113,68 +8827,20 @@ cleanCartAgainstProducts();
 saveCart();
 
 
-/*
-التأكد من حالة OneSignal أولاً
-*/
-
-syncPushState()
-.catch(
-() => {}
-);
-
-
-/*
-إظهار التنبيه العربي بعد فتح المتجر.
-*/
-
 setTimeout(
-async () => {
+() => {
 
-const subscribed =
+if(
 localStorage.getItem(
 "alshuaiibe_push_subscribed"
 )
-===
-"true";
-
-
-if(subscribed){
-return;
-}
-
-
-let currentlyAllowed =
-false;
-
-
-try{
-
-if(
-typeof Notification !==
-"undefined"
-&&
-Notification.permission ===
-"granted"
+!==
+"true"
 ){
 
-currentlyAllowed =
-true;
-
-}
-
-}catch(error){}
-
-
-if(currentlyAllowed){
-
-await syncPushState();
-
-return;
-
-}
-
-
 showPushPermission();
+
+}
 
 },
 5200
@@ -9267,6 +8933,7 @@ async () => {
 
 await fetchReviews();
 
+
 if(
 currentCustomerPhone
 &&
@@ -9322,4 +8989,5 @@ initializeStore();
 </script>
 
 </body>
+
 </html>
