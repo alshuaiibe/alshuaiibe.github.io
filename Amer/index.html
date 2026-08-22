@@ -1,9 +1,18 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>لوحة إدارة الشعيبي PRO</title>
+
+<meta
+name="viewport"
+content="width=device-width,initial-scale=1"
+>
+
+<title>
+لوحة إدارة الشعيبي PRO
+</title>
 
 <link
 href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Tajawal:wght@400;500;700;900&display=swap"
@@ -13,6 +22,7 @@ rel="stylesheet"
 <style>
 
 :root{
+
 --cream:#F8EACB;
 --card:#FFFBF0;
 --ink:#20301C;
@@ -22,6 +32,7 @@ rel="stylesheet"
 --danger:#9B3A2E;
 --ok:#4C6B3E;
 --shadow:0 10px 30px rgba(32,48,28,.1)
+
 }
 
 *{
@@ -29,10 +40,12 @@ box-sizing:border-box
 }
 
 body{
+
 margin:0;
 background:var(--cream);
 color:var(--ink);
 font-family:Tajawal,sans-serif
+
 }
 
 button,
@@ -46,20 +59,29 @@ font:inherit
 display:none!important
 }
 
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
 .login{
+
 min-height:100vh;
 display:grid;
 place-items:center;
 padding:20px
+
 }
 
 .box,
 .card{
+
 background:var(--card);
 border:1px solid var(--line);
 border-radius:18px;
 padding:18px;
 box-shadow:var(--shadow)
+
 }
 
 .box{
@@ -69,15 +91,36 @@ width:min(420px,100%)
 input,
 select,
 textarea{
+
 width:100%;
 padding:10px;
 border:1px solid var(--line);
 border-radius:10px;
 background:white;
-margin:4px 0 10px
+margin:4px 0 10px;
+color:var(--ink)
+
 }
 
+textarea{
+min-height:90px;
+resize:vertical
+}
+
+label{
+display:block;
+font-size:12px;
+font-weight:700;
+margin-top:7px
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
 .btn{
+
 border:0;
 border-radius:10px;
 padding:10px 13px;
@@ -85,38 +128,62 @@ background:var(--ink);
 color:var(--cream);
 font-weight:700;
 cursor:pointer
+
 }
 
 .btn.out{
+
 background:transparent;
 color:var(--ink);
 border:1px solid var(--ink)
+
 }
 
 .btn.red{
+
 background:var(--danger);
 color:white
+
 }
 
 .btn.gold{
+
 background:var(--gold);
 color:white
+
 }
 
 .btn.sm{
+
 padding:6px 9px;
 font-size:12px
+
 }
 
+.btn:disabled{
+
+opacity:.55;
+cursor:not-allowed
+
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
 .top{
+
 position:sticky;
 top:0;
 z-index:20;
 background:var(--card);
 border-bottom:1px solid var(--line)
+
 }
 
 .topin{
+
 max-width:1400px;
 margin:auto;
 padding:10px 14px;
@@ -124,58 +191,87 @@ display:flex;
 gap:8px;
 align-items:center;
 flex-wrap:wrap
+
 }
 
 .brand{
+
 font-family:'Aref Ruqaa';
 font-size:28px;
 font-weight:700;
 margin-left:auto
+
 }
 
 .nav{
+
 display:flex;
 gap:5px;
-overflow:auto
+overflow:auto;
+scrollbar-width:none
+
+}
+
+.nav::-webkit-scrollbar{
+display:none
 }
 
 .nav button{
+
 white-space:nowrap;
 border:1px solid var(--line);
 border-radius:999px;
 padding:8px 11px;
-background:white
+background:white;
+color:var(--ink);
+cursor:pointer
+
 }
 
 .nav button.active{
+
 background:var(--ink);
 color:var(--cream)
+
 }
 
+
+/* =========================================================
+   MAIN
+========================================================= */
+
 main{
+
 max-width:1400px;
 margin:auto;
 padding:18px 14px
+
 }
 
 .grid{
+
 display:grid;
 grid-template-columns:repeat(4,1fr);
 gap:10px
+
 }
 
 .stat{
+
 text-align:center;
 background:var(--card);
 border:1px solid var(--line);
 border-radius:14px;
 padding:14px
+
 }
 
 .stat b{
+
 display:block;
 font-size:29px;
 color:var(--gold)
+
 }
 
 .card{
@@ -183,21 +279,27 @@ margin-bottom:16px
 }
 
 .grid2{
+
 display:grid;
 grid-template-columns:1fr 1fr;
 gap:10px
+
 }
 
 .grid3{
+
 display:grid;
 grid-template-columns:repeat(3,1fr);
 gap:10px
+
 }
 
 .actions{
+
 display:flex;
 gap:6px;
 flex-wrap:wrap
+
 }
 
 .table{
@@ -205,17 +307,21 @@ overflow:auto
 }
 
 table{
+
 width:100%;
 border-collapse:collapse;
 min-width:850px
+
 }
 
 th,
 td{
+
 padding:9px;
 border-bottom:1px solid var(--line);
 text-align:right;
 font-size:13px
+
 }
 
 th{
@@ -223,14 +329,23 @@ background:#f1dda6
 }
 
 .pill{
+
 display:inline-block;
 border:1px solid var(--line);
 padding:5px 8px;
 border-radius:999px
+
 }
 
+
+/* =========================================================
+   TOAST
+========================================================= */
+
 .toast{
+
 position:fixed;
+z-index:9999;
 left:50%;
 bottom:22px;
 transform:translateX(-50%);
@@ -238,12 +353,20 @@ background:var(--ink);
 color:var(--cream);
 padding:9px 15px;
 border-radius:999px;
-opacity:0
+opacity:0;
+pointer-events:none;
+transition:.2s
+
 }
 
 .toast.show{
 opacity:1
 }
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media(max-width:800px){
 
@@ -260,39 +383,75 @@ width:100%
 }
 
 </style>
+
 </head>
+
 
 <body>
 
-<div id="login" class="login">
+
+<!-- =========================================================
+     LOGIN
+========================================================= -->
+
+<div
+id="login"
+class="login"
+>
 
 <div class="box">
 
-<h1 style="font-family:'Aref Ruqaa';text-align:center">
+<h1
+style="
+font-family:'Aref Ruqaa';
+text-align:center
+"
+>
 الشعيبي PRO
 </h1>
 
-<label>البريد</label>
+
+<label>
+البريد
+</label>
 
 <input
 id="email"
+type="email"
 value="omara1store@gmail.com"
 readonly
 >
 
-<label>كلمة المرور</label>
+
+<label>
+كلمة المرور
+</label>
 
 <input
 id="password"
 type="password"
+autocomplete="current-password"
+onkeydown="
+if(event.key==='Enter'){
+login();
+}
+"
 >
+
 
 <div
 id="msg"
-style="color:var(--danger);font-size:12px"
+style="
+color:var(--danger);
+font-size:12px;
+min-height:20px;
+margin-bottom:8px
+"
 ></div>
 
+
 <button
+id="loginButton"
 class="btn"
 style="width:100%"
 onclick="login()"
@@ -305,7 +464,14 @@ onclick="login()"
 </div>
 
 
-<div id="app" class="hidden">
+<!-- =========================================================
+     APP
+========================================================= -->
+
+<div
+id="app"
+class="hidden"
+>
 
 <header class="top">
 
@@ -315,10 +481,12 @@ onclick="login()"
 لوحة إدارة الشعيبي
 </div>
 
+
 <div
 class="nav"
 id="nav"
 ></div>
+
 
 <button
 class="btn out sm"
@@ -331,8 +499,13 @@ onclick="logout()"
 
 </header>
 
+
 <main>
 
+
+<!-- =========================================================
+     DASHBOARD
+========================================================= -->
 
 <section
 id="dashboard"
@@ -343,6 +516,7 @@ class="page"
 class="grid"
 id="stats"
 ></div>
+
 
 <div class="card">
 
@@ -359,6 +533,10 @@ id="stats"
 </section>
 
 
+<!-- =========================================================
+     PRODUCT OPTIONS
+========================================================= -->
+
 <section
 id="products"
 class="page hidden"
@@ -370,25 +548,69 @@ class="page hidden"
 خيارات وأحجام المنتجات
 </h2>
 
+
 <div class="grid3">
 
+<div>
+
+<label>
+المنتج
+</label>
+
 <select id="varProduct"></select>
+
+</div>
+
+
+<div>
+
+<label>
+اسم الخيار
+</label>
 
 <input
 id="varTitle"
 placeholder="مثال: 100ml"
 >
 
+</div>
+
+
+<div>
+
+<label>
+SKU
+</label>
+
 <input
 id="varSku"
 placeholder="SKU"
 >
 
+</div>
+
+
+<div>
+
+<label>
+السعر
+</label>
+
 <input
 id="varPrice"
 type="number"
+step=".01"
 placeholder="السعر"
 >
+
+</div>
+
+
+<div>
+
+<label>
+المخزون
+</label>
 
 <input
 id="varStock"
@@ -396,12 +618,24 @@ type="number"
 placeholder="المخزون"
 >
 
+</div>
+
+
+<div>
+
+<label>
+اللون
+</label>
+
 <input
 id="varColor"
 placeholder="اللون"
 >
 
 </div>
+
+</div>
+
 
 <button
 class="btn"
@@ -428,11 +662,12 @@ onclick="saveVariant()"
 <th>SKU</th>
 <th>السعر</th>
 <th>المخزون</th>
-<th></th>
+<th>تحكم</th>
 
 </tr>
 
 </thead>
+
 
 <tbody id="variantsBody"></tbody>
 
@@ -445,6 +680,10 @@ onclick="saveVariant()"
 </section>
 
 
+<!-- =========================================================
+     BUNDLES
+========================================================= -->
+
 <section
 id="bundles"
 class="page hidden"
@@ -456,29 +695,66 @@ class="page hidden"
 العروض والباقات
 </h2>
 
+
 <input
 id="bundleId"
 type="hidden"
 >
 
+
 <div class="grid3">
+
+<div>
+
+<label>
+اسم الباقة
+</label>
 
 <input
 id="bundleName"
 placeholder="اسم الباقة"
 >
 
+</div>
+
+
+<div>
+
+<label>
+السعر قبل العرض
+</label>
+
 <input
 id="bundleRegular"
 type="number"
+step=".01"
 placeholder="السعر قبل العرض"
 >
+
+</div>
+
+
+<div>
+
+<label>
+سعر العرض
+</label>
 
 <input
 id="bundleOffer"
 type="number"
+step=".01"
 placeholder="سعر العرض"
 >
+
+</div>
+
+
+<div>
+
+<label>
+المخزون
+</label>
 
 <input
 id="bundleStock"
@@ -486,10 +762,28 @@ type="number"
 placeholder="المخزون"
 >
 
+</div>
+
+
+<div>
+
+<label>
+رابط الصورة
+</label>
+
 <input
 id="bundleImage"
-placeholder="رابط الصورة"
+placeholder="https://..."
 >
+
+</div>
+
+
+<div>
+
+<label>
+تاريخ انتهاء العرض
+</label>
 
 <input
 id="bundleEnd"
@@ -498,13 +792,21 @@ type="datetime-local"
 
 </div>
 
+</div>
+
+
+<label>
+وصف العرض
+</label>
+
 <textarea
 id="bundleDesc"
 placeholder="وصف العرض"
 ></textarea>
 
+
 <label>
-المنتجات داخل الباقة (Ctrl/⌘ للاختيار المتعدد)
+المنتجات داخل الباقة
 </label>
 
 <select
@@ -512,6 +814,7 @@ id="bundleProducts"
 multiple
 size="7"
 ></select>
+
 
 <div class="actions">
 
@@ -533,6 +836,7 @@ onclick="resetBundle()"
 
 </div>
 
+
 <div class="card">
 
 <div id="bundleList"></div>
@@ -541,6 +845,10 @@ onclick="resetBundle()"
 
 </section>
 
+
+<!-- =========================================================
+     GIFTS
+========================================================= -->
 
 <section
 id="gifts"
@@ -553,30 +861,64 @@ class="page hidden"
 الهدايا والتغليف
 </h2>
 
+
 <div class="grid3">
+
+<div>
+
+<label>
+اسم التغليف
+</label>
 
 <input
 id="giftName"
 placeholder="اسم التغليف"
 >
 
+</div>
+
+
+<div>
+
+<label>
+السعر
+</label>
+
 <input
 id="giftPrice"
 type="number"
+step=".01"
 placeholder="السعر"
 >
 
+</div>
+
+
+<div>
+
+<label>
+رابط الصورة
+</label>
+
 <input
 id="giftImage"
-placeholder="رابط الصورة"
+placeholder="https://..."
 >
 
 </div>
+
+</div>
+
+
+<label>
+الوصف
+</label>
 
 <textarea
 id="giftDesc"
 placeholder="الوصف"
 ></textarea>
+
 
 <button
 class="btn"
@@ -587,6 +929,7 @@ onclick="saveGift()"
 
 </div>
 
+
 <div class="card">
 
 <div id="giftList"></div>
@@ -595,6 +938,10 @@ onclick="saveGift()"
 
 </section>
 
+
+<!-- =========================================================
+     COUPONS
+========================================================= -->
 
 <section
 id="coupons"
@@ -607,12 +954,28 @@ class="page hidden"
 الكوبونات المتقدمة
 </h2>
 
+
 <div class="grid3">
+
+<div>
+
+<label>
+الكود
+</label>
 
 <input
 id="cpCode"
 placeholder="CODE"
 >
+
+</div>
+
+
+<div>
+
+<label>
+نوع الخصم
+</label>
 
 <select id="cpType">
 
@@ -626,23 +989,62 @@ placeholder="CODE"
 
 </select>
 
+</div>
+
+
+<div>
+
+<label>
+القيمة
+</label>
+
 <input
 id="cpValue"
 type="number"
+step=".01"
 placeholder="القيمة"
 >
+
+</div>
+
+
+<div>
+
+<label>
+الحد الأدنى
+</label>
 
 <input
 id="cpMin"
 type="number"
+step=".01"
 placeholder="الحد الأدنى"
 >
+
+</div>
+
+
+<div>
+
+<label>
+حد أقصى للخصم
+</label>
 
 <input
 id="cpMax"
 type="number"
+step=".01"
 placeholder="حد أقصى للخصم"
 >
+
+</div>
+
+
+<div>
+
+<label>
+تاريخ الانتهاء
+</label>
 
 <input
 id="cpExpiry"
@@ -651,16 +1053,30 @@ type="date"
 
 </div>
 
-<label>
+</div>
+
+
+<label
+style="
+display:flex;
+gap:7px;
+align-items:center
+"
+>
 
 <input
 id="cpFirst"
 type="checkbox"
+style="
+width:auto;
+margin:0
+"
 >
 
 لأول طلب فقط
 
 </label>
+
 
 <button
 class="btn"
@@ -671,6 +1087,7 @@ onclick="saveCoupon()"
 
 </div>
 
+
 <div class="card">
 
 <div id="couponList"></div>
@@ -679,6 +1096,10 @@ onclick="saveCoupon()"
 
 </section>
 
+
+<!-- =========================================================
+     CUSTOMERS
+========================================================= -->
 
 <section
 id="customers"
@@ -690,6 +1111,7 @@ class="page hidden"
 <h2>
 العملاء والمشتريات
 </h2>
+
 
 <div class="table">
 
@@ -710,6 +1132,7 @@ class="page hidden"
 
 </thead>
 
+
 <tbody id="customersBody"></tbody>
 
 </table>
@@ -721,6 +1144,10 @@ class="page hidden"
 </section>
 
 
+<!-- =========================================================
+     ORDERS
+========================================================= -->
+
 <section
 id="orders"
 class="page hidden"
@@ -731,6 +1158,7 @@ class="page hidden"
 <h2>
 الطلبات والتتبع
 </h2>
+
 
 <div class="table">
 
@@ -751,6 +1179,7 @@ class="page hidden"
 
 </thead>
 
+
 <tbody id="ordersBody"></tbody>
 
 </table>
@@ -761,6 +1190,10 @@ class="page hidden"
 
 </section>
 
+
+<!-- =========================================================
+     REVIEWS
+========================================================= -->
 
 <section
 id="reviews"
@@ -780,6 +1213,10 @@ class="page hidden"
 </section>
 
 
+<!-- =========================================================
+     RECOMMENDATIONS
+========================================================= -->
+
 <section
 id="recommend"
 class="page hidden"
@@ -791,11 +1228,36 @@ class="page hidden"
 اقتراحات المنتجات
 </h2>
 
+
 <div class="grid3">
+
+<div>
+
+<label>
+المنتج الأساسي
+</label>
 
 <select id="relFrom"></select>
 
+</div>
+
+
+<div>
+
+<label>
+المنتج المقترح
+</label>
+
 <select id="relTo"></select>
+
+</div>
+
+
+<div>
+
+<label>
+نوع الاقتراح
+</label>
 
 <select id="relType">
 
@@ -815,6 +1277,9 @@ class="page hidden"
 
 </div>
 
+</div>
+
+
 <button
 class="btn"
 onclick="saveRelation()"
@@ -823,6 +1288,7 @@ onclick="saveRelation()"
 </button>
 
 </div>
+
 
 <div class="card">
 
@@ -837,6 +1303,7 @@ onclick="saveRelation()"
 
 </div>
 
+
 <div
 id="toast"
 class="toast"
@@ -845,16 +1312,24 @@ class="toast"
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+
 <script>
+
+/* =========================================================
+   CONFIG
+========================================================= */
 
 const URL =
 'https://bpxklyjahdjbnkxwtqig.supabase.co';
 
+
 const KEY =
 'sb_publishable_7hoVcUR8Twi6s9IRATiruw_ICTw6wXn';
 
+
 const ADMIN =
 'omara1store@gmail.com';
+
 
 const db =
 supabase.createClient(
@@ -862,9 +1337,15 @@ URL,
 KEY
 );
 
+
 const $ =
 id =>
 document.getElementById(id);
+
+
+/* =========================================================
+   DATA
+========================================================= */
 
 let products = [];
 let variants = [];
@@ -875,6 +1356,11 @@ let orders = [];
 let reviews = [];
 let relations = [];
 let customers = [];
+
+
+/* =========================================================
+   TABS
+========================================================= */
 
 const tabs = [
 
@@ -926,16 +1412,22 @@ const tabs = [
 ];
 
 
+/* =========================================================
+   HELPERS
+========================================================= */
+
 function toast(t){
 
 $('toast')
 .textContent =
 t;
 
+
 $('toast')
 .classList.add(
 'show'
 );
+
 
 setTimeout(
 () =>
@@ -983,7 +1475,9 @@ v || 0
 +
 ' '
 +
-c
+(
+c || 'ر.ي'
+)
 );
 
 }
@@ -995,24 +1489,32 @@ c
 
 async function isAdmin(){
 
+try{
+
 const {
 data:{
 session
-}
+},
+error
 } =
 await db.auth
 .getSession();
 
 
+if(error){
+
+console.error(
+'Session error:',
+error
+);
+
+return false;
+
+}
+
+
 if(
-!session
-||
-String(
-session.user.email
-)
-.toLowerCase()
-!==
-ADMIN
+!session?.user
 ){
 
 return false;
@@ -1020,36 +1522,79 @@ return false;
 }
 
 
-const {
-data
-} =
-await db
-.from(
-'store_admins'
+const email =
+String(
+session.user.email || ''
 )
-.select(
-'user_id'
-)
-.eq(
-'user_id',
-session.user.id
-)
-.maybeSingle();
+.trim()
+.toLowerCase();
 
 
-return !!data;
+return (
+email ===
+ADMIN.toLowerCase()
+);
+
+}
+catch(error){
+
+console.error(
+'isAdmin error:',
+error
+);
+
+return false;
+
+}
 
 }
 
 
+/* =========================================================
+   LOGIN
+========================================================= */
+
 async function login(){
+
+const button =
+$('loginButton');
+
 
 $('msg')
 .textContent =
-'';
+'جارِ تسجيل الدخول...';
 
+
+const password =
+$('password')
+.value;
+
+
+if(
+!password
+){
+
+$('msg')
+.textContent =
+'اكتب كلمة المرور';
+
+return;
+
+}
+
+
+button.disabled =
+true;
+
+
+button.textContent =
+'جارِ الدخول...';
+
+
+try{
 
 const {
+data,
 error
 } =
 await db.auth
@@ -1058,17 +1603,23 @@ await db.auth
 email:
 ADMIN,
 
-password:
-$('password').value
+password
 
 });
 
 
 if(error){
 
+console.error(
+'Login error:',
+error
+);
+
+
 $('msg')
 .textContent =
 error.message;
+
 
 return;
 
@@ -1076,7 +1627,32 @@ return;
 
 
 if(
-!await isAdmin()
+!data?.session
+||
+!data?.user
+){
+
+$('msg')
+.textContent =
+'تم تسجيل الدخول لكن لم يتم إنشاء جلسة.';
+
+
+return;
+
+}
+
+
+const email =
+String(
+data.user.email || ''
+)
+.trim()
+.toLowerCase();
+
+
+if(
+email !==
+ADMIN.toLowerCase()
 ){
 
 await db.auth
@@ -1085,22 +1661,69 @@ await db.auth
 
 $('msg')
 .textContent =
-'الحساب غير مسجل كمدير';
+'هذا الحساب غير مصرح له بالدخول';
+
 
 return;
 
 }
 
 
-boot();
+$('msg')
+.textContent =
+'';
+
+
+await boot();
+
+}
+catch(error){
+
+console.error(
+'Login exception:',
+error
+);
+
+
+$('msg')
+.textContent =
+error.message
+||
+'حدث خطأ أثناء تسجيل الدخول';
+
+}
+finally{
+
+button.disabled =
+false;
+
+
+button.textContent =
+'دخول';
+
+}
 
 }
 
 
+/* =========================================================
+   LOGOUT
+========================================================= */
+
 async function logout(){
+
+try{
 
 await db.auth
 .signOut();
+
+}
+catch(error){
+
+console.error(error);
+
+}
+
 
 location.reload();
 
@@ -1157,10 +1780,17 @@ x.classList.add(
 );
 
 
-$(id)
-.classList.remove(
+const page =
+$(id);
+
+
+if(page){
+
+page.classList.remove(
 'hidden'
 );
+
+}
 
 
 document
@@ -1175,9 +1805,13 @@ x.classList.remove(
 );
 
 
-b?.classList.add(
+if(b){
+
+b.classList.add(
 'active'
 );
+
+}
 
 }
 
@@ -1188,9 +1822,25 @@ b?.classList.add(
 
 async function boot(){
 
+const allowed =
+await isAdmin();
+
+
 if(
-!await isAdmin()
+!allowed
 ){
+
+$('login')
+.classList.remove(
+'hidden'
+);
+
+
+$('app')
+.classList.add(
+'hidden'
+);
+
 
 return;
 
@@ -1212,7 +1862,30 @@ $('app')
 nav();
 
 
+try{
+
 await loadAll();
+
+}
+catch(error){
+
+console.error(
+'Boot error:',
+error
+);
+
+
+alert(
+'تم تسجيل الدخول بنجاح، لكن حدث خطأ أثناء تحميل لوحة الإدارة:\n\n'
++
+(
+error.message
+||
+'خطأ غير معروف'
+)
+);
+
+}
 
 }
 
@@ -1249,6 +1922,7 @@ ascending:false
 }
 ),
 
+
 db
 .from(
 'product_variants'
@@ -1257,6 +1931,7 @@ db
 .order(
 'sort_order'
 ),
+
 
 db
 .from(
@@ -1270,6 +1945,7 @@ ascending:false
 }
 ),
 
+
 db
 .from(
 'gift_options'
@@ -1278,6 +1954,7 @@ db
 .order(
 'sort_order'
 ),
+
 
 db
 .from(
@@ -1290,6 +1967,7 @@ db
 ascending:false
 }
 ),
+
 
 db
 .from(
@@ -1306,6 +1984,7 @@ ascending:false
 200
 ),
 
+
 db
 .from(
 'reviews'
@@ -1318,6 +1997,7 @@ ascending:false
 }
 ),
 
+
 db
 .from(
 'product_relations'
@@ -1327,9 +2007,11 @@ db
 'sort_order'
 ),
 
+
 db.rpc(
 'admin_dashboard_stats'
 ),
+
 
 db.rpc(
 'admin_customer_report'
@@ -1338,53 +2020,122 @@ db.rpc(
 ]);
 
 
+/* =========================================================
+   CHECK LOAD ERRORS
+========================================================= */
+
+const errors = [
+
+p.error,
+v.error,
+b.error,
+g.error,
+c.error,
+o.error,
+r.error,
+rel.error,
+st.error,
+cu.error
+
+].filter(Boolean);
+
+
+if(
+errors.length
+){
+
+console.error(
+'Load errors:',
+errors
+);
+
+
+throw new Error(
+errors
+.map(
+e =>
+e.message
+)
+.join(
+'\n'
+)
+);
+
+}
+
+
+/* =========================================================
+   SAVE DATA
+========================================================= */
+
 products =
 p.data || [];
+
 
 variants =
 v.data || [];
 
+
 bundles =
 b.data || [];
+
 
 gifts =
 g.data || [];
 
+
 coupons =
 c.data || [];
+
 
 orders =
 o.data || [];
 
+
 reviews =
 r.data || [];
 
+
 relations =
 rel.data || [];
+
 
 customers =
 cu.data || [];
 
 
+/* =========================================================
+   RENDER
+========================================================= */
+
 renderStats(
 st.data || {}
 );
 
+
 fillProducts();
+
 
 renderVariants();
 
+
 renderBundles();
+
 
 renderGifts();
 
+
 renderCoupons();
+
 
 renderCustomers();
 
+
 renderOrders();
 
+
 renderReviews();
+
 
 renderRelations();
 
@@ -1463,7 +2214,7 @@ ${x[1] ?? 0}
 
 
 /* =========================================================
-   PRODUCT OPTIONS
+   PRODUCT SELECTS
 ========================================================= */
 
 function fillProducts(){
@@ -1486,12 +2237,23 @@ ${esc(p.name)}
 'relTo'
 ]
 .forEach(
-id =>
+id => {
+
+if($(id)){
+
 $(id)
 .innerHTML =
-opts
+opts;
+
+}
+
+}
 );
 
+
+if(
+$('bundleProducts')
+){
 
 $('bundleProducts')
 .innerHTML =
@@ -1499,6 +2261,12 @@ opts;
 
 }
 
+}
+
+
+/* =========================================================
+   VARIANTS
+========================================================= */
 
 async function saveVariant(){
 
@@ -1546,6 +2314,17 @@ null
 
 
 if(
+!row.product_id
+){
+
+return toast(
+'اختر المنتج'
+);
+
+}
+
+
+if(
 !row.title
 ){
 
@@ -1582,7 +2361,27 @@ toast(
 );
 
 
-loadAll();
+$('varTitle').value =
+'';
+
+
+$('varSku').value =
+'';
+
+
+$('varPrice').value =
+'';
+
+
+$('varStock').value =
+'';
+
+
+$('varColor').value =
+'';
+
+
+await loadAll();
 
 }
 
@@ -1591,6 +2390,8 @@ function renderVariants(){
 
 $('variantsBody')
 .innerHTML =
+variants.length
+?
 variants
 .map(
 v => `
@@ -1602,8 +2403,8 @@ ${
 esc(
 products.find(
 p =>
-p.id ===
-v.product_id
+String(p.id) ===
+String(v.product_id)
 )
 ?.name
 ||
@@ -1626,7 +2427,7 @@ ${money(v.price)}
 </td>
 
 <td>
-${v.stock}
+${Number(v.stock || 0)}
 </td>
 
 <td>
@@ -1643,7 +2444,20 @@ onclick="del('product_variants','${v.id}')"
 </tr>
 `
 )
-.join('');
+.join('')
+:
+`
+<tr>
+
+<td
+colspan="6"
+style="text-align:center"
+>
+لا توجد خيارات حتى الآن
+</td>
+
+</tr>
+`;
 
 }
 
@@ -1655,7 +2469,8 @@ onclick="del('product_variants','${v.id}')"
 async function saveBundle(){
 
 let id =
-$('bundleId').value;
+$('bundleId')
+.value;
 
 
 const row = {
@@ -1727,9 +2542,12 @@ return toast(
 }
 
 
-let res =
-id
-?
+let res;
+
+
+if(id){
+
+res =
 await db
 .from(
 'bundles'
@@ -1742,8 +2560,11 @@ row
 id
 )
 .select()
-.single()
-:
+.single();
+
+}else{
+
+res =
 await db
 .from(
 'bundles'
@@ -1753,6 +2574,8 @@ row
 )
 .select()
 .single();
+
+}
 
 
 if(
@@ -1770,6 +2593,7 @@ id =
 res.data.id;
 
 
+const deleteItems =
 await db
 .from(
 'bundle_items'
@@ -1779,6 +2603,17 @@ await db
 'bundle_id',
 id
 );
+
+
+if(
+deleteItems.error
+){
+
+return alert(
+deleteItems.error.message
+);
+
+}
 
 
 const selected =
@@ -1836,19 +2671,31 @@ toast(
 
 resetBundle();
 
-loadAll();
+
+await loadAll();
 
 }
 
 
-function editBundle(id){
+/* =========================================================
+   EDIT BUNDLE
+========================================================= */
+
+async function editBundle(id){
 
 const b =
 bundles.find(
 x =>
-x.id ===
-id
+String(x.id) ===
+String(id)
 );
+
+
+if(!b){
+
+return;
+
+}
 
 
 $('bundleId').value =
@@ -1856,34 +2703,127 @@ b.id;
 
 
 $('bundleName').value =
-b.name;
+b.name || '';
 
 
 $('bundleRegular').value =
-b.regular_price;
+b.regular_price || 0;
 
 
 $('bundleOffer').value =
-b.offer_price;
+b.offer_price || 0;
 
 
 $('bundleStock').value =
-b.stock;
+b.stock || 0;
 
 
 $('bundleImage').value =
-b.image_url
-||
-'';
+b.image_url || '';
 
 
 $('bundleDesc').value =
-b.description
-||
+b.description || '';
+
+
+if(
+b.ends_at
+){
+
+const d =
+new Date(
+b.ends_at
+);
+
+
+const local =
+new Date(
+d.getTime()
+-
+d.getTimezoneOffset()
+*
+60000
+)
+.toISOString()
+.slice(
+0,
+16
+);
+
+
+$('bundleEnd').value =
+local;
+
+}else{
+
+$('bundleEnd').value =
 '';
 
 }
 
+
+/* =========================================================
+   LOAD BUNDLE ITEMS
+========================================================= */
+
+const {
+data,
+error
+} =
+await db
+.from(
+'bundle_items'
+)
+.select(
+'product_id'
+)
+.eq(
+'bundle_id',
+id
+);
+
+
+if(!error){
+
+const selectedIds =
+new Set(
+(
+data || []
+)
+.map(
+x =>
+String(
+x.product_id
+)
+)
+);
+
+
+[
+...$('bundleProducts')
+.options
+]
+.forEach(
+o => {
+
+o.selected =
+selectedIds.has(
+String(
+o.value
+)
+);
+
+}
+);
+
+}
+
+}
+
+
+/* =========================================================
+   RESET BUNDLE
+========================================================= */
 
 function resetBundle(){
 
@@ -1898,9 +2838,12 @@ function resetBundle(){
 'bundleEnd'
 ]
 .forEach(
-id =>
+id => {
+
 $(id).value =
-''
+'';
+
+}
 );
 
 
@@ -1909,18 +2852,27 @@ $(id).value =
 .options
 ]
 .forEach(
-o =>
+o => {
+
 o.selected =
-false
+false;
+
+}
 );
 
 }
 
 
+/* =========================================================
+   RENDER BUNDLES
+========================================================= */
+
 function renderBundles(){
 
 $('bundleList')
 .innerHTML =
+bundles.length
+?
 bundles
 .map(
 b => `
@@ -1938,8 +2890,21 @@ b.currency
 )}
 
 <span class="pill">
-مخزون ${b.stock}
+مخزون ${Number(b.stock || 0)}
 </span>
+
+
+${
+b.is_active === false
+?
+`
+<span class="pill">
+متوقفة
+</span>
+`
+:
+''
+}
 
 
 <div class="actions">
@@ -1950,6 +2915,7 @@ onclick="editBundle('${b.id}')"
 >
 تعديل
 </button>
+
 
 <button
 class="btn red sm"
@@ -1964,8 +2930,12 @@ onclick="del('bundles','${b.id}')"
 `
 )
 .join('')
-||
-'لا توجد باقات';
+:
+`
+<div>
+لا توجد باقات حتى الآن
+</div>
+`;
 
 }
 
@@ -2015,7 +2985,7 @@ if(
 ){
 
 return toast(
-'اكتب الاسم'
+'اكتب اسم التغليف'
 );
 
 }
@@ -2042,12 +3012,28 @@ error.message
 }
 
 
+$('giftName').value =
+'';
+
+
+$('giftPrice').value =
+'';
+
+
+$('giftImage').value =
+'';
+
+
+$('giftDesc').value =
+'';
+
+
 toast(
-'تمت الإضافة'
+'تمت إضافة خيار التغليف'
 );
 
 
-loadAll();
+await loadAll();
 
 }
 
@@ -2056,6 +3042,8 @@ function renderGifts(){
 
 $('giftList')
 .innerHTML =
+gifts.length
+?
 gifts
 .map(
 g => `
@@ -2082,7 +3070,13 @@ onclick="del('gift_options','${g.id}')"
 </div>
 `
 )
-.join('');
+.join('')
+:
+`
+<div>
+لا توجد خيارات تغليف
+</div>
+`;
 
 }
 
@@ -2146,7 +3140,7 @@ if(
 ){
 
 return toast(
-'اكتب الكود'
+'اكتب كود الخصم'
 );
 
 }
@@ -2173,12 +3167,36 @@ error.message
 }
 
 
+$('cpCode').value =
+'';
+
+
+$('cpValue').value =
+'';
+
+
+$('cpMin').value =
+'';
+
+
+$('cpMax').value =
+'';
+
+
+$('cpExpiry').value =
+'';
+
+
+$('cpFirst').checked =
+false;
+
+
 toast(
 'تم حفظ الكوبون'
 );
 
 
-loadAll();
+await loadAll();
 
 }
 
@@ -2187,6 +3205,8 @@ function renderCoupons(){
 
 $('couponList')
 .innerHTML =
+coupons.length
+?
 coupons
 .map(
 c => `
@@ -2202,7 +3222,11 @@ ${
 c.discount_type ===
 'percentage'
 ?
-c.value + '%'
+Number(
+c.value || 0
+)
++
+'%'
 :
 money(
 c.value
@@ -2233,7 +3257,13 @@ onclick="del('coupons','${c.id}')"
 </div>
 `
 )
-.join('');
+.join('')
+:
+`
+<div>
+لا توجد كوبونات
+</div>
+`;
 
 }
 
@@ -2246,6 +3276,8 @@ function renderCustomers(){
 
 $('customersBody')
 .innerHTML =
+customers.length
+?
 customers
 .map(
 c => `
@@ -2256,17 +3288,19 @@ ${esc(c.name || 'عميل')}
 </td>
 
 <td>
-${esc(c.phone)}
+${esc(c.phone || '')}
 </td>
 
 <td>
-${c.total_orders}
+${Number(c.total_orders || 0)}
 </td>
 
 <td>
+
 <b>
-${c.purchase_count}
+${Number(c.purchase_count || 0)}
 </b>
+
 </td>
 
 <td>
@@ -2285,7 +3319,7 @@ c.last_order_at
 'ar'
 )
 :
-''
+'—'
 }
 
 </td>
@@ -2293,7 +3327,20 @@ c.last_order_at
 </tr>
 `
 )
-.join('');
+.join('')
+:
+`
+<tr>
+
+<td
+colspan="6"
+style="text-align:center"
+>
+لا توجد بيانات عملاء
+</td>
+
+</tr>
+`;
 
 }
 
@@ -2302,10 +3349,46 @@ c.last_order_at
    ORDERS
 ========================================================= */
 
+function orderStatusArabic(status){
+
+return ({
+
+pending:
+'قيد الانتظار',
+
+confirmed:
+'تم التأكيد',
+
+processing:
+'قيد التجهيز',
+
+shipped:
+'تم الشحن',
+
+delivered:
+'تم التسليم',
+
+cancelled:
+'ملغي',
+
+refunded:
+'مسترجع'
+
+})[
+status
+]
+||
+status;
+
+}
+
+
 function renderOrders(){
 
 $('ordersBody')
 .innerHTML =
+orders.length
+?
 orders
 .map(
 o => `
@@ -2317,12 +3400,12 @@ o => `
 
 <td>
 
-${esc(o.name)}
+${esc(o.name || '')}
 
 <br>
 
 <small>
-${esc(o.phone)}
+${esc(o.phone || '')}
 </small>
 
 </td>
@@ -2362,7 +3445,7 @@ o.status === s
 ''
 }
 >
-${s}
+${orderStatusArabic(s)}
 </option>
 `
 )
@@ -2388,12 +3471,16 @@ o.is_gift
 <td>
 
 ${
+o.created_at
+?
 new Date(
 o.created_at
 )
 .toLocaleString(
 'ar'
 )
+:
+''
 }
 
 </td>
@@ -2401,10 +3488,27 @@ o.created_at
 </tr>
 `
 )
-.join('');
+.join('')
+:
+`
+<tr>
+
+<td
+colspan="6"
+style="text-align:center"
+>
+لا توجد طلبات
+</td>
+
+</tr>
+`;
 
 }
 
+
+/* =========================================================
+   CHANGE ORDER STATUS
+========================================================= */
 
 async function changeStatus(
 id,
@@ -2443,11 +3547,11 @@ error.message
 
 
 toast(
-'تم تحديث الحالة'
+'تم تحديث حالة الطلب'
 );
 
 
-loadAll();
+await loadAll();
 
 }
 
@@ -2460,6 +3564,8 @@ function renderReviews(){
 
 $('reviewsList')
 .innerHTML =
+reviews.length
+?
 reviews
 .map(
 r => `
@@ -2480,7 +3586,7 @@ r.name
 </b>
 
 ⭐
-${r.rating}
+${Number(r.rating || 0)}
 
 
 <p>
@@ -2503,7 +3609,7 @@ r.comment
 ${
 r.is_verified_purchase
 ?
-'شراء موثّق'
+'✓ شراء موثّق'
 :
 'غير موثّق'
 }
@@ -2544,16 +3650,29 @@ onclick="del('reviews','${r.id}')"
 </div>
 `
 )
-.join('');
+.join('')
+:
+`
+<div>
+لا توجد تقييمات
+</div>
+`;
 
 }
 
+
+/* =========================================================
+   APPROVE REVIEW
+========================================================= */
 
 async function approveReview(
 id,
 val
 ){
 
+const {
+error
+} =
 await db
 .from(
 'reviews'
@@ -2570,7 +3689,25 @@ id
 );
 
 
-loadAll();
+if(error){
+
+return alert(
+error.message
+);
+
+}
+
+
+toast(
+val
+?
+'تم اعتماد التقييم'
+:
+'تم إخفاء التقييم'
+);
+
+
+await loadAll();
 
 }
 
@@ -2580,6 +3717,19 @@ loadAll();
 ========================================================= */
 
 async function saveRelation(){
+
+if(
+!$('relFrom').value
+||
+!$('relTo').value
+){
+
+return toast(
+'اختر المنتجات'
+);
+
+}
+
 
 if(
 $('relFrom').value
@@ -2625,19 +3775,25 @@ error.message
 
 
 toast(
-'تم الربط'
+'تم ربط المنتجات'
 );
 
 
-loadAll();
+await loadAll();
 
 }
 
+
+/* =========================================================
+   RENDER RELATIONS
+========================================================= */
 
 function renderRelations(){
 
 $('relationsList')
 .innerHTML =
+relations.length
+?
 relations
 .map(
 r => `
@@ -2647,8 +3803,8 @@ ${
 esc(
 products.find(
 p =>
-p.id ===
-r.product_id
+String(p.id) ===
+String(r.product_id)
 )
 ?.name
 ||
@@ -2662,8 +3818,8 @@ ${
 esc(
 products.find(
 p =>
-p.id ===
-r.related_product_id
+String(p.id) ===
+String(r.related_product_id)
 )
 ?.name
 ||
@@ -2673,7 +3829,7 @@ r.related_product_id
 
 
 <span class="pill">
-${r.relation_type}
+${esc(r.relation_type)}
 </span>
 
 
@@ -2687,7 +3843,13 @@ onclick="del('product_relations','${r.id}')"
 </div>
 `
 )
-.join('');
+.join('')
+:
+`
+<div>
+لا توجد اقتراحات مرتبطة
+</div>
+`;
 
 }
 
@@ -2735,9 +3897,47 @@ error.message
 }
 
 
-loadAll();
+toast(
+'تم الحذف'
+);
+
+
+await loadAll();
 
 }
+
+
+/* =========================================================
+   AUTH STATE
+========================================================= */
+
+db.auth
+.onAuthStateChange(
+(
+event,
+session
+) => {
+
+if(
+event ===
+'SIGNED_OUT'
+){
+
+$('app')
+.classList.add(
+'hidden'
+);
+
+
+$('login')
+.classList.remove(
+'hidden'
+);
+
+}
+
+}
+);
 
 
 /* =========================================================
@@ -2749,4 +3949,5 @@ boot();
 </script>
 
 </body>
+
 </html>
