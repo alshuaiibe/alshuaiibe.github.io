@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
 
 <meta charset="UTF-8">
@@ -47,8 +48,6 @@ href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Ma
 rel="stylesheet"
 >
 
-
-<!-- ================= ONESIGNAL ================= -->
 
 <script
 src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js"
@@ -111,7 +110,6 @@ error
 --ink-soft:#596052;
 
 --gold:#A9793C;
-
 --danger:#E84C4C;
 --ok:#174A38;
 
@@ -124,34 +122,68 @@ error
 'Aref Ruqaa',serif;
 
 
-/* إعلان */
+/* =========================================================
+   ADVERTISEMENT RESPONSIVE SETTINGS
+========================================================= */
 
---ad-mobile-height:760px;
-
+--ad-desktop-width:100%;
 --ad-desktop-height:650px;
+--ad-desktop-max-width:1600px;
+
+--ad-tablet-width:100%;
+--ad-tablet-height:550px;
+--ad-tablet-max-width:1100px;
+
+--ad-mobile-width:100%;
+--ad-mobile-height:420px;
+--ad-mobile-max-width:600px;
 
 --ad-radius:0px;
-
 --ad-fit:cover;
-
 --ad-position:center;
 
 
-/* هدية */
+/* =========================================================
+   PRODUCT RESPONSIVE SETTINGS
+========================================================= */
+
+--product-desktop-width:320px;
+--product-desktop-image-height:330px;
+--product-desktop-font:30px;
+
+--product-tablet-width:280px;
+--product-tablet-image-height:300px;
+--product-tablet-font:27px;
+
+--product-mobile-width:72vw;
+--product-mobile-image-height:280px;
+--product-mobile-font:26px;
+
+
+/* =========================================================
+   3D CAROUSEL SETTINGS
+========================================================= */
+
+--carousel-center-scale:1;
+--carousel-side-scale:.82;
+--carousel-rotation:16deg;
+--carousel-spacing:72%;
+--carousel-speed:550ms;
+
+
+/* =========================================================
+   GIFT
+========================================================= */
 
 --gift-bg:#F1DDA6;
-
 --gift-text:#20301C;
-
 --gift-button:#A9793C;
-
 --gift-radius:26px;
 
 
-/* Footer */
+/* FOOTER */
 
 --footer-bg:#2E2828;
-
 --footer-text:#F8F4EF;
 
 }
@@ -203,9 +235,7 @@ button,
 input,
 textarea,
 select{
-
 font:inherit;
-
 }
 
 
@@ -294,7 +324,8 @@ display:none;
 
 border:0;
 
-padding:12px 18px;
+padding:
+12px 18px;
 
 border-radius:14px;
 
@@ -312,7 +343,8 @@ color:#fff;
 
 background:transparent;
 
-border:1px solid var(--ink);
+border:
+1px solid var(--ink);
 
 color:
 var(--ink);
@@ -332,7 +364,8 @@ color:#fff;
 
 .btn.small{
 
-padding:8px 12px;
+padding:
+8px 12px;
 
 font-size:12px;
 
@@ -360,23 +393,15 @@ justify-content:center;
 background:
 
 radial-gradient(
-
 circle at center,
-
 #fff8df 0%,
-
 #f8e9c2 35%,
-
 #f2d99c 72%,
-
 #e9c879 100%
-
 );
 
 transition:
-
 opacity .7s ease,
-
 visibility .7s ease;
 
 }
@@ -423,7 +448,6 @@ max-width:88vw;
 max-height:88vw;
 
 border:
-
 1px solid rgba(32,48,28,.1);
 
 border-radius:50%;
@@ -441,7 +465,6 @@ position:absolute;
 border-radius:50%;
 
 border:
-
 1px solid rgba(169,121,60,.16);
 
 }
@@ -886,9 +909,14 @@ line-height:1.7;
 
 display:none;
 
-width:100%;
+width:
+var(--ad-desktop-width);
 
-margin:0;
+max-width:
+var(--ad-desktop-max-width);
+
+margin:
+0 auto;
 
 padding:0;
 
@@ -1411,7 +1439,7 @@ font-weight:800;
 
 
 /* =========================================================
-   FILTER
+   CATEGORY FILTERS
 ========================================================= */
 
 .category-filters{
@@ -1462,6 +1490,10 @@ color:#fff;
 }
 
 
+/* =========================================================
+   TOOLS
+========================================================= */
+
 .tools{
 
 display:flex;
@@ -1509,7 +1541,11 @@ width:100%;
 ========================================================= */
 
 .category-group{
-margin-bottom:60px;
+
+margin-bottom:70px;
+
+position:relative;
+
 }
 
 
@@ -1549,11 +1585,12 @@ touch;
 .product-card{
 
 flex:
-0 0 320px;
+0 0 var(--product-desktop-width);
 
-width:320px;
+width:
+var(--product-desktop-width);
 
-max-width:86vw;
+max-width:90vw;
 
 scroll-snap-align:center;
 
@@ -1571,7 +1608,8 @@ box-shadow:
 
 .product-image{
 
-height:330px;
+height:
+var(--product-desktop-image-height);
 
 background:#F7F4EF;
 
@@ -1713,7 +1751,8 @@ text-align:center;
 font-family:
 var(--product-font);
 
-font-size:30px;
+font-size:
+var(--product-desktop-font);
 
 margin:
 0 0 13px;
@@ -1848,6 +1887,295 @@ text-align:center;
 
 color:
 var(--ink-soft);
+
+}
+
+
+/* =========================================================
+   3D PRODUCT CAROUSEL
+========================================================= */
+
+.product-row.carousel-3d{
+
+overflow:visible;
+
+justify-content:center;
+
+align-items:center;
+
+perspective:1200px;
+
+position:relative;
+
+min-height:560px;
+
+padding:
+25px 0 45px;
+
+scroll-snap-type:none;
+
+}
+
+
+.product-row.carousel-3d .product-card{
+
+position:absolute;
+
+left:50%;
+
+top:20px;
+
+transform-origin:center center;
+
+transition:
+
+transform var(--carousel-speed)
+cubic-bezier(.2,.8,.2,1),
+
+opacity calc(var(--carousel-speed) * .8)
+ease,
+
+filter calc(var(--carousel-speed) * .8)
+ease;
+
+will-change:
+transform,
+opacity;
+
+}
+
+
+.product-row.carousel-3d .product-card.active{
+
+z-index:20;
+
+transform:
+
+translateX(-50%)
+
+translateZ(90px)
+
+scale(var(--carousel-center-scale));
+
+opacity:1;
+
+filter:none;
+
+pointer-events:auto;
+
+}
+
+
+.product-row.carousel-3d .product-card.prev{
+
+z-index:10;
+
+transform:
+
+translateX(-50%)
+
+translateX(calc(var(--carousel-spacing) * -1))
+
+translateZ(-80px)
+
+rotateY(calc(var(--carousel-rotation) * -1))
+
+scale(var(--carousel-side-scale));
+
+opacity:.78;
+
+filter:
+brightness(.88)
+saturate(.82);
+
+pointer-events:auto;
+
+}
+
+
+.product-row.carousel-3d .product-card.next{
+
+z-index:10;
+
+transform:
+
+translateX(-50%)
+
+translateX(var(--carousel-spacing))
+
+translateZ(-80px)
+
+rotateY(var(--carousel-rotation))
+
+scale(var(--carousel-side-scale));
+
+opacity:.78;
+
+filter:
+brightness(.88)
+saturate(.82);
+
+pointer-events:auto;
+
+}
+
+
+.product-row.carousel-3d .product-card.prev2{
+
+z-index:5;
+
+transform:
+
+translateX(-50%)
+
+translateX(-125%)
+
+translateZ(-160px)
+
+rotateY(-22deg)
+
+scale(.67);
+
+opacity:.38;
+
+filter:
+brightness(.75)
+grayscale(.25);
+
+pointer-events:none;
+
+}
+
+
+.product-row.carousel-3d .product-card.next2{
+
+z-index:5;
+
+transform:
+
+translateX(-50%)
+
+translateX(125%)
+
+translateZ(-160px)
+
+rotateY(22deg)
+
+scale(.67);
+
+opacity:.38;
+
+filter:
+brightness(.75)
+grayscale(.25);
+
+pointer-events:none;
+
+}
+
+
+.product-row.carousel-3d .product-card.hidden-slide{
+
+opacity:0;
+
+pointer-events:none;
+
+transform:
+
+translateX(-50%)
+
+scale(.55);
+
+}
+
+
+.carousel-controls{
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+gap:14px;
+
+margin-top:4px;
+
+}
+
+
+.carousel-control{
+
+width:46px;
+
+height:46px;
+
+border:
+1px solid var(--line);
+
+border-radius:50%;
+
+background:#fff;
+
+font-size:24px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+box-shadow:
+var(--shadow);
+
+}
+
+
+.carousel-dots{
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+gap:7px;
+
+max-width:62vw;
+
+overflow:hidden;
+
+}
+
+
+.carousel-dot{
+
+width:18px;
+
+height:4px;
+
+border:0;
+
+border-radius:999px;
+
+background:
+rgba(32,48,28,.20);
+
+padding:0;
+
+transition:.3s;
+
+flex:0 0 auto;
+
+}
+
+
+.carousel-dot.active{
+
+width:38px;
+
+background:
+var(--ink);
 
 }
 
@@ -3154,6 +3482,10 @@ padding:
 }
 
 
+/* =========================================================
+   INVOICE
+========================================================= */
+
 .invoice-paper{
 
 background:#fff;
@@ -3275,6 +3607,10 @@ font-weight:900;
 }
 
 
+/* =========================================================
+   TOAST
+========================================================= */
+
 .toast{
 
 position:fixed;
@@ -3314,6 +3650,73 @@ transition:.25s;
 opacity:1;
 
 bottom:32px;
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media(
+min-width:769px
+)
+and
+(
+max-width:1100px
+){
+
+.ad-section{
+
+width:
+var(--ad-tablet-width);
+
+max-width:
+var(--ad-tablet-max-width);
+
+}
+
+
+.ad-wrap{
+
+height:
+var(--ad-tablet-height);
+
+}
+
+
+.product-card{
+
+flex:
+0 0 var(--product-tablet-width);
+
+width:
+var(--product-tablet-width);
+
+}
+
+
+.product-image{
+
+height:
+var(--product-tablet-image-height);
+
+}
+
+
+.product-card h3{
+
+font-size:
+var(--product-tablet-font);
+
+}
+
+
+.product-row.carousel-3d{
+
+min-height:520px;
+
+}
 
 }
 
@@ -3408,14 +3811,28 @@ font-size:12px;
 }
 
 
+.ad-section{
+
+width:
+var(--ad-mobile-width);
+
+max-width:
+var(--ad-mobile-max-width);
+
+margin:
+0 auto;
+
+}
+
+
 .ad-wrap{
 
 height:
 var(--ad-mobile-height);
 
-min-height:520px;
+min-height:0;
 
-max-height:88dvh;
+max-height:none;
 
 }
 
@@ -3494,11 +3911,12 @@ font-size:31px;
 .product-card{
 
 flex:
-0 0 76vw;
+0 0 var(--product-mobile-width);
 
-width:76vw;
+width:
+var(--product-mobile-width);
 
-max-width:360px;
+max-width:94vw;
 
 }
 
@@ -3506,16 +3924,92 @@ max-width:360px;
 .product-image{
 
 height:
-min(
-78vw,
-360px
-);
+var(--product-mobile-image-height);
 
 }
 
 
 .product-card h3{
-font-size:28px;
+
+font-size:
+var(--product-mobile-font);
+
+}
+
+
+.product-row.carousel-3d{
+
+min-height:
+calc(
+var(--product-mobile-image-height)
++
+270px
+);
+
+overflow:hidden;
+
+padding-top:15px;
+
+}
+
+
+.product-row.carousel-3d .product-card.prev{
+
+transform:
+
+translateX(-50%)
+
+translateX(-62%)
+
+translateZ(-70px)
+
+rotateY(-14deg)
+
+scale(.77);
+
+}
+
+
+.product-row.carousel-3d .product-card.next{
+
+transform:
+
+translateX(-50%)
+
+translateX(62%)
+
+translateZ(-70px)
+
+rotateY(14deg)
+
+scale(.77);
+
+}
+
+
+.product-row.carousel-3d .product-card.prev2{
+
+transform:
+
+translateX(-50%)
+
+translateX(-105%)
+
+scale(.60);
+
+}
+
+
+.product-row.carousel-3d .product-card.next2{
+
+transform:
+
+translateX(-50%)
+
+translateX(105%)
+
+scale(.60);
+
 }
 
 
@@ -3624,13 +4118,20 @@ grid-template-columns:
 }
 
 
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
 @media(max-width:420px){
 
-.product-card{
+.product-row.carousel-3d{
 
-flex-basis:82vw;
-
-width:82vw;
+min-height:
+calc(
+var(--product-mobile-image-height)
++
+250px
+);
 
 }
 
@@ -3759,6 +4260,7 @@ ALSHUAIIBE STORE
 
 <div class="header-actions">
 
+
 <button
 class="round-btn"
 onclick="toggleNotifications()"
@@ -3861,7 +4363,7 @@ class="eyebrow"
 
 
 <!-- =========================================================
-   GIFT
+   GIFT BANNER
 ========================================================= -->
 
 <section
@@ -3870,7 +4372,6 @@ class="gift-banner"
 >
 
 <div class="gift-inner">
-
 
 <div class="gift-copy">
 
@@ -3891,7 +4392,6 @@ onclick="openGiftBuilder()"
 </button>
 
 </div>
-
 
 <div
 id="giftSectionIcon"
@@ -3922,7 +4422,6 @@ class="section"
 
 </div>
 
-
 <div
 id="bundlesRow"
 class="bundle-row"
@@ -3938,7 +4437,7 @@ class="bundle-row"
 
 
 <!-- =========================================================
-   PRODUCTS
+   SHOP
 ========================================================= -->
 
 <section
@@ -4076,14 +4575,12 @@ class="reviews-row"
 
 <footer class="store-footer">
 
-
 <div
 id="footerStoreName"
 class="footer-logo"
 >
 الشعيبي
 </div>
-
 
 <div
 id="footerStoreEn"
@@ -4269,7 +4766,6 @@ class="modal product-modal"
 
 <div class="product-detail">
 
-
 <div class="product-detail-image">
 
 <img
@@ -4425,7 +4921,6 @@ class="gift-selected"
 
 <div class="gift-grid">
 
-
 <div>
 
 <label>
@@ -4435,7 +4930,6 @@ class="gift-selected"
 <input id="giftRecipientName">
 
 </div>
-
 
 <div>
 
@@ -4661,7 +5155,6 @@ align-items:center;
 gap:15px
 "
 >
-
 
 <div>
 
@@ -4979,7 +5472,7 @@ id
 
 
 /* =========================================================
-   DEFAULTS
+   DEFAULT STORE
 ========================================================= */
 
 const DEFAULT_STORE = {
@@ -4995,6 +5488,10 @@ eyebrow:
 
 };
 
+
+/* =========================================================
+   POLICIES
+========================================================= */
 
 const POLICY_DEFINITIONS = [
 
@@ -5047,7 +5544,7 @@ const POLICY_DEFINITIONS = [
 
 
 /* =========================================================
-   STATE
+   DATA
 ========================================================= */
 
 let products = [];
@@ -5127,6 +5624,18 @@ color:null,
 size:null
 
 };
+
+
+/* =========================================================
+   CAROUSEL
+========================================================= */
+
+const productCarouselState =
+new Map();
+
+
+let productCarouselCounter =
+0;
 
 
 /* =========================================================
@@ -5403,7 +5912,7 @@ product?.discount || 0
 
 
 /* =========================================================
-   ORDER STATUS
+   STATUS
 ========================================================= */
 
 function orderStatusText(status){
@@ -5582,7 +6091,7 @@ applySettings();
 
 
 /* =========================================================
-   POLICIES
+   GET POLICIES
 ========================================================= */
 
 function getPolicies(){
@@ -5663,7 +6172,7 @@ sortOrder:
 
 
 /* =========================================================
-   BANK ACCOUNTS
+   BANKS
 ========================================================= */
 
 function getBankAccounts(){
@@ -5808,6 +6317,8 @@ colors.gold
 }
 
 
+/* PRODUCT FONT */
+
 root.style.setProperty(
 
 "--product-font",
@@ -5820,6 +6331,8 @@ designSettings.productFont
 
 );
 
+
+/* FOOTER */
 
 root.style.setProperty(
 
@@ -5847,19 +6360,33 @@ designSettings.footerTextColor
 );
 
 
-/* AD */
+/* =========================================================
+   ADVERTISEMENT RESPONSIVE
+========================================================= */
 
 root.style.setProperty(
 
-"--ad-mobile-height",
+"--ad-desktop-width",
 
-Math.max(
-300,
 Number(
-adSettings.heightMobile
-||
-760
+adSettings.desktopWidth
+??
+100
 )
++
+"%"
+
+);
+
+
+root.style.setProperty(
+
+"--ad-desktop-height",
+
+Number(
+adSettings.desktopHeight
+??
+650
 )
 +
 "px"
@@ -5869,15 +6396,102 @@ adSettings.heightMobile
 
 root.style.setProperty(
 
-"--ad-desktop-height",
+"--ad-desktop-max-width",
 
-Math.max(
-300,
 Number(
-adSettings.heightDesktop
-||
-650
+adSettings.desktopMaxWidth
+??
+1600
 )
++
+"px"
+
+);
+
+
+root.style.setProperty(
+
+"--ad-tablet-width",
+
+Number(
+adSettings.tabletWidth
+??
+100
+)
++
+"%"
+
+);
+
+
+root.style.setProperty(
+
+"--ad-tablet-height",
+
+Number(
+adSettings.tabletHeight
+??
+550
+)
++
+"px"
+
+);
+
+
+root.style.setProperty(
+
+"--ad-tablet-max-width",
+
+Number(
+adSettings.tabletMaxWidth
+??
+1100
+)
++
+"px"
+
+);
+
+
+root.style.setProperty(
+
+"--ad-mobile-width",
+
+Number(
+adSettings.mobileWidth
+??
+100
+)
++
+"%"
+
+);
+
+
+root.style.setProperty(
+
+"--ad-mobile-height",
+
+Number(
+adSettings.mobileHeight
+??
+420
+)
++
+"px"
+
+);
+
+
+root.style.setProperty(
+
+"--ad-mobile-max-width",
+
+Number(
+adSettings.mobileMaxWidth
+??
+600
 )
 +
 "px"
@@ -5889,13 +6503,10 @@ root.style.setProperty(
 
 "--ad-radius",
 
-Math.max(
-0,
 Number(
 adSettings.radius
-||
+??
 0
-)
 )
 +
 "px"
@@ -5915,9 +6526,13 @@ root.style.setProperty(
 .includes(
 adSettings.fit
 )
+
 ?
+
 adSettings.fit
+
 :
+
 "cover"
 
 );
@@ -5928,13 +6543,240 @@ root.style.setProperty(
 "--ad-position",
 
 adSettings.position
+
 ||
+
 "center"
 
 );
 
 
-/* GIFT */
+/* =========================================================
+   PRODUCT SIZE
+========================================================= */
+
+root.style.setProperty(
+
+"--product-desktop-width",
+
+Number(
+designSettings.productDesktopWidth
+??
+320
+)
++
+"px"
+
+);
+
+
+root.style.setProperty(
+
+"--product-desktop-image-height",
+
+Number(
+designSettings.productDesktopImageHeight
+??
+330
+)
++
+"px"
+
+);
+
+
+root.style.setProperty(
+
+"--product-desktop-font",
+
+Number(
+designSettings.productDesktopFont
+??
+30
+)
++
+"px"
+
+);
+
+
+root.style.setProperty(
+
+"--product-tablet-width",
+
+Number(
+designSettings.productTabletWidth
+??
+280
+)
++
+"px"
+
+);
+
+
+root.style.setProperty(
+
+"--product-tablet-image-height",
+
+Number(
+designSettings.productTabletImageHeight
+??
+300
+)
++
+"px"
+
+);
+
+
+root.style.setProperty(
+
+"--product-tablet-font",
+
+Number(
+designSettings.productTabletFont
+??
+27
+)
++
+"px"
+
+);
+
+
+root.style.setProperty(
+
+"--product-mobile-width",
+
+Number(
+designSettings.productMobileWidth
+??
+72
+)
++
+"vw"
+
+);
+
+
+root.style.setProperty(
+
+"--product-mobile-image-height",
+
+Number(
+designSettings.productMobileImageHeight
+??
+280
+)
++
+"px"
+
+);
+
+
+root.style.setProperty(
+
+"--product-mobile-font",
+
+Number(
+designSettings.productMobileFont
+??
+26
+)
++
+"px"
+
+);
+
+
+/* =========================================================
+   CAROUSEL SETTINGS
+========================================================= */
+
+const carouselSettings =
+
+designSettings.carousel
+
+||
+
+{};
+
+
+root.style.setProperty(
+
+"--carousel-center-scale",
+
+Number(
+carouselSettings.centerScale
+??
+1
+)
+
+);
+
+
+root.style.setProperty(
+
+"--carousel-side-scale",
+
+Number(
+carouselSettings.sideScale
+??
+.82
+)
+
+);
+
+
+root.style.setProperty(
+
+"--carousel-rotation",
+
+Number(
+carouselSettings.rotation
+??
+16
+)
++
+"deg"
+
+);
+
+
+root.style.setProperty(
+
+"--carousel-spacing",
+
+Number(
+carouselSettings.spacing
+??
+72
+)
++
+"%"
+
+);
+
+
+root.style.setProperty(
+
+"--carousel-speed",
+
+Number(
+carouselSettings.speed
+??
+550
+)
++
+"ms"
+
+);
+
+
+/* =========================================================
+   GIFT
+========================================================= */
 
 const giftSection =
 
@@ -6015,9 +6857,11 @@ giftSection.enabled
 false
 
 ?
+
 "none"
 
 :
+
 "block";
 
 
@@ -6061,7 +6905,9 @@ giftSection.icon
 "🎁";
 
 
-/* BACKGROUND */
+/* =========================================================
+   BACKGROUND
+========================================================= */
 
 const background =
 designSettings.backgroundUrl
@@ -6099,7 +6945,9 @@ $("customBackground")
 }
 
 
-/* WATERMARK */
+/* =========================================================
+   WATERMARK
+========================================================= */
 
 const watermark =
 designSettings.watermarkUrl
@@ -6142,7 +6990,9 @@ $("watermark")
 }
 
 
-/* STORE */
+/* =========================================================
+   STORE
+========================================================= */
 
 $("storeBrandName")
 .textContent =
@@ -6215,7 +7065,9 @@ generalSettings.aboutText
 "";
 
 
-/* LOGO */
+/* =========================================================
+   LOGO
+========================================================= */
 
 const logo =
 generalSettings.logoUrl
@@ -6246,7 +7098,9 @@ $("headerStoreLogo")
 }
 
 
-/* SPLASH */
+/* =========================================================
+   SPLASH
+========================================================= */
 
 const splashLogo =
 
@@ -6340,7 +7194,9 @@ generalSettings.splashDuration
 );
 
 
-/* CONTACT */
+/* =========================================================
+   CONTACT
+========================================================= */
 
 const phone =
 generalSettings.phone
@@ -6408,9 +7264,11 @@ generalSettings.enableSearch
 false
 
 ?
+
 "none"
 
 :
+
 "block";
 
 
@@ -6422,9 +7280,11 @@ generalSettings.enableSort
 false
 
 ?
+
 "none"
 
 :
+
 "block";
 
 
@@ -6436,9 +7296,11 @@ generalSettings.featureReviews
 false
 
 ?
+
 "none"
 
 :
+
 "block";
 
 
@@ -6776,7 +7638,7 @@ ${item[1]}
 
 
 /* =========================================================
-   FOOTER PAYMENT
+   PAYMENT METHODS
 ========================================================= */
 
 function renderPaymentMethods(){
@@ -6986,7 +7848,7 @@ account.instructions
 
 
 /* =========================================================
-   CHECKOUT PAYMENT LIST
+   CHECKOUT PAYMENT
 ========================================================= */
 
 function renderCheckoutPayments(){
@@ -8149,7 +9011,10 @@ product.id
 
 return `
 
-<article class="product-card">
+<article
+class="product-card"
+data-product-id="${product.id}"
+>
 
 
 <div
@@ -8317,6 +9182,9 @@ onclick="openGiftBuilder('${product.id}')"
 
 function renderProducts(){
 
+cleanupCarouselControls();
+
+
 const list =
 filteredProducts();
 
@@ -8364,6 +9232,9 @@ ${list.map(productCard).join("")}
 </div>
 
 `;
+
+
+finishProductsRender();
 
 
 return;
@@ -8468,6 +9339,860 @@ productCard
 
 .join("");
 
+
+finishProductsRender();
+
+}
+
+
+/* =========================================================
+   CAROUSEL SETUP
+========================================================= */
+
+function finishProductsRender(){
+
+setTimeout(
+() => {
+
+setupProductCarousels();
+
+},
+30
+);
+
+}
+
+
+function cleanupCarouselControls(){
+
+document
+.querySelectorAll(
+".carousel-controls"
+)
+.forEach(
+element =>
+element.remove()
+);
+
+
+productCarouselState.clear();
+
+
+productCarouselCounter =
+0;
+
+}
+
+
+/* =========================================================
+   PRODUCT 3D CAROUSEL
+========================================================= */
+
+function setupProductCarousels(){
+
+const enabled =
+
+designSettings.carousel?.enabled
+
+!==
+
+false;
+
+
+if(!enabled){
+
+return;
+
+}
+
+
+document
+.querySelectorAll(
+".product-row"
+)
+.forEach(
+row => {
+
+const cards =
+[
+...row.querySelectorAll(
+".product-card"
+)
+];
+
+
+if(
+cards.length < 2
+){
+
+return;
+
+}
+
+
+const key =
+"carousel_"
++
+productCarouselCounter++;
+
+
+row.dataset.carouselKey =
+key;
+
+
+row.classList.add(
+"carousel-3d"
+);
+
+
+productCarouselState.set(
+key,
+0
+);
+
+
+renderProductCarousel(
+row,
+key
+);
+
+
+addCarouselControls(
+row,
+key
+);
+
+
+enableCarouselSwipe(
+row,
+key
+);
+
+}
+);
+
+}
+
+
+/* =========================================================
+   CAROUSEL RENDER
+========================================================= */
+
+function renderProductCarousel(
+row,
+key
+){
+
+const cards =
+[
+...row.querySelectorAll(
+".product-card"
+)
+];
+
+
+const total =
+cards.length;
+
+
+if(!total){
+
+return;
+
+}
+
+
+let active =
+productCarouselState.get(
+key
+)
+||
+0;
+
+
+if(
+active < 0
+){
+
+active =
+total - 1;
+
+}
+
+
+if(
+active >= total
+){
+
+active =
+0;
+
+}
+
+
+productCarouselState.set(
+key,
+active
+);
+
+
+cards.forEach(
+(
+card,
+index
+) => {
+
+card.classList.remove(
+
+"active",
+
+"prev",
+
+"next",
+
+"prev2",
+
+"next2",
+
+"hidden-slide"
+
+);
+
+
+let diff =
+index - active;
+
+
+if(
+diff > total / 2
+){
+
+diff -= total;
+
+}
+
+
+if(
+diff < -total / 2
+){
+
+diff += total;
+
+}
+
+
+if(
+diff === 0
+){
+
+card.classList.add(
+"active"
+);
+
+}
+else if(
+diff === -1
+){
+
+card.classList.add(
+"prev"
+);
+
+}
+else if(
+diff === 1
+){
+
+card.classList.add(
+"next"
+);
+
+}
+else if(
+diff === -2
+){
+
+card.classList.add(
+"prev2"
+);
+
+}
+else if(
+diff === 2
+){
+
+card.classList.add(
+"next2"
+);
+
+}
+else{
+
+card.classList.add(
+"hidden-slide"
+);
+
+}
+
+}
+);
+
+
+updateCarouselDots(
+row,
+active
+);
+
+}
+
+
+/* =========================================================
+   MOVE CAROUSEL
+========================================================= */
+
+function moveProductCarousel(
+row,
+key,
+direction
+){
+
+const cards =
+row.querySelectorAll(
+".product-card"
+);
+
+
+if(
+!cards.length
+){
+
+return;
+
+}
+
+
+let active =
+productCarouselState.get(
+key
+)
+||
+0;
+
+
+active +=
+direction;
+
+
+if(
+active < 0
+){
+
+active =
+cards.length - 1;
+
+}
+
+
+if(
+active >= cards.length
+){
+
+active =
+0;
+
+}
+
+
+productCarouselState.set(
+key,
+active
+);
+
+
+renderProductCarousel(
+row,
+key
+);
+
+}
+
+
+/* =========================================================
+   CAROUSEL CONTROLS
+========================================================= */
+
+function addCarouselControls(
+row,
+key
+){
+
+const controls =
+document.createElement(
+"div"
+);
+
+
+controls.className =
+"carousel-controls";
+
+
+controls.innerHTML = `
+
+<button
+class="carousel-control prev-control"
+type="button"
+>
+‹
+</button>
+
+<div class="carousel-dots"></div>
+
+<button
+class="carousel-control next-control"
+type="button"
+>
+›
+</button>
+
+`;
+
+
+row.insertAdjacentElement(
+"afterend",
+controls
+);
+
+
+controls
+.querySelector(
+".prev-control"
+)
+.onclick =
+() =>
+moveProductCarousel(
+row,
+key,
+-1
+);
+
+
+controls
+.querySelector(
+".next-control"
+)
+.onclick =
+() =>
+moveProductCarousel(
+row,
+key,
+1
+);
+
+
+const dots =
+controls.querySelector(
+".carousel-dots"
+);
+
+
+const count =
+row.querySelectorAll(
+".product-card"
+)
+.length;
+
+
+dots.innerHTML =
+Array
+.from(
+{
+length:
+count
+}
+)
+.map(
+(
+_,
+index
+) => `
+
+<button
+class="carousel-dot ${
+index === 0
+?
+"active"
+:
+""
+}"
+type="button"
+data-index="${index}"
+></button>
+
+`
+)
+.join("");
+
+
+dots
+.querySelectorAll(
+".carousel-dot"
+)
+.forEach(
+dot => {
+
+dot.onclick =
+() => {
+
+productCarouselState.set(
+
+key,
+
+Number(
+dot.dataset.index
+)
+
+);
+
+
+renderProductCarousel(
+row,
+key
+);
+
+};
+
+}
+);
+
+}
+
+
+/* =========================================================
+   CAROUSEL DOTS
+========================================================= */
+
+function updateCarouselDots(
+row,
+active
+){
+
+const controls =
+row.nextElementSibling;
+
+
+if(
+!controls
+||
+!controls.classList.contains(
+"carousel-controls"
+)
+){
+
+return;
+
+}
+
+
+controls
+.querySelectorAll(
+".carousel-dot"
+)
+.forEach(
+(
+dot,
+index
+) => {
+
+dot.classList.toggle(
+"active",
+index === active
+);
+
+}
+);
+
+}
+
+
+/* =========================================================
+   SWIPE + DRAG
+========================================================= */
+
+function enableCarouselSwipe(
+row,
+key
+){
+
+let startX =
+0;
+
+
+let deltaX =
+0;
+
+
+let moved =
+false;
+
+
+/* TOUCH */
+
+row.addEventListener(
+"touchstart",
+event => {
+
+startX =
+event.touches[0].clientX;
+
+
+deltaX =
+0;
+
+
+moved =
+false;
+
+},
+{
+passive:true
+}
+);
+
+
+row.addEventListener(
+"touchmove",
+event => {
+
+deltaX =
+event.touches[0].clientX
+-
+startX;
+
+
+if(
+Math.abs(
+deltaX
+)
+>
+12
+){
+
+moved =
+true;
+
+}
+
+},
+{
+passive:true
+}
+);
+
+
+row.addEventListener(
+"touchend",
+() => {
+
+if(
+!moved
+||
+Math.abs(
+deltaX
+)
+<
+45
+){
+
+return;
+
+}
+
+
+if(
+deltaX < 0
+){
+
+moveProductCarousel(
+row,
+key,
+1
+);
+
+}
+else{
+
+moveProductCarousel(
+row,
+key,
+-1
+);
+
+}
+
+}
+);
+
+
+/* MOUSE */
+
+let mouseDown =
+false;
+
+
+let mouseStart =
+0;
+
+
+row.addEventListener(
+"mousedown",
+event => {
+
+if(
+event.target.closest(
+"button"
+)
+){
+
+return;
+
+}
+
+
+mouseDown =
+true;
+
+
+mouseStart =
+event.clientX;
+
+}
+);
+
+
+window.addEventListener(
+"mouseup",
+event => {
+
+if(
+!mouseDown
+){
+
+return;
+
+}
+
+
+mouseDown =
+false;
+
+
+const distance =
+event.clientX
+-
+mouseStart;
+
+
+if(
+Math.abs(
+distance
+)
+<
+55
+){
+
+return;
+
+}
+
+
+moveProductCarousel(
+
+row,
+
+key,
+
+distance < 0
+?
+1
+:
+-1
+
+);
+
+}
+);
+
+
+/* CLICK SIDE CARD */
+
+row
+.querySelectorAll(
+".product-card"
+)
+.forEach(
+card => {
+
+card.addEventListener(
+"click",
+event => {
+
+if(
+event.target.closest(
+"button"
+)
+){
+
+return;
+
+}
+
+
+if(
+card.classList.contains(
+"prev"
+)
+){
+
+event.preventDefault();
+
+event.stopPropagation();
+
+
+moveProductCarousel(
+row,
+key,
+-1
+);
+
+}
+
+
+if(
+card.classList.contains(
+"next"
+)
+){
+
+event.preventDefault();
+
+event.stopPropagation();
+
+
+moveProductCarousel(
+row,
+key,
+1
+);
+
+}
+
+},
+true
+);
+
+}
+);
+
 }
 
 
@@ -8535,6 +10260,9 @@ product.id
 );
 
 
+cleanupCarouselControls();
+
+
 $("productsArea")
 .innerHTML =
 
@@ -8569,6 +10297,13 @@ ${list.map(productCard).join("")}
 </div>
 
 `;
+
+
+if(list.length){
+
+finishProductsRender();
+
+}
 
 
 scrollSection(
@@ -8615,6 +10350,18 @@ product.name
 "";
 
 
+const price =
+Number(
+product.price || 0
+);
+
+
+const discount =
+Number(
+product.discount || 0
+);
+
+
 $("modalProductPrice")
 .innerHTML = `
 
@@ -8629,6 +10376,22 @@ product.currency
 )}
 
 </span>
+
+${
+discount > 0
+?
+`
+
+<span class="old-price">
+
+${price.toFixed(2)}
+
+</span>
+
+`
+:
+""
+}
 
 `;
 
@@ -10229,7 +11992,7 @@ null;
 
 
 /* =========================================================
-   ADD GIFT CART
+   ADD GIFT
 ========================================================= */
 
 function addGiftToCart(){
@@ -10686,7 +12449,7 @@ renderCart();
 
 
 /* =========================================================
-   CART RENDER
+   RENDER CART
 ========================================================= */
 
 function renderCart(){
@@ -13920,7 +15683,9 @@ fetchBundles()
 ]);
 
 
-/* REALTIME */
+/* =========================================================
+   REALTIME
+========================================================= */
 
 client
 .channel(
@@ -14061,4 +15826,5 @@ initializeStore();
 </script>
 
 </body>
+
 </html>
