@@ -30,42 +30,42 @@ rel="stylesheet"
 --ok:#4C6B3E;
 --blue:#2C5A82;
 --line:rgba(32,48,28,.16);
---shadow:0 10px 30px rgba(32,48,28,.10);
+--shadow:0 10px 30px rgba(32,48,28,.10)
 }
 
 *{
-box-sizing:border-box;
+box-sizing:border-box
 }
 
 html{
-scroll-behavior:smooth;
+scroll-behavior:smooth
 }
 
 body{
 margin:0;
 background:var(--cream);
 color:var(--ink);
-font-family:Tajawal,sans-serif;
+font-family:Tajawal,sans-serif
 }
 
 button,
 input,
 select,
 textarea{
-font:inherit;
+font:inherit
 }
 
 button{
-cursor:pointer;
+cursor:pointer
 }
 
 button:disabled{
 opacity:.5;
-cursor:not-allowed;
+cursor:not-allowed
 }
 
 .hidden{
-display:none!important;
+display:none!important
 }
 
 input,
@@ -77,26 +77,31 @@ border:1px solid var(--line);
 border-radius:11px;
 background:#fff;
 margin:4px 0 10px;
-color:var(--ink);
+color:var(--ink)
 }
 
 textarea{
 min-height:100px;
-resize:vertical;
+resize:vertical
+}
+
+input[type="file"]{
+padding:14px;
+background:#fffdf7
 }
 
 label{
 display:block;
 font-size:12px;
 font-weight:800;
-margin-top:6px;
+margin-top:6px
 }
 
 .login{
 min-height:100vh;
 display:grid;
 place-items:center;
-padding:20px;
+padding:20px
 }
 
 .box,
@@ -105,18 +110,18 @@ background:var(--card);
 border:1px solid var(--line);
 border-radius:18px;
 padding:18px;
-box-shadow:var(--shadow);
+box-shadow:var(--shadow)
 }
 
 .box{
-width:min(430px,100%);
+width:min(430px,100%)
 }
 
 .login-title{
 font-family:'Aref Ruqaa';
 font-size:40px;
 text-align:center;
-margin:0 0 20px;
+margin:0 0 20px
 }
 
 .btn{
@@ -125,38 +130,38 @@ border-radius:11px;
 padding:10px 14px;
 background:var(--ink);
 color:var(--cream);
-font-weight:800;
+font-weight:800
 }
 
 .btn.out{
 background:transparent;
 color:var(--ink);
-border:1px solid var(--ink);
+border:1px solid var(--ink)
 }
 
 .btn.red{
 background:var(--danger);
-color:#fff;
+color:#fff
 }
 
 .btn.gold{
 background:var(--gold);
-color:#fff;
+color:#fff
 }
 
 .btn.green{
 background:var(--ok);
-color:#fff;
+color:#fff
 }
 
 .btn.blue{
 background:var(--blue);
-color:#fff;
+color:#fff
 }
 
 .btn.sm{
 padding:7px 10px;
-font-size:12px;
+font-size:12px
 }
 
 .top{
@@ -165,7 +170,7 @@ top:0;
 z-index:100;
 background:rgba(255,251,240,.97);
 backdrop-filter:blur(16px);
-border-bottom:1px solid var(--line);
+border-bottom:1px solid var(--line)
 }
 
 .topin{
@@ -175,25 +180,25 @@ padding:10px 14px;
 display:flex;
 gap:9px;
 align-items:center;
-flex-wrap:wrap;
+flex-wrap:wrap
 }
 
 .brand{
 font-family:'Aref Ruqaa';
 font-size:28px;
 font-weight:700;
-margin-left:auto;
+margin-left:auto
 }
 
 .nav{
 display:flex;
 gap:5px;
 overflow-x:auto;
-scrollbar-width:none;
+scrollbar-width:none
 }
 
 .nav::-webkit-scrollbar{
-display:none;
+display:none
 }
 
 .nav button{
@@ -203,51 +208,51 @@ border-radius:999px;
 padding:8px 11px;
 background:#fff;
 color:var(--ink);
-font-weight:700;
+font-weight:700
 }
 
 .nav button.active{
 background:var(--ink);
-color:var(--cream);
+color:var(--cream)
 }
 
 main{
 max-width:1500px;
 margin:auto;
-padding:18px 14px 80px;
+padding:18px 14px 80px
 }
 
 .card{
-margin-bottom:16px;
+margin-bottom:16px
 }
 
 .card h2,
 .card h3{
-margin-top:0;
+margin-top:0
 }
 
 .grid{
 display:grid;
 grid-template-columns:repeat(4,1fr);
-gap:10px;
+gap:10px
 }
 
 .grid2{
 display:grid;
 grid-template-columns:repeat(2,1fr);
-gap:10px;
+gap:10px
 }
 
 .grid3{
 display:grid;
 grid-template-columns:repeat(3,1fr);
-gap:10px;
+gap:10px
 }
 
 .grid4{
 display:grid;
 grid-template-columns:repeat(4,1fr);
-gap:10px;
+gap:10px
 }
 
 .stat{
@@ -255,40 +260,58 @@ text-align:center;
 background:var(--card);
 border:1px solid var(--line);
 border-radius:15px;
-padding:15px;
+padding:15px
 }
 
 .stat span{
 display:block;
 font-size:12px;
-color:var(--soft);
+color:var(--soft)
 }
 
 .stat b{
 display:block;
 font-size:28px;
 color:var(--gold);
-margin-top:5px;
+margin-top:5px
 }
 
 .actions{
 display:flex;
 gap:7px;
 flex-wrap:wrap;
+align-items:center
+}
+
+.note{
+font-size:12px;
+line-height:1.8;
+color:var(--soft)
+}
+
+.check-row{
+display:flex;
 align-items:center;
+gap:8px;
+margin:5px 0 12px
+}
+
+.check-row input{
+width:auto;
+margin:0
 }
 
 .table{
 overflow:auto;
 border:1px solid var(--line);
-border-radius:14px;
+border-radius:14px
 }
 
 table{
 width:100%;
 border-collapse:collapse;
 min-width:900px;
-background:#fff;
+background:#fff
 }
 
 th,
@@ -297,31 +320,71 @@ padding:10px;
 border-bottom:1px solid var(--line);
 text-align:right;
 font-size:13px;
-vertical-align:top;
+vertical-align:top
 }
 
 th{
 background:var(--cream2);
-font-weight:900;
+font-weight:900
 }
 
-.note{
+
+/* ================= MEDIA ================= */
+
+.media-preview-grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(120px,1fr));
+gap:10px;
+margin:10px 0 15px
+}
+
+.media-preview{
+position:relative;
+border:1px solid var(--line);
+border-radius:13px;
+overflow:hidden;
+background:#f4f1e9;
+aspect-ratio:1/1
+}
+
+.media-preview img,
+.media-preview video{
+width:100%;
+height:100%;
+object-fit:contain;
+display:block
+}
+
+.media-remove{
+position:absolute;
+top:5px;
+left:5px;
+z-index:5;
+width:30px;
+height:30px;
+border:0;
+border-radius:50%;
+background:var(--danger);
+color:#fff;
+font-weight:900
+}
+
+.upload-status{
+display:none;
+margin:8px 0;
+padding:10px 12px;
+border-radius:10px;
+background:#f1e4bc;
 font-size:12px;
-line-height:1.8;
-color:var(--soft);
+font-weight:700
 }
 
-.check-row{
-display:flex;
-align-items:center;
-gap:8px;
-margin:5px 0 12px;
+.upload-status.show{
+display:block
 }
 
-.check-row input{
-width:auto;
-margin:0;
-}
+
+/* ================= PRODUCTS ================= */
 
 .product-admin-card{
 display:grid;
@@ -332,7 +395,7 @@ border:1px solid var(--line);
 border-radius:16px;
 padding:13px;
 background:#fff;
-margin-bottom:10px;
+margin-bottom:10px
 }
 
 .product-admin-image{
@@ -343,32 +406,35 @@ background:#f5f2e9;
 display:flex;
 align-items:center;
 justify-content:center;
-overflow:hidden;
+overflow:hidden
 }
 
 .product-admin-image img{
 width:100%;
 height:100%;
-object-fit:contain;
+object-fit:contain
 }
 
 .product-admin-name{
 font-size:18px;
-font-weight:900;
+font-weight:900
 }
 
 .product-admin-meta{
 font-size:12px;
 color:var(--soft);
-line-height:1.8;
+line-height:1.8
 }
+
+
+/* ================= GENERIC ================= */
 
 .order-card{
 border:1px solid var(--line);
 border-radius:16px;
 padding:14px;
 margin-bottom:12px;
-background:#fff;
+background:#fff
 }
 
 .order-card-head{
@@ -376,7 +442,7 @@ display:flex;
 justify-content:space-between;
 gap:12px;
 align-items:flex-start;
-flex-wrap:wrap;
+flex-wrap:wrap
 }
 
 .pill{
@@ -386,29 +452,22 @@ padding:5px 9px;
 border-radius:999px;
 border:1px solid var(--line);
 font-size:11px;
-font-weight:700;
+font-weight:700
 }
 
 .pill.green{
 background:#DDEBD6;
-color:var(--ok);
+color:var(--ok)
 }
 
 .pill.red{
 background:#F0D8D4;
-color:var(--danger);
+color:var(--danger)
 }
 
 .pill.gold{
 background:#F4E7C5;
-color:#805817;
-}
-
-.preview{
-border:1px dashed var(--gold);
-border-radius:15px;
-padding:15px;
-background:#FFF7E0;
+color:#805817
 }
 
 .ad-preview{
@@ -419,7 +478,7 @@ overflow:hidden;
 background:#eee;
 display:flex;
 align-items:center;
-justify-content:center;
+justify-content:center
 }
 
 .ad-preview img,
@@ -427,7 +486,7 @@ justify-content:center;
 width:100%;
 height:100%;
 max-height:500px;
-object-fit:contain;
+object-fit:contain
 }
 
 .policy-card,
@@ -437,19 +496,22 @@ border:1px solid var(--line);
 border-radius:15px;
 padding:14px;
 margin-bottom:10px;
-background:#fff;
+background:#fff
 }
+
+
+/* ================= MODAL ================= */
 
 .modal-scrim{
 position:fixed;
 inset:0;
 z-index:500;
 background:rgba(15,20,13,.62);
-display:none;
+display:none
 }
 
 .modal-scrim.show{
-display:block;
+display:block
 }
 
 .modal{
@@ -465,11 +527,11 @@ background:var(--card);
 border-radius:20px;
 padding:20px;
 box-shadow:0 30px 80px rgba(0,0,0,.3);
-display:none;
+display:none
 }
 
 .modal.show{
-display:block;
+display:block
 }
 
 .modal-head{
@@ -477,13 +539,13 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 gap:10px;
-margin-bottom:14px;
+margin-bottom:14px
 }
 
 .close{
 border:0;
 background:none;
-font-size:24px;
+font-size:24px
 }
 
 .toast{
@@ -498,12 +560,12 @@ padding:10px 16px;
 border-radius:999px;
 opacity:0;
 pointer-events:none;
-transition:.25s;
+transition:.25s
 }
 
 .toast.show{
 opacity:1;
-bottom:32px;
+bottom:32px
 }
 
 @media(max-width:900px){
@@ -512,29 +574,29 @@ bottom:32px;
 .grid2,
 .grid3,
 .grid4{
-grid-template-columns:1fr;
+grid-template-columns:1fr
 }
 
 .brand{
 width:100%;
-margin:0;
+margin:0
 }
 
 .nav{
-width:100%;
+width:100%
 }
 
 .product-admin-card{
-grid-template-columns:75px 1fr;
+grid-template-columns:75px 1fr
 }
 
 .product-admin-image{
 width:75px;
-height:75px;
+height:75px
 }
 
 .product-admin-card .actions{
-grid-column:1/-1;
+grid-column:1/-1
 }
 
 }
@@ -576,20 +638,12 @@ readonly
 id="password"
 type="password"
 autocomplete="current-password"
-onkeydown="
-if(event.key==='Enter'){
-login();
-}
-"
+onkeydown="if(event.key==='Enter'){login();}"
 >
 
 <div
 id="msg"
-style="
-min-height:22px;
-color:var(--danger);
-font-size:12px
-"
+style="min-height:22px;color:var(--danger);font-size:12px"
 ></div>
 
 <button
@@ -610,10 +664,7 @@ onclick="login()"
 APP
 ========================================================= -->
 
-<div
-id="app"
-class="hidden"
->
+<div id="app" class="hidden">
 
 <header class="top">
 
@@ -692,55 +743,29 @@ id="productId"
 type="hidden"
 >
 
-
 <div class="grid3">
 
 <div>
-
-<label>
-اسم المنتج
-</label>
-
-<input
-id="productName"
-placeholder="مثال: نولد"
->
-
+<label>اسم المنتج</label>
+<input id="productName">
 </div>
 
-
 <div>
-
-<label>
-القسم
-</label>
-
+<label>القسم</label>
 <select id="productCategory"></select>
-
 </div>
 
-
 <div>
-
-<label>
-السعر
-</label>
-
+<label>السعر</label>
 <input
 id="productPrice"
 type="number"
 step="0.01"
 >
-
 </div>
 
-
 <div>
-
-<label>
-الخصم %
-</label>
-
+<label>الخصم %</label>
 <input
 id="productDiscount"
 type="number"
@@ -748,52 +773,33 @@ min="0"
 max="100"
 value="0"
 >
-
 </div>
 
-
 <div>
-
-<label>
-المخزون
-</label>
-
+<label>المخزون</label>
 <input
 id="productStock"
 type="number"
 min="0"
 value="0"
 >
-
 </div>
 
-
 <div>
-
-<label>
-العملة
-</label>
-
+<label>العملة</label>
 <input
 id="productCurrency"
 value="ر.ي"
 >
-
 </div>
 
-
 <div>
-
-<label>
-ترتيب الظهور
-</label>
-
+<label>ترتيب الظهور</label>
 <input
 id="productSortOrder"
 type="number"
 value="0"
 >
-
 </div>
 
 </div>
@@ -803,20 +809,41 @@ value="0"
 وصف المنتج
 </label>
 
-<textarea
-id="productDescription"
-placeholder="وصف المنتج..."
-></textarea>
+<textarea id="productDescription"></textarea>
 
 
-<label>
-روابط الصور
-</label>
+<h3>
+📷 صور المنتج
+</h3>
 
-<textarea
-id="productImages"
-placeholder="ضع كل رابط صورة في سطر مستقل"
-></textarea>
+<p class="note">
+يمكنك اختيار صورة واحدة أو عدة صور مباشرة من جهازك.
+</p>
+
+<input
+id="productImageFiles"
+type="file"
+accept="image/*"
+multiple
+onchange="previewSelectedProductImages()"
+>
+
+<div
+id="productUploadStatus"
+class="upload-status"
+></div>
+
+
+<div
+id="existingProductImages"
+class="media-preview-grid"
+></div>
+
+
+<div
+id="newProductImagesPreview"
+class="media-preview-grid"
+></div>
 
 
 <div class="grid2">
@@ -908,10 +935,7 @@ onclick="resetProductForm()"
 
 <div class="card">
 
-<div
-class="order-card-head"
-style="margin-bottom:15px"
->
+<div class="order-card-head">
 
 <div>
 
@@ -934,7 +958,6 @@ onclick="loadAll()"
 </button>
 
 </div>
-
 
 <div id="productsAdminList"></div>
 
@@ -961,72 +984,42 @@ class="page hidden"
 <div class="grid3">
 
 <div>
-
-<label>
-المنتج
-</label>
-
+<label>المنتج</label>
 <select id="varProduct"></select>
-
 </div>
 
 <div>
-
-<label>
-اسم الخيار
-</label>
-
+<label>اسم الخيار</label>
 <input
 id="varTitle"
 placeholder="مثال: 100ml"
 >
-
 </div>
 
 <div>
-
-<label>
-SKU
-</label>
-
+<label>SKU</label>
 <input id="varSku">
-
 </div>
 
 <div>
-
-<label>
-السعر
-</label>
-
+<label>السعر</label>
 <input
 id="varPrice"
 type="number"
 >
-
 </div>
 
 <div>
-
-<label>
-المخزون
-</label>
-
+<label>المخزون</label>
 <input
 id="varStock"
 type="number"
 >
-
 </div>
 
 <div>
-
-<label>
-اللون
-</label>
-
+<label>اللون</label>
 <input id="varColor">
-
 </div>
 
 </div>
@@ -1050,19 +1043,12 @@ onclick="saveVariant()"
 <thead>
 
 <tr>
-
 <th>المنتج</th>
-
 <th>الخيار</th>
-
 <th>SKU</th>
-
 <th>السعر</th>
-
 <th>المخزون</th>
-
 <th></th>
-
 </tr>
 
 </thead>
@@ -1098,83 +1084,48 @@ id="bundleId"
 type="hidden"
 >
 
+<input
+id="bundleExistingImage"
+type="hidden"
+>
+
 <div class="grid3">
 
 <div>
-
-<label>
-اسم الباقة
-</label>
-
+<label>اسم الباقة</label>
 <input id="bundleName">
-
 </div>
 
-
 <div>
-
-<label>
-السعر قبل العرض
-</label>
-
+<label>السعر قبل العرض</label>
 <input
 id="bundleRegular"
 type="number"
 >
-
 </div>
 
-
 <div>
-
-<label>
-سعر العرض
-</label>
-
+<label>سعر العرض</label>
 <input
 id="bundleOffer"
 type="number"
 >
-
 </div>
 
-
 <div>
-
-<label>
-المخزون
-</label>
-
+<label>المخزون</label>
 <input
 id="bundleStock"
 type="number"
 >
-
 </div>
 
-
 <div>
-
-<label>
-رابط الصورة
-</label>
-
-<input id="bundleImage">
-
-</div>
-
-
-<div>
-
-<label>
-نهاية العرض
-</label>
-
+<label>نهاية العرض</label>
 <input
 id="bundleEnd"
 type="datetime-local"
 >
-
 </div>
 
 </div>
@@ -1185,6 +1136,28 @@ type="datetime-local"
 </label>
 
 <textarea id="bundleDesc"></textarea>
+
+
+<h3>
+📷 صورة الباقة
+</h3>
+
+<input
+id="bundleImageFile"
+type="file"
+accept="image/*"
+onchange="previewBundleImage()"
+>
+
+<div
+id="bundleUploadStatus"
+class="upload-status"
+></div>
+
+<div
+id="bundleImagePreview"
+class="media-preview-grid"
+></div>
 
 
 <label>
@@ -1201,6 +1174,7 @@ size="7"
 <div class="actions">
 
 <button
+id="saveBundleButton"
 class="btn gold"
 onclick="saveBundle()"
 >
@@ -1217,6 +1191,7 @@ onclick="resetBundle()"
 </div>
 
 </div>
+
 
 <div
 id="bundleList"
@@ -1241,41 +1216,19 @@ class="page hidden"
 🎁 خيارات التغليف
 </h2>
 
-<div class="grid3">
+<div class="grid2">
 
 <div>
-
-<label>
-اسم التغليف
-</label>
-
+<label>اسم التغليف</label>
 <input id="giftName">
-
 </div>
 
-
 <div>
-
-<label>
-السعر
-</label>
-
+<label>السعر</label>
 <input
 id="giftPrice"
 type="number"
 >
-
-</div>
-
-
-<div>
-
-<label>
-رابط الصورة
-</label>
-
-<input id="giftImage">
-
 </div>
 
 </div>
@@ -1287,7 +1240,31 @@ type="number"
 
 <textarea id="giftDesc"></textarea>
 
+
+<h3>
+📷 صورة التغليف
+</h3>
+
+<input
+id="giftImageFile"
+type="file"
+accept="image/*"
+onchange="previewGiftImage()"
+>
+
+<div
+id="giftUploadStatus"
+class="upload-status"
+></div>
+
+<div
+id="giftImagePreview"
+class="media-preview-grid"
+></div>
+
+
 <button
+id="saveGiftButton"
 class="btn"
 onclick="saveGift()"
 >
@@ -1326,24 +1303,13 @@ type="checkbox"
 <div class="grid2">
 
 <div>
-
-<label>
-عنوان القسم
-</label>
-
+<label>عنوان القسم</label>
 <input id="giftSectionTitleAdmin">
-
 </div>
 
-
 <div>
-
-<label>
-الأيقونة
-</label>
-
+<label>الأيقونة</label>
 <input id="giftSectionIconAdmin">
-
 </div>
 
 </div>
@@ -1359,69 +1325,40 @@ type="checkbox"
 <div class="grid4">
 
 <div>
-
-<label>
-نص الزر
-</label>
-
+<label>نص الزر</label>
 <input id="giftSectionButtonText">
-
 </div>
 
-
 <div>
-
-<label>
-لون الخلفية
-</label>
-
+<label>لون الخلفية</label>
 <input
 id="giftSectionBackground"
 type="color"
 >
-
 </div>
 
-
 <div>
-
-<label>
-لون النص
-</label>
-
+<label>لون النص</label>
 <input
 id="giftSectionTextColor"
 type="color"
 >
-
 </div>
 
-
 <div>
-
-<label>
-لون الزر
-</label>
-
+<label>لون الزر</label>
 <input
 id="giftSectionButtonColor"
 type="color"
 >
-
 </div>
 
-
 <div>
-
-<label>
-استدارة الحواف
-</label>
-
+<label>استدارة الحواف</label>
 <input
 id="giftSectionRadius"
 type="number"
 >
-
 </div>
 
 </div>
@@ -1457,21 +1394,13 @@ class="page hidden"
 <div class="grid3">
 
 <div>
-
-<label>
-الكود
-</label>
-
+<label>الكود</label>
 <input id="cpCode">
-
 </div>
-
 
 <div>
 
-<label>
-نوع الخصم
-</label>
+<label>نوع الخصم</label>
 
 <select id="cpType">
 
@@ -1487,60 +1416,36 @@ class="page hidden"
 
 </div>
 
-
 <div>
-
-<label>
-القيمة
-</label>
-
+<label>القيمة</label>
 <input
 id="cpValue"
 type="number"
 >
-
 </div>
 
-
 <div>
-
-<label>
-الحد الأدنى
-</label>
-
+<label>الحد الأدنى</label>
 <input
 id="cpMin"
 type="number"
 >
-
 </div>
 
-
 <div>
-
-<label>
-أقصى خصم
-</label>
-
+<label>أقصى خصم</label>
 <input
 id="cpMax"
 type="number"
 >
-
 </div>
 
-
 <div>
-
-<label>
-تاريخ الانتهاء
-</label>
-
+<label>تاريخ الانتهاء</label>
 <input
 id="cpExpiry"
 type="date"
 >
-
 </div>
 
 </div>
@@ -1568,7 +1473,6 @@ onclick="saveCoupon()"
 </button>
 
 </div>
-
 
 <div
 id="couponList"
@@ -1600,19 +1504,12 @@ class="page hidden"
 <thead>
 
 <tr>
-
 <th>العميل</th>
-
 <th>الهاتف</th>
-
 <th>الطلبات</th>
-
 <th>مرات الشراء</th>
-
 <th>إجمالي المشتريات</th>
-
 <th>آخر طلب</th>
-
 </tr>
 
 </thead>
@@ -1653,7 +1550,6 @@ class="page hidden"
 
 </div>
 
-
 <button
 class="btn out sm"
 onclick="loadAll()"
@@ -1664,7 +1560,6 @@ onclick="loadAll()"
 </div>
 
 </div>
-
 
 <div id="ordersCards"></div>
 
@@ -1694,7 +1589,7 @@ class="page hidden"
 
 
 <!-- =========================================================
-RECOMMEND
+RECOMMENDATIONS
 ========================================================= -->
 
 <section
@@ -1732,7 +1627,6 @@ class="page hidden"
 
 </div>
 
-
 <button
 class="btn"
 onclick="saveRelation()"
@@ -1765,7 +1659,6 @@ class="page hidden"
 <h2>
 🖼️ شاشة الإعلانات
 </h2>
-
 
 <div class="check-row">
 
@@ -1811,7 +1704,7 @@ type="checkbox"
 <div>
 
 <label>
-طريقة عرض المحتوى
+طريقة العرض
 </label>
 
 <select id="adFit">
@@ -1865,32 +1758,20 @@ Fill
 
 </div>
 
-
 <div>
-
-<label>
-استدارة الحواف
-</label>
-
+<label>استدارة الحواف</label>
 <input
 id="adRadius"
 type="number"
 >
-
 </div>
 
-
 <div>
-
-<label>
-مدة السلايدر ms
-</label>
-
+<label>مدة السلايدر ms</label>
 <input
 id="adInterval"
 type="number"
 >
-
 </div>
 
 </div>
@@ -1903,44 +1784,27 @@ type="number"
 <div class="grid3">
 
 <div>
-
-<label>
-العرض %
-</label>
-
+<label>العرض %</label>
 <input
 id="adDesktopWidth"
 type="number"
 >
-
 </div>
 
-
 <div>
-
-<label>
-الارتفاع px
-</label>
-
+<label>الارتفاع px</label>
 <input
 id="adDesktopHeight"
 type="number"
 >
-
 </div>
 
-
 <div>
-
-<label>
-أقصى عرض px
-</label>
-
+<label>أقصى عرض px</label>
 <input
 id="adDesktopMaxWidth"
 type="number"
 >
-
 </div>
 
 </div>
@@ -1953,44 +1817,27 @@ type="number"
 <div class="grid3">
 
 <div>
-
-<label>
-العرض %
-</label>
-
+<label>العرض %</label>
 <input
 id="adTabletWidth"
 type="number"
 >
-
 </div>
 
-
 <div>
-
-<label>
-الارتفاع px
-</label>
-
+<label>الارتفاع px</label>
 <input
 id="adTabletHeight"
 type="number"
 >
-
 </div>
 
-
 <div>
-
-<label>
-أقصى عرض px
-</label>
-
+<label>أقصى عرض px</label>
 <input
 id="adTabletMaxWidth"
 type="number"
 >
-
 </div>
 
 </div>
@@ -2003,51 +1850,34 @@ type="number"
 <div class="grid3">
 
 <div>
-
-<label>
-العرض %
-</label>
-
+<label>العرض %</label>
 <input
 id="adMobileWidth"
 type="number"
 >
-
 </div>
 
-
 <div>
-
-<label>
-الارتفاع px
-</label>
-
+<label>الارتفاع px</label>
 <input
 id="adMobileHeight"
 type="number"
 >
-
 </div>
 
-
 <div>
-
-<label>
-أقصى عرض px
-</label>
-
+<label>أقصى عرض px</label>
 <input
 id="adMobileMaxWidth"
 type="number"
 >
-
 </div>
 
 </div>
 
 
 <label>
-رابط الضغط على الإعلان
+رابط الانتقال عند الضغط على الإعلان - اختياري
 </label>
 
 <input
@@ -2056,19 +1886,53 @@ placeholder="https://..."
 >
 
 
-<label>
-روابط الصور أو الفيديو
-</label>
+<h3>
+📷🎬 ملفات الإعلان
+</h3>
 
-<textarea
-id="adMedia"
-placeholder="ضع كل رابط في سطر مستقل"
-></textarea>
+<p class="note">
+اختر الصور أو الفيديو مباشرة من الجهاز. يمكن اختيار عدة صور للسلايدر.
+</p>
+
+<input
+id="adFiles"
+type="file"
+accept="image/*,video/*"
+multiple
+onchange="previewSelectedAdFiles()"
+>
+
+
+<div
+id="adUploadStatus"
+class="upload-status"
+></div>
+
+
+<h3>
+الملفات المحفوظة حالياً
+</h3>
+
+<div
+id="existingAdMedia"
+class="media-preview-grid"
+></div>
+
+
+<h3>
+الملفات الجديدة
+</h3>
+
+<div
+id="newAdFilesPreview"
+class="media-preview-grid"
+></div>
 
 
 <div class="actions">
 
 <button
+id="saveAdsButton"
 class="btn gold"
 onclick="saveAds()"
 >
@@ -2106,7 +1970,7 @@ class="ad-preview"
 
 
 <!-- =========================================================
-DESIGN
+PRODUCT DESIGN
 ========================================================= -->
 
 <section
@@ -2128,44 +1992,18 @@ class="page hidden"
 <div class="grid3">
 
 <div>
-
-<label>
-عرض الكرت px
-</label>
-
-<input
-id="productDesktopWidth"
-type="number"
->
-
+<label>عرض الكرت px</label>
+<input id="productDesktopWidth" type="number">
 </div>
 
-
 <div>
-
-<label>
-ارتفاع صورة المنتج px
-</label>
-
-<input
-id="productDesktopImageHeight"
-type="number"
->
-
+<label>ارتفاع صورة المنتج px</label>
+<input id="productDesktopImageHeight" type="number">
 </div>
 
-
 <div>
-
-<label>
-حجم اسم المنتج px
-</label>
-
-<input
-id="productDesktopFont"
-type="number"
->
-
+<label>حجم اسم المنتج px</label>
+<input id="productDesktopFont" type="number">
 </div>
 
 </div>
@@ -2178,44 +2016,18 @@ type="number"
 <div class="grid3">
 
 <div>
-
-<label>
-عرض الكرت px
-</label>
-
-<input
-id="productTabletWidth"
-type="number"
->
-
+<label>عرض الكرت px</label>
+<input id="productTabletWidth" type="number">
 </div>
 
-
 <div>
-
-<label>
-ارتفاع صورة المنتج px
-</label>
-
-<input
-id="productTabletImageHeight"
-type="number"
->
-
+<label>ارتفاع صورة المنتج px</label>
+<input id="productTabletImageHeight" type="number">
 </div>
 
-
 <div>
-
-<label>
-حجم اسم المنتج px
-</label>
-
-<input
-id="productTabletFont"
-type="number"
->
-
+<label>حجم اسم المنتج px</label>
+<input id="productTabletFont" type="number">
 </div>
 
 </div>
@@ -2228,44 +2040,18 @@ type="number"
 <div class="grid3">
 
 <div>
-
-<label>
-عرض الكرت % من الشاشة
-</label>
-
-<input
-id="productMobileWidth"
-type="number"
->
-
+<label>عرض الكرت %</label>
+<input id="productMobileWidth" type="number">
 </div>
 
-
 <div>
-
-<label>
-ارتفاع صورة المنتج px
-</label>
-
-<input
-id="productMobileImageHeight"
-type="number"
->
-
+<label>ارتفاع صورة المنتج px</label>
+<input id="productMobileImageHeight" type="number">
 </div>
 
-
 <div>
-
-<label>
-حجم اسم المنتج px
-</label>
-
-<input
-id="productMobileFont"
-type="number"
->
-
+<label>حجم اسم المنتج px</label>
+<input id="productMobileFont" type="number">
 </div>
 
 </div>
@@ -2278,7 +2064,6 @@ type="number"
 <h2>
 🎞️ حركة المنتجات ثلاثية الأبعاد
 </h2>
-
 
 <div class="check-row">
 
@@ -2297,74 +2082,28 @@ type="checkbox"
 <div class="grid3">
 
 <div>
-
-<label>
-حجم المنتج الأوسط
-</label>
-
-<input
-id="carouselCenterScale"
-type="number"
-step=".05"
->
-
+<label>حجم المنتج الأوسط</label>
+<input id="carouselCenterScale" type="number" step=".05">
 </div>
 
-
 <div>
-
-<label>
-حجم المنتجات الجانبية
-</label>
-
-<input
-id="carouselSideScale"
-type="number"
-step=".05"
->
-
+<label>حجم المنتجات الجانبية</label>
+<input id="carouselSideScale" type="number" step=".05">
 </div>
 
-
 <div>
-
-<label>
-زاوية الميل
-</label>
-
-<input
-id="carouselRotation"
-type="number"
->
-
+<label>زاوية الميل</label>
+<input id="carouselRotation" type="number">
 </div>
 
-
 <div>
-
-<label>
-المسافة
-</label>
-
-<input
-id="carouselSpacing"
-type="number"
->
-
+<label>المسافة</label>
+<input id="carouselSpacing" type="number">
 </div>
 
-
 <div>
-
-<label>
-سرعة الحركة ms
-</label>
-
-<input
-id="carouselSpeed"
-type="number"
->
-
+<label>سرعة الحركة ms</label>
+<input id="carouselSpeed" type="number">
 </div>
 
 </div>
@@ -2400,53 +2139,28 @@ class="page hidden"
 <div class="grid3">
 
 <div>
-
-<label>
-اسم الوسيلة
-</label>
-
+<label>اسم الوسيلة</label>
 <input id="paymentName">
-
 </div>
 
-
 <div>
-
-<label>
-الرمز
-</label>
-
+<label>الرمز</label>
 <input
 id="paymentId"
 placeholder="bank"
 >
-
 </div>
-
 
 <div>
 
-<label>
-النوع
-</label>
+<label>النوع</label>
 
 <select id="paymentType">
 
-<option value="bank">
-بنكي
-</option>
-
-<option value="card">
-بطاقة
-</option>
-
-<option value="cash">
-نقدي
-</option>
-
-<option value="other">
-أخرى
-</option>
+<option value="bank">بنكي</option>
+<option value="card">بطاقة</option>
+<option value="cash">نقدي</option>
+<option value="other">أخرى</option>
 
 </select>
 
@@ -2488,46 +2202,23 @@ class="card"
 <div class="grid2">
 
 <div>
-
-<label>
-اسم البنك
-</label>
-
+<label>اسم البنك</label>
 <input id="bankName">
-
 </div>
 
-
 <div>
-
-<label>
-اسم صاحب الحساب
-</label>
-
+<label>اسم صاحب الحساب</label>
 <input id="bankHolder">
-
 </div>
 
-
 <div>
-
-<label>
-رقم الحساب
-</label>
-
+<label>رقم الحساب</label>
 <input id="bankAccount">
-
 </div>
 
-
 <div>
-
-<label>
-IBAN
-</label>
-
+<label>IBAN</label>
 <input id="bankIban">
-
 </div>
 
 </div>
@@ -2596,7 +2287,7 @@ onclick="saveFooterSettings()"
 
 
 <!-- =========================================================
-GENERAL SETTINGS
+GENERAL
 ========================================================= -->
 
 <section
@@ -2614,90 +2305,43 @@ class="page hidden"
 <div class="grid2">
 
 <div>
-
-<label>
-اسم المتجر
-</label>
-
+<label>اسم المتجر</label>
 <input id="setStoreName">
-
 </div>
 
-
 <div>
-
-<label>
-الاسم الإنجليزي
-</label>
-
+<label>الاسم الإنجليزي</label>
 <input id="setStoreNameEn">
-
 </div>
 
-
 <div>
-
-<label>
-العنوان الصغير
-</label>
-
+<label>العنوان الصغير</label>
 <input id="setEyebrow">
-
 </div>
 
-
 <div>
-
-<label>
-الجوال
-</label>
-
+<label>الجوال</label>
 <input id="setPhone">
-
 </div>
 
-
 <div>
-
-<label>
-واتساب
-</label>
-
+<label>واتساب</label>
 <input id="setWhatsapp">
-
 </div>
 
-
 <div>
-
-<label>
-البريد الإلكتروني
-</label>
-
+<label>البريد الإلكتروني</label>
 <input id="setEmail">
-
 </div>
 
-
 <div>
-
-<label>
-رابط الشعار
-</label>
-
+<label>رابط الشعار</label>
 <input id="setLogo">
-
 </div>
 
-
 <div>
-
-<label>
-شعار شاشة البداية
-</label>
-
+<label>شعار شاشة البداية</label>
 <input id="setSplashLogo">
-
 </div>
 
 </div>
@@ -2727,112 +2371,51 @@ class="page hidden"
 <div class="grid3">
 
 <div>
-
-<label>
-Instagram
-</label>
-
+<label>Instagram</label>
 <input id="setInstagram">
-
 </div>
 
-
 <div>
-
-<label>
-TikTok
-</label>
-
+<label>TikTok</label>
 <input id="setTiktok">
-
 </div>
 
-
 <div>
-
-<label>
-Facebook
-</label>
-
+<label>Facebook</label>
 <input id="setFacebook">
-
 </div>
 
-
 <div>
-
-<label>
-Telegram
-</label>
-
+<label>Telegram</label>
 <input id="setTelegram">
-
 </div>
 
-
 <div>
-
-<label>
-X
-</label>
-
+<label>X</label>
 <input id="setTwitter">
-
 </div>
-
 
 <div>
-
-<label>
-Snapchat
-</label>
-
+<label>Snapchat</label>
 <input id="setSnapchat">
-
 </div>
 
 </div>
 
 
 <div class="check-row">
-
-<input
-id="setSearch"
-type="checkbox"
->
-
-<label for="setSearch">
-تشغيل البحث
-</label>
-
+<input id="setSearch" type="checkbox">
+<label for="setSearch">تشغيل البحث</label>
 </div>
 
-
 <div class="check-row">
-
-<input
-id="setSort"
-type="checkbox"
->
-
-<label for="setSort">
-تشغيل الترتيب
-</label>
-
+<input id="setSort" type="checkbox">
+<label for="setSort">تشغيل الترتيب</label>
 </div>
 
-
 <div class="check-row">
-
-<input
-id="setReviews"
-type="checkbox"
->
-
-<label for="setReviews">
-إظهار التقييمات
-</label>
-
+<input id="setReviews" type="checkbox">
+<label for="setReviews">إظهار التقييمات</label>
 </div>
 
 
@@ -2915,6 +2498,10 @@ const ADMIN_EMAIL =
 "omara1store@gmail.com";
 
 
+const STORAGE_BUCKET =
+"store-media";
+
+
 const db =
 supabase.createClient(
 SUPABASE_URL,
@@ -2932,44 +2519,36 @@ DATA
 ========================================================= */
 
 let products = [];
-
 let categories = [];
-
 let variants = [];
-
 let bundles = [];
-
 let gifts = [];
-
 let coupons = [];
-
 let orders = [];
-
 let reviews = [];
-
 let relations = [];
-
 let customers = [];
-
 let settingsRows = [];
 
-
 let generalSettings = {};
-
 let paymentSettings = {};
-
 let designSettings = {};
-
 let adSettings = {};
-
 let footerSettings = {};
 
-
 let paymentMethodsDraft = [];
-
 let bankAccountsDraft = [];
 
 let selectedOrder = null;
+
+
+/* =========================================================
+MEDIA EDIT STATE
+========================================================= */
+
+let editingProductImages = [];
+
+let editingAdMedia = [];
 
 
 /* =========================================================
@@ -3153,6 +2732,424 @@ item.trim()
 }
 
 
+function randomFileName(file){
+
+const extension =
+String(
+file.name
+||
+"file"
+)
+.split(".")
+.pop()
+.toLowerCase()
+.replace(
+/[^a-z0-9]/g,
+""
+)
+||
+"bin";
+
+
+return (
+
+Date.now()
+
++
+"_"
+
++
+Math.random()
+.toString(36)
+.slice(2,12)
+
++
+"."
+
++
+extension
+
+);
+
+}
+
+
+/* =========================================================
+UPLOAD STATUS
+========================================================= */
+
+function setUploadStatus(
+id,
+message,
+show = true
+){
+
+const element =
+$(id);
+
+
+if(!element){
+
+return;
+
+}
+
+
+element.textContent =
+message;
+
+
+element.classList.toggle(
+"show",
+show
+);
+
+}
+
+
+/* =========================================================
+STORAGE
+========================================================= */
+
+async function uploadMediaFile(
+file,
+folder
+){
+
+if(!file){
+
+throw new Error(
+"لم يتم اختيار ملف"
+);
+
+}
+
+
+const maxImageSize =
+12 * 1024 * 1024;
+
+
+const maxVideoSize =
+100 * 1024 * 1024;
+
+
+if(
+file.type.startsWith("image/")
+&&
+file.size > maxImageSize
+){
+
+throw new Error(
+"حجم الصورة كبير. الحد الأقصى 12MB"
+);
+
+}
+
+
+if(
+file.type.startsWith("video/")
+&&
+file.size > maxVideoSize
+){
+
+throw new Error(
+"حجم الفيديو كبير. الحد الأقصى 100MB"
+);
+
+}
+
+
+const fileName =
+randomFileName(file);
+
+
+const path =
+folder
++
+"/"
++
+fileName;
+
+
+const {
+error
+} =
+await db.storage
+.from(STORAGE_BUCKET)
+.upload(
+path,
+file,
+{
+
+cacheControl:"3600",
+
+upsert:false,
+
+contentType:
+file.type
+
+}
+);
+
+
+if(error){
+
+throw error;
+
+}
+
+
+const {
+data
+} =
+db.storage
+.from(STORAGE_BUCKET)
+.getPublicUrl(path);
+
+
+if(
+!data?.publicUrl
+){
+
+throw new Error(
+"تعذر الحصول على رابط الملف"
+);
+
+}
+
+
+return data.publicUrl;
+
+}
+
+
+/* =========================================================
+MULTIPLE UPLOAD
+========================================================= */
+
+async function uploadMultipleFiles(
+files,
+folder,
+statusId
+){
+
+const list =
+Array.from(
+files || []
+);
+
+
+if(!list.length){
+
+return [];
+
+}
+
+
+const urls =
+[];
+
+
+for(
+let index = 0;
+index < list.length;
+index++
+){
+
+setUploadStatus(
+
+statusId,
+
+"جارِ رفع الملف "
++
+(index + 1)
++
+" من "
++
+list.length
++
+"..."
+
+);
+
+
+const url =
+await uploadMediaFile(
+list[index],
+folder
+);
+
+
+urls.push(url);
+
+}
+
+
+setUploadStatus(
+statusId,
+"تم رفع الملفات بنجاح ✓"
+);
+
+
+return urls;
+
+}
+
+
+/* =========================================================
+LOCAL FILE PREVIEW
+========================================================= */
+
+function localPreviewHTML(
+file
+){
+
+const url =
+URL.createObjectURL(file);
+
+
+if(
+file.type.startsWith("video/")
+){
+
+return `
+
+<div class="media-preview">
+
+<video
+src="${url}"
+muted
+controls
+></video>
+
+</div>
+
+`;
+
+}
+
+
+return `
+
+<div class="media-preview">
+
+<img
+src="${url}"
+alt=""
+>
+
+</div>
+
+`;
+
+}
+
+
+/* =========================================================
+PRODUCT FILE PREVIEW
+========================================================= */
+
+function previewSelectedProductImages(){
+
+const files =
+Array.from(
+$("productImageFiles")
+.files
+||
+[]
+);
+
+
+$("newProductImagesPreview")
+.innerHTML =
+files
+.map(
+localPreviewHTML
+)
+.join("");
+
+}
+
+
+/* =========================================================
+BUNDLE FILE PREVIEW
+========================================================= */
+
+function previewBundleImage(){
+
+const file =
+$("bundleImageFile")
+.files?.[0];
+
+
+if(!file){
+
+return;
+
+}
+
+
+$("bundleImagePreview")
+.innerHTML =
+localPreviewHTML(file);
+
+}
+
+
+/* =========================================================
+GIFT FILE PREVIEW
+========================================================= */
+
+function previewGiftImage(){
+
+const file =
+$("giftImageFile")
+.files?.[0];
+
+
+if(!file){
+
+return;
+
+}
+
+
+$("giftImagePreview")
+.innerHTML =
+localPreviewHTML(file);
+
+}
+
+
+/* =========================================================
+AD FILE PREVIEW
+========================================================= */
+
+function previewSelectedAdFiles(){
+
+const files =
+Array.from(
+$("adFiles")
+.files
+||
+[]
+);
+
+
+$("newAdFilesPreview")
+.innerHTML =
+files
+.map(
+localPreviewHTML
+)
+.join("");
+
+
+previewAd();
+
+}
+
+
 /* =========================================================
 AUTH
 ========================================================= */
@@ -3308,7 +3305,8 @@ await boot();
 catch(error){
 
 let message =
-error.message ||
+error.message
+||
 "تعذر تسجيل الدخول";
 
 
@@ -3371,7 +3369,8 @@ NAVIGATION
 
 function renderNav(){
 
-$("nav").innerHTML =
+$("nav")
+.innerHTML =
 tabs
 .map(
 (
@@ -3381,11 +3380,17 @@ index
 
 <button
 class="${
-index === 0 ? "active" : ""
+index === 0
+?
+"active"
+:
+""
 }"
 onclick="tab('${item[0]}',this)"
 >
+
 ${item[1]}
+
 </button>
 
 `
@@ -3467,7 +3472,7 @@ await loadAll();
 
 
 /* =========================================================
-SAFE LOAD
+SAFE
 ========================================================= */
 
 async function safe(
@@ -3660,30 +3665,20 @@ db
 
 
 safe(
-
-db.rpc(
-"admin_dashboard_stats"
-),
+db.rpc("admin_dashboard_stats"),
 {}
-
 ),
 
 
 safe(
-
-db.rpc(
-"admin_customer_report"
-)
-
+db.rpc("admin_customer_report")
 ),
 
 
 safe(
-
 db
 .from("settings")
 .select("*")
-
 )
 
 ]);
@@ -3781,7 +3776,9 @@ settingsRows.find(
 row =>
 row.id === "general"
 )
-?.data || {};
+?.data
+||
+{};
 
 
 paymentSettings =
@@ -3789,7 +3786,9 @@ settingsRows.find(
 row =>
 row.id === "payment"
 )
-?.data || {};
+?.data
+||
+{};
 
 
 designSettings =
@@ -3797,7 +3796,9 @@ settingsRows.find(
 row =>
 row.id === "design"
 )
-?.data || {};
+?.data
+||
+{};
 
 
 adSettings =
@@ -3805,7 +3806,9 @@ settingsRows.find(
 row =>
 row.id === "ads"
 )
-?.data || {};
+?.data
+||
+{};
 
 
 footerSettings =
@@ -3813,7 +3816,9 @@ settingsRows.find(
 row =>
 row.id === "footer"
 )
-?.data || {};
+?.data
+||
+{};
 
 
 paymentMethodsDraft =
@@ -3840,6 +3845,18 @@ JSON.stringify(
 paymentSettings.bankAccounts
 )
 )
+:
+[];
+
+
+editingAdMedia =
+Array.isArray(
+adSettings.media
+)
+?
+[
+...adSettings.media
+]
 :
 [];
 
@@ -3884,29 +3901,34 @@ STATS
 
 function renderStats(stats){
 
-$("stats").innerHTML = [
+$("stats")
+.innerHTML = [
 
 [
 "المنتجات",
-stats.products ??
+stats.products
+??
 products.length
 ],
 
 [
 "الباقات",
-stats.active_bundles ??
+stats.active_bundles
+??
 bundles.length
 ],
 
 [
 "الطلبات",
-stats.orders ??
+stats.orders
+??
 orders.length
 ],
 
 [
 "تم التسليم",
-stats.delivered ??
+stats.delivered
+??
 orders.filter(
 item =>
 item.status === "delivered"
@@ -3916,7 +3938,8 @@ item.status === "delivered"
 
 [
 "العملاء",
-stats.customers ??
+stats.customers
+??
 customers.length
 ],
 
@@ -3997,7 +4020,7 @@ html;
 
 
 /* =========================================================
-PRODUCTS OPTIONS FOR SELECTS
+PRODUCT SELECTS
 ========================================================= */
 
 function fillProducts(){
@@ -4008,9 +4031,7 @@ products
 product => `
 
 <option value="${product.id}">
-
 ${esc(product.name)}
-
 </option>
 
 `
@@ -4036,6 +4057,58 @@ options;
 $("bundleProducts")
 .innerHTML =
 options;
+
+}
+
+
+/* =========================================================
+EXISTING PRODUCT IMAGES
+========================================================= */
+
+function renderExistingProductImages(){
+
+$("existingProductImages")
+.innerHTML =
+editingProductImages
+.map(
+(
+url,
+index
+) => `
+
+<div class="media-preview">
+
+<img
+src="${esc(url)}"
+alt=""
+>
+
+<button
+class="media-remove"
+type="button"
+onclick="removeExistingProductImage(${index})"
+>
+×
+</button>
+
+</div>
+
+`
+)
+.join("");
+
+}
+
+
+function removeExistingProductImage(index){
+
+editingProductImages.splice(
+index,
+1
+);
+
+
+renderExistingProductImages();
 
 }
 
@@ -4083,6 +4156,61 @@ return;
 }
 
 
+const button =
+$("saveProductButton");
+
+
+button.disabled =
+true;
+
+
+button.textContent =
+"جارِ الحفظ...";
+
+
+try{
+
+
+/* رفع الصور الجديدة */
+
+const newFiles =
+$("productImageFiles")
+.files;
+
+
+let newUrls =
+[];
+
+
+if(
+newFiles
+&&
+newFiles.length
+){
+
+newUrls =
+await uploadMultipleFiles(
+
+newFiles,
+
+"products",
+
+"productUploadStatus"
+
+);
+
+}
+
+
+const finalImages = [
+
+...editingProductImages,
+
+...newUrls
+
+];
+
+
 const row = {
 
 name,
@@ -4128,10 +4256,7 @@ $("productCurrency")
 "ر.ي",
 
 images:
-parseLines(
-$("productImages")
-.value
-),
+finalImages,
 
 colors:
 parseLines(
@@ -4164,20 +4289,6 @@ $("productSortOrder")
 };
 
 
-const button =
-$("saveProductButton");
-
-
-button.disabled =
-true;
-
-
-button.textContent =
-"جارِ الحفظ...";
-
-
-try{
-
 let result;
 
 
@@ -4187,7 +4298,10 @@ result =
 await db
 .from("products")
 .update(row)
-.eq("id",id);
+.eq(
+"id",
+id
+);
 
 }
 else{
@@ -4208,11 +4322,13 @@ throw result.error;
 
 
 toast(
+
 id
 ?
 "تم تعديل المنتج ✓"
 :
 "تمت إضافة المنتج ✓"
+
 );
 
 
@@ -4249,6 +4365,13 @@ false;
 
 button.textContent =
 "حفظ المنتج";
+
+
+setUploadStatus(
+"productUploadStatus",
+"",
+false
+);
 
 }
 
@@ -4321,16 +4444,6 @@ $("productDescription").value =
 product.description || "";
 
 
-$("productImages").value =
-Array.isArray(
-product.images
-)
-?
-product.images.join("\n")
-:
-"";
-
-
 $("productColors").value =
 Array.isArray(
 product.colors
@@ -4359,17 +4472,44 @@ $("productNew").checked =
 product.is_new === true;
 
 
-$("saveProductButton").textContent =
+editingProductImages =
+Array.isArray(
+product.images
+)
+?
+[
+...product.images
+]
+:
+[];
+
+
+renderExistingProductImages();
+
+
+$("productImageFiles").value =
+"";
+
+
+$("newProductImagesPreview")
+.innerHTML =
+"";
+
+
+$("saveProductButton")
+.textContent =
 "حفظ التعديلات";
 
 
-window.scrollTo({
+document
+.getElementById(
+"productManager"
+)
+.scrollIntoView({
 
-top:
-0,
+behavior:"smooth",
 
-behavior:
-"smooth"
+block:"start"
 
 });
 
@@ -4377,7 +4517,7 @@ behavior:
 
 
 /* =========================================================
-RESET PRODUCT FORM
+RESET PRODUCT
 ========================================================= */
 
 function resetProductForm(){
@@ -4418,10 +4558,6 @@ $("productDescription").value =
 "";
 
 
-$("productImages").value =
-"";
-
-
 $("productColors").value =
 "";
 
@@ -4438,19 +4574,39 @@ $("productNew").checked =
 false;
 
 
-$("saveProductButton").textContent =
+$("productImageFiles").value =
+"";
+
+
+editingProductImages =
+[];
+
+
+$("existingProductImages")
+.innerHTML =
+"";
+
+
+$("newProductImagesPreview")
+.innerHTML =
+"";
+
+
+$("saveProductButton")
+.textContent =
 "حفظ المنتج";
 
 }
 
 
 /* =========================================================
-RENDER PRODUCTS ADMIN
+RENDER PRODUCTS
 ========================================================= */
 
 function renderAdminProducts(){
 
-$("productsCount").textContent =
+$("productsCount")
+.textContent =
 products.length
 +
 " منتج";
@@ -4460,7 +4616,8 @@ if(
 !products.length
 ){
 
-$("productsAdminList").innerHTML = `
+$("productsAdminList")
+.innerHTML = `
 
 <div class="note">
 لا توجد منتجات حالياً.
@@ -4474,7 +4631,8 @@ return;
 }
 
 
-$("productsAdminList").innerHTML =
+$("productsAdminList")
+.innerHTML =
 products
 .map(
 product => {
@@ -4494,7 +4652,6 @@ product.images[0]
 return `
 
 <div class="product-admin-card">
-
 
 <div class="product-admin-image">
 
@@ -4519,11 +4676,8 @@ alt="${esc(product.name)}"
 <div>
 
 <div class="product-admin-name">
-
 ${esc(product.name)}
-
 </div>
-
 
 <div class="product-admin-meta">
 
@@ -4539,11 +4693,17 @@ product.currency
 )}
 
 ${
-Number(product.discount || 0) > 0
+Number(
+product.discount || 0
+)
+>
+0
 ?
 " · خصم "
 +
-Number(product.discount)
+Number(
+product.discount
+)
 +
 "%"
 :
@@ -4706,7 +4866,8 @@ await loadAll();
 
 function renderVariants(){
 
-$("variantsBody").innerHTML =
+$("variantsBody")
+.innerHTML =
 variants
 .map(
 variant => `
@@ -4778,13 +4939,71 @@ onclick="removeRow(
 
 
 /* =========================================================
-BUNDLES
+BUNDLE
 ========================================================= */
 
 async function saveBundle(){
 
 let id =
 $("bundleId").value;
+
+
+const button =
+$("saveBundleButton");
+
+
+button.disabled =
+true;
+
+
+button.textContent =
+"جارِ الحفظ...";
+
+
+try{
+
+let imageUrl =
+$("bundleExistingImage")
+.value
+||
+null;
+
+
+const file =
+$("bundleImageFile")
+.files?.[0];
+
+
+if(file){
+
+setUploadStatus(
+
+"bundleUploadStatus",
+
+"جارِ رفع صورة الباقة..."
+
+);
+
+
+imageUrl =
+await uploadMediaFile(
+
+file,
+
+"bundles"
+
+);
+
+
+setUploadStatus(
+
+"bundleUploadStatus",
+
+"تم رفع الصورة ✓"
+
+);
+
+}
 
 
 const row = {
@@ -4796,31 +5015,30 @@ $("bundleName")
 
 regular_price:
 Number(
-$("bundleRegular").value
+$("bundleRegular")
+.value
 ||
 0
 ),
 
 offer_price:
 Number(
-$("bundleOffer").value
+$("bundleOffer")
+.value
 ||
 0
 ),
 
 stock:
 Number(
-$("bundleStock").value
+$("bundleStock")
+.value
 ||
 0
 ),
 
 image_url:
-$("bundleImage")
-.value
-.trim()
-||
-null,
+imageUrl,
 
 description:
 $("bundleDesc")
@@ -4847,11 +5065,9 @@ true
 
 if(!row.name){
 
-toast(
+throw new Error(
 "اكتب اسم الباقة"
 );
-
-return;
 
 }
 
@@ -4884,11 +5100,7 @@ await db
 
 if(result.error){
 
-alert(
-result.error.message
-);
-
-return;
+throw result.error;
 
 }
 
@@ -4939,9 +5151,7 @@ await db
 
 if(error){
 
-alert(error.message);
-
-return;
+throw error;
 
 }
 
@@ -4959,7 +5169,39 @@ resetBundle();
 await loadAll();
 
 }
+catch(error){
 
+alert(
+error.message
+||
+"تعذر حفظ الباقة"
+);
+
+}
+finally{
+
+button.disabled =
+false;
+
+
+button.textContent =
+"حفظ الباقة";
+
+
+setUploadStatus(
+"bundleUploadStatus",
+"",
+false
+);
+
+}
+
+}
+
+
+/* =========================================================
+EDIT BUNDLE
+========================================================= */
 
 function editBundle(id){
 
@@ -4999,12 +5241,16 @@ $("bundleStock").value =
 bundle.stock || 0;
 
 
-$("bundleImage").value =
+$("bundleDesc").value =
+bundle.description || "";
+
+
+$("bundleExistingImage").value =
 bundle.image_url || "";
 
 
-$("bundleDesc").value =
-bundle.description || "";
+$("bundleImageFile").value =
+"";
 
 
 if(bundle.ends_at){
@@ -5020,9 +5266,39 @@ bundle.ends_at
 );
 
 }
+else{
+
+$("bundleEnd").value =
+"";
 
 }
 
+
+$("bundleImagePreview")
+.innerHTML =
+bundle.image_url
+?
+`
+
+<div class="media-preview">
+
+<img
+src="${esc(bundle.image_url)}"
+alt=""
+>
+
+</div>
+
+`
+:
+"";
+
+}
+
+
+/* =========================================================
+RESET BUNDLE
+========================================================= */
 
 function resetBundle(){
 
@@ -5032,9 +5308,9 @@ function resetBundle(){
 "bundleRegular",
 "bundleOffer",
 "bundleStock",
-"bundleImage",
 "bundleDesc",
-"bundleEnd"
+"bundleEnd",
+"bundleExistingImage"
 ]
 .forEach(
 id => {
@@ -5046,8 +5322,18 @@ $(id).value =
 );
 
 
+$("bundleImageFile").value =
+"";
+
+
+$("bundleImagePreview")
+.innerHTML =
+"";
+
+
 [
-...$("bundleProducts").options
+...$("bundleProducts")
+.options
 ]
 .forEach(
 option => {
@@ -5061,12 +5347,18 @@ false;
 }
 
 
+/* =========================================================
+RENDER BUNDLES
+========================================================= */
+
 function renderBundles(){
 
-$("bundleList").innerHTML =
+$("bundleList")
+.innerHTML =
 bundles.length
 ?
-bundles.map(
+bundles
+.map(
 bundle => `
 
 <div class="order-card">
@@ -5137,26 +5429,92 @@ GIFTS
 
 async function saveGift(){
 
-const row = {
-
-name:
+const name =
 $("giftName")
 .value
-.trim(),
+.trim();
+
+
+if(!name){
+
+toast(
+"اكتب اسم التغليف"
+);
+
+return;
+
+}
+
+
+const button =
+$("saveGiftButton");
+
+
+button.disabled =
+true;
+
+
+button.textContent =
+"جارِ الحفظ...";
+
+
+try{
+
+let imageUrl =
+null;
+
+
+const file =
+$("giftImageFile")
+.files?.[0];
+
+
+if(file){
+
+setUploadStatus(
+
+"giftUploadStatus",
+
+"جارِ رفع صورة التغليف..."
+
+);
+
+
+imageUrl =
+await uploadMediaFile(
+
+file,
+
+"gifts"
+
+);
+
+
+setUploadStatus(
+
+"giftUploadStatus",
+
+"تم رفع الصورة ✓"
+
+);
+
+}
+
+
+const row = {
+
+name,
 
 price:
 Number(
-$("giftPrice").value
+$("giftPrice")
+.value
 ||
 0
 ),
 
 image_url:
-$("giftImage")
-.value
-.trim()
-||
-null,
+imageUrl,
 
 description:
 $("giftDesc")
@@ -5171,17 +5529,6 @@ true
 };
 
 
-if(!row.name){
-
-toast(
-"اكتب اسم التغليف"
-);
-
-return;
-
-}
-
-
 const {
 error
 } =
@@ -5192,9 +5539,7 @@ await db
 
 if(error){
 
-alert(error.message);
-
-return;
+throw error;
 
 }
 
@@ -5204,31 +5549,117 @@ toast(
 );
 
 
+$("giftName").value =
+"";
+
+
+$("giftPrice").value =
+"";
+
+
+$("giftDesc").value =
+"";
+
+
+$("giftImageFile").value =
+"";
+
+
+$("giftImagePreview")
+.innerHTML =
+"";
+
+
 await loadAll();
+
+}
+catch(error){
+
+alert(
+error.message
+||
+"تعذر إضافة التغليف"
+);
+
+}
+finally{
+
+button.disabled =
+false;
+
+
+button.textContent =
+"إضافة التغليف";
+
+
+setUploadStatus(
+"giftUploadStatus",
+"",
+false
+);
+
+}
 
 }
 
 
+/* =========================================================
+RENDER GIFTS
+========================================================= */
+
 function renderGifts(){
 
-$("giftList").innerHTML =
+$("giftList")
+.innerHTML =
 gifts.length
 ?
-gifts.map(
+gifts
+.map(
 gift => `
 
 <div class="order-card">
+
+<div
+style="
+display:flex;
+gap:12px;
+align-items:center
+"
+>
+
+${
+gift.image_url
+?
+`
+
+<img
+src="${esc(gift.image_url)}"
+style="
+width:65px;
+height:65px;
+object-fit:contain;
+border-radius:10px;
+background:#f5f2e9
+"
+>
+
+`
+:
+""
+}
+
+<div style="flex:1">
 
 <strong>
 🎁 ${esc(gift.name)}
 </strong>
 
 <div class="note">
-
 ${money(
 gift.price,
 gift.currency
 )}
+</div>
 
 </div>
 
@@ -5241,6 +5672,8 @@ onclick="removeRow(
 >
 حذف
 </button>
+
+</div>
 
 </div>
 
@@ -5262,7 +5695,8 @@ async function saveGiftDesign(){
 const giftSection = {
 
 enabled:
-$("giftSectionEnabled").checked,
+$("giftSectionEnabled")
+.checked,
 
 title:
 $("giftSectionTitleAdmin")
@@ -5287,17 +5721,21 @@ $("giftSectionIconAdmin")
 "🎁",
 
 background:
-$("giftSectionBackground").value,
+$("giftSectionBackground")
+.value,
 
 textColor:
-$("giftSectionTextColor").value,
+$("giftSectionTextColor")
+.value,
 
 buttonColor:
-$("giftSectionButtonColor").value,
+$("giftSectionButtonColor")
+.value,
 
 radius:
 Number(
-$("giftSectionRadius").value
+$("giftSectionRadius")
+.value
 ||
 26
 )
@@ -5355,7 +5793,8 @@ $("cpCode")
 .toUpperCase(),
 
 discount_type:
-$("cpType").value,
+$("cpType")
+.value,
 
 value:
 Number(
@@ -5386,7 +5825,8 @@ $("cpExpiry").value
 null,
 
 first_order_only:
-$("cpFirst").checked,
+$("cpFirst")
+.checked,
 
 is_active:
 true
@@ -5434,10 +5874,12 @@ await loadAll();
 
 function renderCoupons(){
 
-$("couponList").innerHTML =
+$("couponList")
+.innerHTML =
 coupons.length
 ?
-coupons.map(
+coupons
+.map(
 coupon => `
 
 <div class="order-card">
@@ -5453,7 +5895,9 @@ coupon.discount_type
 ===
 "percentage"
 ?
-coupon.value + "%"
+coupon.value
++
+"%"
 :
 money(coupon.value)
 }
@@ -5487,7 +5931,8 @@ CUSTOMERS
 
 function renderCustomers(){
 
-$("customersBody").innerHTML =
+$("customersBody")
+.innerHTML =
 customers
 .map(
 customer => `
@@ -5496,25 +5941,33 @@ customer => `
 
 <td>
 ${esc(
-customer.name || "عميل"
+customer.name
+||
+"عميل"
 )}
 </td>
 
 <td>
 ${esc(
-customer.phone || ""
+customer.phone
+||
+""
 )}
 </td>
 
 <td>
 ${Number(
-customer.total_orders || 0
+customer.total_orders
+||
+0
 )}
 </td>
 
 <td>
 ${Number(
-customer.purchase_count || 0
+customer.purchase_count
+||
+0
 )}
 </td>
 
@@ -5532,7 +5985,9 @@ customer.last_order_at
 new Date(
 customer.last_order_at
 )
-.toLocaleString("ar")
+.toLocaleString(
+"ar"
+)
 :
 "—"
 }
@@ -5556,7 +6011,8 @@ function renderOrders(){
 
 if(!orders.length){
 
-$("ordersCards").innerHTML = `
+$("ordersCards")
+.innerHTML = `
 
 <div class="card">
 لا توجد طلبات.
@@ -5564,12 +6020,14 @@ $("ordersCards").innerHTML = `
 
 `;
 
+
 return;
 
 }
 
 
-$("ordersCards").innerHTML =
+$("ordersCards")
+.innerHTML =
 orders
 .map(
 order => `
@@ -5600,7 +6058,9 @@ order.created_at
 new Date(
 order.created_at
 )
-.toLocaleString("ar")
+.toLocaleString(
+"ar"
+)
 :
 ""
 }
@@ -5612,11 +6072,13 @@ order.created_at
 
 <span
 class="pill ${
-order.status === "delivered"
+order.status ===
+"delivered"
 ?
 "green"
 :
-order.status === "cancelled"
+order.status ===
+"cancelled"
 ?
 "red"
 :
@@ -5631,7 +6093,10 @@ ${statusText(order.status)}
 </div>
 
 
-<div class="grid3" style="margin-top:12px">
+<div
+class="grid3"
+style="margin-top:12px"
+>
 
 <div>
 
@@ -5698,12 +6163,10 @@ onclick="openOrder('${order.id}')"
 
 <select
 style="width:auto;margin:0"
-onchange="
-changeStatus(
+onchange="changeStatus(
 '${order.id}',
 this.value
-)
-"
+)"
 >
 
 ${
@@ -5722,7 +6185,8 @@ status => `
 <option
 value="${status}"
 ${
-order.status === status
+order.status ===
+status
 ?
 "selected"
 :
@@ -5771,7 +6235,10 @@ new Date()
 .toISOString()
 
 })
-.eq("id",id);
+.eq(
+"id",
+id
+);
 
 
 if(error){
@@ -5837,7 +6304,8 @@ data || []
 };
 
 
-$("orderModalBody").innerHTML = `
+$("orderModalBody")
+.innerHTML = `
 
 <div class="grid2">
 
@@ -5913,12 +6381,10 @@ ${esc(order.address || "—")}
 </strong>
 
 <div>
-
 ${money(
 order.total,
 order.currency
 )}
-
 </div>
 
 </div>
@@ -6038,10 +6504,12 @@ REVIEWS
 
 function renderReviews(){
 
-$("reviewsList").innerHTML =
+$("reviewsList")
+.innerHTML =
 reviews.length
 ?
-reviews.map(
+reviews
+.map(
 review => `
 
 <div class="order-card">
@@ -6165,7 +6633,10 @@ is_approved:
 value
 
 })
-.eq("id",id);
+.eq(
+"id",
+id
+);
 
 
 if(error){
@@ -6243,10 +6714,12 @@ await loadAll();
 
 function renderRelations(){
 
-$("relationsList").innerHTML =
+$("relationsList")
+.innerHTML =
 relations.length
 ?
-relations.map(
+relations
+.map(
 relation => `
 
 <div class="order-card">
@@ -6283,6 +6756,7 @@ relation.relation_type
 
 </span>
 
+
 <button
 class="btn red sm"
 onclick="removeRow(
@@ -6305,20 +6779,150 @@ onclick="removeRow(
 
 
 /* =========================================================
-ADS
+EXISTING ADS
+========================================================= */
+
+function renderExistingAdMedia(){
+
+$("existingAdMedia")
+.innerHTML =
+editingAdMedia
+.map(
+(
+url,
+index
+) => {
+
+const lower =
+String(url)
+.toLowerCase();
+
+
+const video =
+lower.includes(".mp4")
+||
+lower.includes(".webm")
+||
+lower.includes(".mov");
+
+
+return `
+
+<div class="media-preview">
+
+${
+video
+?
+`
+
+<video
+src="${esc(url)}"
+controls
+muted
+></video>
+
+`
+:
+`
+
+<img
+src="${esc(url)}"
+alt=""
+>
+
+`
+}
+
+<button
+class="media-remove"
+type="button"
+onclick="removeExistingAdMedia(${index})"
+>
+×
+</button>
+
+</div>
+
+`;
+
+}
+)
+.join("");
+
+}
+
+
+function removeExistingAdMedia(index){
+
+editingAdMedia.splice(
+index,
+1
+);
+
+
+renderExistingAdMedia();
+
+
+previewAd();
+
+}
+
+
+/* =========================================================
+SAVE ADS
 ========================================================= */
 
 async function saveAds(){
 
-const media =
-$("adMedia")
-.value
-.split("\n")
-.map(
-item =>
-item.trim()
-)
-.filter(Boolean);
+const button =
+$("saveAdsButton");
+
+
+button.disabled =
+true;
+
+
+button.textContent =
+"جارِ الحفظ...";
+
+
+try{
+
+let newMedia =
+[];
+
+
+const files =
+$("adFiles").files;
+
+
+if(
+files
+&&
+files.length
+){
+
+newMedia =
+await uploadMultipleFiles(
+
+files,
+
+"ads",
+
+"adUploadStatus"
+
+);
+
+}
+
+
+const finalMedia = [
+
+...editingAdMedia,
+
+...newMedia
+
+];
 
 
 const next = {
@@ -6326,90 +6930,105 @@ const next = {
 ...adSettings,
 
 enabled:
-$("adEnabled").checked,
+$("adEnabled")
+.checked,
 
 type:
-$("adType").value,
+$("adType")
+.value,
 
 desktopWidth:
 Number(
-$("adDesktopWidth").value
+$("adDesktopWidth")
+.value
 ||
 100
 ),
 
 desktopHeight:
 Number(
-$("adDesktopHeight").value
+$("adDesktopHeight")
+.value
 ||
 650
 ),
 
 desktopMaxWidth:
 Number(
-$("adDesktopMaxWidth").value
+$("adDesktopMaxWidth")
+.value
 ||
 1600
 ),
 
 tabletWidth:
 Number(
-$("adTabletWidth").value
+$("adTabletWidth")
+.value
 ||
 100
 ),
 
 tabletHeight:
 Number(
-$("adTabletHeight").value
+$("adTabletHeight")
+.value
 ||
 550
 ),
 
 tabletMaxWidth:
 Number(
-$("adTabletMaxWidth").value
+$("adTabletMaxWidth")
+.value
 ||
 1100
 ),
 
 mobileWidth:
 Number(
-$("adMobileWidth").value
+$("adMobileWidth")
+.value
 ||
 100
 ),
 
 mobileHeight:
 Number(
-$("adMobileHeight").value
+$("adMobileHeight")
+.value
 ||
 420
 ),
 
 mobileMaxWidth:
 Number(
-$("adMobileMaxWidth").value
+$("adMobileMaxWidth")
+.value
 ||
 600
 ),
 
 fit:
-$("adFit").value,
+$("adFit")
+.value,
 
 position:
-$("adPosition").value,
+$("adPosition")
+.value,
 
 radius:
 Number(
-$("adRadius").value
+$("adRadius")
+.value
 ||
 0
 ),
 
 interval:
 Number(
-$("adInterval").value
+$("adInterval")
+.value
 ||
 4000
 ),
@@ -6419,12 +7038,11 @@ $("adLinkAdmin")
 .value
 .trim(),
 
-media
+media:
+finalMedia
 
 };
 
-
-try{
 
 await saveSetting(
 "ads",
@@ -6434,6 +7052,24 @@ next
 
 adSettings =
 next;
+
+
+editingAdMedia =
+[
+...finalMedia
+];
+
+
+$("adFiles").value =
+"";
+
+
+$("newAdFilesPreview")
+.innerHTML =
+"";
+
+
+renderExistingAdMedia();
 
 
 toast(
@@ -6446,29 +7082,72 @@ previewAd();
 }
 catch(error){
 
-alert(error.message);
+alert(
+
+"تعذر حفظ الإعلان:\n"
+
++
+(
+error.message
+||
+"حدث خطأ"
+)
+
+);
+
+}
+finally{
+
+button.disabled =
+false;
+
+
+button.textContent =
+"حفظ الإعلان";
+
+
+setUploadStatus(
+"adUploadStatus",
+"",
+false
+);
 
 }
 
 }
 
+
+/* =========================================================
+AD PREVIEW
+========================================================= */
 
 function previewAd(){
 
-const media =
-$("adMedia")
-.value
-.split("\n")
-.map(
-item =>
-item.trim()
-)
-.filter(Boolean);
+let url =
+editingAdMedia[0]
+||
+null;
 
 
-if(!media.length){
+const newFile =
+$("adFiles")
+.files?.[0];
 
-$("adPreview").innerHTML =
+
+if(newFile){
+
+url =
+URL.createObjectURL(
+newFile
+);
+
+}
+
+
+if(!url){
+
+$("adPreview")
+.innerHTML =
 "لا توجد معاينة";
 
 
@@ -6477,11 +7156,13 @@ return;
 }
 
 
-$("adPreview").style.height =
+$("adPreview")
+.style.height =
 Math.min(
 500,
 Number(
-$("adDesktopHeight").value
+$("adDesktopHeight")
+.value
 ||
 400
 )
@@ -6490,17 +7171,33 @@ $("adDesktopHeight").value
 "px";
 
 
-if(
-$("adType").value
-===
-"video"
-){
+const isVideo =
+newFile
+?
+newFile.type.startsWith(
+"video/"
+)
+:
+(
+String(url)
+.toLowerCase()
+.includes(".mp4")
+||
+String(url)
+.toLowerCase()
+.includes(".webm")
+);
 
-$("adPreview").innerHTML = `
+
+if(isVideo){
+
+$("adPreview")
+.innerHTML = `
 
 <video
-src="${esc(media[0])}"
+src="${esc(url)}"
 controls
+muted
 style="
 object-fit:${$("adFit").value};
 object-position:${$("adPosition").value};
@@ -6515,10 +7212,11 @@ return;
 }
 
 
-$("adPreview").innerHTML = `
+$("adPreview")
+.innerHTML = `
 
 <img
-src="${esc(media[0])}"
+src="${esc(url)}"
 style="
 object-fit:${$("adFit").value};
 object-position:${$("adPosition").value};
@@ -6539,39 +7237,45 @@ async function saveProductDesign(){
 const carousel = {
 
 enabled:
-$("productCarouselEnabled").checked,
+$("productCarouselEnabled")
+.checked,
 
 centerScale:
 Number(
-$("carouselCenterScale").value
+$("carouselCenterScale")
+.value
 ||
 1
 ),
 
 sideScale:
 Number(
-$("carouselSideScale").value
+$("carouselSideScale")
+.value
 ||
 .82
 ),
 
 rotation:
 Number(
-$("carouselRotation").value
+$("carouselRotation")
+.value
 ||
 16
 ),
 
 spacing:
 Number(
-$("carouselSpacing").value
+$("carouselSpacing")
+.value
 ||
 72
 ),
 
 speed:
 Number(
-$("carouselSpeed").value
+$("carouselSpeed")
+.value
 ||
 550
 )
@@ -6585,63 +7289,72 @@ const next = {
 
 productDesktopWidth:
 Number(
-$("productDesktopWidth").value
+$("productDesktopWidth")
+.value
 ||
 320
 ),
 
 productDesktopImageHeight:
 Number(
-$("productDesktopImageHeight").value
+$("productDesktopImageHeight")
+.value
 ||
 330
 ),
 
 productDesktopFont:
 Number(
-$("productDesktopFont").value
+$("productDesktopFont")
+.value
 ||
 30
 ),
 
 productTabletWidth:
 Number(
-$("productTabletWidth").value
+$("productTabletWidth")
+.value
 ||
 280
 ),
 
 productTabletImageHeight:
 Number(
-$("productTabletImageHeight").value
+$("productTabletImageHeight")
+.value
 ||
 300
 ),
 
 productTabletFont:
 Number(
-$("productTabletFont").value
+$("productTabletFont")
+.value
 ||
 27
 ),
 
 productMobileWidth:
 Number(
-$("productMobileWidth").value
+$("productMobileWidth")
+.value
 ||
 72
 ),
 
 productMobileImageHeight:
 Number(
-$("productMobileImageHeight").value
+$("productMobileImageHeight")
+.value
 ||
 280
 ),
 
 productMobileFont:
 Number(
-$("productMobileFont").value
+$("productMobileFont")
+.value
 ||
 26
 ),
@@ -6678,7 +7391,7 @@ alert(error.message);
 
 
 /* =========================================================
-PAYMENTS
+PAYMENT METHODS
 ========================================================= */
 
 function addPaymentMethod(){
@@ -6723,7 +7436,8 @@ id,
 name,
 
 type:
-$("paymentType").value,
+$("paymentType")
+.value,
 
 description:
 $("paymentDescription")
@@ -6773,10 +7487,12 @@ renderPaymentDraft();
 
 function renderPaymentDraft(){
 
-$("paymentMethodsList").innerHTML =
+$("paymentMethodsList")
+.innerHTML =
 paymentMethodsDraft.length
 ?
-paymentMethodsDraft.map(
+paymentMethodsDraft
+.map(
 (
 method,
 index
@@ -6915,10 +7631,12 @@ renderBankDraft();
 
 function renderBankDraft(){
 
-$("bankAccountsList").innerHTML =
+$("bankAccountsList")
+.innerHTML =
 bankAccountsDraft.length
 ?
-bankAccountsDraft.map(
+bankAccountsDraft
+.map(
 (
 account,
 index
@@ -6931,21 +7649,23 @@ index
 <div>
 
 <strong>
-
 🏦 ${esc(account.bankName)}
-
 </strong>
 
 <div class="note">
 
 ${esc(
-account.accountName || ""
+account.accountName
+||
+""
 )}
 
 <br>
 
 ${esc(
-account.accountNumber || ""
+account.accountNumber
+||
+""
 )}
 
 ${
@@ -7036,7 +7756,8 @@ footerSettings.policies
 {};
 
 
-$("policiesEditor").innerHTML =
+$("policiesEditor")
+.innerHTML =
 policies
 .map(
 item => {
@@ -7060,7 +7781,8 @@ id="policyEnabled_${key}"
 type="checkbox"
 ${
 saved[
-key +
+key
++
 "Enabled"
 ]
 ===
@@ -7073,9 +7795,7 @@ false
 >
 
 <label for="policyEnabled_${key}">
-
 إظهار ${esc(title)}
-
 </label>
 
 </div>
@@ -7089,7 +7809,8 @@ false
 id="policyTitle_${key}"
 value="${esc(
 saved[
-key +
+key
++
 "Title"
 ]
 ||
@@ -7105,7 +7826,9 @@ title
 <textarea
 id="policyText_${key}"
 >${esc(
-saved[key] || ""
+saved[key]
+||
+""
 )}</textarea>
 
 </div>
@@ -7134,7 +7857,8 @@ item[0];
 
 
 policyData[
-key +
+key
++
 "Enabled"
 ] =
 $("policyEnabled_" + key)
@@ -7142,7 +7866,8 @@ $("policyEnabled_" + key)
 
 
 policyData[
-key +
+key
++
 "Title"
 ] =
 $("policyTitle_" + key)
@@ -7291,13 +8016,16 @@ $("setSnapchat")
 .trim(),
 
 enableSearch:
-$("setSearch").checked,
+$("setSearch")
+.checked,
 
 enableSort:
-$("setSort").checked,
+$("setSort")
+.checked,
 
 featureReviews:
-$("setReviews").checked
+$("setReviews")
+.checked
 
 };
 
@@ -7519,7 +8247,9 @@ giftSection.radius
 /* ADS */
 
 $("adEnabled").checked =
-adSettings.enabled === true;
+adSettings.enabled
+===
+true;
 
 
 $("adType").value =
@@ -7612,14 +8342,19 @@ adSettings.link
 "";
 
 
-$("adMedia").value =
+editingAdMedia =
 Array.isArray(
 adSettings.media
 )
 ?
-adSettings.media.join("\n")
+[
+...adSettings.media
+]
 :
-"";
+[];
+
+
+renderExistingAdMedia();
 
 
 /* PRODUCT DESIGN */
@@ -7787,12 +8522,6 @@ START
 ========================================================= */
 
 async function startAdmin(){
-
-/*
-مهم:
-كل مرة تفتح صفحة الإدارة
-نلغي الجلسة القديمة ونطلب كلمة المرور من جديد.
-*/
 
 try{
 
