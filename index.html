@@ -98,20 +98,35 @@ error
 <style>
 
 :root{
+
 --cream:#F8EACB;
 --cream-deep:#F1DDA6;
 --card:#FFFBF0;
 --ink:#20301C;
---ink-soft:#3B4A34;
+--ink-soft:#596052;
 --gold:#A9793C;
 --gold-soft:#C9A96E;
---line:rgba(32,48,28,.16);
---danger:#9B3A2E;
---ok:#4C6B3E;
---blue:#2C5A82;
---shadow:0 10px 30px rgba(32,48,28,.10);
---card-width:180px;
+--danger:#E84C4C;
+--ok:#174A38;
+--line:rgba(32,48,28,.14);
+--shadow:0 12px 35px rgba(32,48,28,.10);
+
 --product-font:'Aref Ruqaa',serif;
+
+--hero-ad-mobile-height:760px;
+--hero-ad-desktop-height:650px;
+--hero-ad-radius:0px;
+--hero-ad-fit:cover;
+--hero-ad-position:center;
+
+--gift-bg:#F1DDA6;
+--gift-text:#20301C;
+--gift-button:#A9793C;
+--gift-radius:26px;
+
+--footer-bg:#2E2828;
+--footer-text:#F8F4EF;
+
 }
 
 *{
@@ -132,16 +147,15 @@ overflow-x:hidden
 }
 
 body{
+
 min-height:100vh;
-background:
-radial-gradient(
-1200px 500px at 50% -10%,
-var(--cream-deep),
-transparent 60%
-),
-var(--cream);
+
+background:var(--cream);
+
 color:var(--ink);
+
 font-family:'Tajawal',sans-serif
+
 }
 
 button,
@@ -156,7 +170,7 @@ cursor:pointer
 }
 
 button:disabled{
-opacity:.5;
+opacity:.45;
 cursor:not-allowed
 }
 
@@ -173,75 +187,116 @@ max-width:100%
 display:none!important
 }
 
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
 #customBackground{
+
 position:fixed;
 inset:0;
+
 z-index:-3;
+
 pointer-events:none;
+
 background-position:center;
 background-size:cover;
 background-repeat:no-repeat;
+
 display:none
+
 }
 
 #watermark{
+
 position:fixed;
 inset:0;
+
 z-index:-2;
+
 pointer-events:none;
+
 background-position:center;
 background-repeat:repeat;
+
 display:none
+
 }
 
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
 .btn{
+
 border:0;
+
 padding:12px 18px;
-border-radius:12px;
-font-weight:700;
+
+border-radius:14px;
+
+font-weight:800;
+
 background:var(--ink);
-color:var(--cream)
+
+color:#fff
+
 }
 
 .btn.secondary{
+
 background:transparent;
+
 border:1px solid var(--ink);
+
 color:var(--ink)
+
 }
 
 .btn.gold{
+
 background:var(--gold);
-color:#fff
-}
 
-.btn.green{
-background:var(--ok);
-color:#fff
-}
+color:white
 
-.btn.blue{
-background:var(--blue);
-color:#fff
 }
 
 .btn.red{
+
 background:var(--danger);
-color:#fff
+
+color:white
+
 }
 
 .btn.small{
-padding:8px 13px;
+
+padding:8px 12px;
+
 font-size:12px
+
 }
 
+
+/* =========================================================
+   SPLASH
+========================================================= */
+
 #storeSplash{
+
 position:fixed;
 inset:0;
+
 z-index:999999;
+
 display:flex;
+
 align-items:center;
 justify-content:center;
-overflow:hidden;
+
 background:
 radial-gradient(
 circle at center,
@@ -250,42 +305,64 @@ circle at center,
 #f2d99c 72%,
 #e9c879 100%
 );
+
 transition:
-opacity .8s ease,
-visibility .8s ease
+opacity .7s ease,
+visibility .7s ease
+
 }
 
 #storeSplash.hide{
+
 opacity:0;
+
 visibility:hidden;
+
 pointer-events:none
+
 }
 
 .splash-inner{
+
 width:100%;
 height:100%;
+
 display:flex;
+
 align-items:center;
 justify-content:center;
+
 position:relative
+
 }
 
 .splash-ring{
+
 position:absolute;
+
 width:520px;
 height:520px;
+
 max-width:88vw;
 max-height:88vw;
+
 border:1px solid rgba(32,48,28,.1);
+
 border-radius:50%
+
 }
 
 .splash-ring::before,
 .splash-ring::after{
+
 content:"";
+
 position:absolute;
+
 border-radius:50%;
+
 border:1px solid rgba(169,121,60,.16)
+
 }
 
 .splash-ring::before{
@@ -297,77 +374,133 @@ inset:80px
 }
 
 .splash-glow{
+
 position:absolute;
+
 width:380px;
 height:380px;
+
 max-width:78vw;
 max-height:78vw;
+
 border-radius:50%;
+
 background:rgba(255,255,255,.35);
+
 filter:blur(24px)
+
 }
 
 #splashLogo{
+
 position:relative;
+
 z-index:4;
+
 width:330px;
+
 max-width:84vw;
 max-height:64vh;
+
 object-fit:contain;
-display:none;
-filter:drop-shadow(0 22px 34px rgba(32,48,28,.18))
+
+display:none
+
 }
 
 #splashTextFallback{
+
 position:relative;
+
 z-index:4;
+
 font-family:'Aref Ruqaa',serif;
+
 font-size:clamp(58px,14vw,125px);
+
 font-weight:700
+
 }
 
 .splash-subtitle{
+
 position:absolute;
-bottom:max(40px,env(safe-area-inset-bottom));
+
+bottom:max(
+40px,
+env(safe-area-inset-bottom)
+);
+
 font-size:11px;
-letter-spacing:.24em;
+
+letter-spacing:.25em;
+
 opacity:.65;
+
 direction:ltr
+
 }
 
+
+/* =========================================================
+   HEADER
+========================================================= */
+
 .topbar{
+
 position:sticky;
+
 top:0;
-z-index:50;
+
+z-index:100;
+
+background:rgba(255,251,240,.97);
+
 border-bottom:1px solid var(--line);
-background:rgba(255,251,240,.92);
-backdrop-filter:blur(14px)
+
+backdrop-filter:blur(18px)
+
 }
 
 .topbar-inner{
-width:100%;
-max-width:1180px;
-margin:0 auto;
-padding:13px 20px;
-display:flex;
+
+max-width:1280px;
+
+margin:auto;
+
+min-height:76px;
+
+padding:9px 18px;
+
+display:grid;
+
+grid-template-columns:auto 1fr auto;
+
 align-items:center;
-justify-content:space-between;
-gap:12px
+
+gap:14px
+
 }
 
 .brand{
+
 display:flex;
+
 align-items:center;
-gap:9px;
-flex:0 0 auto
+
+gap:10px
+
 }
 
 .store-logo-img{
-width:62px;
-height:62px;
+
+width:58px;
+height:58px;
+
 object-fit:contain;
-border-radius:13px;
+
 display:none
+
 }
 
 .store-logo-img.show{
@@ -375,29 +508,39 @@ display:block
 }
 
 .brand-name{
+
 font-family:'Aref Ruqaa',serif;
-font-size:30px;
-font-weight:700;
-line-height:1
+
+font-size:29px;
+
+font-weight:700
+
 }
 
 .brand-en{
-color:var(--ink-soft);
-font-size:10px;
-letter-spacing:.16em;
-direction:ltr
+
+font-size:9px;
+
+letter-spacing:.18em;
+
+direction:ltr;
+
+opacity:.65
+
 }
 
 .main-nav{
+
 display:flex;
-align-items:center;
-gap:6px;
-padding:5px;
-border:1px solid var(--line);
-border-radius:999px;
-background:var(--card);
+
+justify-content:center;
+
+gap:5px;
+
 overflow-x:auto;
+
 scrollbar-width:none
+
 }
 
 .main-nav::-webkit-scrollbar{
@@ -405,51 +548,79 @@ display:none
 }
 
 .main-nav button{
-flex:0 0 auto;
+
 border:0;
+
 background:transparent;
+
+padding:10px 14px;
+
 border-radius:999px;
-padding:8px 15px;
-color:var(--ink-soft);
+
 font-weight:700;
+
+color:var(--ink);
+
 white-space:nowrap
+
 }
 
 .main-nav button:hover{
+
 background:var(--ink);
-color:var(--cream)
+
+color:white
+
 }
 
 .header-actions{
+
 display:flex;
+
 align-items:center;
-gap:8px;
+
+gap:7px;
+
 position:relative
+
 }
 
 .round-btn{
+
 width:42px;
 height:42px;
+
+border-radius:50%;
+
+border:1px solid var(--line);
+
+background:white;
+
 display:flex;
+
 align-items:center;
 justify-content:center;
-border-radius:50%;
-border:1px solid var(--line);
-background:var(--card);
-color:var(--ink);
-box-shadow:var(--shadow);
+
 position:relative
+
 }
 
 .notification-dot{
-width:10px;
-height:10px;
+
+width:9px;
+height:9px;
+
 border-radius:50%;
+
 background:var(--danger);
+
 position:absolute;
-right:1px;
-top:1px;
+
+right:2px;
+top:2px;
+
 display:none
+
 }
 
 .notification-dot.show{
@@ -457,45 +628,78 @@ display:block
 }
 
 .cart-btn{
+
 border:0;
-border-radius:999px;
-padding:11px 17px;
-display:flex;
-align-items:center;
-gap:7px;
+
 background:var(--ink);
-color:var(--cream);
-font-weight:700;
-box-shadow:var(--shadow);
+
+color:white;
+
+height:44px;
+
+padding:0 15px;
+
+border-radius:999px;
+
+font-weight:800;
+
+display:flex;
+
+align-items:center;
+
+gap:6px;
+
 white-space:nowrap
+
 }
 
 .cart-count{
+
 min-width:20px;
+
 height:20px;
-padding:0 5px;
+
 border-radius:999px;
+
 background:var(--gold);
-color:white;
+
 display:inline-flex;
+
 align-items:center;
 justify-content:center;
+
 font-size:11px
+
 }
 
 .notifications-panel{
+
 position:absolute;
+
 top:50px;
+
 left:0;
-width:min(340px,88vw);
-max-height:430px;
+
+width:min(
+350px,
+90vw
+);
+
+max-height:420px;
+
 overflow:auto;
-background:var(--card);
-border:1px solid var(--line);
+
+background:white;
+
 border-radius:18px;
-padding:14px;
-box-shadow:0 20px 60px rgba(0,0,0,.18);
+
+padding:13px;
+
+box-shadow:
+0 20px 60px rgba(0,0,0,.2);
+
 display:none
+
 }
 
 .notifications-panel.show{
@@ -503,278 +707,535 @@ display:block
 }
 
 .notification-item{
-padding:11px;
-border-bottom:1px solid var(--line);
+
 display:flex;
-gap:10px;
-cursor:pointer
+
+gap:9px;
+
+padding:11px 4px;
+
+border-bottom:1px solid var(--line)
+
 }
 
 .notification-item:last-child{
-border-bottom:0
+border:0
 }
 
 .notification-item img{
-width:52px;
-height:52px;
+
+width:50px;
+height:50px;
+
 object-fit:cover;
-border-radius:9px
+
+border-radius:10px
+
 }
 
 .notification-title{
-font-weight:700;
+
+font-weight:800;
+
 font-size:13px
+
 }
 
 .notification-message{
+
 font-size:12px;
+
 color:var(--ink-soft);
-margin-top:3px;
-line-height:1.6
+
+line-height:1.7;
+
+margin-top:3px
+
 }
 
-.hero{
-max-width:900px;
-margin:55px auto 20px;
-padding:0 20px;
-text-align:center
-}
 
-.hero-eyebrow{
-color:var(--gold);
-font-family:'Markazi Text',serif;
-font-size:20px
-}
-
-.hero h1{
-margin:5px 0 12px;
-font-family:'Aref Ruqaa',serif;
-font-size:clamp(42px,8vw,68px);
-line-height:1.3
-}
-
-.hero p{
-max-width:600px;
-margin:0 auto;
-color:var(--ink-soft);
-font-size:16px;
-line-height:2;
-white-space:pre-line
-}
-
-.hero-buttons{
-margin-top:20px;
-display:flex;
-justify-content:center;
-gap:9px;
-flex-wrap:wrap
-}
+/* =========================================================
+   ADVERTISEMENT HERO
+========================================================= */
 
 .ad-section{
-width:min(900px,calc(100% - 30px));
-margin:18px auto 30px;
-display:none
+
+display:none;
+
+width:100%;
+
+margin:0;
+
+padding:0
+
 }
 
 .ad-wrap{
+
 width:100%;
-border-radius:20px;
+
+height:var(--hero-ad-desktop-height);
+
+position:relative;
+
 overflow:hidden;
-border:1px solid var(--line);
-background:var(--cream-deep);
-box-shadow:var(--shadow);
-position:relative
+
+background:#F5F1EA;
+
+border-radius:var(--hero-ad-radius)
+
 }
 
 .ad-wrap img,
 .ad-wrap video{
+
 display:block;
+
 width:100%;
-max-height:420px;
-object-fit:cover
+height:100%;
+
+object-fit:var(--hero-ad-fit);
+
+object-position:var(--hero-ad-position)
+
 }
 
 .ad-slide{
-display:none
+
+position:absolute;
+
+inset:0;
+
+opacity:0;
+
+visibility:hidden;
+
+transition:
+opacity .65s ease
+
 }
 
 .ad-slide.active{
-display:block
+
+opacity:1;
+
+visibility:visible
+
 }
 
+.ad-indicators{
+
+position:absolute;
+
+z-index:5;
+
+bottom:20px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+display:flex;
+
+gap:7px
+
+}
+
+.ad-dot{
+
+width:9px;
+height:9px;
+
+padding:0;
+
+border:0;
+
+border-radius:50%;
+
+background:rgba(255,255,255,.60)
+
+}
+
+.ad-dot.active{
+
+width:28px;
+
+border-radius:999px;
+
+background:#fff
+
+}
+
+.ad-arrow{
+
+position:absolute;
+
+z-index:6;
+
+top:50%;
+
+transform:translateY(-50%);
+
+width:46px;
+height:46px;
+
+border:0;
+
+border-radius:50%;
+
+background:rgba(255,255,255,.82);
+
+color:#222;
+
+font-size:22px;
+
+display:flex;
+
+align-items:center;
+justify-content:center
+
+}
+
+.ad-arrow.prev{
+right:18px
+}
+
+.ad-arrow.next{
+left:18px
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.intro-strip{
+
+padding:30px 18px 5px;
+
+text-align:center
+
+}
+
+.intro-strip .eyebrow{
+
+color:var(--gold);
+
+font-weight:800
+
+}
+
+.intro-strip h1{
+
+font-family:'Aref Ruqaa',serif;
+
+font-size:clamp(
+36px,
+6vw,
+64px
+);
+
+margin:7px auto
+
+}
+
+.intro-strip p{
+
+max-width:700px;
+
+margin:auto;
+
+line-height:2;
+
+color:var(--ink-soft)
+
+}
+
+
+/* =========================================================
+   GIFT BANNER
+========================================================= */
+
 .gift-banner{
-max-width:1180px;
-margin:20px auto 15px;
-padding:0 20px
+
+max-width:1220px;
+
+margin:30px auto 20px;
+
+padding:0 18px
+
 }
 
 .gift-banner-inner{
-border-radius:24px;
-border:1px solid rgba(169,121,60,.32);
-background:
-linear-gradient(
-135deg,
-#fff9e9,
-#efdba8
-);
-padding:28px;
-display:flex;
+
+min-height:220px;
+
+border-radius:var(--gift-radius);
+
+background:var(--gift-bg);
+
+color:var(--gift-text);
+
+padding:34px;
+
+display:grid;
+
+grid-template-columns:1fr auto;
+
+gap:25px;
+
 align-items:center;
-justify-content:space-between;
-gap:20px;
-box-shadow:var(--shadow)
+
+box-shadow:var(--shadow);
+
+border:1px solid rgba(169,121,60,.25)
+
+}
+
+.gift-banner-content h2{
+
+font-family:'Aref Ruqaa',serif;
+
+font-size:38px;
+
+margin:0 0 10px
+
+}
+
+.gift-banner-content p{
+
+max-width:760px;
+
+line-height:2;
+
+margin:0;
+
+opacity:.75
+
 }
 
 .gift-banner-icon{
-font-size:64px;
-flex:0 0 auto
+
+width:140px;
+height:140px;
+
+border-radius:50%;
+
+display:flex;
+
+align-items:center;
+justify-content:center;
+
+font-size:72px;
+
+background:rgba(255,255,255,.35)
+
 }
 
-.gift-banner h2{
-font-family:'Aref Ruqaa';
-font-size:34px;
-margin:0 0 7px
+.gift-main-btn{
+
+margin-top:18px;
+
+border:0;
+
+background:var(--gift-button);
+
+color:white;
+
+padding:13px 24px;
+
+border-radius:14px;
+
+font-weight:900
+
 }
 
-.gift-banner p{
-margin:0;
-line-height:1.8;
-color:var(--ink-soft)
-}
+
+/* =========================================================
+   SECTIONS
+========================================================= */
 
 .section{
-max-width:1180px;
-margin:0 auto;
-padding:35px 20px 65px
+
+max-width:1220px;
+
+margin:auto;
+
+padding:50px 18px
+
 }
 
 .section-head{
+
 display:flex;
+
 align-items:center;
+
 justify-content:space-between;
+
 gap:12px;
-flex-wrap:wrap;
-margin-bottom:18px
+
+margin-bottom:22px;
+
+flex-wrap:wrap
+
 }
 
 .section-head h2{
-margin:0;
+
 font-family:'Aref Ruqaa',serif;
-font-size:35px
+
+font-size:38px;
+
+margin:0
+
 }
 
-/* ================= BUNDLES FIX ================= */
+
+/* =========================================================
+   BUNDLES
+========================================================= */
 
 .bundle-row{
+
 display:flex;
-gap:16px;
+
+gap:18px;
+
 overflow-x:auto;
-padding:7px 2px 20px;
+
+padding:7px 2px 25px;
+
 scroll-snap-type:x mandatory;
+
 -webkit-overflow-scrolling:touch
+
 }
 
 .bundle-card{
-flex:0 0 285px;
-width:285px;
-max-width:84vw;
-border:1px solid var(--line);
-background:var(--card);
-border-radius:20px;
+
+flex:0 0 310px;
+
+max-width:88vw;
+
+background:white;
+
+border-radius:25px;
+
 overflow:hidden;
+
 box-shadow:var(--shadow);
-scroll-snap-align:start
+
+border:1px solid var(--line);
+
+scroll-snap-align:center
+
 }
 
 .bundle-card > img{
-display:block;
+
 width:100%;
-height:185px;
+
+height:250px;
+
 object-fit:contain;
-padding:10px;
-background:var(--cream)
+
+background:#F7F4EF;
+
+padding:14px
+
 }
 
 .bundle-info{
-padding:14px
+padding:20px
 }
 
 .bundle-info h3{
-font-family:'Aref Ruqaa';
-font-size:24px;
-margin:0 0 5px
+
+font-family:'Aref Ruqaa',serif;
+
+font-size:27px;
+
+margin:0 0 8px
+
 }
 
 .bundle-actions{
-display:grid!important;
-grid-template-columns:1fr 1fr!important;
-gap:8px!important;
-width:100%!important;
-margin-top:14px!important;
-visibility:visible!important;
-opacity:1!important
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:8px;
+
+margin-top:16px
+
 }
 
 .bundle-add-btn,
 .bundle-gift-btn{
-display:flex!important;
-align-items:center!important;
-justify-content:center!important;
-width:100%!important;
-min-width:0!important;
-min-height:46px!important;
-padding:10px 6px!important;
-border-radius:11px!important;
-font-family:'Tajawal',sans-serif!important;
-font-weight:700!important;
-font-size:12px!important;
-line-height:1.3!important;
-visibility:visible!important;
-opacity:1!important;
-cursor:pointer!important;
-white-space:normal!important;
-text-align:center!important
+
+min-height:48px;
+
+border-radius:14px;
+
+font-weight:900
+
 }
 
 .bundle-add-btn{
-border:0!important;
-background:var(--ink)!important;
-color:var(--cream)!important
+
+border:0;
+
+background:var(--ink);
+
+color:white
+
 }
 
 .bundle-gift-btn{
-border:1px solid var(--gold)!important;
-background:transparent!important;
-color:var(--gold)!important
-}
 
-.bundle-add-btn:hover{
-filter:brightness(1.08)
-}
+border:1px solid var(--gold);
 
-.bundle-gift-btn:hover{
-background:rgba(169,121,60,.08)!important
+background:white;
+
+color:var(--gold)
+
 }
 
 .bundle-out{
-display:block!important;
-width:100%!important;
-margin-top:10px!important;
-padding:10px!important;
-border-radius:10px!important;
-background:rgba(155,58,46,.12)!important;
-color:var(--danger)!important;
-font-weight:700!important;
-text-align:center!important
+
+margin-top:14px;
+
+padding:12px;
+
+text-align:center;
+
+background:#F5DDDD;
+
+color:#8F332C;
+
+border-radius:12px;
+
+font-weight:800
+
 }
 
+
+/* =========================================================
+   CATEGORY / SEARCH
+========================================================= */
+
 .category-filters{
+
 display:flex;
-align-items:center;
+
 gap:7px;
+
 overflow-x:auto;
-max-width:100%;
+
 scrollbar-width:none
+
 }
 
 .category-filters::-webkit-scrollbar{
@@ -782,294 +1243,825 @@ display:none
 }
 
 .category-filters button{
+
 flex:0 0 auto;
+
 border:1px solid var(--line);
+
+background:white;
+
 border-radius:999px;
-padding:8px 15px;
-background:var(--card);
-color:var(--ink-soft);
-font-weight:700;
-white-space:nowrap
+
+padding:9px 16px;
+
+font-weight:800
+
 }
 
 .category-filters button.active{
+
 background:var(--ink);
-color:var(--cream)
+
+color:white
+
 }
 
 .tools{
+
 display:flex;
-gap:9px;
-flex-wrap:wrap;
-margin-bottom:22px
+
+gap:10px;
+
+margin-bottom:30px
+
 }
 
 .tools input,
 .tools select{
-padding:10px 14px;
+
+height:46px;
+
 border:1px solid var(--line);
+
 border-radius:999px;
-background:var(--card);
+
+padding:0 17px;
+
+background:white;
+
 color:var(--ink)
+
 }
 
 .search-wrap{
-flex:1;
-min-width:220px
+flex:1
 }
 
-.products-area{
+.search-wrap input{
 width:100%
 }
 
+
+/* =========================================================
+   PRODUCTS
+========================================================= */
+
 .category-group{
-margin-bottom:42px
+margin-bottom:60px
 }
 
 .category-title{
-margin:0 0 14px;
-font-size:31px;
-color:var(--ink)
+
+font-family:'Aref Ruqaa',serif;
+
+font-size:34px;
+
+margin:0 0 20px
+
 }
 
 .product-row{
-width:100%;
+
 display:flex;
+
 gap:20px;
+
 overflow-x:auto;
-padding:8px 3px 18px;
+
+padding:10px 4px 30px;
+
 scroll-snap-type:x mandatory;
--webkit-overflow-scrolling:touch;
-scrollbar-width:thin
+
+-webkit-overflow-scrolling:touch
+
+}
+
+.product-row::-webkit-scrollbar{
+height:5px
 }
 
 .product-card{
-flex:0 0 min(var(--card-width),42vw);
-width:min(var(--card-width),42vw);
-max-width:min(var(--card-width),42vw);
-scroll-snap-align:start;
-text-align:center
+
+flex:0 0 320px;
+
+width:320px;
+
+max-width:86vw;
+
+scroll-snap-align:center;
+
+background:white;
+
+border-radius:35px;
+
+overflow:hidden;
+
+box-shadow:
+0 10px 30px rgba(0,0,0,.07);
+
+position:relative
+
 }
 
 .product-image{
-width:100%;
-aspect-ratio:1/1;
+
+height:330px;
+
+background:#F7F4EF;
+
 position:relative;
-cursor:pointer;
-border-radius:18px
+
+display:flex;
+
+align-items:center;
+justify-content:center;
+
+overflow:hidden
+
 }
 
 .product-image img{
+
 width:100%;
 height:100%;
+
 object-fit:contain;
-padding:8px;
+
+padding:18px;
+
 transition:.3s
+
 }
 
 .product-image:hover img{
-transform:scale(1.06)
+transform:scale(1.05)
 }
 
 .favorite-btn{
+
 position:absolute;
-z-index:4;
-top:7px;
-left:7px;
-width:34px;
-height:34px;
+
+top:13px;
+left:13px;
+
+z-index:5;
+
+width:40px;
+height:40px;
+
 border:0;
+
 border-radius:50%;
-background:rgba(255,255,255,.92);
-box-shadow:0 4px 10px rgba(0,0,0,.1)
+
+background:white;
+
+box-shadow:
+0 5px 20px rgba(0,0,0,.12)
+
 }
 
 .discount-badge{
+
 position:absolute;
-top:7px;
-right:7px;
+
+right:13px;
+top:13px;
+
+z-index:4;
+
 background:var(--danger);
+
 color:white;
+
 border-radius:999px;
-padding:4px 8px;
+
+padding:5px 10px;
+
 font-size:11px;
-font-weight:700
+
+font-weight:800
+
 }
 
 .new-badge{
+
 position:absolute;
-bottom:7px;
-right:7px;
+
+right:13px;
+bottom:13px;
+
 background:var(--gold);
+
 color:white;
-border-radius:999px;
-padding:4px 8px;
-font-size:10px
+
+padding:5px 10px;
+
+font-size:10px;
+
+border-radius:999px
+
 }
 
 .out-layer{
+
 position:absolute;
+
 inset:0;
-border-radius:18px;
-background:rgba(32,48,28,.58);
-color:white;
+
+z-index:3;
+
 display:flex;
+
 align-items:center;
 justify-content:center;
-font-weight:700
+
+background:rgba(32,48,28,.55);
+
+color:white;
+
+font-weight:900
+
+}
+
+.product-content{
+
+padding:23px 19px 20px;
+
+text-align:center
+
 }
 
 .product-card h3{
+
 font-family:var(--product-font);
-font-size:23px;
-line-height:1.4;
-margin:9px 0 5px
+
+font-size:30px;
+
+margin:0 0 13px;
+
+line-height:1.4
+
 }
 
 .price-row{
+
 display:flex;
-justify-content:center;
+
 align-items:center;
-flex-wrap:wrap;
-gap:6px
+justify-content:center;
+
+gap:10px;
+
+flex-wrap:wrap
+
 }
 
 .price{
-font-size:17px;
+
+font-size:22px;
+
 font-weight:900;
+
+color:var(--danger);
+
 direction:ltr
+
 }
 
 .old-price{
-font-size:12px;
+
+font-size:15px;
+
 text-decoration:line-through;
-color:var(--ink-soft);
+
+color:#AAA;
+
 direction:ltr
+
+}
+
+.product-actions{
+
+display:grid;
+
+grid-template-columns:1fr 56px;
+
+gap:8px;
+
+margin-top:18px
+
 }
 
 .add-btn{
-width:100%;
-margin-top:9px;
+
 border:0;
+
 background:var(--ink);
-color:var(--cream);
-border-radius:11px;
-padding:10px;
-font-weight:700
+
+color:white;
+
+border-radius:18px;
+
+min-height:55px;
+
+font-size:17px;
+
+font-weight:900
+
+}
+
+.view-product-btn{
+
+border:0;
+
+background:var(--ink);
+
+color:white;
+
+border-radius:18px;
+
+font-size:24px
+
 }
 
 .gift-product-btn{
+
 width:100%;
-margin-top:6px;
+
+margin-top:8px;
+
+min-height:48px;
+
 border:1px solid var(--gold);
-background:transparent;
+
+background:white;
+
 color:var(--gold);
-border-radius:11px;
-padding:9px;
-font-weight:700
+
+border-radius:16px;
+
+font-weight:900
+
 }
 
 .empty{
+
 width:100%;
-text-align:center;
+
 padding:45px 15px;
+
+text-align:center;
+
 color:var(--ink-soft)
+
 }
 
+
+/* =========================================================
+   REVIEWS
+========================================================= */
+
 .reviews-row{
+
 display:flex;
-gap:14px;
+
+gap:15px;
+
 overflow-x:auto;
-padding-bottom:10px;
-scroll-snap-type:x mandatory
+
+padding-bottom:15px
+
 }
 
 .review-card{
-flex:0 0 290px;
-max-width:84vw;
-padding:18px;
-background:var(--card);
+
+flex:0 0 300px;
+
+max-width:86vw;
+
+background:white;
+
+padding:20px;
+
+border-radius:20px;
+
 border:1px solid var(--line);
-border-radius:16px;
-box-shadow:var(--shadow);
-scroll-snap-align:start
+
+box-shadow:var(--shadow)
+
 }
 
 .review-stars{
+
 color:var(--gold);
-margin-bottom:8px;
-font-size:18px
+
+font-size:20px
+
 }
 
 .review-text{
-color:var(--ink-soft);
-line-height:1.8
+
+line-height:1.9;
+
+margin-top:10px;
+
+color:var(--ink-soft)
+
 }
 
 .review-name{
+
 margin-top:10px;
-font-weight:700
+
+font-weight:900
+
 }
 
 .verified{
+
 display:inline-flex;
-margin-top:7px;
+
 padding:4px 8px;
+
+margin-top:7px;
+
 border-radius:999px;
+
 background:#D6E7CC;
-color:var(--ok);
+
 font-size:10px;
-font-weight:700
+
+color:var(--ok);
+
+font-weight:800
+
 }
 
+
+/* =========================================================
+   ABOUT
+========================================================= */
+
 .about-box{
-max-width:700px;
-margin:0 auto;
+
+max-width:800px;
+
+margin:auto;
+
 text-align:center
+
+}
+
+.about-box h2{
+
+font-family:'Aref Ruqaa',serif;
+
+font-size:40px
+
 }
 
 .about-box p{
-white-space:pre-line;
+
 line-height:2;
+
+white-space:pre-line;
+
 color:var(--ink-soft)
+
 }
 
-footer{
-border-top:1px solid var(--line);
-padding:35px 20px;
-text-align:center;
-color:var(--ink-soft)
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.store-footer{
+
+background:var(--footer-bg);
+
+color:var(--footer-text);
+
+padding:
+60px
+20px
+calc(
+35px + env(safe-area-inset-bottom)
+);
+
+text-align:center
+
 }
 
-.socials{
-margin-top:18px;
+.footer-logo{
+
+font-family:'Aref Ruqaa',serif;
+
+font-size:50px;
+
+font-weight:700;
+
+margin-bottom:5px
+
+}
+
+.footer-en{
+
+font-size:11px;
+
+letter-spacing:.22em;
+
+opacity:.7;
+
+direction:ltr
+
+}
+
+.footer-section-title{
+
+font-size:25px;
+
+font-weight:900;
+
+margin:48px 0 22px
+
+}
+
+.footer-links{
+
 display:flex;
-justify-content:center;
-gap:8px;
-flex-wrap:wrap
+
+flex-direction:column;
+
+gap:18px;
+
+align-items:center
+
 }
 
-.socials a{
-min-width:42px;
-height:42px;
-padding:0 12px;
-border:1px solid var(--line);
-border-radius:999px;
-background:var(--card);
+.footer-links button{
+
+border:0;
+
+background:none;
+
+color:inherit;
+
+font-size:18px;
+
+cursor:pointer
+
+}
+
+.footer-divider{
+
+max-width:900px;
+
+margin:45px auto;
+
+border-top:
+1px dashed rgba(255,255,255,.55)
+
+}
+
+.footer-contact-row{
+
+max-width:850px;
+
+margin:auto;
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:15px
+
+}
+
+.footer-contact{
+
+min-height:56px;
+
+border:
+2px solid rgba(255,255,255,.82);
+
+border-radius:17px;
+
 display:flex;
+
 align-items:center;
 justify-content:center;
-font-size:12px;
-font-weight:700
+
+gap:10px;
+
+font-size:17px
+
 }
 
+.footer-socials{
+
+display:flex;
+
+justify-content:center;
+
+gap:12px;
+
+flex-wrap:wrap;
+
+margin-top:30px
+
+}
+
+.footer-socials a{
+
+min-width:54px;
+height:54px;
+
+padding:0 12px;
+
+border:
+2px solid rgba(255,255,255,.80);
+
+border-radius:999px;
+
+display:flex;
+
+align-items:center;
+justify-content:center;
+
+font-size:12px;
+
+font-weight:900
+
+}
+
+
+/* PAYMENT */
+
+.payment-methods-title{
+
+font-size:21px;
+
+font-weight:900;
+
+margin-bottom:18px
+
+}
+
+.footer-payment{
+
+display:flex;
+
+justify-content:center;
+
+gap:8px;
+
+flex-wrap:wrap
+
+}
+
+.payment-pill{
+
+background:white;
+
+color:#222;
+
+min-width:78px;
+
+padding:10px 14px;
+
+border-radius:9px;
+
+font-weight:900;
+
+font-size:12px;
+
+direction:ltr
+
+}
+
+
+/* BANKS */
+
+.footer-banks{
+
+max-width:900px;
+
+margin:30px auto 0;
+
+display:grid;
+
+grid-template-columns:
+repeat(
+2,
+1fr
+);
+
+gap:12px
+
+}
+
+.bank-card{
+
+border:
+1px solid rgba(255,255,255,.32);
+
+border-radius:16px;
+
+padding:18px;
+
+text-align:right;
+
+background:
+rgba(255,255,255,.04)
+
+}
+
+.bank-card h4{
+
+font-size:18px;
+
+margin:0 0 12px
+
+}
+
+.bank-detail{
+
+font-size:13px;
+
+line-height:1.9;
+
+opacity:.9
+
+}
+
+.bank-detail strong{
+color:white
+}
+
+.footer-copy{
+
+font-size:17px
+
+}
+
+
+/* =========================================================
+   POLICY MODAL
+========================================================= */
+
+.policy-modal{
+
+width:min(
+720px,
+94vw
+)
+
+}
+
+.policy-modal h2{
+
+font-family:'Aref Ruqaa',serif;
+
+font-size:31px;
+
+margin:
+0
+0
+15px
+
+}
+
+.policy-content{
+
+white-space:pre-line;
+
+line-height:2.1;
+
+font-size:15px;
+
+color:var(--ink-soft)
+
+}
+
+
+/* =========================================================
+   DRAWER
+========================================================= */
+
 .scrim{
+
 position:fixed;
+
 inset:0;
-z-index:80;
-background:rgba(16,22,13,.55);
+
+z-index:500;
+
+background:rgba(15,18,14,.58);
+
 backdrop-filter:blur(3px);
+
 display:none
+
 }
 
 .scrim.show{
@@ -1077,18 +2069,34 @@ display:block
 }
 
 .drawer{
+
 position:fixed;
-z-index:90;
+
+z-index:510;
+
 top:0;
 bottom:0;
 left:0;
-width:min(420px,94vw);
-background:var(--card);
-transform:translateX(-100%);
+
+width:min(
+420px,
+94vw
+);
+
+background:white;
+
+transform:
+translateX(-100%);
+
 transition:.3s;
+
 display:flex;
+
 flex-direction:column;
-box-shadow:20px 0 50px rgba(0,0,0,.18)
+
+box-shadow:
+20px 0 60px rgba(0,0,0,.2)
+
 }
 
 .drawer.show{
@@ -1096,11 +2104,17 @@ transform:translateX(0)
 }
 
 .drawer-head{
+
 padding:18px;
-border-bottom:1px solid var(--line);
+
+border-bottom:
+1px solid var(--line);
+
 display:flex;
+
 align-items:center;
 justify-content:space-between
+
 }
 
 .drawer-head h3{
@@ -1108,35 +2122,60 @@ margin:0
 }
 
 .close-btn{
+
 border:0;
+
 background:none;
-font-size:22px
+
+font-size:24px
+
 }
 
 .drawer-body{
+
 flex:1;
+
 overflow:auto;
+
 padding:12px 18px
+
 }
 
 .drawer-foot{
+
 padding:17px;
-border-top:1px solid var(--line);
+
+border-top:
+1px solid var(--line);
+
 background:var(--cream)
+
 }
 
 .cart-item{
+
 display:flex;
+
 gap:10px;
-padding:11px 0;
-border-bottom:1px solid var(--line)
+
+padding:13px 0;
+
+border-bottom:
+1px solid var(--line)
+
 }
 
 .cart-item img{
-width:65px;
-height:65px;
-object-fit:cover;
-border-radius:9px
+
+width:70px;
+height:70px;
+
+object-fit:contain;
+
+background:#F6F3ED;
+
+border-radius:12px
+
 }
 
 .cart-info{
@@ -1144,268 +2183,467 @@ flex:1
 }
 
 .cart-name{
-font-weight:700
-}
-
-.cart-meta{
-font-size:11px;
-color:var(--ink-soft);
-margin:3px 0
-}
-
-.cart-type{
-display:inline-flex;
-margin-top:4px;
-border-radius:999px;
-padding:4px 8px;
-font-size:10px;
-font-weight:700;
-background:var(--cream-deep)
-}
-
-.gift-cart-box{
-margin-top:7px;
-padding:9px;
-border-radius:10px;
-background:#fff4d8;
-border:1px dashed var(--gold);
-font-size:11px;
-line-height:1.8
-}
-
-.qty{
-display:flex;
-align-items:center;
-gap:6px;
-margin-top:6px
-}
-
-.qty button{
-min-width:27px;
-height:27px;
-border:1px solid var(--line);
-background:var(--cream);
-border-radius:7px
-}
-
-.cart-total{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:12px;
-font-size:18px;
 font-weight:900
 }
 
+.cart-meta{
+
+font-size:11px;
+
+color:var(--ink-soft);
+
+margin-top:4px
+
+}
+
+.cart-type{
+
+display:inline-flex;
+
+margin-top:5px;
+
+padding:4px 8px;
+
+border-radius:999px;
+
+background:var(--cream-deep);
+
+font-size:10px;
+
+font-weight:800
+
+}
+
+.gift-cart-box{
+
+margin-top:8px;
+
+padding:9px;
+
+background:#FFF6DC;
+
+border:
+1px dashed var(--gold);
+
+border-radius:10px;
+
+font-size:11px;
+
+line-height:1.8
+
+}
+
+.qty{
+
+display:flex;
+
+align-items:center;
+
+gap:6px;
+
+margin-top:7px
+
+}
+
+.qty button{
+
+min-width:29px;
+
+height:29px;
+
+border:
+1px solid var(--line);
+
+border-radius:8px;
+
+background:white
+
+}
+
+.cart-total{
+
+display:flex;
+
+justify-content:space-between;
+
+font-weight:900;
+
+font-size:19px;
+
+margin-bottom:12px
+
+}
+
+
+/* =========================================================
+   MODALS
+========================================================= */
+
 .modal{
+
 position:fixed;
-z-index:95;
+
+z-index:520;
+
 top:50%;
 left:50%;
-transform:translate(-50%,-50%);
-width:min(550px,94vw);
-max-height:90vh;
+
+transform:
+translate(-50%,-50%);
+
+width:min(
+560px,
+94vw
+);
+
+max-height:90dvh;
+
 overflow:auto;
-background:var(--card);
-border-radius:20px;
+
+background:white;
+
+border-radius:24px;
+
 padding:22px;
-box-shadow:0 30px 70px rgba(0,0,0,.25);
+
+box-shadow:
+0 30px 80px rgba(0,0,0,.3);
+
 display:none
+
 }
 
 .modal.show{
 display:block
 }
 
-.modal h3{
-margin-top:0
-}
-
 .modal label{
+
 display:block;
-margin:11px 0 5px;
+
 font-size:12px;
-font-weight:700;
-color:var(--ink-soft)
+
+font-weight:800;
+
+margin:
+12px
+0
+5px
+
 }
 
 .modal input,
-.modal textarea,
-.modal select{
+.modal select,
+.modal textarea{
+
 width:100%;
-padding:10px 11px;
-border:1px solid var(--line);
-border-radius:10px;
-background:var(--cream);
-color:var(--ink)
+
+padding:12px;
+
+border:
+1px solid var(--line);
+
+border-radius:12px;
+
+background:var(--cream)
+
 }
 
 .modal textarea{
-min-height:80px;
-resize:vertical
+min-height:90px
 }
 
+
+/* PRODUCT MODAL */
+
 .product-modal{
-width:min(860px,95vw);
-padding:0;
-overflow:auto
+
+width:min(
+900px,
+96vw
+);
+
+padding:0
+
 }
 
 .product-detail{
+
 display:grid;
-grid-template-columns:1fr 1fr
+
+grid-template-columns:
+1fr
+1fr
+
 }
 
 .product-detail-image{
-padding:25px;
-background:var(--cream);
+
+background:#F5F2EC;
+
 display:flex;
+
 align-items:center;
-justify-content:center
+justify-content:center;
+
+padding:25px
+
 }
 
 .product-detail-image img{
+
 width:100%;
-max-height:440px;
+
+max-height:470px;
+
 object-fit:contain
+
 }
 
 .product-detail-info{
-padding:30px 25px
+padding:28px
 }
 
 .product-detail-info h2{
-margin:0 0 10px;
+
 font-family:var(--product-font);
-font-size:36px
+
+font-size:38px;
+
+margin:
+0
+0
+10px
+
 }
 
 .swatches{
+
 display:flex;
-gap:6px;
+
+gap:7px;
+
 flex-wrap:wrap
+
 }
 
 .swatch{
-border:1px solid var(--line);
+
+padding:7px 12px;
+
+border:
+1px solid var(--line);
+
 border-radius:999px;
-padding:6px 11px;
-background:var(--cream);
-font-size:12px;
-cursor:pointer
+
+background:white
+
 }
 
 .swatch.active{
+
 background:var(--ink);
-color:var(--cream)
+
+color:white
+
 }
 
+
+/* GIFT */
+
 .gift-modal{
-width:min(720px,95vw)
+
+width:min(
+730px,
+95vw
+)
+
 }
 
 .gift-modal-head{
+
 display:flex;
-align-items:center;
+
 justify-content:space-between;
-gap:10px
+
+align-items:center
+
 }
 
 .gift-section-title{
-font-family:'Aref Ruqaa';
-font-size:22px;
-margin:22px 0 8px;
-color:var(--gold)
+
+font-family:'Aref Ruqaa',serif;
+
+font-size:24px;
+
+color:var(--gold);
+
+margin:
+24px
+0
+10px
+
 }
 
 .gift-selected{
-margin-top:10px;
-padding:12px;
-border-radius:14px;
-background:var(--cream);
-border:1px solid var(--line);
+
 display:flex;
+
 gap:12px;
-align-items:center
+
+align-items:center;
+
+padding:12px;
+
+border:
+1px solid var(--line);
+
+border-radius:15px;
+
+background:var(--cream)
+
 }
 
 .gift-selected img{
-width:75px;
-height:75px;
+
+width:80px;
+height:80px;
+
 object-fit:contain;
+
 background:white;
+
 border-radius:12px
+
 }
 
 .gift-grid{
+
 display:grid;
-grid-template-columns:1fr 1fr;
+
+grid-template-columns:
+1fr
+1fr;
+
 gap:10px
+
 }
 
 .gift-preview{
-padding:15px;
-border-radius:15px;
-border:1px dashed var(--gold);
-background:#fff8e7;
+
 margin-top:15px;
-line-height:1.8
+
+padding:15px;
+
+background:#FFF8E7;
+
+border:
+1px dashed var(--gold);
+
+border-radius:15px
+
 }
 
 .gift-card-preview{
+
 margin-top:10px;
-padding:18px;
+
+padding:20px;
+
+min-height:110px;
+
 background:white;
+
 border-radius:12px;
-font-family:'Aref Ruqaa';
-font-size:20px;
-text-align:center;
-min-height:100px;
+
 display:flex;
+
 align-items:center;
 justify-content:center;
-white-space:pre-line
+
+white-space:pre-line;
+
+font-family:'Aref Ruqaa';
+
+font-size:21px;
+
+text-align:center
+
 }
 
+
+/* PAYMENT */
+
 .pay-box{
+
 margin-top:10px;
-padding:11px;
-border:1px dashed var(--gold);
-border-radius:11px;
+
+padding:12px;
+
+border:
+1px dashed var(--gold);
+
+border-radius:12px;
+
 background:var(--cream);
+
 white-space:pre-line;
+
 line-height:1.8;
+
 font-size:12px
+
 }
 
 .coupon-message{
+
 min-height:18px;
-margin-top:4px;
+
+margin-top:5px;
+
 font-size:12px;
-font-weight:700
+
+font-weight:800
+
 }
 
+
+/* ORDERS */
+
 .orders-modal{
-width:min(800px,95vw)
+
+width:min(
+820px,
+95vw
+)
+
 }
 
 .customer-order{
-border:1px solid var(--line);
-border-radius:17px;
-background:#fff;
+
+margin-top:14px;
+
+border-radius:18px;
+
 overflow:hidden;
-margin-top:14px
+
+border:
+1px solid var(--line)
+
 }
 
 .customer-order-head{
-padding:14px;
+
 background:var(--cream);
+
+padding:14px;
+
 display:flex;
+
 justify-content:space-between;
-gap:12px;
-align-items:flex-start;
-flex-wrap:wrap;
-border-bottom:1px solid var(--line)
+
+gap:10px
+
 }
 
 .customer-order-body{
@@ -1413,59 +2651,106 @@ padding:14px
 }
 
 .customer-order-item{
+
 display:flex;
+
 gap:10px;
+
 align-items:center;
+
 padding:10px 0;
-border-top:1px solid var(--line)
+
+border-top:
+1px solid var(--line)
+
 }
 
 .customer-order-item img{
+
 width:60px;
 height:60px;
-object-fit:cover;
-border-radius:10px;
-background:var(--cream)
+
+object-fit:contain;
+
+background:#F5F2ED;
+
+border-radius:10px
+
 }
 
 .order-status{
-display:inline-flex;
+
 padding:6px 11px;
+
 border-radius:999px;
+
+background:#F3E3B8;
+
 font-size:11px;
-font-weight:700;
-background:#F3E3B8
+
+font-weight:800
+
 }
 
+
+/* =========================================================
+   TOAST
+========================================================= */
+
 .toast{
+
 position:fixed;
-z-index:300;
-left:50%;
+
+z-index:9999;
+
 bottom:20px;
-transform:translateX(-50%);
-max-width:90vw;
+
+left:50%;
+
+transform:
+translateX(-50%);
+
 background:var(--ink);
-color:var(--cream);
-border-radius:999px;
+
+color:white;
+
 padding:11px 20px;
-font-weight:700;
-font-size:13px;
+
+border-radius:999px;
+
+font-weight:800;
+
 opacity:0;
+
 pointer-events:none;
-transition:.25s;
-text-align:center
+
+transition:.25s
+
 }
 
 .toast.show{
+
 opacity:1;
+
 bottom:32px
+
 }
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media(max-width:768px){
 
 .topbar-inner{
-padding:9px 10px;
-flex-wrap:wrap
+
+display:flex;
+
+flex-wrap:wrap;
+
+padding:7px 10px
+
 }
 
 .brand{
@@ -1473,204 +2758,329 @@ flex:1
 }
 
 .store-logo-img{
-width:46px;
-height:46px
+
+width:45px;
+height:45px
+
 }
 
 .brand-name{
-font-size:25px
+font-size:24px
+}
+
+.brand-en{
+font-size:8px
 }
 
 .main-nav{
+
 order:3;
+
 width:100%;
-border:0;
-background:transparent;
-padding:0
+
+justify-content:flex-start;
+
+padding:
+6px
+0
+1px
+
 }
 
 .main-nav button{
-background:var(--card);
-border:1px solid var(--line)
+
+background:white;
+
+border:
+1px solid var(--line);
+
+padding:8px 12px
+
+}
+
+.round-btn{
+
+width:39px;
+height:39px
+
 }
 
 .cart-btn{
-padding:10px 12px;
+
+height:40px;
+
+padding:
+0
+12px;
+
 font-size:12px
+
 }
 
-.hero{
-margin-top:35px;
-padding:0 14px
+
+/* AD MOBILE */
+
+.ad-wrap{
+
+height:
+var(--hero-ad-mobile-height);
+
+min-height:520px;
+
+max-height:88dvh
+
 }
 
-.hero p{
+.ad-arrow{
+
+width:38px;
+height:38px;
+
+font-size:18px
+
+}
+
+.ad-arrow.prev{
+right:10px
+}
+
+.ad-arrow.next{
+left:10px
+}
+
+
+/* INTRO */
+
+.intro-strip{
+
+padding:
+20px
+14px
+5px
+
+}
+
+.intro-strip h1{
+font-size:37px
+}
+
+.intro-strip p{
 font-size:14px
 }
 
-.ad-section{
-width:calc(100% - 24px);
-margin:14px auto 22px
-}
 
-.ad-wrap{
-border-radius:16px
-}
-
-.ad-wrap img,
-.ad-wrap video{
-max-height:280px
-}
+/* GIFT */
 
 .gift-banner{
-padding:0 12px;
-margin-top:12px
+
+margin-top:20px;
+
+padding:
+0
+12px
+
 }
 
 .gift-banner-inner{
-flex-direction:column;
+
+display:flex;
+
+flex-direction:column-reverse;
+
 text-align:center;
-padding:20px
+
+padding:24px 17px
+
+}
+
+.gift-banner-content h2{
+font-size:31px
 }
 
 .gift-banner-icon{
+
+width:95px;
+height:95px;
+
 font-size:50px
+
 }
 
-.gift-banner h2{
-font-size:29px
-}
+
+/* SECTIONS */
 
 .section{
-padding:28px 12px 52px
+
+padding:
+38px
+12px
+
 }
 
 .section-head h2{
-font-size:29px
+font-size:31px
 }
 
+
+/* PRODUCT */
+
 .product-card{
-flex:0 0 min(var(--card-width),44vw);
-width:min(var(--card-width),44vw);
-max-width:min(var(--card-width),44vw)
+
+flex:
+0 0 76vw;
+
+width:76vw;
+
+max-width:360px
+
+}
+
+.product-image{
+
+height:
+min(
+78vw,
+360px
+)
+
 }
 
 .product-card h3{
-font-size:19px
+font-size:28px
+}
+
+.product-content{
+
+padding:
+20px
+16px
+
 }
 
 .price{
-font-size:15px
+font-size:21px
+}
+
+.product-actions{
+
+grid-template-columns:
+1fr
+55px
+
+}
+
+
+/* BUNDLE */
+
+.bundle-card{
+
+flex:
+0 0 78vw;
+
+max-width:330px
+
+}
+
+
+/* FOOTER */
+
+.footer-contact-row{
+grid-template-columns:1fr
+}
+
+.footer-banks{
+grid-template-columns:1fr
+}
+
+.footer-links button{
+font-size:17px
+}
+
+
+/* PRODUCT MODAL MOBILE */
+
+.product-detail{
+
+display:flex;
+
+flex-direction:column
+
+}
+
+#productModal.product-modal{
+
+position:fixed!important;
+
+top:8px!important;
+right:8px!important;
+bottom:8px!important;
+left:8px!important;
+
+width:auto!important;
+
+max-width:none!important;
+max-height:none!important;
+
+transform:none!important;
+
+overflow-y:auto!important;
+
+border-radius:20px!important
+
+}
+
+#productModal .product-detail-image{
+
+min-height:260px;
+
+padding:12px
+
+}
+
+#productModal .product-detail-image img{
+max-height:38dvh
+}
+
+#productModal .product-detail-info{
+
+padding:
+18px
+15px
+35px
+
+}
+
+#productModal .product-detail-info h2{
+font-size:30px
 }
 
 .gift-grid{
 grid-template-columns:1fr
 }
 
-.bundle-card{
-flex:0 0 min(290px,82vw);
-width:min(290px,82vw)
 }
 
-.bundle-actions{
-grid-template-columns:1fr 1fr!important
-}
-
-#productModal.product-modal{
-position:fixed!important;
-top:8px!important;
-right:8px!important;
-bottom:8px!important;
-left:8px!important;
-width:auto!important;
-height:auto!important;
-max-width:none!important;
-max-height:none!important;
-transform:none!important;
-overflow-y:auto!important;
-overflow-x:hidden!important;
-padding:0!important;
-border-radius:18px!important;
--webkit-overflow-scrolling:touch
-}
-
-#productModal .product-detail{
-display:flex!important;
-flex-direction:column!important;
-width:100%!important
-}
-
-#productModal .product-detail-image{
-width:100%!important;
-min-height:200px!important;
-height:auto!important;
-padding:12px!important;
-flex-shrink:0!important
-}
-
-#productModal .product-detail-image img{
-width:auto!important;
-height:auto!important;
-max-width:100%!important;
-max-height:38dvh!important;
-object-fit:contain!important;
-margin:auto!important
-}
-
-#productModal .product-detail-info{
-width:100%!important;
-padding:16px 14px 35px!important;
-overflow:visible!important
-}
-
-#productModal .product-detail-info h2{
-font-size:28px!important
-}
-
-#modalAddButton,
-#modalGiftButton{
-display:block!important;
-width:100%!important;
-min-height:50px!important
-}
-
-}
 
 @media(max-width:420px){
 
-:root{
---card-width:155px
-}
-
-.product-row{
-gap:12px
-}
-
 .product-card{
-flex:0 0 min(var(--card-width),46vw);
-width:min(var(--card-width),46vw);
-max-width:min(var(--card-width),46vw)
-}
 
-.round-btn{
-width:38px;
-height:38px
+flex-basis:82vw;
+
+width:82vw
+
 }
 
 .bundle-card{
-flex-basis:86vw;
-width:86vw;
-max-width:86vw
+flex-basis:84vw
 }
 
 .bundle-actions{
-grid-template-columns:1fr!important
+grid-template-columns:1fr
 }
 
-.bundle-add-btn,
-.bundle-gift-btn{
-font-size:13px!important;
-min-height:44px!important
+.footer-logo{
+font-size:42px
 }
 
 }
@@ -1680,6 +3090,11 @@ min-height:44px!important
 </head>
 
 <body>
+
+
+<!-- =========================================================
+   SPLASH
+========================================================= -->
 
 <div id="storeSplash">
 
@@ -1709,13 +3124,20 @@ ALSHUAIIBE STORE
 
 </div>
 
+
 <div id="customBackground"></div>
 
 <div id="watermark"></div>
 
+
+<!-- =========================================================
+   HEADER
+========================================================= -->
+
 <header class="topbar">
 
 <div class="topbar-inner">
+
 
 <div class="brand">
 
@@ -1745,6 +3167,7 @@ ALSHUAIIBE STORE
 
 </div>
 
+
 <nav class="main-nav">
 
 <button onclick="goShop()">
@@ -1769,6 +3192,7 @@ ALSHUAIIBE STORE
 
 </nav>
 
+
 <div class="header-actions">
 
 <button
@@ -1784,12 +3208,13 @@ class="notification-dot"
 
 </button>
 
+
 <div
 id="notificationsPanel"
 class="notifications-panel"
 >
 
-<h4 style="margin:0 0 9px">
+<h4 style="margin:0 0 8px">
 الإشعارات
 </h4>
 
@@ -1798,6 +3223,7 @@ class="notifications-panel"
 </div>
 
 </div>
+
 
 <button
 class="cart-btn"
@@ -1821,50 +3247,10 @@ class="cart-count"
 
 </header>
 
-<section class="hero">
 
-<div
-id="storeEyebrow"
-class="hero-eyebrow"
->
-متجر الشعيبي
-</div>
-
-<h1 id="heroTitle">
-صُنعت لمن يبحث عن الاختلاف
-</h1>
-
-<p id="heroDesc">
-اكتشف تشكيلتنا المختارة بعناية.
-</p>
-
-<div class="hero-buttons">
-
-<a
-id="whatsappButton"
-class="btn"
-target="_blank"
->
-واتساب
-</a>
-
-<button
-class="btn secondary"
-onclick="goShop()"
->
-تسوق الآن
-</button>
-
-<button
-class="btn gold"
-onclick="openGiftBuilder()"
->
-🎁 أرسل هدية
-</button>
-
-</div>
-
-</section>
+<!-- =========================================================
+   ADVERTISEMENT
+========================================================= -->
 
 <section
 id="adSection"
@@ -1885,24 +3271,58 @@ class="ad-wrap"
 
 </section>
 
-<section class="gift-banner">
 
-<div class="gift-banner-inner">
+<!-- =========================================================
+   INTRO
+========================================================= -->
 
-<div>
+<section class="intro-strip">
 
-<h2>
+<div
+id="storeEyebrow"
+class="eyebrow"
+>
+متجر الشعيبي
+</div>
+
+<h1 id="heroTitle">
+صُنعت لمن يبحث عن الاختلاف
+</h1>
+
+<p id="heroDesc">
+اكتشف تشكيلتنا المختارة بعناية.
+</p>
+
+</section>
+
+
+<!-- =========================================================
+   GIFT
+========================================================= -->
+
+<section
+id="giftBanner"
+class="gift-banner"
+>
+
+<div
+id="giftBannerInner"
+class="gift-banner-inner"
+>
+
+<div class="gift-banner-content">
+
+<h2 id="giftSectionTitle">
 🎁 اصنع هديتك بنفسك
 </h2>
 
-<p>
-اختر المنتج أو العطر والحجم والتغليف، واكتب بطاقة الإهداء وأدخل بيانات الشخص الذي تريد إرسال الهدية إليه.
+<p id="giftSectionDescription">
+اختر العطر والحجم والتغليف، واكتب بطاقة الإهداء وأدخل بيانات الشخص الذي تريد إرسال الهدية إليه.
 </p>
 
-<div style="margin-top:15px">
-
 <button
-class="btn gold"
+id="giftSectionButton"
+class="gift-main-btn"
 onclick="openGiftBuilder()"
 >
 ابدأ تجهيز الهدية
@@ -1910,15 +3330,21 @@ onclick="openGiftBuilder()"
 
 </div>
 
-</div>
-
-<div class="gift-banner-icon">
+<div
+id="giftSectionIcon"
+class="gift-banner-icon"
+>
 🎁
 </div>
 
 </div>
 
 </section>
+
+
+<!-- =========================================================
+   OFFERS
+========================================================= -->
 
 <section
 id="offers"
@@ -1946,6 +3372,11 @@ class="bundle-row"
 
 </section>
 
+
+<!-- =========================================================
+   SHOP
+========================================================= -->
+
 <section
 id="shop"
 class="section"
@@ -1964,6 +3395,7 @@ class="category-filters"
 
 </div>
 
+
 <div
 id="tools"
 class="tools"
@@ -1977,7 +3409,7 @@ class="search-wrap"
 <input
 id="searchInput"
 type="text"
-placeholder="ابحث عن منتج..."
+placeholder="ابحث بالاسم أو القسم..."
 oninput="handleSearch()"
 >
 
@@ -2012,6 +3444,7 @@ onchange="handleSort()"
 
 </div>
 
+
 <div
 id="productsArea"
 class="products-area"
@@ -2025,6 +3458,11 @@ class="products-area"
 
 </section>
 
+
+<!-- =========================================================
+   ABOUT
+========================================================= -->
+
 <section
 id="about"
 class="section"
@@ -2032,13 +3470,7 @@ class="section"
 
 <div class="about-box">
 
-<h2
-id="aboutStoreTitle"
-style="
-font-family:'Aref Ruqaa';
-font-size:32px
-"
->
+<h2 id="aboutStoreTitle">
 قصة الشعيبي
 </h2>
 
@@ -2049,6 +3481,11 @@ font-size:32px
 </div>
 
 </section>
+
+
+<!-- =========================================================
+   REVIEWS
+========================================================= -->
 
 <section
 id="reviewsSection"
@@ -2070,42 +3507,133 @@ class="reviews-row"
 
 </section>
 
-<footer>
 
-<div>
+<!-- =========================================================
+   FOOTER
+========================================================= -->
 
-<span id="footerStoreName">
-متجر الشعيبي
+<footer class="store-footer">
+
+
+<div
+id="footerStoreName"
+class="footer-logo"
+>
+الشعيبي
+</div>
+
+<div
+id="footerStoreEn"
+class="footer-en"
+>
+ALSHUAIIBE STORE
+</div>
+
+
+<div class="footer-section-title">
+روابط مهمة
+</div>
+
+
+<div
+id="footerLinks"
+class="footer-links"
+></div>
+
+
+<div class="footer-divider"></div>
+
+
+<div class="footer-contact-row">
+
+<a
+id="footerPhoneButton"
+class="footer-contact"
+href="#"
+>
+📱 الجوال
+</a>
+
+<a
+id="footerEmailButton"
+class="footer-contact"
+href="#"
+>
+✉️ البريد الإلكتروني
+</a>
+
+</div>
+
+
+<div
+id="socialLinks"
+class="footer-socials"
+></div>
+
+
+<div class="footer-divider"></div>
+
+
+<div
+id="paymentMethodsTitle"
+class="payment-methods-title"
+>
+وسائل الدفع
+</div>
+
+<div
+id="footerPaymentMethods"
+class="footer-payment"
+></div>
+
+
+<div
+id="bankAccountsSection"
+class="hidden"
+>
+
+<div class="footer-section-title">
+الحسابات البنكية
+</div>
+
+<div
+id="footerBanks"
+class="footer-banks"
+></div>
+
+</div>
+
+
+<div class="footer-divider"></div>
+
+
+<div class="footer-copy">
+
+جميع الحقوق محفوظة
+
+<span id="footerCopyName">
+للشعيبي
 </span>
 
 ©
 
 <span id="year"></span>
 
-— جميع الحقوق محفوظة
-
 </div>
 
-<div
-id="policiesText"
-style="
-margin-top:10px;
-white-space:pre-line
-"
-></div>
-
-<div
-id="socialLinks"
-class="socials"
-></div>
-
 </footer>
+
+
+<!-- =========================================================
+   CART
+========================================================= -->
 
 <div
 id="cartScrim"
 class="scrim"
 onclick="closeCart()"
 ></div>
+
 
 <div
 id="cartDrawer"
@@ -2127,10 +3655,12 @@ onclick="closeCart()"
 
 </div>
 
+
 <div
 id="cartBody"
 class="drawer-body"
 ></div>
+
 
 <div class="drawer-foot">
 
@@ -2146,6 +3676,7 @@ class="drawer-body"
 
 </div>
 
+
 <button
 class="btn"
 style="width:100%"
@@ -2158,11 +3689,21 @@ onclick="openCheckout()"
 
 </div>
 
+
+<!-- =========================================================
+   MODAL SCRIM
+========================================================= -->
+
 <div
 id="modalScrim"
 class="scrim"
 onclick="closeAllModals()"
 ></div>
+
+
+<!-- =========================================================
+   PRODUCT MODAL
+========================================================= -->
 
 <div
 id="productModal"
@@ -2184,10 +3725,7 @@ alt=""
 
 <button
 class="close-btn"
-style="
-float:left;
-margin-bottom:10px
-"
+style="float:left"
 onclick="closeProductModal()"
 >
 ✕
@@ -2207,8 +3745,8 @@ margin-bottom:14px
 <div
 id="modalProductDescription"
 style="
-color:var(--ink-soft);
 line-height:1.9;
+color:var(--ink-soft);
 white-space:pre-line
 "
 ></div>
@@ -2238,7 +3776,7 @@ margin-top:8px
 "
 onclick="startGiftFromCurrentProduct()"
 >
-🎁 اشترِ هذا المنتج كهدية
+🎁 شراء كهدية
 </button>
 
 </div>
@@ -2246,6 +3784,11 @@ onclick="startGiftFromCurrentProduct()"
 </div>
 
 </div>
+
+
+<!-- =========================================================
+   GIFT MODAL
+========================================================= -->
 
 <div
 id="giftModal"
@@ -2257,7 +3800,7 @@ class="modal gift-modal"
 <div>
 
 <h3 style="margin:0">
-🎁 تجهيز هدية
+🎁 تجهيز الهدية
 </h3>
 
 <div
@@ -2267,7 +3810,7 @@ color:var(--ink-soft);
 margin-top:4px
 "
 >
-جهّز هديتك ثم أضفها للسلة.
+اختر الهدية والتغليف ثم أدخل بيانات المستلم.
 </div>
 
 </div>
@@ -2281,9 +3824,11 @@ onclick="closeGiftBuilder()"
 
 </div>
 
+
 <div class="gift-section-title">
 1. اختر الهدية
 </div>
+
 
 <div id="giftProductChooser">
 
@@ -2298,6 +3843,7 @@ onchange="giftProductChanged()"
 
 </div>
 
+
 <div
 id="giftSelectedProduct"
 class="gift-selected"
@@ -2305,8 +3851,9 @@ class="gift-selected"
 
 <div id="giftProductOptions"></div>
 
+
 <div class="gift-section-title">
-2. اختر التغليف
+2. التغليف
 </div>
 
 <select
@@ -2320,9 +3867,11 @@ onchange="updateGiftPreview()"
 
 </select>
 
+
 <div class="gift-section-title">
-3. بيانات مستلم الهدية
+3. مستلم الهدية
 </div>
+
 
 <div class="gift-grid">
 
@@ -2334,8 +3883,7 @@ onchange="updateGiftPreview()"
 
 <input
 id="giftRecipientName"
-placeholder="اسم الشخص الذي سيستلم الهدية"
-oninput="updateGiftPreview()"
+placeholder="اسم المستلم"
 >
 
 </div>
@@ -2343,33 +3891,34 @@ oninput="updateGiftPreview()"
 <div>
 
 <label>
-رقم هاتف المستلم
+هاتف المستلم
 </label>
 
 <input
 id="giftRecipientPhone"
 type="tel"
-placeholder="مثال: 777123456"
-oninput="updateGiftPreview()"
+placeholder="777123456"
 >
 
 </div>
 
 </div>
 
+
 <label>
-عنوان توصيل الهدية
+عنوان المستلم
 </label>
 
 <input
 id="giftRecipientAddress"
 placeholder="المدينة / المنطقة / العنوان"
-oninput="updateGiftPreview()"
 >
+
 
 <div class="gift-section-title">
 4. بطاقة الإهداء
 </div>
+
 
 <label>
 إلى
@@ -2377,20 +3926,22 @@ oninput="updateGiftPreview()"
 
 <input
 id="giftCardTo"
-placeholder="مثال: إلى محمد"
+placeholder="إلى محمد"
 oninput="updateGiftPreview()"
 >
 
+
 <label>
-نص البطاقة
+الرسالة
 </label>
 
 <textarea
 id="giftCardMessage"
 maxlength="300"
-placeholder="اكتب رسالة جميلة للمستلم..."
+placeholder="اكتب رسالتك..."
 oninput="updateGiftPreview()"
 ></textarea>
+
 
 <label>
 من
@@ -2398,14 +3949,15 @@ oninput="updateGiftPreview()"
 
 <input
 id="giftCardFrom"
-placeholder="مثال: من أحمد"
+placeholder="من أحمد"
 oninput="updateGiftPreview()"
 >
+
 
 <div class="gift-preview">
 
 <strong>
-معاينة بطاقة الإهداء
+معاينة البطاقة
 </strong>
 
 <div
@@ -2417,20 +3969,62 @@ class="gift-card-preview"
 
 </div>
 
-<div class="gift-section-title">
-5. أضف الهدية للسلة
-</div>
 
 <button
 id="addGiftToCartButton"
 class="btn gold"
-style="width:100%"
+style="
+width:100%;
+margin-top:18px
+"
 onclick="addGiftToCart()"
 >
 🎁 إضافة الهدية للسلة
 </button>
 
 </div>
+
+
+<!-- =========================================================
+   POLICY MODAL
+========================================================= -->
+
+<div
+id="policyModal"
+class="modal policy-modal"
+>
+
+<div
+style="
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:15px
+"
+>
+
+<h2 id="policyModalTitle"></h2>
+
+<button
+class="close-btn"
+onclick="closePolicyModal()"
+>
+✕
+</button>
+
+</div>
+
+<div
+id="policyModalContent"
+class="policy-content"
+></div>
+
+</div>
+
+
+<!-- =========================================================
+   CHECKOUT
+========================================================= -->
 
 <div
 id="checkoutModal"
@@ -2441,6 +4035,7 @@ class="modal"
 إتمام الطلب
 </h3>
 
+
 <label>
 اسم المشتري
 </label>
@@ -2450,8 +4045,9 @@ id="checkoutName"
 type="text"
 >
 
+
 <label>
-رقم هاتف المشتري
+رقم الهاتف
 </label>
 
 <input
@@ -2459,8 +4055,9 @@ id="checkoutPhone"
 type="tel"
 >
 
+
 <label>
-عنوان المشتري
+العنوان
 </label>
 
 <input
@@ -2468,15 +4065,18 @@ id="checkoutAddress"
 type="text"
 >
 
+
 <label>
-ملاحظات إضافية
+ملاحظات
 </label>
 
 <textarea id="checkoutNotes"></textarea>
 
+
 <label>
 كود الخصم
 </label>
+
 
 <div style="display:flex;gap:7px">
 
@@ -2495,10 +4095,12 @@ onclick="applyCoupon()"
 
 </div>
 
+
 <div
 id="couponMessage"
 class="coupon-message"
 ></div>
+
 
 <label>
 طريقة الدفع
@@ -2507,22 +4109,14 @@ class="coupon-message"
 <select
 id="paymentMethod"
 onchange="renderPaymentDetails()"
->
+></select>
 
-<option value="bank">
-تحويل بنكي
-</option>
-
-<option value="deposit">
-إيداع بنكي
-</option>
-
-</select>
 
 <div
 id="paymentDetails"
 class="pay-box"
 ></div>
+
 
 <button
 id="submitOrderButton"
@@ -2536,6 +4130,7 @@ onclick="submitOrder()"
 تأكيد الطلب
 </button>
 
+
 <button
 class="btn secondary"
 style="
@@ -2548,6 +4143,11 @@ onclick="closeCheckout()"
 </button>
 
 </div>
+
+
+<!-- =========================================================
+   MY ORDERS
+========================================================= -->
 
 <div
 id="myOrdersModal"
@@ -2575,6 +4175,7 @@ onclick="closeMyOrders()"
 
 </div>
 
+
 <p
 style="
 font-size:12px;
@@ -2584,11 +4185,13 @@ color:var(--ink-soft)
 أدخل رقم الهاتف المستخدم عند الشراء.
 </p>
 
+
 <input
 id="ordersPhone"
 type="tel"
 placeholder="رقم الهاتف"
 >
+
 
 <button
 class="btn"
@@ -2601,6 +4204,7 @@ onclick="loadCustomerOrders()"
 عرض طلباتي
 </button>
 
+
 <div
 id="customerOrdersResults"
 style="margin-top:10px"
@@ -2608,26 +4212,39 @@ style="margin-top:10px"
 
 </div>
 
+
 <div
 id="toast"
 class="toast"
 ></div>
 
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 
+/* =========================================================
+   SUPABASE
+========================================================= */
+
 const SUPABASE_URL =
 "https://bpxklyjahdjbnkxwtqig.supabase.co";
 
+
 const SUPABASE_KEY =
 "sb_publishable_7hoVcUR8Twi6s9IRATiruw_ICTw6wXn";
+
 
 const client =
 supabase.createClient(
 SUPABASE_URL,
 SUPABASE_KEY
 );
+
+
+/* =========================================================
+   DEFAULTS
+========================================================= */
 
 const DEFAULT_STORE = {
 
@@ -2642,42 +4259,126 @@ eyebrow:
 
 };
 
+
+const DEFAULT_POLICIES = [
+
+{
+key:"about",
+title:"من نحن"
+},
+
+{
+key:"returns",
+title:"سياسة الاستبدال والاسترجاع"
+},
+
+{
+key:"privacy",
+title:"سياسة الخصوصية"
+},
+
+{
+key:"terms",
+title:"الشروط والأحكام"
+},
+
+{
+key:"discounts",
+title:"سياسة التخفيضات"
+},
+
+{
+key:"customerService",
+title:"خدمة العملاء"
+},
+
+{
+key:"hr",
+title:"الموارد البشرية"
+},
+
+{
+key:"wholesale",
+title:"مبيعات الجملة"
+},
+
+{
+key:"branches",
+title:"فروعنا"
+}
+
+];
+
+
+/* =========================================================
+   STATE
+========================================================= */
+
 let products = [];
+
 let categories = [];
+
 let reviews = [];
+
 let notifications = [];
+
 let variants = [];
+
 let bundles = [];
+
 let giftOptions = [];
 
+
 let generalSettings = {};
+
 let paymentSettings = {};
+
 let designSettings = {};
+
 let adSettings = {};
+
+let footerSettings = {};
+
 
 let activeCategory =
 "الكل";
 
+
 let searchText =
 "";
+
 
 let sortMode =
 "newest";
 
+
 let currentProduct =
 null;
+
 
 let currentCoupon =
 null;
 
+
 let customerOrders =
 [];
+
 
 let currentCustomerPhone =
 "";
 
+
 let adTimer =
 null;
+
+
+let currentAdIndex =
+0;
+
+
+let giftBundleDraft =
+null;
+
 
 let giftDraft = {
 
@@ -2691,8 +4392,10 @@ size:null
 
 };
 
-let giftBundleDraft =
-null;
+
+/* =========================================================
+   CART
+========================================================= */
 
 let cart =
 [];
@@ -2720,10 +4423,14 @@ parsed
 }
 catch(error){
 
-cart =
-[];
+cart = [];
 
 }
+
+
+/* =========================================================
+   FAVORITES
+========================================================= */
 
 let favorites =
 [];
@@ -2753,10 +4460,14 @@ String
 }
 catch(error){
 
-favorites =
-[];
+favorites = [];
 
 }
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
 
 const $ =
 id =>
@@ -2764,21 +4475,27 @@ document.getElementById(
 id
 );
 
-$("year").textContent =
+
+$("year")
+.textContent =
 new Date()
 .getFullYear();
+
 
 function toast(message){
 
 const element =
 $("toast");
 
+
 element.textContent =
 message;
+
 
 element.classList.add(
 "show"
 );
+
 
 setTimeout(
 () => {
@@ -2792,6 +4509,7 @@ element.classList.remove(
 );
 
 }
+
 
 function escapeHTML(value){
 
@@ -2813,6 +4531,7 @@ char => ({
 
 }
 
+
 function normalizePhone(phone){
 
 return String(
@@ -2825,6 +4544,7 @@ phone || ""
 
 }
 
+
 function scrollSection(id){
 
 $(id)
@@ -2836,6 +4556,7 @@ behavior:"smooth"
 
 }
 
+
 function getStoreName(){
 
 return (
@@ -2845,6 +4566,7 @@ DEFAULT_STORE.name
 );
 
 }
+
 
 function getStoreNameEn(){
 
@@ -2856,6 +4578,7 @@ DEFAULT_STORE.nameEn
 
 }
 
+
 function getStoreEyebrow(){
 
 return (
@@ -2866,6 +4589,7 @@ DEFAULT_STORE.eyebrow
 
 }
 
+
 function getStoreLogo(){
 
 return (
@@ -2875,6 +4599,7 @@ generalSettings.logoUrl
 );
 
 }
+
 
 function finalProductPrice(product){
 
@@ -2896,12 +4621,13 @@ product?.discount || 0
 
 }
 
+
 function findProduct(id){
 
 return products.find(
-product =>
+item =>
 String(
-product.id
+item.id
 )
 ===
 String(
@@ -2910,13 +4636,14 @@ id
 );
 
 }
+
 
 function findVariant(id){
 
 return variants.find(
-variant =>
+item =>
 String(
-variant.id
+item.id
 )
 ===
 String(
@@ -2925,13 +4652,14 @@ id
 );
 
 }
+
 
 function findBundle(id){
 
 return bundles.find(
-bundle =>
+item =>
 String(
-bundle.id
+item.id
 )
 ===
 String(
@@ -2940,6 +4668,11 @@ id
 );
 
 }
+
+
+/* =========================================================
+   SETTINGS
+========================================================= */
 
 async function fetchSettings(){
 
@@ -2955,6 +4688,7 @@ await client
 "*"
 );
 
+
 if(error){
 
 console.error(
@@ -2968,10 +4702,10 @@ return;
 
 }
 
+
 const docs =
-data
-||
-[];
+data || [];
+
 
 generalSettings =
 docs.find(
@@ -2983,6 +4717,7 @@ row.id ===
 ||
 {};
 
+
 paymentSettings =
 docs.find(
 row =>
@@ -2992,6 +4727,7 @@ row.id ===
 ?.data
 ||
 {};
+
 
 designSettings =
 docs.find(
@@ -3003,6 +4739,7 @@ row.id ===
 ||
 {};
 
+
 adSettings =
 docs.find(
 row =>
@@ -3013,19 +4750,40 @@ row.id ===
 ||
 {};
 
+
+footerSettings =
+docs.find(
+row =>
+row.id ===
+"footer"
+)
+?.data
+||
+generalSettings.footer
+||
+{};
+
+
 applySettings();
 
 }
 
+
+/* =========================================================
+   APPLY SETTINGS
+========================================================= */
+
 function applySettings(){
+
+const root =
+document.documentElement;
+
 
 const colors =
 designSettings.colors
 ||
 {};
 
-const root =
-document.documentElement;
 
 if(colors.cream){
 
@@ -3036,6 +4794,7 @@ colors.cream
 
 }
 
+
 if(colors.card){
 
 root.style.setProperty(
@@ -3044,6 +4803,7 @@ colors.card
 );
 
 }
+
 
 if(colors.ink){
 
@@ -3054,6 +4814,7 @@ colors.ink
 
 }
 
+
 if(colors.gold){
 
 root.style.setProperty(
@@ -3063,34 +4824,56 @@ colors.gold
 
 }
 
-root.style.setProperty(
-"--card-width",
-Number(
-designSettings.cardWidth
-||
-180
-)
-+
-"px"
-);
+
+if(
+designSettings.footerBackground
+){
 
 root.style.setProperty(
+"--footer-bg",
+designSettings.footerBackground
+);
+
+}
+
+
+if(
+designSettings.footerTextColor
+){
+
+root.style.setProperty(
+"--footer-text",
+designSettings.footerTextColor
+);
+
+}
+
+
+root.style.setProperty(
+
 "--product-font",
+
 designSettings.productFont
 ||
-"'Aref Ruqaa', serif"
+"'Aref Ruqaa',serif"
+
 );
+
+
+/* BACKGROUND */
 
 const background =
 designSettings.backgroundUrl
 ||
 "";
 
+
 if(background){
 
 $("customBackground")
 .style.backgroundImage =
 `url("${background}")`;
+
 
 $("customBackground")
 .style.opacity =
@@ -3100,6 +4883,7 @@ designSettings.backgroundOpacity
 .15
 );
 
+
 $("customBackground")
 .style.display =
 "block";
@@ -3113,10 +4897,14 @@ $("customBackground")
 
 }
 
+
+/* WATERMARK */
+
 const watermark =
 designSettings.watermarkUrl
 ||
 "";
+
 
 if(watermark){
 
@@ -3124,9 +4912,11 @@ $("watermark")
 .style.backgroundImage =
 `url("${watermark}")`;
 
+
 $("watermark")
 .style.backgroundSize =
 "180px auto";
+
 
 $("watermark")
 .style.opacity =
@@ -3136,6 +4926,7 @@ designSettings.watermarkOpacity
 .1
 );
 
+
 $("watermark")
 .style.display =
 "block";
@@ -3149,21 +4940,228 @@ $("watermark")
 
 }
 
+
+/* AD SIZE */
+
+root.style.setProperty(
+
+"--hero-ad-mobile-height",
+
+Math.max(
+300,
+Number(
+adSettings.heightMobile
+||
+adSettings.heroHeightMobile
+||
+760
+)
+)
++
+"px"
+
+);
+
+
+root.style.setProperty(
+
+"--hero-ad-desktop-height",
+
+Math.max(
+300,
+Number(
+adSettings.heightDesktop
+||
+adSettings.heroHeightDesktop
+||
+650
+)
+)
++
+"px"
+
+);
+
+
+root.style.setProperty(
+
+"--hero-ad-radius",
+
+Math.max(
+0,
+Number(
+adSettings.radius
+||
+0
+)
+)
++
+"px"
+
+);
+
+
+root.style.setProperty(
+
+"--hero-ad-fit",
+
+[
+"cover",
+"contain",
+"fill"
+]
+.includes(
+adSettings.fit
+)
+?
+adSettings.fit
+:
+"cover"
+
+);
+
+
+root.style.setProperty(
+
+"--hero-ad-position",
+
+adSettings.position
+||
+"center"
+
+);
+
+
+/* GIFT DESIGN */
+
+const giftDesign =
+generalSettings.giftSection
+||
+designSettings.giftSection
+||
+{};
+
+
+root.style.setProperty(
+
+"--gift-bg",
+
+giftDesign.background
+||
+giftDesign.backgroundColor
+||
+"#F1DDA6"
+
+);
+
+
+root.style.setProperty(
+
+"--gift-text",
+
+giftDesign.textColor
+||
+"#20301C"
+
+);
+
+
+root.style.setProperty(
+
+"--gift-button",
+
+giftDesign.buttonColor
+||
+"#A9793C"
+
+);
+
+
+root.style.setProperty(
+
+"--gift-radius",
+
+Number(
+giftDesign.radius
+??
+26
+)
++
+"px"
+
+);
+
+
+$("giftBanner")
+.style.display =
+giftDesign.enabled
+===
+false
+?
+"none"
+:
+"block";
+
+
+$("giftSectionTitle")
+.textContent =
+giftDesign.title
+||
+"🎁 اصنع هديتك بنفسك";
+
+
+$("giftSectionDescription")
+.textContent =
+giftDesign.description
+||
+"اختر العطر والحجم والتغليف، واكتب بطاقة الإهداء وأدخل بيانات الشخص الذي تريد إرسال الهدية إليه.";
+
+
+$("giftSectionButton")
+.textContent =
+giftDesign.buttonText
+||
+"ابدأ تجهيز الهدية";
+
+
+$("giftSectionIcon")
+.textContent =
+giftDesign.icon
+||
+"🎁";
+
+
+/* STORE */
+
 $("storeBrandName")
 .textContent =
 getStoreName();
+
 
 $("storeBrandEn")
 .textContent =
 getStoreNameEn();
 
+
 $("storeEyebrow")
 .textContent =
 getStoreEyebrow();
 
+
 $("footerStoreName")
 .textContent =
-getStoreEyebrow();
+getStoreName();
+
+
+$("footerStoreEn")
+.textContent =
+getStoreNameEn();
+
+
+$("footerCopyName")
+.textContent =
+getStoreName();
+
 
 $("aboutStoreTitle")
 .textContent =
@@ -3171,11 +5169,13 @@ $("aboutStoreTitle")
 +
 getStoreName();
 
+
 $("heroTitle")
 .textContent =
 generalSettings.sloganTitle
 ||
 "صُنعت لمن يبحث عن الاختلاف";
+
 
 $("heroDesc")
 .textContent =
@@ -3183,8 +5183,17 @@ generalSettings.sloganDesc
 ||
 "اكتشف تشكيلتنا المختارة بعناية.";
 
+
+/* ABOUT */
+
+const policies =
+getPolicies();
+
+
 $("aboutText")
 .textContent =
+policies.about
+||
 generalSettings.aboutText
 ||
 (
@@ -3193,20 +5202,19 @@ getStoreEyebrow()
 "، وجهتك للمنتجات المختارة بعناية."
 );
 
-$("policiesText")
-.textContent =
-generalSettings.policies
-||
-"";
+
+/* LOGO */
 
 const logo =
 getStoreLogo();
+
 
 if(logo){
 
 $("headerStoreLogo")
 .src =
 logo;
+
 
 $("headerStoreLogo")
 .classList.add(
@@ -3221,12 +5229,16 @@ $("headerStoreLogo")
 "src"
 );
 
+
 $("headerStoreLogo")
 .classList.remove(
 "show"
 );
 
 }
+
+
+/* SPLASH */
 
 const splashLogo =
 generalSettings.splashLogoUrl
@@ -3235,24 +5247,6 @@ logo
 ||
 "";
 
-const splashWidth =
-Number(
-generalSettings.splashLogoWidth
-||
-330
-);
-
-$("splashLogo")
-.style.width =
-Math.max(
-120,
-Math.min(
-700,
-splashWidth
-)
-)
-+
-"px";
 
 if(splashLogo){
 
@@ -3260,9 +5254,11 @@ $("splashLogo")
 .src =
 splashLogo;
 
+
 $("splashLogo")
 .style.display =
 "block";
+
 
 $("splashTextFallback")
 .style.display =
@@ -3275,9 +5271,11 @@ $("splashLogo")
 .style.display =
 "none";
 
+
 $("splashTextFallback")
 .style.display =
 "block";
+
 
 $("splashTextFallback")
 .textContent =
@@ -3285,13 +5283,33 @@ getStoreName();
 
 }
 
+
 $("splashSubtitle")
 .textContent =
 getStoreNameEn();
 
+
+$("splashLogo")
+.style.width =
+Math.max(
+120,
+Math.min(
+700,
+Number(
+generalSettings.splashLogoWidth
+||
+330
+)
+)
+)
++
+"px";
+
+
 clearTimeout(
 window.__splashTimer
 );
+
 
 window.__splashTimer =
 setTimeout(
@@ -3302,6 +5320,7 @@ $("storeSplash")
 .add(
 "hide"
 );
+
 
 setTimeout(
 () => {
@@ -3324,67 +5343,105 @@ generalSettings.splashDuration
 )
 );
 
+
+/* CONTACT */
+
 const whatsapp =
 normalizePhone(
 generalSettings.whatsapp
 );
 
-if(whatsapp){
 
-$("whatsappButton")
+$("footerPhoneButton")
 .href =
+whatsapp
+?
 "https://wa.me/"
 +
-whatsapp;
+whatsapp
+:
+"#";
 
-$("whatsappButton")
-.style.display =
-"inline-flex";
 
-}
-else{
+$("footerPhoneButton")
+.textContent =
+generalSettings.phone
+?
+"📱 "
++
+generalSettings.phone
+:
+"📱 الجوال";
 
-$("whatsappButton")
-.style.display =
-"none";
 
-}
+const email =
+generalSettings.email
+||
+"";
 
-const enableSearch =
-generalSettings.enableSearch
-!== false;
 
-const enableSort =
-generalSettings.enableSort
-!== false;
+$("footerEmailButton")
+.href =
+email
+?
+"mailto:"
++
+email
+:
+"#";
+
+
+$("footerEmailButton")
+.textContent =
+email
+?
+"✉️ "
++
+email
+:
+"✉️ البريد الإلكتروني";
+
+
+/* SEARCH */
 
 $("searchWrap")
 .style.display =
-enableSearch
+generalSettings.enableSearch
+===
+false
 ?
-"block"
+"none"
 :
-"none";
+"block";
+
 
 $("sortWrap")
 .style.display =
-enableSort
+generalSettings.enableSort
+===
+false
 ?
-"block"
+"none"
 :
-"none";
+"block";
+
 
 $("tools")
 .style.display =
 (
-enableSearch
-||
-enableSort
+generalSettings.enableSearch
+===
+false
+&&
+generalSettings.enableSort
+===
+false
 )
 ?
-"flex"
+"none"
 :
-"none";
+"flex";
+
 
 $("reviewsSection")
 .style.display =
@@ -3396,9 +5453,18 @@ false
 :
 "block";
 
+
 applySEO();
 
 renderSocials();
+
+renderFooterLinks();
+
+renderPaymentMethods();
+
+renderBankAccounts();
+
+renderCheckoutPaymentMethods();
 
 setupPWA();
 
@@ -3408,12 +5474,184 @@ renderPaymentDetails();
 
 }
 
+
+/* =========================================================
+   POLICIES
+========================================================= */
+
+function getPolicies(){
+
+return (
+footerSettings.policies
+||
+generalSettings.policiesContent
+||
+generalSettings.footerPolicies
+||
+{}
+);
+
+}
+
+
+function renderFooterLinks(){
+
+const policies =
+getPolicies();
+
+
+$("footerLinks")
+.innerHTML =
+DEFAULT_POLICIES
+.map(
+item => {
+
+const enabled =
+policies[
+item.key
++
+"Enabled"
+]
+!== false;
+
+
+if(!enabled){
+
+return "";
+
+}
+
+
+const customTitle =
+policies[
+item.key
++
+"Title"
+]
+||
+item.title;
+
+
+return `
+
+<button
+type="button"
+onclick="openPolicyModal('${item.key}')"
+>
+${escapeHTML(customTitle)}
+</button>
+
+`;
+
+}
+)
+.join("");
+
+}
+
+
+function openPolicyModal(key){
+
+const policies =
+getPolicies();
+
+
+const definition =
+DEFAULT_POLICIES
+.find(
+item =>
+item.key ===
+key
+);
+
+
+if(!definition){
+
+return;
+
+}
+
+
+const title =
+policies[
+key
++
+"Title"
+]
+||
+definition.title;
+
+
+let content =
+policies[
+key
+]
+||
+"";
+
+
+if(
+key ===
+"about"
+&&
+!content
+){
+
+content =
+generalSettings.aboutText
+||
+"";
+
+}
+
+
+$("policyModalTitle")
+.textContent =
+title;
+
+
+$("policyModalContent")
+.textContent =
+content
+||
+"سيتم إضافة المحتوى من لوحة الإدارة.";
+
+
+showMainScrim();
+
+
+$("policyModal")
+.classList.add(
+"show"
+);
+
+}
+
+
+function closePolicyModal(){
+
+$("policyModal")
+.classList.remove(
+"show"
+);
+
+
+updateMainScrim();
+
+}
+
+
+/* =========================================================
+   SEO
+========================================================= */
+
 function applySEO(){
 
 const title =
 generalSettings.seoTitle
 ||
 getStoreEyebrow();
+
 
 const description =
 generalSettings.seoDescription
@@ -3422,6 +5660,7 @@ generalSettings.sloganDesc
 ||
 getStoreEyebrow();
 
+
 document.title =
 title
 +
@@ -3429,17 +5668,20 @@ title
 +
 getStoreNameEn();
 
+
 $("metaDesc")
 .setAttribute(
 "content",
 description
 );
 
+
 $("ogTitle")
 .setAttribute(
 "content",
 title
 );
+
 
 $("ogDesc")
 .setAttribute(
@@ -3449,68 +5691,56 @@ description
 
 }
 
+
+/* =========================================================
+   SOCIALS
+========================================================= */
+
 function renderSocials(){
 
-const socialMap = [
-
-[
-"whatsapp",
-"واتساب",
-value =>
-"https://wa.me/"
-+
-normalizePhone(
-value
-)
-],
+const list = [
 
 [
 "instagram",
-"إنستقرام",
-value =>
-value
+"Instagram"
 ],
 
 [
 "facebook",
-"فيسبوك",
-value =>
-value
-],
-
-[
-"telegram",
-"تيليجرام",
-value =>
-value
-],
-
-[
-"twitter",
-"إكس",
-value =>
-value
+"Facebook"
 ],
 
 [
 "tiktok",
-"تيك توك",
-value =>
-value
+"TikTok"
+],
+
+[
+"twitter",
+"X"
 ],
 
 [
 "snapchat",
-"سناب",
-value =>
-value
+"Snapchat"
+],
+
+[
+"telegram",
+"Telegram"
+],
+
+[
+"whatsapp",
+"WhatsApp"
 ]
 
 ];
 
+
 $("socialLinks")
 .innerHTML =
-socialMap
+list
 .filter(
 item =>
 generalSettings[
@@ -3518,26 +5748,446 @@ item[0]
 ]
 )
 .map(
-item => `
+item => {
 
-<a
-target="_blank"
-href="${escapeHTML(
-item[2](
+let url =
 generalSettings[
 item[0]
-]
-)
-)}"
+];
+
+
+if(
+item[0]
+===
+"whatsapp"
+){
+
+url =
+"https://wa.me/"
++
+normalizePhone(
+url
+);
+
+}
+
+
+return `
+
+<a
+href="${escapeHTML(url)}"
+target="_blank"
 >
 ${item[1]}
 </a>
+
+`;
+
+}
+)
+.join("");
+
+}
+
+
+/* =========================================================
+   PAYMENT METHODS
+========================================================= */
+
+function getPaymentMethods(){
+
+const methods =
+paymentSettings.paymentMethods
+||
+footerSettings.paymentMethods
+||
+[];
+
+
+if(
+Array.isArray(
+methods
+)
+&&
+methods.length
+){
+
+return methods;
+
+}
+
+
+return [
+
+{
+id:"bank",
+name:"تحويل بنكي",
+enabled:true,
+sortOrder:1
+}
+
+];
+
+}
+
+
+function renderPaymentMethods(){
+
+const methods =
+getPaymentMethods()
+.filter(
+item =>
+item.enabled
+!== false
+)
+.sort(
+(
+a,
+b
+) =>
+Number(
+a.sortOrder
+||
+0
+)
+-
+Number(
+b.sortOrder
+||
+0
+)
+);
+
+
+$("footerPaymentMethods")
+.innerHTML =
+methods.length
+?
+methods
+.map(
+method => `
+
+<span class="payment-pill">
+${escapeHTML(
+method.name
+||
+method.title
+||
+"وسيلة دفع"
+)}
+</span>
+
+`
+)
+.join("")
+:
+`
+
+<span class="payment-pill">
+تحويل بنكي
+</span>
+
+`;
+
+}
+
+
+/* =========================================================
+   BANK ACCOUNTS
+========================================================= */
+
+function getBankAccounts(){
+
+const accounts =
+paymentSettings.bankAccounts
+||
+footerSettings.bankAccounts
+||
+[];
+
+
+if(
+Array.isArray(
+accounts
+)
+&&
+accounts.length
+){
+
+return accounts;
+
+}
+
+
+/* دعم النظام القديم */
+
+if(
+paymentSettings.bankName
+||
+paymentSettings.bankAccount
+||
+paymentSettings.bankIban
+){
+
+return [
+
+{
+
+bankName:
+paymentSettings.bankName
+||
+"البنك",
+
+accountName:
+paymentSettings.bankHolder
+||
+"",
+
+accountNumber:
+paymentSettings.bankAccount
+||
+"",
+
+iban:
+paymentSettings.bankIban
+||
+"",
+
+instructions:
+paymentSettings.bankInstructions
+||
+"",
+
+enabled:true
+
+}
+
+];
+
+}
+
+
+return [];
+
+}
+
+
+function renderBankAccounts(){
+
+const accounts =
+getBankAccounts()
+.filter(
+item =>
+item.enabled
+!== false
+);
+
+
+if(!accounts.length){
+
+$("bankAccountsSection")
+.classList.add(
+"hidden"
+);
+
+
+$("footerBanks")
+.innerHTML =
+"";
+
+
+return;
+
+}
+
+
+$("bankAccountsSection")
+.classList.remove(
+"hidden"
+);
+
+
+$("footerBanks")
+.innerHTML =
+accounts
+.map(
+account => `
+
+<div class="bank-card">
+
+<h4>
+🏦 ${escapeHTML(
+account.bankName
+||
+"حساب بنكي"
+)}
+</h4>
+
+
+${
+account.accountName
+?
+`
+
+<div class="bank-detail">
+
+<strong>
+اسم الحساب:
+</strong>
+
+${escapeHTML(
+account.accountName
+)}
+
+</div>
+
+`
+:
+""
+}
+
+
+${
+account.accountNumber
+?
+`
+
+<div class="bank-detail">
+
+<strong>
+رقم الحساب:
+</strong>
+
+<span dir="ltr">
+${escapeHTML(
+account.accountNumber
+)}
+</span>
+
+</div>
+
+`
+:
+""
+}
+
+
+${
+account.iban
+?
+`
+
+<div class="bank-detail">
+
+<strong>
+IBAN:
+</strong>
+
+<span dir="ltr">
+${escapeHTML(
+account.iban
+)}
+</span>
+
+</div>
+
+`
+:
+""
+}
+
+
+${
+account.instructions
+?
+`
+
+<div class="bank-detail">
+
+${escapeHTML(
+account.instructions
+)}
+
+</div>
+
+`
+:
+""
+}
+
+
+</div>
 
 `
 )
 .join("");
 
 }
+
+
+/* =========================================================
+   CHECKOUT PAYMENT METHODS
+========================================================= */
+
+function renderCheckoutPaymentMethods(){
+
+const methods =
+getPaymentMethods()
+.filter(
+method =>
+method.enabled
+!== false
+);
+
+
+$("paymentMethod")
+.innerHTML =
+methods.length
+?
+methods
+.map(
+method => `
+
+<option
+value="${escapeHTML(
+method.id
+||
+method.code
+||
+method.name
+||
+"payment"
+)}"
+>
+
+${escapeHTML(
+method.name
+||
+method.title
+||
+"وسيلة دفع"
+)}
+
+</option>
+
+`
+)
+.join("")
+:
+`
+
+<option value="bank">
+تحويل بنكي
+</option>
+
+`;
+
+}
+
+
+/* =========================================================
+   PWA
+========================================================= */
 
 function setupPWA(){
 
@@ -3575,6 +6225,7 @@ document.documentElement
 
 };
 
+
 const blob =
 new Blob(
 [
@@ -3588,6 +6239,7 @@ type:
 }
 );
 
+
 $("dynamicManifest")
 .href =
 URL.createObjectURL(
@@ -3595,6 +6247,27 @@ blob
 );
 
 }
+
+
+/* =========================================================
+   ADVERTISEMENT
+========================================================= */
+
+function getAdMedia(){
+
+return Array.isArray(
+adSettings.media
+)
+?
+adSettings.media
+.filter(
+Boolean
+)
+:
+[];
+
+}
+
 
 function renderAdvertisement(){
 
@@ -3609,89 +6282,85 @@ null;
 
 }
 
-const section =
-$("adSection");
-
-const wrap =
-$("adWrap");
-
-const linkElement =
-$("adLink");
-
-const enabled =
-adSettings?.enabled
-===
-true;
-
-const type =
-adSettings?.type
-||
-"image";
 
 const media =
-Array.isArray(
-adSettings?.media
-)
-?
-adSettings.media.filter(
-Boolean
-)
-:
-[];
+getAdMedia();
 
-const link =
-String(
-adSettings?.link
-||
-""
-)
-.trim();
 
 if(
-!enabled
+adSettings.enabled
+!==
+true
 ||
 !media.length
 ){
 
-section.style.display =
+$("adSection")
+.style.display =
 "none";
 
-wrap.innerHTML =
+
+$("adWrap")
+.innerHTML =
 "";
+
 
 return;
 
 }
 
-section.style.display =
+
+$("adSection")
+.style.display =
 "block";
+
+
+const link =
+String(
+adSettings.link
+||
+""
+)
+.trim();
+
 
 if(link){
 
-linkElement.href =
+$("adLink")
+.href =
 link;
 
-linkElement.style.pointerEvents =
+
+$("adLink")
+.style.pointerEvents =
 "auto";
 
 }
 else{
 
-linkElement.removeAttribute(
+$("adLink")
+.removeAttribute(
 "href"
 );
 
-linkElement.style.pointerEvents =
+
+$("adLink")
+.style.pointerEvents =
 "none";
 
 }
 
+
+/* VIDEO */
+
 if(
-type ===
+adSettings.type
+===
 "video"
 ){
 
-wrap.innerHTML = `
+$("adWrap")
+.innerHTML = `
 
 <video
 src="${escapeHTML(media[0])}"
@@ -3704,18 +6373,31 @@ controls
 
 `;
 
+
 return;
 
 }
 
+
+/* SLIDER */
+
 if(
-type ===
+adSettings.type
+===
 "slider"
 ||
-media.length > 1
+media.length
+>
+1
 ){
 
-wrap.innerHTML =
+currentAdIndex =
+0;
+
+
+$("adWrap")
+.innerHTML =
+
 media
 .map(
 (
@@ -3737,55 +6419,87 @@ alt="إعلان"
 
 `
 )
-.join("");
+.join("")
 
-let current =
-0;
++
 
-adTimer =
-setInterval(
-() => {
+`
 
-const slides =
-wrap.querySelectorAll(
-".ad-slide"
-);
+<button
+type="button"
+class="ad-arrow prev"
+onclick="
+event.preventDefault();
+event.stopPropagation();
+moveAd(-1);
+"
+>
+›
+</button>
 
-if(
-slides.length <
-2
-){
+<button
+type="button"
+class="ad-arrow next"
+onclick="
+event.preventDefault();
+event.stopPropagation();
+moveAd(1);
+"
+>
+‹
+</button>
 
-return;
+<div
+id="adIndicators"
+class="ad-indicators"
+>
 
-}
-
-slides[current]
-.classList.remove(
-"active"
-);
-
-current =
+${
+media.map(
 (
-current + 1
-)
-%
-slides.length;
+_,
+index
+) => `
 
-slides[current]
-.classList.add(
+<button
+type="button"
+class="ad-dot ${
+index ===
+0
+?
 "active"
-);
+:
+""
+}"
+onclick="
+event.preventDefault();
+event.stopPropagation();
+goAd(${index});
+"
+></button>
 
-},
-3500
-);
+`
+)
+.join("")
+}
+
+</div>
+
+`;
+
+
+startAdTimer();
+
 
 return;
 
 }
 
-wrap.innerHTML = `
+
+/* SINGLE IMAGE */
+
+$("adWrap")
+.innerHTML = `
 
 <img
 src="${escapeHTML(media[0])}"
@@ -3795,6 +6509,189 @@ alt="إعلان"
 `;
 
 }
+
+
+function updateAdSlides(){
+
+const slides =
+$("adWrap")
+.querySelectorAll(
+".ad-slide"
+);
+
+
+const dots =
+$("adWrap")
+.querySelectorAll(
+".ad-dot"
+);
+
+
+slides
+.forEach(
+(
+slide,
+index
+) => {
+
+slide
+.classList
+.toggle(
+"active",
+index ===
+currentAdIndex
+);
+
+}
+);
+
+
+dots
+.forEach(
+(
+dot,
+index
+) => {
+
+dot
+.classList
+.toggle(
+"active",
+index ===
+currentAdIndex
+);
+
+}
+);
+
+}
+
+
+function moveAd(direction){
+
+const media =
+getAdMedia();
+
+
+if(
+media.length <
+2
+){
+
+return;
+
+}
+
+
+currentAdIndex =
+(
+currentAdIndex
++
+direction
++
+media.length
+)
+%
+media.length;
+
+
+updateAdSlides();
+
+
+startAdTimer();
+
+}
+
+
+function goAd(index){
+
+const media =
+getAdMedia();
+
+
+if(
+index <
+0
+||
+index >=
+media.length
+){
+
+return;
+
+}
+
+
+currentAdIndex =
+index;
+
+
+updateAdSlides();
+
+
+startAdTimer();
+
+}
+
+
+function startAdTimer(){
+
+if(adTimer){
+
+clearInterval(
+adTimer
+);
+
+}
+
+
+const media =
+getAdMedia();
+
+
+if(
+media.length <
+2
+){
+
+return;
+
+}
+
+
+adTimer =
+setInterval(
+() => {
+
+currentAdIndex =
+(
+currentAdIndex
++
+1
+)
+%
+media.length;
+
+
+updateAdSlides();
+
+},
+Math.max(
+2000,
+Number(
+adSettings.interval
+||
+4000
+)
+)
+);
+
+}
+
+
+/* =========================================================
+   DATABASE
+========================================================= */
 
 async function fetchCategories(){
 
@@ -3820,6 +6717,7 @@ ascending:true
 }
 );
 
+
 if(error){
 
 console.error(
@@ -3830,14 +6728,17 @@ return;
 
 }
 
+
 categories =
 data
 ||
 [];
 
+
 renderCategoryFilters();
 
 }
+
 
 async function fetchVariants(){
 
@@ -3863,6 +6764,7 @@ ascending:true
 }
 );
 
+
 if(error){
 
 console.warn(
@@ -3870,12 +6772,15 @@ console.warn(
 error.message
 );
 
+
 variants =
 [];
+
 
 return;
 
 }
+
 
 variants =
 data
@@ -3883,6 +6788,7 @@ data
 [];
 
 }
+
 
 async function fetchProducts(){
 
@@ -3914,14 +6820,17 @@ ascending:false
 }
 );
 
+
 if(error){
 
 console.error(
 error
 );
 
+
 $("productsArea")
-.innerHTML = `
+.innerHTML =
+`
 
 <div class="empty">
 تعذر تحميل المنتجات.
@@ -3929,24 +6838,31 @@ $("productsArea")
 
 `;
 
+
 return;
 
 }
+
 
 products =
 data
 ||
 [];
 
+
 cleanCartAgainstProducts();
+
 
 renderProducts();
 
+
 fillGiftProducts();
+
 
 renderCart();
 
 }
+
 
 async function fetchBundles(){
 
@@ -3972,6 +6888,7 @@ ascending:true
 }
 );
 
+
 if(error){
 
 console.warn(
@@ -3979,19 +6896,24 @@ console.warn(
 error.message
 );
 
+
 bundles =
 [];
 
+
 renderBundles();
+
 
 return;
 
 }
 
+
 bundles =
 (data || [])
 .filter(
 bundle => {
+
 
 if(
 bundle.starts_at
@@ -4007,6 +6929,7 @@ return false;
 
 }
 
+
 if(
 bundle.ends_at
 &&
@@ -4021,18 +6944,23 @@ return false;
 
 }
 
+
 return true;
 
 }
 );
 
+
 cleanCartAgainstProducts();
 
+
 renderBundles();
+
 
 renderCart();
 
 }
+
 
 async function fetchGiftOptions(){
 
@@ -4058,30 +6986,37 @@ ascending:true
 }
 );
 
+
 if(error){
 
 console.warn(
-"Gift options:",
+"Gift:",
 error.message
 );
+
 
 giftOptions =
 [];
 
+
 renderGiftWrapOptions();
+
 
 return;
 
 }
+
 
 giftOptions =
 data
 ||
 [];
 
+
 renderGiftWrapOptions();
 
 }
+
 
 async function fetchReviews(){
 
@@ -4110,24 +7045,29 @@ ascending:false
 30
 );
 
+
 if(error){
 
 console.error(
 error
 );
 
+
 return;
 
 }
+
 
 reviews =
 data
 ||
 [];
 
+
 renderReviews();
 
 }
+
 
 async function fetchNotifications(){
 
@@ -4156,30 +7096,40 @@ ascending:false
 20
 );
 
+
 if(error){
 
 console.error(
 error
 );
 
+
 return;
 
 }
+
 
 notifications =
 data
 ||
 [];
 
+
 renderNotifications();
 
 }
+
+
+/* =========================================================
+   FILTERS
+========================================================= */
 
 function renderCategoryFilters(){
 
 const buttons = [
 
 `
+
 <button
 class="${
 activeCategory ===
@@ -4193,11 +7143,14 @@ onclick="setCategory('الكل')"
 >
 الكل
 </button>
+
 `
 
 ];
 
-categories.forEach(
+
+categories
+.forEach(
 category => {
 
 buttons.push(
@@ -4218,7 +7171,9 @@ category.name
 )
 })"
 >
-${escapeHTML(category.name)}
+${escapeHTML(
+category.name
+)}
 </button>
 
 `
@@ -4227,22 +7182,27 @@ ${escapeHTML(category.name)}
 }
 );
 
+
 $("categoryFilters")
 .innerHTML =
 buttons.join("");
 
 }
 
+
 function setCategory(category){
 
 activeCategory =
 category;
 
+
 renderCategoryFilters();
+
 
 renderProducts();
 
 }
+
 
 function handleSearch(){
 
@@ -4252,9 +7212,11 @@ $("searchInput")
 .trim()
 .toLowerCase();
 
+
 renderProducts();
 
 }
+
 
 function handleSort(){
 
@@ -4262,9 +7224,11 @@ sortMode =
 $("sortSelect")
 .value;
 
+
 renderProducts();
 
 }
+
 
 function filteredProducts(){
 
@@ -4273,19 +7237,23 @@ let list =
 ...products
 ];
 
+
 if(
-activeCategory !==
+activeCategory
+!==
 "الكل"
 ){
 
 list =
 list.filter(
 product =>
-product.category ===
+product.category
+===
 activeCategory
 );
 
 }
+
 
 if(searchText){
 
@@ -4315,6 +7283,7 @@ product.category
 )
 .toLowerCase();
 
+
 return text.includes(
 searchText
 );
@@ -4323,6 +7292,7 @@ searchText
 );
 
 }
+
 
 list.sort(
 (
@@ -4335,10 +7305,12 @@ finalProductPrice(
 a
 );
 
+
 const bp =
 finalProductPrice(
 b
 );
+
 
 if(
 sortMode ===
@@ -4349,6 +7321,7 @@ return ap - bp;
 
 }
 
+
 if(
 sortMode ===
 "priceDesc"
@@ -4357,6 +7330,7 @@ sortMode ===
 return bp - ap;
 
 }
+
 
 if(
 sortMode ===
@@ -4375,6 +7349,7 @@ b.name
 
 }
 
+
 return (
 new Date(
 b.created_at
@@ -4388,38 +7363,55 @@ a.created_at
 }
 );
 
+
 return list;
 
 }
+
+
+/* =========================================================
+   PRODUCT CARD
+========================================================= */
 
 function productCard(product){
 
 const price =
 Number(
-product.price || 0
+product.price
+||
+0
 );
+
 
 const discount =
 Number(
-product.discount || 0
+product.discount
+||
+0
 );
+
 
 const finalPrice =
 finalProductPrice(
 product
 );
 
+
 const image =
 product.images?.[0]
 ||
 "";
 
+
 const out =
 Number(
-product.stock || 0
+product.stock
+||
+0
 )
 <=
 0;
+
 
 const favorite =
 favorites.includes(
@@ -4427,6 +7419,7 @@ String(
 product.id
 )
 );
+
 
 return `
 
@@ -4455,6 +7448,7 @@ loading="lazy"
 
 <button
 class="favorite-btn"
+type="button"
 onclick="
 event.stopPropagation();
 toggleFavorite('${product.id}');
@@ -4463,8 +7457,10 @@ toggleFavorite('${product.id}');
 ${favorite ? "❤️" : "🤍"}
 </button>
 
+
 ${
-discount > 0
+discount >
+0
 ?
 `
 
@@ -4476,6 +7472,7 @@ discount > 0
 :
 ""
 }
+
 
 ${
 product.is_new
@@ -4490,6 +7487,7 @@ product.is_new
 :
 ""
 }
+
 
 ${
 out
@@ -4507,26 +7505,45 @@ out
 
 </div>
 
+
+<div class="product-content">
+
 <h3>
 ${escapeHTML(product.name)}
 </h3>
+
 
 <div class="price-row">
 
 <span class="price">
 
 ${finalPrice.toFixed(2)}
-${escapeHTML(product.currency || "ر.ي")}
+
+${escapeHTML(
+product.currency
+||
+"ر.ي"
+)}
 
 </span>
 
+
 ${
-discount > 0
+discount >
+0
 ?
 `
 
 <span class="old-price">
+
 ${price.toFixed(2)}
+
+${escapeHTML(
+product.currency
+||
+"ر.ي"
+)}
+
 </span>
 
 `
@@ -4536,21 +7553,39 @@ ${price.toFixed(2)}
 
 </div>
 
+
+<div class="product-actions">
+
 <button
 class="add-btn"
 ${out ? "disabled" : ""}
 onclick="quickAdd('${product.id}')"
 >
+
 ${out ? "غير متوفر" : "أضف للسلة"}
+
 </button>
+
+<button
+class="view-product-btn"
+type="button"
+onclick="openProduct('${product.id}')"
+>
+◉
+</button>
+
+</div>
+
 
 <button
 class="gift-product-btn"
 ${out ? "disabled" : ""}
 onclick="openGiftBuilder('${product.id}')"
 >
-🎁 اشترِ كهدية
+🎁 شراء كهدية
 </button>
+
+</div>
 
 </article>
 
@@ -4558,17 +7593,22 @@ onclick="openGiftBuilder('${product.id}')"
 
 }
 
+
+/* =========================================================
+   RENDER PRODUCTS
+========================================================= */
+
 function renderProducts(){
 
 const list =
 filteredProducts();
 
-if(
-!list.length
-){
+
+if(!list.length){
 
 $("productsArea")
-.innerHTML = `
+.innerHTML =
+`
 
 <div class="empty">
 لا توجد منتجات مطابقة.
@@ -4576,17 +7616,21 @@ $("productsArea")
 
 `;
 
+
 return;
 
 }
 
+
 if(
-activeCategory !==
+activeCategory
+!==
 "الكل"
 ){
 
 $("productsArea")
-.innerHTML = `
+.innerHTML =
+`
 
 <div class="category-group">
 
@@ -4604,22 +7648,28 @@ ${list.map(productCard).join("")}
 
 `;
 
+
 return;
 
 }
 
+
 const groups =
 [];
 
-categories.forEach(
+
+categories
+.forEach(
 category => {
 
 const items =
 list.filter(
 product =>
-product.category ===
+product.category
+===
 category.name
 );
+
 
 if(items.length){
 
@@ -4640,19 +7690,20 @@ items
 }
 );
 
+
 const ungrouped =
 list.filter(
 product =>
 !groups.some(
 group =>
-group.name ===
+group.name
+===
 product.category
 )
 );
 
-if(
-ungrouped.length
-){
+
+if(ungrouped.length){
 
 groups.push({
 
@@ -4668,11 +7719,13 @@ ungrouped
 
 }
 
+
 $("productsArea")
 .innerHTML =
 groups
 .map(
-group => `
+group =>
+`
 
 <div class="category-group">
 
@@ -4691,13 +7744,7 @@ ${escapeHTML(group.name)}
 
 <div class="product-row">
 
-${
-group.items
-.map(
-productCard
-)
-.join("")
-}
+${group.items.map(productCard).join("")}
 
 </div>
 
@@ -4709,12 +7756,18 @@ productCard
 
 }
 
+
+/* =========================================================
+   FAVORITES
+========================================================= */
+
 function toggleFavorite(id){
 
 id =
 String(
 id
 );
+
 
 if(
 favorites.includes(
@@ -4725,8 +7778,7 @@ id
 favorites =
 favorites.filter(
 item =>
-item !==
-id
+item !== id
 );
 
 }
@@ -4736,11 +7788,13 @@ favorites.push(
 id
 );
 
+
 toast(
 "تمت الإضافة للمفضلة ❤️"
 );
 
 }
+
 
 localStorage.setItem(
 "alshuaiibe_favorites",
@@ -4749,9 +7803,11 @@ favorites
 )
 );
 
+
 renderProducts();
 
 }
+
 
 function showFavorites(){
 
@@ -4764,6 +7820,7 @@ product.id
 )
 )
 );
+
 
 $("productsArea")
 .innerHTML =
@@ -4795,18 +7852,25 @@ ${list.map(productCard).join("")}
 
 `;
 
+
 scrollSection(
 "shop"
 );
 
 }
 
-function openProduct(productId){
+
+/* =========================================================
+   PRODUCT MODAL
+========================================================= */
+
+function openProduct(id){
 
 const product =
 findProduct(
-productId
+id
 );
+
 
 if(!product){
 
@@ -4814,8 +7878,10 @@ return;
 
 }
 
+
 currentProduct =
 product;
+
 
 $("modalProductImage")
 .src =
@@ -4823,44 +7889,63 @@ product.images?.[0]
 ||
 "";
 
+
 $("modalProductName")
 .textContent =
 product.name
 ||
 "";
 
+
 const price =
 Number(
-product.price || 0
+product.price
+||
+0
 );
+
 
 const discount =
 Number(
-product.discount || 0
+product.discount
+||
+0
 );
 
-const finalPrice =
-finalProductPrice(
-product
-);
 
 $("modalProductPrice")
-.innerHTML = `
+.innerHTML =
+`
 
 <span class="price">
 
-${finalPrice.toFixed(2)}
-${escapeHTML(product.currency || "ر.ي")}
+${finalProductPrice(product).toFixed(2)}
+
+${escapeHTML(
+product.currency
+||
+"ر.ي"
+)}
 
 </span>
 
+
 ${
-discount > 0
+discount >
+0
 ?
 `
 
 <span class="old-price">
+
 ${price.toFixed(2)}
+
+${escapeHTML(
+product.currency
+||
+"ر.ي"
+)}
+
 </span>
 
 `
@@ -4870,33 +7955,41 @@ ${price.toFixed(2)}
 
 `;
 
+
 $("modalProductDescription")
 .textContent =
 product.description
 ||
 "";
 
+
 renderProductOptions(
 product
 );
 
-$("modalAddButton")
-.disabled =
+
+const unavailable =
 Number(
-product.stock || 0
+product.stock
+||
+0
 )
 <=
 0;
+
+
+$("modalAddButton")
+.disabled =
+unavailable;
+
 
 $("modalGiftButton")
 .disabled =
-Number(
-product.stock || 0
-)
-<=
-0;
+unavailable;
+
 
 showMainScrim();
+
 
 $("productModal")
 .classList.add(
@@ -4904,6 +7997,7 @@ $("productModal")
 );
 
 }
+
 
 function renderProductOptions(product){
 
@@ -4919,12 +8013,12 @@ product.id
 )
 );
 
-if(
-productVariants.length
-){
+
+if(productVariants.length){
 
 $("modalVariantBox")
-.innerHTML = `
+.innerHTML =
+`
 
 <label>
 الحجم / الخيار
@@ -4933,12 +8027,14 @@ $("modalVariantBox")
 <select id="productVariantSelect">
 
 <option value="">
-السعر والحجم الأساسي
+الخيار الأساسي
 </option>
 
 ${
-productVariants.map(
-variant => `
+productVariants
+.map(
+variant =>
+`
 
 <option
 value="${variant.id}"
@@ -4954,7 +8050,9 @@ variant.size
 )}
 
 ${
-variant.price != null
+variant.price
+!=
+null
 ?
 " — "
 +
@@ -4968,7 +8066,9 @@ variant.price
 " "
 +
 escapeHTML(
-product.currency || "ر.ي"
+product.currency
+||
+"ر.ي"
 )
 :
 ""
@@ -4994,14 +8094,21 @@ $("modalVariantBox")
 
 }
 
-let options =
+
+let html =
 "";
 
+
 if(
-product.colors?.length
+Array.isArray(
+product.colors
+)
+&&
+product.colors.length
 ){
 
-options += `
+html +=
+`
 
 <label>
 اللون
@@ -5013,13 +8120,16 @@ class="swatches"
 >
 
 ${
-product.colors.map(
+product.colors
+.map(
 (
 color,
 index
-) => `
+) =>
+`
 
-<span
+<button
+type="button"
 class="swatch ${
 index === 0
 ?
@@ -5030,7 +8140,7 @@ index === 0
 onclick="selectSwatch(this)"
 >
 ${escapeHTML(color)}
-</span>
+</button>
 
 `
 )
@@ -5043,11 +8153,17 @@ ${escapeHTML(color)}
 
 }
 
+
 if(
-product.sizes?.length
+Array.isArray(
+product.sizes
+)
+&&
+product.sizes.length
 ){
 
-options += `
+html +=
+`
 
 <label>
 الحجم
@@ -5059,13 +8175,16 @@ class="swatches"
 >
 
 ${
-product.sizes.map(
+product.sizes
+.map(
 (
 size,
 index
-) => `
+) =>
+`
 
-<span
+<button
+type="button"
 class="swatch ${
 index === 0
 ?
@@ -5076,7 +8195,7 @@ index === 0
 onclick="selectSwatch(this)"
 >
 ${escapeHTML(size)}
-</span>
+</button>
 
 `
 )
@@ -5089,11 +8208,13 @@ ${escapeHTML(size)}
 
 }
 
+
 $("modalOptions")
 .innerHTML =
-options;
+html;
 
 }
+
 
 function selectSwatch(element){
 
@@ -5112,11 +8233,13 @@ item.classList.remove(
 }
 );
 
+
 element.classList.add(
 "active"
 );
 
 }
+
 
 function selectedCurrentProductData(){
 
@@ -5129,6 +8252,7 @@ document
 ||
 null;
 
+
 const variant =
 variantId
 ?
@@ -5138,7 +8262,14 @@ variantId
 :
 null;
 
-const color =
+
+return {
+
+variantId,
+
+variant,
+
+color:
 document.querySelector(
 "#modalColors .active"
 )
@@ -5147,9 +8278,9 @@ document.querySelector(
 ||
 variant?.color
 ||
-null;
+null,
 
-const size =
+size:
 document.querySelector(
 "#modalSizes .active"
 )
@@ -5158,52 +8289,12 @@ document.querySelector(
 ||
 variant?.size
 ||
-null;
-
-return {
-
-variantId,
-
-variant,
-
-color,
-
-size
+null
 
 };
 
 }
 
-function addCurrentProduct(){
-
-if(
-!currentProduct
-){
-
-return;
-
-}
-
-const selected =
-selectedCurrentProductData();
-
-addNormalProductToCart(
-
-currentProduct,
-
-selected.variantId,
-
-selected.variant,
-
-selected.color,
-
-selected.size
-
-);
-
-closeProductModal();
-
-}
 
 function quickAdd(id){
 
@@ -5212,11 +8303,13 @@ findProduct(
 id
 );
 
+
 if(!product){
 
 return;
 
 }
+
 
 const hasVariants =
 variants.some(
@@ -5230,6 +8323,7 @@ id
 )
 );
 
+
 if(
 hasVariants
 ||
@@ -5242,9 +8336,11 @@ openProduct(
 id
 );
 
+
 return;
 
 }
+
 
 addNormalProductToCart(
 
@@ -5262,6 +8358,40 @@ null
 
 }
 
+
+function addCurrentProduct(){
+
+if(!currentProduct){
+
+return;
+
+}
+
+
+const selected =
+selectedCurrentProductData();
+
+
+addNormalProductToCart(
+
+currentProduct,
+
+selected.variantId,
+
+selected.variant,
+
+selected.color,
+
+selected.size
+
+);
+
+
+closeProductModal();
+
+}
+
+
 function closeProductModal(){
 
 $("productModal")
@@ -5269,12 +8399,19 @@ $("productModal")
 "show"
 );
 
+
 currentProduct =
 null;
+
 
 updateMainScrim();
 
 }
+
+
+/* =========================================================
+   CART PRODUCT
+========================================================= */
 
 function addNormalProductToCart(
 product,
@@ -5284,41 +8421,44 @@ color,
 size
 ){
 
-if(
+const maxStock =
+variant
+?
+Math.min(
 Number(
-product.stock || 0
+product.stock
+||
+0
+),
+Number(
+variant.stock
+||
+0
 )
+)
+:
+Number(
+product.stock
+||
+0
+);
+
+
+if(
+maxStock
 <=
 0
-&&
-!variant
 ){
 
 toast(
 "المنتج غير متوفر"
 );
 
-return;
-
-}
-
-if(
-variant
-&&
-Number(
-variant.stock || 0
-)
-<=
-0
-){
-
-toast(
-"هذا الخيار غير متوفر"
-);
 
 return;
 
 }
+
 
 const key =
 [
@@ -5332,29 +8472,21 @@ size || ""
 "|"
 );
 
+
 const existing =
 cart.find(
 item =>
-item.key ===
+item.key
+===
 key
 );
 
+
 if(existing){
 
-const maxStock =
-variant
-?
-Math.min(
-Number(product.stock || 0),
-Number(variant.stock || 0)
-)
-:
-Number(
-product.stock || 0
-);
-
 if(
-existing.qty >=
+existing.qty
+>=
 maxStock
 ){
 
@@ -5362,9 +8494,11 @@ toast(
 "وصلت للكمية المتوفرة"
 );
 
+
 return;
 
 }
+
 
 existing.qty++;
 
@@ -5378,7 +8512,8 @@ key,
 type:
 "product",
 
-gift:false,
+gift:
+false,
 
 id:
 String(
@@ -5423,44 +8558,35 @@ size
 ||
 null,
 
-qty:1
+qty:
+1
 
 });
 
 }
 
+
 saveCart();
 
+
 toast(
-"أُضيف إلى السلة"
+"تمت الإضافة للسلة"
 );
 
 }
 
+
 /* =========================================================
-   BUNDLES - FIXED
+   BUNDLES
 ========================================================= */
 
 function renderBundles(){
 
-const container =
-$("bundlesRow");
+if(!bundles.length){
 
-if(!container){
-
-return;
-
-}
-
-if(
-!Array.isArray(
-bundles
-)
-||
-!bundles.length
-){
-
-container.innerHTML = `
+$("bundlesRow")
+.innerHTML =
+`
 
 <div class="empty">
 لا توجد عروض نشطة حالياً.
@@ -5468,11 +8594,14 @@ container.innerHTML = `
 
 `;
 
+
 return;
 
 }
 
-container.innerHTML =
+
+$("bundlesRow")
+.innerHTML =
 bundles
 .map(
 bundle => {
@@ -5484,12 +8613,14 @@ bundle.regular_price
 0
 );
 
+
 const offer =
 Number(
 bundle.offer_price
 ||
 0
 );
+
 
 const stock =
 Number(
@@ -5498,22 +8629,20 @@ bundle.stock
 0
 );
 
-const currency =
-bundle.currency
-||
-"ر.ي";
 
 const discount =
-regular > 0
-&&
-offer >= 0
+regular >
+0
 ?
 Math.max(
 0,
 Math.round(
 (
-1 -
-offer / regular
+1
+-
+offer
+/
+regular
 )
 *
 100
@@ -5522,19 +8651,10 @@ offer / regular
 :
 0;
 
-const out =
-stock <= 0;
 
 return `
 
-<article
-class="bundle-card"
-data-bundle-id="${escapeHTML(
-String(
-bundle.id
-)
-)}"
->
+<article class="bundle-card">
 
 ${
 bundle.image_url
@@ -5543,28 +8663,12 @@ bundle.image_url
 
 <img
 src="${escapeHTML(bundle.image_url)}"
-alt="${escapeHTML(bundle.name || "باقة")}"
-loading="lazy"
+alt="${escapeHTML(bundle.name || "")}"
 >
 
 `
 :
-`
-
-<div
-style="
-height:185px;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:50px;
-background:var(--cream);
-"
->
-🎁
-</div>
-
-`
+""
 }
 
 <div class="bundle-info">
@@ -5573,41 +8677,44 @@ background:var(--cream);
 ${escapeHTML(bundle.name || "باقة")}
 </h3>
 
-${
-bundle.description
-?
-`
 
 <div
 style="
 font-size:12px;
-color:var(--ink-soft);
 line-height:1.8;
-margin-bottom:8px
+color:var(--ink-soft)
 "
 >
-${escapeHTML(bundle.description)}
+
+${escapeHTML(
+bundle.description
+||
+""
+)}
+
 </div>
 
-`
-:
-""
-}
 
 <div
 class="price-row"
 style="
 justify-content:flex-start;
-margin-top:10px
+margin-top:12px
 "
 >
 
-<strong class="price">
+<span class="price">
 
 ${offer.toFixed(2)}
-${escapeHTML(currency)}
 
-</strong>
+${escapeHTML(
+bundle.currency
+||
+"ر.ي"
+)}
+
+</span>
+
 
 ${
 regular > offer
@@ -5615,9 +8722,7 @@ regular > offer
 `
 
 <span class="old-price">
-
 ${regular.toFixed(2)}
-
 </span>
 
 `
@@ -5625,20 +8730,16 @@ ${regular.toFixed(2)}
 ""
 }
 
+
 ${
-discount > 0
+discount >
+0
 ?
 `
 
 <span
-style="
-background:var(--danger);
-color:#fff;
-font-size:10px;
-padding:4px 8px;
-border-radius:999px;
-font-weight:700
-"
+class="discount-badge"
+style="position:static"
 >
 خصم ${discount}%
 </span>
@@ -5650,33 +8751,10 @@ font-weight:700
 
 </div>
 
-${
-bundle.ends_at
-?
-`
-
-<div
-style="
-font-size:10px;
-color:var(--ink-soft);
-margin-top:7px
-"
->
-
-ينتهي العرض:
-${new Date(
-bundle.ends_at
-).toLocaleString("ar")}
-
-</div>
-
-`
-:
-""
-}
 
 ${
-out
+stock <=
+0
 ?
 `
 
@@ -5691,19 +8769,17 @@ out
 <div class="bundle-actions">
 
 <button
-type="button"
 class="bundle-add-btn"
-onclick="addBundleToCart('${String(bundle.id)}')"
+onclick="addBundleToCart('${bundle.id}')"
 >
 🛍️ أضف للسلة
 </button>
 
 <button
-type="button"
 class="bundle-gift-btn"
-onclick="openBundleGiftBuilder('${String(bundle.id)}')"
+onclick="openBundleGiftBuilder('${bundle.id}')"
 >
-🎁 اشترِ كهدية
+🎁 شراء كهدية
 </button>
 
 </div>
@@ -5723,22 +8799,26 @@ onclick="openBundleGiftBuilder('${String(bundle.id)}')"
 
 }
 
-function addBundleToCart(bundleId){
+
+function addBundleToCart(id){
 
 const bundle =
 findBundle(
-bundleId
+id
 );
+
 
 if(!bundle){
 
 toast(
-"تعذر العثور على الباقة"
+"الباقة غير موجودة"
 );
+
 
 return;
 
 }
+
 
 const stock =
 Number(
@@ -5747,57 +8827,56 @@ bundle.stock
 0
 );
 
+
 if(
 stock <=
 0
 ){
 
 toast(
-"الباقة غير متوفرة حالياً"
+"الباقة غير متوفرة"
 );
+
 
 return;
 
 }
+
 
 const key =
 "bundle|"
 +
-String(
-bundle.id
-);
+bundle.id;
+
 
 const existing =
 cart.find(
 item =>
-item.key ===
+item.key
+===
 key
 );
 
+
 if(existing){
 
-const currentQty =
-Number(
-existing.qty
-||
-0
-);
-
 if(
-currentQty >=
+existing.qty
+>=
 stock
 ){
 
 toast(
-"وصلت للكمية المتوفرة من الباقة"
+"وصلت للكمية المتوفرة"
 );
+
 
 return;
 
 }
 
-existing.qty =
-currentQty + 1;
+
+existing.qty++;
 
 }
 else{
@@ -5809,7 +8888,8 @@ key,
 type:
 "bundle",
 
-gift:false,
+gift:
+false,
 
 id:
 String(
@@ -5822,9 +8902,7 @@ bundle.id
 ),
 
 name:
-bundle.name
-||
-"باقة",
+bundle.name,
 
 image:
 bundle.image_url
@@ -5843,21 +8921,30 @@ bundle.offer_price
 0
 ),
 
-qty:1
+qty:
+1
 
 });
 
 }
 
+
 saveCart();
 
+
 toast(
-"تمت إضافة الباقة للسلة 🔥"
+"تمت إضافة الباقة للسلة"
 );
+
 
 openCart();
 
 }
+
+
+/* =========================================================
+   GIFTS
+========================================================= */
 
 function fillGiftProducts(){
 
@@ -5875,13 +8962,16 @@ products
 .filter(
 product =>
 Number(
-product.stock || 0
+product.stock
+||
+0
 )
 >
 0
 )
 .map(
-product => `
+product =>
+`
 
 <option value="${product.id}">
 ${escapeHTML(product.name)}
@@ -5892,6 +8982,7 @@ ${escapeHTML(product.name)}
 .join("");
 
 }
+
 
 function renderGiftWrapOptions(){
 
@@ -5907,7 +8998,8 @@ $("giftWrapSelect")
 +
 giftOptions
 .map(
-option => `
+option =>
+`
 
 <option value="${option.id}">
 
@@ -5916,14 +9008,15 @@ ${escapeHTML(option.name)}
 —
 
 ${Number(
-option.price || 0
-)
-.toFixed(
-2
-)}
+option.price
+||
+0
+).toFixed(2)}
 
 ${escapeHTML(
-option.currency || "ر.ي"
+option.currency
+||
+"ر.ي"
 )}
 
 </option>
@@ -5934,24 +9027,67 @@ option.currency || "ر.ي"
 
 }
 
-function openGiftBuilder(
-productId = null
-){
+
+function resetGiftDraft(){
+
+giftDraft = {
+
+productId:null,
+
+variantId:null,
+
+color:null,
+
+size:null
+
+};
+
 
 giftBundleDraft =
 null;
+
+
+[
+"giftRecipientName",
+"giftRecipientPhone",
+"giftRecipientAddress",
+"giftCardTo",
+"giftCardMessage",
+"giftCardFrom"
+]
+.forEach(
+id => {
+
+$(id)
+.value =
+"";
+
+}
+);
+
+
+$("giftWrapSelect")
+.value =
+"";
+
+
+updateGiftPreview();
+
+}
+
+
+function openGiftBuilder(
+productId =
+null
+){
+
+resetGiftDraft();
+
 
 $("giftProductChooser")
 .style.display =
 "block";
 
-$("giftProductSelect")
-.disabled =
-false;
-
-resetGiftDraft(
-true
-);
 
 if(productId){
 
@@ -5961,10 +9097,12 @@ String(
 productId
 );
 
+
 giftDraft.productId =
 String(
 productId
 );
+
 
 renderGiftSelectedProduct();
 
@@ -5975,17 +9113,17 @@ $("giftProductSelect")
 .value =
 "";
 
-$("giftSelectedProduct")
-.innerHTML = `
 
-<div
-class="empty"
-style="padding:15px"
->
-اختر المنتج الذي تريد إرساله كهدية.
+$("giftSelectedProduct")
+.innerHTML =
+`
+
+<div class="empty">
+اختر المنتج.
 </div>
 
 `;
+
 
 $("giftProductOptions")
 .innerHTML =
@@ -5993,7 +9131,9 @@ $("giftProductOptions")
 
 }
 
+
 showMainScrim();
+
 
 $("giftModal")
 .classList.add(
@@ -6002,26 +9142,26 @@ $("giftModal")
 
 }
 
-/* =========================================================
-   BUNDLE GIFT - FIXED
-========================================================= */
 
-function openBundleGiftBuilder(bundleId){
+function openBundleGiftBuilder(id){
 
 const bundle =
 findBundle(
-bundleId
+id
 );
+
 
 if(!bundle){
 
 toast(
-"تعذر العثور على الباقة"
+"الباقة غير موجودة"
 );
+
 
 return;
 
 }
+
 
 if(
 Number(
@@ -6037,27 +9177,32 @@ toast(
 "الباقة غير متوفرة"
 );
 
+
 return;
 
 }
 
-resetGiftDraft(
-true
-);
+
+resetGiftDraft();
+
 
 giftBundleDraft =
 bundle;
+
 
 $("giftProductChooser")
 .style.display =
 "none";
 
+
 $("giftProductOptions")
 .innerHTML =
 "";
 
+
 $("giftSelectedProduct")
-.innerHTML = `
+.innerHTML =
+`
 
 ${
 bundle.image_url
@@ -6066,42 +9211,23 @@ bundle.image_url
 
 <img
 src="${escapeHTML(bundle.image_url)}"
-alt="${escapeHTML(bundle.name || "")}"
 >
 
 `
 :
-`
-
-<div
-style="
-width:75px;
-height:75px;
-border-radius:12px;
-background:white;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:36px
-"
->
-🎁
-</div>
-
-`
+""
 }
 
 <div>
 
 <strong>
-🔥 ${escapeHTML(bundle.name || "باقة")}
+🔥 ${escapeHTML(bundle.name)}
 </strong>
 
 <div
 style="
-font-size:12px;
-color:var(--ink-soft);
-margin-top:5px
+margin-top:5px;
+font-size:12px
 "
 >
 
@@ -6119,97 +9245,71 @@ bundle.currency
 
 </div>
 
-<div
-style="
-font-size:11px;
-color:var(--ink-soft);
-margin-top:5px;
-line-height:1.7
-"
->
-
-سيتم إرسال هذه الباقة كاملة كهدية.
-
-</div>
-
 </div>
 
 `;
 
+
 showMainScrim();
+
 
 $("giftModal")
 .classList.add(
 "show"
 );
 
-updateGiftPreview();
-
 }
+
 
 function startGiftFromCurrentProduct(){
 
-if(
-!currentProduct
-){
+if(!currentProduct){
 
 return;
 
 }
 
+
 const selected =
 selectedCurrentProductData();
+
 
 const productId =
 String(
 currentProduct.id
 );
 
+
 closeProductModal();
+
 
 openGiftBuilder(
 productId
 );
 
+
 giftDraft.variantId =
 selected.variantId;
+
 
 giftDraft.color =
 selected.color;
 
+
 giftDraft.size =
 selected.size;
+
 
 renderGiftSelectedProduct();
 
 }
 
-function closeGiftBuilder(){
-
-$("giftModal")
-.classList.remove(
-"show"
-);
-
-giftBundleDraft =
-null;
-
-$("giftProductChooser")
-.style.display =
-"block";
-
-$("giftProductSelect")
-.disabled =
-false;
-
-updateMainScrim();
-
-}
 
 function giftProductChanged(){
 
 giftBundleDraft =
 null;
+
 
 giftDraft.productId =
 $("giftProductSelect")
@@ -6217,18 +9317,23 @@ $("giftProductSelect")
 ||
 null;
 
+
 giftDraft.variantId =
 null;
+
 
 giftDraft.color =
 null;
 
+
 giftDraft.size =
 null;
+
 
 renderGiftSelectedProduct();
 
 }
+
 
 function renderGiftSelectedProduct(){
 
@@ -6237,44 +9342,41 @@ findProduct(
 giftDraft.productId
 );
 
+
 if(!product){
 
 $("giftSelectedProduct")
-.innerHTML = `
+.innerHTML =
+`
 
-<div
-class="empty"
-style="padding:15px"
->
+<div class="empty">
 اختر المنتج.
 </div>
 
 `;
 
+
 $("giftProductOptions")
 .innerHTML =
 "";
+
 
 return;
 
 }
 
-const image =
-product.images?.[0]
-||
-"";
 
 $("giftSelectedProduct")
-.innerHTML = `
+.innerHTML =
+`
 
 ${
-image
+product.images?.[0]
 ?
 `
 
 <img
-src="${escapeHTML(image)}"
-alt="${escapeHTML(product.name)}"
+src="${escapeHTML(product.images[0])}"
 >
 
 `
@@ -6288,23 +9390,22 @@ alt="${escapeHTML(product.name)}"
 ${escapeHTML(product.name)}
 </strong>
 
-<div
-style="
-font-size:12px;
-color:var(--ink-soft);
-margin-top:4px
-"
->
+<div>
 
 ${finalProductPrice(product).toFixed(2)}
 
-${escapeHTML(product.currency || "ر.ي")}
+${escapeHTML(
+product.currency
+||
+"ر.ي"
+)}
 
 </div>
 
 </div>
 
 `;
+
 
 const productVariants =
 variants.filter(
@@ -6318,14 +9419,15 @@ product.id
 )
 );
 
+
 let html =
 "";
 
-if(
-productVariants.length
-){
 
-html += `
+if(productVariants.length){
+
+html +=
+`
 
 <label>
 الحجم / الخيار
@@ -6341,29 +9443,15 @@ onchange="giftOptionChanged()"
 </option>
 
 ${
-productVariants.map(
-variant => `
+productVariants
+.map(
+variant =>
+`
 
 <option
 value="${variant.id}"
-
-${
-String(
-giftDraft.variantId
-)
-===
-String(
-variant.id
-)
-?
-"selected"
-:
-""
-}
-
 ${Number(variant.stock || 0) <= 0 ? "disabled" : ""}
 >
-
 ${escapeHTML(
 variant.title
 ||
@@ -6371,28 +9459,6 @@ variant.size
 ||
 "خيار"
 )}
-
-${
-variant.price != null
-?
-" — "
-+
-Number(
-variant.price
-)
-.toFixed(
-2
-)
-+
-" "
-+
-escapeHTML(
-product.currency || "ر.ي"
-)
-:
-""
-}
-
 </option>
 
 `
@@ -6406,11 +9472,13 @@ product.currency || "ر.ي"
 
 }
 
+
 if(
 product.colors?.length
 ){
 
-html += `
+html +=
+`
 
 <label>
 اللون
@@ -6422,22 +9490,18 @@ class="swatches"
 >
 
 ${
-product.colors.map(
-color => `
+product.colors
+.map(
+color =>
+`
 
-<span
-class="swatch ${
-giftDraft.color ===
-color
-?
-"active"
-:
-""
-}"
+<button
+type="button"
+class="swatch"
 onclick="selectGiftSwatch(this,'color')"
 >
 ${escapeHTML(color)}
-</span>
+</button>
 
 `
 )
@@ -6450,11 +9514,13 @@ ${escapeHTML(color)}
 
 }
 
+
 if(
 product.sizes?.length
 ){
 
-html += `
+html +=
+`
 
 <label>
 الحجم
@@ -6466,22 +9532,18 @@ class="swatches"
 >
 
 ${
-product.sizes.map(
-size => `
+product.sizes
+.map(
+size =>
+`
 
-<span
-class="swatch ${
-giftDraft.size ===
-size
-?
-"active"
-:
-""
-}"
+<button
+type="button"
+class="swatch"
 onclick="selectGiftSwatch(this,'size')"
 >
 ${escapeHTML(size)}
-</span>
+</button>
 
 `
 )
@@ -6494,13 +9556,13 @@ ${escapeHTML(size)}
 
 }
 
+
 $("giftProductOptions")
 .innerHTML =
 html;
 
-updateGiftPreview();
-
 }
+
 
 function giftOptionChanged(){
 
@@ -6513,6 +9575,7 @@ document
 ||
 null;
 
+
 const variant =
 giftDraft.variantId
 ?
@@ -6521,6 +9584,7 @@ giftDraft.variantId
 )
 :
 null;
+
 
 if(
 variant?.color
@@ -6531,6 +9595,7 @@ variant.color;
 
 }
 
+
 if(
 variant?.size
 ){
@@ -6540,9 +9605,8 @@ variant.size;
 
 }
 
-updateGiftPreview();
-
 }
+
 
 function selectGiftSwatch(
 element,
@@ -6564,9 +9628,11 @@ item.classList.remove(
 }
 );
 
+
 element.classList.add(
 "active"
 );
+
 
 if(
 type ===
@@ -6578,6 +9644,7 @@ element.textContent.trim();
 
 }
 
+
 if(
 type ===
 "size"
@@ -6588,29 +9655,32 @@ element.textContent.trim();
 
 }
 
-updateGiftPreview();
-
 }
 
+
 function updateGiftPreview(){
+
+let text =
+"";
+
 
 const to =
 $("giftCardTo")
 .value
 .trim();
 
+
 const message =
 $("giftCardMessage")
 .value
 .trim();
+
 
 const from =
 $("giftCardFrom")
 .value
 .trim();
 
-let text =
-"";
 
 if(to){
 
@@ -6621,10 +9691,12 @@ to
 
 }
 
+
 text +=
 message
 ||
 "رسالتك ستظهر هنا";
+
 
 if(from){
 
@@ -6635,67 +9707,13 @@ from;
 
 }
 
+
 $("giftCardPreview")
 .textContent =
 text;
 
 }
 
-function resetGiftDraft(
-resetProduct = true
-){
-
-giftDraft = {
-
-productId:
-resetProduct
-?
-null
-:
-giftDraft.productId,
-
-variantId:null,
-
-color:null,
-
-size:null
-
-};
-
-giftBundleDraft =
-null;
-
-$("giftRecipientName")
-.value =
-"";
-
-$("giftRecipientPhone")
-.value =
-"";
-
-$("giftRecipientAddress")
-.value =
-"";
-
-$("giftCardTo")
-.value =
-"";
-
-$("giftCardMessage")
-.value =
-"";
-
-$("giftCardFrom")
-.value =
-"";
-
-$("giftWrapSelect")
-.value =
-"";
-
-updateGiftPreview();
-
-}
 
 function giftWrapData(){
 
@@ -6703,11 +9721,13 @@ const id =
 $("giftWrapSelect")
 .value;
 
+
 if(!id){
 
 return null;
 
 }
+
 
 return giftOptions.find(
 item =>
@@ -6724,6 +9744,7 @@ null;
 
 }
 
+
 function addGiftToCart(){
 
 const recipientName =
@@ -6731,16 +9752,19 @@ $("giftRecipientName")
 .value
 .trim();
 
+
 const recipientPhone =
 normalizePhone(
 $("giftRecipientPhone")
 .value
 );
 
+
 const recipientAddress =
 $("giftRecipientAddress")
 .value
 .trim();
+
 
 if(
 !recipientName
@@ -6754,12 +9778,15 @@ toast(
 "أكمل بيانات مستلم الهدية"
 );
 
+
 return;
 
 }
 
+
 const wrap =
 giftWrapData();
+
 
 const giftData = {
 
@@ -6775,7 +9802,9 @@ null,
 
 wrap_price:
 Number(
-wrap?.price || 0
+wrap?.price
+||
+0
 ),
 
 recipient_name:
@@ -6810,97 +9839,31 @@ null
 
 };
 
-if(
-giftBundleDraft
-){
+
+/* BUNDLE GIFT */
+
+if(giftBundleDraft){
 
 const bundle =
 giftBundleDraft;
 
-if(
-Number(
-bundle.stock || 0
-)
-<=
-0
-){
-
-toast(
-"الباقة غير متوفرة"
-);
-
-return;
-
-}
-
-const bundleGiftCount =
-cart
-.filter(
-item =>
-item.type ===
-"bundle"
-&&
-String(
-item.bundle_id
-||
-item.id
-)
-===
-String(
-bundle.id
-)
-)
-.reduce(
-(
-sum,
-item
-) =>
-sum
-+
-Number(
-item.qty
-||
-0
-),
-0
-);
-
-if(
-bundleGiftCount
->=
-Number(
-bundle.stock
-||
-0
-)
-){
-
-toast(
-"وصلت للكمية المتوفرة من الباقة"
-);
-
-return;
-
-}
-
-const key =
-[
-"bundle-gift",
-bundle.id,
-Date.now()
-]
-.join(
-"|"
-);
 
 cart.push({
 
-key,
+key:
+"bundle-gift|"
++
+bundle.id
++
+"|"
++
+Date.now(),
 
 type:
 "bundle",
 
-gift:true,
+gift:
+true,
 
 id:
 String(
@@ -6927,44 +9890,58 @@ bundle.currency
 
 price:
 Number(
-bundle.offer_price || 0
+bundle.offer_price
+||
+0
 ),
 
-qty:1,
+qty:
+1,
 
 gift_data:
 giftData
 
 });
 
+
 saveCart();
+
 
 closeGiftBuilder();
 
+
 toast(
-"تمت إضافة الباقة كهدية للسلة 🎁"
+"تمت إضافة الباقة كهدية 🎁"
 );
 
+
 openCart();
+
 
 return;
 
 }
+
+
+/* PRODUCT GIFT */
 
 const product =
 findProduct(
 giftDraft.productId
 );
 
+
 if(!product){
 
 toast(
-"اختر المنتج أولاً"
+"اختر المنتج"
 );
+
 
 return;
 
 }
+
 
 const variant =
 giftDraft.variantId
@@ -6975,43 +9952,23 @@ giftDraft.variantId
 :
 null;
 
-if(
-variant
-&&
-Number(
-variant.stock || 0
-)
-<=
-0
-){
-
-toast(
-"الخيار المختار غير متوفر"
-);
-
-return;
-
-}
-
-const key =
-[
-"gift",
-product.id,
-giftDraft.variantId || "",
-Date.now()
-]
-.join(
-"|"
-);
 
 cart.push({
 
-key,
+key:
+"gift|"
++
+product.id
++
+"|"
++
+Date.now(),
 
 type:
 "product",
 
-gift:true,
+gift:
+true,
 
 id:
 String(
@@ -7060,60 +10017,97 @@ variant?.size
 ||
 null,
 
-qty:1,
+qty:
+1,
 
 gift_data:
 giftData
 
 });
 
+
 saveCart();
 
+
 closeGiftBuilder();
+
 
 toast(
 "تمت إضافة الهدية للسلة 🎁"
 );
 
+
 openCart();
 
 }
 
+
+function closeGiftBuilder(){
+
+$("giftModal")
+.classList.remove(
+"show"
+);
+
+
+giftBundleDraft =
+null;
+
+
+$("giftProductChooser")
+.style.display =
+"block";
+
+
+updateMainScrim();
+
+}
+
+
+/* =========================================================
+   CART
+========================================================= */
+
 function cartItemPrice(item){
 
 if(
-item.type ===
+item.type
+===
 "bundle"
 ){
 
 let price =
 Number(
-item.price || 0
+item.price
+||
+0
 );
+
 
 if(
 item.gift
-&&
-item.gift_data
 ){
 
 price +=
 Number(
-item.gift_data.wrap_price
+item.gift_data?.wrap_price
 ||
 0
 );
 
 }
 
+
 return price;
 
 }
+
 
 const product =
 findProduct(
 item.id
 );
+
 
 if(!product){
 
@@ -7121,10 +10115,12 @@ return 0;
 
 }
 
+
 let price =
 finalProductPrice(
 product
 );
+
 
 if(
 item.variant_id
@@ -7135,8 +10131,11 @@ findVariant(
 item.variant_id
 );
 
+
 if(
-variant?.price != null
+variant?.price
+!=
+null
 ){
 
 price =
@@ -7148,24 +10147,25 @@ variant.price
 
 }
 
+
 if(
 item.gift
-&&
-item.gift_data
 ){
 
 price +=
 Number(
-item.gift_data.wrap_price
+item.gift_data?.wrap_price
 ||
 0
 );
 
 }
 
+
 return price;
 
 }
+
 
 function cleanCartAgainstProducts(){
 
@@ -7177,7 +10177,9 @@ if(
 !item
 ||
 Number(
-item.qty || 0
+item.qty
+||
+0
 )
 <=
 0
@@ -7187,8 +10189,10 @@ return false;
 
 }
 
+
 if(
-item.type ===
+item.type
+===
 "bundle"
 ){
 
@@ -7200,6 +10204,7 @@ return true;
 
 }
 
+
 return !!findBundle(
 item.bundle_id
 ||
@@ -7207,6 +10212,7 @@ item.id
 );
 
 }
+
 
 if(
 !products.length
@@ -7216,6 +10222,7 @@ return true;
 
 }
 
+
 return !!findProduct(
 item.id
 );
@@ -7223,27 +10230,8 @@ item.id
 }
 );
 
-if(
-cart.length
-){
-
-localStorage.setItem(
-"alshuaiibe_cart",
-JSON.stringify(
-cart
-)
-);
-
-}
-else{
-
-localStorage.removeItem(
-"alshuaiibe_cart"
-);
-
 }
 
-}
 
 function saveCart(){
 
@@ -7255,15 +10243,16 @@ item
 item.id
 &&
 Number(
-item.qty || 0
+item.qty
+||
+0
 )
 >
 0
 );
 
-if(
-cart.length
-){
+
+if(cart.length){
 
 localStorage.setItem(
 "alshuaiibe_cart",
@@ -7281,9 +10270,11 @@ localStorage.removeItem(
 
 }
 
+
 renderCart();
 
 }
+
 
 function renderCart(){
 
@@ -7296,10 +10287,13 @@ item
 sum
 +
 Number(
-item.qty || 0
+item.qty
+||
+0
 ),
 0
 );
+
 
 $("cartCount")
 .textContent =
@@ -7307,12 +10301,14 @@ String(
 count
 );
 
+
 if(
 !cart.length
 ){
 
 $("cartBody")
-.innerHTML = `
+.innerHTML =
+`
 
 <div class="empty">
 السلة فارغة
@@ -7320,16 +10316,20 @@ $("cartBody")
 
 `;
 
+
 $("cartTotal")
 .textContent =
 "0";
+
 
 return;
 
 }
 
-const currencyTotals =
+
+const totals =
 {};
+
 
 $("cartBody")
 .innerHTML =
@@ -7342,40 +10342,34 @@ cartItemPrice(
 item
 );
 
+
 const currency =
 item.currency
 ||
-(
-item.type ===
-"bundle"
-?
-findBundle(
-item.bundle_id || item.id
-)?.currency
-:
-findProduct(
-item.id
-)?.currency
-)
-||
 "ر.ي";
 
-currencyTotals[
+
+totals[
 currency
 ] =
 (
-currencyTotals[
+totals[
 currency
 ]
 ||
 0
 )
 +
+(
 price
 *
 Number(
-item.qty || 1
+item.qty
+||
+1
+)
 );
+
 
 return `
 
@@ -7388,7 +10382,6 @@ item.image
 
 <img
 src="${escapeHTML(item.image)}"
-alt="${escapeHTML(item.name || "")}"
 >
 
 `
@@ -7400,22 +10393,22 @@ alt="${escapeHTML(item.name || "")}"
 
 <div class="cart-name">
 
-${
-item.gift
-?
-"🎁 "
-:
-""
-}
+${item.gift ? "🎁 " : ""}
 
-${escapeHTML(item.name || "")}
+${escapeHTML(
+item.name
+||
+""
+)}
 
 </div>
+
 
 <div class="cart-type">
 
 ${
-item.type ===
+item.type
+===
 "bundle"
 ?
 "🔥 باقة"
@@ -7423,22 +10416,19 @@ item.type ===
 "منتج"
 }
 
-${
-item.gift
-?
-" · 🎁 هدية"
-:
-""
-}
+${item.gift ? " · هدية" : ""}
 
 </div>
+
 
 <div class="cart-meta">
 
 ${
 item.variant_title
 ?
-escapeHTML(item.variant_title)
+escapeHTML(
+item.variant_title
+)
 :
 ""
 }
@@ -7448,7 +10438,9 @@ item.color
 ?
 " · "
 +
-escapeHTML(item.color)
+escapeHTML(
+item.color
+)
 :
 ""
 }
@@ -7458,22 +10450,31 @@ item.size
 ?
 " · "
 +
-escapeHTML(item.size)
+escapeHTML(
+item.size
+)
 :
 ""
 }
 
 </div>
 
+
 <div class="cart-meta">
 
 ${price.toFixed(2)}
+
 ${escapeHTML(currency)}
 
 ×
-${Number(item.qty || 1)}
+${Number(
+item.qty
+||
+1
+)}
 
 </div>
+
 
 ${
 item.gift
@@ -7519,18 +10520,6 @@ item.gift_data?.recipient_address
 
 </div>
 
-${
-item.gift_data?.wrap_name
-?
-`
-
-<div>
-
-التغليف:
-${escapeHTML(
-item.gift_data.wrap_name
-)}
-
 </div>
 
 `
@@ -7538,31 +10527,6 @@ item.gift_data.wrap_name
 ""
 }
 
-${
-item.gift_data?.card_message
-?
-`
-
-<div>
-
-البطاقة:
-${escapeHTML(
-item.gift_data.card_message
-)}
-
-</div>
-
-`
-:
-""
-}
-
-</div>
-
-`
-:
-""
-}
 
 <div class="qty">
 
@@ -7584,11 +10548,6 @@ onclick="changeQty('${item.key}',1)"
 
 <button
 onclick="removeCartItem('${item.key}')"
-style="
-width:auto;
-padding:0 8px;
-color:var(--danger)
-"
 >
 حذف
 </button>
@@ -7605,10 +10564,11 @@ color:var(--danger)
 )
 .join("");
 
+
 $("cartTotal")
 .textContent =
 Object.entries(
-currencyTotals
+totals
 )
 .map(
 (
@@ -7627,6 +10587,7 @@ value
 
 }
 
+
 function changeQty(
 key,
 change
@@ -7635,9 +10596,11 @@ change
 const item =
 cart.find(
 item =>
-item.key ===
+item.key
+===
 key
 );
+
 
 if(!item){
 
@@ -7645,7 +10608,8 @@ return;
 
 }
 
-const nextQty =
+
+const next =
 Number(
 item.qty
 ||
@@ -7658,26 +10622,29 @@ change
 0
 );
 
+
 if(
-nextQty <=
+next <=
 0
 ){
 
-cart =
-cart.filter(
-cartItem =>
-cartItem.key !==
+removeCartItem(
 key
 );
 
-saveCart();
 
 return;
 
 }
 
+
+let maxStock =
+Infinity;
+
+
 if(
-item.type ===
+item.type
+===
 "bundle"
 ){
 
@@ -7688,101 +10655,38 @@ item.bundle_id
 item.id
 );
 
-if(!bundle){
 
-toast(
-"الباقة لم تعد متوفرة"
-);
+if(bundle){
 
-return;
-
-}
-
-const otherQty =
-cart
-.filter(
-other =>
-other.key !==
-item.key
-&&
-other.type ===
-"bundle"
-&&
-String(
-other.bundle_id
-||
-other.id
-)
-===
-String(
-bundle.id
-)
-)
-.reduce(
-(
-sum,
-other
-) =>
-sum
-+
-Number(
-other.qty
-||
-0
-),
-0
-);
-
-if(
-nextQty
-+
-otherQty
->
+maxStock =
 Number(
 bundle.stock
 ||
 0
-)
-){
-
-toast(
-"وصلت للكمية المتوفرة من الباقة"
 );
 
-return;
-
 }
 
-item.qty =
-nextQty;
-
-saveCart();
-
-return;
-
 }
+else{
 
 const product =
 findProduct(
 item.id
 );
 
-if(!product){
 
-toast(
-"المنتج لم يعد متوفراً"
-);
+if(product){
 
-return;
-
-}
-
-let maxStock =
+maxStock =
 Number(
 product.stock
 ||
 0
 );
+
+}
+
 
 if(
 item.variant_id
@@ -7792,6 +10696,7 @@ const variant =
 findVariant(
 item.variant_id
 );
+
 
 if(variant){
 
@@ -7809,8 +10714,11 @@ variant.stock
 
 }
 
+}
+
+
 if(
-nextQty >
+next >
 maxStock
 ){
 
@@ -7818,38 +10726,47 @@ toast(
 "وصلت للكمية المتوفرة"
 );
 
+
 return;
 
 }
 
+
 item.qty =
-nextQty;
+next;
+
 
 saveCart();
 
 }
+
 
 function removeCartItem(key){
 
 cart =
 cart.filter(
 item =>
-item.key !==
+item.key
+!==
 key
 );
+
 
 saveCart();
 
 }
 
+
 function openCart(){
 
 renderCart();
+
 
 $("cartScrim")
 .classList.add(
 "show"
 );
+
 
 $("cartDrawer")
 .classList.add(
@@ -7857,6 +10774,7 @@ $("cartDrawer")
 );
 
 }
+
 
 function closeCart(){
 
@@ -7865,6 +10783,7 @@ $("cartScrim")
 "show"
 );
 
+
 $("cartDrawer")
 .classList.remove(
 "show"
@@ -7872,14 +10791,19 @@ $("cartDrawer")
 
 }
 
+
+/* =========================================================
+   TOTALS
+========================================================= */
+
 function calculateSubtotal(){
 
 return cart.reduce(
 (
-total,
+sum,
 item
 ) =>
-total
+sum
 +
 (
 cartItemPrice(
@@ -7887,7 +10811,9 @@ item
 )
 *
 Number(
-item.qty || 1
+item.qty
+||
+1
 )
 ),
 0
@@ -7895,173 +10821,16 @@ item.qty || 1
 
 }
 
-function openCheckout(){
-
-cleanCartAgainstProducts();
-
-saveCart();
-
-if(
-!cart.length
-){
-
-toast(
-"السلة فارغة"
-);
-
-return;
-
-}
-
-closeCart();
-
-currentCoupon =
-null;
-
-$("couponInput")
-.value =
-"";
-
-$("couponMessage")
-.textContent =
-"";
-
-renderPaymentDetails();
-
-showMainScrim();
-
-$("checkoutModal")
-.classList.add(
-"show"
-);
-
-}
-
-function closeCheckout(){
-
-$("checkoutModal")
-.classList.remove(
-"show"
-);
-
-updateMainScrim();
-
-}
-
-async function applyCoupon(){
-
-const code =
-$("couponInput")
-.value
-.trim()
-.toUpperCase();
-
-if(!code){
-
-currentCoupon =
-null;
-
-$("couponMessage")
-.textContent =
-"";
-
-renderPaymentDetails();
-
-return;
-
-}
-
-const {
-data,
-error
-} =
-await client
-.from(
-"coupons"
-)
-.select(
-"*"
-)
-.eq(
-"code",
-code
-)
-.eq(
-"is_active",
-true
-)
-.maybeSingle();
-
-if(
-error
-||
-!data
-){
-
-currentCoupon =
-null;
-
-$("couponMessage")
-.style.color =
-"var(--danger)";
-
-$("couponMessage")
-.textContent =
-"الكوبون غير صحيح.";
-
-renderPaymentDetails();
-
-return;
-
-}
-
-if(
-data.expires_at
-&&
-new Date(
-data.expires_at
-)
-<
-new Date()
-){
-
-currentCoupon =
-null;
-
-$("couponMessage")
-.style.color =
-"var(--danger)";
-
-$("couponMessage")
-.textContent =
-"انتهت صلاحية الكوبون.";
-
-return;
-
-}
-
-currentCoupon =
-data;
-
-$("couponMessage")
-.style.color =
-"var(--ok)";
-
-$("couponMessage")
-.textContent =
-"تم تطبيق الكوبون ✓";
-
-renderPaymentDetails();
-
-}
 
 function calculateTotal(){
 
 const subtotal =
 calculateSubtotal();
 
+
 let discount =
 0;
+
 
 if(
 currentCoupon
@@ -8073,6 +10842,7 @@ currentCoupon.min_order
 ||
 0
 );
+
 
 if(
 subtotal >=
@@ -8111,6 +10881,7 @@ currentCoupon.value
 100
 );
 
+
 if(
 currentCoupon.max_discount
 !=
@@ -8133,6 +10904,7 @@ currentCoupon.max_discount
 
 }
 
+
 return {
 
 subtotal,
@@ -8149,6 +10921,211 @@ subtotal - discount
 
 }
 
+
+/* =========================================================
+   CHECKOUT
+========================================================= */
+
+function openCheckout(){
+
+cleanCartAgainstProducts();
+
+
+saveCart();
+
+
+if(
+!cart.length
+){
+
+toast(
+"السلة فارغة"
+);
+
+
+return;
+
+}
+
+
+closeCart();
+
+
+currentCoupon =
+null;
+
+
+$("couponInput")
+.value =
+"";
+
+
+$("couponMessage")
+.textContent =
+"";
+
+
+renderCheckoutPaymentMethods();
+
+
+renderPaymentDetails();
+
+
+showMainScrim();
+
+
+$("checkoutModal")
+.classList.add(
+"show"
+);
+
+}
+
+
+function closeCheckout(){
+
+$("checkoutModal")
+.classList.remove(
+"show"
+);
+
+
+updateMainScrim();
+
+}
+
+
+/* =========================================================
+   COUPON
+========================================================= */
+
+async function applyCoupon(){
+
+const code =
+$("couponInput")
+.value
+.trim()
+.toUpperCase();
+
+
+if(!code){
+
+currentCoupon =
+null;
+
+
+$("couponMessage")
+.textContent =
+"";
+
+
+renderPaymentDetails();
+
+
+return;
+
+}
+
+
+const {
+data,
+error
+} =
+await client
+.from(
+"coupons"
+)
+.select(
+"*"
+)
+.eq(
+"code",
+code
+)
+.eq(
+"is_active",
+true
+)
+.maybeSingle();
+
+
+if(
+error
+||
+!data
+){
+
+currentCoupon =
+null;
+
+
+$("couponMessage")
+.style.color =
+"var(--danger)";
+
+
+$("couponMessage")
+.textContent =
+"الكوبون غير صحيح.";
+
+
+return;
+
+}
+
+
+if(
+data.expires_at
+&&
+new Date(
+data.expires_at
+)
+<
+new Date()
+){
+
+currentCoupon =
+null;
+
+
+$("couponMessage")
+.style.color =
+"var(--danger)";
+
+
+$("couponMessage")
+.textContent =
+"انتهت صلاحية الكوبون.";
+
+
+return;
+
+}
+
+
+currentCoupon =
+data;
+
+
+$("couponMessage")
+.style.color =
+"var(--ok)";
+
+
+$("couponMessage")
+.textContent =
+"تم تطبيق الكوبون ✓";
+
+
+renderPaymentDetails();
+
+}
+
+
+/* =========================================================
+   PAYMENT DETAILS
+========================================================= */
+
 function renderPaymentDetails(){
 
 if(
@@ -8159,22 +11136,196 @@ return;
 
 }
 
-const method =
+
+const methodId =
 $("paymentMethod")
 .value;
+
+
+const methods =
+getPaymentMethods();
+
+
+const selected =
+methods.find(
+method =>
+String(
+method.id
+||
+method.code
+||
+method.name
+)
+===
+String(
+methodId
+)
+);
+
 
 const totals =
 calculateTotal();
 
+
 let text =
 "";
 
+
 if(
-method ===
+selected?.description
+){
+
+text +=
+selected.description;
+
+}
+
+
+/* لو كانت تحويل بنكي */
+
+const isBank =
+selected?.type
+===
+"bank"
+||
+methodId
+===
+"bank"
+||
+String(
+selected?.name
+||
+""
+)
+.includes(
+"بنك"
+)
+||
+String(
+selected?.name
+||
+""
+)
+.includes(
+"تحويل"
+);
+
+
+if(isBank){
+
+const accounts =
+getBankAccounts()
+.filter(
+account =>
+account.enabled
+!== false
+);
+
+
+if(accounts.length){
+
+text +=
+(
+text
+?
+"\n\n"
+:
+""
+)
++
+accounts
+.map(
+account => {
+
+let block =
+"";
+
+
+if(
+account.bankName
+){
+
+block +=
+"البنك: "
++
+account.bankName;
+
+}
+
+
+if(
+account.accountName
+){
+
+block +=
+"\nاسم الحساب: "
++
+account.accountName;
+
+}
+
+
+if(
+account.accountNumber
+){
+
+block +=
+"\nرقم الحساب: "
++
+account.accountNumber;
+
+}
+
+
+if(
+account.iban
+){
+
+block +=
+"\nIBAN: "
++
+account.iban;
+
+}
+
+
+if(
+account.instructions
+){
+
+block +=
+"\n"
++
+account.instructions;
+
+}
+
+
+return block;
+
+}
+)
+.join(
+"\n\n──────────\n\n"
+);
+
+}
+
+}
+
+
+/* دعم النظام القديم */
+
+if(
+!text
+&&
+methodId
+===
 "bank"
 ){
 
-text = `البنك: ${
+text =
+`البنك: ${
 paymentSettings.bankName
 ||
 "—"
@@ -8205,26 +11356,32 @@ paymentSettings.bankInstructions
 }`;
 
 }
-else{
+
+
+if(!text){
 
 text =
-paymentSettings.depositDetails
-||
-"يرجى التواصل معنا للحصول على بيانات الإيداع.";
+"سيتم توضيح تفاصيل الدفع بعد تأكيد الطلب.";
 
 }
+
 
 $("paymentDetails")
 .textContent =
 text
 +
-"\n\nالمبلغ المطلوب تقريباً: "
+"\n\nالمبلغ المطلوب: "
 +
 totals.total.toFixed(
 2
 );
 
 }
+
+
+/* =========================================================
+   SUBMIT ORDER
+========================================================= */
 
 async function submitOrder(){
 
@@ -8233,21 +11390,25 @@ $("checkoutName")
 .value
 .trim();
 
+
 const phone =
 normalizePhone(
 $("checkoutPhone")
 .value
 );
 
+
 const address =
 $("checkoutAddress")
 .value
 .trim();
 
+
 const notes =
 $("checkoutNotes")
 .value
 .trim();
+
 
 if(
 !name
@@ -8261,9 +11422,11 @@ toast(
 "يرجى تعبئة بيانات المشتري"
 );
 
+
 return;
 
 }
+
 
 if(
 !cart.length
@@ -8273,27 +11436,35 @@ toast(
 "السلة فارغة"
 );
 
+
 return;
 
 }
 
+
 const button =
 $("submitOrderButton");
+
 
 button.disabled =
 true;
 
+
 button.textContent =
 "جارِ إرسال الطلب...";
 
+
 try{
+
 
 const items =
 cart.map(
 item => {
 
+
 if(
-item.type ===
+item.type
+===
 "bundle"
 ){
 
@@ -8324,23 +11495,23 @@ item.qty
 ),
 
 gift:
-item.gift ===
+item.gift
+===
 true,
 
 gift_data:
 item.gift
 ?
-(
 item.gift_data
 ||
 {}
-)
 :
 null
 
 };
 
 }
+
 
 return {
 
@@ -8384,17 +11555,16 @@ item.size
 null,
 
 gift:
-item.gift ===
+item.gift
+===
 true,
 
 gift_data:
 item.gift
 ?
-(
 item.gift_data
 ||
 {}
-)
 :
 null
 
@@ -8402,6 +11572,7 @@ null
 
 }
 );
+
 
 const {
 data,
@@ -8440,75 +11611,71 @@ items
 }
 );
 
+
 if(error){
 
 throw error;
 
 }
 
+
 if(
-!data?.success
+data?.success
+===
+false
 ){
 
 throw new Error(
-data?.message
+data.message
 ||
 "تعذر إنشاء الطلب"
 );
 
 }
 
+
 const orderNumber =
-data.order_number
+data?.order_number
 ||
 "";
 
-const trackingToken =
-data.tracking_token
-||
-"";
-
-const total =
-Number(
-data.total
-||
-0
-);
-
-const currency =
-data.currency
-||
-"";
 
 localStorage.setItem(
 "alshuaiibe_last_phone",
 phone
 );
 
+
 if(
-trackingToken
+data?.tracking_token
 ){
 
 localStorage.setItem(
 "alshuaiibe_last_tracking_token",
-trackingToken
+data.tracking_token
 );
 
 }
 
+
 cart =
 [];
+
 
 localStorage.removeItem(
 "alshuaiibe_cart"
 );
 
+
 currentCoupon =
 null;
 
+
 renderCart();
 
+
 closeCheckout();
+
 
 await Promise.all([
 
@@ -8520,59 +11687,32 @@ fetchBundles()
 
 ]);
 
+
 toast(
-"تم إرسال طلبك بنجاح ✓"
+"تم إرسال طلبك ✓"
 );
 
-let successMessage =
+
+alert(
 
 "تم إنشاء طلبك بنجاح ✅\n\n"
 +
 "رقم الطلب: #"
 +
-orderNumber;
-
-if(
-total > 0
-){
-
-successMessage +=
-
-"\nالإجمالي: "
+orderNumber
 +
-total.toFixed(
-2
-)
-+
-" "
-+
-currency;
+"\n\nيمكنك متابعة الطلب من قسم «طلباتي»."
 
-}
-
-if(
-data.is_gift
-){
-
-successMessage +=
-
-"\n\n🎁 تم تسجيل بيانات الهدية والمستلم مع الطلب.";
-
-}
-
-successMessage +=
-
-"\n\nيمكنك متابعة الطلب من قسم «طلباتي».";
-
-alert(
-successMessage
 );
+
 
 $("ordersPhone")
 .value =
 phone;
 
+
 openMyOrders();
+
 
 await loadCustomerOrders();
 
@@ -8580,11 +11720,12 @@ await loadCustomerOrders();
 catch(error){
 
 console.error(
-"Order submission error:",
 error
 );
 
+
 alert(
+
 "تعذر إرسال الطلب:\n"
 +
 (
@@ -8592,6 +11733,7 @@ error.message
 ||
 "حدث خطأ غير معروف"
 )
+
 );
 
 }
@@ -8600,12 +11742,18 @@ finally{
 button.disabled =
 false;
 
+
 button.textContent =
 "تأكيد الطلب";
 
 }
 
 }
+
+
+/* =========================================================
+   REVIEWS
+========================================================= */
 
 function renderReviews(){
 
@@ -8614,7 +11762,8 @@ if(
 ){
 
 $("reviewsRow")
-.innerHTML = `
+.innerHTML =
+`
 
 <div class="empty">
 لا توجد تقييمات بعد.
@@ -8622,39 +11771,43 @@ $("reviewsRow")
 
 `;
 
+
 return;
 
 }
+
 
 $("reviewsRow")
 .innerHTML =
 reviews
 .map(
-review => `
+review =>
+`
 
 <div class="review-card">
 
 <div class="review-stars">
 
-${
-"★".repeat(
+${"★".repeat(
 Number(
-review.rating || 0
+review.rating
+||
+0
 )
-)
-}
+)}
 
-${
-"☆".repeat(
+${"☆".repeat(
 Math.max(
 0,
-5 -
+5
+-
 Number(
-review.rating || 0
+review.rating
+||
+0
 )
 )
-)
-}
+)}
 
 </div>
 
@@ -8704,6 +11857,11 @@ review.is_verified_purchase
 
 }
 
+
+/* =========================================================
+   NOTIFICATIONS
+========================================================= */
+
 function renderNotifications(){
 
 if(
@@ -8711,28 +11869,33 @@ if(
 ){
 
 $("notificationsList")
-.innerHTML =
+.textContent =
 "لا توجد إشعارات حالياً.";
+
 
 $("notificationDot")
 .classList.remove(
 "show"
 );
 
+
 return;
 
 }
+
 
 $("notificationDot")
 .classList.add(
 "show"
 );
 
+
 $("notificationsList")
 .innerHTML =
 notifications
 .map(
-notification => `
+notification =>
+`
 
 <div
 class="notification-item"
@@ -8762,11 +11925,23 @@ src="${escapeHTML(notification.image_url)}"
 <div>
 
 <div class="notification-title">
-${escapeHTML(notification.title || "")}
+
+${escapeHTML(
+notification.title
+||
+""
+)}
+
 </div>
 
 <div class="notification-message">
-${escapeHTML(notification.message || "")}
+
+${escapeHTML(
+notification.message
+||
+""
+)}
+
 </div>
 
 </div>
@@ -8779,6 +11954,23 @@ ${escapeHTML(notification.message || "")}
 
 }
 
+
+function toggleNotifications(){
+
+$("notificationsPanel")
+.classList.toggle(
+"show"
+);
+
+
+$("notificationDot")
+.classList.remove(
+"show"
+);
+
+}
+
+
 function openNotification(link){
 
 if(link){
@@ -8790,23 +11982,15 @@ link,
 
 }
 
+
 toggleNotifications();
 
 }
 
-function toggleNotifications(){
 
-$("notificationsPanel")
-.classList.toggle(
-"show"
-);
-
-$("notificationDot")
-.classList.remove(
-"show"
-);
-
-}
+/* =========================================================
+   ORDERS
+========================================================= */
 
 function orderStatusText(status){
 
@@ -8843,6 +12027,7 @@ status
 
 }
 
+
 function openMyOrders(){
 
 const phone =
@@ -8852,16 +12037,20 @@ localStorage.getItem(
 ||
 "";
 
+
 $("ordersPhone")
 .value =
 phone;
 
+
 showMainScrim();
+
 
 $("myOrdersModal")
 .classList.add(
 "show"
 );
+
 
 if(phone){
 
@@ -8871,6 +12060,7 @@ loadCustomerOrders();
 
 }
 
+
 function closeMyOrders(){
 
 $("myOrdersModal")
@@ -8878,9 +12068,11 @@ $("myOrdersModal")
 "show"
 );
 
+
 updateMainScrim();
 
 }
+
 
 async function loadCustomerOrders(){
 
@@ -8890,32 +12082,39 @@ $("ordersPhone")
 .value
 );
 
+
 if(!phone){
 
 toast(
 "أدخل رقم الهاتف"
 );
 
+
 return;
 
 }
 
+
 currentCustomerPhone =
 phone;
+
 
 localStorage.setItem(
 "alshuaiibe_last_phone",
 phone
 );
 
+
 $("customerOrdersResults")
-.innerHTML = `
+.innerHTML =
+`
 
 <div class="empty">
 جارِ تحميل الطلبات...
 </div>
 
 `;
+
 
 const {
 data,
@@ -8931,18 +12130,18 @@ phone
 }
 );
 
+
 if(error){
 
-console.error(
-error
-);
-
 $("customerOrdersResults")
-.innerHTML = `
+.innerHTML =
+`
 
 <div class="empty">
 
-تعذر تحميل الطلبات.<br>
+تعذر تحميل الطلبات.
+
+<br>
 
 ${escapeHTML(
 error.message
@@ -8954,18 +12153,22 @@ error.message
 
 `;
 
+
 return;
 
 }
+
 
 customerOrders =
 data
 ||
 [];
 
+
 renderCustomerOrders();
 
 }
+
 
 function renderCustomerOrders(){
 
@@ -8974,7 +12177,8 @@ if(
 ){
 
 $("customerOrdersResults")
-.innerHTML = `
+.innerHTML =
+`
 
 <div class="empty">
 لا توجد طلبات بهذا الرقم.
@@ -8982,9 +12186,11 @@ $("customerOrdersResults")
 
 `;
 
+
 return;
 
 }
+
 
 $("customerOrdersResults")
 .innerHTML =
@@ -9001,6 +12207,7 @@ order.items
 :
 [];
 
+
 return `
 
 <div class="customer-order">
@@ -9010,14 +12217,20 @@ return `
 <div>
 
 <strong>
-طلب #${escapeHTML(order.order_number || "")}
+
+طلب #
+${escapeHTML(
+order.order_number
+||
+""
+)}
+
 </strong>
 
 <div
 style="
 font-size:11px;
-color:var(--ink-soft);
-margin-top:3px
+margin-top:4px
 "
 >
 
@@ -9039,35 +12252,35 @@ order.created_at
 </div>
 
 <span class="order-status">
+
 ${escapeHTML(
 orderStatusText(
 order.status
 )
 )}
+
 </span>
 
 </div>
 
 <div class="customer-order-body">
 
-<div>
-
 <strong>
 الإجمالي:
 </strong>
 
 ${Number(
-order.total || 0
-)
-.toFixed(
-2
-)}
+order.total
+||
+0
+).toFixed(2)}
 
 ${escapeHTML(
-order.currency || ""
+order.currency
+||
+""
 )}
 
-</div>
 
 ${
 order.is_gift
@@ -9076,14 +12289,9 @@ order.is_gift
 
 <div
 style="
-margin-top:8px;
-display:inline-flex;
-background:#fff0c7;
-color:#80591a;
-padding:5px 9px;
-border-radius:999px;
-font-size:11px;
-font-weight:700
+margin-top:10px;
+font-weight:800;
+color:var(--gold)
 "
 >
 🎁 يحتوي الطلب على هدية
@@ -9094,16 +12302,19 @@ font-weight:700
 ""
 }
 
+
 <h4>
 المنتجات
 </h4>
+
 
 ${
 items.length
 ?
 items
 .map(
-item => `
+item =>
+`
 
 <div class="customer-order-item">
 
@@ -9114,7 +12325,6 @@ item.product_image
 
 <img
 src="${escapeHTML(item.product_image)}"
-alt="${escapeHTML(item.product_name || "")}"
 >
 
 `
@@ -9127,7 +12337,8 @@ alt="${escapeHTML(item.product_name || "")}"
 <strong>
 
 ${
-item.item_type ===
+item.item_type
+===
 "bundle"
 ?
 "🔥 "
@@ -9135,20 +12346,27 @@ item.item_type ===
 ""
 }
 
-${escapeHTML(item.product_name || "")}
+${escapeHTML(
+item.product_name
+||
+""
+)}
 
 </strong>
 
 <div
 style="
 font-size:11px;
-color:var(--ink-soft);
-margin-top:3px
+color:var(--ink-soft)
 "
 >
 
 الكمية:
-${Number(item.quantity || 1)}
+${Number(
+item.quantity
+||
+1
+)}
 
 ${
 item.color
@@ -9186,12 +12404,7 @@ item.size
 :
 `
 
-<div
-style="
-font-size:12px;
-color:var(--ink-soft)
-"
->
+<div class="empty">
 لا توجد تفاصيل منتجات.
 </div>
 
@@ -9210,6 +12423,11 @@ color:var(--ink-soft)
 
 }
 
+
+/* =========================================================
+   MODALS
+========================================================= */
+
 function showMainScrim(){
 
 $("modalScrim")
@@ -9219,31 +12437,34 @@ $("modalScrim")
 
 }
 
+
 function updateMainScrim(){
 
-const open =
+const anyOpen =
 [
 "productModal",
 "giftModal",
 "checkoutModal",
-"myOrdersModal"
+"myOrdersModal",
+"policyModal"
 ]
 .some(
 id =>
 $(id)
-.classList
-.contains(
+.classList.contains(
 "show"
 )
 );
 
+
 $("modalScrim")
 .classList.toggle(
 "show",
-open
+anyOpen
 );
 
 }
+
 
 function closeAllModals(){
 
@@ -9251,7 +12472,8 @@ function closeAllModals(){
 "productModal",
 "giftModal",
 "checkoutModal",
-"myOrdersModal"
+"myOrdersModal",
+"policyModal"
 ]
 .forEach(
 id => {
@@ -9264,32 +12486,40 @@ $(id)
 }
 );
 
+
 currentProduct =
 null;
 
+
 giftBundleDraft =
 null;
+
 
 $("giftProductChooser")
 .style.display =
 "block";
 
-$("giftProductSelect")
-.disabled =
-false;
 
 updateMainScrim();
 
 }
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
 
 function goShop(){
 
 activeCategory =
 "الكل";
 
+
 renderCategoryFilters();
 
+
 renderProducts();
+
 
 scrollSection(
 "shop"
@@ -9297,15 +12527,18 @@ scrollSection(
 
 }
 
-async function initializeStore(){
 
-$("cartCount")
-.textContent =
-"0";
+/* =========================================================
+   START
+========================================================= */
+
+async function initializeStore(){
 
 renderCart();
 
+
 await fetchSettings();
+
 
 await Promise.all([
 
@@ -9321,6 +12554,7 @@ fetchNotifications()
 
 ]);
 
+
 await Promise.all([
 
 fetchProducts(),
@@ -9329,9 +12563,12 @@ fetchBundles()
 
 ]);
 
+
 cleanCartAgainstProducts();
 
+
 saveCart();
+
 
 client
 .channel(
@@ -9348,11 +12585,7 @@ schema:"public",
 table:"products"
 },
 
-async () => {
-
-await fetchProducts();
-
-}
+fetchProducts
 
 )
 
@@ -9369,6 +12602,7 @@ table:"categories"
 async () => {
 
 await fetchCategories();
+
 
 renderProducts();
 
@@ -9390,6 +12624,7 @@ async () => {
 
 await fetchSettings();
 
+
 renderProducts();
 
 }
@@ -9406,11 +12641,7 @@ schema:"public",
 table:"product_variants"
 },
 
-async () => {
-
-await fetchVariants();
-
-}
+fetchVariants
 
 )
 
@@ -9424,11 +12655,7 @@ schema:"public",
 table:"gift_options"
 },
 
-async () => {
-
-await fetchGiftOptions();
-
-}
+fetchGiftOptions
 
 )
 
@@ -9442,11 +12669,7 @@ schema:"public",
 table:"bundles"
 },
 
-async () => {
-
-await fetchBundles();
-
-}
+fetchBundles
 
 )
 
@@ -9460,11 +12683,7 @@ schema:"public",
 table:"notifications"
 },
 
-async () => {
-
-await fetchNotifications();
-
-}
+fetchNotifications
 
 )
 
@@ -9478,11 +12697,7 @@ schema:"public",
 table:"reviews"
 },
 
-async () => {
-
-await fetchReviews();
-
-}
+fetchReviews
 
 )
 
@@ -9518,6 +12733,7 @@ await loadCustomerOrders();
 .subscribe();
 
 }
+
 
 initializeStore();
 
