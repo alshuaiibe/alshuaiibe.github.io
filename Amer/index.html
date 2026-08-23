@@ -1,1901 +1,3688 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+
+<meta
+name="viewport"
+content="width=device-width,initial-scale=1,viewport-fit=cover"
+>
+
 <title>لوحة إدارة الشعيبي PRO</title>
 
 <link
 href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Tajawal:wght@400;500;700;900&display=swap"
-rel="stylesheet">
+rel="stylesheet"
+>
 
 <style>
+
 :root{
-  --cream:#F8EACB;
-  --cream2:#F1DDA6;
-  --card:#FFFBF0;
-  --ink:#20301C;
-  --soft:#596052;
-  --gold:#A9793C;
-  --danger:#9B3A2E;
-  --ok:#4C6B3E;
-  --blue:#2C5A82;
-  --line:rgba(32,48,28,.16);
-  --shadow:0 10px 30px rgba(32,48,28,.10);
+
+--cream:#F8EACB;
+--cream2:#F1DDA6;
+--card:#FFFBF0;
+--ink:#20301C;
+--soft:#596052;
+--gold:#A9793C;
+--danger:#9B3A2E;
+--ok:#4C6B3E;
+--blue:#2C5A82;
+--line:rgba(32,48,28,.16);
+--shadow:0 10px 30px rgba(32,48,28,.10)
+
 }
 
-*{box-sizing:border-box}
+*{
+box-sizing:border-box
+}
 
-html{scroll-behavior:smooth}
+html{
+scroll-behavior:smooth
+}
+
+html,
+body{
+margin:0;
+padding:0;
+width:100%;
+max-width:100%;
+overflow-x:hidden
+}
 
 body{
-  margin:0;
-  background:var(--cream);
-  color:var(--ink);
-  font-family:Tajawal,sans-serif;
+
+min-height:100vh;
+
+background:var(--cream);
+
+color:var(--ink);
+
+font-family:'Tajawal',sans-serif
+
 }
 
-button,input,select,textarea{font:inherit}
+button,
+input,
+select,
+textarea{
+font:inherit
+}
 
-button{cursor:pointer}
-button:disabled{opacity:.55;cursor:not-allowed}
+button{
+cursor:pointer
+}
 
-.hidden{display:none!important}
+button:disabled{
+opacity:.5;
+cursor:not-allowed
+}
 
-input,select,textarea{
-  width:100%;
-  padding:11px;
-  border:1px solid var(--line);
-  border-radius:11px;
-  background:#fff;
-  margin:4px 0 10px;
-  color:var(--ink);
+.hidden{
+display:none!important
+}
+
+input,
+select,
+textarea{
+
+width:100%;
+
+padding:11px;
+
+border:1px solid var(--line);
+
+border-radius:11px;
+
+background:#fff;
+
+margin:4px 0 10px;
+
+color:var(--ink)
+
 }
 
 textarea{
-  min-height:100px;
-  resize:vertical;
+
+min-height:100px;
+
+resize:vertical
+
 }
 
-input[type=file]{
-  padding:14px;
-  background:#fffdf7;
+input[type="file"]{
+
+padding:14px;
+
+background:#fffdf7
+
 }
 
 label{
-  display:block;
-  font-size:12px;
-  font-weight:800;
-  margin-top:6px;
+
+display:block;
+
+font-size:12px;
+
+font-weight:800;
+
+margin-top:6px
+
 }
+
+
+/* ================= LOGIN ================= */
 
 .login{
-  min-height:100vh;
-  display:grid;
-  place-items:center;
-  padding:20px;
+
+min-height:100vh;
+
+display:grid;
+
+place-items:center;
+
+padding:20px
+
 }
 
-.box,.card{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:18px;
-  box-shadow:var(--shadow);
+.box,
+.card{
+
+background:var(--card);
+
+border:1px solid var(--line);
+
+border-radius:18px;
+
+padding:18px;
+
+box-shadow:var(--shadow)
+
 }
 
-.box{width:min(430px,100%)}
+.box{
+
+width:min(430px,100%)
+
+}
 
 .login-title{
-  font-family:'Aref Ruqaa';
-  font-size:40px;
-  text-align:center;
-  margin:0 0 20px;
+
+font-family:'Aref Ruqaa';
+
+font-size:40px;
+
+text-align:center;
+
+margin:0 0 20px
+
 }
 
+
+/* ================= BUTTONS ================= */
+
 .btn{
-  border:0;
-  border-radius:11px;
-  padding:10px 14px;
-  background:var(--ink);
-  color:var(--cream);
-  font-weight:800;
+
+border:0;
+
+border-radius:11px;
+
+padding:10px 14px;
+
+background:var(--ink);
+
+color:var(--cream);
+
+font-weight:800
+
 }
 
 .btn.out{
-  background:transparent;
-  color:var(--ink);
-  border:1px solid var(--ink);
+
+background:transparent;
+
+color:var(--ink);
+
+border:1px solid var(--ink)
+
 }
 
-.btn.red{background:var(--danger);color:white}
-.btn.gold{background:var(--gold);color:white}
-.btn.green{background:var(--ok);color:white}
-.btn.blue{background:var(--blue);color:white}
-.btn.sm{padding:7px 10px;font-size:12px}
+.btn.red{
+background:var(--danger);
+color:white
+}
+
+.btn.gold{
+background:var(--gold);
+color:white
+}
+
+.btn.green{
+background:var(--ok);
+color:white
+}
+
+.btn.blue{
+background:var(--blue);
+color:white
+}
+
+.btn.sm{
+
+padding:7px 10px;
+
+font-size:12px
+
+}
+
+
+/* ================= HEADER ================= */
 
 .top{
-  position:sticky;
-  top:0;
-  z-index:100;
-  background:rgba(255,251,240,.97);
-  backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--line);
+
+position:sticky;
+
+top:0;
+
+z-index:100;
+
+background:rgba(255,251,240,.97);
+
+backdrop-filter:blur(16px);
+
+border-bottom:1px solid var(--line)
+
 }
 
 .topin{
-  max-width:1500px;
-  margin:auto;
-  padding:10px 14px;
-  display:flex;
-  gap:9px;
-  align-items:center;
-  flex-wrap:wrap;
+
+max-width:1500px;
+
+margin:auto;
+
+padding:10px 14px;
+
+display:flex;
+
+gap:9px;
+
+align-items:center;
+
+flex-wrap:wrap
+
 }
 
 .brand{
-  font-family:'Aref Ruqaa';
-  font-size:28px;
-  font-weight:700;
-  margin-left:auto;
+
+font-family:'Aref Ruqaa';
+
+font-size:28px;
+
+font-weight:700;
+
+margin-left:auto
+
 }
 
 .nav{
-  display:flex;
-  gap:5px;
-  overflow-x:auto;
-  scrollbar-width:none;
+
+display:flex;
+
+gap:5px;
+
+overflow-x:auto;
+
+scrollbar-width:none
+
 }
 
-.nav::-webkit-scrollbar{display:none}
+.nav::-webkit-scrollbar{
+display:none
+}
 
 .nav button{
-  white-space:nowrap;
-  border:1px solid var(--line);
-  border-radius:999px;
-  padding:8px 11px;
-  background:#fff;
-  color:var(--ink);
-  font-weight:700;
+
+white-space:nowrap;
+
+border:1px solid var(--line);
+
+border-radius:999px;
+
+padding:8px 11px;
+
+background:#fff;
+
+color:var(--ink);
+
+font-weight:700
+
 }
 
 .nav button.active{
-  background:var(--ink);
-  color:var(--cream);
+
+background:var(--ink);
+
+color:var(--cream)
+
 }
+
+
+/* ================= MAIN ================= */
 
 main{
-  max-width:1500px;
-  margin:auto;
-  padding:18px 14px 80px;
+
+max-width:1500px;
+
+margin:auto;
+
+padding:18px 14px 80px
+
 }
 
-.card{margin-bottom:16px}
-.card h2,.card h3{margin-top:0}
+.card{
+
+margin-bottom:16px
+
+}
+
+.card h2,
+.card h3{
+
+margin-top:0
+
+}
 
 .grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:10px;
+
+display:grid;
+
+grid-template-columns:repeat(4,1fr);
+
+gap:10px
+
 }
 
 .grid2{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:10px
+
 }
 
 .grid3{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:10px
+
 }
 
 .grid4{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:10px;
+
+display:grid;
+
+grid-template-columns:repeat(4,1fr);
+
+gap:10px
+
 }
 
 .stat{
-  text-align:center;
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:15px;
-  padding:15px;
+
+text-align:center;
+
+background:var(--card);
+
+border:1px solid var(--line);
+
+border-radius:15px;
+
+padding:15px
+
 }
 
 .stat span{
-  display:block;
-  font-size:12px;
-  color:var(--soft);
+
+display:block;
+
+font-size:12px;
+
+color:var(--soft)
+
 }
 
 .stat b{
-  display:block;
-  font-size:28px;
-  color:var(--gold);
-  margin-top:5px;
+
+display:block;
+
+font-size:28px;
+
+color:var(--gold);
+
+margin-top:5px
+
 }
 
 .actions{
-  display:flex;
-  gap:7px;
-  flex-wrap:wrap;
-  align-items:center;
+
+display:flex;
+
+gap:7px;
+
+flex-wrap:wrap;
+
+align-items:center
+
 }
 
 .note{
-  font-size:12px;
-  line-height:1.8;
-  color:var(--soft);
+
+font-size:12px;
+
+line-height:1.8;
+
+color:var(--soft)
+
 }
 
 .check-row{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  margin:5px 0 12px;
+
+display:flex;
+
+align-items:center;
+
+gap:8px;
+
+margin:5px 0 12px
+
 }
 
 .check-row input{
-  width:auto;
-  margin:0;
+
+width:auto;
+
+margin:0
+
 }
 
+
+/* ================= TABLE ================= */
+
 .table{
-  overflow:auto;
-  border:1px solid var(--line);
-  border-radius:14px;
+
+overflow:auto;
+
+border:1px solid var(--line);
+
+border-radius:14px
+
 }
 
 table{
-  width:100%;
-  border-collapse:collapse;
-  min-width:900px;
-  background:white;
+
+width:100%;
+
+border-collapse:collapse;
+
+min-width:900px;
+
+background:#fff
+
 }
 
-th,td{
-  padding:10px;
-  border-bottom:1px solid var(--line);
-  text-align:right;
-  font-size:13px;
-  vertical-align:top;
+th,
+td{
+
+padding:10px;
+
+border-bottom:1px solid var(--line);
+
+text-align:right;
+
+font-size:13px;
+
+vertical-align:top
+
 }
 
 th{
-  background:var(--cream2);
-  font-weight:900;
+
+background:var(--cream2);
+
+font-weight:900
+
 }
 
-.order-card{
-  border:1px solid var(--line);
-  border-radius:16px;
-  padding:14px;
-  margin-bottom:12px;
-  background:#fff;
-}
 
-.order-card-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-start;
-  gap:12px;
-  flex-wrap:wrap;
-}
-
-.pill{
-  display:inline-flex;
-  align-items:center;
-  padding:5px 9px;
-  border-radius:999px;
-  border:1px solid var(--line);
-  font-size:11px;
-  font-weight:700;
-}
-
-.pill.green{background:#DDEBD6;color:var(--ok)}
-.pill.red{background:#F0D8D4;color:var(--danger)}
-.pill.gold{background:#F4E7C5;color:#805817}
-
-.product-admin-card{
-  display:grid;
-  grid-template-columns:100px 1fr auto;
-  gap:14px;
-  align-items:center;
-  border:1px solid var(--line);
-  border-radius:16px;
-  padding:13px;
-  background:#fff;
-  margin-bottom:10px;
-}
-
-.product-admin-image{
-  width:100px;
-  height:100px;
-  border-radius:13px;
-  background:#f5f2e9;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
-}
-
-.product-admin-image img{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-}
-
-.product-admin-name{
-  font-size:18px;
-  font-weight:900;
-}
-
-.product-admin-meta{
-  font-size:12px;
-  color:var(--soft);
-  line-height:1.8;
-}
+/* ================= MEDIA ================= */
 
 .media-preview-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(120px,1fr));
-  gap:10px;
-  margin:10px 0 15px;
+
+display:grid;
+
+grid-template-columns:repeat(auto-fill,minmax(120px,1fr));
+
+gap:10px;
+
+margin:10px 0 15px
+
 }
 
 .media-preview{
-  position:relative;
-  border:1px solid var(--line);
-  border-radius:13px;
-  overflow:hidden;
-  background:#f4f1e9;
-  aspect-ratio:1/1;
+
+position:relative;
+
+border:1px solid var(--line);
+
+border-radius:13px;
+
+overflow:hidden;
+
+background:#f4f1e9;
+
+aspect-ratio:1/1
+
 }
 
 .media-preview img,
 .media-preview video{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  display:block;
+
+width:100%;
+height:100%;
+
+object-fit:contain;
+
+display:block
+
 }
 
 .media-remove{
-  position:absolute;
-  top:5px;
-  left:5px;
-  z-index:5;
-  width:30px;
-  height:30px;
-  border:0;
-  border-radius:50%;
-  background:var(--danger);
-  color:#fff;
-  font-weight:900;
+
+position:absolute;
+
+top:5px;
+left:5px;
+
+z-index:5;
+
+width:30px;
+height:30px;
+
+border:0;
+
+border-radius:50%;
+
+background:var(--danger);
+
+color:#fff;
+
+font-weight:900
+
 }
 
 .upload-status{
-  display:none;
-  padding:10px 12px;
-  margin:8px 0;
-  border-radius:10px;
-  background:#f1e4bc;
-  font-size:12px;
-  font-weight:700;
+
+display:none;
+
+padding:10px 12px;
+
+margin:8px 0;
+
+border-radius:10px;
+
+background:#f1e4bc;
+
+font-size:12px;
+
+font-weight:700
+
 }
 
-.upload-status.show{display:block}
+.upload-status.show{
+display:block
+}
+
+
+/* ================= PRODUCT ADMIN ================= */
+
+.product-admin-card{
+
+display:grid;
+
+grid-template-columns:100px 1fr auto;
+
+gap:14px;
+
+align-items:center;
+
+border:1px solid var(--line);
+
+border-radius:16px;
+
+padding:13px;
+
+background:#fff;
+
+margin-bottom:10px
+
+}
+
+.product-admin-image{
+
+width:100px;
+height:100px;
+
+border-radius:13px;
+
+background:#f5f2e9;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+overflow:hidden
+
+}
+
+.product-admin-image img{
+
+width:100%;
+height:100%;
+
+object-fit:contain
+
+}
+
+.product-admin-name{
+
+font-size:18px;
+
+font-weight:900
+
+}
+
+.product-admin-meta{
+
+font-size:12px;
+
+color:var(--soft);
+
+line-height:1.8
+
+}
+
+
+/* ================= ORDERS ================= */
+
+.order-card{
+
+border:1px solid var(--line);
+
+border-radius:16px;
+
+padding:14px;
+
+margin-bottom:12px;
+
+background:#fff
+
+}
+
+.order-card-head{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:flex-start;
+
+gap:12px;
+
+flex-wrap:wrap
+
+}
+
+.pill{
+
+display:inline-flex;
+
+align-items:center;
+
+padding:5px 9px;
+
+border-radius:999px;
+
+border:1px solid var(--line);
+
+font-size:11px;
+
+font-weight:700
+
+}
+
+.pill.green{
+
+background:#DDEBD6;
+
+color:var(--ok)
+
+}
+
+.pill.red{
+
+background:#F0D8D4;
+
+color:var(--danger)
+
+}
+
+.pill.gold{
+
+background:#F4E7C5;
+
+color:#805817
+
+}
+
+
+/* ================= ADS ================= */
 
 .ad-preview{
-  width:100%;
-  min-height:220px;
-  border-radius:15px;
-  overflow:hidden;
-  background:#eee;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+
+width:100%;
+
+min-height:220px;
+
+border-radius:15px;
+
+overflow:hidden;
+
+background:#eee;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center
+
 }
 
 .ad-preview img,
 .ad-preview video{
-  width:100%;
-  height:100%;
-  object-fit:contain;
+
+width:100%;
+height:100%;
+
+object-fit:contain
+
 }
 
-.policy-card,.bank-row,.payment-row{
-  border:1px solid var(--line);
-  border-radius:15px;
-  padding:14px;
-  margin-bottom:10px;
-  background:#fff;
+
+/* ================= FOOTER ADMIN ================= */
+
+.policy-card,
+.bank-row,
+.payment-row{
+
+border:1px solid var(--line);
+
+border-radius:15px;
+
+padding:14px;
+
+margin-bottom:10px;
+
+background:#fff
+
 }
+
+
+/* ================= MODAL ================= */
 
 .modal-scrim{
-  position:fixed;
-  inset:0;
-  z-index:500;
-  background:rgba(15,20,13,.62);
-  display:none;
+
+position:fixed;
+
+inset:0;
+
+z-index:500;
+
+background:rgba(15,20,13,.62);
+
+display:none
+
 }
 
-.modal-scrim.show{display:block}
+.modal-scrim.show{
+display:block
+}
 
 .modal{
-  position:fixed;
-  z-index:510;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  width:min(850px,95vw);
-  max-height:90vh;
-  overflow:auto;
-  background:var(--card);
-  border-radius:20px;
-  padding:20px;
-  box-shadow:0 30px 80px rgba(0,0,0,.3);
-  display:none;
+
+position:fixed;
+
+z-index:510;
+
+top:50%;
+left:50%;
+
+transform:translate(-50%,-50%);
+
+width:min(850px,95vw);
+
+max-height:90vh;
+
+overflow:auto;
+
+background:var(--card);
+
+border-radius:20px;
+
+padding:20px;
+
+box-shadow:0 30px 80px rgba(0,0,0,.3);
+
+display:none
+
 }
 
-.modal.show{display:block}
+.modal.show{
+display:block
+}
 
 .modal-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+gap:10px
+
 }
 
 .close{
-  border:0;
-  background:none;
-  font-size:24px;
+
+border:0;
+
+background:none;
+
+font-size:24px
+
 }
 
+
+/* ================= TOAST ================= */
+
 .toast{
-  position:fixed;
-  z-index:1000;
-  left:50%;
-  bottom:22px;
-  transform:translateX(-50%);
-  background:var(--ink);
-  color:var(--cream);
-  padding:10px 16px;
-  border-radius:999px;
-  opacity:0;
-  pointer-events:none;
-  transition:.25s;
+
+position:fixed;
+
+z-index:1000;
+
+left:50%;
+
+bottom:22px;
+
+transform:translateX(-50%);
+
+background:var(--ink);
+
+color:var(--cream);
+
+padding:10px 16px;
+
+border-radius:999px;
+
+opacity:0;
+
+pointer-events:none;
+
+transition:.25s
+
 }
 
 .toast.show{
-  opacity:1;
-  bottom:32px;
+
+opacity:1;
+
+bottom:32px
+
 }
+
+
+/* ================= MOBILE ================= */
 
 @media(max-width:900px){
-  .grid,.grid2,.grid3,.grid4{
-    grid-template-columns:1fr;
-  }
 
-  .brand{
-    width:100%;
-    margin:0;
-  }
+.grid,
+.grid2,
+.grid3,
+.grid4{
 
-  .nav{width:100%}
+grid-template-columns:1fr
 
-  .product-admin-card{
-    grid-template-columns:75px 1fr;
-  }
-
-  .product-admin-image{
-    width:75px;
-    height:75px;
-  }
-
-  .product-admin-card .actions{
-    grid-column:1/-1;
-  }
 }
+
+.brand{
+
+width:100%;
+
+margin:0
+
+}
+
+.nav{
+
+width:100%
+
+}
+
+.product-admin-card{
+
+grid-template-columns:75px 1fr
+
+}
+
+.product-admin-image{
+
+width:75px;
+height:75px
+
+}
+
+.product-admin-card .actions{
+
+grid-column:1/-1
+
+}
+
+}
+
 </style>
+
 </head>
+
 
 <body>
 
-<div id="login" class="login">
-  <div class="box">
 
-    <h1 class="login-title">الشعيبي PRO</h1>
+<!-- =========================================================
+LOGIN
+========================================================= -->
 
-    <label>البريد</label>
-    <input
-      id="email"
-      value="omara1store@gmail.com"
-      readonly>
+<div
+id="login"
+class="login"
+>
 
-    <label>كلمة المرور</label>
-    <input
-      id="password"
-      type="password"
-      autocomplete="current-password"
-      onkeydown="if(event.key==='Enter'){login()}">
+<div class="box">
 
-    <div
-      id="msg"
-      style="min-height:22px;color:var(--danger);font-size:12px">
-    </div>
+<h1 class="login-title">
+الشعيبي PRO
+</h1>
 
-    <button
-      id="loginButton"
-      class="btn"
-      style="width:100%"
-      onclick="login()">
-      دخول
-    </button>
 
-  </div>
+<label>
+البريد
+</label>
+
+<input
+id="email"
+value="omara1store@gmail.com"
+readonly
+>
+
+
+<label>
+كلمة المرور
+</label>
+
+<input
+id="password"
+type="password"
+autocomplete="current-password"
+onkeydown="
+if(event.key==='Enter'){
+login();
+}
+"
+>
+
+
+<div
+id="msg"
+style="
+min-height:22px;
+color:var(--danger);
+font-size:12px
+"
+></div>
+
+
+<button
+id="loginButton"
+class="btn"
+style="width:100%"
+onclick="login()"
+>
+دخول
+</button>
+
 </div>
 
-<div id="app" class="hidden">
+</div>
+
+
+<!-- =========================================================
+APP
+========================================================= -->
+
+<div
+id="app"
+class="hidden"
+>
 
 <header class="top">
-  <div class="topin">
 
-    <div class="brand">
-      لوحة إدارة الشعيبي
-    </div>
+<div class="topin">
 
-    <div id="nav" class="nav"></div>
+<div class="brand">
+لوحة إدارة الشعيبي
+</div>
 
-    <button
-      class="btn out sm"
-      onclick="logout()">
-      خروج
-    </button>
+<div
+id="nav"
+class="nav"
+></div>
 
-  </div>
+<button
+class="btn out sm"
+onclick="logout()"
+>
+خروج
+</button>
+
+</div>
+
 </header>
+
 
 <main>
 
-<section id="dashboard" class="page">
 
-  <div id="stats" class="grid"></div>
+<!-- =========================================================
+DASHBOARD
+========================================================= -->
 
-  <div class="card">
-    <h2>لوحة التحكم</h2>
-    <p class="note">
-      إدارة المنتجات والعروض والهدايا والطلبات والإعلانات والتصميم والدفع والسياسات.
-    </p>
-  </div>
+<section
+id="dashboard"
+class="page"
+>
 
-</section>
+<div
+id="stats"
+class="grid"
+></div>
 
-<section id="productManager" class="page hidden">
 
-  <div class="card">
+<div class="card">
 
-    <h2>🛍️ إضافة وتعديل المنتجات</h2>
+<h2>
+لوحة التحكم
+</h2>
 
-    <input id="productId" type="hidden">
+<p class="note">
+إدارة المنتجات والخيارات والباقات والهدايا والطلبات والتقييمات والإعلانات وشاشة البداية وتصميم المتجر والدفع والسياسات.
+</p>
 
-    <div class="grid3">
-
-      <div>
-        <label>اسم المنتج</label>
-        <input id="productName">
-      </div>
-
-      <div>
-        <label>القسم</label>
-        <select id="productCategory"></select>
-      </div>
-
-      <div>
-        <label>السعر</label>
-        <input
-          id="productPrice"
-          type="number"
-          step="0.01">
-      </div>
-
-      <div>
-        <label>الخصم %</label>
-        <input
-          id="productDiscount"
-          type="number"
-          min="0"
-          max="100"
-          value="0">
-      </div>
-
-      <div>
-        <label>المخزون</label>
-        <input
-          id="productStock"
-          type="number"
-          min="0"
-          value="0">
-      </div>
-
-      <div>
-        <label>العملة</label>
-        <input
-          id="productCurrency"
-          value="ر.ي">
-      </div>
-
-      <div>
-        <label>ترتيب الظهور</label>
-        <input
-          id="productSortOrder"
-          type="number"
-          value="0">
-      </div>
-
-    </div>
-
-    <label>وصف المنتج</label>
-    <textarea id="productDescription"></textarea>
-
-    <h3>📷 صور المنتج</h3>
-
-    <p class="note">
-      اختر صورة واحدة أو عدة صور مباشرة من الجهاز.
-    </p>
-
-    <input
-      id="productImageFiles"
-      type="file"
-      accept="image/*"
-      multiple
-      onchange="previewSelectedProductImages()">
-
-    <div
-      id="productUploadStatus"
-      class="upload-status">
-    </div>
-
-    <div
-      id="existingProductImages"
-      class="media-preview-grid">
-    </div>
-
-    <div
-      id="newProductImagesPreview"
-      class="media-preview-grid">
-    </div>
-
-    <div class="grid2">
-
-      <div>
-        <label>الألوان</label>
-        <textarea
-          id="productColors"
-          placeholder="أسود&#10;أبيض&#10;ذهبي"></textarea>
-      </div>
-
-      <div>
-        <label>الأحجام</label>
-        <textarea
-          id="productSizes"
-          placeholder="50ml&#10;100ml&#10;150ml"></textarea>
-      </div>
-
-    </div>
-
-    <div class="actions">
-
-      <div class="check-row">
-        <input
-          id="productActive"
-          type="checkbox"
-          checked>
-        <label for="productActive">
-          المنتج نشط
-        </label>
-      </div>
-
-      <div class="check-row">
-        <input
-          id="productNew"
-          type="checkbox">
-        <label for="productNew">
-          منتج جديد
-        </label>
-      </div>
-
-    </div>
-
-    <div class="actions">
-
-      <button
-        id="saveProductButton"
-        class="btn gold"
-        onclick="saveProduct()">
-        حفظ المنتج
-      </button>
-
-      <button
-        class="btn out"
-        onclick="resetProductForm()">
-        منتج جديد
-      </button>
-
-    </div>
-
-  </div>
-
-  <div class="card">
-
-    <div class="order-card-head">
-
-      <div>
-        <h2>المنتجات الحالية</h2>
-        <div
-          id="productsCount"
-          class="note">
-        </div>
-      </div>
-
-      <button
-        class="btn out sm"
-        onclick="loadAll()">
-        تحديث
-      </button>
-
-    </div>
-
-    <div id="productsAdminList"></div>
-
-  </div>
+</div>
 
 </section>
 
-<section id="products" class="page hidden">
 
-  <div class="card">
+<!-- =========================================================
+PRODUCT MANAGER
+========================================================= -->
 
-    <h2>خيارات وأحجام المنتجات</h2>
+<section
+id="productManager"
+class="page hidden"
+>
 
-    <div class="grid3">
+<div class="card">
 
-      <div>
-        <label>المنتج</label>
-        <select id="varProduct"></select>
-      </div>
+<h2>
+🛍️ إضافة وتعديل المنتجات
+</h2>
 
-      <div>
-        <label>اسم الخيار</label>
-        <input
-          id="varTitle"
-          placeholder="مثال: 100ml">
-      </div>
 
-      <div>
-        <label>SKU</label>
-        <input id="varSku">
-      </div>
+<input
+id="productId"
+type="hidden"
+>
 
-      <div>
-        <label>السعر</label>
-        <input id="varPrice" type="number">
-      </div>
 
-      <div>
-        <label>المخزون</label>
-        <input id="varStock" type="number">
-      </div>
+<div class="grid3">
 
-      <div>
-        <label>اللون</label>
-        <input id="varColor">
-      </div>
 
-    </div>
+<div>
 
-    <button
-      class="btn"
-      onclick="saveVariant()">
-      إضافة الخيار
-    </button>
+<label>
+اسم المنتج
+</label>
 
-  </div>
+<input id="productName">
 
-  <div class="card">
-    <div class="table">
-      <table>
+</div>
 
-        <thead>
-          <tr>
-            <th>المنتج</th>
-            <th>الخيار</th>
-            <th>SKU</th>
-            <th>السعر</th>
-            <th>المخزون</th>
-            <th></th>
-          </tr>
-        </thead>
 
-        <tbody id="variantsBody"></tbody>
+<div>
 
-      </table>
-    </div>
-  </div>
+<label>
+القسم
+</label>
+
+<select id="productCategory"></select>
+
+</div>
+
+
+<div>
+
+<label>
+السعر
+</label>
+
+<input
+id="productPrice"
+type="number"
+step="0.01"
+>
+
+</div>
+
+
+<div>
+
+<label>
+الخصم %
+</label>
+
+<input
+id="productDiscount"
+type="number"
+min="0"
+max="100"
+value="0"
+>
+
+</div>
+
+
+<div>
+
+<label>
+المخزون
+</label>
+
+<input
+id="productStock"
+type="number"
+min="0"
+value="0"
+>
+
+</div>
+
+
+<div>
+
+<label>
+العملة
+</label>
+
+<input
+id="productCurrency"
+value="ر.ي"
+>
+
+</div>
+
+
+<div>
+
+<label>
+ترتيب الظهور
+</label>
+
+<input
+id="productSortOrder"
+type="number"
+value="0"
+>
+
+</div>
+
+</div>
+
+
+<label>
+وصف المنتج
+</label>
+
+<textarea id="productDescription"></textarea>
+
+
+<h3>
+📷 صور المنتج
+</h3>
+
+<p class="note">
+يمكنك اختيار صورة أو عدة صور مباشرة من الجهاز.
+</p>
+
+
+<input
+id="productImageFiles"
+type="file"
+accept="image/*"
+multiple
+onchange="previewSelectedProductImages()"
+>
+
+
+<div
+id="productUploadStatus"
+class="upload-status"
+></div>
+
+
+<div
+id="existingProductImages"
+class="media-preview-grid"
+></div>
+
+
+<div
+id="newProductImagesPreview"
+class="media-preview-grid"
+></div>
+
+
+<div class="grid2">
+
+
+<div>
+
+<label>
+الألوان
+</label>
+
+<textarea
+id="productColors"
+placeholder="أسود&#10;أبيض&#10;ذهبي"
+></textarea>
+
+</div>
+
+
+<div>
+
+<label>
+الأحجام
+</label>
+
+<textarea
+id="productSizes"
+placeholder="50ml&#10;100ml&#10;150ml"
+></textarea>
+
+</div>
+
+</div>
+
+
+<div class="actions">
+
+
+<div class="check-row">
+
+<input
+id="productActive"
+type="checkbox"
+checked
+>
+
+<label for="productActive">
+المنتج نشط
+</label>
+
+</div>
+
+
+<div class="check-row">
+
+<input
+id="productNew"
+type="checkbox"
+>
+
+<label for="productNew">
+منتج جديد
+</label>
+
+</div>
+
+</div>
+
+
+<div class="actions">
+
+<button
+id="saveProductButton"
+class="btn gold"
+onclick="saveProduct()"
+>
+حفظ المنتج
+</button>
+
+<button
+class="btn out"
+onclick="resetProductForm()"
+>
+منتج جديد
+</button>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="order-card-head">
+
+<div>
+
+<h2>
+المنتجات الحالية
+</h2>
+
+<div
+id="productsCount"
+class="note"
+></div>
+
+</div>
+
+
+<button
+class="btn out sm"
+onclick="loadAll()"
+>
+تحديث
+</button>
+
+</div>
+
+
+<div id="productsAdminList"></div>
+
+</div>
 
 </section>
 
-<section id="bundles" class="page hidden">
 
-  <div class="card">
+<!-- =========================================================
+VARIANTS
+========================================================= -->
 
-    <h2>🔥 الباقات والعروض</h2>
+<section
+id="products"
+class="page hidden"
+>
 
-    <input id="bundleId" type="hidden">
-    <input id="bundleExistingImage" type="hidden">
+<div class="card">
 
-    <div class="grid3">
+<h2>
+الخيارات والأحجام
+</h2>
 
-      <div>
-        <label>اسم الباقة</label>
-        <input id="bundleName">
-      </div>
 
-      <div>
-        <label>السعر قبل العرض</label>
-        <input
-          id="bundleRegular"
-          type="number">
-      </div>
+<div class="grid3">
 
-      <div>
-        <label>سعر العرض</label>
-        <input
-          id="bundleOffer"
-          type="number">
-      </div>
 
-      <div>
-        <label>المخزون</label>
-        <input
-          id="bundleStock"
-          type="number">
-      </div>
+<div>
 
-      <div>
-        <label>نهاية العرض</label>
-        <input
-          id="bundleEnd"
-          type="datetime-local">
-      </div>
+<label>
+المنتج
+</label>
 
-    </div>
+<select id="varProduct"></select>
 
-    <label>الوصف</label>
-    <textarea id="bundleDesc"></textarea>
+</div>
 
-    <h3>📷 صورة الباقة</h3>
 
-    <input
-      id="bundleImageFile"
-      type="file"
-      accept="image/*"
-      onchange="previewBundleImage()">
+<div>
 
-    <div
-      id="bundleUploadStatus"
-      class="upload-status">
-    </div>
+<label>
+اسم الخيار
+</label>
 
-    <div
-      id="bundleImagePreview"
-      class="media-preview-grid">
-    </div>
+<input
+id="varTitle"
+placeholder="مثال: 100ml"
+>
 
-    <label>منتجات الباقة</label>
+</div>
 
-    <select
-      id="bundleProducts"
-      multiple
-      size="7">
-    </select>
 
-    <div class="actions">
+<div>
 
-      <button
-        id="saveBundleButton"
-        class="btn gold"
-        onclick="saveBundle()">
-        حفظ الباقة
-      </button>
+<label>
+SKU
+</label>
 
-      <button
-        class="btn out"
-        onclick="resetBundle()">
-        جديد
-      </button>
+<input id="varSku">
 
-    </div>
+</div>
 
-  </div>
 
-  <div
-    id="bundleList"
-    class="card">
-  </div>
+<div>
 
-</section>
+<label>
+السعر
+</label>
 
-<section id="gifts" class="page hidden">
+<input
+id="varPrice"
+type="number"
+>
 
-  <div class="card">
+</div>
 
-    <h2>🎁 خيارات التغليف</h2>
 
-    <div class="grid2">
+<div>
 
-      <div>
-        <label>اسم التغليف</label>
-        <input id="giftName">
-      </div>
+<label>
+المخزون
+</label>
 
-      <div>
-        <label>السعر</label>
-        <input
-          id="giftPrice"
-          type="number">
-      </div>
+<input
+id="varStock"
+type="number"
+>
 
-    </div>
+</div>
 
-    <label>الوصف</label>
-    <textarea id="giftDesc"></textarea>
 
-    <h3>📷 صورة التغليف</h3>
+<div>
 
-    <input
-      id="giftImageFile"
-      type="file"
-      accept="image/*"
-      onchange="previewGiftImage()">
+<label>
+اللون
+</label>
 
-    <div
-      id="giftUploadStatus"
-      class="upload-status">
-    </div>
+<input id="varColor">
 
-    <div
-      id="giftImagePreview"
-      class="media-preview-grid">
-    </div>
+</div>
 
-    <button
-      id="saveGiftButton"
-      class="btn"
-      onclick="saveGift()">
-      إضافة التغليف
-    </button>
+</div>
 
-  </div>
 
-  <div
-    id="giftList"
-    class="card">
-  </div>
+<button
+class="btn"
+onclick="saveVariant()"
+>
+إضافة الخيار
+</button>
 
-  <div class="card">
+</div>
 
-    <h2>🎨 تصميم قسم الهدية</h2>
 
-    <div class="check-row">
-      <input
-        id="giftSectionEnabled"
-        type="checkbox">
-      <label for="giftSectionEnabled">
-        إظهار قسم الهدية
-      </label>
-    </div>
+<div class="card">
 
-    <div class="grid2">
+<div class="table">
 
-      <div>
-        <label>عنوان القسم</label>
-        <input id="giftSectionTitleAdmin">
-      </div>
+<table>
 
-      <div>
-        <label>الأيقونة</label>
-        <input id="giftSectionIconAdmin">
-      </div>
+<thead>
 
-    </div>
+<tr>
 
-    <label>الوصف</label>
-    <textarea id="giftSectionDescriptionAdmin"></textarea>
+<th>
+المنتج
+</th>
 
-    <div class="grid4">
+<th>
+الخيار
+</th>
 
-      <div>
-        <label>نص الزر</label>
-        <input id="giftSectionButtonText">
-      </div>
+<th>
+SKU
+</th>
 
-      <div>
-        <label>لون الخلفية</label>
-        <input
-          id="giftSectionBackground"
-          type="color">
-      </div>
+<th>
+السعر
+</th>
 
-      <div>
-        <label>لون النص</label>
-        <input
-          id="giftSectionTextColor"
-          type="color">
-      </div>
+<th>
+المخزون
+</th>
 
-      <div>
-        <label>لون الزر</label>
-        <input
-          id="giftSectionButtonColor"
-          type="color">
-      </div>
+<th>
+إجراء
+</th>
 
-      <div>
-        <label>استدارة الحواف</label>
-        <input
-          id="giftSectionRadius"
-          type="number">
-      </div>
+</tr>
 
-    </div>
+</thead>
 
-    <button
-      class="btn gold"
-      onclick="saveGiftDesign()">
-      حفظ تصميم الهدية
-    </button>
+<tbody id="variantsBody"></tbody>
 
-  </div>
+</table>
+
+</div>
+
+</div>
 
 </section>
 
-<section id="coupons" class="page hidden">
 
-  <div class="card">
+<!-- =========================================================
+BUNDLES
+========================================================= -->
 
-    <h2>الكوبونات</h2>
+<section
+id="bundles"
+class="page hidden"
+>
 
-    <div class="grid3">
+<div class="card">
 
-      <div>
-        <label>الكود</label>
-        <input id="cpCode">
-      </div>
+<h2>
+🔥 الباقات والعروض
+</h2>
 
-      <div>
-        <label>نوع الخصم</label>
-        <select id="cpType">
-          <option value="percentage">نسبة</option>
-          <option value="fixed">مبلغ ثابت</option>
-        </select>
-      </div>
 
-      <div>
-        <label>القيمة</label>
-        <input id="cpValue" type="number">
-      </div>
+<input
+id="bundleId"
+type="hidden"
+>
 
-      <div>
-        <label>الحد الأدنى</label>
-        <input id="cpMin" type="number">
-      </div>
+<input
+id="bundleExistingImage"
+type="hidden"
+>
 
-      <div>
-        <label>أقصى خصم</label>
-        <input id="cpMax" type="number">
-      </div>
 
-      <div>
-        <label>تاريخ الانتهاء</label>
-        <input id="cpExpiry" type="date">
-      </div>
+<div class="grid3">
 
-    </div>
 
-    <div class="check-row">
-      <input id="cpFirst" type="checkbox">
-      <label for="cpFirst">
-        لأول طلب فقط
-      </label>
-    </div>
+<div>
 
-    <button
-      class="btn"
-      onclick="saveCoupon()">
-      إضافة كوبون
-    </button>
+<label>
+اسم الباقة
+</label>
 
-  </div>
+<input id="bundleName">
 
-  <div
-    id="couponList"
-    class="card">
-  </div>
+</div>
+
+
+<div>
+
+<label>
+السعر قبل العرض
+</label>
+
+<input
+id="bundleRegular"
+type="number"
+>
+
+</div>
+
+
+<div>
+
+<label>
+سعر العرض
+</label>
+
+<input
+id="bundleOffer"
+type="number"
+>
+
+</div>
+
+
+<div>
+
+<label>
+المخزون
+</label>
+
+<input
+id="bundleStock"
+type="number"
+>
+
+</div>
+
+
+<div>
+
+<label>
+بداية العرض
+</label>
+
+<input
+id="bundleStart"
+type="datetime-local"
+>
+
+</div>
+
+
+<div>
+
+<label>
+نهاية العرض
+</label>
+
+<input
+id="bundleEnd"
+type="datetime-local"
+>
+
+</div>
+
+</div>
+
+
+<label>
+الوصف
+</label>
+
+<textarea id="bundleDesc"></textarea>
+
+
+<h3>
+📷 صورة الباقة
+</h3>
+
+
+<input
+id="bundleImageFile"
+type="file"
+accept="image/*"
+onchange="previewBundleImage()"
+>
+
+
+<div
+id="bundleUploadStatus"
+class="upload-status"
+></div>
+
+
+<div
+id="bundleImagePreview"
+class="media-preview-grid"
+></div>
+
+
+<label>
+منتجات الباقة
+</label>
+
+<select
+id="bundleProducts"
+multiple
+size="8"
+></select>
+
+
+<div class="actions">
+
+<button
+id="saveBundleButton"
+class="btn gold"
+onclick="saveBundle()"
+>
+حفظ الباقة
+</button>
+
+<button
+class="btn out"
+onclick="resetBundle()"
+>
+جديد
+</button>
+
+</div>
+
+</div>
+
+
+<div
+id="bundleList"
+class="card"
+></div>
 
 </section>
 
-<section id="customers" class="page hidden">
 
-  <div class="card">
+<!-- =========================================================
+GIFTS
+========================================================= -->
 
-    <h2>العملاء</h2>
+<section
+id="gifts"
+class="page hidden"
+>
 
-    <div class="table">
-      <table>
+<div class="card">
 
-        <thead>
-          <tr>
-            <th>العميل</th>
-            <th>الهاتف</th>
-            <th>الطلبات</th>
-            <th>مرات الشراء</th>
-            <th>إجمالي المشتريات</th>
-            <th>آخر طلب</th>
-          </tr>
-        </thead>
+<h2>
+🎁 خيارات التغليف
+</h2>
 
-        <tbody id="customersBody"></tbody>
 
-      </table>
-    </div>
+<div class="grid2">
 
-  </div>
+
+<div>
+
+<label>
+اسم التغليف
+</label>
+
+<input id="giftName">
+
+</div>
+
+
+<div>
+
+<label>
+السعر
+</label>
+
+<input
+id="giftPrice"
+type="number"
+>
+
+</div>
+
+</div>
+
+
+<label>
+الوصف
+</label>
+
+<textarea id="giftDesc"></textarea>
+
+
+<h3>
+📷 صورة التغليف
+</h3>
+
+
+<input
+id="giftImageFile"
+type="file"
+accept="image/*"
+onchange="previewGiftImage()"
+>
+
+
+<div
+id="giftUploadStatus"
+class="upload-status"
+></div>
+
+
+<div
+id="giftImagePreview"
+class="media-preview-grid"
+></div>
+
+
+<button
+id="saveGiftButton"
+class="btn"
+onclick="saveGift()"
+>
+إضافة التغليف
+</button>
+
+</div>
+
+
+<div
+id="giftList"
+class="card"
+></div>
+
+
+<div class="card">
+
+<h2>
+🎨 تصميم قسم الهدية
+</h2>
+
+
+<div class="check-row">
+
+<input
+id="giftSectionEnabled"
+type="checkbox"
+>
+
+<label for="giftSectionEnabled">
+إظهار قسم الهدية
+</label>
+
+</div>
+
+
+<div class="grid2">
+
+
+<div>
+
+<label>
+عنوان القسم
+</label>
+
+<input id="giftSectionTitleAdmin">
+
+</div>
+
+
+<div>
+
+<label>
+الأيقونة
+</label>
+
+<input id="giftSectionIconAdmin">
+
+</div>
+
+</div>
+
+
+<label>
+الوصف
+</label>
+
+<textarea id="giftSectionDescriptionAdmin"></textarea>
+
+
+<div class="grid4">
+
+
+<div>
+
+<label>
+نص الزر
+</label>
+
+<input id="giftSectionButtonText">
+
+</div>
+
+
+<div>
+
+<label>
+لون الخلفية
+</label>
+
+<input
+id="giftSectionBackground"
+type="color"
+>
+
+</div>
+
+
+<div>
+
+<label>
+لون النص
+</label>
+
+<input
+id="giftSectionTextColor"
+type="color"
+>
+
+</div>
+
+
+<div>
+
+<label>
+لون الزر
+</label>
+
+<input
+id="giftSectionButtonColor"
+type="color"
+>
+
+</div>
+
+
+<div>
+
+<label>
+استدارة الحواف
+</label>
+
+<input
+id="giftSectionRadius"
+type="number"
+>
+
+</div>
+
+</div>
+
+
+<button
+class="btn gold"
+onclick="saveGiftDesign()"
+>
+حفظ تصميم الهدية
+</button>
+
+</div>
 
 </section>
 
-<section id="orders" class="page hidden">
 
-  <div class="card">
+<!-- =========================================================
+COUPONS
+========================================================= -->
 
-    <div class="order-card-head">
+<section
+id="coupons"
+class="page hidden"
+>
 
-      <div>
-        <h2>📦 الطلبات</h2>
-        <p class="note">
-          تغيير حالة الطلب ومشاهدة التفاصيل.
-        </p>
-      </div>
+<div class="card">
 
-      <button
-        class="btn out sm"
-        onclick="loadAll()">
-        تحديث
-      </button>
+<h2>
+الكوبونات
+</h2>
 
-    </div>
 
-  </div>
+<div class="grid3">
 
-  <div id="ordersCards"></div>
+
+<div>
+
+<label>
+الكود
+</label>
+
+<input id="cpCode">
+
+</div>
+
+
+<div>
+
+<label>
+نوع الخصم
+</label>
+
+<select id="cpType">
+
+<option value="percentage">
+نسبة
+</option>
+
+<option value="fixed">
+مبلغ ثابت
+</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>
+القيمة
+</label>
+
+<input
+id="cpValue"
+type="number"
+>
+
+</div>
+
+
+<div>
+
+<label>
+الحد الأدنى
+</label>
+
+<input
+id="cpMin"
+type="number"
+>
+
+</div>
+
+
+<div>
+
+<label>
+أقصى خصم
+</label>
+
+<input
+id="cpMax"
+type="number"
+>
+
+</div>
+
+
+<div>
+
+<label>
+تاريخ الانتهاء
+</label>
+
+<input
+id="cpExpiry"
+type="date"
+>
+
+</div>
+
+</div>
+
+
+<div class="check-row">
+
+<input
+id="cpFirst"
+type="checkbox"
+>
+
+<label for="cpFirst">
+لأول طلب فقط
+</label>
+
+</div>
+
+
+<button
+class="btn"
+onclick="saveCoupon()"
+>
+إضافة كوبون
+</button>
+
+</div>
+
+
+<div
+id="couponList"
+class="card"
+></div>
 
 </section>
 
-<section id="reviews" class="page hidden">
 
-  <div class="card">
+<!-- =========================================================
+CUSTOMERS
+========================================================= -->
 
-    <h2>⭐ التقييمات</h2>
+<section
+id="customers"
+class="page hidden"
+>
 
-    <div id="reviewsList"></div>
+<div class="card">
 
-  </div>
+<h2>
+العملاء
+</h2>
+
+
+<div class="table">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+العميل
+</th>
+
+<th>
+الهاتف
+</th>
+
+<th>
+الطلبات
+</th>
+
+<th>
+مرات الشراء
+</th>
+
+<th>
+إجمالي المشتريات
+</th>
+
+<th>
+آخر طلب
+</th>
+
+</tr>
+
+</thead>
+
+<tbody id="customersBody"></tbody>
+
+</table>
+
+</div>
+
+</div>
 
 </section>
 
-<section id="recommend" class="page hidden">
 
-  <div class="card">
+<!-- =========================================================
+ORDERS
+========================================================= -->
 
-    <h2>اقتراحات المنتجات</h2>
+<section
+id="orders"
+class="page hidden"
+>
 
-    <div class="grid3">
+<div class="card">
 
-      <select id="relFrom"></select>
+<div class="order-card-head">
 
-      <select id="relTo"></select>
+<div>
 
-      <select id="relType">
-        <option value="recommended">قد يعجبك</option>
-        <option value="complements">يكمل هذا المنتج</option>
-        <option value="frequently_bought">يُشترى معه</option>
-      </select>
+<h2>
+📦 الطلبات
+</h2>
 
-    </div>
+<p class="note">
+يمكنك مشاهدة الطلب وتغيير حالته.
+</p>
 
-    <button
-      class="btn"
-      onclick="saveRelation()">
-      ربط المنتجات
-    </button>
+</div>
 
-  </div>
 
-  <div
-    id="relationsList"
-    class="card">
-  </div>
+<button
+class="btn out sm"
+onclick="loadAll()"
+>
+تحديث
+</button>
+
+</div>
+
+</div>
+
+
+<div id="ordersCards"></div>
 
 </section>
 
-<section id="ads" class="page hidden">
 
-  <div class="card">
+<!-- =========================================================
+REVIEWS
+========================================================= -->
 
-    <h2>🖼️ شاشة الإعلانات</h2>
+<section
+id="reviews"
+class="page hidden"
+>
 
-    <div class="check-row">
+<div class="card">
 
-      <input
-        id="adEnabled"
-        type="checkbox">
+<h2>
+⭐ التقييمات
+</h2>
 
-      <label for="adEnabled">
-        تشغيل شاشة الإعلانات
-      </label>
+<div id="reviewsList"></div>
 
-    </div>
-
-    <div class="grid3">
-
-      <div>
-
-        <label>نوع الإعلان</label>
-
-        <select id="adType">
-          <option value="image">صورة</option>
-          <option value="slider">سلايدر صور</option>
-          <option value="video">فيديو</option>
-        </select>
-
-      </div>
-
-      <div>
-
-        <label>طريقة العرض</label>
-
-        <select id="adFit">
-          <option value="cover">Cover</option>
-          <option value="contain">Contain</option>
-          <option value="fill">Fill</option>
-        </select>
-
-      </div>
-
-      <div>
-
-        <label>موضع المحتوى</label>
-
-        <select id="adPosition">
-          <option value="center">الوسط</option>
-          <option value="top">أعلى</option>
-          <option value="bottom">أسفل</option>
-          <option value="center top">وسط أعلى</option>
-          <option value="center bottom">وسط أسفل</option>
-        </select>
-
-      </div>
-
-      <div>
-        <label>استدارة الحواف</label>
-        <input
-          id="adRadius"
-          type="number">
-      </div>
-
-      <div>
-        <label>مدة السلايدر ms</label>
-        <input
-          id="adInterval"
-          type="number">
-      </div>
-
-    </div>
-
-    <h3>💻 الكمبيوتر</h3>
-
-    <div class="grid3">
-
-      <div>
-        <label>العرض %</label>
-        <input
-          id="adDesktopWidth"
-          type="number">
-      </div>
-
-      <div>
-        <label>الارتفاع px</label>
-        <input
-          id="adDesktopHeight"
-          type="number">
-      </div>
-
-      <div>
-        <label>أقصى عرض px</label>
-        <input
-          id="adDesktopMaxWidth"
-          type="number">
-      </div>
-
-    </div>
-
-    <h3>📱 التابلت</h3>
-
-    <div class="grid3">
-
-      <div>
-        <label>العرض %</label>
-        <input
-          id="adTabletWidth"
-          type="number">
-      </div>
-
-      <div>
-        <label>الارتفاع px</label>
-        <input
-          id="adTabletHeight"
-          type="number">
-      </div>
-
-      <div>
-        <label>أقصى عرض px</label>
-        <input
-          id="adTabletMaxWidth"
-          type="number">
-      </div>
-
-    </div>
-
-    <h3>📲 الجوال</h3>
-
-    <div class="grid3">
-
-      <div>
-        <label>العرض %</label>
-        <input
-          id="adMobileWidth"
-          type="number">
-      </div>
-
-      <div>
-        <label>الارتفاع px</label>
-        <input
-          id="adMobileHeight"
-          type="number">
-      </div>
-
-      <div>
-        <label>أقصى عرض px</label>
-        <input
-          id="adMobileMaxWidth"
-          type="number">
-      </div>
-
-    </div>
-
-    <label>
-      رابط الانتقال عند الضغط - اختياري
-    </label>
-
-    <input
-      id="adLinkAdmin"
-      placeholder="https://...">
-
-    <h3>📷🎬 ملفات الإعلان</h3>
-
-    <input
-      id="adFiles"
-      type="file"
-      accept="image/*,video/*"
-      multiple
-      onchange="previewSelectedAdFiles()">
-
-    <div
-      id="adUploadStatus"
-      class="upload-status">
-    </div>
-
-    <h3>المحفوظة حاليًا</h3>
-
-    <div
-      id="existingAdMedia"
-      class="media-preview-grid">
-    </div>
-
-    <h3>المختارة الآن</h3>
-
-    <div
-      id="newAdFilesPreview"
-      class="media-preview-grid">
-    </div>
-
-    <div class="actions">
-
-      <button
-        id="saveAdsButton"
-        class="btn gold"
-        onclick="saveAds()">
-        حفظ الإعلان
-      </button>
-
-      <button
-        class="btn out"
-        onclick="previewAd()">
-        معاينة
-      </button>
-
-    </div>
-
-  </div>
-
-  <div class="card">
-
-    <h3>المعاينة</h3>
-
-    <div
-      id="adPreview"
-      class="ad-preview">
-      لا توجد معاينة
-    </div>
-
-  </div>
+</div>
 
 </section>
 
-<section id="design" class="page hidden">
 
-  <div class="card">
+<!-- =========================================================
+RECOMMENDATIONS
+========================================================= -->
 
-    <h2>🛍️ أحجام المنتجات</h2>
+<section
+id="recommend"
+class="page hidden"
+>
 
-    <h3>💻 الكمبيوتر</h3>
+<div class="card">
 
-    <div class="grid3">
+<h2>
+اقتراحات المنتجات
+</h2>
 
-      <div>
-        <label>عرض الكرت px</label>
-        <input
-          id="productDesktopWidth"
-          type="number">
-      </div>
 
-      <div>
-        <label>ارتفاع الصورة px</label>
-        <input
-          id="productDesktopImageHeight"
-          type="number">
-      </div>
+<div class="grid3">
 
-      <div>
-        <label>حجم الاسم px</label>
-        <input
-          id="productDesktopFont"
-          type="number">
-      </div>
+<select id="relFrom"></select>
 
-    </div>
+<select id="relTo"></select>
 
-    <h3>📱 التابلت</h3>
+<select id="relType">
 
-    <div class="grid3">
+<option value="recommended">
+قد يعجبك
+</option>
 
-      <div>
-        <label>عرض الكرت px</label>
-        <input
-          id="productTabletWidth"
-          type="number">
-      </div>
+<option value="complements">
+يكمل هذا المنتج
+</option>
 
-      <div>
-        <label>ارتفاع الصورة px</label>
-        <input
-          id="productTabletImageHeight"
-          type="number">
-      </div>
+<option value="frequently_bought">
+يُشترى معه
+</option>
 
-      <div>
-        <label>حجم الاسم px</label>
-        <input
-          id="productTabletFont"
-          type="number">
-      </div>
+</select>
 
-    </div>
+</div>
 
-    <h3>📲 الجوال</h3>
 
-    <div class="grid3">
+<button
+class="btn"
+onclick="saveRelation()"
+>
+ربط المنتجات
+</button>
 
-      <div>
-        <label>عرض الكرت %</label>
-        <input
-          id="productMobileWidth"
-          type="number">
-      </div>
+</div>
 
-      <div>
-        <label>ارتفاع الصورة px</label>
-        <input
-          id="productMobileImageHeight"
-          type="number">
-      </div>
 
-      <div>
-        <label>حجم الاسم px</label>
-        <input
-          id="productMobileFont"
-          type="number">
-      </div>
-
-    </div>
-
-  </div>
-
-  <div class="card">
-
-    <h2>🎞️ حركة المنتجات</h2>
-
-    <div class="check-row">
-
-      <input
-        id="productCarouselEnabled"
-        type="checkbox">
-
-      <label for="productCarouselEnabled">
-        تشغيل حركة تقليب المنتجات
-      </label>
-
-    </div>
-
-    <div class="grid3">
-
-      <div>
-        <label>تكبير الوسط</label>
-        <input
-          id="carouselCenterScale"
-          type="number"
-          step=".05">
-      </div>
-
-      <div>
-        <label>حجم الجوانب</label>
-        <input
-          id="carouselSideScale"
-          type="number"
-          step=".05">
-      </div>
-
-      <div>
-        <label>زاوية الميل</label>
-        <input
-          id="carouselRotation"
-          type="number">
-      </div>
-
-      <div>
-        <label>المسافة</label>
-        <input
-          id="carouselSpacing"
-          type="number">
-      </div>
-
-      <div>
-        <label>سرعة الحركة</label>
-        <input
-          id="carouselSpeed"
-          type="number">
-      </div>
-
-    </div>
-
-    <button
-      class="btn gold"
-      onclick="saveProductDesign()">
-      حفظ التصميم
-    </button>
-
-  </div>
+<div
+id="relationsList"
+class="card"
+></div>
 
 </section>
 
-<section id="payment" class="page hidden">
 
-  <div class="card">
+<!-- =========================================================
+ADS
+========================================================= -->
 
-    <h2>💳 وسائل الدفع</h2>
+<section
+id="ads"
+class="page hidden"
+>
 
-    <div class="grid3">
+<div class="card">
 
-      <div>
-        <label>اسم الوسيلة</label>
-        <input id="paymentName">
-      </div>
+<h2>
+🖼️ شاشة الإعلانات
+</h2>
 
-      <div>
-        <label>الرمز</label>
-        <input
-          id="paymentId"
-          placeholder="bank">
-      </div>
 
-      <div>
-        <label>النوع</label>
+<div class="check-row">
 
-        <select id="paymentType">
-          <option value="bank">بنكي</option>
-          <option value="card">بطاقة</option>
-          <option value="cash">نقدي</option>
-          <option value="other">أخرى</option>
-        </select>
-      </div>
+<input
+id="adEnabled"
+type="checkbox"
+>
 
-    </div>
+<label for="adEnabled">
+تشغيل الإعلانات
+</label>
 
-    <label>التعليمات</label>
+</div>
 
-    <textarea id="paymentDescription"></textarea>
 
-    <button
-      class="btn"
-      onclick="addPaymentMethod()">
-      إضافة وسيلة دفع
-    </button>
+<div class="grid3">
 
-  </div>
 
-  <div
-    id="paymentMethodsList"
-    class="card">
-  </div>
+<div>
 
-  <div class="card">
+<label>
+نوع الإعلان
+</label>
 
-    <h2>🏦 الحسابات البنكية</h2>
+<select id="adType">
 
-    <div class="grid2">
+<option value="image">
+صورة
+</option>
 
-      <div>
-        <label>اسم البنك</label>
-        <input id="bankName">
-      </div>
+<option value="slider">
+سلايدر صور
+</option>
 
-      <div>
-        <label>اسم صاحب الحساب</label>
-        <input id="bankHolder">
-      </div>
+<option value="video">
+فيديو
+</option>
 
-      <div>
-        <label>رقم الحساب</label>
-        <input id="bankAccount">
-      </div>
+</select>
 
-      <div>
-        <label>IBAN</label>
-        <input id="bankIban">
-      </div>
+</div>
 
-    </div>
 
-    <label>تعليمات إضافية</label>
-    <textarea id="bankInstructions"></textarea>
+<div>
 
-    <button
-      class="btn gold"
-      onclick="addBankAccount()">
-      إضافة حساب
-    </button>
+<label>
+طريقة عرض الصورة
+</label>
 
-  </div>
+<select id="adFit">
 
-  <div
-    id="bankAccountsList"
-    class="card">
-  </div>
+<option value="cover">
+Cover
+</option>
 
-  <button
-    class="btn green"
-    onclick="savePaymentSettings()">
-    حفظ إعدادات الدفع
-  </button>
+<option value="contain">
+Contain
+</option>
+
+<option value="fill">
+Fill
+</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>
+موضع المحتوى
+</label>
+
+<select id="adPosition">
+
+<option value="center">
+الوسط
+</option>
+
+<option value="top">
+أعلى
+</option>
+
+<option value="bottom">
+أسفل
+</option>
+
+<option value="center top">
+وسط أعلى
+</option>
+
+<option value="center bottom">
+وسط أسفل
+</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>
+استدارة الحواف
+</label>
+
+<input
+id="adRadius"
+type="number"
+>
+
+</div>
+
+
+<div>
+
+<label>
+مدة السلايدر ms
+</label>
+
+<input
+id="adInterval"
+type="number"
+>
+
+</div>
+
+</div>
+
+
+<h3>
+💻 الكمبيوتر
+</h3>
+
+
+<div class="grid3">
+
+
+<div>
+
+<label>
+العرض %
+</label>
+
+<input
+id="adDesktopWidth"
+type="number"
+>
+
+</div>
+
+
+<div>
+
+<label>
+الارتفاع px
+</label>
+
+<input
+id="adDesktopHeight"
+type="number"
+>
+
+</div>
+
+
+<div>
+
+<label>
+أقصى عرض px
+</label>
+
+<input
+id="adDesktopMaxWidth"
+type="number"
+>
+
+</div>
+
+</div>
+
+
+<h3>
+📱 التابلت
+</h3>
+
+
+<div class="grid3">
+
+
+<div>
+
+<label>
+العرض %
+</label>
+
+<input
+id="adTabletWidth"
+type="number"
+>
+
+</div>
+
+
+<div>
+
+<label>
+الارتفاع px
+</label>
+
+<input
+id="adTabletHeight"
+type="number"
+>
+
+</div>
+
+
+<div>
+
+<label>
+أقصى عرض px
+</label>
+
+<input
+id="adTabletMaxWidth"
+type="number"
+>
+
+</div>
+
+</div>
+
+
+<h3>
+📲 الجوال
+</h3>
+
+
+<div class="grid3">
+
+
+<div>
+
+<label>
+العرض %
+</label>
+
+<input
+id="adMobileWidth"
+type="number"
+>
+
+</div>
+
+
+<div>
+
+<label>
+الارتفاع px
+</label>
+
+<input
+id="adMobileHeight"
+type="number"
+>
+
+</div>
+
+
+<div>
+
+<label>
+أقصى عرض px
+</label>
+
+<input
+id="adMobileMaxWidth"
+type="number"
+>
+
+</div>
+
+</div>
+
+
+<label>
+رابط الإعلان عند الضغط - اختياري
+</label>
+
+<input
+id="adLinkAdmin"
+placeholder="https://..."
+>
+
+
+<h3>
+📷🎬 ملفات الإعلان
+</h3>
+
+
+<input
+id="adFiles"
+type="file"
+accept="image/*,video/*"
+multiple
+onchange="previewSelectedAdFiles()"
+>
+
+
+<div
+id="adUploadStatus"
+class="upload-status"
+></div>
+
+
+<h3>
+الملفات الحالية
+</h3>
+
+<div
+id="existingAdMedia"
+class="media-preview-grid"
+></div>
+
+
+<h3>
+الملفات الجديدة
+</h3>
+
+<div
+id="newAdFilesPreview"
+class="media-preview-grid"
+></div>
+
+
+<div class="actions">
+
+<button
+id="saveAdsButton"
+class="btn gold"
+onclick="saveAds()"
+>
+حفظ الإعلانات
+</button>
+
+<button
+class="btn out"
+onclick="previewAd()"
+>
+معاينة
+</button>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+معاينة الإعلان
+</h3>
+
+<div
+id="adPreview"
+class="ad-preview"
+>
+لا توجد معاينة
+</div>
+
+</div>
 
 </section>
 
-<section id="footer" class="page hidden">
 
-  <div class="card">
+<!-- =========================================================
+PRODUCT DESIGN
+========================================================= -->
 
-    <h2>📄 السياسات والروابط</h2>
+<section
+id="design"
+class="page hidden"
+>
 
-    <div id="policiesEditor"></div>
+<div class="card">
 
-    <button
-      class="btn gold"
-      onclick="saveFooterSettings()">
-      حفظ السياسات
-    </button>
+<h2>
+🛍️ أحجام المنتجات
+</h2>
 
-  </div>
+
+<h3>
+💻 الكمبيوتر
+</h3>
+
+
+<div class="grid3">
+
+
+<div>
+
+<label>
+عرض المنتج px
+</label>
+
+<input
+id="productDesktopWidth"
+type="number"
+>
+
+</div>
+
+
+<div>
+
+<label>
+ارتفاع الصورة px
+</label>
+
+<input
+id="productDesktopImageHeight"
+type="number"
+>
+
+</div>
+
+
+<div>
+
+<label>
+حجم اسم المنتج px
+</label>
+
+<input
+id="productDesktopFont"
+type="number"
+>
+
+</div>
+
+</div>
+
+
+<h3>
+📱 التابلت
+</h3>
+
+
+<div class="grid3">
+
+
+<div>
+
+<label>
+عرض المنتج px
+</label>
+
+<input
+id="productTabletWidth"
+type="number"
+>
+
+</div>
+
+
+<div>
+
+<label>
+ارتفاع الصورة px
+</label>
+
+<input
+id="productTabletImageHeight"
+type="number"
+>
+
+</div>
+
+
+<div>
+
+<label>
+حجم الاسم px
+</label>
+
+<input
+id="productTabletFont"
+type="number"
+>
+
+</div>
+
+</div>
+
+
+<h3>
+📲 الجوال
+</h3>
+
+
+<div class="grid3">
+
+
+<div>
+
+<label>
+عرض المنتج %
+</label>
+
+<input
+id="productMobileWidth"
+type="number"
+>
+
+</div>
+
+
+<div>
+
+<label>
+ارتفاع الصورة px
+</label>
+
+<input
+id="productMobileImageHeight"
+type="number"
+>
+
+</div>
+
+
+<div>
+
+<label>
+حجم الاسم px
+</label>
+
+<input
+id="productMobileFont"
+type="number"
+>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>
+🎞️ حركة المنتجات
+</h2>
+
+
+<div class="check-row">
+
+<input
+id="productCarouselEnabled"
+type="checkbox"
+>
+
+<label for="productCarouselEnabled">
+تشغيل حركة تقليب المنتجات
+</label>
+
+</div>
+
+
+<div class="grid3">
+
+
+<div>
+
+<label>
+تكبير المنتج الأوسط
+</label>
+
+<input
+id="carouselCenterScale"
+type="number"
+step=".05"
+>
+
+</div>
+
+
+<div>
+
+<label>
+حجم المنتجات الجانبية
+</label>
+
+<input
+id="carouselSideScale"
+type="number"
+step=".05"
+>
+
+</div>
+
+
+<div>
+
+<label>
+زاوية الميل
+</label>
+
+<input
+id="carouselRotation"
+type="number"
+>
+
+</div>
+
+
+<div>
+
+<label>
+المسافة
+</label>
+
+<input
+id="carouselSpacing"
+type="number"
+>
+
+</div>
+
+
+<div>
+
+<label>
+سرعة الحركة ms
+</label>
+
+<input
+id="carouselSpeed"
+type="number"
+>
+
+</div>
+
+</div>
+
+
+<button
+class="btn gold"
+onclick="saveProductDesign()"
+>
+حفظ التصميم
+</button>
+
+</div>
 
 </section>
 
-<section id="settings" class="page hidden">
 
-  <div class="card">
+<!-- =========================================================
+PAYMENT
+========================================================= -->
 
-    <h2>⚙️ إعدادات المتجر</h2>
+<section
+id="payment"
+class="page hidden"
+>
 
-    <div class="grid2">
+<div class="card">
 
-      <div>
-        <label>اسم المتجر</label>
-        <input id="setStoreName">
-      </div>
+<h2>
+💳 وسائل الدفع
+</h2>
 
-      <div>
-        <label>الاسم الإنجليزي</label>
-        <input id="setStoreNameEn">
-      </div>
 
-      <div>
-        <label>العنوان الصغير</label>
-        <input id="setEyebrow">
-      </div>
+<div class="grid3">
 
-      <div>
-        <label>الجوال</label>
-        <input id="setPhone">
-      </div>
 
-      <div>
-        <label>واتساب</label>
-        <input id="setWhatsapp">
-      </div>
+<div>
 
-      <div>
-        <label>البريد</label>
-        <input id="setEmail">
-      </div>
+<label>
+اسم وسيلة الدفع
+</label>
 
-    </div>
+<input id="paymentName">
 
-    <label>العنوان الرئيسي</label>
-    <input id="setSloganTitle">
+</div>
 
-    <label>الوصف الرئيسي</label>
-    <textarea id="setSloganDesc"></textarea>
 
-    <label>قصة المتجر</label>
-    <textarea id="setAbout"></textarea>
+<div>
 
-    <div class="grid3">
+<label>
+الرمز
+</label>
 
-      <div>
-        <label>Instagram</label>
-        <input id="setInstagram">
-      </div>
+<input
+id="paymentId"
+placeholder="bank"
+>
 
-      <div>
-        <label>TikTok</label>
-        <input id="setTiktok">
-      </div>
+</div>
 
-      <div>
-        <label>Facebook</label>
-        <input id="setFacebook">
-      </div>
 
-      <div>
-        <label>Telegram</label>
-        <input id="setTelegram">
-      </div>
+<div>
 
-      <div>
-        <label>X</label>
-        <input id="setTwitter">
-      </div>
+<label>
+النوع
+</label>
 
-      <div>
-        <label>Snapchat</label>
-        <input id="setSnapchat">
-      </div>
+<select id="paymentType">
 
-    </div>
+<option value="bank">
+بنكي
+</option>
 
-    <div class="check-row">
-      <input id="setSearch" type="checkbox">
-      <label for="setSearch">تشغيل البحث</label>
-    </div>
+<option value="card">
+بطاقة
+</option>
 
-    <div class="check-row">
-      <input id="setSort" type="checkbox">
-      <label for="setSort">تشغيل الترتيب</label>
-    </div>
+<option value="cash">
+نقدي
+</option>
 
-    <div class="check-row">
-      <input id="setReviews" type="checkbox">
-      <label for="setReviews">إظهار التقييمات</label>
-    </div>
+<option value="other">
+أخرى
+</option>
 
-    <button
-      class="btn gold"
-      onclick="saveGeneralSettings()">
-      حفظ إعدادات المتجر
-    </button>
+</select>
 
-  </div>
+</div>
+
+</div>
+
+
+<label>
+التعليمات
+</label>
+
+<textarea id="paymentDescription"></textarea>
+
+
+<button
+class="btn"
+onclick="addPaymentMethod()"
+>
+إضافة وسيلة دفع
+</button>
+
+</div>
+
+
+<div
+id="paymentMethodsList"
+class="card"
+></div>
+
+
+<div class="card">
+
+<h2>
+🏦 الحسابات البنكية
+</h2>
+
+
+<div class="grid2">
+
+
+<div>
+
+<label>
+اسم البنك
+</label>
+
+<input id="bankName">
+
+</div>
+
+
+<div>
+
+<label>
+اسم صاحب الحساب
+</label>
+
+<input id="bankHolder">
+
+</div>
+
+
+<div>
+
+<label>
+رقم الحساب
+</label>
+
+<input id="bankAccount">
+
+</div>
+
+
+<div>
+
+<label>
+IBAN
+</label>
+
+<input id="bankIban">
+
+</div>
+
+</div>
+
+
+<label>
+تعليمات إضافية
+</label>
+
+<textarea id="bankInstructions"></textarea>
+
+
+<button
+class="btn gold"
+onclick="addBankAccount()"
+>
+إضافة حساب
+</button>
+
+</div>
+
+
+<div
+id="bankAccountsList"
+class="card"
+></div>
+
+
+<button
+class="btn green"
+onclick="savePaymentSettings()"
+>
+حفظ إعدادات الدفع والبنوك
+</button>
 
 </section>
+
+
+<!-- =========================================================
+POLICIES
+========================================================= -->
+
+<section
+id="footer"
+class="page hidden"
+>
+
+<div class="card">
+
+<h2>
+📄 السياسات والروابط
+</h2>
+
+
+<div id="policiesEditor"></div>
+
+
+<button
+class="btn gold"
+onclick="saveFooterSettings()"
+>
+حفظ السياسات
+</button>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+STORE SETTINGS
+========================================================= -->
+
+<section
+id="settings"
+class="page hidden"
+>
+
+<div class="card">
+
+<h2>
+⚙️ إعدادات المتجر
+</h2>
+
+
+<div class="grid2">
+
+
+<div>
+
+<label>
+اسم المتجر
+</label>
+
+<input id="setStoreName">
+
+</div>
+
+
+<div>
+
+<label>
+الاسم الإنجليزي
+</label>
+
+<input id="setStoreNameEn">
+
+</div>
+
+
+<div>
+
+<label>
+العنوان الصغير
+</label>
+
+<input id="setEyebrow">
+
+</div>
+
+
+<div>
+
+<label>
+الجوال
+</label>
+
+<input id="setPhone">
+
+</div>
+
+
+<div>
+
+<label>
+واتساب
+</label>
+
+<input id="setWhatsapp">
+
+</div>
+
+
+<div>
+
+<label>
+البريد الإلكتروني
+</label>
+
+<input id="setEmail">
+
+</div>
+
+</div>
+
+
+<label>
+العنوان الرئيسي
+</label>
+
+<input id="setSloganTitle">
+
+
+<label>
+الوصف الرئيسي
+</label>
+
+<textarea id="setSloganDesc"></textarea>
+
+
+<label>
+قصة المتجر
+</label>
+
+<textarea id="setAbout"></textarea>
+
+
+<div class="grid3">
+
+
+<div>
+
+<label>
+Instagram
+</label>
+
+<input id="setInstagram">
+
+</div>
+
+
+<div>
+
+<label>
+TikTok
+</label>
+
+<input id="setTiktok">
+
+</div>
+
+
+<div>
+
+<label>
+Facebook
+</label>
+
+<input id="setFacebook">
+
+</div>
+
+
+<div>
+
+<label>
+Telegram
+</label>
+
+<input id="setTelegram">
+
+</div>
+
+
+<div>
+
+<label>
+X
+</label>
+
+<input id="setTwitter">
+
+</div>
+
+
+<div>
+
+<label>
+Snapchat
+</label>
+
+<input id="setSnapchat">
+
+</div>
+
+</div>
+
+
+<div class="check-row">
+
+<input
+id="setSearch"
+type="checkbox"
+>
+
+<label for="setSearch">
+تشغيل البحث
+</label>
+
+</div>
+
+
+<div class="check-row">
+
+<input
+id="setSort"
+type="checkbox"
+>
+
+<label for="setSort">
+تشغيل الترتيب
+</label>
+
+</div>
+
+
+<div class="check-row">
+
+<input
+id="setReviews"
+type="checkbox"
+>
+
+<label for="setReviews">
+إظهار التقييمات
+</label>
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+SPLASH SETTINGS
+========================================================= -->
+
+<div class="card">
+
+<h2>
+📱 شاشة البداية
+</h2>
+
+
+<div class="check-row">
+
+<input
+id="setSplashEnabled"
+type="checkbox"
+checked
+>
+
+<label for="setSplashEnabled">
+تشغيل شاشة البداية
+</label>
+
+</div>
+
+
+<p class="note">
+يمكنك رفع شعار مستقل لشاشة بداية المتجر وتحديد مدة ظهوره وحجمه لكل جهاز.
+</p>
+
+
+<label>
+شعار شاشة البداية
+</label>
+
+
+<input
+id="setSplashFile"
+type="file"
+accept="image/*"
+onchange="previewSplashFile()"
+>
+
+
+<div
+id="splashUploadStatus"
+class="upload-status"
+></div>
+
+
+<div
+id="splashAdminPreview"
+class="media-preview-grid"
+></div>
+
+
+<div class="actions">
+
+<button
+class="btn red sm"
+type="button"
+onclick="removeSplashLogo()"
+>
+حذف شعار شاشة البداية
+</button>
+
+</div>
+
+
+<div class="grid3">
+
+
+<div>
+
+<label>
+مدة الظهور ms
+</label>
+
+<input
+id="setSplashDuration"
+type="number"
+min="300"
+step="100"
+value="2300"
+>
+
+</div>
+
+
+<div>
+
+<label>
+عرض الشعار - كمبيوتر px
+</label>
+
+<input
+id="setSplashDesktopWidth"
+type="number"
+value="330"
+>
+
+</div>
+
+
+<div>
+
+<label>
+عرض الشعار - تابلت px
+</label>
+
+<input
+id="setSplashTabletWidth"
+type="number"
+value="280"
+>
+
+</div>
+
+
+<div>
+
+<label>
+عرض الشعار - جوال px
+</label>
+
+<input
+id="setSplashMobileWidth"
+type="number"
+value="220"
+>
+
+</div>
+
+
+<div>
+
+<label>
+لون الخلفية
+</label>
+
+<input
+id="setSplashBackground"
+type="color"
+value="#F8EACB"
+>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<button
+id="saveGeneralButton"
+class="btn gold"
+style="width:100%"
+onclick="saveGeneralSettings()"
+>
+حفظ إعدادات المتجر وشاشة البداية
+</button>
+
+</div>
+
+</section>
+
 
 </main>
+
 </div>
+
+
+<!-- =========================================================
+ORDER MODAL
+========================================================= -->
 
 <div
-  id="modalScrim"
-  class="modal-scrim"
-  onclick="closeOrderModal()">
-</div>
+id="modalScrim"
+class="modal-scrim"
+onclick="closeOrderModal()"
+></div>
+
 
 <div
-  id="orderModal"
-  class="modal">
+id="orderModal"
+class="modal"
+>
 
-  <div class="modal-head">
+<div class="modal-head">
 
-    <h2>تفاصيل الطلب</h2>
+<h2>
+تفاصيل الطلب
+</h2>
 
-    <button
-      class="close"
-      onclick="closeOrderModal()">
-      ✕
-    </button>
-
-  </div>
-
-  <div id="orderModalBody"></div>
+<button
+class="close"
+onclick="closeOrderModal()"
+>
+✕
+</button>
 
 </div>
 
-<div id="toast" class="toast"></div>
+
+<div id="orderModalBody"></div>
+
+</div>
+
+
+<div
+id="toast"
+class="toast"
+></div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+
 <script>
+
+/* =========================================================
+SUPABASE
+========================================================= */
 
 const SUPABASE_URL =
 "https://bpxklyjahdjbnkxwtqig.supabase.co";
 
+
 const SUPABASE_KEY =
 "sb_publishable_7hoVcUR8Twi6s9IRATiruw_ICTw6wXn";
+
 
 const ADMIN_EMAIL =
 "omara1store@gmail.com";
 
+
 const STORAGE_BUCKET =
 "store-media";
 
+
 const db =
 supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
+SUPABASE_URL,
+SUPABASE_KEY
 );
+
 
 const $ =
 id =>
-document.getElementById(id);
+document.getElementById(
+id
+);
+
+
+/* =========================================================
+DATA
+========================================================= */
 
 let products = [];
 let categories = [];
@@ -1909,4030 +3696,7004 @@ let relations = [];
 let customers = [];
 let settingsRows = [];
 
+
 let generalSettings = {};
 let paymentSettings = {};
 let designSettings = {};
 let adSettings = {};
 let footerSettings = {};
 
+
 let paymentMethodsDraft = [];
 let bankAccountsDraft = [];
 
+
 let editingProductImages = [];
 let editingAdMedia = [];
+let editingSplashLogo = "";
+
+
+/* =========================================================
+NAVIGATION
+========================================================= */
 
 const tabs = [
-  ["dashboard","الرئيسية"],
-  ["productManager","المنتجات"],
-  ["products","الخيارات"],
-  ["bundles","العروض"],
-  ["gifts","الهدايا"],
-  ["coupons","الكوبونات"],
-  ["customers","العملاء"],
-  ["orders","الطلبات"],
-  ["reviews","التقييمات"],
-  ["recommend","الاقتراحات"],
-  ["ads","الإعلانات"],
-  ["design","تصميم المنتجات"],
-  ["payment","الدفع والبنوك"],
-  ["footer","السياسات"],
-  ["settings","إعدادات المتجر"]
+
+[
+"dashboard",
+"الرئيسية"
+],
+
+[
+"productManager",
+"المنتجات"
+],
+
+[
+"products",
+"الخيارات"
+],
+
+[
+"bundles",
+"العروض"
+],
+
+[
+"gifts",
+"الهدايا"
+],
+
+[
+"coupons",
+"الكوبونات"
+],
+
+[
+"customers",
+"العملاء"
+],
+
+[
+"orders",
+"الطلبات"
+],
+
+[
+"reviews",
+"التقييمات"
+],
+
+[
+"recommend",
+"الاقتراحات"
+],
+
+[
+"ads",
+"الإعلانات"
+],
+
+[
+"design",
+"تصميم المنتجات"
+],
+
+[
+"payment",
+"الدفع والبنوك"
+],
+
+[
+"footer",
+"السياسات"
+],
+
+[
+"settings",
+"إعدادات المتجر"
+]
+
 ];
 
+
 const policies = [
-  ["about","من نحن"],
-  ["returns","سياسة الاستبدال والاسترجاع"],
-  ["privacy","سياسة الخصوصية"],
-  ["terms","الشروط والأحكام"],
-  ["discounts","سياسة التخفيضات"],
-  ["customerService","خدمة العملاء"],
-  ["hr","الموارد البشرية"],
-  ["wholesale","مبيعات الجملة"],
-  ["branches","فروعنا"]
+
+[
+"about",
+"من نحن"
+],
+
+[
+"returns",
+"سياسة الاستبدال والاسترجاع"
+],
+
+[
+"privacy",
+"سياسة الخصوصية"
+],
+
+[
+"terms",
+"الشروط والأحكام"
+],
+
+[
+"discounts",
+"سياسة التخفيضات"
+],
+
+[
+"customerService",
+"خدمة العملاء"
+],
+
+[
+"hr",
+"الموارد البشرية"
+],
+
+[
+"wholesale",
+"مبيعات الجملة"
+],
+
+[
+"branches",
+"فروعنا"
+]
+
 ];
+
+
+/* =========================================================
+HELPERS
+========================================================= */
 
 function toast(message){
 
-  $("toast").textContent =
-  message;
+$("toast")
+.textContent =
+message;
 
-  $("toast").classList.add("show");
 
-  setTimeout(
-    () =>
-    $("toast").classList.remove("show"),
-    2200
-  );
+$("toast")
+.classList.add(
+"show"
+);
+
+
+setTimeout(
+() => {
+
+$("toast")
+.classList.remove(
+"show"
+);
+
+},
+2200
+);
 
 }
+
 
 function esc(value){
 
-  return String(
-    value ?? ""
-  )
-  .replace(
-    /[&<>"']/g,
-    char => ({
-      "&":"&amp;",
-      "<":"&lt;",
-      ">":"&gt;",
-      '"':"&quot;",
-      "'":"&#039;"
-    }[char])
-  );
+return String(
+value ?? ""
+)
+.replace(
+/[&<>"']/g,
+char => ({
+
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
+
+}[char])
+);
 
 }
+
 
 function money(
-  value,
-  currency = "ر.ي"
+value,
+currency = "ر.ي"
 ){
 
-  return (
-    Number(value || 0).toFixed(2)
-    +
-    " "
-    +
-    (currency || "ر.ي")
-  );
+return (
+Number(
+value || 0
+)
+.toFixed(
+2
+)
++
+" "
++
+(
+currency || "ر.ي"
+)
+);
 
 }
 
-function parseLines(value){
-
-  return String(value || "")
-  .split(/[\n,]+/)
-  .map(x => x.trim())
-  .filter(Boolean);
-
-}
 
 function statusText(status){
 
-  return ({
-    pending:"قيد الانتظار",
-    confirmed:"تم التأكيد",
-    processing:"قيد التجهيز",
-    shipped:"تم الشحن",
-    delivered:"تم التسليم",
-    cancelled:"ملغي",
-    refunded:"مسترجع"
-  })[status]
-  ||
-  status
-  ||
-  "—";
+return ({
+
+pending:
+"قيد الانتظار",
+
+confirmed:
+"تم التأكيد",
+
+processing:
+"قيد التجهيز",
+
+shipped:
+"تم الشحن",
+
+delivered:
+"تم التسليم",
+
+cancelled:
+"ملغي",
+
+refunded:
+"مسترجع"
+
+})[
+status
+]
+||
+status
+||
+"—";
 
 }
 
-function randomName(file){
 
-  let ext =
-  String(
-    file.name || "file"
-  )
-  .split(".")
-  .pop()
-  .toLowerCase()
-  .replace(
-    /[^a-z0-9]/g,
-    ""
-  );
+function parseLines(value){
 
-  if(!ext){
-    ext = "bin";
-  }
-
-  return (
-    Date.now()
-    +
-    "_"
-    +
-    Math.random()
-    .toString(36)
-    .slice(2,12)
-    +
-    "."
-    +
-    ext
-  );
+return String(
+value || ""
+)
+.split(
+/[\n,]+/
+)
+.map(
+item =>
+item.trim()
+)
+.filter(
+Boolean
+);
 
 }
+
+
+function randomFileName(file){
+
+let extension =
+String(
+file.name
+||
+"file"
+)
+.split(
+"."
+)
+.pop()
+.toLowerCase()
+.replace(
+/[^a-z0-9]/g,
+""
+);
+
+
+if(!extension){
+
+extension =
+"bin";
+
+}
+
+
+return (
+
+Date.now()
+
++
+"_"
+
++
+Math.random()
+.toString(
+36
+)
+.slice(
+2,
+12
+)
+
++
+"."
+
++
+extension
+
+);
+
+}
+
+
+/* =========================================================
+UPLOAD STATUS
+========================================================= */
 
 function setUploadStatus(
-  id,
-  text,
-  show = true
+id,
+message,
+show = true
 ){
 
-  const e = $(id);
+const element =
+$(id);
 
-  if(!e){
-    return;
-  }
 
-  e.textContent = text;
+if(!element){
 
-  e.classList.toggle(
-    "show",
-    show
-  );
+return;
 
 }
+
+
+element.textContent =
+message;
+
+
+element.classList.toggle(
+"show",
+show
+);
+
+}
+
+
+/* =========================================================
+STORAGE
+========================================================= */
 
 async function uploadMediaFile(
-  file,
-  folder
+file,
+folder
 ){
 
-  if(!file){
-    throw new Error(
-      "لم يتم اختيار ملف"
-    );
-  }
+if(!file){
 
-  const path =
-  folder
-  +
-  "/"
-  +
-  randomName(file);
-
-  const {
-    error
-  } =
-  await db.storage
-  .from(STORAGE_BUCKET)
-  .upload(
-    path,
-    file,
-    {
-      upsert:false,
-      cacheControl:"3600",
-      contentType:file.type
-    }
-  );
-
-  if(error){
-
-    if(
-      String(error.message)
-      .toLowerCase()
-      .includes("bucket")
-    ){
-
-      throw new Error(
-        "مخزن الصور store-media غير موجود في Supabase. أنشئه مرة واحدة من Storage."
-      );
-
-    }
-
-    throw error;
-
-  }
-
-  const {
-    data
-  } =
-  db.storage
-  .from(STORAGE_BUCKET)
-  .getPublicUrl(path);
-
-  return data.publicUrl;
+throw new Error(
+"لم يتم اختيار ملف"
+);
 
 }
+
+
+const path =
+folder
++
+"/"
++
+randomFileName(
+file
+);
+
+
+const {
+error
+} =
+await db.storage
+.from(
+STORAGE_BUCKET
+)
+.upload(
+path,
+file,
+{
+
+cacheControl:
+"3600",
+
+upsert:
+false,
+
+contentType:
+file.type
+
+}
+);
+
+
+if(error){
+
+const message =
+String(
+error.message
+||
+""
+);
+
+
+if(
+message
+.toLowerCase()
+.includes(
+"bucket"
+)
+){
+
+throw new Error(
+"مخزن store-media غير موجود في Supabase."
+);
+
+}
+
+
+if(
+message
+.toLowerCase()
+.includes(
+"row-level security"
+)
+){
+
+throw new Error(
+"سياسة Storage RLS تمنع رفع الملف. يجب تفعيل صلاحية الرفع للمدير على store-media."
+);
+
+}
+
+
+throw error;
+
+}
+
+
+const {
+data
+} =
+db.storage
+.from(
+STORAGE_BUCKET
+)
+.getPublicUrl(
+path
+);
+
+
+if(
+!data?.publicUrl
+){
+
+throw new Error(
+"تعذر إنشاء رابط الملف"
+);
+
+}
+
+
+return data.publicUrl;
+
+}
+
+
+/* =========================================================
+UPLOAD MULTIPLE
+========================================================= */
 
 async function uploadMultipleFiles(
-  fileList,
-  folder,
-  statusId
+fileList,
+folder,
+statusId
 ){
 
-  const files =
-  Array.from(
-    fileList || []
-  );
+const files =
+Array.from(
+fileList
+||
+[]
+);
 
-  const result = [];
 
-  for(
-    let i = 0;
-    i < files.length;
-    i++
-  ){
+const urls =
+[];
 
-    setUploadStatus(
-      statusId,
-      "جارِ رفع "
-      +
-      (i + 1)
-      +
-      " من "
-      +
-      files.length
-    );
 
-    result.push(
-      await uploadMediaFile(
-        files[i],
-        folder
-      )
-    );
+for(
+let index = 0;
+index < files.length;
+index++
+){
 
-  }
+setUploadStatus(
 
-  return result;
+statusId,
+
+"جارِ رفع الملف "
++
+(index + 1)
++
+" من "
++
+files.length
+
+);
+
+
+const url =
+await uploadMediaFile(
+files[index],
+folder
+);
+
+
+urls.push(
+url
+);
 
 }
+
+
+if(files.length){
+
+setUploadStatus(
+statusId,
+"تم رفع الملفات ✓"
+);
+
+}
+
+
+return urls;
+
+}
+
+
+/* =========================================================
+LOCAL PREVIEW
+========================================================= */
 
 function localFileHTML(file){
 
-  const url =
-  URL.createObjectURL(file);
+const url =
+URL.createObjectURL(
+file
+);
 
-  if(
-    file.type
-    .startsWith("video/")
-  ){
 
-    return `
-      <div class="media-preview">
-        <video
-          src="${url}"
-          controls
-          muted>
-        </video>
-      </div>
-    `;
+if(
+file.type
+.startsWith(
+"video/"
+)
+){
 
-  }
+return `
 
-  return `
-    <div class="media-preview">
-      <img src="${url}">
-    </div>
-  `;
+<div class="media-preview">
+
+<video
+src="${url}"
+controls
+muted
+></video>
+
+</div>
+
+`;
 
 }
+
+
+return `
+
+<div class="media-preview">
+
+<img
+src="${url}"
+alt=""
+>
+
+</div>
+
+`;
+
+}
+
+
+/* =========================================================
+PREVIEW PRODUCT
+========================================================= */
 
 function previewSelectedProductImages(){
 
-  $("newProductImagesPreview")
-  .innerHTML =
-  Array.from(
-    $("productImageFiles").files
-    ||
-    []
-  )
-  .map(localFileHTML)
-  .join("");
+$("newProductImagesPreview")
+.innerHTML =
+Array.from(
+$("productImageFiles")
+.files
+||
+[]
+)
+.map(
+localFileHTML
+)
+.join("");
 
 }
+
+
+/* =========================================================
+PREVIEW BUNDLE
+========================================================= */
 
 function previewBundleImage(){
 
-  const file =
-  $("bundleImageFile")
-  .files?.[0];
+const file =
+$("bundleImageFile")
+.files?.[0];
 
-  $("bundleImagePreview")
-  .innerHTML =
-  file
-  ?
-  localFileHTML(file)
-  :
-  "";
+
+$("bundleImagePreview")
+.innerHTML =
+file
+?
+localFileHTML(
+file
+)
+:
+"";
 
 }
+
+
+/* =========================================================
+PREVIEW GIFT
+========================================================= */
 
 function previewGiftImage(){
 
-  const file =
-  $("giftImageFile")
-  .files?.[0];
+const file =
+$("giftImageFile")
+.files?.[0];
 
-  $("giftImagePreview")
-  .innerHTML =
-  file
-  ?
-  localFileHTML(file)
-  :
-  "";
+
+$("giftImagePreview")
+.innerHTML =
+file
+?
+localFileHTML(
+file
+)
+:
+"";
 
 }
+
+
+/* =========================================================
+PREVIEW ADS
+========================================================= */
 
 function previewSelectedAdFiles(){
 
-  $("newAdFilesPreview")
-  .innerHTML =
-  Array.from(
-    $("adFiles").files
-    ||
-    []
-  )
-  .map(localFileHTML)
-  .join("");
+$("newAdFilesPreview")
+.innerHTML =
+Array.from(
+$("adFiles")
+.files
+||
+[]
+)
+.map(
+localFileHTML
+)
+.join("");
 
-  previewAd();
+
+previewAd();
 
 }
+
+
+/* =========================================================
+SPLASH PREVIEW
+========================================================= */
+
+function previewSplashFile(){
+
+const file =
+$("setSplashFile")
+.files?.[0];
+
+
+if(!file){
+
+return;
+
+}
+
+
+$("splashAdminPreview")
+.innerHTML =
+localFileHTML(
+file
+);
+
+}
+
+
+/* =========================================================
+REMOVE SPLASH
+========================================================= */
+
+function removeSplashLogo(){
+
+editingSplashLogo =
+"";
+
+
+$("setSplashFile")
+.value =
+"";
+
+
+$("splashAdminPreview")
+.innerHTML =
+"";
+
+
+toast(
+"سيتم حذف شعار شاشة البداية عند الحفظ"
+);
+
+}
+
+
+/* =========================================================
+AUTH
+========================================================= */
 
 async function getSession(){
 
-  const {
-    data
-  } =
-  await db.auth
-  .getSession();
+const {
+data
+} =
+await db.auth
+.getSession();
 
-  return data.session || null;
+
+return data.session
+||
+null;
 
 }
+
+
+/* =========================================================
+ADMIN CHECK
+========================================================= */
 
 async function isAdmin(){
 
-  const session =
-  await getSession();
+const session =
+await getSession();
 
-  if(!session){
-    return false;
-  }
 
-  if(
-    String(
-      session.user.email || ""
-    )
-    .toLowerCase()
-    !==
-    ADMIN_EMAIL.toLowerCase()
-  ){
-    return false;
-  }
+if(!session){
 
-  const {
-    data,
-    error
-  } =
-  await db
-  .from("store_admins")
-  .select("user_id")
-  .eq(
-    "user_id",
-    session.user.id
-  )
-  .maybeSingle();
-
-  if(error){
-    return false;
-  }
-
-  return !!data;
+return false;
 
 }
+
+
+if(
+String(
+session.user.email
+||
+""
+)
+.toLowerCase()
+!==
+ADMIN_EMAIL
+.toLowerCase()
+){
+
+return false;
+
+}
+
+
+const {
+data,
+error
+} =
+await db
+.from(
+"store_admins"
+)
+.select(
+"user_id"
+)
+.eq(
+"user_id",
+session.user.id
+)
+.maybeSingle();
+
+
+if(error){
+
+console.error(
+"Admin check:",
+error
+);
+
+
+return false;
+
+}
+
+
+return !!data;
+
+}
+
+
+/* =========================================================
+LOGIN
+========================================================= */
 
 async function login(){
 
-  const password =
-  $("password").value;
+$("msg")
+.textContent =
+"";
 
-  $("msg").textContent = "";
 
-  if(!password){
+const password =
+$("password")
+.value;
 
-    $("msg").textContent =
-    "أدخل كلمة المرور";
 
-    return;
+if(!password){
 
-  }
+$("msg")
+.textContent =
+"أدخل كلمة المرور";
 
-  const button =
-  $("loginButton");
 
-  button.disabled = true;
-
-  button.textContent =
-  "جارِ الدخول...";
-
-  try{
-
-    await db.auth.signOut();
-
-    const {
-      error
-    } =
-    await db.auth
-    .signInWithPassword({
-      email:ADMIN_EMAIL,
-      password
-    });
-
-    if(error){
-      throw error;
-    }
-
-    if(
-      !await isAdmin()
-    ){
-
-      await db.auth.signOut();
-
-      throw new Error(
-        "الحساب غير مسجل كمدير"
-      );
-
-    }
-
-    await boot();
-
-  }
-  catch(error){
-
-    let message =
-    error.message
-    ||
-    "تعذر تسجيل الدخول";
-
-    if(
-      message.includes(
-        "Invalid login credentials"
-      )
-    ){
-      message =
-      "كلمة المرور غير صحيحة";
-    }
-
-    $("msg").textContent =
-    message;
-
-  }
-  finally{
-
-    button.disabled = false;
-
-    button.textContent =
-    "دخول";
-
-  }
+return;
 
 }
+
+
+const button =
+$("loginButton");
+
+
+button.disabled =
+true;
+
+
+button.textContent =
+"جارِ الدخول...";
+
+
+try{
+
+const {
+error
+} =
+await db.auth
+.signInWithPassword({
+
+email:
+ADMIN_EMAIL,
+
+password
+
+});
+
+
+if(error){
+
+throw error;
+
+}
+
+
+if(
+!await isAdmin()
+){
+
+await db.auth
+.signOut();
+
+
+throw new Error(
+"الحساب غير مسجل كمدير"
+);
+
+}
+
+
+await boot();
+
+}
+catch(error){
+
+let message =
+error.message
+||
+"تعذر تسجيل الدخول";
+
+
+if(
+message.includes(
+"Invalid login credentials"
+)
+){
+
+message =
+"البريد أو كلمة المرور غير صحيحة";
+
+}
+
+
+$("msg")
+.textContent =
+message;
+
+}
+finally{
+
+button.disabled =
+false;
+
+
+button.textContent =
+"دخول";
+
+}
+
+}
+
+
+/* =========================================================
+LOGOUT
+========================================================= */
 
 async function logout(){
 
-  await db.auth.signOut();
+await db.auth
+.signOut();
 
-  $("app")
-  .classList.add("hidden");
 
-  $("login")
-  .classList.remove("hidden");
+$("app")
+.classList.add(
+"hidden"
+);
 
-  $("password").value = "";
+
+$("login")
+.classList.remove(
+"hidden"
+);
+
+
+$("password")
+.value =
+"";
 
 }
+
+
+/* =========================================================
+NAV
+========================================================= */
 
 function renderNav(){
 
-  $("nav").innerHTML =
-  tabs
-  .map(
-    (item,index) => `
-      <button
-        class="${index === 0 ? "active" : ""}"
-        onclick="tab('${item[0]}',this)">
-        ${item[1]}
-      </button>
-    `
-  )
-  .join("");
+$("nav")
+.innerHTML =
+tabs
+.map(
+(
+item,
+index
+) => `
+
+<button
+class="${
+index === 0
+?
+"active"
+:
+""
+}"
+onclick="tab('${item[0]}',this)"
+>
+
+${item[1]}
+
+</button>
+
+`
+)
+.join("");
 
 }
+
+
+/* =========================================================
+TAB
+========================================================= */
 
 function tab(
-  id,
-  button
+id,
+button
 ){
 
-  document
-  .querySelectorAll(".page")
-  .forEach(
-    page =>
-    page.classList.add("hidden")
-  );
+document
+.querySelectorAll(
+".page"
+)
+.forEach(
+page => {
 
-  $(id)
-  .classList.remove("hidden");
-
-  document
-  .querySelectorAll("#nav button")
-  .forEach(
-    b =>
-    b.classList.remove("active")
-  );
-
-  button
-  ?.classList
-  .add("active");
+page.classList.add(
+"hidden"
+);
 
 }
+);
+
+
+$(id)
+.classList.remove(
+"hidden"
+);
+
+
+document
+.querySelectorAll(
+"#nav button"
+)
+.forEach(
+item => {
+
+item.classList.remove(
+"active"
+);
+
+}
+);
+
+
+button
+?.classList
+.add(
+"active"
+);
+
+}
+
+
+/* =========================================================
+SAFE LOAD
+========================================================= */
 
 async function safe(
-  promise,
-  fallback = []
+promise,
+fallback = []
 ){
 
-  try{
+try{
 
-    const result =
-    await promise;
+const result =
+await promise;
 
-    if(result.error){
 
-      console.warn(
-        result.error
-      );
+if(
+result.error
+){
 
-      return fallback;
+console.warn(
+result.error
+);
 
-    }
 
-    return (
-      result.data
-      ??
-      fallback
-    );
-
-  }
-  catch(error){
-
-    console.warn(error);
-
-    return fallback;
-
-  }
+return fallback;
 
 }
+
+
+return result.data
+??
+fallback;
+
+}
+catch(error){
+
+console.warn(
+error
+);
+
+
+return fallback;
+
+}
+
+}
+
+
+/* =========================================================
+BOOT
+========================================================= */
 
 async function boot(){
 
-  if(
-    !await isAdmin()
-  ){
-    return;
-  }
+if(
+!await isAdmin()
+){
 
-  $("login")
-  .classList.add("hidden");
+$("app")
+.classList.add(
+"hidden"
+);
 
-  $("app")
-  .classList.remove("hidden");
 
-  renderNav();
+$("login")
+.classList.remove(
+"hidden"
+);
 
-  await loadAll();
+
+return;
 
 }
+
+
+$("login")
+.classList.add(
+"hidden"
+);
+
+
+$("app")
+.classList.remove(
+"hidden"
+);
+
+
+renderNav();
+
+
+await loadAll();
+
+}
+
+
+/* =========================================================
+LOAD ALL
+========================================================= */
 
 async function loadAll(){
 
-  const [
-    p,
-    cat,
-    v,
-    b,
-    g,
-    c,
-    o,
-    r,
-    rel,
-    stats,
-    customerReport,
-    settings
-  ] =
-  await Promise.all([
+const [
 
-    safe(
-      db
-      .from("products")
-      .select("*")
-      .order(
-        "sort_order",
-        {ascending:true}
-      )
-      .order(
-        "created_at",
-        {ascending:false}
-      )
-    ),
+p,
+cat,
+v,
+b,
+g,
+c,
+o,
+r,
+rel,
+stats,
+customerReport,
+settings
 
-    safe(
-      db
-      .from("categories")
-      .select("*")
-      .order(
-        "sort_order",
-        {ascending:true}
-      )
-    ),
+] =
+await Promise.all([
 
-    safe(
-      db
-      .from("product_variants")
-      .select("*")
-      .order("sort_order")
-    ),
 
-    safe(
-      db
-      .from("bundles")
-      .select("*")
-      .order(
-        "created_at",
-        {ascending:false}
-      )
-    ),
+safe(
 
-    safe(
-      db
-      .from("gift_options")
-      .select("*")
-      .order("sort_order")
-    ),
+db
+.from(
+"products"
+)
+.select(
+"*"
+)
+.order(
+"sort_order",
+{
+ascending:true
+}
+)
+.order(
+"created_at",
+{
+ascending:false
+}
+)
 
-    safe(
-      db
-      .from("coupons")
-      .select("*")
-      .order(
-        "created_at",
-        {ascending:false}
-      )
-    ),
+),
 
-    safe(
-      db
-      .from("orders")
-      .select("*")
-      .order(
-        "created_at",
-        {ascending:false}
-      )
-      .limit(300)
-    ),
 
-    safe(
-      db
-      .from("reviews")
-      .select("*")
-      .order(
-        "created_at",
-        {ascending:false}
-      )
-    ),
+safe(
 
-    safe(
-      db
-      .from("product_relations")
-      .select("*")
-      .order("sort_order")
-    ),
+db
+.from(
+"categories"
+)
+.select(
+"*"
+)
+.order(
+"sort_order",
+{
+ascending:true
+}
+)
 
-    safe(
-      db.rpc(
-        "admin_dashboard_stats"
-      ),
-      {}
-    ),
+),
 
-    safe(
-      db.rpc(
-        "admin_customer_report"
-      )
-    ),
 
-    safe(
-      db
-      .from("settings")
-      .select("*")
-    )
+safe(
 
-  ]);
+db
+.from(
+"product_variants"
+)
+.select(
+"*"
+)
+.order(
+"sort_order",
+{
+ascending:true
+}
+)
 
-  products = p || [];
-  categories = cat || [];
-  variants = v || [];
-  bundles = b || [];
-  gifts = g || [];
-  coupons = c || [];
-  orders = o || [];
-  reviews = r || [];
-  relations = rel || [];
-  customers = customerReport || [];
-  settingsRows = settings || [];
+),
 
-  parseSettings();
 
-  renderStats(
-    stats || {}
-  );
+safe(
 
-  fillProductCategories();
+db
+.from(
+"bundles"
+)
+.select(
+"*"
+)
+.order(
+"created_at",
+{
+ascending:false
+}
+)
 
-  fillProducts();
+),
 
-  renderAdminProducts();
 
-  renderVariants();
+safe(
 
-  renderBundles();
+db
+.from(
+"gift_options"
+)
+.select(
+"*"
+)
+.order(
+"sort_order",
+{
+ascending:true
+}
+)
 
-  renderGifts();
+),
 
-  renderCoupons();
 
-  renderCustomers();
+safe(
 
-  renderOrders();
+db
+.from(
+"coupons"
+)
+.select(
+"*"
+)
+.order(
+"created_at",
+{
+ascending:false
+}
+)
 
-  renderReviews();
+),
 
-  renderRelations();
 
-  fillSettingsForms();
+safe(
+
+db
+.from(
+"orders"
+)
+.select(
+"*"
+)
+.order(
+"created_at",
+{
+ascending:false
+}
+)
+.limit(
+300
+)
+
+),
+
+
+safe(
+
+db
+.from(
+"reviews"
+)
+.select(
+"*"
+)
+.order(
+"created_at",
+{
+ascending:false
+}
+)
+
+),
+
+
+safe(
+
+db
+.from(
+"product_relations"
+)
+.select(
+"*"
+)
+.order(
+"sort_order",
+{
+ascending:true
+}
+)
+
+),
+
+
+safe(
+
+db.rpc(
+"admin_dashboard_stats"
+),
+
+{}
+
+),
+
+
+safe(
+
+db.rpc(
+"admin_customer_report"
+)
+
+),
+
+
+safe(
+
+db
+.from(
+"settings"
+)
+.select(
+"*"
+)
+
+)
+
+]);
+
+
+products =
+p
+||
+[];
+
+
+categories =
+cat
+||
+[];
+
+
+variants =
+v
+||
+[];
+
+
+bundles =
+b
+||
+[];
+
+
+gifts =
+g
+||
+[];
+
+
+coupons =
+c
+||
+[];
+
+
+orders =
+o
+||
+[];
+
+
+reviews =
+r
+||
+[];
+
+
+relations =
+rel
+||
+[];
+
+
+customers =
+customerReport
+||
+[];
+
+
+settingsRows =
+settings
+||
+[];
+
+
+parseSettings();
+
+
+renderStats(
+stats
+||
+{}
+);
+
+
+fillProductCategories();
+
+fillProducts();
+
+renderAdminProducts();
+
+renderVariants();
+
+renderBundles();
+
+renderGifts();
+
+renderCoupons();
+
+renderCustomers();
+
+renderOrders();
+
+renderReviews();
+
+renderRelations();
+
+fillSettingsForms();
 
 }
+
+
+/* =========================================================
+SETTINGS PARSE
+========================================================= */
 
 function parseSettings(){
 
-  generalSettings =
-  settingsRows.find(
-    x => x.id === "general"
-  )?.data
-  ||
-  {};
+generalSettings =
+settingsRows.find(
+row =>
+row.id ===
+"general"
+)
+?.data
+||
+{};
 
-  paymentSettings =
-  settingsRows.find(
-    x => x.id === "payment"
-  )?.data
-  ||
-  {};
 
-  designSettings =
-  settingsRows.find(
-    x => x.id === "design"
-  )?.data
-  ||
-  {};
+paymentSettings =
+settingsRows.find(
+row =>
+row.id ===
+"payment"
+)
+?.data
+||
+{};
 
-  adSettings =
-  settingsRows.find(
-    x => x.id === "ads"
-  )?.data
-  ||
-  {};
 
-  footerSettings =
-  settingsRows.find(
-    x => x.id === "footer"
-  )?.data
-  ||
-  {};
+designSettings =
+settingsRows.find(
+row =>
+row.id ===
+"design"
+)
+?.data
+||
+{};
 
-  paymentMethodsDraft =
-  Array.isArray(
-    paymentSettings.paymentMethods
-  )
-  ?
-  JSON.parse(
-    JSON.stringify(
-      paymentSettings.paymentMethods
-    )
-  )
-  :
-  [];
 
-  bankAccountsDraft =
-  Array.isArray(
-    paymentSettings.bankAccounts
-  )
-  ?
-  JSON.parse(
-    JSON.stringify(
-      paymentSettings.bankAccounts
-    )
-  )
-  :
-  [];
+adSettings =
+settingsRows.find(
+row =>
+row.id ===
+"ads"
+)
+?.data
+||
+{};
 
-  editingAdMedia =
-  Array.isArray(
-    adSettings.media
-  )
-  ?
-  [...adSettings.media]
-  :
-  [];
+
+footerSettings =
+settingsRows.find(
+row =>
+row.id ===
+"footer"
+)
+?.data
+||
+{};
+
+
+paymentMethodsDraft =
+Array.isArray(
+paymentSettings.paymentMethods
+)
+?
+JSON.parse(
+JSON.stringify(
+paymentSettings.paymentMethods
+)
+)
+:
+[];
+
+
+bankAccountsDraft =
+Array.isArray(
+paymentSettings.bankAccounts
+)
+?
+JSON.parse(
+JSON.stringify(
+paymentSettings.bankAccounts
+)
+)
+:
+[];
+
+
+editingAdMedia =
+Array.isArray(
+adSettings.media
+)
+?
+[
+...adSettings.media
+]
+:
+[];
+
+
+editingSplashLogo =
+generalSettings.splashLogoUrl
+||
+"";
 
 }
+
+
+/* =========================================================
+SAVE SETTING
+========================================================= */
 
 async function saveSetting(
-  id,
-  data
+id,
+data
 ){
 
-  const {
-    error
-  } =
-  await db
-  .from("settings")
-  .upsert({
-    id,
-    data,
-    updated_at:
-    new Date()
-    .toISOString()
-  });
+const {
+error
+} =
+await db
+.from(
+"settings"
+)
+.upsert({
 
-  if(error){
-    throw error;
-  }
+id,
+
+data,
+
+updated_at:
+new Date()
+.toISOString()
+
+});
+
+
+if(error){
+
+throw error;
 
 }
+
+}
+
+
+/* =========================================================
+STATS
+========================================================= */
 
 function renderStats(stats){
 
-  $("stats").innerHTML =
-  [
-    [
-      "المنتجات",
-      stats.products
-      ??
-      products.length
-    ],
-    [
-      "الباقات",
-      stats.active_bundles
-      ??
-      bundles.length
-    ],
-    [
-      "الطلبات",
-      stats.orders
-      ??
-      orders.length
-    ],
-    [
-      "تم التسليم",
-      stats.delivered
-      ??
-      orders.filter(
-        x =>
-        x.status === "delivered"
-      ).length
-    ],
-    [
-      "العملاء",
-      stats.customers
-      ??
-      customers.length
-    ],
-    [
-      "التقييمات",
-      reviews.length
-    ],
-    [
-      "الكوبونات",
-      coupons.length
-    ],
-    [
-      "خيارات المنتجات",
-      variants.length
-    ]
-  ]
-  .map(
-    item => `
-      <div class="stat">
-        <span>${item[0]}</span>
-        <b>${item[1] ?? 0}</b>
-      </div>
-    `
-  )
-  .join("");
+$("stats")
+.innerHTML =
+[
+
+[
+"المنتجات",
+stats.products
+??
+products.length
+],
+
+[
+"الباقات",
+stats.active_bundles
+??
+bundles.length
+],
+
+[
+"الطلبات",
+stats.orders
+??
+orders.length
+],
+
+[
+"تم التسليم",
+stats.delivered
+??
+orders.filter(
+item =>
+item.status ===
+"delivered"
+)
+.length
+],
+
+[
+"العملاء",
+stats.customers
+??
+customers.length
+],
+
+[
+"التقييمات",
+reviews.length
+],
+
+[
+"الكوبونات",
+coupons.length
+],
+
+[
+"خيارات المنتجات",
+variants.length
+]
+
+]
+.map(
+item => `
+
+<div class="stat">
+
+<span>
+${item[0]}
+</span>
+
+<b>
+${item[1] ?? 0}
+</b>
+
+</div>
+
+`
+)
+.join("");
 
 }
+
+
+/* =========================================================
+CATEGORIES
+========================================================= */
 
 function fillProductCategories(){
 
-  $("productCategory")
-  .innerHTML =
-  `
-    <option value="">
-      اختر القسم
-    </option>
-  `
-  +
-  categories
-  .map(
-    c => `
-      <option value="${esc(c.name)}">
-        ${esc(c.name)}
-      </option>
-    `
-  )
-  .join("");
+$("productCategory")
+.innerHTML =
+`
+
+<option value="">
+اختر القسم
+</option>
+
+`
++
+categories
+.map(
+category => `
+
+<option value="${esc(category.name)}">
+
+${esc(category.name)}
+
+</option>
+
+`
+)
+.join("");
 
 }
+
+
+/* =========================================================
+PRODUCT SELECTS
+========================================================= */
 
 function fillProducts(){
 
-  const html =
-  products
-  .map(
-    p => `
-      <option value="${p.id}">
-        ${esc(p.name)}
-      </option>
-    `
-  )
-  .join("");
+const options =
+products
+.map(
+product => `
 
-  [
-    "varProduct",
-    "relFrom",
-    "relTo"
-  ]
-  .forEach(
-    id =>
-    $(id).innerHTML =
-    html
-  );
+<option value="${product.id}">
 
-  $("bundleProducts")
-  .innerHTML =
-  html;
+${esc(product.name)}
+
+${
+Number(
+product.stock || 0
+)
+<=
+0
+?
+" — نفدت الكمية"
+:
+""
+}
+
+</option>
+
+`
+)
+.join("");
+
+
+[
+"varProduct",
+"relFrom",
+"relTo"
+]
+.forEach(
+id => {
+
+$(id)
+.innerHTML =
+options;
 
 }
+);
+
+
+$("bundleProducts")
+.innerHTML =
+options;
+
+}
+
+
+/* =========================================================
+PRODUCT IMAGE EDIT
+========================================================= */
 
 function renderExistingProductImages(){
 
-  $("existingProductImages")
-  .innerHTML =
-  editingProductImages
-  .map(
-    (url,index) => `
-      <div class="media-preview">
+$("existingProductImages")
+.innerHTML =
+editingProductImages
+.map(
+(
+url,
+index
+) => `
 
-        <img
-          src="${esc(url)}">
+<div class="media-preview">
 
-        <button
-          class="media-remove"
-          onclick="removeExistingProductImage(${index})">
-          ×
-        </button>
+<img
+src="${esc(url)}"
+alt=""
+>
 
-      </div>
-    `
-  )
-  .join("");
+<button
+class="media-remove"
+type="button"
+onclick="removeExistingProductImage(${index})"
+>
+×
+</button>
+
+</div>
+
+`
+)
+.join("");
 
 }
+
 
 function removeExistingProductImage(index){
 
-  editingProductImages.splice(
-    index,
-    1
-  );
+editingProductImages.splice(
+index,
+1
+);
 
-  renderExistingProductImages();
+
+renderExistingProductImages();
 
 }
+
+
+/* =========================================================
+SAVE PRODUCT
+========================================================= */
 
 async function saveProduct(){
 
-  const id =
-  $("productId").value;
+const id =
+$("productId")
+.value;
 
-  const name =
-  $("productName")
-  .value
-  .trim();
 
-  const category =
-  $("productCategory")
-  .value;
+const name =
+$("productName")
+.value
+.trim();
 
-  if(!name){
 
-    toast(
-      "اكتب اسم المنتج"
-    );
+const category =
+$("productCategory")
+.value;
 
-    return;
 
-  }
+if(!name){
 
-  if(!category){
+toast(
+"اكتب اسم المنتج"
+);
 
-    toast(
-      "اختر قسم المنتج"
-    );
 
-    return;
-
-  }
-
-  const button =
-  $("saveProductButton");
-
-  button.disabled = true;
-
-  button.textContent =
-  "جارِ الحفظ...";
-
-  try{
-
-    let uploaded = [];
-
-    const files =
-    $("productImageFiles")
-    .files;
-
-    if(
-      files
-      &&
-      files.length
-    ){
-
-      uploaded =
-      await uploadMultipleFiles(
-        files,
-        "products",
-        "productUploadStatus"
-      );
-
-    }
-
-    const row = {
-
-      name,
-
-      category,
-
-      description:
-      $("productDescription")
-      .value
-      .trim()
-      ||
-      null,
-
-      price:
-      Number(
-        $("productPrice").value
-        ||
-        0
-      ),
-
-      discount:
-      Number(
-        $("productDiscount").value
-        ||
-        0
-      ),
-
-      stock:
-      Number(
-        $("productStock").value
-        ||
-        0
-      ),
-
-      currency:
-      $("productCurrency")
-      .value
-      .trim()
-      ||
-      "ر.ي",
-
-      images:[
-        ...editingProductImages,
-        ...uploaded
-      ],
-
-      colors:
-      parseLines(
-        $("productColors").value
-      ),
-
-      sizes:
-      parseLines(
-        $("productSizes").value
-      ),
-
-      is_active:
-      $("productActive").checked,
-
-      is_new:
-      $("productNew").checked,
-
-      sort_order:
-      Number(
-        $("productSortOrder").value
-        ||
-        0
-      )
-
-    };
-
-    let result;
-
-    if(id){
-
-      result =
-      await db
-      .from("products")
-      .update(row)
-      .eq("id",id);
-
-    }
-    else{
-
-      result =
-      await db
-      .from("products")
-      .insert(row);
-
-    }
-
-    if(result.error){
-      throw result.error;
-    }
-
-    toast(
-      id
-      ?
-      "تم تعديل المنتج ✓"
-      :
-      "تمت إضافة المنتج ✓"
-    );
-
-    resetProductForm();
-
-    await loadAll();
-
-  }
-  catch(error){
-
-    alert(
-      "تعذر حفظ المنتج:\n"
-      +
-      (
-        error.message
-        ||
-        "حدث خطأ"
-      )
-    );
-
-  }
-  finally{
-
-    button.disabled = false;
-
-    button.textContent =
-    "حفظ المنتج";
-
-    setUploadStatus(
-      "productUploadStatus",
-      "",
-      false
-    );
-
-  }
+return;
 
 }
+
+
+if(!category){
+
+toast(
+"اختر قسم المنتج"
+);
+
+
+return;
+
+}
+
+
+const button =
+$("saveProductButton");
+
+
+button.disabled =
+true;
+
+
+button.textContent =
+"جارِ الحفظ...";
+
+
+try{
+
+let uploaded =
+[];
+
+
+if(
+$("productImageFiles")
+.files
+.length
+){
+
+uploaded =
+await uploadMultipleFiles(
+
+$("productImageFiles")
+.files,
+
+"products",
+
+"productUploadStatus"
+
+);
+
+}
+
+
+const row = {
+
+name,
+
+category,
+
+description:
+$("productDescription")
+.value
+.trim()
+||
+null,
+
+price:
+Number(
+$("productPrice")
+.value
+||
+0
+),
+
+discount:
+Number(
+$("productDiscount")
+.value
+||
+0
+),
+
+stock:
+Number(
+$("productStock")
+.value
+||
+0
+),
+
+currency:
+$("productCurrency")
+.value
+.trim()
+||
+"ر.ي",
+
+images:[
+...editingProductImages,
+...uploaded
+],
+
+colors:
+parseLines(
+$("productColors")
+.value
+),
+
+sizes:
+parseLines(
+$("productSizes")
+.value
+),
+
+is_active:
+$("productActive")
+.checked,
+
+is_new:
+$("productNew")
+.checked,
+
+sort_order:
+Number(
+$("productSortOrder")
+.value
+||
+0
+)
+
+};
+
+
+let result;
+
+
+if(id){
+
+result =
+await db
+.from(
+"products"
+)
+.update(
+row
+)
+.eq(
+"id",
+id
+);
+
+}
+else{
+
+result =
+await db
+.from(
+"products"
+)
+.insert(
+row
+);
+
+}
+
+
+if(
+result.error
+){
+
+throw result.error;
+
+}
+
+
+toast(
+id
+?
+"تم تعديل المنتج ✓"
+:
+"تمت إضافة المنتج ✓"
+);
+
+
+resetProductForm();
+
+
+await loadAll();
+
+}
+catch(error){
+
+console.error(
+error
+);
+
+
+alert(
+"تعذر حفظ المنتج:\n"
++
+(
+error.message
+||
+"حدث خطأ"
+)
+);
+
+}
+finally{
+
+button.disabled =
+false;
+
+
+button.textContent =
+"حفظ المنتج";
+
+
+setUploadStatus(
+"productUploadStatus",
+"",
+false
+);
+
+}
+
+}
+
+
+/* =========================================================
+EDIT PRODUCT
+========================================================= */
 
 function editProduct(id){
 
-  const product =
-  products.find(
-    p =>
-    String(p.id)
-    ===
-    String(id)
-  );
+const product =
+products.find(
+item =>
+String(
+item.id
+)
+===
+String(
+id
+)
+);
 
-  if(!product){
-    return;
-  }
 
-  $("productId").value =
-  product.id;
+if(!product){
 
-  $("productName").value =
-  product.name || "";
-
-  $("productCategory").value =
-  product.category || "";
-
-  $("productPrice").value =
-  Number(
-    product.price || 0
-  );
-
-  $("productDiscount").value =
-  Number(
-    product.discount || 0
-  );
-
-  $("productStock").value =
-  Number(
-    product.stock || 0
-  );
-
-  $("productCurrency").value =
-  product.currency || "ر.ي";
-
-  $("productSortOrder").value =
-  Number(
-    product.sort_order || 0
-  );
-
-  $("productDescription").value =
-  product.description || "";
-
-  $("productColors").value =
-  Array.isArray(product.colors)
-  ?
-  product.colors.join("\n")
-  :
-  "";
-
-  $("productSizes").value =
-  Array.isArray(product.sizes)
-  ?
-  product.sizes.join("\n")
-  :
-  "";
-
-  $("productActive").checked =
-  product.is_active !== false;
-
-  $("productNew").checked =
-  product.is_new === true;
-
-  editingProductImages =
-  Array.isArray(product.images)
-  ?
-  [...product.images]
-  :
-  [];
-
-  renderExistingProductImages();
-
-  $("productImageFiles").value =
-  "";
-
-  $("newProductImagesPreview")
-  .innerHTML =
-  "";
-
-  $("saveProductButton")
-  .textContent =
-  "حفظ التعديلات";
-
-  $("productManager")
-  .scrollIntoView({
-    behavior:"smooth",
-    block:"start"
-  });
+return;
 
 }
+
+
+$("productId")
+.value =
+product.id;
+
+
+$("productName")
+.value =
+product.name
+||
+"";
+
+
+$("productCategory")
+.value =
+product.category
+||
+"";
+
+
+$("productPrice")
+.value =
+Number(
+product.price
+||
+0
+);
+
+
+$("productDiscount")
+.value =
+Number(
+product.discount
+||
+0
+);
+
+
+$("productStock")
+.value =
+Number(
+product.stock
+||
+0
+);
+
+
+$("productCurrency")
+.value =
+product.currency
+||
+"ر.ي";
+
+
+$("productSortOrder")
+.value =
+Number(
+product.sort_order
+||
+0
+);
+
+
+$("productDescription")
+.value =
+product.description
+||
+"";
+
+
+$("productColors")
+.value =
+Array.isArray(
+product.colors
+)
+?
+product.colors.join(
+"\n"
+)
+:
+"";
+
+
+$("productSizes")
+.value =
+Array.isArray(
+product.sizes
+)
+?
+product.sizes.join(
+"\n"
+)
+:
+"";
+
+
+$("productActive")
+.checked =
+product.is_active
+!==
+false;
+
+
+$("productNew")
+.checked =
+product.is_new
+===
+true;
+
+
+editingProductImages =
+Array.isArray(
+product.images
+)
+?
+[
+...product.images
+]
+:
+[];
+
+
+renderExistingProductImages();
+
+
+$("productImageFiles")
+.value =
+"";
+
+
+$("newProductImagesPreview")
+.innerHTML =
+"";
+
+
+$("saveProductButton")
+.textContent =
+"حفظ التعديلات";
+
+
+window.scrollTo({
+
+top:
+$("productManager")
+.offsetTop
+-
+80,
+
+behavior:
+"smooth"
+
+});
+
+}
+
+
+/* =========================================================
+RESET PRODUCT
+========================================================= */
 
 function resetProductForm(){
 
-  $("productId").value = "";
-  $("productName").value = "";
-  $("productCategory").value = "";
-  $("productPrice").value = "";
-  $("productDiscount").value = "0";
-  $("productStock").value = "0";
-  $("productCurrency").value = "ر.ي";
-  $("productSortOrder").value = "0";
-  $("productDescription").value = "";
-  $("productColors").value = "";
-  $("productSizes").value = "";
-  $("productActive").checked = true;
-  $("productNew").checked = false;
-  $("productImageFiles").value = "";
+$("productId")
+.value =
+"";
 
-  editingProductImages = [];
 
-  $("existingProductImages")
-  .innerHTML =
-  "";
+$("productName")
+.value =
+"";
 
-  $("newProductImagesPreview")
-  .innerHTML =
-  "";
 
-  $("saveProductButton")
-  .textContent =
-  "حفظ المنتج";
+$("productCategory")
+.value =
+"";
+
+
+$("productPrice")
+.value =
+"";
+
+
+$("productDiscount")
+.value =
+"0";
+
+
+$("productStock")
+.value =
+"0";
+
+
+$("productCurrency")
+.value =
+"ر.ي";
+
+
+$("productSortOrder")
+.value =
+"0";
+
+
+$("productDescription")
+.value =
+"";
+
+
+$("productColors")
+.value =
+"";
+
+
+$("productSizes")
+.value =
+"";
+
+
+$("productActive")
+.checked =
+true;
+
+
+$("productNew")
+.checked =
+false;
+
+
+$("productImageFiles")
+.value =
+"";
+
+
+editingProductImages =
+[];
+
+
+$("existingProductImages")
+.innerHTML =
+"";
+
+
+$("newProductImagesPreview")
+.innerHTML =
+"";
+
+
+$("saveProductButton")
+.textContent =
+"حفظ المنتج";
 
 }
+
+
+/* =========================================================
+RENDER ADMIN PRODUCTS
+========================================================= */
 
 function renderAdminProducts(){
 
-  $("productsCount")
-  .textContent =
-  products.length
-  +
-  " منتج";
+$("productsCount")
+.textContent =
+products.length
++
+" منتج";
 
-  if(!products.length){
 
-    $("productsAdminList")
-    .innerHTML =
-    `<div class="note">لا توجد منتجات.</div>`;
+if(
+!products.length
+){
 
-    return;
+$("productsAdminList")
+.innerHTML = `
 
-  }
+<div class="note">
+لا توجد منتجات.
+</div>
 
-  $("productsAdminList")
-  .innerHTML =
-  products
-  .map(
-    p => {
+`;
 
-      const image =
-      Array.isArray(p.images)
-      ?
-      p.images[0]
-      ||
-      ""
-      :
-      "";
 
-      return `
-
-        <div class="product-admin-card">
-
-          <div class="product-admin-image">
-
-            ${
-              image
-              ?
-              `
-                <img
-                  src="${esc(image)}"
-                  alt="${esc(p.name)}">
-              `
-              :
-              "🛍️"
-            }
-
-          </div>
-
-          <div>
-
-            <div class="product-admin-name">
-              ${esc(p.name)}
-            </div>
-
-            <div class="product-admin-meta">
-
-              القسم:
-              ${esc(p.category || "—")}
-
-              <br>
-
-              السعر:
-              ${money(p.price,p.currency)}
-
-              ${
-                Number(p.discount || 0) > 0
-                ?
-                " · خصم "
-                +
-                Number(p.discount)
-                +
-                "%"
-                :
-                ""
-              }
-
-              <br>
-
-              المخزون:
-              ${Number(p.stock || 0)}
-
-              ·
-
-              ${
-                p.is_active !== false
-                ?
-                "نشط ✅"
-                :
-                "مخفي ⛔"
-              }
-
-            </div>
-
-          </div>
-
-          <div class="actions">
-
-            <button
-              class="btn sm"
-              onclick="editProduct('${p.id}')">
-              تعديل
-            </button>
-
-            <button
-              class="btn red sm"
-              onclick="removeRow(
-                'products',
-                '${p.id}'
-              )">
-              حذف
-            </button>
-
-          </div>
-
-        </div>
-
-      `;
-
-    }
-  )
-  .join("");
+return;
 
 }
+
+
+$("productsAdminList")
+.innerHTML =
+products
+.map(
+product => {
+
+const image =
+Array.isArray(
+product.images
+)
+?
+product.images[0]
+||
+""
+:
+"";
+
+
+return `
+
+<div class="product-admin-card">
+
+
+<div class="product-admin-image">
+
+${
+image
+?
+`
+
+<img
+src="${esc(image)}"
+alt="${esc(product.name)}"
+>
+
+`
+:
+"🛍️"
+}
+
+</div>
+
+
+<div>
+
+<div class="product-admin-name">
+
+${esc(product.name)}
+
+</div>
+
+
+<div class="product-admin-meta">
+
+القسم:
+${esc(product.category || "—")}
+
+<br>
+
+السعر:
+${money(
+product.price,
+product.currency
+)}
+
+${
+Number(
+product.discount || 0
+)
+>
+0
+?
+" · خصم "
++
+Number(
+product.discount
+)
++
+"%"
+:
+""
+}
+
+<br>
+
+المخزون:
+${Number(
+product.stock || 0
+)}
+
+·
+
+${
+product.is_active !==
+false
+?
+"نشط ✅"
+:
+"مخفي ⛔"
+}
+
+${
+product.is_new
+?
+" · جديد ✨"
+:
+""
+}
+
+</div>
+
+</div>
+
+
+<div class="actions">
+
+<button
+class="btn sm"
+onclick="editProduct('${product.id}')"
+>
+تعديل
+</button>
+
+
+<button
+class="btn red sm"
+onclick="removeRow(
+'products',
+'${product.id}'
+)"
+>
+حذف
+</button>
+
+</div>
+
+
+</div>
+
+`;
+
+}
+)
+.join("");
+
+}
+
+
+/* =========================================================
+SAVE VARIANT
+========================================================= */
 
 async function saveVariant(){
 
-  const row = {
+const row = {
 
-    product_id:
-    $("varProduct").value,
+product_id:
+$("varProduct")
+.value,
 
-    title:
-    $("varTitle")
-    .value
-    .trim(),
+title:
+$("varTitle")
+.value
+.trim(),
 
-    sku:
-    $("varSku")
-    .value
-    .trim()
-    ||
-    null,
+sku:
+$("varSku")
+.value
+.trim()
+||
+null,
 
-    price:
-    $("varPrice").value
-    ?
-    Number(
-      $("varPrice").value
-    )
-    :
-    null,
+price:
+$("varPrice")
+.value
+?
+Number(
+$("varPrice")
+.value
+)
+:
+null,
 
-    stock:
-    Number(
-      $("varStock").value
-      ||
-      0
-    ),
+stock:
+Number(
+$("varStock")
+.value
+||
+0
+),
 
-    color:
-    $("varColor")
-    .value
-    .trim()
-    ||
-    null,
+color:
+$("varColor")
+.value
+.trim()
+||
+null,
 
-    is_active:true
+is_active:
+true
 
-  };
+};
 
-  if(
-    !row.product_id
-    ||
-    !row.title
-  ){
 
-    toast(
-      "اختر المنتج واكتب اسم الخيار"
-    );
+if(
+!row.product_id
+||
+!row.title
+){
 
-    return;
+toast(
+"اختر المنتج واكتب اسم الخيار"
+);
 
-  }
 
-  const {
-    error
-  } =
-  await db
-  .from("product_variants")
-  .insert(row);
-
-  if(error){
-
-    alert(error.message);
-
-    return;
-
-  }
-
-  toast(
-    "تمت إضافة الخيار"
-  );
-
-  await loadAll();
+return;
 
 }
+
+
+const {
+error
+} =
+await db
+.from(
+"product_variants"
+)
+.insert(
+row
+);
+
+
+if(error){
+
+alert(
+error.message
+);
+
+
+return;
+
+}
+
+
+toast(
+"تمت إضافة الخيار"
+);
+
+
+$("varTitle")
+.value =
+"";
+
+
+$("varSku")
+.value =
+"";
+
+
+$("varPrice")
+.value =
+"";
+
+
+$("varStock")
+.value =
+"";
+
+
+$("varColor")
+.value =
+"";
+
+
+await loadAll();
+
+}
+
+
+/* =========================================================
+RENDER VARIANTS
+========================================================= */
 
 function renderVariants(){
 
-  $("variantsBody")
-  .innerHTML =
-  variants
-  .map(
-    v => `
+$("variantsBody")
+.innerHTML =
+variants
+.map(
+variant => `
 
-      <tr>
+<tr>
 
-        <td>
-          ${esc(
-            products.find(
-              p =>
-              String(p.id)
-              ===
-              String(v.product_id)
-            )?.name
-            ||
-            ""
-          )}
-        </td>
 
-        <td>
-          ${esc(
-            v.title
-            ||
-            v.size
-            ||
-            ""
-          )}
-        </td>
+<td>
 
-        <td>
-          ${esc(v.sku || "")}
-        </td>
+${esc(
+products.find(
+product =>
+String(
+product.id
+)
+===
+String(
+variant.product_id
+)
+)?.name
+||
+""
+)}
 
-        <td>
-          ${money(v.price)}
-        </td>
+</td>
 
-        <td>
-          ${Number(v.stock || 0)}
-        </td>
 
-        <td>
+<td>
 
-          <button
-            class="btn red sm"
-            onclick="removeRow(
-              'product_variants',
-              '${v.id}'
-            )">
-            حذف
-          </button>
+${esc(
+variant.title
+||
+variant.size
+||
+""
+)}
 
-        </td>
+</td>
 
-      </tr>
 
-    `
-  )
-  .join("");
+<td>
+${esc(
+variant.sku
+||
+""
+)}
+</td>
+
+
+<td>
+${money(
+variant.price
+)}
+</td>
+
+
+<td>
+${Number(
+variant.stock
+||
+0
+)}
+</td>
+
+
+<td>
+
+<button
+class="btn red sm"
+onclick="removeRow(
+'product_variants',
+'${variant.id}'
+)"
+>
+حذف
+</button>
+
+</td>
+
+
+</tr>
+
+`
+)
+.join("");
 
 }
+
+
+/* =========================================================
+SAVE BUNDLE
+========================================================= */
 
 async function saveBundle(){
 
-  let id =
-  $("bundleId").value;
+let id =
+$("bundleId")
+.value;
 
-  const button =
-  $("saveBundleButton");
 
-  button.disabled = true;
+const button =
+$("saveBundleButton");
 
-  try{
 
-    let imageUrl =
-    $("bundleExistingImage")
-    .value
-    ||
-    null;
+button.disabled =
+true;
 
-    const file =
-    $("bundleImageFile")
-    .files?.[0];
 
-    if(file){
+button.textContent =
+"جارِ الحفظ...";
 
-      imageUrl =
-      await uploadMediaFile(
-        file,
-        "bundles"
-      );
 
-    }
+try{
 
-    const row = {
+let imageUrl =
+$("bundleExistingImage")
+.value
+||
+null;
 
-      name:
-      $("bundleName")
-      .value
-      .trim(),
 
-      regular_price:
-      Number(
-        $("bundleRegular").value
-        ||
-        0
-      ),
+const file =
+$("bundleImageFile")
+.files?.[0];
 
-      offer_price:
-      Number(
-        $("bundleOffer").value
-        ||
-        0
-      ),
 
-      stock:
-      Number(
-        $("bundleStock").value
-        ||
-        0
-      ),
+if(file){
 
-      image_url:
-      imageUrl,
+setUploadStatus(
+"bundleUploadStatus",
+"جارِ رفع الصورة..."
+);
 
-      description:
-      $("bundleDesc")
-      .value
-      .trim()
-      ||
-      null,
 
-      ends_at:
-      $("bundleEnd").value
-      ?
-      new Date(
-        $("bundleEnd").value
-      )
-      .toISOString()
-      :
-      null,
-
-      is_active:true
-
-    };
-
-    if(!row.name){
-
-      throw new Error(
-        "اكتب اسم الباقة"
-      );
-
-    }
-
-    let result;
-
-    if(id){
-
-      result =
-      await db
-      .from("bundles")
-      .update(row)
-      .eq("id",id)
-      .select()
-      .single();
-
-    }
-    else{
-
-      result =
-      await db
-      .from("bundles")
-      .insert(row)
-      .select()
-      .single();
-
-    }
-
-    if(result.error){
-      throw result.error;
-    }
-
-    id =
-    result.data.id;
-
-    await db
-    .from("bundle_items")
-    .delete()
-    .eq(
-      "bundle_id",
-      id
-    );
-
-    const items =
-    [
-      ...$("bundleProducts")
-      .selectedOptions
-    ]
-    .map(
-      option => ({
-        bundle_id:id,
-        product_id:
-        option.value,
-        quantity:1
-      })
-    );
-
-    if(items.length){
-
-      const {
-        error
-      } =
-      await db
-      .from("bundle_items")
-      .insert(items);
-
-      if(error){
-        throw error;
-      }
-
-    }
-
-    toast(
-      "تم حفظ الباقة"
-    );
-
-    resetBundle();
-
-    await loadAll();
-
-  }
-  catch(error){
-
-    alert(
-      error.message
-      ||
-      "تعذر حفظ الباقة"
-    );
-
-  }
-  finally{
-
-    button.disabled = false;
-
-  }
+imageUrl =
+await uploadMediaFile(
+file,
+"bundles"
+);
 
 }
+
+
+const row = {
+
+name:
+$("bundleName")
+.value
+.trim(),
+
+regular_price:
+Number(
+$("bundleRegular")
+.value
+||
+0
+),
+
+offer_price:
+Number(
+$("bundleOffer")
+.value
+||
+0
+),
+
+stock:
+Number(
+$("bundleStock")
+.value
+||
+0
+),
+
+image_url:
+imageUrl,
+
+description:
+$("bundleDesc")
+.value
+.trim()
+||
+null,
+
+starts_at:
+$("bundleStart")
+.value
+?
+new Date(
+$("bundleStart")
+.value
+)
+.toISOString()
+:
+null,
+
+ends_at:
+$("bundleEnd")
+.value
+?
+new Date(
+$("bundleEnd")
+.value
+)
+.toISOString()
+:
+null,
+
+is_active:
+true
+
+};
+
+
+if(
+!row.name
+){
+
+throw new Error(
+"اكتب اسم الباقة"
+);
+
+}
+
+
+let result;
+
+
+if(id){
+
+result =
+await db
+.from(
+"bundles"
+)
+.update(
+row
+)
+.eq(
+"id",
+id
+)
+.select()
+.single();
+
+}
+else{
+
+result =
+await db
+.from(
+"bundles"
+)
+.insert(
+row
+)
+.select()
+.single();
+
+}
+
+
+if(
+result.error
+){
+
+throw result.error;
+
+}
+
+
+id =
+result.data.id;
+
+
+/* حذف مكونات الباقة القديمة */
+
+const deleteItemsResult =
+await db
+.from(
+"bundle_items"
+)
+.delete()
+.eq(
+"bundle_id",
+id
+);
+
+
+if(
+deleteItemsResult.error
+){
+
+console.warn(
+deleteItemsResult.error
+);
+
+}
+
+
+/* إضافة المنتجات المحددة */
+
+const selected =
+[
+...$("bundleProducts")
+.selectedOptions
+]
+.map(
+option => ({
+
+bundle_id:
+id,
+
+product_id:
+option.value,
+
+quantity:
+1
+
+})
+);
+
+
+if(
+selected.length
+){
+
+const {
+error
+} =
+await db
+.from(
+"bundle_items"
+)
+.insert(
+selected
+);
+
+
+if(error){
+
+throw error;
+
+}
+
+}
+
+
+toast(
+"تم حفظ الباقة ✓"
+);
+
+
+resetBundle();
+
+
+await loadAll();
+
+}
+catch(error){
+
+alert(
+error.message
+||
+"تعذر حفظ الباقة"
+);
+
+}
+finally{
+
+button.disabled =
+false;
+
+
+button.textContent =
+"حفظ الباقة";
+
+
+setUploadStatus(
+"bundleUploadStatus",
+"",
+false
+);
+
+}
+
+}
+
+
+/* =========================================================
+EDIT BUNDLE
+========================================================= */
 
 function editBundle(id){
 
-  const b =
-  bundles.find(
-    x =>
-    String(x.id)
-    ===
-    String(id)
-  );
+const bundle =
+bundles.find(
+item =>
+String(
+item.id
+)
+===
+String(
+id
+)
+);
 
-  if(!b){
-    return;
-  }
 
-  $("bundleId").value =
-  b.id;
+if(!bundle){
 
-  $("bundleName").value =
-  b.name || "";
-
-  $("bundleRegular").value =
-  b.regular_price || 0;
-
-  $("bundleOffer").value =
-  b.offer_price || 0;
-
-  $("bundleStock").value =
-  b.stock || 0;
-
-  $("bundleDesc").value =
-  b.description || "";
-
-  $("bundleExistingImage").value =
-  b.image_url || "";
-
-  $("bundleImageFile").value =
-  "";
-
-  $("bundleImagePreview")
-  .innerHTML =
-  b.image_url
-  ?
-  `
-    <div class="media-preview">
-      <img src="${esc(b.image_url)}">
-    </div>
-  `
-  :
-  "";
+return;
 
 }
+
+
+$("bundleId")
+.value =
+bundle.id;
+
+
+$("bundleName")
+.value =
+bundle.name
+||
+"";
+
+
+$("bundleRegular")
+.value =
+bundle.regular_price
+||
+0;
+
+
+$("bundleOffer")
+.value =
+bundle.offer_price
+||
+0;
+
+
+$("bundleStock")
+.value =
+bundle.stock
+||
+0;
+
+
+$("bundleDesc")
+.value =
+bundle.description
+||
+"";
+
+
+$("bundleExistingImage")
+.value =
+bundle.image_url
+||
+"";
+
+
+if(
+bundle.starts_at
+){
+
+$("bundleStart")
+.value =
+new Date(
+bundle.starts_at
+)
+.toISOString()
+.slice(
+0,
+16
+);
+
+}
+else{
+
+$("bundleStart")
+.value =
+"";
+
+}
+
+
+if(
+bundle.ends_at
+){
+
+$("bundleEnd")
+.value =
+new Date(
+bundle.ends_at
+)
+.toISOString()
+.slice(
+0,
+16
+);
+
+}
+else{
+
+$("bundleEnd")
+.value =
+"";
+
+}
+
+
+$("bundleImagePreview")
+.innerHTML =
+bundle.image_url
+?
+`
+
+<div class="media-preview">
+
+<img
+src="${esc(bundle.image_url)}"
+alt=""
+>
+
+</div>
+
+`
+:
+"";
+
+}
+
+
+/* =========================================================
+RESET BUNDLE
+========================================================= */
 
 function resetBundle(){
 
-  [
-    "bundleId",
-    "bundleName",
-    "bundleRegular",
-    "bundleOffer",
-    "bundleStock",
-    "bundleDesc",
-    "bundleEnd",
-    "bundleExistingImage"
-  ]
-  .forEach(
-    id =>
-    $(id).value = ""
-  );
+[
+"bundleId",
+"bundleName",
+"bundleRegular",
+"bundleOffer",
+"bundleStock",
+"bundleDesc",
+"bundleStart",
+"bundleEnd",
+"bundleExistingImage"
+]
+.forEach(
+id => {
 
-  $("bundleImageFile").value =
-  "";
-
-  $("bundleImagePreview")
-  .innerHTML =
-  "";
-
-  [
-    ...$("bundleProducts").options
-  ]
-  .forEach(
-    x =>
-    x.selected = false
-  );
+$(id)
+.value =
+"";
 
 }
+);
+
+
+$("bundleImageFile")
+.value =
+"";
+
+
+$("bundleImagePreview")
+.innerHTML =
+"";
+
+
+[
+...$("bundleProducts")
+.options
+]
+.forEach(
+option => {
+
+option.selected =
+false;
+
+}
+);
+
+}
+
+
+/* =========================================================
+RENDER BUNDLES
+========================================================= */
 
 function renderBundles(){
 
-  $("bundleList")
-  .innerHTML =
-  bundles.length
-  ?
-  bundles
-  .map(
-    b => `
+$("bundleList")
+.innerHTML =
+bundles.length
+?
+bundles
+.map(
+bundle => `
 
-      <div class="order-card">
+<div class="order-card">
 
-        <div class="order-card-head">
+<div class="order-card-head">
 
-          <div>
+<div>
 
-            <strong>
-              🔥 ${esc(b.name)}
-            </strong>
+<strong>
+🔥 ${esc(bundle.name)}
+</strong>
 
-            <div class="note">
+<div class="note">
 
-              ${money(
-                b.offer_price,
-                b.currency
-              )}
+${money(
+bundle.offer_price,
+bundle.currency
+)}
 
-              · المخزون:
-              ${Number(b.stock || 0)}
+· المخزون:
 
-            </div>
+${Number(
+bundle.stock
+||
+0
+)}
 
-          </div>
+</div>
 
-          <div class="actions">
+</div>
 
-            <button
-              class="btn sm"
-              onclick="editBundle('${b.id}')">
-              تعديل
-            </button>
 
-            <button
-              class="btn red sm"
-              onclick="removeRow(
-                'bundles',
-                '${b.id}'
-              )">
-              حذف
-            </button>
+<div class="actions">
 
-          </div>
+<button
+class="btn sm"
+onclick="editBundle('${bundle.id}')"
+>
+تعديل
+</button>
 
-        </div>
+<button
+class="btn red sm"
+onclick="removeRow(
+'bundles',
+'${bundle.id}'
+)"
+>
+حذف
+</button>
 
-      </div>
+</div>
 
-    `
-  )
-  .join("")
-  :
-  "لا توجد باقات.";
+</div>
+
+</div>
+
+`
+)
+.join("")
+:
+"لا توجد باقات.";
 
 }
+
+
+/* =========================================================
+SAVE GIFT OPTION
+========================================================= */
 
 async function saveGift(){
 
-  const name =
-  $("giftName")
-  .value
-  .trim();
+const name =
+$("giftName")
+.value
+.trim();
 
-  if(!name){
 
-    toast(
-      "اكتب اسم التغليف"
-    );
+if(!name){
 
-    return;
+toast(
+"اكتب اسم التغليف"
+);
 
-  }
 
-  try{
-
-    let imageUrl = null;
-
-    const file =
-    $("giftImageFile")
-    .files?.[0];
-
-    if(file){
-
-      imageUrl =
-      await uploadMediaFile(
-        file,
-        "gifts"
-      );
-
-    }
-
-    const {
-      error
-    } =
-    await db
-    .from("gift_options")
-    .insert({
-
-      name,
-
-      price:
-      Number(
-        $("giftPrice").value
-        ||
-        0
-      ),
-
-      image_url:
-      imageUrl,
-
-      description:
-      $("giftDesc")
-      .value
-      .trim()
-      ||
-      null,
-
-      is_active:true
-
-    });
-
-    if(error){
-      throw error;
-    }
-
-    toast(
-      "تمت إضافة التغليف"
-    );
-
-    $("giftName").value = "";
-    $("giftPrice").value = "";
-    $("giftDesc").value = "";
-    $("giftImageFile").value = "";
-
-    $("giftImagePreview")
-    .innerHTML =
-    "";
-
-    await loadAll();
-
-  }
-  catch(error){
-
-    alert(
-      error.message
-      ||
-      "تعذر حفظ التغليف"
-    );
-
-  }
+return;
 
 }
+
+
+const button =
+$("saveGiftButton");
+
+
+button.disabled =
+true;
+
+
+try{
+
+let imageUrl =
+null;
+
+
+const file =
+$("giftImageFile")
+.files?.[0];
+
+
+if(file){
+
+setUploadStatus(
+"giftUploadStatus",
+"جارِ رفع الصورة..."
+);
+
+
+imageUrl =
+await uploadMediaFile(
+file,
+"gifts"
+);
+
+}
+
+
+const {
+error
+} =
+await db
+.from(
+"gift_options"
+)
+.insert({
+
+name,
+
+price:
+Number(
+$("giftPrice")
+.value
+||
+0
+),
+
+image_url:
+imageUrl,
+
+description:
+$("giftDesc")
+.value
+.trim()
+||
+null,
+
+is_active:
+true
+
+});
+
+
+if(error){
+
+throw error;
+
+}
+
+
+toast(
+"تمت إضافة التغليف ✓"
+);
+
+
+$("giftName")
+.value =
+"";
+
+
+$("giftPrice")
+.value =
+"";
+
+
+$("giftDesc")
+.value =
+"";
+
+
+$("giftImageFile")
+.value =
+"";
+
+
+$("giftImagePreview")
+.innerHTML =
+"";
+
+
+await loadAll();
+
+}
+catch(error){
+
+alert(
+error.message
+||
+"تعذر حفظ التغليف"
+);
+
+}
+finally{
+
+button.disabled =
+false;
+
+
+setUploadStatus(
+"giftUploadStatus",
+"",
+false
+);
+
+}
+
+}
+
+
+/* =========================================================
+RENDER GIFTS
+========================================================= */
 
 function renderGifts(){
 
-  $("giftList")
-  .innerHTML =
-  gifts.length
-  ?
-  gifts
-  .map(
-    g => `
+$("giftList")
+.innerHTML =
+gifts.length
+?
+gifts
+.map(
+gift => `
 
-      <div class="order-card">
+<div class="order-card">
 
-        <div
-          style="
-            display:flex;
-            gap:12px;
-            align-items:center
-          ">
+<div
+style="
+display:flex;
+gap:12px;
+align-items:center
+"
+>
 
-          ${
-            g.image_url
-            ?
-            `
-              <img
-                src="${esc(g.image_url)}"
-                style="
-                  width:65px;
-                  height:65px;
-                  object-fit:contain;
-                  border-radius:10px
-                ">
-            `
-            :
-            ""
-          }
 
-          <div style="flex:1">
+${
+gift.image_url
+?
+`
 
-            <strong>
-              🎁 ${esc(g.name)}
-            </strong>
+<img
+src="${esc(gift.image_url)}"
+style="
+width:65px;
+height:65px;
+object-fit:contain;
+border-radius:10px;
+background:#f5f2e9
+"
+>
 
-            <div class="note">
-              ${money(
-                g.price,
-                g.currency
-              )}
-            </div>
+`
+:
+""
+}
 
-          </div>
 
-          <button
-            class="btn red sm"
-            onclick="removeRow(
-              'gift_options',
-              '${g.id}'
-            )">
-            حذف
-          </button>
+<div style="flex:1">
 
-        </div>
+<strong>
+🎁 ${esc(gift.name)}
+</strong>
 
-      </div>
+<div class="note">
 
-    `
-  )
-  .join("")
-  :
-  "لا توجد خيارات تغليف.";
+${money(
+gift.price,
+gift.currency
+)}
+
+</div>
+
+</div>
+
+
+<button
+class="btn red sm"
+onclick="removeRow(
+'gift_options',
+'${gift.id}'
+)"
+>
+حذف
+</button>
+
+
+</div>
+
+</div>
+
+`
+)
+.join("")
+:
+"لا توجد خيارات تغليف.";
 
 }
+
+
+/* =========================================================
+SAVE GIFT DESIGN
+========================================================= */
 
 async function saveGiftDesign(){
 
-  const next = {
+try{
 
-    ...generalSettings,
+const giftSection = {
 
-    giftSection:{
+enabled:
+$("giftSectionEnabled")
+.checked,
 
-      enabled:
-      $("giftSectionEnabled")
-      .checked,
+title:
+$("giftSectionTitleAdmin")
+.value
+.trim(),
 
-      title:
-      $("giftSectionTitleAdmin")
-      .value
-      .trim(),
+description:
+$("giftSectionDescriptionAdmin")
+.value
+.trim(),
 
-      description:
-      $("giftSectionDescriptionAdmin")
-      .value
-      .trim(),
+buttonText:
+$("giftSectionButtonText")
+.value
+.trim(),
 
-      buttonText:
-      $("giftSectionButtonText")
-      .value
-      .trim(),
+icon:
+$("giftSectionIconAdmin")
+.value
+.trim()
+||
+"🎁",
 
-      icon:
-      $("giftSectionIconAdmin")
-      .value
-      .trim()
-      ||
-      "🎁",
+background:
+$("giftSectionBackground")
+.value,
 
-      background:
-      $("giftSectionBackground")
-      .value,
+textColor:
+$("giftSectionTextColor")
+.value,
 
-      textColor:
-      $("giftSectionTextColor")
-      .value,
+buttonColor:
+$("giftSectionButtonColor")
+.value,
 
-      buttonColor:
-      $("giftSectionButtonColor")
-      .value,
+radius:
+Number(
+$("giftSectionRadius")
+.value
+||
+24
+)
 
-      radius:
-      Number(
-        $("giftSectionRadius").value
-        ||
-        26
-      )
+};
 
-    }
 
-  };
+const next = {
 
-  await saveSetting(
-    "general",
-    next
-  );
+...generalSettings,
 
-  generalSettings =
-  next;
+giftSection
 
-  toast(
-    "تم حفظ تصميم الهدية"
-  );
+};
+
+
+await saveSetting(
+"general",
+next
+);
+
+
+generalSettings =
+next;
+
+
+toast(
+"تم حفظ تصميم الهدية ✓"
+);
 
 }
+catch(error){
+
+alert(
+error.message
+);
+
+}
+
+}
+
+
+/* =========================================================
+SAVE COUPON
+========================================================= */
 
 async function saveCoupon(){
 
-  const row = {
+const row = {
 
-    code:
-    $("cpCode")
-    .value
-    .trim()
-    .toUpperCase(),
+code:
+$("cpCode")
+.value
+.trim()
+.toUpperCase(),
 
-    discount_type:
-    $("cpType").value,
+discount_type:
+$("cpType")
+.value,
 
-    value:
-    Number(
-      $("cpValue").value
-      ||
-      0
-    ),
+value:
+Number(
+$("cpValue")
+.value
+||
+0
+),
 
-    min_order:
-    Number(
-      $("cpMin").value
-      ||
-      0
-    ),
+min_order:
+Number(
+$("cpMin")
+.value
+||
+0
+),
 
-    max_discount:
-    $("cpMax").value
-    ?
-    Number(
-      $("cpMax").value
-    )
-    :
-    null,
+max_discount:
+$("cpMax")
+.value
+?
+Number(
+$("cpMax")
+.value
+)
+:
+null,
 
-    expires_at:
-    $("cpExpiry").value
-    ||
-    null,
+expires_at:
+$("cpExpiry")
+.value
+||
+null,
 
-    first_order_only:
-    $("cpFirst").checked,
+first_order_only:
+$("cpFirst")
+.checked,
 
-    is_active:true
+is_active:
+true
 
-  };
+};
 
-  if(!row.code){
 
-    toast(
-      "اكتب الكود"
-    );
+if(
+!row.code
+){
 
-    return;
+toast(
+"اكتب الكود"
+);
 
-  }
 
-  const {
-    error
-  } =
-  await db
-  .from("coupons")
-  .insert(row);
-
-  if(error){
-
-    alert(error.message);
-
-    return;
-
-  }
-
-  toast(
-    "تم حفظ الكوبون"
-  );
-
-  await loadAll();
+return;
 
 }
+
+
+const {
+error
+} =
+await db
+.from(
+"coupons"
+)
+.insert(
+row
+);
+
+
+if(error){
+
+alert(
+error.message
+);
+
+
+return;
+
+}
+
+
+toast(
+"تم حفظ الكوبون ✓"
+);
+
+
+await loadAll();
+
+}
+
+
+/* =========================================================
+RENDER COUPONS
+========================================================= */
 
 function renderCoupons(){
 
-  $("couponList")
-  .innerHTML =
-  coupons.length
-  ?
-  coupons
-  .map(
-    c => `
+$("couponList")
+.innerHTML =
+coupons.length
+?
+coupons
+.map(
+coupon => `
 
-      <div class="order-card">
+<div class="order-card">
 
-        <strong>
-          ${esc(c.code)}
-        </strong>
+<strong>
 
-        <div class="note">
+${esc(
+coupon.code
+)}
 
-          ${
-            c.discount_type
-            ===
-            "percentage"
-            ?
-            c.value + "%"
-            :
-            money(c.value)
-          }
+</strong>
 
-        </div>
 
-        <button
-          class="btn red sm"
-          onclick="removeRow(
-            'coupons',
-            '${c.id}'
-          )">
-          حذف
-        </button>
+<div class="note">
 
-      </div>
+${
+coupon.discount_type
+===
+"percentage"
+?
+coupon.value
++
+"%"
+:
+money(
+coupon.value
+)
+}
 
-    `
-  )
-  .join("")
-  :
-  "لا توجد كوبونات.";
+</div>
+
+
+<button
+class="btn red sm"
+onclick="removeRow(
+'coupons',
+'${coupon.id}'
+)"
+>
+حذف
+</button>
+
+</div>
+
+`
+)
+.join("")
+:
+"لا توجد كوبونات.";
 
 }
+
+
+/* =========================================================
+CUSTOMERS
+========================================================= */
 
 function renderCustomers(){
 
-  $("customersBody")
-  .innerHTML =
-  customers
-  .map(
-    c => `
+$("customersBody")
+.innerHTML =
+customers
+.map(
+customer => `
 
-      <tr>
+<tr>
 
-        <td>
-          ${esc(c.name || "عميل")}
-        </td>
 
-        <td>
-          ${esc(c.phone || "")}
-        </td>
+<td>
+${esc(
+customer.name
+||
+"عميل"
+)}
+</td>
 
-        <td>
-          ${Number(c.total_orders || 0)}
-        </td>
 
-        <td>
-          ${Number(c.purchase_count || 0)}
-        </td>
+<td>
+${esc(
+customer.phone
+||
+""
+)}
+</td>
 
-        <td>
-          ${money(c.lifetime_value)}
-        </td>
 
-        <td>
+<td>
+${Number(
+customer.total_orders
+||
+0
+)}
+</td>
 
-          ${
-            c.last_order_at
-            ?
-            new Date(
-              c.last_order_at
-            )
-            .toLocaleString("ar")
-            :
-            "—"
-          }
 
-        </td>
+<td>
+${Number(
+customer.purchase_count
+||
+0
+)}
+</td>
 
-      </tr>
 
-    `
-  )
-  .join("");
+<td>
+${money(
+customer.lifetime_value
+)}
+</td>
+
+
+<td>
+
+${
+customer.last_order_at
+?
+new Date(
+customer.last_order_at
+)
+.toLocaleString(
+"ar"
+)
+:
+"—"
+}
+
+</td>
+
+
+</tr>
+
+`
+)
+.join("");
 
 }
+
+
+/* =========================================================
+ORDERS
+========================================================= */
 
 function renderOrders(){
 
-  $("ordersCards")
-  .innerHTML =
-  orders.length
-  ?
-  orders
-  .map(
-    o => `
-
-      <div class="order-card">
-
-        <div class="order-card-head">
-
-          <div>
-
-            <strong>
-              طلب #${esc(o.order_number)}
-            </strong>
-
-            <div class="note">
-
-              ${esc(o.name || "عميل")}
-
-              ·
-
-              ${esc(o.phone || "")}
-
-            </div>
-
-          </div>
-
-          <span class="pill gold">
-            ${statusText(o.status)}
-          </span>
-
-        </div>
-
-        <div
-          class="actions"
-          style="margin-top:12px">
-
-          <select
-            style="
-              width:auto;
-              margin:0
-            "
-            onchange="
-              changeStatus(
-                '${o.id}',
-                this.value
-              )
-            ">
-
-            ${
-              [
-                "pending",
-                "confirmed",
-                "processing",
-                "shipped",
-                "delivered",
-                "cancelled",
-                "refunded"
-              ]
-              .map(
-                s => `
-                  <option
-                    value="${s}"
-                    ${
-                      o.status === s
-                      ?
-                      "selected"
-                      :
-                      ""
-                    }>
-                    ${statusText(s)}
-                  </option>
-                `
-              )
-              .join("")
-            }
-
-          </select>
-
-        </div>
-
-      </div>
-
-    `
-  )
-  .join("")
-  :
-  `<div class="card">لا توجد طلبات.</div>`;
-
-}
-
-async function changeStatus(
-  id,
-  status
+if(
+!orders.length
 ){
 
-  const {
-    error
-  } =
-  await db
-  .from("orders")
-  .update({
-    status,
-    updated_at:
-    new Date()
-    .toISOString()
-  })
-  .eq("id",id);
+$("ordersCards")
+.innerHTML = `
 
-  if(error){
+<div class="card">
+لا توجد طلبات.
+</div>
 
-    alert(error.message);
+`;
 
-    return;
 
-  }
-
-  toast(
-    "تم تحديث الحالة"
-  );
-
-  await loadAll();
+return;
 
 }
+
+
+$("ordersCards")
+.innerHTML =
+orders
+.map(
+order => `
+
+<div class="order-card">
+
+
+<div class="order-card-head">
+
+
+<div>
+
+<strong>
+
+طلب #${esc(
+order.order_number
+)}
+
+</strong>
+
+
+<div class="note">
+
+${esc(
+order.name
+||
+"عميل"
+)}
+
+·
+
+${esc(
+order.phone
+||
+""
+)}
+
+<br>
+
+${
+order.created_at
+?
+new Date(
+order.created_at
+)
+.toLocaleString(
+"ar"
+)
+:
+""
+}
+
+</div>
+
+</div>
+
+
+<span
+class="pill ${
+order.status ===
+"delivered"
+?
+"green"
+:
+order.status ===
+"cancelled"
+?
+"red"
+:
+"gold"
+}"
+>
+
+${statusText(
+order.status
+)}
+
+</span>
+
+
+</div>
+
+
+<div
+class="grid3"
+style="margin-top:12px"
+>
+
+
+<div>
+
+<strong>
+الإجمالي
+</strong>
+
+<br>
+
+${money(
+order.total,
+order.currency
+)}
+
+</div>
+
+
+<div>
+
+<strong>
+هدية
+</strong>
+
+<br>
+
+${
+order.is_gift
+?
+"🎁 نعم"
+:
+"—"
+}
+
+</div>
+
+
+<div>
+
+<strong>
+الدفع
+</strong>
+
+<br>
+
+${esc(
+order.payment_method
+||
+order.pay_method
+||
+"—"
+)}
+
+</div>
+
+
+</div>
+
+
+<div
+class="actions"
+style="margin-top:12px"
+>
+
+
+<button
+class="btn blue sm"
+onclick="openOrder('${order.id}')"
+>
+عرض الطلب
+</button>
+
+
+<select
+style="
+width:auto;
+margin:0
+"
+onchange="changeStatus(
+'${order.id}',
+this.value
+)"
+>
+
+${
+[
+"pending",
+"confirmed",
+"processing",
+"shipped",
+"delivered",
+"cancelled",
+"refunded"
+]
+.map(
+status => `
+
+<option
+value="${status}"
+${
+order.status ===
+status
+?
+"selected"
+:
+""
+}
+>
+
+${statusText(
+status
+)}
+
+</option>
+
+`
+)
+.join("")
+}
+
+</select>
+
+
+</div>
+
+
+</div>
+
+`
+)
+.join("");
+
+}
+
+
+/* =========================================================
+CHANGE STATUS
+========================================================= */
+
+async function changeStatus(
+id,
+status
+){
+
+const {
+error
+} =
+await db
+.from(
+"orders"
+)
+.update({
+
+status,
+
+updated_at:
+new Date()
+.toISOString()
+
+})
+.eq(
+"id",
+id
+);
+
+
+if(error){
+
+alert(
+error.message
+);
+
+
+return;
+
+}
+
+
+toast(
+"تم تحديث حالة الطلب ✓"
+);
+
+
+await loadAll();
+
+}
+
+
+/* =========================================================
+OPEN ORDER
+========================================================= */
+
+async function openOrder(id){
+
+const order =
+orders.find(
+item =>
+String(
+item.id
+)
+===
+String(
+id
+)
+);
+
+
+if(!order){
+
+return;
+
+}
+
+
+const {
+data,
+error
+} =
+await db
+.from(
+"order_items"
+)
+.select(
+"*"
+)
+.eq(
+"order_id",
+id
+);
+
+
+if(error){
+
+console.warn(
+error
+);
+
+}
+
+
+const items =
+data
+||
+[];
+
+
+$("orderModalBody")
+.innerHTML = `
+
+<div class="grid2">
+
+
+<div class="card">
+
+<strong>
+رقم الطلب
+</strong>
+
+<div>
+#${esc(order.order_number)}
+</div>
+
+</div>
+
+
+<div class="card">
+
+<strong>
+الحالة
+</strong>
+
+<div>
+${statusText(order.status)}
+</div>
+
+</div>
+
+
+<div class="card">
+
+<strong>
+العميل
+</strong>
+
+<div>
+${esc(order.name || "")}
+</div>
+
+</div>
+
+
+<div class="card">
+
+<strong>
+الهاتف
+</strong>
+
+<div>
+${esc(order.phone || "")}
+</div>
+
+</div>
+
+
+<div class="card">
+
+<strong>
+العنوان
+</strong>
+
+<div>
+${esc(order.address || "—")}
+</div>
+
+</div>
+
+
+<div class="card">
+
+<strong>
+الإجمالي
+</strong>
+
+<div>
+${money(
+order.total,
+order.currency
+)}
+</div>
+
+</div>
+
+
+</div>
+
+
+<div class="card">
+
+<h3>
+المنتجات
+</h3>
+
+
+${
+items.length
+?
+items
+.map(
+item => `
+
+<div
+style="
+padding:10px 0;
+border-bottom:1px solid var(--line)
+"
+>
+
+<strong>
+
+${
+item.item_type ===
+"bundle"
+?
+"🔥 "
+:
+""
+}
+
+${esc(
+item.product_name
+||
+item.name
+||
+"منتج"
+)}
+
+</strong>
+
+
+<div class="note">
+
+الكمية:
+${Number(
+item.quantity
+||
+item.qty
+||
+1
+)}
+
+${
+item.size
+?
+" · الحجم: "
++
+esc(
+item.size
+)
+:
+""
+}
+
+${
+item.color
+?
+" · اللون: "
++
+esc(
+item.color
+)
+:
+""
+}
+
+</div>
+
+</div>
+
+`
+)
+.join("")
+:
+"لا توجد تفاصيل منتجات."
+}
+
+
+</div>
+
+`;
+
+
+$("modalScrim")
+.classList.add(
+"show"
+);
+
+
+$("orderModal")
+.classList.add(
+"show"
+);
+
+}
+
+
+/* =========================================================
+CLOSE ORDER
+========================================================= */
+
+function closeOrderModal(){
+
+$("orderModal")
+.classList.remove(
+"show"
+);
+
+
+$("modalScrim")
+.classList.remove(
+"show"
+);
+
+}
+
+
+/* =========================================================
+REVIEWS
+========================================================= */
 
 function renderReviews(){
 
-  $("reviewsList")
-  .innerHTML =
-  reviews.length
-  ?
-  reviews
-  .map(
-    r => `
+$("reviewsList")
+.innerHTML =
+reviews.length
+?
+reviews
+.map(
+review => `
 
-      <div class="order-card">
+<div class="order-card">
 
-        <strong>
-          ${esc(
-            r.customer_name
-            ||
-            r.name
-            ||
-            "عميل"
-          )}
-        </strong>
 
-        <div>
-          ⭐ ${Number(r.rating || 0)}
-        </div>
+<div class="order-card-head">
 
-        <p>
-          ${esc(
-            r.text
-            ||
-            r.comment
-            ||
-            ""
-          )}
-        </p>
 
-        <div class="actions">
+<div>
 
-          <button
-            class="btn sm"
-            onclick="
-              approveReview(
-                '${r.id}',
-                ${!r.is_approved}
-              )
-            ">
+<strong>
 
-            ${
-              r.is_approved
-              ?
-              "إخفاء"
-              :
-              "اعتماد"
-            }
+${esc(
+review.customer_name
+||
+review.name
+||
+"عميل"
+)}
 
-          </button>
+</strong>
 
-          <button
-            class="btn red sm"
-            onclick="removeRow(
-              'reviews',
-              '${r.id}'
-            )">
-            حذف
-          </button>
+<div>
+⭐ ${Number(
+review.rating
+||
+0
+)}
+</div>
 
-        </div>
+</div>
 
-      </div>
 
-    `
-  )
-  .join("")
-  :
-  "لا توجد تقييمات.";
+<span
+class="pill ${
+review.is_approved
+?
+"green"
+:
+"gold"
+}"
+>
+
+${
+review.is_approved
+?
+"ظاهر"
+:
+"بانتظار الاعتماد"
+}
+
+</span>
+
+
+</div>
+
+
+<p>
+
+${esc(
+review.text
+||
+review.comment
+||
+""
+)}
+
+</p>
+
+
+<div class="actions">
+
+<button
+class="btn sm"
+onclick="approveReview(
+'${review.id}',
+${!review.is_approved}
+)"
+>
+
+${
+review.is_approved
+?
+"إخفاء"
+:
+"اعتماد"
+}
+
+</button>
+
+
+<button
+class="btn red sm"
+onclick="removeRow(
+'reviews',
+'${review.id}'
+)"
+>
+حذف
+</button>
+
+</div>
+
+
+</div>
+
+`
+)
+.join("")
+:
+"لا توجد تقييمات.";
 
 }
+
+
+/* =========================================================
+APPROVE REVIEW
+========================================================= */
 
 async function approveReview(
-  id,
-  value
+id,
+value
 ){
 
-  await db
-  .from("reviews")
-  .update({
-    is_approved:value
-  })
-  .eq("id",id);
+const {
+error
+} =
+await db
+.from(
+"reviews"
+)
+.update({
 
-  await loadAll();
+is_approved:
+value
+
+})
+.eq(
+"id",
+id
+);
+
+
+if(error){
+
+alert(
+error.message
+);
+
+
+return;
 
 }
+
+
+await loadAll();
+
+}
+
+
+/* =========================================================
+RELATIONS
+========================================================= */
 
 async function saveRelation(){
 
-  if(
-    $("relFrom").value
-    ===
-    $("relTo").value
-  ){
+if(
+$("relFrom")
+.value
+===
+$("relTo")
+.value
+){
 
-    toast(
-      "اختر منتجين مختلفين"
-    );
+toast(
+"اختر منتجين مختلفين"
+);
 
-    return;
 
-  }
-
-  const {
-    error
-  } =
-  await db
-  .from("product_relations")
-  .insert({
-
-    product_id:
-    $("relFrom").value,
-
-    related_product_id:
-    $("relTo").value,
-
-    relation_type:
-    $("relType").value
-
-  });
-
-  if(error){
-
-    alert(error.message);
-
-    return;
-
-  }
-
-  toast(
-    "تم الربط"
-  );
-
-  await loadAll();
+return;
 
 }
+
+
+const {
+error
+} =
+await db
+.from(
+"product_relations"
+)
+.insert({
+
+product_id:
+$("relFrom")
+.value,
+
+related_product_id:
+$("relTo")
+.value,
+
+relation_type:
+$("relType")
+.value
+
+});
+
+
+if(error){
+
+alert(
+error.message
+);
+
+
+return;
+
+}
+
+
+toast(
+"تم ربط المنتجات ✓"
+);
+
+
+await loadAll();
+
+}
+
+
+/* =========================================================
+RENDER RELATIONS
+========================================================= */
 
 function renderRelations(){
 
-  $("relationsList")
-  .innerHTML =
-  relations.length
-  ?
-  relations
-  .map(
-    r => `
+$("relationsList")
+.innerHTML =
+relations.length
+?
+relations
+.map(
+relation => `
 
-      <div class="order-card">
+<div class="order-card">
 
-        ${esc(
-          products.find(
-            p =>
-            String(p.id)
-            ===
-            String(r.product_id)
-          )?.name
-          ||
-          ""
-        )}
 
-        ←
+${esc(
+products.find(
+product =>
+String(
+product.id
+)
+===
+String(
+relation.product_id
+)
+)?.name
+||
+""
+)}
 
-        ${esc(
-          products.find(
-            p =>
-            String(p.id)
-            ===
-            String(r.related_product_id)
-          )?.name
-          ||
-          ""
-        )}
+←
 
-        <button
-          class="btn red sm"
-          onclick="removeRow(
-            'product_relations',
-            '${r.id}'
-          )">
-          حذف
-        </button>
+${esc(
+products.find(
+product =>
+String(
+product.id
+)
+===
+String(
+relation.related_product_id
+)
+)?.name
+||
+""
+)}
 
-      </div>
 
-    `
-  )
-  .join("")
-  :
-  "لا توجد روابط.";
+<button
+class="btn red sm"
+onclick="removeRow(
+'product_relations',
+'${relation.id}'
+)"
+>
+حذف
+</button>
+
+
+</div>
+
+`
+)
+.join("")
+:
+"لا توجد اقتراحات.";
 
 }
+
+
+/* =========================================================
+AD MEDIA
+========================================================= */
 
 function renderExistingAdMedia(){
 
-  $("existingAdMedia")
-  .innerHTML =
-  editingAdMedia
-  .map(
-    (url,index) => {
+$("existingAdMedia")
+.innerHTML =
+editingAdMedia
+.map(
+(
+url,
+index
+) => {
 
-      const video =
-      /\.(mp4|webm|mov)(\?|$)/i
-      .test(url);
+const video =
+/\.(mp4|webm|mov)(\?|$)/i
+.test(
+url
+);
 
-      return `
 
-        <div class="media-preview">
+return `
 
-          ${
-            video
-            ?
-            `
-              <video
-                src="${esc(url)}"
-                controls
-                muted>
-              </video>
-            `
-            :
-            `
-              <img src="${esc(url)}">
-            `
-          }
+<div class="media-preview">
 
-          <button
-            class="media-remove"
-            onclick="removeExistingAdMedia(${index})">
-            ×
-          </button>
 
-        </div>
+${
+video
+?
+`
 
-      `;
+<video
+src="${esc(url)}"
+controls
+muted
+></video>
 
-    }
-  )
-  .join("");
+`
+:
+`
+
+<img
+src="${esc(url)}"
+alt=""
+>
+
+`
+}
+
+
+<button
+class="media-remove"
+type="button"
+onclick="removeExistingAdMedia(${index})"
+>
+×
+</button>
+
+
+</div>
+
+`;
 
 }
+)
+.join("");
+
+}
+
 
 function removeExistingAdMedia(index){
 
-  editingAdMedia.splice(
-    index,
-    1
-  );
+editingAdMedia.splice(
+index,
+1
+);
 
-  renderExistingAdMedia();
 
-  previewAd();
+renderExistingAdMedia();
+
+previewAd();
 
 }
+
+
+/* =========================================================
+SAVE ADS
+========================================================= */
 
 async function saveAds(){
 
-  const button =
-  $("saveAdsButton");
+const button =
+$("saveAdsButton");
 
-  button.disabled = true;
 
-  try{
+button.disabled =
+true;
 
-    let uploaded = [];
 
-    if(
-      $("adFiles").files.length
-    ){
+button.textContent =
+"جارِ الحفظ...";
 
-      uploaded =
-      await uploadMultipleFiles(
-        $("adFiles").files,
-        "ads",
-        "adUploadStatus"
-      );
 
-    }
+try{
 
-    const next = {
+let uploaded =
+[];
 
-      ...adSettings,
 
-      enabled:
-      $("adEnabled").checked,
+if(
+$("adFiles")
+.files
+.length
+){
 
-      type:
-      $("adType").value,
+uploaded =
+await uploadMultipleFiles(
 
-      fit:
-      $("adFit").value,
+$("adFiles")
+.files,
 
-      position:
-      $("adPosition").value,
+"ads",
 
-      radius:
-      Number(
-        $("adRadius").value
-        ||
-        0
-      ),
+"adUploadStatus"
 
-      interval:
-      Number(
-        $("adInterval").value
-        ||
-        4000
-      ),
-
-      desktopWidth:
-      Number(
-        $("adDesktopWidth").value
-        ||
-        100
-      ),
-
-      desktopHeight:
-      Number(
-        $("adDesktopHeight").value
-        ||
-        650
-      ),
-
-      desktopMaxWidth:
-      Number(
-        $("adDesktopMaxWidth").value
-        ||
-        1600
-      ),
-
-      tabletWidth:
-      Number(
-        $("adTabletWidth").value
-        ||
-        100
-      ),
-
-      tabletHeight:
-      Number(
-        $("adTabletHeight").value
-        ||
-        550
-      ),
-
-      tabletMaxWidth:
-      Number(
-        $("adTabletMaxWidth").value
-        ||
-        1100
-      ),
-
-      mobileWidth:
-      Number(
-        $("adMobileWidth").value
-        ||
-        100
-      ),
-
-      mobileHeight:
-      Number(
-        $("adMobileHeight").value
-        ||
-        420
-      ),
-
-      mobileMaxWidth:
-      Number(
-        $("adMobileMaxWidth").value
-        ||
-        600
-      ),
-
-      link:
-      $("adLinkAdmin")
-      .value
-      .trim(),
-
-      media:[
-        ...editingAdMedia,
-        ...uploaded
-      ]
-
-    };
-
-    await saveSetting(
-      "ads",
-      next
-    );
-
-    adSettings =
-    next;
-
-    editingAdMedia =
-    [...next.media];
-
-    $("adFiles").value = "";
-
-    $("newAdFilesPreview")
-    .innerHTML =
-    "";
-
-    renderExistingAdMedia();
-
-    toast(
-      "تم حفظ الإعلان"
-    );
-
-    previewAd();
-
-  }
-  catch(error){
-
-    alert(
-      error.message
-      ||
-      "تعذر حفظ الإعلان"
-    );
-
-  }
-  finally{
-
-    button.disabled = false;
-
-    setUploadStatus(
-      "adUploadStatus",
-      "",
-      false
-    );
-
-  }
+);
 
 }
+
+
+const next = {
+
+...adSettings,
+
+enabled:
+$("adEnabled")
+.checked,
+
+type:
+$("adType")
+.value,
+
+fit:
+$("adFit")
+.value,
+
+position:
+$("adPosition")
+.value,
+
+radius:
+Number(
+$("adRadius")
+.value
+||
+0
+),
+
+interval:
+Number(
+$("adInterval")
+.value
+||
+4000
+),
+
+desktopWidth:
+Number(
+$("adDesktopWidth")
+.value
+||
+100
+),
+
+desktopHeight:
+Number(
+$("adDesktopHeight")
+.value
+||
+650
+),
+
+desktopMaxWidth:
+Number(
+$("adDesktopMaxWidth")
+.value
+||
+1600
+),
+
+tabletWidth:
+Number(
+$("adTabletWidth")
+.value
+||
+100
+),
+
+tabletHeight:
+Number(
+$("adTabletHeight")
+.value
+||
+550
+),
+
+tabletMaxWidth:
+Number(
+$("adTabletMaxWidth")
+.value
+||
+1100
+),
+
+mobileWidth:
+Number(
+$("adMobileWidth")
+.value
+||
+100
+),
+
+mobileHeight:
+Number(
+$("adMobileHeight")
+.value
+||
+420
+),
+
+mobileMaxWidth:
+Number(
+$("adMobileMaxWidth")
+.value
+||
+600
+),
+
+link:
+$("adLinkAdmin")
+.value
+.trim(),
+
+media:[
+...editingAdMedia,
+...uploaded
+]
+
+};
+
+
+await saveSetting(
+"ads",
+next
+);
+
+
+adSettings =
+next;
+
+
+editingAdMedia =
+[
+...next.media
+];
+
+
+$("adFiles")
+.value =
+"";
+
+
+$("newAdFilesPreview")
+.innerHTML =
+"";
+
+
+renderExistingAdMedia();
+
+
+toast(
+"تم حفظ الإعلانات ✓"
+);
+
+
+previewAd();
+
+}
+catch(error){
+
+alert(
+error.message
+||
+"تعذر حفظ الإعلان"
+);
+
+}
+finally{
+
+button.disabled =
+false;
+
+
+button.textContent =
+"حفظ الإعلانات";
+
+
+setUploadStatus(
+"adUploadStatus",
+"",
+false
+);
+
+}
+
+}
+
+
+/* =========================================================
+AD PREVIEW
+========================================================= */
 
 function previewAd(){
 
-  const file =
-  $("adFiles")
-  .files?.[0];
+const file =
+$("adFiles")
+.files?.[0];
 
-  let url =
-  editingAdMedia[0]
-  ||
-  "";
 
-  let video = false;
+let url =
+editingAdMedia[0]
+||
+"";
 
-  if(file){
 
-    url =
-    URL.createObjectURL(file);
+let isVideo =
+false;
 
-    video =
-    file.type
-    .startsWith("video/");
 
-  }
-  else{
+if(file){
 
-    video =
-    /\.(mp4|webm|mov)(\?|$)/i
-    .test(url);
+url =
+URL.createObjectURL(
+file
+);
 
-  }
 
-  if(!url){
-
-    $("adPreview")
-    .innerHTML =
-    "لا توجد معاينة";
-
-    return;
-
-  }
-
-  $("adPreview")
-  .style.height =
-  Math.min(
-    500,
-    Number(
-      $("adDesktopHeight").value
-      ||
-      400
-    )
-  )
-  +
-  "px";
-
-  if(video){
-
-    $("adPreview")
-    .innerHTML = `
-      <video
-        src="${esc(url)}"
-        controls
-        muted
-        style="
-          object-fit:${$("adFit").value};
-          object-position:${$("adPosition").value}
-        ">
-      </video>
-    `;
-
-  }
-  else{
-
-    $("adPreview")
-    .innerHTML = `
-      <img
-        src="${esc(url)}"
-        style="
-          object-fit:${$("adFit").value};
-          object-position:${$("adPosition").value}
-        ">
-    `;
-
-  }
+isVideo =
+file.type
+.startsWith(
+"video/"
+);
 
 }
+else{
+
+isVideo =
+/\.(mp4|webm|mov)(\?|$)/i
+.test(
+url
+);
+
+}
+
+
+if(!url){
+
+$("adPreview")
+.innerHTML =
+"لا توجد معاينة";
+
+
+return;
+
+}
+
+
+$("adPreview")
+.style.height =
+Math.min(
+500,
+Number(
+$("adDesktopHeight")
+.value
+||
+400
+)
+)
++
+"px";
+
+
+if(isVideo){
+
+$("adPreview")
+.innerHTML = `
+
+<video
+src="${esc(url)}"
+controls
+muted
+style="
+object-fit:${$("adFit").value};
+object-position:${$("adPosition").value}
+"
+></video>
+
+`;
+
+
+return;
+
+}
+
+
+$("adPreview")
+.innerHTML = `
+
+<img
+src="${esc(url)}"
+style="
+object-fit:${$("adFit").value};
+object-position:${$("adPosition").value}
+"
+>
+
+`;
+
+}
+
+
+/* =========================================================
+PRODUCT DESIGN
+========================================================= */
 
 async function saveProductDesign(){
 
-  const next = {
+try{
 
-    ...designSettings,
+const carousel = {
 
-    productDesktopWidth:
-    Number(
-      $("productDesktopWidth").value
-      ||
-      320
-    ),
+enabled:
+$("productCarouselEnabled")
+.checked,
 
-    productDesktopImageHeight:
-    Number(
-      $("productDesktopImageHeight").value
-      ||
-      330
-    ),
+centerScale:
+Number(
+$("carouselCenterScale")
+.value
+||
+1
+),
 
-    productDesktopFont:
-    Number(
-      $("productDesktopFont").value
-      ||
-      30
-    ),
+sideScale:
+Number(
+$("carouselSideScale")
+.value
+||
+.82
+),
 
-    productTabletWidth:
-    Number(
-      $("productTabletWidth").value
-      ||
-      280
-    ),
+rotation:
+Number(
+$("carouselRotation")
+.value
+||
+16
+),
 
-    productTabletImageHeight:
-    Number(
-      $("productTabletImageHeight").value
-      ||
-      300
-    ),
+spacing:
+Number(
+$("carouselSpacing")
+.value
+||
+72
+),
 
-    productTabletFont:
-    Number(
-      $("productTabletFont").value
-      ||
-      27
-    ),
+speed:
+Number(
+$("carouselSpeed")
+.value
+||
+550
+)
 
-    productMobileWidth:
-    Number(
-      $("productMobileWidth").value
-      ||
-      72
-    ),
+};
 
-    productMobileImageHeight:
-    Number(
-      $("productMobileImageHeight").value
-      ||
-      280
-    ),
 
-    productMobileFont:
-    Number(
-      $("productMobileFont").value
-      ||
-      26
-    ),
+const next = {
 
-    carousel:{
+...designSettings,
 
-      enabled:
-      $("productCarouselEnabled")
-      .checked,
+productDesktopWidth:
+Number(
+$("productDesktopWidth")
+.value
+||
+320
+),
 
-      centerScale:
-      Number(
-        $("carouselCenterScale").value
-        ||
-        1
-      ),
+productDesktopImageHeight:
+Number(
+$("productDesktopImageHeight")
+.value
+||
+330
+),
 
-      sideScale:
-      Number(
-        $("carouselSideScale").value
-        ||
-        .82
-      ),
+productDesktopFont:
+Number(
+$("productDesktopFont")
+.value
+||
+30
+),
 
-      rotation:
-      Number(
-        $("carouselRotation").value
-        ||
-        16
-      ),
+productTabletWidth:
+Number(
+$("productTabletWidth")
+.value
+||
+280
+),
 
-      spacing:
-      Number(
-        $("carouselSpacing").value
-        ||
-        72
-      ),
+productTabletImageHeight:
+Number(
+$("productTabletImageHeight")
+.value
+||
+300
+),
 
-      speed:
-      Number(
-        $("carouselSpeed").value
-        ||
-        550
-      )
+productTabletFont:
+Number(
+$("productTabletFont")
+.value
+||
+27
+),
 
-    }
+productMobileWidth:
+Number(
+$("productMobileWidth")
+.value
+||
+72
+),
 
-  };
+productMobileImageHeight:
+Number(
+$("productMobileImageHeight")
+.value
+||
+280
+),
 
-  await saveSetting(
-    "design",
-    next
-  );
+productMobileFont:
+Number(
+$("productMobileFont")
+.value
+||
+26
+),
 
-  designSettings =
-  next;
+carousel
 
-  toast(
-    "تم حفظ التصميم"
-  );
+};
+
+
+await saveSetting(
+"design",
+next
+);
+
+
+designSettings =
+next;
+
+
+toast(
+"تم حفظ تصميم المنتجات ✓"
+);
 
 }
+catch(error){
+
+alert(
+error.message
+);
+
+}
+
+}
+
+
+/* =========================================================
+PAYMENT METHOD DRAFT
+========================================================= */
 
 function addPaymentMethod(){
 
-  const name =
-  $("paymentName")
-  .value
-  .trim();
+const name =
+$("paymentName")
+.value
+.trim();
 
-  if(!name){
 
-    toast(
-      "اكتب اسم وسيلة الدفع"
-    );
+if(!name){
 
-    return;
+toast(
+"اكتب اسم وسيلة الدفع"
+);
 
-  }
 
-  paymentMethodsDraft.push({
-
-    id:
-    $("paymentId")
-    .value
-    .trim()
-    ||
-    "payment_"
-    +
-    Date.now(),
-
-    name,
-
-    type:
-    $("paymentType").value,
-
-    description:
-    $("paymentDescription")
-    .value
-    .trim(),
-
-    enabled:true
-
-  });
-
-  renderPaymentDraft();
+return;
 
 }
+
+
+const id =
+$("paymentId")
+.value
+.trim()
+||
+(
+"payment_"
++
+Date.now()
+);
+
+
+paymentMethodsDraft.push({
+
+id,
+
+name,
+
+type:
+$("paymentType")
+.value,
+
+description:
+$("paymentDescription")
+.value
+.trim(),
+
+enabled:
+true
+
+});
+
+
+$("paymentName")
+.value =
+"";
+
+
+$("paymentId")
+.value =
+"";
+
+
+$("paymentDescription")
+.value =
+"";
+
+
+renderPaymentDraft();
+
+}
+
+
+/* =========================================================
+RENDER PAYMENT DRAFT
+========================================================= */
 
 function renderPaymentDraft(){
 
-  $("paymentMethodsList")
-  .innerHTML =
-  paymentMethodsDraft
-  .map(
-    (x,index) => `
+$("paymentMethodsList")
+.innerHTML =
+paymentMethodsDraft.length
+?
+paymentMethodsDraft
+.map(
+(
+method,
+index
+) => `
 
-      <div class="payment-row">
+<div class="payment-row">
 
-        <strong>
-          ${esc(x.name)}
-        </strong>
 
-        <button
-          class="btn red sm"
-          onclick="
-            paymentMethodsDraft.splice(${index},1);
-            renderPaymentDraft();
-          ">
-          حذف
-        </button>
+<div class="order-card-head">
 
-      </div>
 
-    `
-  )
-  .join("")
-  ||
-  "لا توجد وسائل دفع.";
+<div>
+
+<strong>
+${esc(method.name)}
+</strong>
+
+<div class="note">
+
+${esc(method.id)}
+
+·
+
+${esc(method.type || "")}
+
+</div>
+
+</div>
+
+
+<button
+class="btn red sm"
+onclick="deletePaymentMethod(${index})"
+>
+حذف
+</button>
+
+
+</div>
+
+
+</div>
+
+`
+)
+.join("")
+:
+"لا توجد وسائل دفع.";
 
 }
+
+
+function deletePaymentMethod(index){
+
+paymentMethodsDraft.splice(
+index,
+1
+);
+
+
+renderPaymentDraft();
+
+}
+
+
+/* =========================================================
+BANK ACCOUNT
+========================================================= */
 
 function addBankAccount(){
 
-  const bankName =
-  $("bankName")
-  .value
-  .trim();
+const bankName =
+$("bankName")
+.value
+.trim();
 
-  if(!bankName){
 
-    toast(
-      "اكتب اسم البنك"
-    );
+if(!bankName){
 
-    return;
+toast(
+"اكتب اسم البنك"
+);
 
-  }
 
-  bankAccountsDraft.push({
-
-    bankName,
-
-    accountName:
-    $("bankHolder")
-    .value
-    .trim(),
-
-    accountNumber:
-    $("bankAccount")
-    .value
-    .trim(),
-
-    iban:
-    $("bankIban")
-    .value
-    .trim(),
-
-    instructions:
-    $("bankInstructions")
-    .value
-    .trim(),
-
-    enabled:true
-
-  });
-
-  renderBankDraft();
+return;
 
 }
+
+
+bankAccountsDraft.push({
+
+bankName,
+
+accountName:
+$("bankHolder")
+.value
+.trim(),
+
+accountNumber:
+$("bankAccount")
+.value
+.trim(),
+
+iban:
+$("bankIban")
+.value
+.trim(),
+
+instructions:
+$("bankInstructions")
+.value
+.trim(),
+
+enabled:
+true
+
+});
+
+
+$("bankName")
+.value =
+"";
+
+
+$("bankHolder")
+.value =
+"";
+
+
+$("bankAccount")
+.value =
+"";
+
+
+$("bankIban")
+.value =
+"";
+
+
+$("bankInstructions")
+.value =
+"";
+
+
+renderBankDraft();
+
+}
+
+
+function deleteBankAccount(index){
+
+bankAccountsDraft.splice(
+index,
+1
+);
+
+
+renderBankDraft();
+
+}
+
+
+/* =========================================================
+RENDER BANKS
+========================================================= */
 
 function renderBankDraft(){
 
-  $("bankAccountsList")
-  .innerHTML =
-  bankAccountsDraft
-  .map(
-    (x,index) => `
+$("bankAccountsList")
+.innerHTML =
+bankAccountsDraft.length
+?
+bankAccountsDraft
+.map(
+(
+account,
+index
+) => `
 
-      <div class="bank-row">
+<div class="bank-row">
 
-        <strong>
-          🏦 ${esc(x.bankName)}
-        </strong>
 
-        <div class="note">
-          ${esc(x.accountName || "")}
-          <br>
-          ${esc(x.accountNumber || "")}
-        </div>
+<div class="order-card-head">
 
-        <button
-          class="btn red sm"
-          onclick="
-            bankAccountsDraft.splice(${index},1);
-            renderBankDraft();
-          ">
-          حذف
-        </button>
 
-      </div>
+<div>
 
-    `
-  )
-  .join("")
-  ||
-  "لا توجد حسابات.";
+<strong>
+🏦 ${esc(account.bankName)}
+</strong>
+
+<div class="note">
+
+${esc(
+account.accountName
+||
+""
+)}
+
+<br>
+
+${esc(
+account.accountNumber
+||
+""
+)}
+
+${
+account.iban
+?
+"<br>IBAN: "
++
+esc(
+account.iban
+)
+:
+""
+}
+
+</div>
+
+</div>
+
+
+<button
+class="btn red sm"
+onclick="deleteBankAccount(${index})"
+>
+حذف
+</button>
+
+
+</div>
+
+
+</div>
+
+`
+)
+.join("")
+:
+"لا توجد حسابات بنكية.";
 
 }
+
+
+/* =========================================================
+SAVE PAYMENT SETTINGS
+========================================================= */
 
 async function savePaymentSettings(){
 
-  const next = {
+try{
 
-    ...paymentSettings,
+const next = {
 
-    paymentMethods:
-    paymentMethodsDraft,
+...paymentSettings,
 
-    bankAccounts:
-    bankAccountsDraft
+paymentMethods:
+paymentMethodsDraft,
 
-  };
+bankAccounts:
+bankAccountsDraft
 
-  await saveSetting(
-    "payment",
-    next
-  );
+};
 
-  paymentSettings =
-  next;
 
-  toast(
-    "تم حفظ الدفع والبنوك"
-  );
+await saveSetting(
+"payment",
+next
+);
+
+
+paymentSettings =
+next;
+
+
+toast(
+"تم حفظ الدفع والبنوك ✓"
+);
 
 }
+catch(error){
+
+alert(
+error.message
+);
+
+}
+
+}
+
+
+/* =========================================================
+POLICIES EDITOR
+========================================================= */
 
 function renderPoliciesEditor(){
 
-  const saved =
-  footerSettings.policies
-  ||
-  {};
+const saved =
+footerSettings.policies
+||
+{};
 
-  $("policiesEditor")
-  .innerHTML =
-  policies
-  .map(
-    item => {
 
-      const key =
-      item[0];
+$("policiesEditor")
+.innerHTML =
+policies
+.map(
+item => {
 
-      const title =
-      item[1];
+const key =
+item[0];
 
-      return `
 
-        <div class="policy-card">
+const title =
+item[1];
 
-          <div class="check-row">
 
-            <input
-              id="policyEnabled_${key}"
-              type="checkbox"
-              ${
-                saved[
-                  key
-                  +
-                  "Enabled"
-                ]
-                ===
-                false
-                ?
-                ""
-                :
-                "checked"
-              }>
+return `
 
-            <label
-              for="policyEnabled_${key}">
-              إظهار ${esc(title)}
-            </label>
+<div class="policy-card">
 
-          </div>
 
-          <label>عنوان الرابط</label>
+<div class="check-row">
 
-          <input
-            id="policyTitle_${key}"
-            value="${esc(
-              saved[
-                key
-                +
-                "Title"
-              ]
-              ||
-              title
-            )}">
+<input
+id="policyEnabled_${key}"
+type="checkbox"
+${
+saved[
+key
++
+"Enabled"
+]
+===
+false
+?
+""
+:
+"checked"
+}
+>
 
-          <label>النص</label>
+<label for="policyEnabled_${key}">
 
-          <textarea
-            id="policyText_${key}">${esc(
-              saved[key]
-              ||
-              ""
-            )}</textarea>
+إظهار ${esc(title)}
 
-        </div>
+</label>
 
-      `;
+</div>
 
-    }
-  )
-  .join("");
+
+<label>
+عنوان الرابط
+</label>
+
+<input
+id="policyTitle_${key}"
+value="${esc(
+saved[
+key
++
+"Title"
+]
+||
+title
+)}"
+>
+
+
+<label>
+النص
+</label>
+
+<textarea
+id="policyText_${key}"
+>${esc(
+saved[key]
+||
+""
+)}</textarea>
+
+
+</div>
+
+`;
 
 }
+)
+.join("");
+
+}
+
+
+/* =========================================================
+SAVE FOOTER
+========================================================= */
 
 async function saveFooterSettings(){
 
-  const data = {};
+try{
 
-  policies
-  .forEach(
-    item => {
+const policyData =
+{};
 
-      const key =
-      item[0];
 
-      data[
-        key
-        +
-        "Enabled"
-      ] =
-      $("policyEnabled_" + key)
-      .checked;
+policies
+.forEach(
+item => {
 
-      data[
-        key
-        +
-        "Title"
-      ] =
-      $("policyTitle_" + key)
-      .value
-      .trim();
+const key =
+item[0];
 
-      data[key] =
-      $("policyText_" + key)
-      .value
-      .trim();
 
-    }
-  );
+policyData[
+key
++
+"Enabled"
+] =
+$("policyEnabled_" + key)
+.checked;
 
-  const next = {
 
-    ...footerSettings,
+policyData[
+key
++
+"Title"
+] =
+$("policyTitle_" + key)
+.value
+.trim();
 
-    policies:data
 
-  };
-
-  await saveSetting(
-    "footer",
-    next
-  );
-
-  footerSettings =
-  next;
-
-  toast(
-    "تم حفظ السياسات"
-  );
+policyData[key] =
+$("policyText_" + key)
+.value
+.trim();
 
 }
+);
+
+
+const next = {
+
+...footerSettings,
+
+policies:
+policyData
+
+};
+
+
+await saveSetting(
+"footer",
+next
+);
+
+
+footerSettings =
+next;
+
+
+toast(
+"تم حفظ السياسات ✓"
+);
+
+}
+catch(error){
+
+alert(
+error.message
+);
+
+}
+
+}
+
+
+/* =========================================================
+SAVE GENERAL + SPLASH
+========================================================= */
 
 async function saveGeneralSettings(){
 
-  const next = {
+const button =
+$("saveGeneralButton");
 
-    ...generalSettings,
 
-    storeName:
-    $("setStoreName")
-    .value
-    .trim(),
+button.disabled =
+true;
 
-    storeNameEn:
-    $("setStoreNameEn")
-    .value
-    .trim(),
 
-    storeEyebrow:
-    $("setEyebrow")
-    .value
-    .trim(),
+button.textContent =
+"جارِ الحفظ...";
 
-    phone:
-    $("setPhone")
-    .value
-    .trim(),
 
-    whatsapp:
-    $("setWhatsapp")
-    .value
-    .trim(),
+try{
 
-    email:
-    $("setEmail")
-    .value
-    .trim(),
+let splashLogoUrl =
+editingSplashLogo;
 
-    sloganTitle:
-    $("setSloganTitle")
-    .value
-    .trim(),
 
-    sloganDesc:
-    $("setSloganDesc")
-    .value
-    .trim(),
+const splashFile =
+$("setSplashFile")
+.files?.[0];
 
-    aboutText:
-    $("setAbout")
-    .value
-    .trim(),
 
-    instagram:
-    $("setInstagram")
-    .value
-    .trim(),
+if(splashFile){
 
-    tiktok:
-    $("setTiktok")
-    .value
-    .trim(),
+setUploadStatus(
+"splashUploadStatus",
+"جارِ رفع شعار البداية..."
+);
 
-    facebook:
-    $("setFacebook")
-    .value
-    .trim(),
 
-    telegram:
-    $("setTelegram")
-    .value
-    .trim(),
-
-    twitter:
-    $("setTwitter")
-    .value
-    .trim(),
-
-    snapchat:
-    $("setSnapchat")
-    .value
-    .trim(),
-
-    enableSearch:
-    $("setSearch").checked,
-
-    enableSort:
-    $("setSort").checked,
-
-    featureReviews:
-    $("setReviews").checked
-
-  };
-
-  await saveSetting(
-    "general",
-    next
-  );
-
-  generalSettings =
-  next;
-
-  toast(
-    "تم حفظ إعدادات المتجر"
-  );
+splashLogoUrl =
+await uploadMediaFile(
+splashFile,
+"splash"
+);
 
 }
+
+
+const next = {
+
+...generalSettings,
+
+storeName:
+$("setStoreName")
+.value
+.trim(),
+
+storeNameEn:
+$("setStoreNameEn")
+.value
+.trim(),
+
+storeEyebrow:
+$("setEyebrow")
+.value
+.trim(),
+
+phone:
+$("setPhone")
+.value
+.trim(),
+
+whatsapp:
+$("setWhatsapp")
+.value
+.trim(),
+
+email:
+$("setEmail")
+.value
+.trim(),
+
+sloganTitle:
+$("setSloganTitle")
+.value
+.trim(),
+
+sloganDesc:
+$("setSloganDesc")
+.value
+.trim(),
+
+aboutText:
+$("setAbout")
+.value
+.trim(),
+
+instagram:
+$("setInstagram")
+.value
+.trim(),
+
+tiktok:
+$("setTiktok")
+.value
+.trim(),
+
+facebook:
+$("setFacebook")
+.value
+.trim(),
+
+telegram:
+$("setTelegram")
+.value
+.trim(),
+
+twitter:
+$("setTwitter")
+.value
+.trim(),
+
+snapchat:
+$("setSnapchat")
+.value
+.trim(),
+
+enableSearch:
+$("setSearch")
+.checked,
+
+enableSort:
+$("setSort")
+.checked,
+
+featureReviews:
+$("setReviews")
+.checked,
+
+
+/* SPLASH */
+
+splashEnabled:
+$("setSplashEnabled")
+.checked,
+
+splashLogoUrl:
+splashLogoUrl,
+
+splashDuration:
+Math.max(
+300,
+Number(
+$("setSplashDuration")
+.value
+||
+2300
+)
+),
+
+splashDesktopWidth:
+Number(
+$("setSplashDesktopWidth")
+.value
+||
+330
+),
+
+splashTabletWidth:
+Number(
+$("setSplashTabletWidth")
+.value
+||
+280
+),
+
+splashMobileWidth:
+Number(
+$("setSplashMobileWidth")
+.value
+||
+220
+),
+
+splashBackground:
+$("setSplashBackground")
+.value
+
+};
+
+
+await saveSetting(
+"general",
+next
+);
+
+
+generalSettings =
+next;
+
+
+editingSplashLogo =
+splashLogoUrl;
+
+
+$("setSplashFile")
+.value =
+"";
+
+
+toast(
+"تم حفظ إعدادات المتجر وشاشة البداية ✓"
+);
+
+
+fillSettingsForms();
+
+}
+catch(error){
+
+alert(
+error.message
+||
+"تعذر حفظ الإعدادات"
+);
+
+}
+finally{
+
+button.disabled =
+false;
+
+
+button.textContent =
+"حفظ إعدادات المتجر وشاشة البداية";
+
+
+setUploadStatus(
+"splashUploadStatus",
+"",
+false
+);
+
+}
+
+}
+
+
+/* =========================================================
+FILL SETTINGS
+========================================================= */
 
 function fillSettingsForms(){
 
-  $("setStoreName").value =
-  generalSettings.storeName
-  ||
-  "الشعيبي";
-
-  $("setStoreNameEn").value =
-  generalSettings.storeNameEn
-  ||
-  "ALSHUAIIBE STORE";
-
-  $("setEyebrow").value =
-  generalSettings.storeEyebrow
-  ||
-  "متجر الشعيبي";
-
-  $("setPhone").value =
-  generalSettings.phone
-  ||
-  "";
-
-  $("setWhatsapp").value =
-  generalSettings.whatsapp
-  ||
-  "";
-
-  $("setEmail").value =
-  generalSettings.email
-  ||
-  "";
-
-  $("setSloganTitle").value =
-  generalSettings.sloganTitle
-  ||
-  "صُنعت لمن يبحث عن الاختلاف";
-
-  $("setSloganDesc").value =
-  generalSettings.sloganDesc
-  ||
-  "";
-
-  $("setAbout").value =
-  generalSettings.aboutText
-  ||
-  "";
-
-  $("setInstagram").value =
-  generalSettings.instagram
-  ||
-  "";
-
-  $("setTiktok").value =
-  generalSettings.tiktok
-  ||
-  "";
-
-  $("setFacebook").value =
-  generalSettings.facebook
-  ||
-  "";
-
-  $("setTelegram").value =
-  generalSettings.telegram
-  ||
-  "";
-
-  $("setTwitter").value =
-  generalSettings.twitter
-  ||
-  "";
-
-  $("setSnapchat").value =
-  generalSettings.snapchat
-  ||
-  "";
-
-  $("setSearch").checked =
-  generalSettings.enableSearch
-  !==
-  false;
-
-  $("setSort").checked =
-  generalSettings.enableSort
-  !==
-  false;
-
-  $("setReviews").checked =
-  generalSettings.featureReviews
-  !==
-  false;
-
-  const gift =
-  generalSettings.giftSection
-  ||
-  {};
-
-  $("giftSectionEnabled").checked =
-  gift.enabled
-  !==
-  false;
-
-  $("giftSectionTitleAdmin").value =
-  gift.title
-  ||
-  "🎁 اصنع هديتك بنفسك";
-
-  $("giftSectionDescriptionAdmin").value =
-  gift.description
-  ||
-  "اختر المنتج والتغليف واكتب بطاقة الإهداء.";
-
-  $("giftSectionButtonText").value =
-  gift.buttonText
-  ||
-  "ابدأ تجهيز الهدية";
-
-  $("giftSectionIconAdmin").value =
-  gift.icon
-  ||
-  "🎁";
-
-  $("giftSectionBackground").value =
-  gift.background
-  ||
-  "#F1DDA6";
-
-  $("giftSectionTextColor").value =
-  gift.textColor
-  ||
-  "#20301C";
-
-  $("giftSectionButtonColor").value =
-  gift.buttonColor
-  ||
-  "#A9793C";
-
-  $("giftSectionRadius").value =
-  gift.radius
-  ??
-  26;
-
-  $("adEnabled").checked =
-  adSettings.enabled
-  ===
-  true;
-
-  $("adType").value =
-  adSettings.type
-  ||
-  "image";
-
-  $("adFit").value =
-  adSettings.fit
-  ||
-  "cover";
-
-  $("adPosition").value =
-  adSettings.position
-  ||
-  "center";
-
-  $("adRadius").value =
-  adSettings.radius
-  ??
-  0;
-
-  $("adInterval").value =
-  adSettings.interval
-  ||
-  4000;
-
-  $("adDesktopWidth").value =
-  adSettings.desktopWidth
-  ??
-  100;
-
-  $("adDesktopHeight").value =
-  adSettings.desktopHeight
-  ??
-  650;
-
-  $("adDesktopMaxWidth").value =
-  adSettings.desktopMaxWidth
-  ??
-  1600;
-
-  $("adTabletWidth").value =
-  adSettings.tabletWidth
-  ??
-  100;
-
-  $("adTabletHeight").value =
-  adSettings.tabletHeight
-  ??
-  550;
-
-  $("adTabletMaxWidth").value =
-  adSettings.tabletMaxWidth
-  ??
-  1100;
-
-  $("adMobileWidth").value =
-  adSettings.mobileWidth
-  ??
-  100;
-
-  $("adMobileHeight").value =
-  adSettings.mobileHeight
-  ??
-  420;
-
-  $("adMobileMaxWidth").value =
-  adSettings.mobileMaxWidth
-  ??
-  600;
-
-  $("adLinkAdmin").value =
-  adSettings.link
-  ||
-  "";
-
-  editingAdMedia =
-  Array.isArray(
-    adSettings.media
-  )
-  ?
-  [...adSettings.media]
-  :
-  [];
-
-  renderExistingAdMedia();
-
-  $("productDesktopWidth").value =
-  designSettings.productDesktopWidth
-  ??
-  320;
-
-  $("productDesktopImageHeight").value =
-  designSettings.productDesktopImageHeight
-  ??
-  330;
-
-  $("productDesktopFont").value =
-  designSettings.productDesktopFont
-  ??
-  30;
-
-  $("productTabletWidth").value =
-  designSettings.productTabletWidth
-  ??
-  280;
-
-  $("productTabletImageHeight").value =
-  designSettings.productTabletImageHeight
-  ??
-  300;
-
-  $("productTabletFont").value =
-  designSettings.productTabletFont
-  ??
-  27;
-
-  $("productMobileWidth").value =
-  designSettings.productMobileWidth
-  ??
-  72;
-
-  $("productMobileImageHeight").value =
-  designSettings.productMobileImageHeight
-  ??
-  280;
-
-  $("productMobileFont").value =
-  designSettings.productMobileFont
-  ??
-  26;
-
-  const carousel =
-  designSettings.carousel
-  ||
-  {};
-
-  $("productCarouselEnabled").checked =
-  carousel.enabled
-  !==
-  false;
-
-  $("carouselCenterScale").value =
-  carousel.centerScale
-  ??
-  1;
-
-  $("carouselSideScale").value =
-  carousel.sideScale
-  ??
-  .82;
-
-  $("carouselRotation").value =
-  carousel.rotation
-  ??
-  16;
-
-  $("carouselSpacing").value =
-  carousel.spacing
-  ??
-  72;
-
-  $("carouselSpeed").value =
-  carousel.speed
-  ??
-  550;
-
-  renderPaymentDraft();
-
-  renderBankDraft();
-
-  renderPoliciesEditor();
-
-  previewAd();
+/* GENERAL */
+
+$("setStoreName")
+.value =
+generalSettings.storeName
+||
+"الشعيبي";
+
+
+$("setStoreNameEn")
+.value =
+generalSettings.storeNameEn
+||
+"ALSHUAIIBE STORE";
+
+
+$("setEyebrow")
+.value =
+generalSettings.storeEyebrow
+||
+"متجر الشعيبي";
+
+
+$("setPhone")
+.value =
+generalSettings.phone
+||
+"";
+
+
+$("setWhatsapp")
+.value =
+generalSettings.whatsapp
+||
+"";
+
+
+$("setEmail")
+.value =
+generalSettings.email
+||
+"";
+
+
+$("setSloganTitle")
+.value =
+generalSettings.sloganTitle
+||
+"صُنعت لمن يبحث عن الاختلاف";
+
+
+$("setSloganDesc")
+.value =
+generalSettings.sloganDesc
+||
+"";
+
+
+$("setAbout")
+.value =
+generalSettings.aboutText
+||
+"";
+
+
+$("setInstagram")
+.value =
+generalSettings.instagram
+||
+"";
+
+
+$("setTiktok")
+.value =
+generalSettings.tiktok
+||
+"";
+
+
+$("setFacebook")
+.value =
+generalSettings.facebook
+||
+"";
+
+
+$("setTelegram")
+.value =
+generalSettings.telegram
+||
+"";
+
+
+$("setTwitter")
+.value =
+generalSettings.twitter
+||
+"";
+
+
+$("setSnapchat")
+.value =
+generalSettings.snapchat
+||
+"";
+
+
+$("setSearch")
+.checked =
+generalSettings.enableSearch
+!==
+false;
+
+
+$("setSort")
+.checked =
+generalSettings.enableSort
+!==
+false;
+
+
+$("setReviews")
+.checked =
+generalSettings.featureReviews
+!==
+false;
+
+
+/* SPLASH */
+
+editingSplashLogo =
+generalSettings.splashLogoUrl
+||
+"";
+
+
+$("setSplashEnabled")
+.checked =
+generalSettings.splashEnabled
+!==
+false;
+
+
+$("setSplashDuration")
+.value =
+Number(
+generalSettings.splashDuration
+||
+2300
+);
+
+
+$("setSplashDesktopWidth")
+.value =
+Number(
+generalSettings.splashDesktopWidth
+||
+generalSettings.splashLogoWidth
+||
+330
+);
+
+
+$("setSplashTabletWidth")
+.value =
+Number(
+generalSettings.splashTabletWidth
+||
+280
+);
+
+
+$("setSplashMobileWidth")
+.value =
+Number(
+generalSettings.splashMobileWidth
+||
+220
+);
+
+
+$("setSplashBackground")
+.value =
+generalSettings.splashBackground
+||
+"#F8EACB";
+
+
+$("splashAdminPreview")
+.innerHTML =
+editingSplashLogo
+?
+`
+
+<div class="media-preview">
+
+<img
+src="${esc(editingSplashLogo)}"
+alt="شعار البداية"
+>
+
+</div>
+
+`
+:
+"";
+
+
+/* GIFT SECTION */
+
+const giftSection =
+generalSettings.giftSection
+||
+{};
+
+
+$("giftSectionEnabled")
+.checked =
+giftSection.enabled
+!==
+false;
+
+
+$("giftSectionTitleAdmin")
+.value =
+giftSection.title
+||
+"🎁 اصنع هديتك بنفسك";
+
+
+$("giftSectionDescriptionAdmin")
+.value =
+giftSection.description
+||
+"اختر المنتج والتغليف واكتب بطاقة الإهداء.";
+
+
+$("giftSectionButtonText")
+.value =
+giftSection.buttonText
+||
+"ابدأ تجهيز الهدية";
+
+
+$("giftSectionIconAdmin")
+.value =
+giftSection.icon
+||
+"🎁";
+
+
+$("giftSectionBackground")
+.value =
+giftSection.background
+||
+"#F1DDA6";
+
+
+$("giftSectionTextColor")
+.value =
+giftSection.textColor
+||
+"#20301C";
+
+
+$("giftSectionButtonColor")
+.value =
+giftSection.buttonColor
+||
+"#A9793C";
+
+
+$("giftSectionRadius")
+.value =
+giftSection.radius
+??
+24;
+
+
+/* ADS */
+
+$("adEnabled")
+.checked =
+adSettings.enabled
+===
+true;
+
+
+$("adType")
+.value =
+adSettings.type
+||
+"image";
+
+
+$("adFit")
+.value =
+adSettings.fit
+||
+"cover";
+
+
+$("adPosition")
+.value =
+adSettings.position
+||
+"center";
+
+
+$("adRadius")
+.value =
+adSettings.radius
+??
+0;
+
+
+$("adInterval")
+.value =
+adSettings.interval
+||
+4000;
+
+
+$("adDesktopWidth")
+.value =
+adSettings.desktopWidth
+??
+100;
+
+
+$("adDesktopHeight")
+.value =
+adSettings.desktopHeight
+??
+650;
+
+
+$("adDesktopMaxWidth")
+.value =
+adSettings.desktopMaxWidth
+??
+1600;
+
+
+$("adTabletWidth")
+.value =
+adSettings.tabletWidth
+??
+100;
+
+
+$("adTabletHeight")
+.value =
+adSettings.tabletHeight
+??
+550;
+
+
+$("adTabletMaxWidth")
+.value =
+adSettings.tabletMaxWidth
+??
+1100;
+
+
+$("adMobileWidth")
+.value =
+adSettings.mobileWidth
+??
+100;
+
+
+$("adMobileHeight")
+.value =
+adSettings.mobileHeight
+??
+420;
+
+
+$("adMobileMaxWidth")
+.value =
+adSettings.mobileMaxWidth
+??
+600;
+
+
+$("adLinkAdmin")
+.value =
+adSettings.link
+||
+"";
+
+
+editingAdMedia =
+Array.isArray(
+adSettings.media
+)
+?
+[
+...adSettings.media
+]
+:
+[];
+
+
+renderExistingAdMedia();
+
+
+/* DESIGN */
+
+$("productDesktopWidth")
+.value =
+designSettings.productDesktopWidth
+??
+320;
+
+
+$("productDesktopImageHeight")
+.value =
+designSettings.productDesktopImageHeight
+??
+330;
+
+
+$("productDesktopFont")
+.value =
+designSettings.productDesktopFont
+??
+30;
+
+
+$("productTabletWidth")
+.value =
+designSettings.productTabletWidth
+??
+280;
+
+
+$("productTabletImageHeight")
+.value =
+designSettings.productTabletImageHeight
+??
+300;
+
+
+$("productTabletFont")
+.value =
+designSettings.productTabletFont
+??
+27;
+
+
+$("productMobileWidth")
+.value =
+designSettings.productMobileWidth
+??
+72;
+
+
+$("productMobileImageHeight")
+.value =
+designSettings.productMobileImageHeight
+??
+280;
+
+
+$("productMobileFont")
+.value =
+designSettings.productMobileFont
+??
+26;
+
+
+const carousel =
+designSettings.carousel
+||
+{};
+
+
+$("productCarouselEnabled")
+.checked =
+carousel.enabled
+!==
+false;
+
+
+$("carouselCenterScale")
+.value =
+carousel.centerScale
+??
+1;
+
+
+$("carouselSideScale")
+.value =
+carousel.sideScale
+??
+.82;
+
+
+$("carouselRotation")
+.value =
+carousel.rotation
+??
+16;
+
+
+$("carouselSpacing")
+.value =
+carousel.spacing
+??
+72;
+
+
+$("carouselSpeed")
+.value =
+carousel.speed
+??
+550;
+
+
+renderPaymentDraft();
+
+renderBankDraft();
+
+renderPoliciesEditor();
+
+previewAd();
 
 }
+
+
+/* =========================================================
+DELETE ROW
+========================================================= */
 
 async function removeRow(
-  table,
-  id
+table,
+id
 ){
 
-  if(
-    !confirm(
-      "تأكيد الحذف؟"
-    )
-  ){
-    return;
-  }
+if(
+!confirm(
+"تأكيد الحذف؟"
+)
+){
 
-  const {
-    error
-  } =
-  await db
-  .from(table)
-  .delete()
-  .eq("id",id);
-
-  if(error){
-
-    alert(error.message);
-
-    return;
-
-  }
-
-  toast(
-    "تم الحذف"
-  );
-
-  await loadAll();
+return;
 
 }
+
+
+const {
+error
+} =
+await db
+.from(
+table
+)
+.delete()
+.eq(
+"id",
+id
+);
+
+
+if(error){
+
+alert(
+error.message
+);
+
+
+return;
+
+}
+
+
+toast(
+"تم الحذف ✓"
+);
+
+
+await loadAll();
+
+}
+
+
+/* =========================================================
+START
+========================================================= */
 
 async function startAdmin(){
 
-  try{
+const session =
+await getSession();
 
-    await db.auth.signOut();
 
-  }
-  catch(error){
+if(session){
 
-    console.warn(error);
+const admin =
+await isAdmin();
 
-  }
 
-  $("app")
-  .classList.add("hidden");
+if(admin){
 
-  $("login")
-  .classList.remove("hidden");
+await boot();
 
-  $("password").value = "";
 
-  $("msg").textContent = "";
+return;
 
 }
+
+
+await db.auth
+.signOut();
+
+}
+
+
+$("app")
+.classList.add(
+"hidden"
+);
+
+
+$("login")
+.classList.remove(
+"hidden"
+);
+
+
+$("password")
+.value =
+"";
+
+
+$("msg")
+.textContent =
+"";
+
+}
+
 
 startAdmin();
 
 </script>
 
 </body>
+
 </html>
