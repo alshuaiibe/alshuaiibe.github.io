@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
 
 <meta charset="UTF-8">
@@ -10,9 +9,7 @@ name="viewport"
 content="width=device-width,initial-scale=1,viewport-fit=cover"
 >
 
-<title>
-لوحة إدارة الشعيبي PRO
-</title>
+<title>لوحة إدارة الشعيبي PRO</title>
 
 <link
 href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Tajawal:wght@400;500;700;900&display=swap"
@@ -22,873 +19,450 @@ rel="stylesheet"
 <style>
 
 :root{
-
 --cream:#F8EACB;
 --cream2:#F1DDA6;
 --card:#FFFBF0;
-
 --ink:#20301C;
 --soft:#596052;
-
 --gold:#A9793C;
-
 --danger:#9B3A2E;
 --ok:#4C6B3E;
 --blue:#2C5A82;
-
 --line:rgba(32,48,28,.16);
-
---shadow:
-0 10px 30px rgba(32,48,28,.10);
-
+--shadow:0 10px 30px rgba(32,48,28,.10)
 }
 
 *{
-box-sizing:border-box;
+box-sizing:border-box
 }
 
 html{
-scroll-behavior:smooth;
+scroll-behavior:smooth
 }
 
 body{
-
 margin:0;
-
-background:
-var(--cream);
-
-color:
-var(--ink);
-
-font-family:
-Tajawal,sans-serif;
-
+background:var(--cream);
+color:var(--ink);
+font-family:Tajawal,sans-serif
 }
 
 button,
 input,
 select,
 textarea{
-
-font:inherit;
-
+font:inherit
 }
 
 button{
-cursor:pointer;
+cursor:pointer
 }
 
 button:disabled{
 opacity:.5;
-cursor:not-allowed;
+cursor:not-allowed
 }
 
 .hidden{
-display:none!important;
+display:none!important
 }
 
 input,
 select,
 textarea{
-
 width:100%;
-
 padding:11px;
-
-border:
-1px solid var(--line);
-
+border:1px solid var(--line);
 border-radius:11px;
-
 background:#fff;
-
-margin:
-4px 0 10px;
-
-color:
-var(--ink);
-
+margin:4px 0 10px;
+color:var(--ink)
 }
 
 textarea{
-
 min-height:100px;
-
-resize:vertical;
-
+resize:vertical
 }
 
 label{
-
 display:block;
-
 font-size:12px;
-
 font-weight:800;
-
-margin-top:6px;
-
+margin-top:6px
 }
 
 .login{
-
 min-height:100vh;
-
 display:grid;
-
 place-items:center;
-
-padding:20px;
-
+padding:20px
 }
 
 .box,
 .card{
-
-background:
-var(--card);
-
-border:
-1px solid var(--line);
-
+background:var(--card);
+border:1px solid var(--line);
 border-radius:18px;
-
 padding:18px;
-
-box-shadow:
-var(--shadow);
-
+box-shadow:var(--shadow)
 }
 
 .box{
-
-width:
-min(
-430px,
-100%
-);
-
+width:min(430px,100%)
 }
 
 .login-title{
-
-font-family:
-'Aref Ruqaa';
-
+font-family:'Aref Ruqaa';
 font-size:40px;
-
 text-align:center;
-
-margin:
-0 0 20px;
-
+margin:0 0 20px
 }
 
 .btn{
-
 border:0;
-
 border-radius:11px;
-
-padding:
-10px 14px;
-
-background:
-var(--ink);
-
-color:
-var(--cream);
-
-font-weight:800;
-
+padding:10px 14px;
+background:var(--ink);
+color:var(--cream);
+font-weight:800
 }
 
 .btn.out{
-
 background:transparent;
-
-color:
-var(--ink);
-
-border:
-1px solid var(--ink);
-
+color:var(--ink);
+border:1px solid var(--ink)
 }
 
 .btn.red{
-
-background:
-var(--danger);
-
-color:#fff;
-
+background:var(--danger);
+color:#fff
 }
 
 .btn.gold{
-
-background:
-var(--gold);
-
-color:#fff;
-
+background:var(--gold);
+color:#fff
 }
 
 .btn.green{
-
-background:
-var(--ok);
-
-color:#fff;
-
+background:var(--ok);
+color:#fff
 }
 
 .btn.blue{
-
-background:
-var(--blue);
-
-color:#fff;
-
+background:var(--blue);
+color:#fff
 }
 
 .btn.sm{
-
-padding:
-7px 10px;
-
-font-size:12px;
-
+padding:7px 10px;
+font-size:12px
 }
 
 .top{
-
 position:sticky;
-
 top:0;
-
 z-index:100;
-
-background:
-rgba(255,251,240,.96);
-
-backdrop-filter:
-blur(16px);
-
-border-bottom:
-1px solid var(--line);
-
+background:rgba(255,251,240,.97);
+backdrop-filter:blur(16px);
+border-bottom:1px solid var(--line)
 }
 
 .topin{
-
 max-width:1500px;
-
 margin:auto;
-
-padding:
-10px 14px;
-
+padding:10px 14px;
 display:flex;
-
 gap:9px;
-
 align-items:center;
-
-flex-wrap:wrap;
-
+flex-wrap:wrap
 }
 
 .brand{
-
-font-family:
-'Aref Ruqaa';
-
+font-family:'Aref Ruqaa';
 font-size:28px;
-
 font-weight:700;
-
-margin-left:auto;
-
+margin-left:auto
 }
 
 .nav{
-
 display:flex;
-
 gap:5px;
-
 overflow-x:auto;
-
-scrollbar-width:none;
-
+scrollbar-width:none
 }
 
 .nav::-webkit-scrollbar{
-display:none;
+display:none
 }
 
 .nav button{
-
 white-space:nowrap;
-
-border:
-1px solid var(--line);
-
+border:1px solid var(--line);
 border-radius:999px;
-
-padding:
-8px 11px;
-
+padding:8px 11px;
 background:#fff;
-
-color:
-var(--ink);
-
-font-weight:700;
-
+color:var(--ink);
+font-weight:700
 }
 
 .nav button.active{
-
-background:
-var(--ink);
-
-color:
-var(--cream);
-
+background:var(--ink);
+color:var(--cream)
 }
 
 main{
-
 max-width:1500px;
-
 margin:auto;
-
-padding:
-18px 14px 80px;
-
+padding:18px 14px 80px
 }
 
 .card{
-margin-bottom:16px;
+margin-bottom:16px
 }
 
 .card h2,
 .card h3{
-
-margin-top:0;
-
+margin-top:0
 }
 
 .grid{
-
 display:grid;
-
-grid-template-columns:
-repeat(4,1fr);
-
-gap:10px;
-
+grid-template-columns:repeat(4,1fr);
+gap:10px
 }
 
 .grid2{
-
 display:grid;
-
-grid-template-columns:
-repeat(2,1fr);
-
-gap:10px;
-
+grid-template-columns:repeat(2,1fr);
+gap:10px
 }
 
 .grid3{
-
 display:grid;
-
-grid-template-columns:
-repeat(3,1fr);
-
-gap:10px;
-
+grid-template-columns:repeat(3,1fr);
+gap:10px
 }
 
 .grid4{
-
 display:grid;
-
-grid-template-columns:
-repeat(4,1fr);
-
-gap:10px;
-
+grid-template-columns:repeat(4,1fr);
+gap:10px
 }
 
 .stat{
-
 text-align:center;
-
-background:
-var(--card);
-
-border:
-1px solid var(--line);
-
+background:var(--card);
+border:1px solid var(--line);
 border-radius:15px;
-
-padding:15px;
-
+padding:15px
 }
 
 .stat span{
-
 display:block;
-
 font-size:12px;
-
-color:
-var(--soft);
-
+color:var(--soft)
 }
 
 .stat b{
-
 display:block;
-
 font-size:28px;
-
-color:
-var(--gold);
-
-margin-top:5px;
-
+color:var(--gold);
+margin-top:5px
 }
 
 .actions{
-
 display:flex;
-
 gap:7px;
-
 flex-wrap:wrap;
-
-align-items:center;
-
+align-items:center
 }
 
 .table{
-
 overflow:auto;
-
-border:
-1px solid var(--line);
-
-border-radius:14px;
-
+border:1px solid var(--line);
+border-radius:14px
 }
 
 table{
-
 width:100%;
-
 border-collapse:collapse;
-
 min-width:900px;
-
-background:#fff;
-
+background:#fff
 }
 
 th,
 td{
-
 padding:10px;
-
-border-bottom:
-1px solid var(--line);
-
+border-bottom:1px solid var(--line);
 text-align:right;
-
 font-size:13px;
-
-vertical-align:top;
-
+vertical-align:top
 }
 
 th{
-
-background:
-var(--cream2);
-
-font-weight:900;
-
-}
-
-.pill{
-
-display:inline-flex;
-
-align-items:center;
-
-padding:
-5px 9px;
-
-border-radius:999px;
-
-border:
-1px solid var(--line);
-
-font-size:11px;
-
-font-weight:700;
-
-}
-
-.pill.green{
-
-background:#DDEBD6;
-
-color:
-var(--ok);
-
-}
-
-.pill.red{
-
-background:#F0D8D4;
-
-color:
-var(--danger);
-
-}
-
-.pill.gold{
-
-background:#F4E7C5;
-
-color:#805817;
-
+background:var(--cream2);
+font-weight:900
 }
 
 .note{
-
 font-size:12px;
-
 line-height:1.8;
-
-color:
-var(--soft);
-
-}
-
-.section-title{
-
-font-family:
-'Aref Ruqaa';
-
-font-size:27px;
-
-margin:
-10px 0 16px;
-
-}
-
-.preview{
-
-border:
-1px dashed var(--gold);
-
-border-radius:15px;
-
-padding:15px;
-
-background:#FFF7E0;
-
-}
-
-.ad-preview{
-
-width:100%;
-
-min-height:220px;
-
-border-radius:15px;
-
-overflow:hidden;
-
-background:#eee;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-}
-
-.ad-preview img{
-
-width:100%;
-
-max-height:420px;
-
-object-fit:cover;
-
+color:var(--soft)
 }
 
 .order-card{
-
-border:
-1px solid var(--line);
-
+border:1px solid var(--line);
 border-radius:16px;
-
 padding:14px;
-
 margin-bottom:12px;
-
-background:#fff;
-
+background:#fff
 }
 
 .order-card-head{
-
 display:flex;
-
 justify-content:space-between;
-
 gap:12px;
-
 align-items:flex-start;
-
-flex-wrap:wrap;
-
+flex-wrap:wrap
 }
 
-.order-product{
-
-display:flex;
-
-gap:10px;
-
+.pill{
+display:inline-flex;
 align-items:center;
-
-padding:
-10px 0;
-
-border-top:
-1px solid var(--line);
-
-}
-
-.order-product img{
-
-width:65px;
-
-height:65px;
-
-object-fit:contain;
-
-background:
-var(--cream);
-
-border-radius:10px;
-
-}
-
-.modal-scrim{
-
-position:fixed;
-
-inset:0;
-
-z-index:500;
-
-background:
-rgba(15,20,13,.62);
-
-display:none;
-
-}
-
-.modal-scrim.show{
-display:block;
-}
-
-.modal{
-
-position:fixed;
-
-z-index:510;
-
-top:50%;
-
-left:50%;
-
-transform:
-translate(-50%,-50%);
-
-width:
-min(
-850px,
-95vw
-);
-
-max-height:90vh;
-
-overflow:auto;
-
-background:
-var(--card);
-
-border-radius:20px;
-
-padding:20px;
-
-box-shadow:
-0 30px 80px rgba(0,0,0,.3);
-
-display:none;
-
-}
-
-.modal.show{
-display:block;
-}
-
-.modal-head{
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-gap:10px;
-
-margin-bottom:14px;
-
-}
-
-.modal-head h2{
-margin:0;
-}
-
-.close{
-
-border:0;
-
-background:none;
-
-font-size:24px;
-
-}
-
-.toast{
-
-position:fixed;
-
-z-index:1000;
-
-left:50%;
-
-bottom:22px;
-
-transform:
-translateX(-50%);
-
-background:
-var(--ink);
-
-color:
-var(--cream);
-
-padding:
-10px 16px;
-
+padding:5px 9px;
 border-radius:999px;
-
-opacity:0;
-
-pointer-events:none;
-
-transition:.25s;
-
+border:1px solid var(--line);
+font-size:11px;
+font-weight:700
 }
 
-.toast.show{
-
-opacity:1;
-
-bottom:32px;
-
+.pill.green{
+background:#DDEBD6;
+color:var(--ok)
 }
 
-.policy-card{
+.pill.red{
+background:#F0D8D4;
+color:var(--danger)
+}
 
-border:
-1px solid var(--line);
+.pill.gold{
+background:#F4E7C5;
+color:#805817
+}
 
+.preview{
+border:1px dashed var(--gold);
 border-radius:15px;
-
 padding:15px;
-
-margin-bottom:12px;
-
-background:#fff;
-
+background:#FFF7E0
 }
 
-.bank-row{
-
-border:
-1px solid var(--line);
-
+.ad-preview{
+width:100%;
+min-height:220px;
 border-radius:15px;
-
-padding:14px;
-
-margin-bottom:10px;
-
-background:#fff;
-
+overflow:hidden;
+background:#eee;
+display:flex;
+align-items:center;
+justify-content:center
 }
 
-.payment-row{
-
-border:
-1px solid var(--line);
-
-border-radius:15px;
-
-padding:14px;
-
-margin-bottom:10px;
-
-background:#fff;
-
+.ad-preview img,
+.ad-preview video{
+width:100%;
+height:100%;
+max-height:500px;
+object-fit:contain
 }
 
 .check-row{
-
 display:flex;
-
 align-items:center;
-
 gap:8px;
-
-margin:
-5px 0 12px;
-
+margin:5px 0 12px
 }
 
 .check-row input{
-
 width:auto;
+margin:0
+}
 
-margin:0;
+.policy-card,
+.bank-row,
+.payment-row{
+border:1px solid var(--line);
+border-radius:15px;
+padding:14px;
+margin-bottom:10px;
+background:#fff
+}
 
+.modal-scrim{
+position:fixed;
+inset:0;
+z-index:500;
+background:rgba(15,20,13,.62);
+display:none
+}
+
+.modal-scrim.show{
+display:block
+}
+
+.modal{
+position:fixed;
+z-index:510;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:min(850px,95vw);
+max-height:90vh;
+overflow:auto;
+background:var(--card);
+border-radius:20px;
+padding:20px;
+box-shadow:0 30px 80px rgba(0,0,0,.3);
+display:none
+}
+
+.modal.show{
+display:block
+}
+
+.modal-head{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+margin-bottom:14px
+}
+
+.close{
+border:0;
+background:none;
+font-size:24px
+}
+
+.toast{
+position:fixed;
+z-index:1000;
+left:50%;
+bottom:22px;
+transform:translateX(-50%);
+background:var(--ink);
+color:var(--cream);
+padding:10px 16px;
+border-radius:999px;
+opacity:0;
+pointer-events:none;
+transition:.25s
+}
+
+.toast.show{
+opacity:1;
+bottom:32px
 }
 
 @media(max-width:900px){
@@ -897,25 +471,16 @@ margin:0;
 .grid2,
 .grid3,
 .grid4{
-
-grid-template-columns:1fr;
-
+grid-template-columns:1fr
 }
 
 .brand{
-
 width:100%;
-
-margin:0;
-
-}
-
-.topin{
-align-items:flex-start;
+margin:0
 }
 
 .nav{
-width:100%;
+width:100%
 }
 
 }
@@ -927,14 +492,9 @@ width:100%;
 <body>
 
 
-<!-- =========================================================
-     LOGIN
-========================================================= -->
+<!-- ================= LOGIN ================= -->
 
-<div
-id="login"
-class="login"
->
+<div id="login" class="login">
 
 <div class="box">
 
@@ -943,7 +503,7 @@ class="login"
 </h1>
 
 <label>
-البريد الإلكتروني
+البريد
 </label>
 
 <input
@@ -989,14 +549,9 @@ onclick="login()"
 </div>
 
 
-<!-- =========================================================
-     APP
-========================================================= -->
+<!-- ================= APP ================= -->
 
-<div
-id="app"
-class="hidden"
->
+<div id="app" class="hidden">
 
 <header class="top">
 
@@ -1006,10 +561,7 @@ class="hidden"
 لوحة إدارة الشعيبي
 </div>
 
-<div
-id="nav"
-class="nav"
-></div>
+<div id="nav" class="nav"></div>
 
 <button
 class="btn out sm"
@@ -1022,24 +574,17 @@ onclick="logout()"
 
 </header>
 
-
 <main>
 
 
-<!-- =========================================================
-     DASHBOARD
-========================================================= -->
+<!-- ================= DASHBOARD ================= -->
 
 <section
 id="dashboard"
 class="page"
 >
 
-<div
-id="stats"
-class="grid"
-></div>
-
+<div id="stats" class="grid"></div>
 
 <div class="card">
 
@@ -1048,7 +593,7 @@ class="grid"
 </h2>
 
 <p class="note">
-من هنا تستطيع إدارة المنتجات والباقات والهدايا والكوبونات والعملاء والطلبات والإعلانات وتصميم قسم الهدية وطرق الدفع والحسابات البنكية وروابط وسياسات المتجر.
+إدارة المتجر والإعلانات والمنتجات والهدايا والطلبات والدفع والسياسات والتصميم من مكان واحد.
 </p>
 
 </div>
@@ -1056,9 +601,7 @@ class="grid"
 </section>
 
 
-<!-- =========================================================
-     VARIANTS
-========================================================= -->
+<!-- ================= VARIANTS ================= -->
 
 <section
 id="products"
@@ -1074,80 +617,42 @@ class="page hidden"
 <div class="grid3">
 
 <div>
-
-<label>
-المنتج
-</label>
-
+<label>المنتج</label>
 <select id="varProduct"></select>
-
 </div>
 
 <div>
-
-<label>
-اسم الخيار
-</label>
-
+<label>اسم الخيار</label>
 <input
 id="varTitle"
 placeholder="مثال: 100ml"
 >
-
 </div>
 
 <div>
-
-<label>
-SKU
-</label>
-
-<input
-id="varSku"
-placeholder="SKU"
->
-
+<label>SKU</label>
+<input id="varSku">
 </div>
 
 <div>
-
-<label>
-السعر
-</label>
-
+<label>السعر</label>
 <input
 id="varPrice"
 type="number"
-placeholder="السعر"
 >
-
 </div>
 
 <div>
-
-<label>
-المخزون
-</label>
-
+<label>المخزون</label>
 <input
 id="varStock"
 type="number"
-placeholder="المخزون"
 >
-
 </div>
 
 <div>
-
-<label>
-اللون
-</label>
-
-<input
-id="varColor"
-placeholder="اللون"
->
-
+<label>اللون</label>
+<input id="varColor">
 </div>
 
 </div>
@@ -1161,7 +666,6 @@ onclick="saveVariant()"
 
 </div>
 
-
 <div class="card">
 
 <div class="table">
@@ -1171,31 +675,12 @@ onclick="saveVariant()"
 <thead>
 
 <tr>
-
-<th>
-المنتج
-</th>
-
-<th>
-الخيار
-</th>
-
-<th>
-SKU
-</th>
-
-<th>
-السعر
-</th>
-
-<th>
-المخزون
-</th>
-
-<th>
-الإجراء
-</th>
-
+<th>المنتج</th>
+<th>الخيار</th>
+<th>SKU</th>
+<th>السعر</th>
+<th>المخزون</th>
+<th></th>
 </tr>
 
 </thead>
@@ -1211,9 +696,7 @@ SKU
 </section>
 
 
-<!-- =========================================================
-     BUNDLES
-========================================================= -->
+<!-- ================= BUNDLES ================= -->
 
 <section
 id="bundles"
@@ -1223,7 +706,7 @@ class="page hidden"
 <div class="card">
 
 <h2>
-🔥 العروض والباقات
+🔥 الباقات والعروض
 </h2>
 
 <input
@@ -1234,92 +717,57 @@ type="hidden"
 <div class="grid3">
 
 <div>
-
-<label>
-اسم الباقة
-</label>
-
-<input
-id="bundleName"
-placeholder="مثال: باقة العطور الفاخرة"
->
-
+<label>اسم الباقة</label>
+<input id="bundleName">
 </div>
 
 <div>
-
-<label>
-السعر قبل العرض
-</label>
-
+<label>السعر قبل العرض</label>
 <input
 id="bundleRegular"
 type="number"
 >
-
 </div>
 
 <div>
-
-<label>
-سعر العرض
-</label>
-
+<label>سعر العرض</label>
 <input
 id="bundleOffer"
 type="number"
 >
-
 </div>
 
 <div>
-
-<label>
-المخزون
-</label>
-
+<label>المخزون</label>
 <input
 id="bundleStock"
 type="number"
 >
-
 </div>
 
 <div>
-
-<label>
-رابط صورة الباقة
-</label>
-
+<label>رابط الصورة</label>
 <input id="bundleImage">
-
 </div>
 
 <div>
-
-<label>
-نهاية العرض
-</label>
-
+<label>نهاية العرض</label>
 <input
 id="bundleEnd"
 type="datetime-local"
 >
-
 </div>
 
 </div>
-
 
 <label>
-وصف العرض
+الوصف
 </label>
 
 <textarea id="bundleDesc"></textarea>
 
-
 <label>
-المنتجات الموجودة داخل الباقة
+منتجات الباقة
 </label>
 
 <select
@@ -1327,7 +775,6 @@ id="bundleProducts"
 multiple
 size="7"
 ></select>
-
 
 <div class="actions">
 
@@ -1349,18 +796,12 @@ onclick="resetBundle()"
 
 </div>
 
-
-<div
-id="bundleList"
-class="card"
-></div>
+<div id="bundleList" class="card"></div>
 
 </section>
 
 
-<!-- =========================================================
-     GIFTS
-========================================================= -->
+<!-- ================= GIFTS ================= -->
 
 <section
 id="gifts"
@@ -1376,36 +817,21 @@ class="page hidden"
 <div class="grid3">
 
 <div>
-
-<label>
-اسم التغليف
-</label>
-
+<label>اسم التغليف</label>
 <input id="giftName">
-
 </div>
 
 <div>
-
-<label>
-السعر
-</label>
-
+<label>السعر</label>
 <input
 id="giftPrice"
 type="number"
 >
-
 </div>
 
 <div>
-
-<label>
-رابط الصورة
-</label>
-
+<label>رابط الصورة</label>
 <input id="giftImage">
-
 </div>
 
 </div>
@@ -1420,28 +846,19 @@ type="number"
 class="btn"
 onclick="saveGift()"
 >
-إضافة خيار التغليف
+إضافة التغليف
 </button>
 
 </div>
 
-
-<div
-id="giftList"
-class="card"
-></div>
+<div id="giftList" class="card"></div>
 
 
 <div class="card">
 
 <h2>
-🎨 تنسيق قسم «اصنع هديتك»
+🎨 تصميم قسم الهدية
 </h2>
-
-<p class="note">
-هذه الإعدادات تتحكم مباشرة بالقسم الظاهر في واجهة المتجر.
-</p>
-
 
 <div class="check-row">
 
@@ -1456,36 +873,19 @@ type="checkbox"
 
 </div>
 
-
 <div class="grid2">
 
 <div>
-
-<label>
-عنوان القسم
-</label>
-
-<input
-id="giftSectionTitleAdmin"
->
-
+<label>عنوان القسم</label>
+<input id="giftSectionTitleAdmin">
 </div>
 
 <div>
-
-<label>
-الأيقونة
-</label>
-
-<input
-id="giftSectionIconAdmin"
-placeholder="🎁"
->
-
+<label>الأيقونة</label>
+<input id="giftSectionIconAdmin">
 </div>
 
 </div>
-
 
 <label>
 الوصف
@@ -1493,75 +893,46 @@ placeholder="🎁"
 
 <textarea id="giftSectionDescriptionAdmin"></textarea>
 
-
-<div class="grid3">
+<div class="grid4">
 
 <div>
-
-<label>
-نص الزر
-</label>
-
+<label>نص الزر</label>
 <input id="giftSectionButtonText">
-
 </div>
 
 <div>
-
-<label>
-لون خلفية القسم
-</label>
-
+<label>لون الخلفية</label>
 <input
 id="giftSectionBackground"
 type="color"
 >
-
 </div>
 
 <div>
-
-<label>
-لون النص
-</label>
-
+<label>لون النص</label>
 <input
 id="giftSectionTextColor"
 type="color"
 >
-
 </div>
 
 <div>
-
-<label>
-لون الزر
-</label>
-
+<label>لون الزر</label>
 <input
 id="giftSectionButtonColor"
 type="color"
 >
-
 </div>
 
 <div>
-
-<label>
-استدارة الحواف
-</label>
-
+<label>استدارة الحواف</label>
 <input
 id="giftSectionRadius"
 type="number"
-min="0"
-max="80"
 >
-
 </div>
 
 </div>
-
 
 <button
 class="btn gold"
@@ -1575,9 +946,7 @@ onclick="saveGiftDesign()"
 </section>
 
 
-<!-- =========================================================
-     COUPONS
-========================================================= -->
+<!-- ================= COUPONS ================= -->
 
 <section
 id="coupons"
@@ -1593,89 +962,53 @@ class="page hidden"
 <div class="grid3">
 
 <div>
-
-<label>
-الكود
-</label>
-
+<label>الكود</label>
 <input id="cpCode">
-
 </div>
 
 <div>
-
-<label>
-نوع الخصم
-</label>
+<label>نوع الخصم</label>
 
 <select id="cpType">
-
-<option value="percentage">
-نسبة
-</option>
-
-<option value="fixed">
-مبلغ ثابت
-</option>
-
+<option value="percentage">نسبة</option>
+<option value="fixed">مبلغ ثابت</option>
 </select>
 
 </div>
 
 <div>
-
-<label>
-القيمة
-</label>
-
+<label>القيمة</label>
 <input
 id="cpValue"
 type="number"
 >
-
 </div>
 
 <div>
-
-<label>
-الحد الأدنى للطلب
-</label>
-
+<label>الحد الأدنى</label>
 <input
 id="cpMin"
 type="number"
 >
-
 </div>
 
 <div>
-
-<label>
-أقصى خصم
-</label>
-
+<label>أقصى خصم</label>
 <input
 id="cpMax"
 type="number"
 >
-
 </div>
 
 <div>
-
-<label>
-تاريخ الانتهاء
-</label>
-
+<label>تاريخ الانتهاء</label>
 <input
 id="cpExpiry"
 type="date"
 >
-
 </div>
 
 </div>
-
 
 <div class="check-row">
 
@@ -1690,7 +1023,6 @@ type="checkbox"
 
 </div>
 
-
 <button
 class="btn"
 onclick="saveCoupon()"
@@ -1700,18 +1032,12 @@ onclick="saveCoupon()"
 
 </div>
 
-
-<div
-id="couponList"
-class="card"
-></div>
+<div id="couponList" class="card"></div>
 
 </section>
 
 
-<!-- =========================================================
-     CUSTOMERS
-========================================================= -->
+<!-- ================= CUSTOMERS ================= -->
 
 <section
 id="customers"
@@ -1721,7 +1047,7 @@ class="page hidden"
 <div class="card">
 
 <h2>
-العملاء والمشتريات
+العملاء
 </h2>
 
 <div class="table">
@@ -1731,31 +1057,12 @@ class="page hidden"
 <thead>
 
 <tr>
-
-<th>
-العميل
-</th>
-
-<th>
-الهاتف
-</th>
-
-<th>
-كل الطلبات
-</th>
-
-<th>
-مرات الشراء
-</th>
-
-<th>
-إجمالي المشتريات
-</th>
-
-<th>
-آخر طلب
-</th>
-
+<th>العميل</th>
+<th>الهاتف</th>
+<th>الطلبات</th>
+<th>مرات الشراء</th>
+<th>إجمالي المشتريات</th>
+<th>آخر طلب</th>
 </tr>
 
 </thead>
@@ -1771,9 +1078,7 @@ class="page hidden"
 </section>
 
 
-<!-- =========================================================
-     ORDERS
-========================================================= -->
+<!-- ================= ORDERS ================= -->
 
 <section
 id="orders"
@@ -1782,28 +1087,19 @@ class="page hidden"
 
 <div class="card">
 
-<div
-style="
-display:flex;
-justify-content:space-between;
-gap:10px;
-align-items:center;
-flex-wrap:wrap
-"
->
+<div class="order-card-head">
 
 <div>
 
-<h2 style="margin:0">
-📦 إدارة الطلبات
+<h2>
+📦 الطلبات
 </h2>
 
 <p class="note">
-اضغط «تفاصيل» لفتح المنتجات وبيانات العميل والهدية والفاتورة.
+يمكنك تغيير الحالة وفتح تفاصيل الطلب.
 </p>
 
 </div>
-
 
 <button
 class="btn out sm"
@@ -1816,17 +1112,12 @@ onclick="loadAll()"
 
 </div>
 
-
-<div
-id="ordersCards"
-></div>
+<div id="ordersCards"></div>
 
 </section>
 
 
-<!-- =========================================================
-     REVIEWS
-========================================================= -->
+<!-- ================= REVIEWS ================= -->
 
 <section
 id="reviews"
@@ -1836,7 +1127,7 @@ class="page hidden"
 <div class="card">
 
 <h2>
-⭐ تقييمات العملاء
+⭐ التقييمات
 </h2>
 
 <div id="reviewsList"></div>
@@ -1846,9 +1137,7 @@ class="page hidden"
 </section>
 
 
-<!-- =========================================================
-     RECOMMENDATIONS
-========================================================= -->
+<!-- ================= RECOMMEND ================= -->
 
 <section
 id="recommend"
@@ -1885,7 +1174,6 @@ class="page hidden"
 
 </div>
 
-
 <button
 class="btn"
 onclick="saveRelation()"
@@ -1895,18 +1183,12 @@ onclick="saveRelation()"
 
 </div>
 
-
-<div
-id="relationsList"
-class="card"
-></div>
+<div id="relationsList" class="card"></div>
 
 </section>
 
 
-<!-- =========================================================
-     ADS
-========================================================= -->
+<!-- ================= ADS ================= -->
 
 <section
 id="ads"
@@ -1918,11 +1200,6 @@ class="page hidden"
 <h2>
 🖼️ شاشة الإعلانات
 </h2>
-
-<p class="note">
-هذه الإعدادات تتحكم في الإعلان الكبير الموجود أسفل رأس المتجر.
-</p>
-
 
 <div class="check-row">
 
@@ -1936,7 +1213,6 @@ type="checkbox"
 </label>
 
 </div>
-
 
 <div class="grid3">
 
@@ -1967,63 +1243,21 @@ type="checkbox"
 <div>
 
 <label>
-ارتفاع الإعلان على الكمبيوتر
-</label>
-
-<input
-id="adHeightDesktop"
-type="number"
-min="300"
->
-
-</div>
-
-<div>
-
-<label>
-ارتفاع الإعلان على الجوال
-</label>
-
-<input
-id="adHeightMobile"
-type="number"
-min="300"
->
-
-</div>
-
-<div>
-
-<label>
-استدارة الحواف
-</label>
-
-<input
-id="adRadius"
-type="number"
-min="0"
->
-
-</div>
-
-<div>
-
-<label>
-طريقة عرض الصورة
+طريقة عرض المحتوى
 </label>
 
 <select id="adFit">
 
 <option value="cover">
-تعبئة كاملة
+Cover - تعبئة
 </option>
 
 <option value="contain">
-إظهار الصورة كاملة
+Contain - إظهار كامل
 </option>
 
 <option value="fill">
-تمديد
+Fill - تمديد
 </option>
 
 </select>
@@ -2033,7 +1267,54 @@ min="0"
 <div>
 
 <label>
-مدة انتقال السلايدر بالمللي ثانية
+موضع الصورة / الفيديو
+</label>
+
+<select id="adPosition">
+
+<option value="center">
+الوسط
+</option>
+
+<option value="top">
+أعلى
+</option>
+
+<option value="bottom">
+أسفل
+</option>
+
+<option value="center top">
+وسط أعلى
+</option>
+
+<option value="center bottom">
+وسط أسفل
+</option>
+
+</select>
+
+</div>
+
+<div>
+
+<label>
+استدارة الحواف px
+</label>
+
+<input
+id="adRadius"
+type="number"
+min="0"
+max="100"
+>
+
+</div>
+
+<div>
+
+<label>
+مدة السلايدر ms
 </label>
 
 <input
@@ -2043,6 +1324,117 @@ min="2000"
 step="500"
 >
 
+</div>
+
+</div>
+
+
+<h3>
+💻 الكمبيوتر
+</h3>
+
+<div class="grid3">
+
+<div>
+<label>العرض %</label>
+<input
+id="adDesktopWidth"
+type="number"
+min="20"
+max="100"
+>
+</div>
+
+<div>
+<label>الارتفاع px</label>
+<input
+id="adDesktopHeight"
+type="number"
+min="150"
+>
+</div>
+
+<div>
+<label>أقصى عرض px</label>
+<input
+id="adDesktopMaxWidth"
+type="number"
+min="300"
+>
+</div>
+
+</div>
+
+
+<h3>
+📱 التابلت
+</h3>
+
+<div class="grid3">
+
+<div>
+<label>العرض %</label>
+<input
+id="adTabletWidth"
+type="number"
+min="20"
+max="100"
+>
+</div>
+
+<div>
+<label>الارتفاع px</label>
+<input
+id="adTabletHeight"
+type="number"
+min="150"
+>
+</div>
+
+<div>
+<label>أقصى عرض px</label>
+<input
+id="adTabletMaxWidth"
+type="number"
+min="300"
+>
+</div>
+
+</div>
+
+
+<h3>
+📲 الجوال
+</h3>
+
+<div class="grid3">
+
+<div>
+<label>العرض %</label>
+<input
+id="adMobileWidth"
+type="number"
+min="20"
+max="100"
+>
+</div>
+
+<div>
+<label>الارتفاع px</label>
+<input
+id="adMobileHeight"
+type="number"
+min="120"
+>
+</div>
+
+<div>
+<label>أقصى عرض px</label>
+<input
+id="adMobileMaxWidth"
+type="number"
+min="200"
+>
 </div>
 
 </div>
@@ -2059,7 +1451,7 @@ placeholder="https://..."
 
 
 <label>
-صور / فيديو الإعلان
+روابط الصور أو الفيديو
 </label>
 
 <textarea
@@ -2092,13 +1484,10 @@ onclick="previewAd()"
 <div class="card">
 
 <h3>
-معاينة
+المعاينة
 </h3>
 
-<div
-id="adPreview"
-class="ad-preview"
->
+<div id="adPreview" class="ad-preview">
 لا توجد معاينة.
 </div>
 
@@ -2107,9 +1496,263 @@ class="ad-preview"
 </section>
 
 
-<!-- =========================================================
-     PAYMENT
-========================================================= -->
+<!-- ================= PRODUCT DESIGN ================= -->
+
+<section
+id="design"
+class="page hidden"
+>
+
+<div class="card">
+
+<h2>
+🛍️ أحجام عرض المنتجات
+</h2>
+
+<p class="note">
+يمكنك تصغير أو تكبير كرت المنتج وصورة المنتج واسم المنتج لكل شاشة بشكل مستقل.
+</p>
+
+
+<h3>
+💻 الكمبيوتر
+</h3>
+
+<div class="grid3">
+
+<div>
+<label>عرض الكرت px</label>
+<input
+id="productDesktopWidth"
+type="number"
+min="120"
+max="800"
+>
+</div>
+
+<div>
+<label>ارتفاع صورة المنتج px</label>
+<input
+id="productDesktopImageHeight"
+type="number"
+min="120"
+max="900"
+>
+</div>
+
+<div>
+<label>حجم اسم المنتج px</label>
+<input
+id="productDesktopFont"
+type="number"
+min="12"
+max="80"
+>
+</div>
+
+</div>
+
+
+<h3>
+📱 التابلت
+</h3>
+
+<div class="grid3">
+
+<div>
+<label>عرض الكرت px</label>
+<input
+id="productTabletWidth"
+type="number"
+min="120"
+max="700"
+>
+</div>
+
+<div>
+<label>ارتفاع صورة المنتج px</label>
+<input
+id="productTabletImageHeight"
+type="number"
+min="120"
+max="800"
+>
+</div>
+
+<div>
+<label>حجم اسم المنتج px</label>
+<input
+id="productTabletFont"
+type="number"
+min="12"
+max="70"
+>
+</div>
+
+</div>
+
+
+<h3>
+📲 الجوال
+</h3>
+
+<div class="grid3">
+
+<div>
+<label>عرض الكرت % من الشاشة</label>
+<input
+id="productMobileWidth"
+type="number"
+min="35"
+max="95"
+>
+</div>
+
+<div>
+<label>ارتفاع صورة المنتج px</label>
+<input
+id="productMobileImageHeight"
+type="number"
+min="120"
+max="700"
+>
+</div>
+
+<div>
+<label>حجم اسم المنتج px</label>
+<input
+id="productMobileFont"
+type="number"
+min="12"
+max="60"
+>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>
+🎞️ حركة المنتجات ثلاثية الأبعاد
+</h2>
+
+<div class="check-row">
+
+<input
+id="productCarouselEnabled"
+type="checkbox"
+>
+
+<label for="productCarouselEnabled">
+تشغيل حركة تقليب المنتجات
+</label>
+
+</div>
+
+
+<div class="grid3">
+
+<div>
+
+<label>
+تكبير المنتج الأوسط
+</label>
+
+<input
+id="carouselCenterScale"
+type="number"
+min=".7"
+max="1.5"
+step=".05"
+>
+
+</div>
+
+
+<div>
+
+<label>
+حجم المنتجات الجانبية
+</label>
+
+<input
+id="carouselSideScale"
+type="number"
+min=".4"
+max="1.2"
+step=".05"
+>
+
+</div>
+
+
+<div>
+
+<label>
+زاوية الميل
+</label>
+
+<input
+id="carouselRotation"
+type="number"
+min="0"
+max="60"
+>
+
+</div>
+
+
+<div>
+
+<label>
+المسافة بين المنتجات %
+</label>
+
+<input
+id="carouselSpacing"
+type="number"
+min="30"
+max="160"
+>
+
+</div>
+
+
+<div>
+
+<label>
+سرعة الحركة ms
+</label>
+
+<input
+id="carouselSpeed"
+type="number"
+min="150"
+max="2000"
+step="50"
+>
+
+</div>
+
+</div>
+
+
+<button
+class="btn gold"
+onclick="saveProductDesign()"
+>
+حفظ أحجام وحركة المنتجات
+</button>
+
+</div>
+
+</section>
+
+
+<!-- ================= PAYMENT ================= -->
 
 <section
 id="payment"
@@ -2122,37 +1765,19 @@ class="page hidden"
 💳 وسائل الدفع
 </h2>
 
-<p class="note">
-أضف وسائل الدفع التي ستظهر في صفحة المتجر وفي صفحة إتمام الطلب.
-</p>
-
-
 <div class="grid3">
 
 <div>
-
-<label>
-اسم وسيلة الدفع
-</label>
-
-<input
-id="paymentName"
-placeholder="مثال: تحويل بنكي"
->
-
+<label>اسم الوسيلة</label>
+<input id="paymentName">
 </div>
 
 <div>
-
-<label>
-الرمز
-</label>
-
+<label>الرمز</label>
 <input
 id="paymentId"
 placeholder="bank"
 >
-
 </div>
 
 <div>
@@ -2185,23 +1810,20 @@ placeholder="bank"
 
 </div>
 
-
 <label>
-تعليمات وسيلة الدفع
+التعليمات
 </label>
 
 <textarea id="paymentDescription"></textarea>
-
 
 <button
 class="btn"
 onclick="addPaymentMethod()"
 >
-إضافة وسيلة الدفع
+إضافة وسيلة دفع
 </button>
 
 </div>
-
 
 <div
 id="paymentMethodsList"
@@ -2215,51 +1837,29 @@ class="card"
 🏦 الحسابات البنكية
 </h2>
 
-
 <div class="grid2">
 
 <div>
-
-<label>
-اسم البنك
-</label>
-
+<label>اسم البنك</label>
 <input id="bankName">
-
 </div>
 
 <div>
-
-<label>
-اسم صاحب الحساب
-</label>
-
+<label>اسم صاحب الحساب</label>
 <input id="bankHolder">
-
 </div>
 
 <div>
-
-<label>
-رقم الحساب
-</label>
-
+<label>رقم الحساب</label>
 <input id="bankAccount">
-
 </div>
 
 <div>
-
-<label>
-IBAN
-</label>
-
+<label>IBAN</label>
 <input id="bankIban">
-
 </div>
 
 </div>
-
 
 <label>
 تعليمات إضافية
@@ -2267,22 +1867,19 @@ IBAN
 
 <textarea id="bankInstructions"></textarea>
 
-
 <button
 class="btn gold"
 onclick="addBankAccount()"
 >
-إضافة حساب بنكي
+إضافة حساب
 </button>
 
 </div>
-
 
 <div
 id="bankAccountsList"
 class="card"
 ></div>
-
 
 <button
 class="btn green"
@@ -2294,9 +1891,7 @@ onclick="savePaymentSettings()"
 </section>
 
 
-<!-- =========================================================
-     FOOTER
-========================================================= -->
+<!-- ================= FOOTER ================= -->
 
 <section
 id="footer"
@@ -2306,21 +1901,16 @@ class="page hidden"
 <div class="card">
 
 <h2>
-📄 روابط وسياسات المتجر
+📄 السياسات والروابط
 </h2>
 
-<p class="note">
-اكتب النصوص التي سيشاهدها العميل عند الضغط على الروابط أسفل المتجر.
-</p>
-
 <div id="policiesEditor"></div>
-
 
 <button
 class="btn gold"
 onclick="saveFooterSettings()"
 >
-حفظ جميع السياسات
+حفظ السياسات
 </button>
 
 </div>
@@ -2328,9 +1918,7 @@ onclick="saveFooterSettings()"
 </section>
 
 
-<!-- =========================================================
-     GENERAL SETTINGS
-========================================================= -->
+<!-- ================= GENERAL ================= -->
 
 <section
 id="settings"
@@ -2340,94 +1928,52 @@ class="page hidden"
 <div class="card">
 
 <h2>
-⚙️ إعدادات المتجر العامة
+⚙️ إعدادات المتجر
 </h2>
-
 
 <div class="grid2">
 
 <div>
-
-<label>
-اسم المتجر
-</label>
-
+<label>اسم المتجر</label>
 <input id="setStoreName">
-
 </div>
 
 <div>
-
-<label>
-الاسم الإنجليزي
-</label>
-
+<label>الاسم الإنجليزي</label>
 <input id="setStoreNameEn">
-
 </div>
 
 <div>
-
-<label>
-العنوان الصغير
-</label>
-
+<label>العنوان الصغير</label>
 <input id="setEyebrow">
-
 </div>
 
 <div>
-
-<label>
-رقم الجوال
-</label>
-
+<label>الجوال</label>
 <input id="setPhone">
-
 </div>
 
 <div>
-
-<label>
-واتساب
-</label>
-
+<label>واتساب</label>
 <input id="setWhatsapp">
-
 </div>
 
 <div>
-
-<label>
-البريد الإلكتروني
-</label>
-
+<label>البريد الإلكتروني</label>
 <input id="setEmail">
-
 </div>
 
 <div>
-
-<label>
-رابط الشعار
-</label>
-
+<label>رابط الشعار</label>
 <input id="setLogo">
-
 </div>
 
 <div>
-
-<label>
-رابط شعار شاشة البداية
-</label>
-
+<label>شعار شاشة البداية</label>
 <input id="setSplashLogo">
-
 </div>
 
 </div>
-
 
 <label>
 العنوان الرئيسي
@@ -2435,16 +1981,14 @@ class="page hidden"
 
 <input id="setSloganTitle">
 
-
 <label>
 الوصف الرئيسي
 </label>
 
 <textarea id="setSloganDesc"></textarea>
 
-
 <label>
-من نحن / قصة المتجر
+قصة المتجر
 </label>
 
 <textarea id="setAbout"></textarea>
@@ -2453,63 +1997,33 @@ class="page hidden"
 <div class="grid3">
 
 <div>
-
-<label>
-Instagram
-</label>
-
+<label>Instagram</label>
 <input id="setInstagram">
-
 </div>
 
 <div>
-
-<label>
-TikTok
-</label>
-
+<label>TikTok</label>
 <input id="setTiktok">
-
 </div>
 
 <div>
-
-<label>
-Facebook
-</label>
-
+<label>Facebook</label>
 <input id="setFacebook">
-
 </div>
 
 <div>
-
-<label>
-Telegram
-</label>
-
+<label>Telegram</label>
 <input id="setTelegram">
-
 </div>
 
 <div>
-
-<label>
-X
-</label>
-
+<label>X</label>
 <input id="setTwitter">
-
 </div>
 
 <div>
-
-<label>
-Snapchat
-</label>
-
+<label>Snapchat</label>
 <input id="setSnapchat">
-
 </div>
 
 </div>
@@ -2537,7 +2051,7 @@ type="checkbox"
 >
 
 <label for="setSort">
-تشغيل ترتيب المنتجات
+تشغيل الترتيب
 </label>
 
 </div>
@@ -2561,7 +2075,7 @@ type="checkbox"
 class="btn gold"
 onclick="saveGeneralSettings()"
 >
-حفظ الإعدادات
+حفظ إعدادات المتجر
 </button>
 
 </div>
@@ -2574,16 +2088,13 @@ onclick="saveGeneralSettings()"
 </div>
 
 
-<!-- =========================================================
-     ORDER DETAIL MODAL
-========================================================= -->
+<!-- ================= ORDER MODAL ================= -->
 
 <div
 id="modalScrim"
 class="modal-scrim"
 onclick="closeOrderModal()"
 ></div>
-
 
 <div
 id="orderModal"
@@ -2610,10 +2121,6 @@ onclick="closeOrderModal()"
 </div>
 
 
-<!-- =========================================================
-     TOAST
-========================================================= -->
-
 <div
 id="toast"
 class="toast"
@@ -2622,11 +2129,10 @@ class="toast"
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-
 <script>
 
 /* =========================================================
-   CONNECTION
+   SUPABASE
 ========================================================= */
 
 const SUPABASE_URL =
@@ -2656,7 +2162,7 @@ id
 
 
 /* =========================================================
-   STATE
+   DATA
 ========================================================= */
 
 let products = [];
@@ -2695,135 +2201,69 @@ let paymentMethodsDraft = [];
 
 let bankAccountsDraft = [];
 
-
-let selectedOrder =
-null;
+let selectedOrder = null;
 
 
 /* =========================================================
-   TABS
+   NAV
 ========================================================= */
 
 const tabs = [
 
-[
-"dashboard",
-"الرئيسية"
-],
+["dashboard","الرئيسية"],
 
-[
-"products",
-"الخيارات"
-],
+["products","الخيارات"],
 
-[
-"bundles",
-"العروض والباقات"
-],
+["bundles","العروض"],
 
-[
-"gifts",
-"الهدايا"
-],
+["gifts","الهدايا"],
 
-[
-"coupons",
-"الكوبونات"
-],
+["coupons","الكوبونات"],
 
-[
-"customers",
-"العملاء"
-],
+["customers","العملاء"],
 
-[
-"orders",
-"الطلبات"
-],
+["orders","الطلبات"],
 
-[
-"reviews",
-"التقييمات"
-],
+["reviews","التقييمات"],
 
-[
-"recommend",
-"الاقتراحات"
-],
+["recommend","الاقتراحات"],
 
-[
-"ads",
-"الإعلانات"
-],
+["ads","الإعلانات"],
 
-[
-"payment",
-"الدفع والبنوك"
-],
+["design","تصميم المنتجات"],
 
-[
-"footer",
-"السياسات"
-],
+["payment","الدفع والبنوك"],
 
-[
-"settings",
-"الإعدادات"
-]
+["footer","السياسات"],
+
+["settings","إعدادات المتجر"]
 
 ];
 
 
 /* =========================================================
-   POLICY DEFINITIONS
+   POLICIES
 ========================================================= */
 
 const policies = [
 
-[
-"about",
-"من نحن"
-],
+["about","من نحن"],
 
-[
-"returns",
-"سياسة الاستبدال والاسترجاع"
-],
+["returns","سياسة الاستبدال والاسترجاع"],
 
-[
-"privacy",
-"سياسة الخصوصية"
-],
+["privacy","سياسة الخصوصية"],
 
-[
-"terms",
-"الشروط والأحكام"
-],
+["terms","الشروط والأحكام"],
 
-[
-"discounts",
-"سياسة التخفيضات"
-],
+["discounts","سياسة التخفيضات"],
 
-[
-"customerService",
-"خدمة العملاء"
-],
+["customerService","خدمة العملاء"],
 
-[
-"hr",
-"الموارد البشرية"
-],
+["hr","الموارد البشرية"],
 
-[
-"wholesale",
-"مبيعات الجملة"
-],
+["wholesale","مبيعات الجملة"],
 
-[
-"branches",
-"فروعنا"
-]
+["branches","فروعنا"]
 
 ];
 
@@ -2891,26 +2331,20 @@ currency = "ر.ي"
 ){
 
 return (
-
 Number(
 value || 0
 )
 .toFixed(
 2
 )
-
 +
-
 " "
-
 +
-
 (
 currency
 ||
 "ر.ي"
 )
-
 );
 
 }
@@ -2920,26 +2354,19 @@ function statusText(status){
 
 return ({
 
-pending:
-"قيد الانتظار",
+pending:"قيد الانتظار",
 
-confirmed:
-"تم التأكيد",
+confirmed:"تم التأكيد",
 
-processing:
-"قيد التجهيز",
+processing:"قيد التجهيز",
 
-shipped:
-"تم الشحن",
+shipped:"تم الشحن",
 
-delivered:
-"تم التسليم",
+delivered:"تم التسليم",
 
-cancelled:
-"ملغي",
+cancelled:"ملغي",
 
-refunded:
-"مسترجع"
+refunded:"مسترجع"
 
 })[
 status
@@ -2978,9 +2405,7 @@ const session =
 await getSession();
 
 
-if(
-!session
-){
+if(!session){
 
 return false;
 
@@ -3024,7 +2449,6 @@ session.user.id
 if(error){
 
 console.error(
-"Admin check:",
 error
 );
 
@@ -3102,18 +2526,16 @@ throw error;
 }
 
 
-const allowed =
-await isAdmin();
-
-
-if(!allowed){
+if(
+!await isAdmin()
+){
 
 await db.auth
 .signOut();
 
 
 throw new Error(
-"هذا الحساب غير مسجل كمدير للمتجر"
+"الحساب غير مسجل كمدير"
 );
 
 }
@@ -3124,17 +2546,30 @@ await boot();
 }
 catch(error){
 
-console.error(
-error
-);
+let message =
+error.message
+||
+"تعذر تسجيل الدخول";
+
+
+if(
+message.includes(
+"Invalid login credentials"
+)
+){
+
+message =
+"البريد أو كلمة المرور غير صحيحة";
+
+}
 
 
 $("msg")
 .textContent =
-translateAuthError(
-error.message
-);
+message;
 
+}
+finally{
 
 button.disabled =
 false;
@@ -3144,47 +2579,6 @@ button.textContent =
 "دخول";
 
 }
-
-}
-
-
-/* =========================================================
-   AUTH ERROR
-========================================================= */
-
-function translateAuthError(message){
-
-const text =
-String(
-message || ""
-);
-
-
-if(
-text.includes(
-"Invalid login credentials"
-)
-){
-
-return "البريد أو كلمة المرور غير صحيحة";
-
-}
-
-
-if(
-text.includes(
-"Email not confirmed"
-)
-){
-
-return "البريد الإلكتروني لم يتم تأكيده بعد";
-
-}
-
-
-return text
-||
-"تعذر تسجيل الدخول";
 
 }
 
@@ -3205,7 +2599,7 @@ location.reload();
 
 
 /* =========================================================
-   NAV
+   NAVIGATION
 ========================================================= */
 
 function renderNav(){
@@ -3238,7 +2632,6 @@ ${item[1]}
 
 `
 )
-
 .join("");
 
 }
@@ -3294,23 +2687,9 @@ button
 
 async function boot(){
 
-const allowed =
-await isAdmin();
-
-
-if(!allowed){
-
-$("login")
-.classList.remove(
-"hidden"
-);
-
-
-$("app")
-.classList.add(
-"hidden"
-);
-
+if(
+!await isAdmin()
+){
 
 return;
 
@@ -3338,7 +2717,7 @@ await loadAll();
 
 
 /* =========================================================
-   SAFE REQUEST
+   SAFE
 ========================================================= */
 
 async function safe(
@@ -3598,7 +2977,9 @@ parseSettings();
 
 
 renderStats(
-stats || {}
+stats
+||
+{}
 );
 
 
@@ -3626,124 +3007,95 @@ fillSettingsForms();
 
 
 /* =========================================================
-   SETTINGS PARSE
+   SETTINGS
 ========================================================= */
 
 function parseSettings(){
 
 generalSettings =
-
 settingsRows.find(
 row =>
 row.id ===
 "general"
 )
 ?.data
-
 ||
-
 {};
 
 
 paymentSettings =
-
 settingsRows.find(
 row =>
 row.id ===
 "payment"
 )
 ?.data
-
 ||
-
 {};
 
 
 designSettings =
-
 settingsRows.find(
 row =>
 row.id ===
 "design"
 )
 ?.data
-
 ||
-
 {};
 
 
 adSettings =
-
 settingsRows.find(
 row =>
 row.id ===
 "ads"
 )
 ?.data
-
 ||
-
 {};
 
 
 footerSettings =
-
 settingsRows.find(
 row =>
 row.id ===
 "footer"
 )
 ?.data
-
 ||
-
 {};
 
 
 paymentMethodsDraft =
-
 Array.isArray(
 paymentSettings.paymentMethods
 )
-
 ?
-
 JSON.parse(
 JSON.stringify(
 paymentSettings.paymentMethods
 )
 )
-
 :
-
 [];
 
 
 bankAccountsDraft =
-
 Array.isArray(
 paymentSettings.bankAccounts
 )
-
 ?
-
 JSON.parse(
 JSON.stringify(
 paymentSettings.bankAccounts
 )
 )
-
 :
-
 [];
 
 }
 
-
-/* =========================================================
-   UPSERT SETTING
-========================================================= */
 
 async function saveSetting(
 id,
@@ -3796,16 +3148,10 @@ products.length
 ],
 
 [
-"الباقات النشطة",
+"الباقات",
 stats.active_bundles
 ??
-bundles.filter(
-item =>
-item.is_active
-!==
-false
-)
-.length
+bundles.length
 ],
 
 [
@@ -3828,32 +3174,6 @@ item.status ===
 ],
 
 [
-"الإيراد",
-money(
-stats.revenue
-??
-orders
-.filter(
-item =>
-item.status ===
-"delivered"
-)
-.reduce(
-(
-total,
-item
-) =>
-total
-+
-Number(
-item.total || 0
-),
-0
-)
-)
-],
-
-[
 "العملاء",
 stats.customers
 ??
@@ -3861,25 +3181,18 @@ customers.length
 ],
 
 [
-"عملاء متكررون",
-stats.repeat_customers
-??
-customers.filter(
-item =>
-Number(
-item.purchase_count || 0
-)
->
-1
-)
-.length
+"التقييمات",
+reviews.length
 ],
 
 [
-"مخزون منخفض",
-stats.low_stock
-??
-0
+"الكوبونات",
+coupons.length
+],
+
+[
+"الخيارات",
+variants.length
 ]
 
 ]
@@ -3906,15 +3219,13 @@ ${item[1] ?? 0}
 
 
 /* =========================================================
-   FILL PRODUCTS
+   PRODUCTS
 ========================================================= */
 
 function fillProducts(){
 
 const options =
-
 products
-
 .map(
 product => `
 
@@ -3924,7 +3235,6 @@ ${esc(product.name)}
 
 `
 )
-
 .join("");
 
 
@@ -4060,13 +3370,13 @@ $("variantsBody")
 .innerHTML =
 
 variants
-
 .map(
 variant => `
 
 <tr>
 
 <td>
+
 ${esc(
 products.find(
 product =>
@@ -4081,6 +3391,7 @@ variant.product_id
 ||
 ""
 )}
+
 </td>
 
 <td>
@@ -4094,7 +3405,11 @@ variant.size
 </td>
 
 <td>
-${esc(variant.sku || "")}
+${esc(
+variant.sku
+||
+""
+)}
 </td>
 
 <td>
@@ -4123,7 +3438,6 @@ onclick="removeRow(
 
 `
 )
-
 .join("");
 
 }
@@ -4280,12 +3594,10 @@ id
 
 
 const selected =
-
 [
 ...$("bundleProducts")
 .selectedOptions
 ]
-
 .map(
 option => ({
 
@@ -4365,48 +3677,41 @@ return;
 }
 
 
-$("bundleId")
-.value =
+$("bundleId").value =
 bundle.id;
 
 
-$("bundleName")
-.value =
+$("bundleName").value =
 bundle.name
 ||
 "";
 
 
-$("bundleRegular")
-.value =
+$("bundleRegular").value =
 bundle.regular_price
 ||
 0;
 
 
-$("bundleOffer")
-.value =
+$("bundleOffer").value =
 bundle.offer_price
 ||
 0;
 
 
-$("bundleStock")
-.value =
+$("bundleStock").value =
 bundle.stock
 ||
 0;
 
 
-$("bundleImage")
-.value =
+$("bundleImage").value =
 bundle.image_url
 ||
 "";
 
 
-$("bundleDesc")
-.value =
+$("bundleDesc").value =
 bundle.description
 ||
 "";
@@ -4414,15 +3719,10 @@ bundle.description
 
 if(bundle.ends_at){
 
-const date =
+$("bundleEnd").value =
 new Date(
 bundle.ends_at
-);
-
-
-$("bundleEnd")
-.value =
-date
+)
 .toISOString()
 .slice(
 0,
@@ -4430,12 +3730,6 @@ date
 );
 
 }
-
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
 
 }
 
@@ -4455,8 +3749,7 @@ function resetBundle(){
 .forEach(
 id => {
 
-$(id)
-.value =
+$(id).value =
 "";
 
 }
@@ -4483,14 +3776,9 @@ function renderBundles(){
 
 $("bundleList")
 .innerHTML =
-
 bundles.length
-
 ?
-
-bundles
-
-.map(
+bundles.map(
 bundle => `
 
 <div class="order-card">
@@ -4510,9 +3798,7 @@ bundle.offer_price,
 bundle.currency
 )}
 
-·
-
-المخزون:
+· المخزون:
 ${Number(bundle.stock || 0)}
 
 </div>
@@ -4547,16 +3833,14 @@ onclick="removeRow(
 `
 )
 .join("")
-
 :
-
 "لا توجد باقات.";
 
 }
 
 
 /* =========================================================
-   GIFT OPTIONS
+   GIFTS
 ========================================================= */
 
 async function saveGift(){
@@ -4633,28 +3917,8 @@ return;
 
 
 toast(
-"تمت إضافة خيار التغليف"
+"تمت إضافة التغليف"
 );
-
-
-$("giftName")
-.value =
-"";
-
-
-$("giftPrice")
-.value =
-"";
-
-
-$("giftImage")
-.value =
-"";
-
-
-$("giftDesc")
-.value =
-"";
 
 
 await loadAll();
@@ -4666,14 +3930,9 @@ function renderGifts(){
 
 $("giftList")
 .innerHTML =
-
 gifts.length
-
 ?
-
-gifts
-
-.map(
+gifts.map(
 gift => `
 
 <div class="order-card">
@@ -4683,15 +3942,11 @@ gift => `
 </strong>
 
 <div class="note">
-
 ${money(
 gift.price,
 gift.currency
 )}
-
 </div>
-
-<div class="actions">
 
 <button
 class="btn red sm"
@@ -4705,14 +3960,10 @@ onclick="removeRow(
 
 </div>
 
-</div>
-
 `
 )
 .join("")
-
 :
-
 "لا توجد خيارات تغليف.";
 
 }
@@ -4876,7 +4127,7 @@ true
 if(!row.code){
 
 toast(
-"اكتب كود الخصم"
+"اكتب الكود"
 );
 
 
@@ -4923,14 +4174,9 @@ function renderCoupons(){
 
 $("couponList")
 .innerHTML =
-
 coupons.length
-
 ?
-
-coupons
-
-.map(
+coupons.map(
 coupon => `
 
 <div class="order-card">
@@ -4942,8 +4188,7 @@ ${esc(coupon.code)}
 <div class="note">
 
 ${
-coupon.discount_type
-===
+coupon.discount_type ===
 "percentage"
 ?
 coupon.value
@@ -4953,14 +4198,6 @@ coupon.value
 money(
 coupon.value
 )
-}
-
-${
-coupon.first_order_only
-?
-" · أول طلب فقط"
-:
-""
 }
 
 </div>
@@ -4980,9 +4217,7 @@ onclick="removeRow(
 `
 )
 .join("")
-
 :
-
 "لا توجد كوبونات.";
 
 }
@@ -4996,10 +4231,7 @@ function renderCustomers(){
 
 $("customersBody")
 .innerHTML =
-
-customers
-
-.map(
+customers.map(
 customer => `
 
 <tr>
@@ -5029,15 +4261,11 @@ customer.total_orders
 </td>
 
 <td>
-
-<strong>
 ${Number(
 customer.purchase_count
 ||
 0
 )}
-</strong>
-
 </td>
 
 <td>
@@ -5067,7 +4295,6 @@ customer.last_order_at
 
 `
 )
-
 .join("");
 
 }
@@ -5079,9 +4306,7 @@ customer.last_order_at
 
 function renderOrders(){
 
-if(
-!orders.length
-){
+if(!orders.length){
 
 $("ordersCards")
 .innerHTML = `
@@ -5100,10 +4325,7 @@ return;
 
 $("ordersCards")
 .innerHTML =
-
-orders
-
-.map(
+orders.map(
 order => `
 
 <div class="order-card">
@@ -5144,8 +4366,6 @@ order.created_at
 </div>
 
 
-<div>
-
 <span
 class="pill ${
 order.status ===
@@ -5168,13 +4388,8 @@ ${statusText(order.status)}
 
 </div>
 
-</div>
 
-
-<div
-class="grid3"
-style="margin-top:12px"
->
+<div class="grid3" style="margin-top:12px">
 
 <div>
 
@@ -5191,7 +4406,6 @@ order.currency
 
 </div>
 
-
 <div>
 
 <strong>
@@ -5204,11 +4418,10 @@ ${order.is_gift ? "🎁 نعم" : "—"}
 
 </div>
 
-
 <div>
 
 <strong>
-طريقة الدفع
+الدفع
 </strong>
 
 <br>
@@ -5226,10 +4439,7 @@ order.pay_method
 </div>
 
 
-<div
-class="actions"
-style="margin-top:12px"
->
+<div class="actions" style="margin-top:12px">
 
 <button
 class="btn blue sm"
@@ -5240,10 +4450,7 @@ onclick="openOrder('${order.id}')"
 
 
 <select
-style="
-width:auto;
-margin:0
-"
+style="width:auto;margin:0"
 onchange="
 changeStatus(
 '${order.id}',
@@ -5294,15 +4501,10 @@ ${statusText(status)}
 
 `
 )
-
 .join("");
 
 }
 
-
-/* =========================================================
-   CHANGE STATUS
-========================================================= */
 
 async function changeStatus(
 id,
@@ -5344,7 +4546,7 @@ return;
 
 
 toast(
-"تم تحديث حالة الطلب"
+"تم تحديث الحالة"
 );
 
 
@@ -5354,7 +4556,7 @@ await loadAll();
 
 
 /* =========================================================
-   OPEN ORDER
+   ORDER DETAIL
 ========================================================= */
 
 async function openOrder(id){
@@ -5379,19 +4581,9 @@ return;
 }
 
 
-selectedOrder = {
-
-...order,
-
-items:[]
-
-};
-
-
-let items = [];
-
-
-const result =
+const {
+data
+} =
 await db
 .from(
 "order_items"
@@ -5405,58 +4597,16 @@ id
 );
 
 
-if(!result.error){
+selectedOrder = {
 
-items =
-result.data
+...order,
+
+items:
+data
 ||
-[];
+[]
 
-}
-
-
-selectedOrder.items =
-items;
-
-
-renderOrderModal();
-
-
-$("modalScrim")
-.classList.add(
-"show"
-);
-
-
-$("orderModal")
-.classList.add(
-"show"
-);
-
-}
-
-
-/* =========================================================
-   ORDER MODAL
-========================================================= */
-
-function renderOrderModal(){
-
-if(!selectedOrder){
-
-return;
-
-}
-
-
-const order =
-selectedOrder;
-
-
-const items =
-order.items
-||
-[];
+};
 
 
 $("orderModalBody")
@@ -5506,7 +4656,7 @@ ${esc(order.name || "")}
 الهاتف
 </strong>
 
-<div dir="ltr">
+<div>
 ${esc(order.phone || "")}
 </div>
 
@@ -5527,16 +4677,13 @@ ${esc(order.address || "—")}
 <div class="card">
 
 <strong>
-طريقة الدفع
+الإجمالي
 </strong>
 
 <div>
-${esc(
-order.payment_method
-||
-order.pay_method
-||
-"—"
+${money(
+order.total,
+order.currency
 )}
 </div>
 
@@ -5552,40 +4699,19 @@ order.pay_method
 </h3>
 
 ${
-items.length
+selectedOrder.items.length
 ?
-items
-.map(
+selectedOrder.items.map(
 item => `
 
-<div class="order-product">
-
-${
-item.product_image
-?
-`
-
-<img
-src="${esc(item.product_image)}"
+<div
+style="
+padding:10px 0;
+border-bottom:1px solid var(--line)
+"
 >
 
-`
-:
-""
-}
-
-<div>
-
 <strong>
-
-${
-item.item_type ===
-"bundle"
-?
-"🔥 "
-:
-""
-}
 
 ${esc(
 item.product_name
@@ -5607,16 +4733,6 @@ item.qty
 ||
 1
 )}
-
-${
-item.variant_title
-?
-" · "
-+
-esc(item.variant_title)
-:
-""
-}
 
 ${
 item.size
@@ -5642,88 +4758,28 @@ esc(item.color)
 
 </div>
 
-</div>
-
 `
 )
 .join("")
 :
-`
-
-<div class="note">
-لا توجد تفاصيل عناصر.
-</div>
-
-`
+"لا توجد تفاصيل."
 }
-
-</div>
-
-
-${
-order.is_gift
-?
-`
-
-<div class="card">
-
-<h3>
-🎁 الطلب يحتوي على هدية
-</h3>
-
-<p class="note">
-
-راجع تفاصيل التغليف والمستلم داخل بيانات عناصر الطلب إذا كانت مخزنة في قاعدة البيانات.
-
-</p>
-
-</div>
-
-`
-:
-""
-}
-
-
-<div class="card">
-
-<div
-style="
-display:flex;
-justify-content:space-between;
-font-size:20px;
-font-weight:900
-"
->
-
-<span>
-الإجمالي
-</span>
-
-<span>
-${money(
-order.total,
-order.currency
-)}
-</span>
-
-</div>
-
-</div>
-
-
-<div class="actions">
-
-<button
-class="btn"
-onclick="printAdminInvoice()"
->
-🧾 طباعة الفاتورة
-</button>
 
 </div>
 
 `;
+
+
+$("modalScrim")
+.classList.add(
+"show"
+);
+
+
+$("orderModal")
+.classList.add(
+"show"
+);
 
 }
 
@@ -5749,325 +4805,6 @@ null;
 
 
 /* =========================================================
-   ADMIN INVOICE
-========================================================= */
-
-function printAdminInvoice(){
-
-if(!selectedOrder){
-
-return;
-
-}
-
-
-const order =
-selectedOrder;
-
-
-const items =
-order.items
-||
-[];
-
-
-const popup =
-window.open(
-"",
-"_blank"
-);
-
-
-if(!popup){
-
-return;
-
-}
-
-
-popup.document.write(`
-
-<!DOCTYPE html>
-
-<html
-lang="ar"
-dir="rtl"
->
-
-<head>
-
-<meta charset="UTF-8">
-
-<title>
-فاتورة #${esc(order.order_number)}
-</title>
-
-<style>
-
-body{
-
-font-family:
-Arial,sans-serif;
-
-padding:30px;
-
-direction:rtl;
-
-color:#222;
-
-}
-
-.wrap{
-
-max-width:760px;
-
-margin:auto;
-
-}
-
-h1{
-text-align:center;
-}
-
-.info{
-
-display:grid;
-
-grid-template-columns:
-1fr 1fr;
-
-gap:10px;
-
-margin:
-20px 0;
-
-}
-
-.info div{
-
-border:
-1px solid #ddd;
-
-padding:10px;
-
-}
-
-table{
-
-width:100%;
-
-border-collapse:collapse;
-
-}
-
-th,
-td{
-
-padding:10px;
-
-border-bottom:
-1px solid #ddd;
-
-text-align:right;
-
-}
-
-.total{
-
-display:flex;
-
-justify-content:space-between;
-
-font-size:20px;
-
-font-weight:bold;
-
-margin-top:20px;
-
-border-top:
-2px solid #222;
-
-padding-top:15px;
-
-}
-
-</style>
-
-</head>
-
-<body>
-
-<div class="wrap">
-
-<h1>
-متجر الشعيبي
-</h1>
-
-<h3>
-فاتورة #${esc(order.order_number)}
-</h3>
-
-
-<div class="info">
-
-<div>
-العميل:
-${esc(order.name || "")}
-</div>
-
-<div>
-الهاتف:
-${esc(order.phone || "")}
-</div>
-
-<div>
-الحالة:
-${statusText(order.status)}
-</div>
-
-<div>
-التاريخ:
-${
-order.created_at
-?
-new Date(
-order.created_at
-)
-.toLocaleString(
-"ar"
-)
-:
-""
-}
-</div>
-
-</div>
-
-
-<table>
-
-<thead>
-
-<tr>
-
-<th>
-المنتج
-</th>
-
-<th>
-الكمية
-</th>
-
-<th>
-السعر
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-${
-items
-.map(
-item => `
-
-<tr>
-
-<td>
-${esc(
-item.product_name
-||
-item.name
-||
-"منتج"
-)}
-</td>
-
-<td>
-${Number(
-item.quantity
-||
-item.qty
-||
-1
-)}
-</td>
-
-<td>
-
-${
-item.unit_price
-!=
-null
-?
-Number(
-item.unit_price
-)
-.toFixed(
-2
-)
-:
-"—"
-}
-
-</td>
-
-</tr>
-
-`
-)
-.join("")
-}
-
-</tbody>
-
-</table>
-
-
-<div class="total">
-
-<span>
-الإجمالي
-</span>
-
-<span>
-${money(
-order.total,
-order.currency
-)}
-</span>
-
-</div>
-
-</div>
-
-
-<script>
-
-window.onload =
-function(){
-
-window.print();
-
-};
-
-<\/script>
-
-</body>
-
-</html>
-
-`);
-
-
-popup.document.close();
-
-}
-
-
-/* =========================================================
    REVIEWS
 ========================================================= */
 
@@ -6075,14 +4812,9 @@ function renderReviews(){
 
 $("reviewsList")
 .innerHTML =
-
 reviews.length
-
 ?
-
-reviews
-
-.map(
+reviews.map(
 review => `
 
 <div class="order-card">
@@ -6092,6 +4824,7 @@ review => `
 <div>
 
 <strong>
+
 ${esc(
 review.customer_name
 ||
@@ -6099,6 +4832,7 @@ review.name
 ||
 "عميل"
 )}
+
 </strong>
 
 <div>
@@ -6106,7 +4840,6 @@ review.name
 </div>
 
 </div>
-
 
 <span
 class="pill ${
@@ -6130,8 +4863,8 @@ review.is_approved
 
 </div>
 
-
 <p>
+
 ${esc(
 review.text
 ||
@@ -6139,28 +4872,10 @@ review.comment
 ||
 ""
 )}
+
 </p>
 
-
-${
-review.is_verified_purchase
-?
-`
-
-<span class="pill green">
-✓ شراء موثق
-</span>
-
-`
-:
-""
-}
-
-
-<div
-class="actions"
-style="margin-top:10px"
->
+<div class="actions">
 
 <button
 class="btn sm"
@@ -6180,7 +4895,6 @@ review.is_approved
 
 </button>
 
-
 <button
 class="btn red sm"
 onclick="removeRow(
@@ -6198,9 +4912,7 @@ onclick="removeRow(
 `
 )
 .join("")
-
 :
-
 "لا توجد تقييمات.";
 
 }
@@ -6308,7 +5020,7 @@ return;
 
 
 toast(
-"تم ربط المنتجات"
+"تم الربط"
 );
 
 
@@ -6321,13 +5033,9 @@ function renderRelations(){
 
 $("relationsList")
 .innerHTML =
-
 relations.length
-
 ?
-
-relations
-.map(
+relations.map(
 relation => `
 
 <div class="order-card">
@@ -6375,22 +5083,19 @@ onclick="removeRow(
 `
 )
 .join("")
-
 :
-
 "لا توجد روابط.";
 
 }
 
 
 /* =========================================================
-   ADS SAVE
+   ADS
 ========================================================= */
 
 async function saveAds(){
 
 const media =
-
 $("adMedia")
 .value
 .split(
@@ -6407,6 +5112,8 @@ Boolean
 
 const next = {
 
+...adSettings,
+
 enabled:
 $("adEnabled")
 .checked,
@@ -6415,21 +5122,85 @@ type:
 $("adType")
 .value,
 
-heightDesktop:
+desktopWidth:
 Number(
-$("adHeightDesktop")
+$("adDesktopWidth")
+.value
+||
+100
+),
+
+desktopHeight:
+Number(
+$("adDesktopHeight")
 .value
 ||
 650
 ),
 
-heightMobile:
+desktopMaxWidth:
 Number(
-$("adHeightMobile")
+$("adDesktopMaxWidth")
 .value
 ||
-760
+1600
 ),
+
+tabletWidth:
+Number(
+$("adTabletWidth")
+.value
+||
+100
+),
+
+tabletHeight:
+Number(
+$("adTabletHeight")
+.value
+||
+550
+),
+
+tabletMaxWidth:
+Number(
+$("adTabletMaxWidth")
+.value
+||
+1100
+),
+
+mobileWidth:
+Number(
+$("adMobileWidth")
+.value
+||
+100
+),
+
+mobileHeight:
+Number(
+$("adMobileHeight")
+.value
+||
+420
+),
+
+mobileMaxWidth:
+Number(
+$("adMobileMaxWidth")
+.value
+||
+600
+),
+
+fit:
+$("adFit")
+.value,
+
+position:
+$("adPosition")
+.value,
 
 radius:
 Number(
@@ -6438,13 +5209,6 @@ $("adRadius")
 ||
 0
 ),
-
-fit:
-$("adFit")
-.value,
-
-position:
-"center",
 
 interval:
 Number(
@@ -6477,7 +5241,7 @@ next;
 
 
 toast(
-"تم حفظ شاشة الإعلانات"
+"تم حفظ الإعلان ✓"
 );
 
 
@@ -6495,14 +5259,9 @@ error.message
 }
 
 
-/* =========================================================
-   AD PREVIEW
-========================================================= */
-
 function previewAd(){
 
 const media =
-
 $("adMedia")
 .value
 .split(
@@ -6521,12 +5280,31 @@ if(!media.length){
 
 $("adPreview")
 .innerHTML =
-"لا توجد روابط إعلان.";
+"لا توجد معاينة.";
 
 
 return;
 
 }
+
+
+const height =
+Math.min(
+500,
+Number(
+$("adDesktopHeight")
+.value
+||
+400
+)
+);
+
+
+$("adPreview")
+.style.height =
+height
++
+"px";
 
 
 if(
@@ -6543,8 +5321,8 @@ $("adPreview")
 src="${esc(media[0])}"
 controls
 style="
-width:100%;
-max-height:420px
+object-fit:${$("adFit").value};
+object-position:${$("adPosition").value};
 "
 ></video>
 
@@ -6563,6 +5341,7 @@ $("adPreview")
 src="${esc(media[0])}"
 style="
 object-fit:${$("adFit").value};
+object-position:${$("adPosition").value};
 "
 >
 
@@ -6572,7 +5351,171 @@ object-fit:${$("adFit").value};
 
 
 /* =========================================================
-   PAYMENT METHODS
+   PRODUCT DESIGN
+========================================================= */
+
+async function saveProductDesign(){
+
+const carousel = {
+
+enabled:
+$("productCarouselEnabled")
+.checked,
+
+centerScale:
+Number(
+$("carouselCenterScale")
+.value
+||
+1
+),
+
+sideScale:
+Number(
+$("carouselSideScale")
+.value
+||
+.82
+),
+
+rotation:
+Number(
+$("carouselRotation")
+.value
+||
+16
+),
+
+spacing:
+Number(
+$("carouselSpacing")
+.value
+||
+72
+),
+
+speed:
+Number(
+$("carouselSpeed")
+.value
+||
+550
+)
+
+};
+
+
+const next = {
+
+...designSettings,
+
+productDesktopWidth:
+Number(
+$("productDesktopWidth")
+.value
+||
+320
+),
+
+productDesktopImageHeight:
+Number(
+$("productDesktopImageHeight")
+.value
+||
+330
+),
+
+productDesktopFont:
+Number(
+$("productDesktopFont")
+.value
+||
+30
+),
+
+productTabletWidth:
+Number(
+$("productTabletWidth")
+.value
+||
+280
+),
+
+productTabletImageHeight:
+Number(
+$("productTabletImageHeight")
+.value
+||
+300
+),
+
+productTabletFont:
+Number(
+$("productTabletFont")
+.value
+||
+27
+),
+
+productMobileWidth:
+Number(
+$("productMobileWidth")
+.value
+||
+72
+),
+
+productMobileImageHeight:
+Number(
+$("productMobileImageHeight")
+.value
+||
+280
+),
+
+productMobileFont:
+Number(
+$("productMobileFont")
+.value
+||
+26
+),
+
+carousel
+
+};
+
+
+try{
+
+await saveSetting(
+"design",
+next
+);
+
+
+designSettings =
+next;
+
+
+toast(
+"تم حفظ أحجام وحركة المنتجات ✓"
+);
+
+}
+catch(error){
+
+alert(
+error.message
+);
+
+}
+
+}
+
+
+/* =========================================================
+   PAYMENTS
 ========================================================= */
 
 function addPaymentMethod(){
@@ -6637,18 +5580,15 @@ paymentMethodsDraft.length
 });
 
 
-$("paymentName")
-.value =
+$("paymentName").value =
 "";
 
 
-$("paymentId")
-.value =
+$("paymentId").value =
 "";
 
 
-$("paymentDescription")
-.value =
+$("paymentDescription").value =
 "";
 
 
@@ -6674,13 +5614,9 @@ function renderPaymentDraft(){
 
 $("paymentMethodsList")
 .innerHTML =
-
 paymentMethodsDraft.length
-
 ?
-
-paymentMethodsDraft
-.map(
+paymentMethodsDraft.map(
 (
 method,
 index
@@ -6697,14 +5633,9 @@ ${esc(method.name)}
 </strong>
 
 <div class="note">
-
-الرمز:
 ${esc(method.id)}
-
 ·
-
 ${esc(method.type || "")}
-
 </div>
 
 </div>
@@ -6718,35 +5649,19 @@ onclick="deletePaymentMethod(${index})"
 
 </div>
 
-${
-method.description
-?
-`
-
-<div class="note">
-${esc(method.description)}
-</div>
-
-`
-:
-""
-}
-
 </div>
 
 `
 )
 .join("")
-
 :
-
-"لم تتم إضافة وسائل دفع.";
+"لا توجد وسائل دفع.";
 
 }
 
 
 /* =========================================================
-   BANK ACCOUNTS
+   BANKS
 ========================================================= */
 
 function addBankAccount(){
@@ -6809,8 +5724,7 @@ true
 .forEach(
 id => {
 
-$(id)
-.value =
+$(id).value =
 "";
 
 }
@@ -6839,13 +5753,9 @@ function renderBankDraft(){
 
 $("bankAccountsList")
 .innerHTML =
-
 bankAccountsDraft.length
-
 ?
-
-bankAccountsDraft
-.map(
+bankAccountsDraft.map(
 (
 account,
 index
@@ -6897,17 +5807,11 @@ onclick="deleteBankAccount(${index})"
 `
 )
 .join("")
-
 :
-
 "لا توجد حسابات بنكية.";
 
 }
 
-
-/* =========================================================
-   SAVE PAYMENT SETTINGS
-========================================================= */
 
 async function savePaymentSettings(){
 
@@ -6937,7 +5841,7 @@ next;
 
 
 toast(
-"تم حفظ طرق الدفع والحسابات البنكية"
+"تم حفظ الدفع والبنوك ✓"
 );
 
 }
@@ -6953,25 +5857,20 @@ error.message
 
 
 /* =========================================================
-   POLICY EDITOR
+   POLICIES
 ========================================================= */
 
 function renderPoliciesEditor(){
 
 const saved =
-
 footerSettings.policies
-
 ||
-
 {};
 
 
 $("policiesEditor")
 .innerHTML =
-
-policies
-.map(
+policies.map(
 item => {
 
 const key =
@@ -7007,14 +5906,10 @@ false
 >
 
 <label for="policyEnabled_${key}">
-
-إظهار
-${esc(title)}
-
+إظهار ${esc(title)}
 </label>
 
 </div>
-
 
 <label>
 عنوان الرابط
@@ -7033,27 +5928,14 @@ title
 )}"
 >
 
-
 <label>
 النص
 </label>
 
-<textarea
-id="policyText_${key}"
-placeholder="اكتب محتوى ${esc(title)}..."
->${esc(
+<textarea id="policyText_${key}">${esc(
 saved[key]
 ||
-(
-key ===
-"about"
-?
-generalSettings.aboutText
-||
 ""
-:
-""
-)
 )}</textarea>
 
 </div>
@@ -7067,18 +5949,13 @@ generalSettings.aboutText
 }
 
 
-/* =========================================================
-   SAVE FOOTER
-========================================================= */
-
 async function saveFooterSettings(){
 
 const policyData =
 {};
 
 
-policies
-.forEach(
+policies.forEach(
 item => {
 
 const key =
@@ -7118,13 +5995,7 @@ const next = {
 ...footerSettings,
 
 policies:
-policyData,
-
-paymentMethods:
-paymentMethodsDraft,
-
-bankAccounts:
-bankAccountsDraft
+policyData
 
 };
 
@@ -7142,7 +6013,7 @@ next;
 
 
 toast(
-"تم حفظ نصوص وروابط أسفل المتجر"
+"تم حفظ السياسات ✓"
 );
 
 }
@@ -7158,7 +6029,7 @@ error.message
 
 
 /* =========================================================
-   SAVE GENERAL
+   GENERAL SETTINGS
 ========================================================= */
 
 async function saveGeneralSettings(){
@@ -7280,7 +6151,7 @@ next;
 
 
 toast(
-"تم حفظ إعدادات المتجر"
+"تم حفظ إعدادات المتجر ✓"
 );
 
 }
@@ -7296,146 +6167,128 @@ error.message
 
 
 /* =========================================================
-   FILL SETTINGS FORMS
+   FILL SETTINGS
 ========================================================= */
 
 function fillSettingsForms(){
 
-$("setStoreName")
-.value =
+/* GENERAL */
+
+$("setStoreName").value =
 generalSettings.storeName
 ||
 "الشعيبي";
 
 
-$("setStoreNameEn")
-.value =
+$("setStoreNameEn").value =
 generalSettings.storeNameEn
 ||
 "ALSHUAIIBE STORE";
 
 
-$("setEyebrow")
-.value =
+$("setEyebrow").value =
 generalSettings.storeEyebrow
 ||
 "متجر الشعيبي";
 
 
-$("setPhone")
-.value =
+$("setPhone").value =
 generalSettings.phone
 ||
 "";
 
 
-$("setWhatsapp")
-.value =
+$("setWhatsapp").value =
 generalSettings.whatsapp
 ||
 "";
 
 
-$("setEmail")
-.value =
+$("setEmail").value =
 generalSettings.email
 ||
 "";
 
 
-$("setLogo")
-.value =
+$("setLogo").value =
 generalSettings.logoUrl
 ||
 "";
 
 
-$("setSplashLogo")
-.value =
+$("setSplashLogo").value =
 generalSettings.splashLogoUrl
 ||
 "";
 
 
-$("setSloganTitle")
-.value =
+$("setSloganTitle").value =
 generalSettings.sloganTitle
 ||
 "صُنعت لمن يبحث عن الاختلاف";
 
 
-$("setSloganDesc")
-.value =
+$("setSloganDesc").value =
 generalSettings.sloganDesc
 ||
 "";
 
 
-$("setAbout")
-.value =
+$("setAbout").value =
 generalSettings.aboutText
 ||
 "";
 
 
-$("setInstagram")
-.value =
+$("setInstagram").value =
 generalSettings.instagram
 ||
 "";
 
 
-$("setTiktok")
-.value =
+$("setTiktok").value =
 generalSettings.tiktok
 ||
 "";
 
 
-$("setFacebook")
-.value =
+$("setFacebook").value =
 generalSettings.facebook
 ||
 "";
 
 
-$("setTelegram")
-.value =
+$("setTelegram").value =
 generalSettings.telegram
 ||
 "";
 
 
-$("setTwitter")
-.value =
+$("setTwitter").value =
 generalSettings.twitter
 ||
 "";
 
 
-$("setSnapchat")
-.value =
+$("setSnapchat").value =
 generalSettings.snapchat
 ||
 "";
 
 
-$("setSearch")
-.checked =
+$("setSearch").checked =
 generalSettings.enableSearch
 !==
 false;
 
 
-$("setSort")
-.checked =
+$("setSort").checked =
 generalSettings.enableSort
 !==
 false;
 
 
-$("setReviews")
-.checked =
+$("setReviews").checked =
 generalSettings.featureReviews
 !==
 false;
@@ -7444,72 +6297,60 @@ false;
 /* GIFT */
 
 const giftSection =
-
 generalSettings.giftSection
-
 ||
-
 {};
 
 
-$("giftSectionEnabled")
-.checked =
+$("giftSectionEnabled").checked =
 giftSection.enabled
 !==
 false;
 
 
-$("giftSectionTitleAdmin")
-.value =
+$("giftSectionTitleAdmin").value =
 giftSection.title
 ||
 "🎁 اصنع هديتك بنفسك";
 
 
-$("giftSectionDescriptionAdmin")
-.value =
+$("giftSectionDescriptionAdmin").value =
 giftSection.description
 ||
-"اختر العطر والحجم والتغليف، واكتب بطاقة الإهداء وأدخل بيانات الشخص الذي تريد إرسال الهدية إليه.";
+"اختر المنتج والتغليف واكتب بطاقة الإهداء.";
 
 
-$("giftSectionButtonText")
-.value =
+$("giftSectionButtonText").value =
 giftSection.buttonText
 ||
 "ابدأ تجهيز الهدية";
 
 
-$("giftSectionIconAdmin")
-.value =
+$("giftSectionIconAdmin").value =
 giftSection.icon
 ||
 "🎁";
 
 
-$("giftSectionBackground")
-.value =
+$("giftSectionBackground").value =
 giftSection.background
 ||
 "#F1DDA6";
 
 
-$("giftSectionTextColor")
-.value =
+$("giftSectionTextColor").value =
 giftSection.textColor
 ||
 "#20301C";
 
 
-$("giftSectionButtonColor")
-.value =
+$("giftSectionButtonColor").value =
 giftSection.buttonColor
 ||
 "#A9793C";
 
 
-$("giftSectionRadius")
-.value =
+$("giftSectionRadius").value =
 giftSection.radius
 ??
 26;
@@ -7517,78 +6358,210 @@ giftSection.radius
 
 /* ADS */
 
-$("adEnabled")
-.checked =
+$("adEnabled").checked =
 adSettings.enabled
 ===
 true;
 
 
-$("adType")
-.value =
+$("adType").value =
 adSettings.type
 ||
 "image";
 
 
-$("adHeightDesktop")
-.value =
-adSettings.heightDesktop
-||
-650;
-
-
-$("adHeightMobile")
-.value =
-adSettings.heightMobile
-||
-760;
-
-
-$("adRadius")
-.value =
-adSettings.radius
-||
-0;
-
-
-$("adFit")
-.value =
+$("adFit").value =
 adSettings.fit
 ||
 "cover";
 
 
-$("adInterval")
-.value =
+$("adPosition").value =
+adSettings.position
+||
+"center";
+
+
+$("adRadius").value =
+adSettings.radius
+??
+0;
+
+
+$("adInterval").value =
 adSettings.interval
 ||
 4000;
 
 
-$("adLinkAdmin")
-.value =
+$("adDesktopWidth").value =
+adSettings.desktopWidth
+??
+100;
+
+
+$("adDesktopHeight").value =
+adSettings.desktopHeight
+??
+650;
+
+
+$("adDesktopMaxWidth").value =
+adSettings.desktopMaxWidth
+??
+1600;
+
+
+$("adTabletWidth").value =
+adSettings.tabletWidth
+??
+100;
+
+
+$("adTabletHeight").value =
+adSettings.tabletHeight
+??
+550;
+
+
+$("adTabletMaxWidth").value =
+adSettings.tabletMaxWidth
+??
+1100;
+
+
+$("adMobileWidth").value =
+adSettings.mobileWidth
+??
+100;
+
+
+$("adMobileHeight").value =
+adSettings.mobileHeight
+??
+420;
+
+
+$("adMobileMaxWidth").value =
+adSettings.mobileMaxWidth
+??
+600;
+
+
+$("adLinkAdmin").value =
 adSettings.link
 ||
 "";
 
 
-$("adMedia")
-.value =
-
+$("adMedia").value =
 Array.isArray(
 adSettings.media
 )
-
 ?
-
 adSettings.media.join(
 "\n"
 )
-
 :
-
 "";
+
+
+/* PRODUCT DESIGN */
+
+$("productDesktopWidth").value =
+designSettings.productDesktopWidth
+??
+320;
+
+
+$("productDesktopImageHeight").value =
+designSettings.productDesktopImageHeight
+??
+330;
+
+
+$("productDesktopFont").value =
+designSettings.productDesktopFont
+??
+30;
+
+
+$("productTabletWidth").value =
+designSettings.productTabletWidth
+??
+280;
+
+
+$("productTabletImageHeight").value =
+designSettings.productTabletImageHeight
+??
+300;
+
+
+$("productTabletFont").value =
+designSettings.productTabletFont
+??
+27;
+
+
+$("productMobileWidth").value =
+designSettings.productMobileWidth
+??
+72;
+
+
+$("productMobileImageHeight").value =
+designSettings.productMobileImageHeight
+??
+280;
+
+
+$("productMobileFont").value =
+designSettings.productMobileFont
+??
+26;
+
+
+const carousel =
+designSettings.carousel
+||
+{};
+
+
+$("productCarouselEnabled").checked =
+carousel.enabled
+!==
+false;
+
+
+$("carouselCenterScale").value =
+carousel.centerScale
+??
+1;
+
+
+$("carouselSideScale").value =
+carousel.sideScale
+??
+.82;
+
+
+$("carouselRotation").value =
+carousel.rotation
+??
+16;
+
+
+$("carouselSpacing").value =
+carousel.spacing
+??
+72;
+
+
+$("carouselSpeed").value =
+carousel.speed
+??
+550;
 
 
 renderPaymentDraft();
@@ -7659,14 +6632,13 @@ await loadAll();
 
 
 /* =========================================================
-   AUTH STATE
+   AUTH CHANGE
 ========================================================= */
 
 db.auth
 .onAuthStateChange(
 (
-event,
-session
+event
 ) => {
 
 if(
@@ -7703,11 +6675,9 @@ await getSession();
 
 if(session){
 
-const allowed =
-await isAdmin();
-
-
-if(allowed){
+if(
+await isAdmin()
+){
 
 await boot();
 
@@ -7739,5 +6709,4 @@ $("app")
 </script>
 
 </body>
-
 </html>
