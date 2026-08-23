@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
 
 <meta charset="UTF-8">
@@ -9,7 +10,9 @@ name="viewport"
 content="width=device-width,initial-scale=1,viewport-fit=cover"
 >
 
-<title>لوحة إدارة الشعيبي PRO</title>
+<title>
+لوحة إدارة الشعيبي PRO
+</title>
 
 <link
 href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Tajawal:wght@400;500;700;900&display=swap"
@@ -19,430 +22,873 @@ rel="stylesheet"
 <style>
 
 :root{
+
 --cream:#F8EACB;
+--cream2:#F1DDA6;
 --card:#FFFBF0;
+
 --ink:#20301C;
 --soft:#596052;
+
 --gold:#A9793C;
---line:rgba(32,48,28,.16);
+
 --danger:#9B3A2E;
 --ok:#4C6B3E;
 --blue:#2C5A82;
---shadow:0 10px 30px rgba(32,48,28,.10)
+
+--line:rgba(32,48,28,.16);
+
+--shadow:
+0 10px 30px rgba(32,48,28,.10);
+
 }
 
 *{
-box-sizing:border-box
+box-sizing:border-box;
 }
 
 html{
-scroll-behavior:smooth
+scroll-behavior:smooth;
 }
 
 body{
+
 margin:0;
-background:var(--cream);
-color:var(--ink);
-font-family:Tajawal,sans-serif
+
+background:
+var(--cream);
+
+color:
+var(--ink);
+
+font-family:
+Tajawal,sans-serif;
+
 }
 
 button,
 input,
 select,
 textarea{
-font:inherit
+
+font:inherit;
+
 }
 
 button{
-cursor:pointer
+cursor:pointer;
 }
 
 button:disabled{
-opacity:.55;
-cursor:not-allowed
+opacity:.5;
+cursor:not-allowed;
 }
 
 .hidden{
-display:none!important
+display:none!important;
 }
-
-
-/* ================= LOGIN ================= */
-
-.login{
-min-height:100vh;
-display:grid;
-place-items:center;
-padding:20px
-}
-
-.box,
-.card{
-background:var(--card);
-border:1px solid var(--line);
-border-radius:18px;
-padding:18px;
-box-shadow:var(--shadow)
-}
-
-.box{
-width:min(430px,100%)
-}
-
-.login-title{
-font-family:'Aref Ruqaa';
-text-align:center;
-font-size:37px;
-margin:5px 0 24px
-}
-
-#msg{
-font-size:12px;
-min-height:21px;
-margin-bottom:8px;
-line-height:1.7
-}
-
-
-/* ================= FORM ================= */
 
 input,
 select,
 textarea{
+
 width:100%;
+
 padding:11px;
-border:1px solid var(--line);
+
+border:
+1px solid var(--line);
+
 border-radius:11px;
-background:white;
-margin:4px 0 11px;
-color:var(--ink)
+
+background:#fff;
+
+margin:
+4px 0 10px;
+
+color:
+var(--ink);
+
 }
 
 textarea{
+
 min-height:100px;
-resize:vertical
-}
 
-input[type="checkbox"]{
-width:auto;
-margin-left:6px
-}
+resize:vertical;
 
-input[type="color"]{
-height:46px;
-padding:4px
 }
 
 label{
+
 display:block;
-font-size:13px;
-font-weight:700;
-margin-top:5px
+
+font-size:12px;
+
+font-weight:800;
+
+margin-top:6px;
+
 }
 
+.login{
 
-/* ================= BUTTON ================= */
+min-height:100vh;
+
+display:grid;
+
+place-items:center;
+
+padding:20px;
+
+}
+
+.box,
+.card{
+
+background:
+var(--card);
+
+border:
+1px solid var(--line);
+
+border-radius:18px;
+
+padding:18px;
+
+box-shadow:
+var(--shadow);
+
+}
+
+.box{
+
+width:
+min(
+430px,
+100%
+);
+
+}
+
+.login-title{
+
+font-family:
+'Aref Ruqaa';
+
+font-size:40px;
+
+text-align:center;
+
+margin:
+0 0 20px;
+
+}
 
 .btn{
+
 border:0;
+
 border-radius:11px;
-padding:10px 14px;
-background:var(--ink);
-color:var(--cream);
-font-weight:800
+
+padding:
+10px 14px;
+
+background:
+var(--ink);
+
+color:
+var(--cream);
+
+font-weight:800;
+
 }
 
 .btn.out{
+
 background:transparent;
-color:var(--ink);
-border:1px solid var(--ink)
+
+color:
+var(--ink);
+
+border:
+1px solid var(--ink);
+
 }
 
 .btn.red{
-background:var(--danger);
-color:white
+
+background:
+var(--danger);
+
+color:#fff;
+
 }
 
 .btn.gold{
-background:var(--gold);
-color:white
+
+background:
+var(--gold);
+
+color:#fff;
+
 }
 
 .btn.green{
-background:var(--ok);
-color:white
+
+background:
+var(--ok);
+
+color:#fff;
+
 }
 
 .btn.blue{
-background:var(--blue);
-color:white
+
+background:
+var(--blue);
+
+color:#fff;
+
 }
 
 .btn.sm{
-padding:7px 10px;
-font-size:12px
+
+padding:
+7px 10px;
+
+font-size:12px;
+
 }
 
-
-/* ================= HEADER ================= */
-
 .top{
+
 position:sticky;
+
 top:0;
-z-index:50;
-background:rgba(255,251,240,.97);
-border-bottom:1px solid var(--line);
-backdrop-filter:blur(15px)
+
+z-index:100;
+
+background:
+rgba(255,251,240,.96);
+
+backdrop-filter:
+blur(16px);
+
+border-bottom:
+1px solid var(--line);
+
 }
 
 .topin{
-max-width:1450px;
+
+max-width:1500px;
+
 margin:auto;
-padding:10px 14px;
+
+padding:
+10px 14px;
+
 display:flex;
-gap:8px;
+
+gap:9px;
+
 align-items:center;
-flex-wrap:wrap
+
+flex-wrap:wrap;
+
 }
 
 .brand{
-font-family:'Aref Ruqaa';
-font-size:29px;
+
+font-family:
+'Aref Ruqaa';
+
+font-size:28px;
+
 font-weight:700;
-margin-left:auto
+
+margin-left:auto;
+
 }
 
 .nav{
+
 display:flex;
+
 gap:5px;
-overflow:auto;
-scrollbar-width:none
+
+overflow-x:auto;
+
+scrollbar-width:none;
+
 }
 
 .nav::-webkit-scrollbar{
-display:none
+display:none;
 }
 
 .nav button{
+
 white-space:nowrap;
-border:1px solid var(--line);
+
+border:
+1px solid var(--line);
+
 border-radius:999px;
-padding:8px 12px;
-background:white;
-color:var(--ink);
-font-weight:700
+
+padding:
+8px 11px;
+
+background:#fff;
+
+color:
+var(--ink);
+
+font-weight:700;
+
 }
 
 .nav button.active{
-background:var(--ink);
-color:var(--cream)
+
+background:
+var(--ink);
+
+color:
+var(--cream);
+
 }
-
-
-/* ================= MAIN ================= */
 
 main{
-max-width:1450px;
+
+max-width:1500px;
+
 margin:auto;
-padding:18px 14px 80px
-}
 
-.grid{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:10px
-}
+padding:
+18px 14px 80px;
 
-.grid2{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:12px
-}
-
-.grid3{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:12px
-}
-
-.grid4{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:12px
-}
-
-.stat{
-text-align:center;
-background:var(--card);
-border:1px solid var(--line);
-border-radius:14px;
-padding:14px
-}
-
-.stat b{
-display:block;
-font-size:29px;
-color:var(--gold)
 }
 
 .card{
-margin-bottom:16px
+margin-bottom:16px;
 }
 
 .card h2,
 .card h3{
-margin-top:0
+
+margin-top:0;
+
 }
 
-.section-title{
-font-family:'Aref Ruqaa';
-font-size:27px;
-margin:0 0 15px
+.grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(4,1fr);
+
+gap:10px;
+
 }
 
-.help{
+.grid2{
+
+display:grid;
+
+grid-template-columns:
+repeat(2,1fr);
+
+gap:10px;
+
+}
+
+.grid3{
+
+display:grid;
+
+grid-template-columns:
+repeat(3,1fr);
+
+gap:10px;
+
+}
+
+.grid4{
+
+display:grid;
+
+grid-template-columns:
+repeat(4,1fr);
+
+gap:10px;
+
+}
+
+.stat{
+
+text-align:center;
+
+background:
+var(--card);
+
+border:
+1px solid var(--line);
+
+border-radius:15px;
+
+padding:15px;
+
+}
+
+.stat span{
+
+display:block;
+
 font-size:12px;
-line-height:1.8;
-color:var(--soft);
-margin-top:-5px;
-margin-bottom:15px
+
+color:
+var(--soft);
+
+}
+
+.stat b{
+
+display:block;
+
+font-size:28px;
+
+color:
+var(--gold);
+
+margin-top:5px;
+
 }
 
 .actions{
+
 display:flex;
+
 gap:7px;
-flex-wrap:wrap
+
+flex-wrap:wrap;
+
+align-items:center;
+
 }
 
 .table{
-overflow:auto
+
+overflow:auto;
+
+border:
+1px solid var(--line);
+
+border-radius:14px;
+
 }
 
 table{
+
 width:100%;
+
 border-collapse:collapse;
-min-width:850px
+
+min-width:900px;
+
+background:#fff;
+
 }
 
 th,
 td{
-padding:9px;
-border-bottom:1px solid var(--line);
+
+padding:10px;
+
+border-bottom:
+1px solid var(--line);
+
 text-align:right;
+
 font-size:13px;
-vertical-align:middle
+
+vertical-align:top;
+
 }
 
 th{
-background:#F1DDA6
+
+background:
+var(--cream2);
+
+font-weight:900;
+
 }
 
 .pill{
+
 display:inline-flex;
+
 align-items:center;
-gap:4px;
-border:1px solid var(--line);
-padding:5px 8px;
+
+padding:
+5px 9px;
+
 border-radius:999px;
-font-size:11px
+
+border:
+1px solid var(--line);
+
+font-size:11px;
+
+font-weight:700;
+
 }
 
-.switch-line{
-display:flex;
-align-items:center;
-gap:7px;
-padding:10px 0
+.pill.green{
+
+background:#DDEBD6;
+
+color:
+var(--ok);
+
 }
 
-.preview-box{
-border:1px dashed var(--gold);
-background:#FFF8E7;
+.pill.red{
+
+background:#F0D8D4;
+
+color:
+var(--danger);
+
+}
+
+.pill.gold{
+
+background:#F4E7C5;
+
+color:#805817;
+
+}
+
+.note{
+
+font-size:12px;
+
+line-height:1.8;
+
+color:
+var(--soft);
+
+}
+
+.section-title{
+
+font-family:
+'Aref Ruqaa';
+
+font-size:27px;
+
+margin:
+10px 0 16px;
+
+}
+
+.preview{
+
+border:
+1px dashed var(--gold);
+
 border-radius:15px;
-padding:16px;
-margin-top:12px
+
+padding:15px;
+
+background:#FFF7E0;
+
 }
 
 .ad-preview{
+
 width:100%;
-height:260px;
-background:#eee;
-border-radius:14px;
-overflow:hidden;
-display:flex;
-align-items:center;
-justify-content:center
-}
 
-.ad-preview img,
-.ad-preview video{
-width:100%;
-height:100%;
-object-fit:cover
-}
+min-height:220px;
 
-.media-row,
-.payment-row,
-.bank-row{
-border:1px solid var(--line);
-background:white;
-border-radius:14px;
-padding:13px;
-margin-bottom:10px
-}
-
-.media-row-head,
-.payment-row-head,
-.bank-row-head{
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:10px;
-margin-bottom:8px
-}
-
-.drag-number{
-width:30px;
-height:30px;
-border-radius:50%;
-background:var(--cream);
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:11px;
-font-weight:900
-}
-
-.policy-card{
-border:1px solid var(--line);
 border-radius:15px;
-padding:14px;
-background:white;
-margin-bottom:10px
+
+overflow:hidden;
+
+background:#eee;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
 }
 
-.policy-card summary{
-cursor:pointer;
-font-weight:900
+.ad-preview img{
+
+width:100%;
+
+max-height:420px;
+
+object-fit:cover;
+
+}
+
+.order-card{
+
+border:
+1px solid var(--line);
+
+border-radius:16px;
+
+padding:14px;
+
+margin-bottom:12px;
+
+background:#fff;
+
+}
+
+.order-card-head{
+
+display:flex;
+
+justify-content:space-between;
+
+gap:12px;
+
+align-items:flex-start;
+
+flex-wrap:wrap;
+
+}
+
+.order-product{
+
+display:flex;
+
+gap:10px;
+
+align-items:center;
+
+padding:
+10px 0;
+
+border-top:
+1px solid var(--line);
+
+}
+
+.order-product img{
+
+width:65px;
+
+height:65px;
+
+object-fit:contain;
+
+background:
+var(--cream);
+
+border-radius:10px;
+
+}
+
+.modal-scrim{
+
+position:fixed;
+
+inset:0;
+
+z-index:500;
+
+background:
+rgba(15,20,13,.62);
+
+display:none;
+
+}
+
+.modal-scrim.show{
+display:block;
+}
+
+.modal{
+
+position:fixed;
+
+z-index:510;
+
+top:50%;
+
+left:50%;
+
+transform:
+translate(-50%,-50%);
+
+width:
+min(
+850px,
+95vw
+);
+
+max-height:90vh;
+
+overflow:auto;
+
+background:
+var(--card);
+
+border-radius:20px;
+
+padding:20px;
+
+box-shadow:
+0 30px 80px rgba(0,0,0,.3);
+
+display:none;
+
+}
+
+.modal.show{
+display:block;
+}
+
+.modal-head{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+gap:10px;
+
+margin-bottom:14px;
+
+}
+
+.modal-head h2{
+margin:0;
+}
+
+.close{
+
+border:0;
+
+background:none;
+
+font-size:24px;
+
 }
 
 .toast{
+
 position:fixed;
-z-index:9999;
+
+z-index:1000;
+
 left:50%;
+
 bottom:22px;
-transform:translateX(-50%);
-background:var(--ink);
-color:var(--cream);
-padding:10px 16px;
+
+transform:
+translateX(-50%);
+
+background:
+var(--ink);
+
+color:
+var(--cream);
+
+padding:
+10px 16px;
+
 border-radius:999px;
+
 opacity:0;
+
 pointer-events:none;
-transition:.25s
+
+transition:.25s;
+
 }
 
 .toast.show{
+
 opacity:1;
-bottom:32px
+
+bottom:32px;
+
+}
+
+.policy-card{
+
+border:
+1px solid var(--line);
+
+border-radius:15px;
+
+padding:15px;
+
+margin-bottom:12px;
+
+background:#fff;
+
+}
+
+.bank-row{
+
+border:
+1px solid var(--line);
+
+border-radius:15px;
+
+padding:14px;
+
+margin-bottom:10px;
+
+background:#fff;
+
+}
+
+.payment-row{
+
+border:
+1px solid var(--line);
+
+border-radius:15px;
+
+padding:14px;
+
+margin-bottom:10px;
+
+background:#fff;
+
+}
+
+.check-row{
+
+display:flex;
+
+align-items:center;
+
+gap:8px;
+
+margin:
+5px 0 12px;
+
+}
+
+.check-row input{
+
+width:auto;
+
+margin:0;
+
 }
 
 @media(max-width:900px){
@@ -451,20 +897,25 @@ bottom:32px
 .grid2,
 .grid3,
 .grid4{
-grid-template-columns:1fr
+
+grid-template-columns:1fr;
+
 }
 
 .brand{
+
 width:100%;
-margin:0
+
+margin:0;
+
 }
 
 .topin{
-align-items:flex-start
+align-items:flex-start;
 }
 
 .nav{
-width:100%
+width:100%;
 }
 
 }
@@ -477,10 +928,13 @@ width:100%
 
 
 <!-- =========================================================
-LOGIN
+     LOGIN
 ========================================================= -->
 
-<div id="login" class="login">
+<div
+id="login"
+class="login"
+>
 
 <div class="box">
 
@@ -489,7 +943,7 @@ LOGIN
 </h1>
 
 <label>
-البريد
+البريد الإلكتروني
 </label>
 
 <input
@@ -505,17 +959,26 @@ readonly
 <input
 id="password"
 type="password"
-autocomplete="current-password"
-onkeydown="if(event.key==='Enter'){login()}"
+onkeydown="
+if(event.key==='Enter'){
+login();
+}
+"
 >
 
-<div id="msg"></div>
+<div
+id="msg"
+style="
+min-height:20px;
+color:var(--danger);
+font-size:12px
+"
+></div>
 
 <button
 id="loginButton"
 class="btn"
 style="width:100%"
-type="button"
 onclick="login()"
 >
 دخول
@@ -527,10 +990,13 @@ onclick="login()"
 
 
 <!-- =========================================================
-APP
+     APP
 ========================================================= -->
 
-<div id="app" class="hidden">
+<div
+id="app"
+class="hidden"
+>
 
 <header class="top">
 
@@ -541,21 +1007,12 @@ APP
 </div>
 
 <div
-class="nav"
 id="nav"
+class="nav"
 ></div>
 
 <button
 class="btn out sm"
-type="button"
-onclick="reloadAll()"
->
-↻ تحديث
-</button>
-
-<button
-class="btn red sm"
-type="button"
 onclick="logout()"
 >
 خروج
@@ -570,7 +1027,7 @@ onclick="logout()"
 
 
 <!-- =========================================================
-DASHBOARD
+     DASHBOARD
 ========================================================= -->
 
 <section
@@ -579,18 +1036,19 @@ class="page"
 >
 
 <div
-class="grid"
 id="stats"
+class="grid"
 ></div>
+
 
 <div class="card">
 
-<h2 class="section-title">
-نظرة عامة
+<h2>
+لوحة التحكم
 </h2>
 
-<p>
-إدارة المتجر والطلبات والعروض والإعلانات والهدايا والسياسات ووسائل الدفع والحسابات البنكية.
+<p class="note">
+من هنا تستطيع إدارة المنتجات والباقات والهدايا والكوبونات والعملاء والطلبات والإعلانات وتصميم قسم الهدية وطرق الدفع والحسابات البنكية وروابط وسياسات المتجر.
 </p>
 
 </div>
@@ -599,270 +1057,152 @@ id="stats"
 
 
 <!-- =========================================================
-ADVERTISEMENT
+     VARIANTS
 ========================================================= -->
 
 <section
-id="advertising"
+id="products"
 class="page hidden"
 >
 
 <div class="card">
 
-<h2 class="section-title">
-📺 شاشة الإعلانات
+<h2>
+خيارات وأحجام المنتجات
 </h2>
-
-<p class="help">
-الإعلان يظهر مباشرة تحت رأس المتجر ويمكن أن يكون صورة أو سلايدر صور أو فيديو.
-</p>
-
-
-<div class="switch-line">
-
-<input
-id="adEnabled"
-type="checkbox"
->
-
-<label for="adEnabled">
-تشغيل شاشة الإعلانات
-</label>
-
-</div>
-
 
 <div class="grid3">
 
 <div>
 
 <label>
-نوع الإعلان
+المنتج
 </label>
 
-<select id="adType">
-
-<option value="slider">
-سلايدر صور
-</option>
-
-<option value="image">
-صورة واحدة
-</option>
-
-<option value="video">
-فيديو
-</option>
-
-</select>
+<select id="varProduct"></select>
 
 </div>
-
 
 <div>
 
 <label>
-مدة انتقال السلايد
+اسم الخيار
 </label>
 
 <input
-id="adInterval"
+id="varTitle"
+placeholder="مثال: 100ml"
+>
+
+</div>
+
+<div>
+
+<label>
+SKU
+</label>
+
+<input
+id="varSku"
+placeholder="SKU"
+>
+
+</div>
+
+<div>
+
+<label>
+السعر
+</label>
+
+<input
+id="varPrice"
 type="number"
-min="2000"
-step="500"
-value="4000"
+placeholder="السعر"
 >
 
 </div>
-
 
 <div>
 
 <label>
-الرابط عند الضغط
+المخزون
 </label>
 
 <input
-id="adLink"
-placeholder="https://..."
+id="varStock"
+type="number"
+placeholder="المخزون"
+>
+
+</div>
+
+<div>
+
+<label>
+اللون
+</label>
+
+<input
+id="varColor"
+placeholder="اللون"
 >
 
 </div>
 
 </div>
-
-
-<h3>
-صور / فيديوهات الإعلان
-</h3>
-
-<div id="adMediaList"></div>
-
-<div class="actions">
 
 <button
-class="btn blue"
-type="button"
-onclick="addAdMedia()"
+class="btn"
+onclick="saveVariant()"
 >
-+ إضافة إعلان
+إضافة الخيار
 </button>
 
 </div>
 
 
-<hr
-style="
-border:0;
-border-top:1px solid var(--line);
-margin:25px 0
-"
->
+<div class="card">
 
+<div class="table">
 
-<h3>
-الحجم والتنسيق
-</h3>
+<table>
 
-<div class="grid4">
+<thead>
 
-<div>
+<tr>
 
-<label>
-ارتفاع الجوال
-</label>
+<th>
+المنتج
+</th>
 
-<input
-id="adHeightMobile"
-type="number"
-value="760"
->
+<th>
+الخيار
+</th>
 
-</div>
+<th>
+SKU
+</th>
 
+<th>
+السعر
+</th>
 
-<div>
+<th>
+المخزون
+</th>
 
-<label>
-ارتفاع الكمبيوتر
-</label>
+<th>
+الإجراء
+</th>
 
-<input
-id="adHeightDesktop"
-type="number"
-value="650"
->
+</tr>
 
-</div>
+</thead>
 
+<tbody id="variantsBody"></tbody>
 
-<div>
-
-<label>
-طريقة عرض الصورة
-</label>
-
-<select id="adFit">
-
-<option value="cover">
-Cover — ملء الشاشة
-</option>
-
-<option value="contain">
-Contain — الصورة كاملة
-</option>
-
-<option value="fill">
-Fill — تمديد
-</option>
-
-</select>
-
-</div>
-
-
-<div>
-
-<label>
-موضع الصورة
-</label>
-
-<select id="adPosition">
-
-<option value="center">
-الوسط
-</option>
-
-<option value="top">
-الأعلى
-</option>
-
-<option value="bottom">
-الأسفل
-</option>
-
-<option value="center top">
-منتصف أعلى
-</option>
-
-<option value="center bottom">
-منتصف أسفل
-</option>
-
-</select>
-
-</div>
-
-
-<div>
-
-<label>
-استدارة الحواف
-</label>
-
-<input
-id="adRadius"
-type="number"
-value="0"
-min="0"
-max="100"
->
-
-</div>
-
-</div>
-
-
-<div class="actions">
-
-<button
-class="btn green"
-type="button"
-onclick="saveAds()"
->
-حفظ إعدادات الإعلان
-</button>
-
-<button
-class="btn out"
-type="button"
-onclick="previewAd()"
->
-معاينة
-</button>
-
-</div>
-
-
-<div
-id="adPreviewBox"
-class="preview-box hidden"
->
-
-<div
-id="adPreview"
-class="ad-preview"
-></div>
+</table>
 
 </div>
 
@@ -872,22 +1212,238 @@ class="ad-preview"
 
 
 <!-- =========================================================
-GIFT DESIGN
+     BUNDLES
 ========================================================= -->
 
 <section
-id="giftDesign"
+id="bundles"
 class="page hidden"
 >
 
 <div class="card">
 
-<h2 class="section-title">
-🎁 تصميم قسم الهدية
+<h2>
+🔥 العروض والباقات
 </h2>
 
+<input
+id="bundleId"
+type="hidden"
+>
 
-<div class="switch-line">
+<div class="grid3">
+
+<div>
+
+<label>
+اسم الباقة
+</label>
+
+<input
+id="bundleName"
+placeholder="مثال: باقة العطور الفاخرة"
+>
+
+</div>
+
+<div>
+
+<label>
+السعر قبل العرض
+</label>
+
+<input
+id="bundleRegular"
+type="number"
+>
+
+</div>
+
+<div>
+
+<label>
+سعر العرض
+</label>
+
+<input
+id="bundleOffer"
+type="number"
+>
+
+</div>
+
+<div>
+
+<label>
+المخزون
+</label>
+
+<input
+id="bundleStock"
+type="number"
+>
+
+</div>
+
+<div>
+
+<label>
+رابط صورة الباقة
+</label>
+
+<input id="bundleImage">
+
+</div>
+
+<div>
+
+<label>
+نهاية العرض
+</label>
+
+<input
+id="bundleEnd"
+type="datetime-local"
+>
+
+</div>
+
+</div>
+
+
+<label>
+وصف العرض
+</label>
+
+<textarea id="bundleDesc"></textarea>
+
+
+<label>
+المنتجات الموجودة داخل الباقة
+</label>
+
+<select
+id="bundleProducts"
+multiple
+size="7"
+></select>
+
+
+<div class="actions">
+
+<button
+class="btn gold"
+onclick="saveBundle()"
+>
+حفظ الباقة
+</button>
+
+<button
+class="btn out"
+onclick="resetBundle()"
+>
+جديد
+</button>
+
+</div>
+
+</div>
+
+
+<div
+id="bundleList"
+class="card"
+></div>
+
+</section>
+
+
+<!-- =========================================================
+     GIFTS
+========================================================= -->
+
+<section
+id="gifts"
+class="page hidden"
+>
+
+<div class="card">
+
+<h2>
+🎁 خيارات التغليف
+</h2>
+
+<div class="grid3">
+
+<div>
+
+<label>
+اسم التغليف
+</label>
+
+<input id="giftName">
+
+</div>
+
+<div>
+
+<label>
+السعر
+</label>
+
+<input
+id="giftPrice"
+type="number"
+>
+
+</div>
+
+<div>
+
+<label>
+رابط الصورة
+</label>
+
+<input id="giftImage">
+
+</div>
+
+</div>
+
+<label>
+الوصف
+</label>
+
+<textarea id="giftDesc"></textarea>
+
+<button
+class="btn"
+onclick="saveGift()"
+>
+إضافة خيار التغليف
+</button>
+
+</div>
+
+
+<div
+id="giftList"
+class="card"
+></div>
+
+
+<div class="card">
+
+<h2>
+🎨 تنسيق قسم «اصنع هديتك»
+</h2>
+
+<p class="note">
+هذه الإعدادات تتحكم مباشرة بالقسم الظاهر في واجهة المتجر.
+</p>
+
+
+<div class="check-row">
 
 <input
 id="giftSectionEnabled"
@@ -910,39 +1466,10 @@ type="checkbox"
 </label>
 
 <input
-id="giftSectionTitle"
-placeholder="🎁 اصنع هديتك بنفسك"
+id="giftSectionTitleAdmin"
 >
 
 </div>
-
-
-<div>
-
-<label>
-نص الزر
-</label>
-
-<input
-id="giftSectionButtonText"
-placeholder="ابدأ تجهيز الهدية"
->
-
-</div>
-
-</div>
-
-
-<label>
-وصف القسم
-</label>
-
-<textarea
-id="giftSectionDescription"
-></textarea>
-
-
-<div class="grid4">
 
 <div>
 
@@ -951,27 +1478,46 @@ id="giftSectionDescription"
 </label>
 
 <input
-id="giftSectionIcon"
+id="giftSectionIconAdmin"
 placeholder="🎁"
 >
 
 </div>
 
+</div>
+
+
+<label>
+الوصف
+</label>
+
+<textarea id="giftSectionDescriptionAdmin"></textarea>
+
+
+<div class="grid3">
 
 <div>
 
 <label>
-لون الخلفية
+نص الزر
+</label>
+
+<input id="giftSectionButtonText">
+
+</div>
+
+<div>
+
+<label>
+لون خلفية القسم
 </label>
 
 <input
 id="giftSectionBackground"
 type="color"
-value="#F1DDA6"
 >
 
 </div>
-
 
 <div>
 
@@ -982,11 +1528,9 @@ value="#F1DDA6"
 <input
 id="giftSectionTextColor"
 type="color"
-value="#20301C"
 >
 
 </div>
-
 
 <div>
 
@@ -997,11 +1541,9 @@ value="#20301C"
 <input
 id="giftSectionButtonColor"
 type="color"
-value="#A9793C"
 >
 
 </div>
-
 
 <div>
 
@@ -1012,7 +1554,8 @@ value="#A9793C"
 <input
 id="giftSectionRadius"
 type="number"
-value="26"
+min="0"
+max="80"
 >
 
 </div>
@@ -1021,8 +1564,7 @@ value="26"
 
 
 <button
-class="btn green"
-type="button"
+class="btn gold"
 onclick="saveGiftDesign()"
 >
 حفظ تصميم الهدية
@@ -1034,597 +1576,7 @@ onclick="saveGiftDesign()"
 
 
 <!-- =========================================================
-POLICIES
-========================================================= -->
-
-<section
-id="footer"
-class="page hidden"
->
-
-<div class="card">
-
-<h2 class="section-title">
-📄 السياسات والروابط المهمة
-</h2>
-
-<p class="help">
-كل نص هنا يظهر للعميل عند الضغط على الرابط المقابل في أسفل المتجر.
-</p>
-
-<div id="policyEditor"></div>
-
-<button
-class="btn green"
-type="button"
-onclick="saveFooterPolicies()"
->
-حفظ جميع السياسات
-</button>
-
-</div>
-
-
-<div class="card">
-
-<h2 class="section-title">
-🎨 تصميم أسفل الصفحة
-</h2>
-
-<div class="grid3">
-
-<div>
-
-<label>
-لون الخلفية
-</label>
-
-<input
-id="footerBackground"
-type="color"
-value="#2E2828"
->
-
-</div>
-
-
-<div>
-
-<label>
-لون النص
-</label>
-
-<input
-id="footerTextColor"
-type="color"
-value="#F8F4EF"
->
-
-</div>
-
-</div>
-
-<button
-class="btn green"
-type="button"
-onclick="saveFooterDesign()"
->
-حفظ تصميم الفوتر
-</button>
-
-</div>
-
-</section>
-
-
-<!-- =========================================================
-PAYMENTS
-========================================================= -->
-
-<section
-id="payments"
-class="page hidden"
->
-
-<div class="card">
-
-<h2 class="section-title">
-💳 وسائل الدفع
-</h2>
-
-<p class="help">
-أضف فيزا أو ماستركارد أو Apple Pay أو تحويل بنكي أو أي وسيلة أخرى.
-</p>
-
-<div id="paymentMethodsList"></div>
-
-<button
-class="btn blue"
-type="button"
-onclick="addPaymentMethod()"
->
-+ إضافة وسيلة دفع
-</button>
-
-<div
-class="actions"
-style="margin-top:15px"
->
-
-<button
-class="btn green"
-type="button"
-onclick="savePaymentMethods()"
->
-حفظ وسائل الدفع
-</button>
-
-</div>
-
-</div>
-
-
-<div class="card">
-
-<h2 class="section-title">
-🏦 الحسابات البنكية
-</h2>
-
-<div id="bankAccountsList"></div>
-
-<button
-class="btn blue"
-type="button"
-onclick="addBankAccount()"
->
-+ إضافة حساب بنكي
-</button>
-
-<div
-class="actions"
-style="margin-top:15px"
->
-
-<button
-class="btn green"
-type="button"
-onclick="saveBankAccounts()"
->
-حفظ الحسابات البنكية
-</button>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- =========================================================
-GENERAL SETTINGS
-========================================================= -->
-
-<section
-id="storeSettings"
-class="page hidden"
->
-
-<div class="card">
-
-<h2 class="section-title">
-⚙️ بيانات المتجر
-</h2>
-
-
-<div class="grid3">
-
-<div>
-
-<label>
-اسم المتجر
-</label>
-
-<input id="storeName">
-
-</div>
-
-
-<div>
-
-<label>
-الاسم الإنجليزي
-</label>
-
-<input id="storeNameEn">
-
-</div>
-
-
-<div>
-
-<label>
-العبارة الصغيرة
-</label>
-
-<input id="storeEyebrow">
-
-</div>
-
-
-<div>
-
-<label>
-واتساب
-</label>
-
-<input id="storeWhatsapp">
-
-</div>
-
-
-<div>
-
-<label>
-رقم الهاتف
-</label>
-
-<input id="storePhone">
-
-</div>
-
-
-<div>
-
-<label>
-البريد الإلكتروني
-</label>
-
-<input id="storeEmail">
-
-</div>
-
-
-<div>
-
-<label>
-رابط الشعار
-</label>
-
-<input id="storeLogoUrl">
-
-</div>
-
-</div>
-
-
-<label>
-عنوان الواجهة
-</label>
-
-<input id="storeSloganTitle">
-
-
-<label>
-الوصف
-</label>
-
-<textarea id="storeSloganDesc"></textarea>
-
-
-<label>
-نبذة عن المتجر
-</label>
-
-<textarea id="storeAboutText"></textarea>
-
-
-<h3>
-روابط التواصل
-</h3>
-
-
-<div class="grid3">
-
-<input
-id="socialInstagram"
-placeholder="Instagram"
->
-
-<input
-id="socialFacebook"
-placeholder="Facebook"
->
-
-<input
-id="socialTiktok"
-placeholder="TikTok"
->
-
-<input
-id="socialTwitter"
-placeholder="X / Twitter"
->
-
-<input
-id="socialSnapchat"
-placeholder="Snapchat"
->
-
-<input
-id="socialTelegram"
-placeholder="Telegram"
->
-
-</div>
-
-
-<button
-class="btn green"
-type="button"
-onclick="saveGeneralSettings()"
->
-حفظ بيانات المتجر
-</button>
-
-</div>
-
-</section>
-
-
-<!-- =========================================================
-PRODUCT VARIANTS
-========================================================= -->
-
-<section
-id="products"
-class="page hidden"
->
-
-<div class="card">
-
-<h2 class="section-title">
-خيارات وأحجام المنتجات
-</h2>
-
-<div class="grid3">
-
-<select id="varProduct"></select>
-
-<input
-id="varTitle"
-placeholder="مثال: 100ml"
->
-
-<input
-id="varSku"
-placeholder="SKU"
->
-
-<input
-id="varPrice"
-type="number"
-placeholder="السعر"
->
-
-<input
-id="varStock"
-type="number"
-placeholder="المخزون"
->
-
-<input
-id="varColor"
-placeholder="اللون"
->
-
-</div>
-
-<button
-class="btn"
-type="button"
-onclick="saveVariant()"
->
-إضافة خيار
-</button>
-
-</div>
-
-
-<div class="card">
-
-<div class="table">
-
-<table>
-
-<thead>
-
-<tr>
-<th>المنتج</th>
-<th>الخيار</th>
-<th>SKU</th>
-<th>السعر</th>
-<th>المخزون</th>
-<th></th>
-</tr>
-
-</thead>
-
-<tbody id="variantsBody"></tbody>
-
-</table>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- =========================================================
-BUNDLES
-========================================================= -->
-
-<section
-id="bundles"
-class="page hidden"
->
-
-<div class="card">
-
-<h2 class="section-title">
-🔥 العروض والباقات
-</h2>
-
-<input
-id="bundleId"
-type="hidden"
->
-
-<div class="grid3">
-
-<input
-id="bundleName"
-placeholder="اسم الباقة"
->
-
-<input
-id="bundleRegular"
-type="number"
-placeholder="السعر قبل العرض"
->
-
-<input
-id="bundleOffer"
-type="number"
-placeholder="سعر العرض"
->
-
-<input
-id="bundleStock"
-type="number"
-placeholder="المخزون"
->
-
-<input
-id="bundleImage"
-placeholder="رابط الصورة"
->
-
-<input
-id="bundleEnd"
-type="datetime-local"
->
-
-</div>
-
-<textarea
-id="bundleDesc"
-placeholder="وصف العرض"
-></textarea>
-
-<label>
-المنتجات داخل الباقة
-</label>
-
-<select
-id="bundleProducts"
-multiple
-size="7"
-></select>
-
-<div class="actions">
-
-<button
-class="btn gold"
-type="button"
-onclick="saveBundle()"
->
-حفظ الباقة
-</button>
-
-<button
-class="btn out"
-type="button"
-onclick="resetBundle()"
->
-جديد
-</button>
-
-</div>
-
-</div>
-
-
-<div class="card">
-
-<div id="bundleList"></div>
-
-</div>
-
-</section>
-
-
-<!-- =========================================================
-GIFTS
-========================================================= -->
-
-<section
-id="gifts"
-class="page hidden"
->
-
-<div class="card">
-
-<h2 class="section-title">
-🎀 الهدايا والتغليف
-</h2>
-
-<div class="grid3">
-
-<input
-id="giftName"
-placeholder="اسم التغليف"
->
-
-<input
-id="giftPrice"
-type="number"
-placeholder="السعر"
->
-
-<input
-id="giftImage"
-placeholder="رابط الصورة"
->
-
-</div>
-
-<textarea
-id="giftDesc"
-placeholder="الوصف"
-></textarea>
-
-<button
-class="btn"
-type="button"
-onclick="saveGift()"
->
-إضافة خيار تغليف
-</button>
-
-</div>
-
-<div class="card">
-
-<div id="giftList"></div>
-
-</div>
-
-</section>
-
-
-<!-- =========================================================
-COUPONS
+     COUPONS
 ========================================================= -->
 
 <section
@@ -1634,16 +1586,27 @@ class="page hidden"
 
 <div class="card">
 
-<h2 class="section-title">
-🎟️ الكوبونات
+<h2>
+الكوبونات
 </h2>
 
 <div class="grid3">
 
-<input
-id="cpCode"
-placeholder="CODE"
->
+<div>
+
+<label>
+الكود
+</label>
+
+<input id="cpCode">
+
+</div>
+
+<div>
+
+<label>
+نوع الخصم
+</label>
 
 <select id="cpType">
 
@@ -1657,23 +1620,52 @@ placeholder="CODE"
 
 </select>
 
+</div>
+
+<div>
+
+<label>
+القيمة
+</label>
+
 <input
 id="cpValue"
 type="number"
-placeholder="القيمة"
 >
+
+</div>
+
+<div>
+
+<label>
+الحد الأدنى للطلب
+</label>
 
 <input
 id="cpMin"
 type="number"
-placeholder="الحد الأدنى"
 >
+
+</div>
+
+<div>
+
+<label>
+أقصى خصم
+</label>
 
 <input
 id="cpMax"
 type="number"
-placeholder="حد أقصى للخصم"
 >
+
+</div>
+
+<div>
+
+<label>
+تاريخ الانتهاء
+</label>
 
 <input
 id="cpExpiry"
@@ -1682,22 +1674,25 @@ type="date"
 
 </div>
 
-<label>
+</div>
+
+
+<div class="check-row">
 
 <input
 id="cpFirst"
 type="checkbox"
 >
 
+<label for="cpFirst">
 لأول طلب فقط
-
 </label>
 
-<br>
+</div>
+
 
 <button
 class="btn"
-type="button"
 onclick="saveCoupon()"
 >
 إضافة كوبون
@@ -1705,17 +1700,17 @@ onclick="saveCoupon()"
 
 </div>
 
-<div class="card">
 
-<div id="couponList"></div>
-
-</div>
+<div
+id="couponList"
+class="card"
+></div>
 
 </section>
 
 
 <!-- =========================================================
-CUSTOMERS
+     CUSTOMERS
 ========================================================= -->
 
 <section
@@ -1725,8 +1720,8 @@ class="page hidden"
 
 <div class="card">
 
-<h2 class="section-title">
-👥 العملاء والمشتريات
+<h2>
+العملاء والمشتريات
 </h2>
 
 <div class="table">
@@ -1736,12 +1731,31 @@ class="page hidden"
 <thead>
 
 <tr>
-<th>العميل</th>
-<th>الهاتف</th>
-<th>كل الطلبات</th>
-<th>مرات الشراء</th>
-<th>إجمالي المشتريات</th>
-<th>آخر طلب</th>
+
+<th>
+العميل
+</th>
+
+<th>
+الهاتف
+</th>
+
+<th>
+كل الطلبات
+</th>
+
+<th>
+مرات الشراء
+</th>
+
+<th>
+إجمالي المشتريات
+</th>
+
+<th>
+آخر طلب
+</th>
+
 </tr>
 
 </thead>
@@ -1758,7 +1772,7 @@ class="page hidden"
 
 
 <!-- =========================================================
-ORDERS
+     ORDERS
 ========================================================= -->
 
 <section
@@ -1768,40 +1782,50 @@ class="page hidden"
 
 <div class="card">
 
-<h2 class="section-title">
-📦 الطلبات
+<div
+style="
+display:flex;
+justify-content:space-between;
+gap:10px;
+align-items:center;
+flex-wrap:wrap
+"
+>
+
+<div>
+
+<h2 style="margin:0">
+📦 إدارة الطلبات
 </h2>
 
-<div class="table">
+<p class="note">
+اضغط «تفاصيل» لفتح المنتجات وبيانات العميل والهدية والفاتورة.
+</p>
 
-<table>
+</div>
 
-<thead>
 
-<tr>
-<th>رقم</th>
-<th>العميل</th>
-<th>الإجمالي</th>
-<th>الحالة</th>
-<th>هدية</th>
-<th>التاريخ</th>
-</tr>
-
-</thead>
-
-<tbody id="ordersBody"></tbody>
-
-</table>
+<button
+class="btn out sm"
+onclick="loadAll()"
+>
+تحديث
+</button>
 
 </div>
 
 </div>
+
+
+<div
+id="ordersCards"
+></div>
 
 </section>
 
 
 <!-- =========================================================
-REVIEWS
+     REVIEWS
 ========================================================= -->
 
 <section
@@ -1811,8 +1835,8 @@ class="page hidden"
 
 <div class="card">
 
-<h2 class="section-title">
-⭐ التقييمات
+<h2>
+⭐ تقييمات العملاء
 </h2>
 
 <div id="reviewsList"></div>
@@ -1823,7 +1847,7 @@ class="page hidden"
 
 
 <!-- =========================================================
-RECOMMENDATIONS
+     RECOMMENDATIONS
 ========================================================= -->
 
 <section
@@ -1833,8 +1857,8 @@ class="page hidden"
 
 <div class="card">
 
-<h2 class="section-title">
-🔗 اقتراحات المنتجات
+<h2>
+اقتراحات المنتجات
 </h2>
 
 <div class="grid3">
@@ -1861,9 +1885,9 @@ class="page hidden"
 
 </div>
 
+
 <button
 class="btn"
-type="button"
 onclick="saveRelation()"
 >
 ربط المنتجات
@@ -1872,9 +1896,673 @@ onclick="saveRelation()"
 </div>
 
 
+<div
+id="relationsList"
+class="card"
+></div>
+
+</section>
+
+
+<!-- =========================================================
+     ADS
+========================================================= -->
+
+<section
+id="ads"
+class="page hidden"
+>
+
 <div class="card">
 
-<div id="relationsList"></div>
+<h2>
+🖼️ شاشة الإعلانات
+</h2>
+
+<p class="note">
+هذه الإعدادات تتحكم في الإعلان الكبير الموجود أسفل رأس المتجر.
+</p>
+
+
+<div class="check-row">
+
+<input
+id="adEnabled"
+type="checkbox"
+>
+
+<label for="adEnabled">
+تشغيل شاشة الإعلانات
+</label>
+
+</div>
+
+
+<div class="grid3">
+
+<div>
+
+<label>
+نوع الإعلان
+</label>
+
+<select id="adType">
+
+<option value="image">
+صورة
+</option>
+
+<option value="slider">
+سلايدر صور
+</option>
+
+<option value="video">
+فيديو
+</option>
+
+</select>
+
+</div>
+
+<div>
+
+<label>
+ارتفاع الإعلان على الكمبيوتر
+</label>
+
+<input
+id="adHeightDesktop"
+type="number"
+min="300"
+>
+
+</div>
+
+<div>
+
+<label>
+ارتفاع الإعلان على الجوال
+</label>
+
+<input
+id="adHeightMobile"
+type="number"
+min="300"
+>
+
+</div>
+
+<div>
+
+<label>
+استدارة الحواف
+</label>
+
+<input
+id="adRadius"
+type="number"
+min="0"
+>
+
+</div>
+
+<div>
+
+<label>
+طريقة عرض الصورة
+</label>
+
+<select id="adFit">
+
+<option value="cover">
+تعبئة كاملة
+</option>
+
+<option value="contain">
+إظهار الصورة كاملة
+</option>
+
+<option value="fill">
+تمديد
+</option>
+
+</select>
+
+</div>
+
+<div>
+
+<label>
+مدة انتقال السلايدر بالمللي ثانية
+</label>
+
+<input
+id="adInterval"
+type="number"
+min="2000"
+step="500"
+>
+
+</div>
+
+</div>
+
+
+<label>
+رابط عند الضغط على الإعلان
+</label>
+
+<input
+id="adLinkAdmin"
+placeholder="https://..."
+>
+
+
+<label>
+صور / فيديو الإعلان
+</label>
+
+<textarea
+id="adMedia"
+placeholder="ضع كل رابط في سطر مستقل"
+></textarea>
+
+
+<div class="actions">
+
+<button
+class="btn gold"
+onclick="saveAds()"
+>
+حفظ الإعلان
+</button>
+
+<button
+class="btn out"
+onclick="previewAd()"
+>
+معاينة
+</button>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+معاينة
+</h3>
+
+<div
+id="adPreview"
+class="ad-preview"
+>
+لا توجد معاينة.
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     PAYMENT
+========================================================= -->
+
+<section
+id="payment"
+class="page hidden"
+>
+
+<div class="card">
+
+<h2>
+💳 وسائل الدفع
+</h2>
+
+<p class="note">
+أضف وسائل الدفع التي ستظهر في صفحة المتجر وفي صفحة إتمام الطلب.
+</p>
+
+
+<div class="grid3">
+
+<div>
+
+<label>
+اسم وسيلة الدفع
+</label>
+
+<input
+id="paymentName"
+placeholder="مثال: تحويل بنكي"
+>
+
+</div>
+
+<div>
+
+<label>
+الرمز
+</label>
+
+<input
+id="paymentId"
+placeholder="bank"
+>
+
+</div>
+
+<div>
+
+<label>
+النوع
+</label>
+
+<select id="paymentType">
+
+<option value="bank">
+بنكي
+</option>
+
+<option value="card">
+بطاقة
+</option>
+
+<option value="cash">
+نقدي
+</option>
+
+<option value="other">
+أخرى
+</option>
+
+</select>
+
+</div>
+
+</div>
+
+
+<label>
+تعليمات وسيلة الدفع
+</label>
+
+<textarea id="paymentDescription"></textarea>
+
+
+<button
+class="btn"
+onclick="addPaymentMethod()"
+>
+إضافة وسيلة الدفع
+</button>
+
+</div>
+
+
+<div
+id="paymentMethodsList"
+class="card"
+></div>
+
+
+<div class="card">
+
+<h2>
+🏦 الحسابات البنكية
+</h2>
+
+
+<div class="grid2">
+
+<div>
+
+<label>
+اسم البنك
+</label>
+
+<input id="bankName">
+
+</div>
+
+<div>
+
+<label>
+اسم صاحب الحساب
+</label>
+
+<input id="bankHolder">
+
+</div>
+
+<div>
+
+<label>
+رقم الحساب
+</label>
+
+<input id="bankAccount">
+
+</div>
+
+<div>
+
+<label>
+IBAN
+</label>
+
+<input id="bankIban">
+
+</div>
+
+</div>
+
+
+<label>
+تعليمات إضافية
+</label>
+
+<textarea id="bankInstructions"></textarea>
+
+
+<button
+class="btn gold"
+onclick="addBankAccount()"
+>
+إضافة حساب بنكي
+</button>
+
+</div>
+
+
+<div
+id="bankAccountsList"
+class="card"
+></div>
+
+
+<button
+class="btn green"
+onclick="savePaymentSettings()"
+>
+حفظ إعدادات الدفع
+</button>
+
+</section>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<section
+id="footer"
+class="page hidden"
+>
+
+<div class="card">
+
+<h2>
+📄 روابط وسياسات المتجر
+</h2>
+
+<p class="note">
+اكتب النصوص التي سيشاهدها العميل عند الضغط على الروابط أسفل المتجر.
+</p>
+
+<div id="policiesEditor"></div>
+
+
+<button
+class="btn gold"
+onclick="saveFooterSettings()"
+>
+حفظ جميع السياسات
+</button>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     GENERAL SETTINGS
+========================================================= -->
+
+<section
+id="settings"
+class="page hidden"
+>
+
+<div class="card">
+
+<h2>
+⚙️ إعدادات المتجر العامة
+</h2>
+
+
+<div class="grid2">
+
+<div>
+
+<label>
+اسم المتجر
+</label>
+
+<input id="setStoreName">
+
+</div>
+
+<div>
+
+<label>
+الاسم الإنجليزي
+</label>
+
+<input id="setStoreNameEn">
+
+</div>
+
+<div>
+
+<label>
+العنوان الصغير
+</label>
+
+<input id="setEyebrow">
+
+</div>
+
+<div>
+
+<label>
+رقم الجوال
+</label>
+
+<input id="setPhone">
+
+</div>
+
+<div>
+
+<label>
+واتساب
+</label>
+
+<input id="setWhatsapp">
+
+</div>
+
+<div>
+
+<label>
+البريد الإلكتروني
+</label>
+
+<input id="setEmail">
+
+</div>
+
+<div>
+
+<label>
+رابط الشعار
+</label>
+
+<input id="setLogo">
+
+</div>
+
+<div>
+
+<label>
+رابط شعار شاشة البداية
+</label>
+
+<input id="setSplashLogo">
+
+</div>
+
+</div>
+
+
+<label>
+العنوان الرئيسي
+</label>
+
+<input id="setSloganTitle">
+
+
+<label>
+الوصف الرئيسي
+</label>
+
+<textarea id="setSloganDesc"></textarea>
+
+
+<label>
+من نحن / قصة المتجر
+</label>
+
+<textarea id="setAbout"></textarea>
+
+
+<div class="grid3">
+
+<div>
+
+<label>
+Instagram
+</label>
+
+<input id="setInstagram">
+
+</div>
+
+<div>
+
+<label>
+TikTok
+</label>
+
+<input id="setTiktok">
+
+</div>
+
+<div>
+
+<label>
+Facebook
+</label>
+
+<input id="setFacebook">
+
+</div>
+
+<div>
+
+<label>
+Telegram
+</label>
+
+<input id="setTelegram">
+
+</div>
+
+<div>
+
+<label>
+X
+</label>
+
+<input id="setTwitter">
+
+</div>
+
+<div>
+
+<label>
+Snapchat
+</label>
+
+<input id="setSnapchat">
+
+</div>
+
+</div>
+
+
+<div class="check-row">
+
+<input
+id="setSearch"
+type="checkbox"
+>
+
+<label for="setSearch">
+تشغيل البحث
+</label>
+
+</div>
+
+
+<div class="check-row">
+
+<input
+id="setSort"
+type="checkbox"
+>
+
+<label for="setSort">
+تشغيل ترتيب المنتجات
+</label>
+
+</div>
+
+
+<div class="check-row">
+
+<input
+id="setReviews"
+type="checkbox"
+>
+
+<label for="setReviews">
+إظهار التقييمات
+</label>
+
+</div>
+
+
+<button
+class="btn gold"
+onclick="saveGeneralSettings()"
+>
+حفظ الإعدادات
+</button>
 
 </div>
 
@@ -1886,6 +2574,46 @@ onclick="saveRelation()"
 </div>
 
 
+<!-- =========================================================
+     ORDER DETAIL MODAL
+========================================================= -->
+
+<div
+id="modalScrim"
+class="modal-scrim"
+onclick="closeOrderModal()"
+></div>
+
+
+<div
+id="orderModal"
+class="modal"
+>
+
+<div class="modal-head">
+
+<h2>
+تفاصيل الطلب
+</h2>
+
+<button
+class="close"
+onclick="closeOrderModal()"
+>
+✕
+</button>
+
+</div>
+
+<div id="orderModalBody"></div>
+
+</div>
+
+
+<!-- =========================================================
+     TOAST
+========================================================= -->
+
 <div
 id="toast"
 class="toast"
@@ -1894,22 +2622,23 @@ class="toast"
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+
 <script>
 
 /* =========================================================
-   SUPABASE
+   CONNECTION
 ========================================================= */
 
 const SUPABASE_URL =
-'https://bpxklyjahdjbnkxwtqig.supabase.co';
+"https://bpxklyjahdjbnkxwtqig.supabase.co";
 
 
 const SUPABASE_KEY =
-'sb_publishable_7hoVcUR8Twi6s9IRATiruw_ICTw6wXn';
+"sb_publishable_7hoVcUR8Twi6s9IRATiruw_ICTw6wXn";
 
 
 const ADMIN_EMAIL =
-'omara1store@gmail.com';
+"omara1store@gmail.com";
 
 
 const db =
@@ -1948,138 +2677,152 @@ let relations = [];
 
 let customers = [];
 
+let settingsRows = [];
+
 
 let generalSettings = {};
 
-let designSettings = {};
-
 let paymentSettings = {};
+
+let designSettings = {};
 
 let adSettings = {};
 
 let footerSettings = {};
 
 
-const policiesDefinition = [
+let paymentMethodsDraft = [];
+
+let bankAccountsDraft = [];
+
+
+let selectedOrder =
+null;
+
+
+/* =========================================================
+   TABS
+========================================================= */
+
+const tabs = [
 
 [
-'about',
-'من نحن'
+"dashboard",
+"الرئيسية"
 ],
 
 [
-'returns',
-'سياسة الاستبدال والاسترجاع'
+"products",
+"الخيارات"
 ],
 
 [
-'privacy',
-'سياسة الخصوصية'
+"bundles",
+"العروض والباقات"
 ],
 
 [
-'terms',
-'الشروط والأحكام'
+"gifts",
+"الهدايا"
 ],
 
 [
-'discounts',
-'سياسة التخفيضات'
+"coupons",
+"الكوبونات"
 ],
 
 [
-'customerService',
-'خدمة العملاء'
+"customers",
+"العملاء"
 ],
 
 [
-'hr',
-'الموارد البشرية'
+"orders",
+"الطلبات"
 ],
 
 [
-'wholesale',
-'مبيعات الجملة'
+"reviews",
+"التقييمات"
 ],
 
 [
-'branches',
-'فروعنا'
+"recommend",
+"الاقتراحات"
+],
+
+[
+"ads",
+"الإعلانات"
+],
+
+[
+"payment",
+"الدفع والبنوك"
+],
+
+[
+"footer",
+"السياسات"
+],
+
+[
+"settings",
+"الإعدادات"
 ]
 
 ];
 
 
-const tabs = [
+/* =========================================================
+   POLICY DEFINITIONS
+========================================================= */
+
+const policies = [
 
 [
-'dashboard',
-'الرئيسية'
+"about",
+"من نحن"
 ],
 
 [
-'advertising',
-'📺 الإعلانات'
+"returns",
+"سياسة الاستبدال والاسترجاع"
 ],
 
 [
-'giftDesign',
-'🎁 تصميم الهدية'
+"privacy",
+"سياسة الخصوصية"
 ],
 
 [
-'footer',
-'📄 السياسات'
+"terms",
+"الشروط والأحكام"
 ],
 
 [
-'payments',
-'💳 الدفع والبنوك'
+"discounts",
+"سياسة التخفيضات"
 ],
 
 [
-'storeSettings',
-'⚙️ المتجر'
+"customerService",
+"خدمة العملاء"
 ],
 
 [
-'products',
-'الخيارات'
+"hr",
+"الموارد البشرية"
 ],
 
 [
-'bundles',
-'العروض'
+"wholesale",
+"مبيعات الجملة"
 ],
 
 [
-'gifts',
-'التغليف'
-],
-
-[
-'coupons',
-'الكوبونات'
-],
-
-[
-'customers',
-'العملاء'
-],
-
-[
-'orders',
-'الطلبات'
-],
-
-[
-'reviews',
-'التقييمات'
-],
-
-[
-'recommend',
-'الاقتراحات'
+"branches",
+"فروعنا"
 ]
 
 ];
@@ -2089,100 +2832,25 @@ const tabs = [
    HELPERS
 ========================================================= */
 
-function esc(value){
+function toast(message){
 
-return String(
-value ?? ''
-)
-.replace(
-/[&<>"']/g,
-char => ({
-
-'&':'&amp;',
-
-'<':'&lt;',
-
-'>':'&gt;',
-
-'"':'&quot;',
-
-"'":'&#039;'
-
-}[char])
-);
-
-}
+$("toast")
+.textContent =
+message;
 
 
-function money(
-value,
-currency = 'ر.ي'
-){
-
-return Number(
-value || 0
-)
-.toFixed(
-2
-)
-+
-' '
-+
-(
-currency || 'ر.ي'
-);
-
-}
-
-
-function uid(){
-
-return (
-Date.now()
-.toString(
-36
-)
-+
-Math.random()
-.toString(
-36
-)
-.slice(
-2,
-8
-)
-);
-
-}
-
-
-function toast(text){
-
-const element =
-$('toast');
-
-
-if(!element){
-
-return;
-
-}
-
-
-element.textContent =
-text;
-
-
-element.classList.add(
-'show'
+$("toast")
+.classList.add(
+"show"
 );
 
 
 setTimeout(
 () => {
 
-element.classList.remove(
-'show'
+$("toast")
+.classList.remove(
+"show"
 );
 
 },
@@ -2192,90 +2860,141 @@ element.classList.remove(
 }
 
 
-/* =========================================================
-   LOGIN MESSAGE
-========================================================= */
+function esc(value){
 
-function setLoginMessage(
-message = '',
-type = 'error'
+return String(
+value ?? ""
+)
+.replace(
+/[&<>"']/g,
+char => ({
+
+"&":"&amp;",
+
+"<":"&lt;",
+
+">":"&gt;",
+
+'"':"&quot;",
+
+"'":"&#039;"
+
+}[char])
+);
+
+}
+
+
+function money(
+value,
+currency = "ر.ي"
 ){
 
-const element =
-$('msg');
+return (
 
+Number(
+value || 0
+)
+.toFixed(
+2
+)
 
-if(!element){
++
 
-return;
+" "
+
++
+
+(
+currency
+||
+"ر.ي"
+)
+
+);
 
 }
 
 
-element.textContent =
-message;
+function statusText(status){
 
+return ({
 
-element.style.color =
-type ===
-'success'
-?
-'#4C6B3E'
-:
-'#9B3A2E';
+pending:
+"قيد الانتظار",
+
+confirmed:
+"تم التأكيد",
+
+processing:
+"قيد التجهيز",
+
+shipped:
+"تم الشحن",
+
+delivered:
+"تم التسليم",
+
+cancelled:
+"ملغي",
+
+refunded:
+"مسترجع"
+
+})[
+status
+]
+||
+status
+||
+"—";
 
 }
 
 
 /* =========================================================
-   ADMIN CHECK
+   AUTH
 ========================================================= */
 
-async function isAdmin(){
-
-try{
+async function getSession(){
 
 const {
-data,
-error
+data
 } =
 await db.auth
 .getSession();
 
 
-if(error){
-
-console.error(
-'Session error:',
-error
-);
-
-return false;
+return data.session
+||
+null;
 
 }
 
+
+async function isAdmin(){
 
 const session =
-data?.session;
-
-
-if(!session){
-
-return false;
-
-}
-
-
-const sessionEmail =
-String(
-session.user?.email || ''
-)
-.trim()
-.toLowerCase();
+await getSession();
 
 
 if(
-sessionEmail !==
+!session
+){
+
+return false;
+
+}
+
+
+if(
+String(
+session.user.email
+||
+""
+)
+.toLowerCase()
+!==
 ADMIN_EMAIL.toLowerCase()
 ){
 
@@ -2285,48 +3004,37 @@ return false;
 
 
 const {
-data:adminRow,
-error:adminError
+data,
+error
 } =
 await db
 .from(
-'store_admins'
+"store_admins"
 )
 .select(
-'user_id'
+"user_id"
 )
 .eq(
-'user_id',
+"user_id",
 session.user.id
 )
 .maybeSingle();
 
 
-if(adminError){
+if(error){
 
 console.error(
-'Admin check:',
-adminError
-);
-
-return false;
-
-}
-
-
-return !!adminRow;
-
-}
-catch(error){
-
-console.error(
-'isAdmin fatal:',
+"Admin check:",
 error
 );
 
+
 return false;
 
 }
+
+
+return !!data;
 
 }
 
@@ -2337,46 +3045,21 @@ return false;
 
 async function login(){
 
-const button =
-$('loginButton');
-
-
-try{
-
-setLoginMessage(
-''
-);
-
-
-const passwordInput =
-$('password');
-
-
-if(!passwordInput){
-
-setLoginMessage(
-'خطأ: حقل كلمة المرور غير موجود.'
-);
-
-return;
-
-}
-
-
 const password =
-String(
-passwordInput.value || ''
-);
+$("password")
+.value;
+
+
+$("msg")
+.textContent =
+"";
 
 
 if(!password){
 
-setLoginMessage(
-'اكتب كلمة المرور أولاً.'
-);
-
-
-passwordInput.focus();
+$("msg")
+.textContent =
+"أدخل كلمة المرور";
 
 
 return;
@@ -2384,20 +3067,21 @@ return;
 }
 
 
-if(button){
+const button =
+$("loginButton");
+
 
 button.disabled =
 true;
 
 
 button.textContent =
-'جارِ تسجيل الدخول...';
+"جارِ الدخول...";
 
-}
 
+try{
 
 const {
-data,
 error
 } =
 await db.auth
@@ -2406,7 +3090,6 @@ await db.auth
 email:
 ADMIN_EMAIL,
 
-password:
 password
 
 });
@@ -2414,37 +3097,7 @@ password
 
 if(error){
 
-console.error(
-'Login:',
-error
-);
-
-
-setLoginMessage(
-'تعذر الدخول: '
-+
-(
-error.message ||
-'تحقق من كلمة المرور'
-)
-);
-
-
-return;
-
-}
-
-
-if(
-!data?.session
-){
-
-setLoginMessage(
-'لم يتم إنشاء جلسة تسجيل دخول.'
-);
-
-
-return;
+throw error;
 
 }
 
@@ -2459,20 +3112,11 @@ await db.auth
 .signOut();
 
 
-setLoginMessage(
-'تم قبول بيانات الدخول، لكن الحساب غير مسجل كمدير.'
+throw new Error(
+"هذا الحساب غير مسجل كمدير للمتجر"
 );
-
-
-return;
 
 }
-
-
-setLoginMessage(
-'تم تسجيل الدخول ✓',
-'success'
-);
 
 
 await boot();
@@ -2481,35 +3125,66 @@ await boot();
 catch(error){
 
 console.error(
-'LOGIN FATAL:',
 error
 );
 
 
-setLoginMessage(
-'حدث خطأ في لوحة الإدارة: '
-+
-(
-error?.message ||
-'خطأ غير معروف'
-)
+$("msg")
+.textContent =
+translateAuthError(
+error.message
 );
 
-}
-finally{
-
-if(button){
 
 button.disabled =
 false;
 
 
 button.textContent =
-'دخول';
+"دخول";
 
 }
 
 }
+
+
+/* =========================================================
+   AUTH ERROR
+========================================================= */
+
+function translateAuthError(message){
+
+const text =
+String(
+message || ""
+);
+
+
+if(
+text.includes(
+"Invalid login credentials"
+)
+){
+
+return "البريد أو كلمة المرور غير صحيحة";
+
+}
+
+
+if(
+text.includes(
+"Email not confirmed"
+)
+){
+
+return "البريد الإلكتروني لم يتم تأكيده بعد";
+
+}
+
+
+return text
+||
+"تعذر تسجيل الدخول";
 
 }
 
@@ -2520,20 +3195,8 @@ button.textContent =
 
 async function logout(){
 
-try{
-
 await db.auth
 .signOut();
-
-}
-catch(error){
-
-console.error(
-'Logout:',
-error
-);
-
-}
 
 
 location.reload();
@@ -2542,14 +3205,16 @@ location.reload();
 
 
 /* =========================================================
-   NAVIGATION
+   NAV
 ========================================================= */
 
-function buildNav(){
+function renderNav(){
 
-$('nav')
+$("nav")
 .innerHTML =
+
 tabs
+
 .map(
 (
 item,
@@ -2557,22 +3222,24 @@ index
 ) => `
 
 <button
-type="button"
 class="${
 index === 0
 ?
-'active'
+"active"
 :
-''
+""
 }"
 onclick="tab('${item[0]}',this)"
 >
+
 ${item[1]}
+
 </button>
 
 `
 )
-.join('');
+
+.join("");
 
 }
 
@@ -2584,105 +3251,39 @@ button
 
 document
 .querySelectorAll(
-'.page'
+".page"
 )
 .forEach(
-page => {
-
+page =>
 page.classList.add(
-'hidden'
+"hidden"
+)
 );
 
-}
+
+$(id)
+.classList.remove(
+"hidden"
 );
-
-
-const target =
-$(id);
-
-
-if(target){
-
-target.classList.remove(
-'hidden'
-);
-
-}
 
 
 document
 .querySelectorAll(
-'#nav button'
+"#nav button"
 )
 .forEach(
-item => {
-
+item =>
 item.classList.remove(
-'active'
-);
-
-}
-);
-
-
-if(button){
-
-button.classList.add(
-'active'
-);
-
-}
-
-
-window.scrollTo({
-
-top:0,
-
-behavior:'smooth'
-
-});
-
-}
-
-
-/* =========================================================
-   SETTINGS SAVE
-========================================================= */
-
-async function upsertSetting(
-id,
-data
-){
-
-const {
-error
-} =
-await db
-.from(
-'settings'
+"active"
 )
-.upsert(
-{
-
-id:id,
-
-data:data
-
-},
-{
-
-onConflict:
-'id'
-
-}
 );
 
 
-if(error){
-
-throw error;
-
-}
+button
+?.classList
+.add(
+"active"
+);
 
 }
 
@@ -2699,1025 +3300,83 @@ await isAdmin();
 
 if(!allowed){
 
-return;
+$("login")
+.classList.remove(
+"hidden"
+);
 
-}
 
-
-$('login')
+$("app")
 .classList.add(
-'hidden'
+"hidden"
 );
 
 
-$('app')
+return;
+
+}
+
+
+$("login")
+.classList.add(
+"hidden"
+);
+
+
+$("app")
 .classList.remove(
-'hidden'
+"hidden"
 );
 
 
-buildNav();
+renderNav();
 
 
-await loadSettings();
-
-
-await loadCommerceData();
+await loadAll();
 
 }
 
 
 /* =========================================================
-   RESTORE SESSION
+   SAFE REQUEST
 ========================================================= */
 
-async function restoreAdminSession(){
-
-try{
-
-const {
-data,
-error
-} =
-await db.auth
-.getSession();
-
-
-if(error){
-
-console.error(
-'Restore session:',
-error
-);
-
-return;
-
-}
-
-
-if(
-!data?.session
+async function safe(
+promise,
+fallback = []
 ){
 
-return;
-
-}
-
-
-if(
-await isAdmin()
-){
-
-await boot();
-
-}
-
-}
-catch(error){
-
-console.error(
-'Restore fatal:',
-error
-);
-
-}
-
-}
-
-
-/* =========================================================
-   RELOAD
-========================================================= */
-
-async function reloadAll(){
-
 try{
 
-await Promise.all([
-
-loadSettings(),
-
-loadCommerceData()
-
-]);
+const result =
+await promise;
 
 
-toast(
-'تم تحديث البيانات ✓'
-);
+if(result.error){
 
-}
-catch(error){
-
-console.error(
-error
+console.warn(
+result.error
 );
 
 
-alert(
-error.message ||
-'تعذر التحديث'
-);
-
-}
+return fallback;
 
 }
 
 
-/* =========================================================
-   LOAD SETTINGS
-========================================================= */
-
-async function loadSettings(){
-
-const {
-data,
-error
-} =
-await db
-.from(
-'settings'
-)
-.select(
-'*'
-);
-
-
-if(error){
-
-console.error(
-'Settings:',
-error
-);
-
-
-throw error;
-
-}
-
-
-const rows =
-data || [];
-
-
-generalSettings =
-rows.find(
-row =>
-row.id ===
-'general'
-)
-?.data
-||
-{};
-
-
-designSettings =
-rows.find(
-row =>
-row.id ===
-'design'
-)
-?.data
-||
-{};
-
-
-paymentSettings =
-rows.find(
-row =>
-row.id ===
-'payment'
-)
-?.data
-||
-{};
-
-
-adSettings =
-rows.find(
-row =>
-row.id ===
-'ads'
-)
-?.data
-||
-{};
-
-
-footerSettings =
-rows.find(
-row =>
-row.id ===
-'footer'
-)
-?.data
-||
-generalSettings.footer
-||
-{};
-
-
-fillGeneralSettings();
-
-
-fillAds();
-
-
-fillGiftDesign();
-
-
-renderPolicyEditor();
-
-
-fillFooterDesign();
-
-
-renderPaymentMethodsEditor();
-
-
-renderBankAccountsEditor();
-
-}
-
-
-/* =========================================================
-   GENERAL SETTINGS
-========================================================= */
-
-function fillGeneralSettings(){
-
-$('storeName').value =
-generalSettings.storeName
-||
-'الشعيبي';
-
-
-$('storeNameEn').value =
-generalSettings.storeNameEn
-||
-'ALSHUAIIBE STORE';
-
-
-$('storeEyebrow').value =
-generalSettings.storeEyebrow
-||
-'متجر الشعيبي';
-
-
-$('storeWhatsapp').value =
-generalSettings.whatsapp
-||
-'';
-
-
-$('storePhone').value =
-generalSettings.phone
-||
-'';
-
-
-$('storeEmail').value =
-generalSettings.email
-||
-'';
-
-
-$('storeLogoUrl').value =
-generalSettings.logoUrl
-||
-'';
-
-
-$('storeSloganTitle').value =
-generalSettings.sloganTitle
-||
-'صُنعت لمن يبحث عن الاختلاف';
-
-
-$('storeSloganDesc').value =
-generalSettings.sloganDesc
-||
-'اكتشف تشكيلتنا المختارة بعناية.';
-
-
-$('storeAboutText').value =
-generalSettings.aboutText
-||
-'';
-
-
-$('socialInstagram').value =
-generalSettings.instagram
-||
-'';
-
-
-$('socialFacebook').value =
-generalSettings.facebook
-||
-'';
-
-
-$('socialTiktok').value =
-generalSettings.tiktok
-||
-'';
-
-
-$('socialTwitter').value =
-generalSettings.twitter
-||
-'';
-
-
-$('socialSnapchat').value =
-generalSettings.snapchat
-||
-'';
-
-
-$('socialTelegram').value =
-generalSettings.telegram
-||
-'';
-
-}
-
-
-async function saveGeneralSettings(){
-
-const next = {
-
-...generalSettings,
-
-storeName:
-$('storeName')
-.value
-.trim(),
-
-storeNameEn:
-$('storeNameEn')
-.value
-.trim(),
-
-storeEyebrow:
-$('storeEyebrow')
-.value
-.trim(),
-
-whatsapp:
-$('storeWhatsapp')
-.value
-.trim(),
-
-phone:
-$('storePhone')
-.value
-.trim(),
-
-email:
-$('storeEmail')
-.value
-.trim(),
-
-logoUrl:
-$('storeLogoUrl')
-.value
-.trim(),
-
-sloganTitle:
-$('storeSloganTitle')
-.value
-.trim(),
-
-sloganDesc:
-$('storeSloganDesc')
-.value
-.trim(),
-
-aboutText:
-$('storeAboutText')
-.value
-.trim(),
-
-instagram:
-$('socialInstagram')
-.value
-.trim(),
-
-facebook:
-$('socialFacebook')
-.value
-.trim(),
-
-tiktok:
-$('socialTiktok')
-.value
-.trim(),
-
-twitter:
-$('socialTwitter')
-.value
-.trim(),
-
-snapchat:
-$('socialSnapchat')
-.value
-.trim(),
-
-telegram:
-$('socialTelegram')
-.value
-.trim()
-
-};
-
-
-try{
-
-await upsertSetting(
-'general',
-next
-);
-
-
-generalSettings =
-next;
-
-
-toast(
-'تم حفظ بيانات المتجر ✓'
-);
-
-}
-catch(error){
-
-alert(
-error.message
-);
-
-}
-
-}
-
-
-/* =========================================================
-   ADS
-========================================================= */
-
-function fillAds(){
-
-$('adEnabled').checked =
-adSettings.enabled === true;
-
-
-$('adType').value =
-adSettings.type
-||
-'slider';
-
-
-$('adInterval').value =
-Number(
-adSettings.interval
-||
-4000
-);
-
-
-$('adLink').value =
-adSettings.link
-||
-'';
-
-
-$('adHeightMobile').value =
-Number(
-adSettings.heightMobile
-||
-adSettings.heroHeightMobile
-||
-760
-);
-
-
-$('adHeightDesktop').value =
-Number(
-adSettings.heightDesktop
-||
-adSettings.heroHeightDesktop
-||
-650
-);
-
-
-$('adFit').value =
-adSettings.fit
-||
-'cover';
-
-
-$('adPosition').value =
-adSettings.position
-||
-'center';
-
-
-$('adRadius').value =
-Number(
-adSettings.radius
-||
-0
-);
-
-
-renderAdMediaEditor();
-
-}
-
-
-function renderAdMediaEditor(){
-
-let media =
-Array.isArray(
-adSettings.media
-)
-?
-[
-...adSettings.media
-]
-:
-[];
-
-
-if(!media.length){
-
-media =
-[
-''
-];
-
-}
-
-
-$('adMediaList')
-.innerHTML =
-media
-.map(
-(
-url,
-index
-) => `
-
-<div
-class="media-row"
-data-index="${index}"
->
-
-<div class="media-row-head">
-
-<div class="drag-number">
-${index + 1}
-</div>
-
-<button
-class="btn red sm"
-type="button"
-onclick="removeAdMedia(${index})"
->
-حذف
-</button>
-
-</div>
-
-<label>
-رابط الصورة / الفيديو
-</label>
-
-<input
-class="ad-media-input"
-value="${esc(url)}"
-placeholder="https://..."
->
-
-</div>
-
-`
-)
-.join('');
-
-}
-
-
-function collectAdMedia(){
-
-return [
-...document
-.querySelectorAll(
-'.ad-media-input'
-)
-]
-.map(
-input =>
-input.value.trim()
-)
-.filter(
-Boolean
-);
-
-}
-
-
-function addAdMedia(){
-
-const media =
-collectAdMedia();
-
-
-media.push(
-''
-);
-
-
-adSettings = {
-
-...adSettings,
-
-media:media
-
-};
-
-
-renderAdMediaEditor();
-
-}
-
-
-function removeAdMedia(index){
-
-const media =
-collectAdMedia();
-
-
-media.splice(
-index,
-1
-);
-
-
-adSettings = {
-
-...adSettings,
-
-media:media
-
-};
-
-
-renderAdMediaEditor();
-
-}
-
-
-async function saveAds(){
-
-const next = {
-
-...adSettings,
-
-enabled:
-$('adEnabled')
-.checked,
-
-type:
-$('adType')
-.value,
-
-interval:
-Math.max(
-2000,
-Number(
-$('adInterval')
-.value
-||
-4000
-)
-),
-
-link:
-$('adLink')
-.value
-.trim(),
-
-heightMobile:
-Math.max(
-300,
-Number(
-$('adHeightMobile')
-.value
-||
-760
-)
-),
-
-heightDesktop:
-Math.max(
-300,
-Number(
-$('adHeightDesktop')
-.value
-||
-650
-)
-),
-
-fit:
-$('adFit')
-.value,
-
-position:
-$('adPosition')
-.value,
-
-radius:
-Math.max(
-0,
-Number(
-$('adRadius')
-.value
-||
-0
-)
-),
-
-media:
-collectAdMedia()
-
-};
-
-
-try{
-
-await upsertSetting(
-'ads',
-next
-);
-
-
-adSettings =
-next;
-
-
-toast(
-'تم حفظ شاشة الإعلانات ✓'
-);
-
-}
-catch(error){
-
-alert(
-error.message
-);
-
-}
-
-}
-
-
-function previewAd(){
-
-const media =
-collectAdMedia();
-
-
-if(!media.length){
-
-toast(
-'أضف رابط إعلان أولاً'
-);
-
-
-return;
-
-}
-
-
-$('adPreviewBox')
-.classList.remove(
-'hidden'
-);
-
-
-const type =
-$('adType')
-.value;
-
-
-if(
-type ===
-'video'
-){
-
-$('adPreview')
-.innerHTML = `
-
-<video
-src="${esc(media[0])}"
-controls
-muted
-playsinline
-></video>
-
-`;
-
-
-return;
-
-}
-
-
-$('adPreview')
-.innerHTML = `
-
-<img
-src="${esc(media[0])}"
-style="
-object-fit:${esc($('adFit').value)};
-object-position:${esc($('adPosition').value)}
-"
->
-
-`;
-
-}
-
-
-/* =========================================================
-   GIFT DESIGN
-========================================================= */
-
-function getGiftDesign(){
-
-return (
-generalSettings.giftSection
-||
-designSettings.giftSection
-||
-{}
-);
-
-}
-
-
-function fillGiftDesign(){
-
-const gift =
-getGiftDesign();
-
-
-$('giftSectionEnabled').checked =
-gift.enabled !== false;
-
-
-$('giftSectionTitle').value =
-gift.title
-||
-'🎁 اصنع هديتك بنفسك';
-
-
-$('giftSectionDescription').value =
-gift.description
-||
-'اختر العطر والحجم والتغليف، واكتب بطاقة الإهداء وأدخل بيانات الشخص الذي تريد إرسال الهدية إليه.';
-
-
-$('giftSectionButtonText').value =
-gift.buttonText
-||
-'ابدأ تجهيز الهدية';
-
-
-$('giftSectionIcon').value =
-gift.icon
-||
-'🎁';
-
-
-$('giftSectionBackground').value =
-gift.background
-||
-gift.backgroundColor
-||
-'#F1DDA6';
-
-
-$('giftSectionTextColor').value =
-gift.textColor
-||
-'#20301C';
-
-
-$('giftSectionButtonColor').value =
-gift.buttonColor
-||
-'#A9793C';
-
-
-$('giftSectionRadius').value =
-Number(
-gift.radius
+return result.data
 ??
-26
-);
-
-}
-
-
-async function saveGiftDesign(){
-
-const giftSection = {
-
-enabled:
-$('giftSectionEnabled')
-.checked,
-
-title:
-$('giftSectionTitle')
-.value
-.trim(),
-
-description:
-$('giftSectionDescription')
-.value
-.trim(),
-
-buttonText:
-$('giftSectionButtonText')
-.value
-.trim(),
-
-icon:
-$('giftSectionIcon')
-.value
-.trim()
-||
-'🎁',
-
-background:
-$('giftSectionBackground')
-.value,
-
-textColor:
-$('giftSectionTextColor')
-.value,
-
-buttonColor:
-$('giftSectionButtonColor')
-.value,
-
-radius:
-Number(
-$('giftSectionRadius')
-.value
-||
-26
-)
-
-};
-
-
-const next = {
-
-...generalSettings,
-
-giftSection:
-giftSection
-
-};
-
-
-try{
-
-await upsertSetting(
-'general',
-next
-);
-
-
-generalSettings =
-next;
-
-
-toast(
-'تم حفظ تصميم الهدية ✓'
-);
+fallback;
 
 }
 catch(error){
 
-alert(
-error.message
+console.warn(
+error
 );
+
+
+return fallback;
 
 }
 
@@ -3725,1298 +3384,13 @@ error.message
 
 
 /* =========================================================
-   POLICIES
+   LOAD ALL
 ========================================================= */
 
-function getPolicies(){
-
-return (
-footerSettings.policies
-||
-generalSettings.policiesContent
-||
-{}
-);
-
-}
-
-
-function renderPolicyEditor(){
-
-const policies =
-getPolicies();
-
-
-$('policyEditor')
-.innerHTML =
-policiesDefinition
-.map(
-(
-[
-key,
-defaultTitle
-]
-) => `
-
-<details
-class="policy-card"
-${key === 'about' ? 'open' : ''}
->
-
-<summary>
-${defaultTitle}
-</summary>
-
-<div style="margin-top:12px">
-
-<label>
-عنوان الرابط
-</label>
-
-<input
-id="policyTitle_${key}"
-value="${esc(
-policies[
-key
-+
-'Title'
-]
-||
-defaultTitle
-)}"
->
-
-<label>
-
-<input
-id="policyEnabled_${key}"
-type="checkbox"
-${
-policies[
-key
-+
-'Enabled'
-]
-!== false
-?
-'checked'
-:
-''
-}
->
-
-إظهار الرابط في المتجر
-
-</label>
-
-<label>
-النص
-</label>
-
-<textarea
-id="policyText_${key}"
-rows="8"
->${esc(
-policies[
-key
-]
-||
-''
-)}</textarea>
-
-</div>
-
-</details>
-
-`
-)
-.join('');
-
-}
-
-
-async function saveFooterPolicies(){
-
-const policies =
-{};
-
-
-policiesDefinition
-.forEach(
-(
-[
-key
-]
-) => {
-
-policies[key] =
-$(
-'policyText_'
-+
-key
-)
-.value
-.trim();
-
-
-policies[
-key
-+
-'Title'
-] =
-$(
-'policyTitle_'
-+
-key
-)
-.value
-.trim();
-
-
-policies[
-key
-+
-'Enabled'
-] =
-$(
-'policyEnabled_'
-+
-key
-)
-.checked;
-
-}
-);
-
-
-const next = {
-
-...footerSettings,
-
-policies:
-policies
-
-};
-
-
-try{
-
-await upsertSetting(
-'footer',
-next
-);
-
-
-footerSettings =
-next;
-
-
-toast(
-'تم حفظ السياسات ✓'
-);
-
-}
-catch(error){
-
-alert(
-error.message
-);
-
-}
-
-}
-
-
-/* =========================================================
-   FOOTER DESIGN
-========================================================= */
-
-function fillFooterDesign(){
-
-$('footerBackground').value =
-designSettings.footerBackground
-||
-'#2E2828';
-
-
-$('footerTextColor').value =
-designSettings.footerTextColor
-||
-'#F8F4EF';
-
-}
-
-
-async function saveFooterDesign(){
-
-const next = {
-
-...designSettings,
-
-footerBackground:
-$('footerBackground')
-.value,
-
-footerTextColor:
-$('footerTextColor')
-.value
-
-};
-
-
-try{
-
-await upsertSetting(
-'design',
-next
-);
-
-
-designSettings =
-next;
-
-
-toast(
-'تم حفظ تصميم الفوتر ✓'
-);
-
-}
-catch(error){
-
-alert(
-error.message
-);
-
-}
-
-}
-
-
-/* =========================================================
-   PAYMENT METHODS
-========================================================= */
-
-function getPaymentMethods(){
-
-const methods =
-paymentSettings.paymentMethods
-||
-footerSettings.paymentMethods
-||
-[];
-
-
-if(
-Array.isArray(
-methods
-)
-&&
-methods.length
-){
-
-return methods;
-
-}
-
-
-return [
-
-{
-
-id:
-'bank',
-
-name:
-'تحويل بنكي',
-
-type:
-'bank',
-
-description:
-'',
-
-enabled:
-true,
-
-sortOrder:
-1
-
-}
-
-];
-
-}
-
-
-function renderPaymentMethodsEditor(){
-
-const methods =
-getPaymentMethods();
-
-
-$('paymentMethodsList')
-.innerHTML =
-methods
-.map(
-(
-method,
-index
-) => `
-
-<div
-class="payment-row"
-data-index="${index}"
->
-
-<div class="payment-row-head">
-
-<strong>
-وسيلة دفع ${index + 1}
-</strong>
-
-<button
-class="btn red sm"
-type="button"
-onclick="removePaymentMethod(${index})"
->
-حذف
-</button>
-
-</div>
-
-
-<div class="grid3">
-
-<div>
-
-<label>
-الاسم
-</label>
-
-<input
-class="pay-name"
-value="${esc(method.name || '')}"
-placeholder="VISA"
->
-
-</div>
-
-
-<div>
-
-<label>
-المعرف
-</label>
-
-<input
-class="pay-id"
-value="${esc(
-method.id
-||
-method.code
-||
-(
-'pay_'
-+
-uid()
-)
-)}"
->
-
-</div>
-
-
-<div>
-
-<label>
-النوع
-</label>
-
-<select class="pay-type">
-
-<option
-value="card"
-${method.type === 'card' ? 'selected' : ''}
->
-بطاقة / إلكتروني
-</option>
-
-<option
-value="bank"
-${method.type === 'bank' ? 'selected' : ''}
->
-تحويل بنكي
-</option>
-
-<option
-value="other"
-${method.type === 'other' ? 'selected' : ''}
->
-أخرى
-</option>
-
-</select>
-
-</div>
-
-</div>
-
-
-<label>
-تعليمات / وصف
-</label>
-
-<textarea
-class="pay-description"
->${esc(method.description || '')}</textarea>
-
-
-<div class="grid2">
-
-<label>
-
-<input
-class="pay-enabled"
-type="checkbox"
-${method.enabled !== false ? 'checked' : ''}
->
-
-مفعلة
-
-</label>
-
-
-<div>
-
-<label>
-الترتيب
-</label>
-
-<input
-class="pay-sort"
-type="number"
-value="${Number(
-method.sortOrder
-??
-index + 1
-)}"
->
-
-</div>
-
-</div>
-
-</div>
-
-`
-)
-.join('');
-
-}
-
-
-function collectPaymentMethods(){
-
-return [
-...document
-.querySelectorAll(
-'.payment-row'
-)
-]
-.map(
-(
-row,
-index
-) => ({
-
-id:
-row
-.querySelector(
-'.pay-id'
-)
-.value
-.trim()
-||
-(
-'pay_'
-+
-uid()
-),
-
-name:
-row
-.querySelector(
-'.pay-name'
-)
-.value
-.trim(),
-
-type:
-row
-.querySelector(
-'.pay-type'
-)
-.value,
-
-description:
-row
-.querySelector(
-'.pay-description'
-)
-.value
-.trim(),
-
-enabled:
-row
-.querySelector(
-'.pay-enabled'
-)
-.checked,
-
-sortOrder:
-Number(
-row
-.querySelector(
-'.pay-sort'
-)
-.value
-||
-index + 1
-)
-
-})
-)
-.filter(
-method =>
-method.name
-);
-
-}
-
-
-function addPaymentMethod(){
-
-const methods =
-collectPaymentMethods();
-
-
-methods.push({
-
-id:
-'pay_'
-+
-uid(),
-
-name:
-'',
-
-type:
-'card',
-
-description:
-'',
-
-enabled:
-true,
-
-sortOrder:
-methods.length + 1
-
-});
-
-
-paymentSettings = {
-
-...paymentSettings,
-
-paymentMethods:
-methods
-
-};
-
-
-renderPaymentMethodsEditor();
-
-}
-
-
-function removePaymentMethod(index){
-
-const methods =
-collectPaymentMethods();
-
-
-methods.splice(
-index,
-1
-);
-
-
-paymentSettings = {
-
-...paymentSettings,
-
-paymentMethods:
-methods
-
-};
-
-
-renderPaymentMethodsEditor();
-
-}
-
-
-async function savePaymentMethods(){
-
-const methods =
-collectPaymentMethods();
-
-
-const next = {
-
-...paymentSettings,
-
-paymentMethods:
-methods
-
-};
-
-
-try{
-
-await upsertSetting(
-'payment',
-next
-);
-
-
-paymentSettings =
-next;
-
-
-toast(
-'تم حفظ وسائل الدفع ✓'
-);
-
-}
-catch(error){
-
-alert(
-error.message
-);
-
-}
-
-}
-
-
-/* =========================================================
-   BANK ACCOUNTS
-========================================================= */
-
-function getBankAccounts(){
-
-const accounts =
-paymentSettings.bankAccounts
-||
-footerSettings.bankAccounts
-||
-[];
-
-
-if(
-Array.isArray(
-accounts
-)
-&&
-accounts.length
-){
-
-return accounts;
-
-}
-
-
-if(
-paymentSettings.bankName
-||
-paymentSettings.bankAccount
-||
-paymentSettings.bankIban
-){
-
-return [
-
-{
-
-id:
-'old_bank',
-
-bankName:
-paymentSettings.bankName
-||
-'',
-
-accountName:
-paymentSettings.bankHolder
-||
-'',
-
-accountNumber:
-paymentSettings.bankAccount
-||
-'',
-
-iban:
-paymentSettings.bankIban
-||
-'',
-
-instructions:
-paymentSettings.bankInstructions
-||
-'',
-
-enabled:
-true,
-
-sortOrder:
-1
-
-}
-
-];
-
-}
-
-
-return [];
-
-}
-
-
-function renderBankAccountsEditor(){
-
-const accounts =
-getBankAccounts();
-
-
-if(!accounts.length){
-
-$('bankAccountsList')
-.innerHTML = `
-
-<div class="help">
-لا توجد حسابات بنكية. اضغط «إضافة حساب بنكي».
-</div>
-
-`;
-
-
-return;
-
-}
-
-
-$('bankAccountsList')
-.innerHTML =
-accounts
-.map(
-(
-bank,
-index
-) => `
-
-<div
-class="bank-row"
-data-index="${index}"
->
-
-<div class="bank-row-head">
-
-<strong>
-حساب بنكي ${index + 1}
-</strong>
-
-<button
-class="btn red sm"
-type="button"
-onclick="removeBankAccount(${index})"
->
-حذف
-</button>
-
-</div>
-
-
-<div class="grid3">
-
-<div>
-
-<label>
-اسم البنك
-</label>
-
-<input
-class="bank-name"
-value="${esc(bank.bankName || '')}"
-placeholder="بنك الكريمي"
->
-
-</div>
-
-
-<div>
-
-<label>
-اسم صاحب الحساب
-</label>
-
-<input
-class="bank-holder"
-value="${esc(
-bank.accountName
-||
-bank.bankHolder
-||
-''
-)}"
->
-
-</div>
-
-
-<div>
-
-<label>
-رقم الحساب
-</label>
-
-<input
-class="bank-number"
-value="${esc(bank.accountNumber || '')}"
->
-
-</div>
-
-
-<div>
-
-<label>
-IBAN
-</label>
-
-<input
-class="bank-iban"
-value="${esc(bank.iban || '')}"
-dir="ltr"
->
-
-</div>
-
-
-<div>
-
-<label>
-الترتيب
-</label>
-
-<input
-class="bank-sort"
-type="number"
-value="${Number(
-bank.sortOrder
-??
-index + 1
-)}"
->
-
-</div>
-
-</div>
-
-
-<label>
-تعليمات التحويل
-</label>
-
-<textarea
-class="bank-instructions"
->${esc(bank.instructions || '')}</textarea>
-
-
-<label>
-
-<input
-class="bank-enabled"
-type="checkbox"
-${bank.enabled !== false ? 'checked' : ''}
->
-
-إظهار الحساب
-
-</label>
-
-</div>
-
-`
-)
-.join('');
-
-}
-
-
-function collectBankAccounts(){
-
-return [
-...document
-.querySelectorAll(
-'.bank-row'
-)
-]
-.map(
-(
-row,
-index
-) => ({
-
-id:
-'bank_'
-+
-index,
-
-bankName:
-row
-.querySelector(
-'.bank-name'
-)
-.value
-.trim(),
-
-accountName:
-row
-.querySelector(
-'.bank-holder'
-)
-.value
-.trim(),
-
-accountNumber:
-row
-.querySelector(
-'.bank-number'
-)
-.value
-.trim(),
-
-iban:
-row
-.querySelector(
-'.bank-iban'
-)
-.value
-.trim(),
-
-instructions:
-row
-.querySelector(
-'.bank-instructions'
-)
-.value
-.trim(),
-
-enabled:
-row
-.querySelector(
-'.bank-enabled'
-)
-.checked,
-
-sortOrder:
-Number(
-row
-.querySelector(
-'.bank-sort'
-)
-.value
-||
-index + 1
-)
-
-})
-)
-.filter(
-bank =>
-bank.bankName
-||
-bank.accountNumber
-||
-bank.iban
-);
-
-}
-
-
-function addBankAccount(){
-
-const accounts =
-collectBankAccounts();
-
-
-accounts.push({
-
-id:
-'bank_'
-+
-uid(),
-
-bankName:
-'',
-
-accountName:
-'',
-
-accountNumber:
-'',
-
-iban:
-'',
-
-instructions:
-'',
-
-enabled:
-true,
-
-sortOrder:
-accounts.length + 1
-
-});
-
-
-paymentSettings = {
-
-...paymentSettings,
-
-bankAccounts:
-accounts
-
-};
-
-
-renderBankAccountsEditor();
-
-}
-
-
-function removeBankAccount(index){
-
-const accounts =
-collectBankAccounts();
-
-
-accounts.splice(
-index,
-1
-);
-
-
-paymentSettings = {
-
-...paymentSettings,
-
-bankAccounts:
-accounts
-
-};
-
-
-renderBankAccountsEditor();
-
-}
-
-
-async function saveBankAccounts(){
-
-const accounts =
-collectBankAccounts();
-
-
-const next = {
-
-...paymentSettings,
-
-bankAccounts:
-accounts
-
-};
-
-
-try{
-
-await upsertSetting(
-'payment',
-next
-);
-
-
-paymentSettings =
-next;
-
-
-toast(
-'تم حفظ الحسابات البنكية ✓'
-);
-
-}
-catch(error){
-
-alert(
-error.message
-);
-
-}
-
-}
-
-
-/* =========================================================
-   COMMERCE DATA
-========================================================= */
-
-async function loadCommerceData(){
-
-const results =
-await Promise.all([
-
-db
-.from(
-'products'
-)
-.select(
-'*'
-)
-.order(
-'created_at',
-{
-ascending:false
-}
-),
-
-db
-.from(
-'product_variants'
-)
-.select(
-'*'
-)
-.order(
-'sort_order',
-{
-ascending:true
-}
-),
-
-db
-.from(
-'bundles'
-)
-.select(
-'*'
-)
-.order(
-'created_at',
-{
-ascending:false
-}
-),
-
-db
-.from(
-'gift_options'
-)
-.select(
-'*'
-)
-.order(
-'sort_order',
-{
-ascending:true
-}
-),
-
-db
-.from(
-'coupons'
-)
-.select(
-'*'
-)
-.order(
-'created_at',
-{
-ascending:false
-}
-),
-
-db
-.from(
-'orders'
-)
-.select(
-'*'
-)
-.order(
-'created_at',
-{
-ascending:false
-}
-)
-.limit(
-200
-),
-
-db
-.from(
-'reviews'
-)
-.select(
-'*'
-)
-.order(
-'created_at',
-{
-ascending:false
-}
-),
-
-db
-.from(
-'product_relations'
-)
-.select(
-'*'
-)
-.order(
-'sort_order',
-{
-ascending:true
-}
-),
-
-db.rpc(
-'admin_dashboard_stats'
-),
-
-db.rpc(
-'admin_customer_report'
-)
-
-]);
-
+async function loadAll(){
 
 const [
+
 p,
 v,
 b,
@@ -5025,119 +3399,382 @@ c,
 o,
 r,
 rel,
-st,
-cu
+stats,
+customerReport,
+settings
+
 ] =
-results;
+await Promise.all([
 
-
-if(p.error){
-console.warn('products:',p.error);
+safe(
+db
+.from(
+"products"
+)
+.select(
+"*"
+)
+.order(
+"created_at",
+{
+ascending:false
 }
+)
+),
 
-if(v.error){
-console.warn('variants:',v.error);
-}
+safe(
+db
+.from(
+"product_variants"
+)
+.select(
+"*"
+)
+.order(
+"sort_order"
+)
+),
 
-if(b.error){
-console.warn('bundles:',b.error);
+safe(
+db
+.from(
+"bundles"
+)
+.select(
+"*"
+)
+.order(
+"created_at",
+{
+ascending:false
 }
+)
+),
 
-if(g.error){
-console.warn('gifts:',g.error);
-}
+safe(
+db
+.from(
+"gift_options"
+)
+.select(
+"*"
+)
+.order(
+"sort_order"
+)
+),
 
-if(c.error){
-console.warn('coupons:',c.error);
+safe(
+db
+.from(
+"coupons"
+)
+.select(
+"*"
+)
+.order(
+"created_at",
+{
+ascending:false
 }
+)
+),
 
-if(o.error){
-console.warn('orders:',o.error);
+safe(
+db
+.from(
+"orders"
+)
+.select(
+"*"
+)
+.order(
+"created_at",
+{
+ascending:false
 }
+)
+.limit(
+300
+)
+),
 
-if(r.error){
-console.warn('reviews:',r.error);
+safe(
+db
+.from(
+"reviews"
+)
+.select(
+"*"
+)
+.order(
+"created_at",
+{
+ascending:false
 }
+)
+),
 
-if(rel.error){
-console.warn('relations:',rel.error);
-}
+safe(
+db
+.from(
+"product_relations"
+)
+.select(
+"*"
+)
+.order(
+"sort_order"
+)
+),
 
-if(st.error){
-console.warn('stats:',st.error);
-}
+safe(
+db.rpc(
+"admin_dashboard_stats"
+),
+{}
+),
 
-if(cu.error){
-console.warn('customers:',cu.error);
-}
+safe(
+db.rpc(
+"admin_customer_report"
+)
+),
+
+safe(
+db
+.from(
+"settings"
+)
+.select(
+"*"
+)
+)
+
+]);
 
 
 products =
-p.data || [];
+p || [];
 
 
 variants =
-v.data || [];
+v || [];
 
 
 bundles =
-b.data || [];
+b || [];
 
 
 gifts =
-g.data || [];
+g || [];
 
 
 coupons =
-c.data || [];
+c || [];
 
 
 orders =
-o.data || [];
+o || [];
 
 
 reviews =
-r.data || [];
+r || [];
 
 
 relations =
-rel.data || [];
+rel || [];
 
 
 customers =
-cu.data || [];
+customerReport || [];
+
+
+settingsRows =
+settings || [];
+
+
+parseSettings();
 
 
 renderStats(
-st.data || {}
+stats || {}
 );
 
 
 fillProducts();
 
-
 renderVariants();
-
 
 renderBundles();
 
-
 renderGifts();
-
 
 renderCoupons();
 
-
 renderCustomers();
-
 
 renderOrders();
 
-
 renderReviews();
 
-
 renderRelations();
+
+fillSettingsForms();
+
+}
+
+
+/* =========================================================
+   SETTINGS PARSE
+========================================================= */
+
+function parseSettings(){
+
+generalSettings =
+
+settingsRows.find(
+row =>
+row.id ===
+"general"
+)
+?.data
+
+||
+
+{};
+
+
+paymentSettings =
+
+settingsRows.find(
+row =>
+row.id ===
+"payment"
+)
+?.data
+
+||
+
+{};
+
+
+designSettings =
+
+settingsRows.find(
+row =>
+row.id ===
+"design"
+)
+?.data
+
+||
+
+{};
+
+
+adSettings =
+
+settingsRows.find(
+row =>
+row.id ===
+"ads"
+)
+?.data
+
+||
+
+{};
+
+
+footerSettings =
+
+settingsRows.find(
+row =>
+row.id ===
+"footer"
+)
+?.data
+
+||
+
+{};
+
+
+paymentMethodsDraft =
+
+Array.isArray(
+paymentSettings.paymentMethods
+)
+
+?
+
+JSON.parse(
+JSON.stringify(
+paymentSettings.paymentMethods
+)
+)
+
+:
+
+[];
+
+
+bankAccountsDraft =
+
+Array.isArray(
+paymentSettings.bankAccounts
+)
+
+?
+
+JSON.parse(
+JSON.stringify(
+paymentSettings.bankAccounts
+)
+)
+
+:
+
+[];
+
+}
+
+
+/* =========================================================
+   UPSERT SETTING
+========================================================= */
+
+async function saveSetting(
+id,
+data
+){
+
+const {
+error
+} =
+await db
+.from(
+"settings"
+)
+.upsert({
+
+id,
+
+data,
+
+updated_at:
+new Date()
+.toISOString()
+
+});
+
+
+if(error){
+
+throw error;
+
+}
 
 }
 
@@ -5148,50 +3785,101 @@ renderRelations();
 
 function renderStats(stats){
 
-$('stats')
-.innerHTML =
-[
+$("stats")
+.innerHTML = [
 
 [
-'المنتجات',
+"المنتجات",
 stats.products
+??
+products.length
 ],
 
 [
-'الباقات النشطة',
+"الباقات النشطة",
 stats.active_bundles
+??
+bundles.filter(
+item =>
+item.is_active
+!==
+false
+)
+.length
 ],
 
 [
-'الطلبات',
+"الطلبات",
 stats.orders
+??
+orders.length
 ],
 
 [
-'تم التسليم',
+"تم التسليم",
 stats.delivered
+??
+orders.filter(
+item =>
+item.status ===
+"delivered"
+)
+.length
 ],
 
 [
-'الإيراد',
+"الإيراد",
 money(
 stats.revenue
+??
+orders
+.filter(
+item =>
+item.status ===
+"delivered"
+)
+.reduce(
+(
+total,
+item
+) =>
+total
++
+Number(
+item.total || 0
+),
+0
+)
 )
 ],
 
 [
-'العملاء',
+"العملاء",
 stats.customers
+??
+customers.length
 ],
 
 [
-'عملاء متكررون',
+"عملاء متكررون",
 stats.repeat_customers
+??
+customers.filter(
+item =>
+Number(
+item.purchase_count || 0
+)
+>
+1
+)
+.length
 ],
 
 [
-'مخزون منخفض',
+"مخزون منخفض",
 stats.low_stock
+??
+0
 ]
 
 ]
@@ -5200,7 +3888,9 @@ item => `
 
 <div class="stat">
 
+<span>
 ${item[0]}
+</span>
 
 <b>
 ${item[1] ?? 0}
@@ -5210,19 +3900,21 @@ ${item[1] ?? 0}
 
 `
 )
-.join('');
+.join("");
 
 }
 
 
 /* =========================================================
-   PRODUCT SELECTS
+   FILL PRODUCTS
 ========================================================= */
 
 function fillProducts(){
 
 const options =
+
 products
+
 .map(
 product => `
 
@@ -5232,37 +3924,29 @@ ${esc(product.name)}
 
 `
 )
-.join('');
+
+.join("");
 
 
 [
-'varProduct',
-'relFrom',
-'relTo'
+"varProduct",
+"relFrom",
+"relTo"
 ]
 .forEach(
 id => {
 
-if($(id)){
-
-$(id).innerHTML =
+$(id)
+.innerHTML =
 options;
-
-}
 
 }
 );
 
 
-if(
-$('bundleProducts')
-){
-
-$('bundleProducts')
+$("bundleProducts")
 .innerHTML =
 options;
-
-}
 
 }
 
@@ -5276,27 +3960,27 @@ async function saveVariant(){
 const row = {
 
 product_id:
-$('varProduct')
+$("varProduct")
 .value,
 
 title:
-$('varTitle')
+$("varTitle")
 .value
 .trim(),
 
 sku:
-$('varSku')
+$("varSku")
 .value
 .trim()
 ||
 null,
 
 price:
-$('varPrice')
+$("varPrice")
 .value
 ?
 Number(
-$('varPrice')
+$("varPrice")
 .value
 )
 :
@@ -5304,14 +3988,14 @@ null,
 
 stock:
 Number(
-$('varStock')
+$("varStock")
 .value
 ||
 0
 ),
 
 color:
-$('varColor')
+$("varColor")
 .value
 .trim()
 ||
@@ -5322,24 +4006,12 @@ null
 
 if(
 !row.product_id
-){
-
-toast(
-'اختر المنتج'
-);
-
-
-return;
-
-}
-
-
-if(
+||
 !row.title
 ){
 
 toast(
-'اكتب اسم الخيار'
+"اختر المنتج واكتب اسم الخيار"
 );
 
 
@@ -5353,7 +4025,7 @@ error
 } =
 await db
 .from(
-'product_variants'
+"product_variants"
 )
 .insert(
 row
@@ -5372,41 +4044,23 @@ return;
 }
 
 
-$('varTitle').value =
-'';
-
-
-$('varSku').value =
-'';
-
-
-$('varPrice').value =
-'';
-
-
-$('varStock').value =
-'';
-
-
-$('varColor').value =
-'';
-
-
 toast(
-'تمت إضافة الخيار ✓'
+"تمت إضافة الخيار"
 );
 
 
-await loadCommerceData();
+await loadAll();
 
 }
 
 
 function renderVariants(){
 
-$('variantsBody')
+$("variantsBody")
 .innerHTML =
+
 variants
+
 .map(
 variant => `
 
@@ -5423,19 +4077,24 @@ product.id
 String(
 variant.product_id
 )
-)
-?.name
+)?.name
 ||
-''
+""
 )}
 </td>
 
 <td>
-${esc(variant.title || '')}
+${esc(
+variant.title
+||
+variant.size
+||
+""
+)}
 </td>
 
 <td>
-${esc(variant.sku || '')}
+${esc(variant.sku || "")}
 </td>
 
 <td>
@@ -5443,15 +4102,17 @@ ${money(variant.price)}
 </td>
 
 <td>
-${variant.stock ?? 0}
+${Number(variant.stock || 0)}
 </td>
 
 <td>
 
 <button
 class="btn red sm"
-type="button"
-onclick="del('product_variants','${variant.id}')"
+onclick="removeRow(
+'product_variants',
+'${variant.id}'
+)"
 >
 حذف
 </button>
@@ -5462,7 +4123,8 @@ onclick="del('product_variants','${variant.id}')"
 
 `
 )
-.join('');
+
+.join("");
 
 }
 
@@ -5474,20 +4136,20 @@ onclick="del('product_variants','${variant.id}')"
 async function saveBundle(){
 
 let id =
-$('bundleId')
+$("bundleId")
 .value;
 
 
 const row = {
 
 name:
-$('bundleName')
+$("bundleName")
 .value
 .trim(),
 
 regular_price:
 Number(
-$('bundleRegular')
+$("bundleRegular")
 .value
 ||
 0
@@ -5495,7 +4157,7 @@ $('bundleRegular')
 
 offer_price:
 Number(
-$('bundleOffer')
+$("bundleOffer")
 .value
 ||
 0
@@ -5503,32 +4165,32 @@ $('bundleOffer')
 
 stock:
 Number(
-$('bundleStock')
+$("bundleStock")
 .value
 ||
 0
 ),
 
 image_url:
-$('bundleImage')
+$("bundleImage")
 .value
 .trim()
 ||
 null,
 
 description:
-$('bundleDesc')
+$("bundleDesc")
 .value
 .trim()
 ||
 null,
 
 ends_at:
-$('bundleEnd')
+$("bundleEnd")
 .value
 ?
 new Date(
-$('bundleEnd')
+$("bundleEnd")
 .value
 )
 .toISOString()
@@ -5541,12 +4203,10 @@ true
 };
 
 
-if(
-!row.name
-){
+if(!row.name){
 
 toast(
-'اكتب اسم الباقة'
+"اكتب اسم الباقة"
 );
 
 
@@ -5555,21 +4215,21 @@ return;
 }
 
 
-let response;
+let result;
 
 
 if(id){
 
-response =
+result =
 await db
 .from(
-'bundles'
+"bundles"
 )
 .update(
 row
 )
 .eq(
-'id',
+"id",
 id
 )
 .select()
@@ -5578,10 +4238,10 @@ id
 }
 else{
 
-response =
+result =
 await db
 .from(
-'bundles'
+"bundles"
 )
 .insert(
 row
@@ -5592,12 +4252,10 @@ row
 }
 
 
-if(
-response.error
-){
+if(result.error){
 
 alert(
-response.error.message
+result.error.message
 );
 
 
@@ -5607,37 +4265,27 @@ return;
 
 
 id =
-response.data.id;
+result.data.id;
 
 
-const deleteItems =
 await db
 .from(
-'bundle_items'
+"bundle_items"
 )
 .delete()
 .eq(
-'bundle_id',
+"bundle_id",
 id
 );
 
 
-if(
-deleteItems.error
-){
-
-console.warn(
-deleteItems.error
-);
-
-}
-
-
 const selected =
+
 [
-...$('bundleProducts')
+...$("bundleProducts")
 .selectedOptions
 ]
+
 .map(
 option => ({
 
@@ -5656,20 +4304,22 @@ quantity:
 
 if(selected.length){
 
-const result =
+const {
+error
+} =
 await db
 .from(
-'bundle_items'
+"bundle_items"
 )
 .insert(
 selected
 );
 
 
-if(result.error){
+if(error){
 
 alert(
-result.error.message
+error.message
 );
 
 
@@ -5681,14 +4331,14 @@ return;
 
 
 toast(
-'تم حفظ الباقة ✓'
+"تم حفظ الباقة"
 );
 
 
 resetBundle();
 
 
-await loadCommerceData();
+await loadAll();
 
 }
 
@@ -5715,48 +4365,51 @@ return;
 }
 
 
-$('bundleId').value =
+$("bundleId")
+.value =
 bundle.id;
 
 
-$('bundleName').value =
+$("bundleName")
+.value =
 bundle.name
 ||
-'';
+"";
 
 
-$('bundleRegular').value =
+$("bundleRegular")
+.value =
 bundle.regular_price
 ||
 0;
 
 
-$('bundleOffer').value =
+$("bundleOffer")
+.value =
 bundle.offer_price
 ||
 0;
 
 
-$('bundleStock').value =
+$("bundleStock")
+.value =
 bundle.stock
 ||
 0;
 
 
-$('bundleImage').value =
+$("bundleImage")
+.value =
 bundle.image_url
 ||
-'';
+"";
 
 
-$('bundleDesc').value =
+$("bundleDesc")
+.value =
 bundle.description
 ||
-'';
-
-
-$('bundleEnd').value =
-'';
+"";
 
 
 if(bundle.ends_at){
@@ -5767,24 +4420,9 @@ bundle.ends_at
 );
 
 
-if(
-!Number.isNaN(
-date.getTime()
-)
-){
-
-const local =
-new Date(
-date.getTime()
--
-date.getTimezoneOffset()
-*
-60000
-);
-
-
-$('bundleEnd').value =
-local
+$("bundleEnd")
+.value =
+date
 .toISOString()
 .slice(
 0,
@@ -5793,15 +4431,10 @@ local
 
 }
 
-}
-
 
 window.scrollTo({
-
 top:0,
-
-behavior:'smooth'
-
+behavior:"smooth"
 });
 
 }
@@ -5810,27 +4443,28 @@ behavior:'smooth'
 function resetBundle(){
 
 [
-'bundleId',
-'bundleName',
-'bundleRegular',
-'bundleOffer',
-'bundleStock',
-'bundleImage',
-'bundleDesc',
-'bundleEnd'
+"bundleId",
+"bundleName",
+"bundleRegular",
+"bundleOffer",
+"bundleStock",
+"bundleImage",
+"bundleDesc",
+"bundleEnd"
 ]
 .forEach(
 id => {
 
-$(id).value =
-'';
+$(id)
+.value =
+"";
 
 }
 );
 
 
 [
-...$('bundleProducts')
+...$("bundleProducts")
 .options
 ]
 .forEach(
@@ -5847,39 +4481,48 @@ false;
 
 function renderBundles(){
 
-$('bundleList')
+$("bundleList")
 .innerHTML =
+
 bundles.length
+
 ?
+
 bundles
+
 .map(
 bundle => `
 
-<div class="card">
+<div class="order-card">
 
-<b>
-${esc(bundle.name)}
-</b>
+<div class="order-card-head">
 
-—
+<div>
+
+<strong>
+🔥 ${esc(bundle.name)}
+</strong>
+
+<div class="note">
 
 ${money(
 bundle.offer_price,
 bundle.currency
 )}
 
-<span class="pill">
-مخزون ${bundle.stock ?? 0}
-</span>
+·
 
-<div
-class="actions"
-style="margin-top:10px"
->
+المخزون:
+${Number(bundle.stock || 0)}
+
+</div>
+
+</div>
+
+<div class="actions">
 
 <button
 class="btn sm"
-type="button"
 onclick="editBundle('${bundle.id}')"
 >
 تعديل
@@ -5887,8 +4530,10 @@ onclick="editBundle('${bundle.id}')"
 
 <button
 class="btn red sm"
-type="button"
-onclick="del('bundles','${bundle.id}')"
+onclick="removeRow(
+'bundles',
+'${bundle.id}'
+)"
 >
 حذف
 </button>
@@ -5897,17 +4542,21 @@ onclick="del('bundles','${bundle.id}')"
 
 </div>
 
+</div>
+
 `
 )
-.join('')
+.join("")
+
 :
-'لا توجد باقات';
+
+"لا توجد باقات.";
 
 }
 
 
 /* =========================================================
-   GIFTS
+   GIFT OPTIONS
 ========================================================= */
 
 async function saveGift(){
@@ -5915,27 +4564,27 @@ async function saveGift(){
 const row = {
 
 name:
-$('giftName')
+$("giftName")
 .value
 .trim(),
 
 price:
 Number(
-$('giftPrice')
+$("giftPrice")
 .value
 ||
 0
 ),
 
 image_url:
-$('giftImage')
+$("giftImage")
 .value
 .trim()
 ||
 null,
 
 description:
-$('giftDesc')
+$("giftDesc")
 .value
 .trim()
 ||
@@ -5947,12 +4596,10 @@ true
 };
 
 
-if(
-!row.name
-){
+if(!row.name){
 
 toast(
-'اكتب اسم التغليف'
+"اكتب اسم التغليف"
 );
 
 
@@ -5966,7 +4613,7 @@ error
 } =
 await db
 .from(
-'gift_options'
+"gift_options"
 )
 .insert(
 row
@@ -5985,70 +4632,182 @@ return;
 }
 
 
-$('giftName').value =
-'';
-
-
-$('giftPrice').value =
-'';
-
-
-$('giftImage').value =
-'';
-
-
-$('giftDesc').value =
-'';
-
-
 toast(
-'تمت إضافة التغليف ✓'
+"تمت إضافة خيار التغليف"
 );
 
 
-await loadCommerceData();
+$("giftName")
+.value =
+"";
+
+
+$("giftPrice")
+.value =
+"";
+
+
+$("giftImage")
+.value =
+"";
+
+
+$("giftDesc")
+.value =
+"";
+
+
+await loadAll();
 
 }
 
 
 function renderGifts(){
 
-$('giftList')
+$("giftList")
 .innerHTML =
+
 gifts.length
+
 ?
+
 gifts
+
 .map(
 gift => `
 
-<div class="card">
+<div class="order-card">
 
-<b>
-${esc(gift.name)}
-</b>
+<strong>
+🎁 ${esc(gift.name)}
+</strong>
 
-—
+<div class="note">
 
 ${money(
 gift.price,
 gift.currency
 )}
 
+</div>
+
+<div class="actions">
+
 <button
 class="btn red sm"
-type="button"
-onclick="del('gift_options','${gift.id}')"
+onclick="removeRow(
+'gift_options',
+'${gift.id}'
+)"
 >
 حذف
 </button>
 
 </div>
 
+</div>
+
 `
 )
-.join('')
+.join("")
+
 :
-'لا توجد خيارات تغليف';
+
+"لا توجد خيارات تغليف.";
+
+}
+
+
+/* =========================================================
+   GIFT DESIGN
+========================================================= */
+
+async function saveGiftDesign(){
+
+const giftSection = {
+
+enabled:
+$("giftSectionEnabled")
+.checked,
+
+title:
+$("giftSectionTitleAdmin")
+.value
+.trim(),
+
+description:
+$("giftSectionDescriptionAdmin")
+.value
+.trim(),
+
+buttonText:
+$("giftSectionButtonText")
+.value
+.trim(),
+
+icon:
+$("giftSectionIconAdmin")
+.value
+.trim()
+||
+"🎁",
+
+background:
+$("giftSectionBackground")
+.value,
+
+textColor:
+$("giftSectionTextColor")
+.value,
+
+buttonColor:
+$("giftSectionButtonColor")
+.value,
+
+radius:
+Number(
+$("giftSectionRadius")
+.value
+||
+26
+)
+
+};
+
+
+const next = {
+
+...generalSettings,
+
+giftSection
+
+};
+
+
+try{
+
+await saveSetting(
+"general",
+next
+);
+
+
+generalSettings =
+next;
+
+
+toast(
+"تم حفظ تصميم قسم الهدية"
+);
+
+}
+catch(error){
+
+alert(
+error.message
+);
+
+}
 
 }
 
@@ -6062,18 +4821,18 @@ async function saveCoupon(){
 const row = {
 
 code:
-$('cpCode')
+$("cpCode")
 .value
 .trim()
 .toUpperCase(),
 
 discount_type:
-$('cpType')
+$("cpType")
 .value,
 
 value:
 Number(
-$('cpValue')
+$("cpValue")
 .value
 ||
 0
@@ -6081,31 +4840,31 @@ $('cpValue')
 
 min_order:
 Number(
-$('cpMin')
+$("cpMin")
 .value
 ||
 0
 ),
 
 max_discount:
-$('cpMax')
+$("cpMax")
 .value
 ?
 Number(
-$('cpMax')
+$("cpMax")
 .value
 )
 :
 null,
 
 expires_at:
-$('cpExpiry')
+$("cpExpiry")
 .value
 ||
 null,
 
 first_order_only:
-$('cpFirst')
+$("cpFirst")
 .checked,
 
 is_active:
@@ -6114,12 +4873,10 @@ true
 };
 
 
-if(
-!row.code
-){
+if(!row.code){
 
 toast(
-'اكتب كود الخصم'
+"اكتب كود الخصم"
 );
 
 
@@ -6133,7 +4890,7 @@ error
 } =
 await db
 .from(
-'coupons'
+"coupons"
 )
 .insert(
 row
@@ -6152,65 +4909,46 @@ return;
 }
 
 
-$('cpCode').value =
-'';
-
-
-$('cpValue').value =
-'';
-
-
-$('cpMin').value =
-'';
-
-
-$('cpMax').value =
-'';
-
-
-$('cpExpiry').value =
-'';
-
-
-$('cpFirst').checked =
-false;
-
-
 toast(
-'تم حفظ الكوبون ✓'
+"تم حفظ الكوبون"
 );
 
 
-await loadCommerceData();
+await loadAll();
 
 }
 
 
 function renderCoupons(){
 
-$('couponList')
+$("couponList")
 .innerHTML =
+
 coupons.length
+
 ?
+
 coupons
+
 .map(
 coupon => `
 
-<div class="card">
+<div class="order-card">
 
-<b>
+<strong>
 ${esc(coupon.code)}
-</b>
+</strong>
 
-—
+<div class="note">
 
 ${
-coupon.discount_type ===
-'percentage'
+coupon.discount_type
+===
+"percentage"
 ?
 coupon.value
 +
-'%'
+"%"
 :
 money(
 coupon.value
@@ -6220,21 +4958,19 @@ coupon.value
 ${
 coupon.first_order_only
 ?
-`
-
-<span class="pill">
-أول طلب
-</span>
-
-`
+" · أول طلب فقط"
 :
-''
+""
 }
+
+</div>
 
 <button
 class="btn red sm"
-type="button"
-onclick="del('coupons','${coupon.id}')"
+onclick="removeRow(
+'coupons',
+'${coupon.id}'
+)"
 >
 حذف
 </button>
@@ -6243,9 +4979,11 @@ onclick="del('coupons','${coupon.id}')"
 
 `
 )
-.join('')
+.join("")
+
 :
-'لا توجد كوبونات';
+
+"لا توجد كوبونات.";
 
 }
 
@@ -6256,34 +4994,56 @@ onclick="del('coupons','${coupon.id}')"
 
 function renderCustomers(){
 
-$('customersBody')
+$("customersBody")
 .innerHTML =
+
 customers
+
 .map(
 customer => `
 
 <tr>
 
 <td>
-${esc(customer.name || 'عميل')}
+${esc(
+customer.name
+||
+"عميل"
+)}
 </td>
 
 <td>
-${esc(customer.phone || '')}
+${esc(
+customer.phone
+||
+""
+)}
 </td>
 
 <td>
-${customer.total_orders ?? 0}
+${Number(
+customer.total_orders
+||
+0
+)}
 </td>
 
 <td>
-<b>
-${customer.purchase_count ?? 0}
-</b>
+
+<strong>
+${Number(
+customer.purchase_count
+||
+0
+)}
+</strong>
+
 </td>
 
 <td>
-${money(customer.lifetime_value)}
+${money(
+customer.lifetime_value
+)}
 </td>
 
 <td>
@@ -6295,10 +5055,10 @@ new Date(
 customer.last_order_at
 )
 .toLocaleString(
-'ar'
+"ar"
 )
 :
-''
+"—"
 }
 
 </td>
@@ -6307,7 +5067,8 @@ customer.last_order_at
 
 `
 )
-.join('');
+
+.join("");
 
 }
 
@@ -6318,77 +5079,52 @@ customer.last_order_at
 
 function renderOrders(){
 
-$('ordersBody')
+if(
+!orders.length
+){
+
+$("ordersCards")
+.innerHTML = `
+
+<div class="card">
+لا توجد طلبات.
+</div>
+
+`;
+
+
+return;
+
+}
+
+
+$("ordersCards")
 .innerHTML =
+
 orders
+
 .map(
 order => `
 
-<tr>
+<div class="order-card">
 
-<td>
-#${esc(order.order_number || '')}
-</td>
+<div class="order-card-head">
 
-<td>
+<div>
 
-${esc(order.name || '')}
+<strong>
+طلب #${esc(order.order_number)}
+</strong>
+
+<div class="note">
+
+${esc(order.name || "عميل")}
+
+·
+
+${esc(order.phone || "")}
 
 <br>
-
-<small>
-${esc(order.phone || '')}
-</small>
-
-</td>
-
-<td>
-${money(
-order.total,
-order.currency
-)}
-</td>
-
-<td>
-
-<select
-onchange="changeStatus('${order.id}',this.value)"
->
-
-${
-[
-'pending',
-'confirmed',
-'processing',
-'shipped',
-'delivered',
-'cancelled',
-'refunded'
-]
-.map(
-status => `
-
-<option
-value="${status}"
-${order.status === status ? 'selected' : ''}
->
-${status}
-</option>
-
-`
-)
-.join('')
-}
-
-</select>
-
-</td>
-
-<td>
-${order.is_gift ? '🎁 نعم' : '—'}
-</td>
-
-<td>
 
 ${
 order.created_at
@@ -6397,22 +5133,176 @@ new Date(
 order.created_at
 )
 .toLocaleString(
-'ar'
+"ar"
 )
 :
-''
+""
 }
 
-</td>
+</div>
 
-</tr>
+</div>
+
+
+<div>
+
+<span
+class="pill ${
+order.status ===
+"delivered"
+?
+"green"
+:
+order.status ===
+"cancelled"
+?
+"red"
+:
+"gold"
+}"
+>
+
+${statusText(order.status)}
+
+</span>
+
+</div>
+
+</div>
+
+
+<div
+class="grid3"
+style="margin-top:12px"
+>
+
+<div>
+
+<strong>
+الإجمالي
+</strong>
+
+<br>
+
+${money(
+order.total,
+order.currency
+)}
+
+</div>
+
+
+<div>
+
+<strong>
+هدية
+</strong>
+
+<br>
+
+${order.is_gift ? "🎁 نعم" : "—"}
+
+</div>
+
+
+<div>
+
+<strong>
+طريقة الدفع
+</strong>
+
+<br>
+
+${esc(
+order.payment_method
+||
+order.pay_method
+||
+"—"
+)}
+
+</div>
+
+</div>
+
+
+<div
+class="actions"
+style="margin-top:12px"
+>
+
+<button
+class="btn blue sm"
+onclick="openOrder('${order.id}')"
+>
+تفاصيل
+</button>
+
+
+<select
+style="
+width:auto;
+margin:0
+"
+onchange="
+changeStatus(
+'${order.id}',
+this.value
+)
+"
+>
+
+${
+[
+"pending",
+"confirmed",
+"processing",
+"shipped",
+"delivered",
+"cancelled",
+"refunded"
+]
+.map(
+status => `
+
+<option
+value="${status}"
+${
+order.status ===
+status
+?
+"selected"
+:
+""
+}
+>
+
+${statusText(status)}
+
+</option>
 
 `
 )
-.join('');
+.join("")
+}
+
+</select>
+
+</div>
+
+</div>
+
+`
+)
+
+.join("");
 
 }
 
+
+/* =========================================================
+   CHANGE STATUS
+========================================================= */
 
 async function changeStatus(
 id,
@@ -6424,11 +5314,10 @@ error
 } =
 await db
 .from(
-'orders'
+"orders"
 )
 .update({
 
-status:
 status,
 
 updated_at:
@@ -6437,7 +5326,7 @@ new Date()
 
 })
 .eq(
-'id',
+"id",
 id
 );
 
@@ -6455,11 +5344,725 @@ return;
 
 
 toast(
-'تم تحديث حالة الطلب ✓'
+"تم تحديث حالة الطلب"
 );
 
 
-await loadCommerceData();
+await loadAll();
+
+}
+
+
+/* =========================================================
+   OPEN ORDER
+========================================================= */
+
+async function openOrder(id){
+
+const order =
+orders.find(
+item =>
+String(
+item.id
+)
+===
+String(
+id
+)
+);
+
+
+if(!order){
+
+return;
+
+}
+
+
+selectedOrder = {
+
+...order,
+
+items:[]
+
+};
+
+
+let items = [];
+
+
+const result =
+await db
+.from(
+"order_items"
+)
+.select(
+"*"
+)
+.eq(
+"order_id",
+id
+);
+
+
+if(!result.error){
+
+items =
+result.data
+||
+[];
+
+}
+
+
+selectedOrder.items =
+items;
+
+
+renderOrderModal();
+
+
+$("modalScrim")
+.classList.add(
+"show"
+);
+
+
+$("orderModal")
+.classList.add(
+"show"
+);
+
+}
+
+
+/* =========================================================
+   ORDER MODAL
+========================================================= */
+
+function renderOrderModal(){
+
+if(!selectedOrder){
+
+return;
+
+}
+
+
+const order =
+selectedOrder;
+
+
+const items =
+order.items
+||
+[];
+
+
+$("orderModalBody")
+.innerHTML = `
+
+<div class="grid2">
+
+<div class="card">
+
+<strong>
+رقم الطلب
+</strong>
+
+<div>
+#${esc(order.order_number)}
+</div>
+
+</div>
+
+<div class="card">
+
+<strong>
+الحالة
+</strong>
+
+<div>
+${statusText(order.status)}
+</div>
+
+</div>
+
+<div class="card">
+
+<strong>
+العميل
+</strong>
+
+<div>
+${esc(order.name || "")}
+</div>
+
+</div>
+
+<div class="card">
+
+<strong>
+الهاتف
+</strong>
+
+<div dir="ltr">
+${esc(order.phone || "")}
+</div>
+
+</div>
+
+<div class="card">
+
+<strong>
+العنوان
+</strong>
+
+<div>
+${esc(order.address || "—")}
+</div>
+
+</div>
+
+<div class="card">
+
+<strong>
+طريقة الدفع
+</strong>
+
+<div>
+${esc(
+order.payment_method
+||
+order.pay_method
+||
+"—"
+)}
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+المنتجات
+</h3>
+
+${
+items.length
+?
+items
+.map(
+item => `
+
+<div class="order-product">
+
+${
+item.product_image
+?
+`
+
+<img
+src="${esc(item.product_image)}"
+>
+
+`
+:
+""
+}
+
+<div>
+
+<strong>
+
+${
+item.item_type ===
+"bundle"
+?
+"🔥 "
+:
+""
+}
+
+${esc(
+item.product_name
+||
+item.name
+||
+"منتج"
+)}
+
+</strong>
+
+<div class="note">
+
+الكمية:
+${Number(
+item.quantity
+||
+item.qty
+||
+1
+)}
+
+${
+item.variant_title
+?
+" · "
++
+esc(item.variant_title)
+:
+""
+}
+
+${
+item.size
+?
+" · الحجم: "
++
+esc(item.size)
+:
+""
+}
+
+${
+item.color
+?
+" · اللون: "
++
+esc(item.color)
+:
+""
+}
+
+</div>
+
+</div>
+
+</div>
+
+`
+)
+.join("")
+:
+`
+
+<div class="note">
+لا توجد تفاصيل عناصر.
+</div>
+
+`
+}
+
+</div>
+
+
+${
+order.is_gift
+?
+`
+
+<div class="card">
+
+<h3>
+🎁 الطلب يحتوي على هدية
+</h3>
+
+<p class="note">
+
+راجع تفاصيل التغليف والمستلم داخل بيانات عناصر الطلب إذا كانت مخزنة في قاعدة البيانات.
+
+</p>
+
+</div>
+
+`
+:
+""
+}
+
+
+<div class="card">
+
+<div
+style="
+display:flex;
+justify-content:space-between;
+font-size:20px;
+font-weight:900
+"
+>
+
+<span>
+الإجمالي
+</span>
+
+<span>
+${money(
+order.total,
+order.currency
+)}
+</span>
+
+</div>
+
+</div>
+
+
+<div class="actions">
+
+<button
+class="btn"
+onclick="printAdminInvoice()"
+>
+🧾 طباعة الفاتورة
+</button>
+
+</div>
+
+`;
+
+}
+
+
+function closeOrderModal(){
+
+$("orderModal")
+.classList.remove(
+"show"
+);
+
+
+$("modalScrim")
+.classList.remove(
+"show"
+);
+
+
+selectedOrder =
+null;
+
+}
+
+
+/* =========================================================
+   ADMIN INVOICE
+========================================================= */
+
+function printAdminInvoice(){
+
+if(!selectedOrder){
+
+return;
+
+}
+
+
+const order =
+selectedOrder;
+
+
+const items =
+order.items
+||
+[];
+
+
+const popup =
+window.open(
+"",
+"_blank"
+);
+
+
+if(!popup){
+
+return;
+
+}
+
+
+popup.document.write(`
+
+<!DOCTYPE html>
+
+<html
+lang="ar"
+dir="rtl"
+>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>
+فاتورة #${esc(order.order_number)}
+</title>
+
+<style>
+
+body{
+
+font-family:
+Arial,sans-serif;
+
+padding:30px;
+
+direction:rtl;
+
+color:#222;
+
+}
+
+.wrap{
+
+max-width:760px;
+
+margin:auto;
+
+}
+
+h1{
+text-align:center;
+}
+
+.info{
+
+display:grid;
+
+grid-template-columns:
+1fr 1fr;
+
+gap:10px;
+
+margin:
+20px 0;
+
+}
+
+.info div{
+
+border:
+1px solid #ddd;
+
+padding:10px;
+
+}
+
+table{
+
+width:100%;
+
+border-collapse:collapse;
+
+}
+
+th,
+td{
+
+padding:10px;
+
+border-bottom:
+1px solid #ddd;
+
+text-align:right;
+
+}
+
+.total{
+
+display:flex;
+
+justify-content:space-between;
+
+font-size:20px;
+
+font-weight:bold;
+
+margin-top:20px;
+
+border-top:
+2px solid #222;
+
+padding-top:15px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="wrap">
+
+<h1>
+متجر الشعيبي
+</h1>
+
+<h3>
+فاتورة #${esc(order.order_number)}
+</h3>
+
+
+<div class="info">
+
+<div>
+العميل:
+${esc(order.name || "")}
+</div>
+
+<div>
+الهاتف:
+${esc(order.phone || "")}
+</div>
+
+<div>
+الحالة:
+${statusText(order.status)}
+</div>
+
+<div>
+التاريخ:
+${
+order.created_at
+?
+new Date(
+order.created_at
+)
+.toLocaleString(
+"ar"
+)
+:
+""
+}
+</div>
+
+</div>
+
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+المنتج
+</th>
+
+<th>
+الكمية
+</th>
+
+<th>
+السعر
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+${
+items
+.map(
+item => `
+
+<tr>
+
+<td>
+${esc(
+item.product_name
+||
+item.name
+||
+"منتج"
+)}
+</td>
+
+<td>
+${Number(
+item.quantity
+||
+item.qty
+||
+1
+)}
+</td>
+
+<td>
+
+${
+item.unit_price
+!=
+null
+?
+Number(
+item.unit_price
+)
+.toFixed(
+2
+)
+:
+"—"
+}
+
+</td>
+
+</tr>
+
+`
+)
+.join("")
+}
+
+</tbody>
+
+</table>
+
+
+<div class="total">
+
+<span>
+الإجمالي
+</span>
+
+<span>
+${money(
+order.total,
+order.currency
+)}
+</span>
+
+</div>
+
+</div>
+
+
+<script>
+
+window.onload =
+function(){
+
+window.print();
+
+};
+
+<\/script>
+
+</body>
+
+</html>
+
+`);
+
+
+popup.document.close();
 
 }
 
@@ -6470,28 +6073,63 @@ await loadCommerceData();
 
 function renderReviews(){
 
-$('reviewsList')
+$("reviewsList")
 .innerHTML =
+
 reviews.length
+
 ?
+
 reviews
+
 .map(
 review => `
 
-<div class="card">
+<div class="order-card">
 
-<b>
+<div class="order-card-head">
+
+<div>
+
+<strong>
 ${esc(
 review.customer_name
 ||
 review.name
 ||
-'عميل'
+"عميل"
 )}
-</b>
+</strong>
 
-⭐
-${review.rating ?? 0}
+<div>
+⭐ ${Number(review.rating || 0)}
+</div>
+
+</div>
+
+
+<span
+class="pill ${
+review.is_approved
+?
+"green"
+:
+"gold"
+}"
+>
+
+${
+review.is_approved
+?
+"ظاهر"
+:
+"بانتظار الاعتماد"
+}
+
+</span>
+
+</div>
+
 
 <p>
 ${esc(
@@ -6499,21 +6137,25 @@ review.text
 ||
 review.comment
 ||
-''
+""
 )}
 </p>
 
-<span class="pill">
 
 ${
 review.is_verified_purchase
 ?
-'شراء موثق'
+`
+
+<span class="pill green">
+✓ شراء موثق
+</span>
+
+`
 :
-'غير موثق'
+""
 }
 
-</span>
 
 <div
 class="actions"
@@ -6522,24 +6164,29 @@ style="margin-top:10px"
 
 <button
 class="btn sm"
-type="button"
-onclick="approveReview('${review.id}',${!review.is_approved})"
+onclick="approveReview(
+'${review.id}',
+${!review.is_approved}
+)"
 >
 
 ${
 review.is_approved
 ?
-'إخفاء'
+"إخفاء"
 :
-'اعتماد'
+"اعتماد"
 }
 
 </button>
 
+
 <button
 class="btn red sm"
-type="button"
-onclick="del('reviews','${review.id}')"
+onclick="removeRow(
+'reviews',
+'${review.id}'
+)"
 >
 حذف
 </button>
@@ -6550,9 +6197,11 @@ onclick="del('reviews','${review.id}')"
 
 `
 )
-.join('')
+.join("")
+
 :
-'لا توجد تقييمات';
+
+"لا توجد تقييمات.";
 
 }
 
@@ -6567,7 +6216,7 @@ error
 } =
 await db
 .from(
-'reviews'
+"reviews"
 )
 .update({
 
@@ -6576,7 +6225,7 @@ value
 
 })
 .eq(
-'id',
+"id",
 id
 );
 
@@ -6593,45 +6242,27 @@ return;
 }
 
 
-toast(
-'تم تحديث التقييم ✓'
-);
-
-
-await loadCommerceData();
+await loadAll();
 
 }
 
 
 /* =========================================================
-   RECOMMENDATIONS
+   RELATIONS
 ========================================================= */
 
 async function saveRelation(){
 
 if(
-!$('relFrom').value
-||
-!$('relTo').value
+$("relFrom")
+.value
+===
+$("relTo")
+.value
 ){
 
 toast(
-'اختر المنتجات'
-);
-
-
-return;
-
-}
-
-
-if(
-$('relFrom').value ===
-$('relTo').value
-){
-
-toast(
-'اختر منتجين مختلفين'
+"اختر منتجين مختلفين"
 );
 
 
@@ -6645,20 +6276,20 @@ error
 } =
 await db
 .from(
-'product_relations'
+"product_relations"
 )
 .insert({
 
 product_id:
-$('relFrom')
+$("relFrom")
 .value,
 
 related_product_id:
-$('relTo')
+$("relTo")
 .value,
 
 relation_type:
-$('relType')
+$("relType")
 .value
 
 });
@@ -6677,41 +6308,39 @@ return;
 
 
 toast(
-'تم ربط المنتجات ✓'
+"تم ربط المنتجات"
 );
 
 
-await loadCommerceData();
+await loadAll();
 
 }
 
 
 function renderRelations(){
 
-$('relationsList')
+$("relationsList")
 .innerHTML =
+
 relations.length
+
 ?
+
 relations
 .map(
 relation => `
 
-<div class="card">
+<div class="order-card">
 
 ${esc(
 products.find(
 product =>
-String(
-product.id
-)
+String(product.id)
 ===
-String(
-relation.product_id
-)
-)
-?.name
+String(relation.product_id)
+)?.name
 ||
-''
+""
 )}
 
 ←
@@ -6719,17 +6348,12 @@ relation.product_id
 ${esc(
 products.find(
 product =>
-String(
-product.id
-)
+String(product.id)
 ===
-String(
-relation.related_product_id
-)
-)
-?.name
+String(relation.related_product_id)
+)?.name
 ||
-''
+""
 )}
 
 <span class="pill">
@@ -6738,8 +6362,10 @@ ${esc(relation.relation_type)}
 
 <button
 class="btn red sm"
-type="button"
-onclick="del('product_relations','${relation.id}')"
+onclick="removeRow(
+'product_relations',
+'${relation.id}'
+)"
 >
 حذف
 </button>
@@ -6748,9 +6374,1230 @@ onclick="del('product_relations','${relation.id}')"
 
 `
 )
-.join('')
+.join("")
+
 :
-'لا توجد اقتراحات';
+
+"لا توجد روابط.";
+
+}
+
+
+/* =========================================================
+   ADS SAVE
+========================================================= */
+
+async function saveAds(){
+
+const media =
+
+$("adMedia")
+.value
+.split(
+"\n"
+)
+.map(
+item =>
+item.trim()
+)
+.filter(
+Boolean
+);
+
+
+const next = {
+
+enabled:
+$("adEnabled")
+.checked,
+
+type:
+$("adType")
+.value,
+
+heightDesktop:
+Number(
+$("adHeightDesktop")
+.value
+||
+650
+),
+
+heightMobile:
+Number(
+$("adHeightMobile")
+.value
+||
+760
+),
+
+radius:
+Number(
+$("adRadius")
+.value
+||
+0
+),
+
+fit:
+$("adFit")
+.value,
+
+position:
+"center",
+
+interval:
+Number(
+$("adInterval")
+.value
+||
+4000
+),
+
+link:
+$("adLinkAdmin")
+.value
+.trim(),
+
+media
+
+};
+
+
+try{
+
+await saveSetting(
+"ads",
+next
+);
+
+
+adSettings =
+next;
+
+
+toast(
+"تم حفظ شاشة الإعلانات"
+);
+
+
+previewAd();
+
+}
+catch(error){
+
+alert(
+error.message
+);
+
+}
+
+}
+
+
+/* =========================================================
+   AD PREVIEW
+========================================================= */
+
+function previewAd(){
+
+const media =
+
+$("adMedia")
+.value
+.split(
+"\n"
+)
+.map(
+item =>
+item.trim()
+)
+.filter(
+Boolean
+);
+
+
+if(!media.length){
+
+$("adPreview")
+.innerHTML =
+"لا توجد روابط إعلان.";
+
+
+return;
+
+}
+
+
+if(
+$("adType")
+.value
+===
+"video"
+){
+
+$("adPreview")
+.innerHTML = `
+
+<video
+src="${esc(media[0])}"
+controls
+style="
+width:100%;
+max-height:420px
+"
+></video>
+
+`;
+
+
+return;
+
+}
+
+
+$("adPreview")
+.innerHTML = `
+
+<img
+src="${esc(media[0])}"
+style="
+object-fit:${$("adFit").value};
+"
+>
+
+`;
+
+}
+
+
+/* =========================================================
+   PAYMENT METHODS
+========================================================= */
+
+function addPaymentMethod(){
+
+const name =
+$("paymentName")
+.value
+.trim();
+
+
+let id =
+$("paymentId")
+.value
+.trim();
+
+
+if(!name){
+
+toast(
+"اكتب اسم وسيلة الدفع"
+);
+
+
+return;
+
+}
+
+
+if(!id){
+
+id =
+"payment_"
++
+Date.now();
+
+}
+
+
+paymentMethodsDraft.push({
+
+id,
+
+name,
+
+type:
+$("paymentType")
+.value,
+
+description:
+$("paymentDescription")
+.value
+.trim(),
+
+enabled:
+true,
+
+sortOrder:
+paymentMethodsDraft.length
++
+1
+
+});
+
+
+$("paymentName")
+.value =
+"";
+
+
+$("paymentId")
+.value =
+"";
+
+
+$("paymentDescription")
+.value =
+"";
+
+
+renderPaymentDraft();
+
+}
+
+
+function deletePaymentMethod(index){
+
+paymentMethodsDraft.splice(
+index,
+1
+);
+
+
+renderPaymentDraft();
+
+}
+
+
+function renderPaymentDraft(){
+
+$("paymentMethodsList")
+.innerHTML =
+
+paymentMethodsDraft.length
+
+?
+
+paymentMethodsDraft
+.map(
+(
+method,
+index
+) => `
+
+<div class="payment-row">
+
+<div class="order-card-head">
+
+<div>
+
+<strong>
+${esc(method.name)}
+</strong>
+
+<div class="note">
+
+الرمز:
+${esc(method.id)}
+
+·
+
+${esc(method.type || "")}
+
+</div>
+
+</div>
+
+<button
+class="btn red sm"
+onclick="deletePaymentMethod(${index})"
+>
+حذف
+</button>
+
+</div>
+
+${
+method.description
+?
+`
+
+<div class="note">
+${esc(method.description)}
+</div>
+
+`
+:
+""
+}
+
+</div>
+
+`
+)
+.join("")
+
+:
+
+"لم تتم إضافة وسائل دفع.";
+
+}
+
+
+/* =========================================================
+   BANK ACCOUNTS
+========================================================= */
+
+function addBankAccount(){
+
+const bankName =
+$("bankName")
+.value
+.trim();
+
+
+if(!bankName){
+
+toast(
+"اكتب اسم البنك"
+);
+
+
+return;
+
+}
+
+
+bankAccountsDraft.push({
+
+bankName,
+
+accountName:
+$("bankHolder")
+.value
+.trim(),
+
+accountNumber:
+$("bankAccount")
+.value
+.trim(),
+
+iban:
+$("bankIban")
+.value
+.trim(),
+
+instructions:
+$("bankInstructions")
+.value
+.trim(),
+
+enabled:
+true
+
+});
+
+
+[
+"bankName",
+"bankHolder",
+"bankAccount",
+"bankIban",
+"bankInstructions"
+]
+.forEach(
+id => {
+
+$(id)
+.value =
+"";
+
+}
+);
+
+
+renderBankDraft();
+
+}
+
+
+function deleteBankAccount(index){
+
+bankAccountsDraft.splice(
+index,
+1
+);
+
+
+renderBankDraft();
+
+}
+
+
+function renderBankDraft(){
+
+$("bankAccountsList")
+.innerHTML =
+
+bankAccountsDraft.length
+
+?
+
+bankAccountsDraft
+.map(
+(
+account,
+index
+) => `
+
+<div class="bank-row">
+
+<div class="order-card-head">
+
+<div>
+
+<strong>
+🏦 ${esc(account.bankName)}
+</strong>
+
+<div class="note">
+
+${esc(account.accountName || "")}
+
+<br>
+
+${esc(account.accountNumber || "")}
+
+${
+account.iban
+?
+"<br>IBAN: "
++
+esc(account.iban)
+:
+""
+}
+
+</div>
+
+</div>
+
+<button
+class="btn red sm"
+onclick="deleteBankAccount(${index})"
+>
+حذف
+</button>
+
+</div>
+
+</div>
+
+`
+)
+.join("")
+
+:
+
+"لا توجد حسابات بنكية.";
+
+}
+
+
+/* =========================================================
+   SAVE PAYMENT SETTINGS
+========================================================= */
+
+async function savePaymentSettings(){
+
+const next = {
+
+...paymentSettings,
+
+paymentMethods:
+paymentMethodsDraft,
+
+bankAccounts:
+bankAccountsDraft
+
+};
+
+
+try{
+
+await saveSetting(
+"payment",
+next
+);
+
+
+paymentSettings =
+next;
+
+
+toast(
+"تم حفظ طرق الدفع والحسابات البنكية"
+);
+
+}
+catch(error){
+
+alert(
+error.message
+);
+
+}
+
+}
+
+
+/* =========================================================
+   POLICY EDITOR
+========================================================= */
+
+function renderPoliciesEditor(){
+
+const saved =
+
+footerSettings.policies
+
+||
+
+{};
+
+
+$("policiesEditor")
+.innerHTML =
+
+policies
+.map(
+item => {
+
+const key =
+item[0];
+
+
+const title =
+item[1];
+
+
+return `
+
+<div class="policy-card">
+
+<div class="check-row">
+
+<input
+id="policyEnabled_${key}"
+type="checkbox"
+${
+saved[
+key
++
+"Enabled"
+]
+===
+false
+?
+""
+:
+"checked"
+}
+>
+
+<label for="policyEnabled_${key}">
+
+إظهار
+${esc(title)}
+
+</label>
+
+</div>
+
+
+<label>
+عنوان الرابط
+</label>
+
+<input
+id="policyTitle_${key}"
+value="${esc(
+saved[
+key
++
+"Title"
+]
+||
+title
+)}"
+>
+
+
+<label>
+النص
+</label>
+
+<textarea
+id="policyText_${key}"
+placeholder="اكتب محتوى ${esc(title)}..."
+>${esc(
+saved[key]
+||
+(
+key ===
+"about"
+?
+generalSettings.aboutText
+||
+""
+:
+""
+)
+)}</textarea>
+
+</div>
+
+`;
+
+}
+)
+.join("");
+
+}
+
+
+/* =========================================================
+   SAVE FOOTER
+========================================================= */
+
+async function saveFooterSettings(){
+
+const policyData =
+{};
+
+
+policies
+.forEach(
+item => {
+
+const key =
+item[0];
+
+
+policyData[
+key
++
+"Enabled"
+] =
+$("policyEnabled_" + key)
+.checked;
+
+
+policyData[
+key
++
+"Title"
+] =
+$("policyTitle_" + key)
+.value
+.trim();
+
+
+policyData[key] =
+$("policyText_" + key)
+.value
+.trim();
+
+}
+);
+
+
+const next = {
+
+...footerSettings,
+
+policies:
+policyData,
+
+paymentMethods:
+paymentMethodsDraft,
+
+bankAccounts:
+bankAccountsDraft
+
+};
+
+
+try{
+
+await saveSetting(
+"footer",
+next
+);
+
+
+footerSettings =
+next;
+
+
+toast(
+"تم حفظ نصوص وروابط أسفل المتجر"
+);
+
+}
+catch(error){
+
+alert(
+error.message
+);
+
+}
+
+}
+
+
+/* =========================================================
+   SAVE GENERAL
+========================================================= */
+
+async function saveGeneralSettings(){
+
+const next = {
+
+...generalSettings,
+
+storeName:
+$("setStoreName")
+.value
+.trim(),
+
+storeNameEn:
+$("setStoreNameEn")
+.value
+.trim(),
+
+storeEyebrow:
+$("setEyebrow")
+.value
+.trim(),
+
+phone:
+$("setPhone")
+.value
+.trim(),
+
+whatsapp:
+$("setWhatsapp")
+.value
+.trim(),
+
+email:
+$("setEmail")
+.value
+.trim(),
+
+logoUrl:
+$("setLogo")
+.value
+.trim(),
+
+splashLogoUrl:
+$("setSplashLogo")
+.value
+.trim(),
+
+sloganTitle:
+$("setSloganTitle")
+.value
+.trim(),
+
+sloganDesc:
+$("setSloganDesc")
+.value
+.trim(),
+
+aboutText:
+$("setAbout")
+.value
+.trim(),
+
+instagram:
+$("setInstagram")
+.value
+.trim(),
+
+tiktok:
+$("setTiktok")
+.value
+.trim(),
+
+facebook:
+$("setFacebook")
+.value
+.trim(),
+
+telegram:
+$("setTelegram")
+.value
+.trim(),
+
+twitter:
+$("setTwitter")
+.value
+.trim(),
+
+snapchat:
+$("setSnapchat")
+.value
+.trim(),
+
+enableSearch:
+$("setSearch")
+.checked,
+
+enableSort:
+$("setSort")
+.checked,
+
+featureReviews:
+$("setReviews")
+.checked
+
+};
+
+
+try{
+
+await saveSetting(
+"general",
+next
+);
+
+
+generalSettings =
+next;
+
+
+toast(
+"تم حفظ إعدادات المتجر"
+);
+
+}
+catch(error){
+
+alert(
+error.message
+);
+
+}
+
+}
+
+
+/* =========================================================
+   FILL SETTINGS FORMS
+========================================================= */
+
+function fillSettingsForms(){
+
+$("setStoreName")
+.value =
+generalSettings.storeName
+||
+"الشعيبي";
+
+
+$("setStoreNameEn")
+.value =
+generalSettings.storeNameEn
+||
+"ALSHUAIIBE STORE";
+
+
+$("setEyebrow")
+.value =
+generalSettings.storeEyebrow
+||
+"متجر الشعيبي";
+
+
+$("setPhone")
+.value =
+generalSettings.phone
+||
+"";
+
+
+$("setWhatsapp")
+.value =
+generalSettings.whatsapp
+||
+"";
+
+
+$("setEmail")
+.value =
+generalSettings.email
+||
+"";
+
+
+$("setLogo")
+.value =
+generalSettings.logoUrl
+||
+"";
+
+
+$("setSplashLogo")
+.value =
+generalSettings.splashLogoUrl
+||
+"";
+
+
+$("setSloganTitle")
+.value =
+generalSettings.sloganTitle
+||
+"صُنعت لمن يبحث عن الاختلاف";
+
+
+$("setSloganDesc")
+.value =
+generalSettings.sloganDesc
+||
+"";
+
+
+$("setAbout")
+.value =
+generalSettings.aboutText
+||
+"";
+
+
+$("setInstagram")
+.value =
+generalSettings.instagram
+||
+"";
+
+
+$("setTiktok")
+.value =
+generalSettings.tiktok
+||
+"";
+
+
+$("setFacebook")
+.value =
+generalSettings.facebook
+||
+"";
+
+
+$("setTelegram")
+.value =
+generalSettings.telegram
+||
+"";
+
+
+$("setTwitter")
+.value =
+generalSettings.twitter
+||
+"";
+
+
+$("setSnapchat")
+.value =
+generalSettings.snapchat
+||
+"";
+
+
+$("setSearch")
+.checked =
+generalSettings.enableSearch
+!==
+false;
+
+
+$("setSort")
+.checked =
+generalSettings.enableSort
+!==
+false;
+
+
+$("setReviews")
+.checked =
+generalSettings.featureReviews
+!==
+false;
+
+
+/* GIFT */
+
+const giftSection =
+
+generalSettings.giftSection
+
+||
+
+{};
+
+
+$("giftSectionEnabled")
+.checked =
+giftSection.enabled
+!==
+false;
+
+
+$("giftSectionTitleAdmin")
+.value =
+giftSection.title
+||
+"🎁 اصنع هديتك بنفسك";
+
+
+$("giftSectionDescriptionAdmin")
+.value =
+giftSection.description
+||
+"اختر العطر والحجم والتغليف، واكتب بطاقة الإهداء وأدخل بيانات الشخص الذي تريد إرسال الهدية إليه.";
+
+
+$("giftSectionButtonText")
+.value =
+giftSection.buttonText
+||
+"ابدأ تجهيز الهدية";
+
+
+$("giftSectionIconAdmin")
+.value =
+giftSection.icon
+||
+"🎁";
+
+
+$("giftSectionBackground")
+.value =
+giftSection.background
+||
+"#F1DDA6";
+
+
+$("giftSectionTextColor")
+.value =
+giftSection.textColor
+||
+"#20301C";
+
+
+$("giftSectionButtonColor")
+.value =
+giftSection.buttonColor
+||
+"#A9793C";
+
+
+$("giftSectionRadius")
+.value =
+giftSection.radius
+??
+26;
+
+
+/* ADS */
+
+$("adEnabled")
+.checked =
+adSettings.enabled
+===
+true;
+
+
+$("adType")
+.value =
+adSettings.type
+||
+"image";
+
+
+$("adHeightDesktop")
+.value =
+adSettings.heightDesktop
+||
+650;
+
+
+$("adHeightMobile")
+.value =
+adSettings.heightMobile
+||
+760;
+
+
+$("adRadius")
+.value =
+adSettings.radius
+||
+0;
+
+
+$("adFit")
+.value =
+adSettings.fit
+||
+"cover";
+
+
+$("adInterval")
+.value =
+adSettings.interval
+||
+4000;
+
+
+$("adLinkAdmin")
+.value =
+adSettings.link
+||
+"";
+
+
+$("adMedia")
+.value =
+
+Array.isArray(
+adSettings.media
+)
+
+?
+
+adSettings.media.join(
+"\n"
+)
+
+:
+
+"";
+
+
+renderPaymentDraft();
+
+renderBankDraft();
+
+renderPoliciesEditor();
+
+previewAd();
 
 }
 
@@ -6759,14 +7606,14 @@ onclick="del('product_relations','${relation.id}')"
    DELETE
 ========================================================= */
 
-async function del(
+async function removeRow(
 table,
 id
 ){
 
 if(
 !confirm(
-'تأكيد الحذف؟'
+"تأكيد الحذف؟"
 )
 ){
 
@@ -6784,7 +7631,7 @@ table
 )
 .delete()
 .eq(
-'id',
+"id",
 id
 );
 
@@ -6802,52 +7649,95 @@ return;
 
 
 toast(
-'تم الحذف ✓'
+"تم الحذف"
 );
 
 
-await loadCommerceData();
+await loadAll();
 
 }
+
+
+/* =========================================================
+   AUTH STATE
+========================================================= */
+
+db.auth
+.onAuthStateChange(
+(
+event,
+session
+) => {
+
+if(
+event ===
+"SIGNED_OUT"
+){
+
+$("app")
+.classList.add(
+"hidden"
+);
+
+
+$("login")
+.classList.remove(
+"hidden"
+);
+
+}
+
+}
+);
 
 
 /* =========================================================
    START
 ========================================================= */
 
-document
-.addEventListener(
-'DOMContentLoaded',
-async function(){
+(async function start(){
 
-try{
-
-await restoreAdminSession();
-
-}
-catch(error){
-
-console.error(
-'Startup:',
-error
-);
+const session =
+await getSession();
 
 
-setLoginMessage(
-'خطأ أثناء تشغيل لوحة الإدارة: '
-+
-(
-error?.message ||
-'خطأ غير معروف'
-)
-);
+if(session){
+
+const allowed =
+await isAdmin();
+
+
+if(allowed){
+
+await boot();
+
+
+return;
 
 }
 
+
+await db.auth
+.signOut();
+
 }
+
+
+$("login")
+.classList.remove(
+"hidden"
 );
+
+
+$("app")
+.classList.add(
+"hidden"
+);
+
+})();
 
 </script>
 
 </body>
+
 </html>
