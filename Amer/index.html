@@ -11,16 +11,8 @@ content="width=device-width,initial-scale=1,viewport-fit=cover"
 
 <title>لوحة إدارة الشعيبي PRO</title>
 
-<link
-rel="preconnect"
-href="https://fonts.googleapis.com"
->
-
-<link
-rel="preconnect"
-href="https://fonts.gstatic.com"
-crossorigin
->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link
 href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Amiri:wght@400;700&family=Cairo:wght@300;400;500;600;700;800;900&family=Markazi+Text:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700;800;900&display=swap"
@@ -30,27 +22,17 @@ rel="stylesheet"
 <style>
 
 :root{
-
 --cream:#F8EACB;
 --cream2:#F1DDA6;
 --card:#FFFBF0;
-
 --ink:#20301C;
 --soft:#596052;
-
 --gold:#A9793C;
-
 --danger:#9B3A2E;
-
 --ok:#4C6B3E;
-
 --blue:#2C5A82;
-
 --line:rgba(32,48,28,.16);
-
---shadow:
-0 10px 30px rgba(32,48,28,.10);
-
+--shadow:0 10px 30px rgba(32,48,28,.10);
 }
 
 *{
@@ -63,37 +45,24 @@ scroll-behavior:smooth;
 
 html,
 body{
-
 margin:0;
 padding:0;
-
 width:100%;
 max-width:100%;
-
 overflow-x:hidden;
-
 }
 
 body{
-
-background:
-var(--cream);
-
-color:
-var(--ink);
-
-font-family:
-Tajawal,sans-serif;
-
+background:var(--cream);
+color:var(--ink);
+font-family:Tajawal,sans-serif;
 }
 
 button,
 input,
 select,
 textarea{
-
 font:inherit;
-
 }
 
 button{
@@ -101,11 +70,8 @@ cursor:pointer;
 }
 
 button:disabled{
-
 opacity:.55;
-
 cursor:not-allowed;
-
 }
 
 .hidden{
@@ -115,265 +81,154 @@ display:none!important;
 input,
 select,
 textarea{
-
 width:100%;
-
 padding:11px;
-
-border:
-1px solid var(--line);
-
+border:1px solid var(--line);
 border-radius:11px;
-
 background:#fff;
-
-margin:
-4px 0 10px;
-
-color:
-var(--ink);
-
+margin:4px 0 10px;
+color:var(--ink);
 }
 
 textarea{
-
 min-height:100px;
-
 resize:vertical;
-
 }
 
 input[type=file]{
-
 padding:14px;
-
 background:#fffdf7;
-
 }
 
 input[type=color]{
-
 min-height:48px;
-
 padding:4px;
-
 }
 
 label{
-
 display:block;
-
 font-size:12px;
-
 font-weight:800;
-
 margin-top:6px;
-
 }
 
 
-/* =========================================================
-LOGIN
-========================================================= */
+/* ================= LOGIN ================= */
 
 .login{
-
 min-height:100vh;
-
 display:grid;
-
 place-items:center;
-
 padding:20px;
-
 }
 
 .box,
 .card{
-
-background:
-var(--card);
-
-border:
-1px solid var(--line);
-
+background:var(--card);
+border:1px solid var(--line);
 border-radius:18px;
-
 padding:18px;
-
-box-shadow:
-var(--shadow);
-
+box-shadow:var(--shadow);
 }
 
 .box{
-
-width:
-min(430px,100%);
-
+width:min(430px,100%);
 }
 
 .login-title{
-
-font-family:
-'Aref Ruqaa';
-
+font-family:'Aref Ruqaa';
 font-size:40px;
-
 text-align:center;
+margin:0 0 20px;
+}
 
-margin:
-0 0 20px;
-
+.login-security{
+margin-bottom:14px;
+padding:10px;
+border:1px dashed var(--gold);
+border-radius:11px;
+background:#fff7dd;
+font-size:11px;
+line-height:1.8;
 }
 
 
-/* =========================================================
-BUTTONS
-========================================================= */
+/* ================= BUTTONS ================= */
 
 .btn{
-
 border:0;
-
 border-radius:11px;
-
-padding:
-10px 14px;
-
-background:
-var(--ink);
-
-color:
-var(--cream);
-
+padding:10px 14px;
+background:var(--ink);
+color:var(--cream);
 font-weight:800;
-
 }
 
 .btn.out{
-
 background:transparent;
-
-color:
-var(--ink);
-
-border:
-1px solid var(--ink);
-
+color:var(--ink);
+border:1px solid var(--ink);
 }
 
 .btn.red{
-
-background:
-var(--danger);
-
+background:var(--danger);
 color:#fff;
-
 }
 
 .btn.gold{
-
-background:
-var(--gold);
-
+background:var(--gold);
 color:#fff;
-
 }
 
 .btn.green{
-
-background:
-var(--ok);
-
+background:var(--ok);
 color:#fff;
-
 }
 
 .btn.blue{
-
-background:
-var(--blue);
-
+background:var(--blue);
 color:#fff;
-
 }
 
 .btn.sm{
-
-padding:
-7px 10px;
-
+padding:7px 10px;
 font-size:12px;
-
 }
 
 
-/* =========================================================
-HEADER
-========================================================= */
+/* ================= HEADER ================= */
 
 .top{
-
 position:sticky;
-
 top:0;
-
 z-index:100;
-
-background:
-rgba(255,251,240,.97);
-
-backdrop-filter:
-blur(16px);
-
-border-bottom:
-1px solid var(--line);
-
+background:rgba(255,251,240,.97);
+backdrop-filter:blur(16px);
+border-bottom:1px solid var(--line);
 }
 
 .topin{
-
 max-width:1500px;
-
 margin:auto;
-
-padding:
-10px 14px;
-
+padding:10px 14px;
 display:flex;
-
 gap:9px;
-
 align-items:center;
-
 flex-wrap:wrap;
-
 }
 
 .brand{
-
-font-family:
-'Aref Ruqaa';
-
+font-family:'Aref Ruqaa';
 font-size:28px;
-
 font-weight:700;
-
 margin-left:auto;
-
 }
 
 .nav{
-
 display:flex;
-
 gap:5px;
-
 overflow-x:auto;
-
 scrollbar-width:none;
-
 }
 
 .nav::-webkit-scrollbar{
@@ -381,50 +236,27 @@ display:none;
 }
 
 .nav button{
-
 white-space:nowrap;
-
-border:
-1px solid var(--line);
-
+border:1px solid var(--line);
 border-radius:999px;
-
-padding:
-8px 11px;
-
+padding:8px 11px;
 background:#fff;
-
-color:
-var(--ink);
-
+color:var(--ink);
 font-weight:700;
-
 }
 
 .nav button.active{
-
-background:
-var(--ink);
-
-color:
-var(--cream);
-
+background:var(--ink);
+color:var(--cream);
 }
 
 
-/* =========================================================
-MAIN
-========================================================= */
+/* ================= MAIN ================= */
 
 main{
-
 max-width:1500px;
-
 margin:auto;
-
-padding:
-18px 14px 80px;
-
+padding:18px 14px 80px;
 }
 
 .card{
@@ -437,478 +269,266 @@ margin-top:0;
 }
 
 .grid{
-
 display:grid;
-
-grid-template-columns:
-repeat(4,1fr);
-
+grid-template-columns:repeat(4,1fr);
 gap:10px;
-
 }
 
 .grid2{
-
 display:grid;
-
-grid-template-columns:
-repeat(2,1fr);
-
+grid-template-columns:repeat(2,1fr);
 gap:10px;
-
 }
 
 .grid3{
-
 display:grid;
-
-grid-template-columns:
-repeat(3,1fr);
-
+grid-template-columns:repeat(3,1fr);
 gap:10px;
-
 }
 
 .grid4{
-
 display:grid;
-
-grid-template-columns:
-repeat(4,1fr);
-
+grid-template-columns:repeat(4,1fr);
 gap:10px;
-
 }
 
 .stat{
-
 text-align:center;
-
-background:
-var(--card);
-
-border:
-1px solid var(--line);
-
+background:var(--card);
+border:1px solid var(--line);
 border-radius:15px;
-
 padding:15px;
-
 }
 
 .stat span{
-
 display:block;
-
 font-size:12px;
-
-color:
-var(--soft);
-
+color:var(--soft);
 }
 
 .stat b{
-
 display:block;
-
 font-size:28px;
-
-color:
-var(--gold);
-
+color:var(--gold);
 margin-top:5px;
-
 }
 
 .actions{
-
 display:flex;
-
 gap:7px;
-
 flex-wrap:wrap;
-
 align-items:center;
-
 }
 
 .note{
-
 font-size:12px;
-
 line-height:1.8;
-
-color:
-var(--soft);
-
+color:var(--soft);
 }
 
 .check-row{
-
 display:flex;
-
 align-items:center;
-
 gap:8px;
-
-margin:
-5px 0 12px;
-
+margin:5px 0 12px;
 }
 
 .check-row input{
-
 width:auto;
-
 margin:0;
-
 }
 
 
-/* =========================================================
-TABLE
-========================================================= */
+/* ================= TABLE ================= */
 
 .table{
-
 overflow:auto;
-
-border:
-1px solid var(--line);
-
+border:1px solid var(--line);
 border-radius:14px;
-
 }
 
 table{
-
 width:100%;
-
 border-collapse:collapse;
-
 min-width:900px;
-
 background:white;
-
 }
 
 th,
 td{
-
 padding:10px;
-
-border-bottom:
-1px solid var(--line);
-
+border-bottom:1px solid var(--line);
 text-align:right;
-
 font-size:13px;
-
 vertical-align:top;
-
 }
 
 th{
-
-background:
-var(--cream2);
-
+background:var(--cream2);
 font-weight:900;
-
 }
 
 
-/* =========================================================
-ORDER
-========================================================= */
+/* ================= ORDER ================= */
 
 .order-card{
-
-border:
-1px solid var(--line);
-
+border:1px solid var(--line);
 border-radius:16px;
-
 padding:14px;
-
 margin-bottom:12px;
-
 background:#fff;
-
 }
 
 .order-card-head{
-
 display:flex;
-
 justify-content:space-between;
-
 align-items:flex-start;
-
 gap:12px;
-
 flex-wrap:wrap;
-
 }
 
 .order-summary-grid{
-
 display:grid;
-
-grid-template-columns:
-repeat(4,1fr);
-
+grid-template-columns:repeat(4,1fr);
 gap:8px;
-
 margin-top:12px;
-
 }
 
 .order-summary-box{
-
 padding:10px;
-
 border-radius:11px;
-
-background:
-var(--cream);
-
-border:
-1px solid var(--line);
-
+background:var(--cream);
+border:1px solid var(--line);
 }
 
 .order-summary-box span{
-
 display:block;
-
 font-size:10px;
-
-color:
-var(--soft);
-
+color:var(--soft);
 }
 
 .order-summary-box strong{
-
 display:block;
-
 margin-top:4px;
-
 }
 
 .pill{
-
 display:inline-flex;
-
 align-items:center;
-
-padding:
-5px 9px;
-
+padding:5px 9px;
 border-radius:999px;
-
-border:
-1px solid var(--line);
-
+border:1px solid var(--line);
 font-size:11px;
-
 font-weight:700;
-
 }
 
 .pill.green{
-
 background:#DDEBD6;
-
-color:
-var(--ok);
-
+color:var(--ok);
 }
 
 .pill.red{
-
 background:#F0D8D4;
-
-color:
-var(--danger);
-
+color:var(--danger);
 }
 
 .pill.gold{
-
 background:#F4E7C5;
-
 color:#805817;
-
 }
 
 
-/* =========================================================
-PRODUCT ADMIN
-========================================================= */
+/* ================= PRODUCT ================= */
 
 .product-admin-card{
-
 display:grid;
-
-grid-template-columns:
-100px 1fr auto;
-
+grid-template-columns:100px 1fr auto;
 gap:14px;
-
 align-items:center;
-
-border:
-1px solid var(--line);
-
+border:1px solid var(--line);
 border-radius:16px;
-
 padding:13px;
-
 background:#fff;
-
 margin-bottom:10px;
-
 }
 
 .product-admin-image{
-
 width:100px;
 height:100px;
-
 border-radius:13px;
-
 background:#f5f2e9;
-
 display:flex;
-
 align-items:center;
 justify-content:center;
-
 overflow:hidden;
-
 }
 
 .product-admin-image img{
-
 width:100%;
 height:100%;
-
 object-fit:contain;
-
 }
 
 .product-admin-name{
-
 font-size:18px;
-
 font-weight:900;
-
 }
 
 .product-admin-meta{
-
 font-size:12px;
-
-color:
-var(--soft);
-
+color:var(--soft);
 line-height:1.8;
-
 }
 
 
-/* =========================================================
-MEDIA
-========================================================= */
+/* ================= MEDIA ================= */
 
 .media-preview-grid{
-
 display:grid;
-
-grid-template-columns:
-repeat(auto-fill,minmax(120px,1fr));
-
+grid-template-columns:repeat(auto-fill,minmax(120px,1fr));
 gap:10px;
-
-margin:
-10px 0 15px;
-
+margin:10px 0 15px;
 }
 
 .media-preview{
-
 position:relative;
-
-border:
-1px solid var(--line);
-
+border:1px solid var(--line);
 border-radius:13px;
-
 overflow:hidden;
-
 background:#f4f1e9;
-
 aspect-ratio:1/1;
-
 }
 
 .media-preview img,
 .media-preview video{
-
 width:100%;
 height:100%;
-
 object-fit:contain;
-
 display:block;
-
 }
 
 .media-remove{
-
 position:absolute;
-
 top:5px;
 left:5px;
-
 z-index:5;
-
 width:30px;
 height:30px;
-
 border:0;
-
 border-radius:50%;
-
-background:
-var(--danger);
-
+background:var(--danger);
 color:#fff;
-
 font-weight:900;
-
 }
 
 .upload-status{
-
 display:none;
-
-padding:
-10px 12px;
-
-margin:
-8px 0;
-
+padding:10px 12px;
+margin:8px 0;
 border-radius:10px;
-
 background:#f1e4bc;
-
 font-size:12px;
-
 font-weight:700;
-
 }
 
 .upload-status.show{
@@ -916,100 +536,59 @@ display:block;
 }
 
 
-/* =========================================================
-AD
-========================================================= */
+/* ================= AD ================= */
 
 .ad-preview{
-
 width:100%;
-
 min-height:220px;
-
 border-radius:15px;
-
 overflow:hidden;
-
 background:#eee;
-
 display:flex;
-
 align-items:center;
 justify-content:center;
-
 }
 
 .ad-preview img,
 .ad-preview video{
-
 width:100%;
 height:100%;
-
 object-fit:contain;
-
 }
 
 
-/* =========================================================
-POLICY / PAYMENT
-========================================================= */
+/* ================= PAYMENT ================= */
 
 .policy-card,
 .bank-row,
 .payment-row{
-
-border:
-1px solid var(--line);
-
+border:1px solid var(--line);
 border-radius:15px;
-
 padding:14px;
-
 margin-bottom:10px;
-
 background:#fff;
-
 }
 
 
-/* =========================================================
-FONT MANAGER
-========================================================= */
+/* ================= FONT MANAGER ================= */
 
 .font-preview-box{
-
 margin-top:20px;
-
 padding:18px;
-
-border:
-1px solid var(--line);
-
+border:1px solid var(--line);
 border-radius:16px;
-
 background:#fff;
-
 }
 
 .font-preview-label{
-
 font-size:10px;
-
-color:
-var(--soft);
-
+color:var(--soft);
 margin-bottom:3px;
-
 }
 
 .font-preview-line{
-
-padding:
-9px 0;
-
-border-bottom:
-1px dashed var(--line);
-
+padding:9px 0;
+border-bottom:1px dashed var(--line);
 }
 
 .font-preview-line:last-child{
@@ -1041,42 +620,24 @@ font-size:20px;
 }
 
 .font-help{
-
 margin-top:10px;
-
 padding:11px;
-
 border-radius:11px;
-
 background:#fff7dd;
-
-border:
-1px dashed var(--gold);
-
+border:1px dashed var(--gold);
 font-size:11px;
-
 line-height:1.8;
-
 }
 
 
-/* =========================================================
-MODAL
-========================================================= */
+/* ================= MODAL ================= */
 
 .modal-scrim{
-
 position:fixed;
-
 inset:0;
-
 z-index:500;
-
-background:
-rgba(15,20,13,.62);
-
+background:rgba(15,20,13,.62);
 display:none;
-
 }
 
 .modal-scrim.show{
@@ -1084,36 +645,19 @@ display:block;
 }
 
 .modal{
-
 position:fixed;
-
 z-index:510;
-
 top:50%;
 left:50%;
-
-transform:
-translate(-50%,-50%);
-
-width:
-min(900px,95vw);
-
+transform:translate(-50%,-50%);
+width:min(900px,95vw);
 max-height:92vh;
-
 overflow:auto;
-
-background:
-var(--card);
-
+background:var(--card);
 border-radius:20px;
-
 padding:20px;
-
-box-shadow:
-0 30px 80px rgba(0,0,0,.3);
-
+box-shadow:0 30px 80px rgba(0,0,0,.3);
 display:none;
-
 }
 
 .modal.show{
@@ -1121,75 +665,44 @@ display:block;
 }
 
 .modal-head{
-
 display:flex;
-
 justify-content:space-between;
-
 align-items:center;
-
 gap:10px;
-
 }
 
 .close{
-
 border:0;
-
 background:none;
-
 font-size:24px;
-
 }
 
 
-/* =========================================================
-ORDER DETAIL
-========================================================= */
+/* ================= ORDER DETAIL ================= */
 
 .detail-grid{
-
 display:grid;
-
-grid-template-columns:
-repeat(2,1fr);
-
+grid-template-columns:repeat(2,1fr);
 gap:10px;
-
 }
 
 .detail-box{
-
 background:#fff;
-
-border:
-1px solid var(--line);
-
+border:1px solid var(--line);
 border-radius:13px;
-
 padding:12px;
-
 }
 
 .detail-box span{
-
 display:block;
-
-color:
-var(--soft);
-
+color:var(--soft);
 font-size:11px;
-
 margin-bottom:5px;
-
 }
 
 .detail-box strong{
-
 line-height:1.7;
-
 word-break:break-word;
-
 }
 
 .order-items-list{
@@ -1197,41 +710,23 @@ margin-top:12px;
 }
 
 .order-item-detail{
-
 display:grid;
-
-grid-template-columns:
-70px 1fr auto;
-
+grid-template-columns:70px 1fr auto;
 gap:12px;
-
 align-items:center;
-
 background:#fff;
-
-border:
-1px solid var(--line);
-
+border:1px solid var(--line);
 border-radius:13px;
-
 padding:10px;
-
 margin-bottom:8px;
-
 }
 
 .order-item-detail img{
-
 width:70px;
 height:70px;
-
 object-fit:contain;
-
 border-radius:10px;
-
-background:
-var(--cream);
-
+background:var(--cream);
 }
 
 .order-item-name{
@@ -1239,115 +734,65 @@ font-weight:900;
 }
 
 .gift-detail{
-
 margin-top:8px;
-
 padding:10px;
-
 border-radius:10px;
-
 background:#fff3cf;
-
-border:
-1px dashed var(--gold);
-
+border:1px dashed var(--gold);
 font-size:12px;
-
 line-height:1.8;
-
 }
 
 
-/* =========================================================
-INVOICE
-========================================================= */
+/* ================= INVOICE ================= */
 
 .invoice{
-
 background:#fff;
-
 color:#111;
-
 padding:24px;
-
 border-radius:15px;
-
 }
 
 .invoice-header{
-
 text-align:center;
-
 padding-bottom:18px;
-
-border-bottom:
-2px solid #222;
-
+border-bottom:2px solid #222;
 }
 
 .invoice-header h1{
-
-font-family:
-'Aref Ruqaa';
-
+font-family:'Aref Ruqaa';
 font-size:34px;
-
 margin:0;
-
 }
 
 .invoice-header p{
-
-margin:
-5px 0 0;
-
+margin:5px 0 0;
 }
 
 .invoice-meta{
-
 display:grid;
-
-grid-template-columns:
-1fr 1fr;
-
+grid-template-columns:1fr 1fr;
 gap:10px;
-
-margin:
-20px 0;
-
+margin:20px 0;
 }
 
 .invoice-meta div{
-
-border:
-1px solid #ddd;
-
+border:1px solid #ddd;
 padding:10px;
-
 border-radius:8px;
-
 }
 
 .invoice-table{
-
 width:100%;
-
 min-width:0;
-
 border-collapse:collapse;
-
 }
 
 .invoice-table th,
 .invoice-table td{
-
-border:
-1px solid #ddd;
-
+border:1px solid #ddd;
 padding:9px;
-
 color:#111;
-
 }
 
 .invoice-table th{
@@ -1355,89 +800,49 @@ background:#f3f3f3;
 }
 
 .invoice-total{
-
 margin-top:18px;
-
 margin-right:auto;
-
-width:
-min(380px,100%);
-
+width:min(380px,100%);
 }
 
 .invoice-total-row{
-
 display:flex;
-
 justify-content:space-between;
-
-padding:
-7px 0;
-
-border-bottom:
-1px solid #ddd;
-
+padding:7px 0;
+border-bottom:1px solid #ddd;
 }
 
 .invoice-total-row.final{
-
 font-size:18px;
-
 font-weight:900;
-
-border-bottom:
-2px solid #111;
-
+border-bottom:2px solid #111;
 }
 
 
-/* =========================================================
-TOAST
-========================================================= */
+/* ================= TOAST ================= */
 
 .toast{
-
 position:fixed;
-
 z-index:1000;
-
 left:50%;
 bottom:22px;
-
-transform:
-translateX(-50%);
-
-background:
-var(--ink);
-
-color:
-var(--cream);
-
-padding:
-10px 16px;
-
+transform:translateX(-50%);
+background:var(--ink);
+color:var(--cream);
+padding:10px 16px;
 border-radius:999px;
-
 opacity:0;
-
 pointer-events:none;
-
 transition:.25s;
-
 }
 
 .toast.show{
-
 opacity:1;
-
 bottom:32px;
-
 }
 
 
-/* =========================================================
-MOBILE
-========================================================= */
+/* ================= MOBILE ================= */
 
 @media(max-width:900px){
 
@@ -1447,17 +852,12 @@ MOBILE
 .grid4,
 .order-summary-grid,
 .detail-grid{
-
 grid-template-columns:1fr;
-
 }
 
 .brand{
-
 width:100%;
-
 margin:0;
-
 }
 
 .nav{
@@ -1465,45 +865,29 @@ width:100%;
 }
 
 .product-admin-card{
-
-grid-template-columns:
-75px 1fr;
-
+grid-template-columns:75px 1fr;
 }
 
 .product-admin-image{
-
 width:75px;
 height:75px;
-
 }
 
 .product-admin-card .actions{
-
-grid-column:
-1/-1;
-
+grid-column:1/-1;
 }
 
 .order-item-detail{
-
-grid-template-columns:
-55px 1fr;
-
+grid-template-columns:55px 1fr;
 }
 
 .order-item-detail img{
-
 width:55px;
 height:55px;
-
 }
 
 .order-item-detail > div:last-child{
-
-grid-column:
-1/-1;
-
+grid-column:1/-1;
 }
 
 .invoice{
@@ -1517,26 +901,24 @@ grid-template-columns:1fr;
 }
 
 </style>
-
 </head>
 
 <body>
 
 
-<!-- =========================================================
-LOGIN
-========================================================= -->
+<!-- ================= LOGIN ================= -->
 
-<div
-id="login"
-class="login"
->
+<div id="login" class="login">
 
 <div class="box">
 
 <h1 class="login-title">
 الشعيبي PRO
 </h1>
+
+<div class="login-security">
+🔐 لوحة الإدارة محمية. يجب إدخال كلمة مرور حساب الإدارة في كل مرة يتم فيها فتح الصفحة.
+</div>
 
 <label>
 البريد
@@ -1582,14 +964,9 @@ onclick="login()"
 </div>
 
 
-<!-- =========================================================
-APP
-========================================================= -->
+<!-- ================= APP ================= -->
 
-<div
-id="app"
-class="hidden"
->
+<div id="app" class="hidden">
 
 <header class="top">
 
@@ -1599,10 +976,7 @@ class="hidden"
 لوحة إدارة الشعيبي
 </div>
 
-<div
-id="nav"
-class="nav"
-></div>
+<div id="nav" class="nav"></div>
 
 <button
 class="btn out sm"
@@ -1619,19 +993,11 @@ onclick="logout()"
 <main>
 
 
-<!-- =========================================================
-DASHBOARD
-========================================================= -->
+<!-- ================= DASHBOARD ================= -->
 
-<section
-id="dashboard"
-class="page"
->
+<section id="dashboard" class="page">
 
-<div
-id="stats"
-class="grid"
-></div>
+<div id="stats" class="grid"></div>
 
 <div class="card">
 
@@ -1648,14 +1014,9 @@ class="grid"
 </section>
 
 
-<!-- =========================================================
-PRODUCT MANAGER
-========================================================= -->
+<!-- ================= PRODUCT MANAGER ================= -->
 
-<section
-id="productManager"
-class="page hidden"
->
+<section id="productManager" class="page hidden">
 
 <div class="card">
 
@@ -1663,109 +1024,43 @@ class="page hidden"
 🛍️ إضافة وتعديل المنتجات
 </h2>
 
-<input
-id="productId"
-type="hidden"
->
+<input id="productId" type="hidden">
 
 <div class="grid3">
 
 <div>
-
-<label>
-اسم المنتج
-</label>
-
+<label>اسم المنتج</label>
 <input id="productName">
-
 </div>
 
-
 <div>
-
-<label>
-القسم
-</label>
-
+<label>القسم</label>
 <select id="productCategory"></select>
-
 </div>
 
-
 <div>
-
-<label>
-السعر
-</label>
-
-<input
-id="productPrice"
-type="number"
-step="0.01"
->
-
+<label>السعر</label>
+<input id="productPrice" type="number" step="0.01">
 </div>
 
-
 <div>
-
-<label>
-الخصم %
-</label>
-
-<input
-id="productDiscount"
-type="number"
-min="0"
-max="100"
-value="0"
->
-
+<label>الخصم %</label>
+<input id="productDiscount" type="number" min="0" max="100" value="0">
 </div>
 
-
 <div>
-
-<label>
-المخزون
-</label>
-
-<input
-id="productStock"
-type="number"
-min="0"
-value="0"
->
-
+<label>المخزون</label>
+<input id="productStock" type="number" min="0" value="0">
 </div>
 
-
 <div>
-
-<label>
-العملة
-</label>
-
-<input
-id="productCurrency"
-value="ر.ي"
->
-
+<label>العملة</label>
+<input id="productCurrency" value="ر.ي">
 </div>
 
-
 <div>
-
-<label>
-ترتيب الظهور
-</label>
-
-<input
-id="productSortOrder"
-type="number"
-value="0"
->
-
+<label>ترتيب الظهور</label>
+<input id="productSortOrder" type="number" value="0">
 </div>
 
 </div>
@@ -1794,20 +1089,11 @@ multiple
 onchange="previewSelectedProductImages()"
 >
 
-<div
-id="productUploadStatus"
-class="upload-status"
-></div>
+<div id="productUploadStatus" class="upload-status"></div>
 
-<div
-id="existingProductImages"
-class="media-preview-grid"
-></div>
+<div id="existingProductImages" class="media-preview-grid"></div>
 
-<div
-id="newProductImagesPreview"
-class="media-preview-grid"
-></div>
+<div id="newProductImagesPreview" class="media-preview-grid"></div>
 
 
 <div class="grid2">
@@ -1907,10 +1193,7 @@ onclick="resetProductForm()"
 المنتجات الحالية
 </h2>
 
-<div
-id="productsCount"
-class="note"
-></div>
+<div id="productsCount" class="note"></div>
 
 </div>
 
@@ -1930,14 +1213,9 @@ onclick="loadAll()"
 </section>
 
 
-<!-- =========================================================
-VARIANTS
-========================================================= -->
+<!-- ================= VARIANTS ================= -->
 
-<section
-id="products"
-class="page hidden"
->
+<section id="products" class="page hidden">
 
 <div class="card">
 
@@ -1948,85 +1226,38 @@ class="page hidden"
 <div class="grid3">
 
 <div>
-
-<label>
-المنتج
-</label>
-
+<label>المنتج</label>
 <select id="varProduct"></select>
-
 </div>
 
-
 <div>
-
-<label>
-اسم الخيار
-</label>
-
-<input
-id="varTitle"
-placeholder="مثال: 100ml"
->
-
+<label>اسم الخيار</label>
+<input id="varTitle" placeholder="مثال: 100ml">
 </div>
 
-
 <div>
-
-<label>
-SKU
-</label>
-
+<label>SKU</label>
 <input id="varSku">
-
 </div>
 
-
 <div>
-
-<label>
-السعر
-</label>
-
-<input
-id="varPrice"
-type="number"
->
-
+<label>السعر</label>
+<input id="varPrice" type="number">
 </div>
 
-
 <div>
-
-<label>
-المخزون
-</label>
-
-<input
-id="varStock"
-type="number"
->
-
+<label>المخزون</label>
+<input id="varStock" type="number">
 </div>
 
-
 <div>
-
-<label>
-اللون
-</label>
-
+<label>اللون</label>
 <input id="varColor">
-
 </div>
 
 </div>
 
-<button
-class="btn"
-onclick="saveVariant()"
->
+<button class="btn" onclick="saveVariant()">
 إضافة الخيار
 </button>
 
@@ -2042,14 +1273,12 @@ onclick="saveVariant()"
 <thead>
 
 <tr>
-
 <th>المنتج</th>
 <th>الخيار</th>
 <th>SKU</th>
 <th>السعر</th>
 <th>المخزون</th>
 <th></th>
-
 </tr>
 
 </thead>
@@ -2065,14 +1294,9 @@ onclick="saveVariant()"
 </section>
 
 
-<!-- =========================================================
-BUNDLES
-========================================================= -->
+<!-- ================= BUNDLES ================= -->
 
-<section
-id="bundles"
-class="page hidden"
->
+<section id="bundles" class="page hidden">
 
 <div class="card">
 
@@ -2080,94 +1304,43 @@ class="page hidden"
 🔥 الباقات والعروض
 </h2>
 
-<input
-id="bundleId"
-type="hidden"
->
-
-<input
-id="bundleExistingImage"
-type="hidden"
->
-
+<input id="bundleId" type="hidden">
+<input id="bundleExistingImage" type="hidden">
 
 <div class="grid3">
 
 <div>
-
-<label>
-اسم الباقة
-</label>
-
+<label>اسم الباقة</label>
 <input id="bundleName">
-
 </div>
-
 
 <div>
-
-<label>
-السعر قبل العرض
-</label>
-
-<input
-id="bundleRegular"
-type="number"
->
-
+<label>السعر قبل العرض</label>
+<input id="bundleRegular" type="number">
 </div>
-
 
 <div>
-
-<label>
-سعر العرض
-</label>
-
-<input
-id="bundleOffer"
-type="number"
->
-
+<label>سعر العرض</label>
+<input id="bundleOffer" type="number">
 </div>
-
 
 <div>
-
-<label>
-المخزون
-</label>
-
-<input
-id="bundleStock"
-type="number"
->
-
+<label>المخزون</label>
+<input id="bundleStock" type="number">
 </div>
-
 
 <div>
-
-<label>
-نهاية العرض
-</label>
-
-<input
-id="bundleEnd"
-type="datetime-local"
->
-
+<label>نهاية العرض</label>
+<input id="bundleEnd" type="datetime-local">
 </div>
 
 </div>
-
 
 <label>
 الوصف
 </label>
 
 <textarea id="bundleDesc"></textarea>
-
 
 <h3>
 📷 صورة الباقة
@@ -2180,16 +1353,9 @@ accept="image/*"
 onchange="previewBundleImage()"
 >
 
-<div
-id="bundleUploadStatus"
-class="upload-status"
-></div>
+<div id="bundleUploadStatus" class="upload-status"></div>
 
-<div
-id="bundleImagePreview"
-class="media-preview-grid"
-></div>
-
+<div id="bundleImagePreview" class="media-preview-grid"></div>
 
 <label>
 منتجات الباقة
@@ -2200,7 +1366,6 @@ id="bundleProducts"
 multiple
 size="7"
 ></select>
-
 
 <div class="actions">
 
@@ -2223,23 +1388,14 @@ onclick="resetBundle()"
 
 </div>
 
-
-<div
-id="bundleList"
-class="card"
-></div>
+<div id="bundleList" class="card"></div>
 
 </section>
 
 
-<!-- =========================================================
-GIFTS
-========================================================= -->
+<!-- ================= GIFTS ================= -->
 
-<section
-id="gifts"
-class="page hidden"
->
+<section id="gifts" class="page hidden">
 
 <div class="card">
 
@@ -2250,38 +1406,22 @@ class="page hidden"
 <div class="grid2">
 
 <div>
-
-<label>
-اسم التغليف
-</label>
-
+<label>اسم التغليف</label>
 <input id="giftName">
-
 </div>
-
 
 <div>
-
-<label>
-السعر
-</label>
-
-<input
-id="giftPrice"
-type="number"
->
-
+<label>السعر</label>
+<input id="giftPrice" type="number">
 </div>
 
 </div>
-
 
 <label>
 الوصف
 </label>
 
 <textarea id="giftDesc"></textarea>
-
 
 <h3>
 📷 صورة التغليف
@@ -2294,15 +1434,9 @@ accept="image/*"
 onchange="previewGiftImage()"
 >
 
-<div
-id="giftUploadStatus"
-class="upload-status"
-></div>
+<div id="giftUploadStatus" class="upload-status"></div>
 
-<div
-id="giftImagePreview"
-class="media-preview-grid"
-></div>
+<div id="giftImagePreview" class="media-preview-grid"></div>
 
 <button
 id="saveGiftButton"
@@ -2315,10 +1449,7 @@ onclick="saveGift()"
 </div>
 
 
-<div
-id="giftList"
-class="card"
-></div>
+<div id="giftList" class="card"></div>
 
 
 <div class="card">
@@ -2340,32 +1471,19 @@ type="checkbox"
 
 </div>
 
-
 <div class="grid2">
 
 <div>
-
-<label>
-عنوان القسم
-</label>
-
+<label>عنوان القسم</label>
 <input id="giftSectionTitleAdmin">
-
 </div>
-
 
 <div>
-
-<label>
-الأيقونة
-</label>
-
+<label>الأيقونة</label>
 <input id="giftSectionIconAdmin">
-
 </div>
 
 </div>
-
 
 <label>
 الوصف
@@ -2373,77 +1491,34 @@ type="checkbox"
 
 <textarea id="giftSectionDescriptionAdmin"></textarea>
 
-
 <div class="grid4">
 
 <div>
-
-<label>
-نص الزر
-</label>
-
+<label>نص الزر</label>
 <input id="giftSectionButtonText">
-
 </div>
-
 
 <div>
-
-<label>
-لون الخلفية
-</label>
-
-<input
-id="giftSectionBackground"
-type="color"
->
-
+<label>لون الخلفية</label>
+<input id="giftSectionBackground" type="color">
 </div>
-
 
 <div>
-
-<label>
-لون النص
-</label>
-
-<input
-id="giftSectionTextColor"
-type="color"
->
-
+<label>لون النص</label>
+<input id="giftSectionTextColor" type="color">
 </div>
-
 
 <div>
-
-<label>
-لون الزر
-</label>
-
-<input
-id="giftSectionButtonColor"
-type="color"
->
-
+<label>لون الزر</label>
+<input id="giftSectionButtonColor" type="color">
 </div>
-
 
 <div>
-
-<label>
-استدارة الحواف
-</label>
-
-<input
-id="giftSectionRadius"
-type="number"
->
-
+<label>استدارة الحواف</label>
+<input id="giftSectionRadius" type="number">
 </div>
 
 </div>
-
 
 <button
 class="btn gold"
@@ -2457,14 +1532,9 @@ onclick="saveGiftDesign()"
 </section>
 
 
-<!-- =========================================================
-COUPONS
-========================================================= -->
+<!-- ================= COUPONS ================= -->
 
-<section
-id="coupons"
-class="page hidden"
->
+<section id="coupons" class="page hidden">
 
 <div class="card">
 
@@ -2475,15 +1545,9 @@ class="page hidden"
 <div class="grid3">
 
 <div>
-
-<label>
-الكود
-</label>
-
+<label>الكود</label>
 <input id="cpCode">
-
 </div>
-
 
 <div>
 
@@ -2505,60 +1569,24 @@ class="page hidden"
 
 </div>
 
-
 <div>
-
-<label>
-القيمة
-</label>
-
-<input
-id="cpValue"
-type="number"
->
-
+<label>القيمة</label>
+<input id="cpValue" type="number">
 </div>
 
-
 <div>
-
-<label>
-الحد الأدنى
-</label>
-
-<input
-id="cpMin"
-type="number"
->
-
+<label>الحد الأدنى</label>
+<input id="cpMin" type="number">
 </div>
 
-
 <div>
-
-<label>
-أقصى خصم
-</label>
-
-<input
-id="cpMax"
-type="number"
->
-
+<label>أقصى خصم</label>
+<input id="cpMax" type="number">
 </div>
 
-
 <div>
-
-<label>
-تاريخ الانتهاء
-</label>
-
-<input
-id="cpExpiry"
-type="date"
->
-
+<label>تاريخ الانتهاء</label>
+<input id="cpExpiry" type="date">
 </div>
 
 </div>
@@ -2566,10 +1594,7 @@ type="date"
 
 <div class="check-row">
 
-<input
-id="cpFirst"
-type="checkbox"
->
+<input id="cpFirst" type="checkbox">
 
 <label for="cpFirst">
 لأول طلب فقط
@@ -2586,23 +1611,14 @@ onclick="saveCoupon()"
 
 </div>
 
-
-<div
-id="couponList"
-class="card"
-></div>
+<div id="couponList" class="card"></div>
 
 </section>
 
 
-<!-- =========================================================
-CUSTOMERS
-========================================================= -->
+<!-- ================= CUSTOMERS ================= -->
 
-<section
-id="customers"
-class="page hidden"
->
+<section id="customers" class="page hidden">
 
 <div class="card">
 
@@ -2617,14 +1633,12 @@ class="page hidden"
 <thead>
 
 <tr>
-
 <th>العميل</th>
 <th>الهاتف</th>
 <th>الطلبات</th>
 <th>مرات الشراء</th>
 <th>إجمالي المشتريات</th>
 <th>آخر طلب</th>
-
 </tr>
 
 </thead>
@@ -2640,14 +1654,9 @@ class="page hidden"
 </section>
 
 
-<!-- =========================================================
-ORDERS
-========================================================= -->
+<!-- ================= ORDERS ================= -->
 
-<section
-id="orders"
-class="page hidden"
->
+<section id="orders" class="page hidden">
 
 <div class="card">
 
@@ -2681,14 +1690,9 @@ onclick="loadAll()"
 </section>
 
 
-<!-- =========================================================
-REVIEWS
-========================================================= -->
+<!-- ================= REVIEWS ================= -->
 
-<section
-id="reviews"
-class="page hidden"
->
+<section id="reviews" class="page hidden">
 
 <div class="card">
 
@@ -2703,14 +1707,9 @@ class="page hidden"
 </section>
 
 
-<!-- =========================================================
-RECOMMEND
-========================================================= -->
+<!-- ================= RECOMMEND ================= -->
 
-<section
-id="recommend"
-class="page hidden"
->
+<section id="recommend" class="page hidden">
 
 <div class="card">
 
@@ -2751,22 +1750,14 @@ onclick="saveRelation()"
 
 </div>
 
-<div
-id="relationsList"
-class="card"
-></div>
+<div id="relationsList" class="card"></div>
 
 </section>
 
 
-<!-- =========================================================
-ADS
-========================================================= -->
+<!-- ================= ADS ================= -->
 
-<section
-id="ads"
-class="page hidden"
->
+<section id="ads" class="page hidden">
 
 <div class="card">
 
@@ -2848,56 +1839,24 @@ Fill
 
 <select id="adPosition">
 
-<option value="center">
-الوسط
-</option>
-
-<option value="top">
-أعلى
-</option>
-
-<option value="bottom">
-أسفل
-</option>
-
-<option value="center top">
-وسط أعلى
-</option>
-
-<option value="center bottom">
-وسط أسفل
-</option>
+<option value="center">الوسط</option>
+<option value="top">أعلى</option>
+<option value="bottom">أسفل</option>
+<option value="center top">وسط أعلى</option>
+<option value="center bottom">وسط أسفل</option>
 
 </select>
 
 </div>
 
-
 <div>
-
-<label>
-استدارة الحواف
-</label>
-
-<input
-id="adRadius"
-type="number"
->
-
+<label>استدارة الحواف</label>
+<input id="adRadius" type="number">
 </div>
 
-
 <div>
-
-<label>
-مدة السلايدر ms
-</label>
-
-<input
-id="adInterval"
-type="number"
->
-
+<label>مدة السلايدر ms</label>
+<input id="adInterval" type="number">
 </div>
 
 </div>
@@ -2910,42 +1869,18 @@ type="number"
 <div class="grid3">
 
 <div>
-
-<label>
-العرض %
-</label>
-
-<input
-id="adDesktopWidth"
-type="number"
->
-
+<label>العرض %</label>
+<input id="adDesktopWidth" type="number">
 </div>
 
 <div>
-
-<label>
-الارتفاع px
-</label>
-
-<input
-id="adDesktopHeight"
-type="number"
->
-
+<label>الارتفاع px</label>
+<input id="adDesktopHeight" type="number">
 </div>
 
 <div>
-
-<label>
-أقصى عرض px
-</label>
-
-<input
-id="adDesktopMaxWidth"
-type="number"
->
-
+<label>أقصى عرض px</label>
+<input id="adDesktopMaxWidth" type="number">
 </div>
 
 </div>
@@ -2958,42 +1893,18 @@ type="number"
 <div class="grid3">
 
 <div>
-
-<label>
-العرض %
-</label>
-
-<input
-id="adTabletWidth"
-type="number"
->
-
+<label>العرض %</label>
+<input id="adTabletWidth" type="number">
 </div>
 
 <div>
-
-<label>
-الارتفاع px
-</label>
-
-<input
-id="adTabletHeight"
-type="number"
->
-
+<label>الارتفاع px</label>
+<input id="adTabletHeight" type="number">
 </div>
 
 <div>
-
-<label>
-أقصى عرض px
-</label>
-
-<input
-id="adTabletMaxWidth"
-type="number"
->
-
+<label>أقصى عرض px</label>
+<input id="adTabletMaxWidth" type="number">
 </div>
 
 </div>
@@ -3006,42 +1917,18 @@ type="number"
 <div class="grid3">
 
 <div>
-
-<label>
-العرض %
-</label>
-
-<input
-id="adMobileWidth"
-type="number"
->
-
+<label>العرض %</label>
+<input id="adMobileWidth" type="number">
 </div>
 
 <div>
-
-<label>
-الارتفاع px
-</label>
-
-<input
-id="adMobileHeight"
-type="number"
->
-
+<label>الارتفاع px</label>
+<input id="adMobileHeight" type="number">
 </div>
 
 <div>
-
-<label>
-أقصى عرض px
-</label>
-
-<input
-id="adMobileMaxWidth"
-type="number"
->
-
+<label>أقصى عرض px</label>
+<input id="adMobileMaxWidth" type="number">
 </div>
 
 </div>
@@ -3069,30 +1956,21 @@ multiple
 onchange="previewSelectedAdFiles()"
 >
 
-<div
-id="adUploadStatus"
-class="upload-status"
-></div>
+<div id="adUploadStatus" class="upload-status"></div>
 
 
 <h3>
 المحفوظة حاليًا
 </h3>
 
-<div
-id="existingAdMedia"
-class="media-preview-grid"
-></div>
+<div id="existingAdMedia" class="media-preview-grid"></div>
 
 
 <h3>
 المختارة الآن
 </h3>
 
-<div
-id="newAdFilesPreview"
-class="media-preview-grid"
-></div>
+<div id="newAdFilesPreview" class="media-preview-grid"></div>
 
 
 <div class="actions">
@@ -3135,21 +2013,15 @@ class="ad-preview"
 </section>
 
 
-<!-- =========================================================
-DESIGN
-========================================================= -->
+<!-- ================= DESIGN ================= -->
 
-<section
-id="design"
-class="page hidden"
->
+<section id="design" class="page hidden">
 
 <div class="card">
 
 <h2>
 🛍️ أحجام المنتجات
 </h2>
-
 
 <h3>
 💻 الكمبيوتر
@@ -3158,44 +2030,18 @@ class="page hidden"
 <div class="grid3">
 
 <div>
-
-<label>
-عرض الكرت px
-</label>
-
-<input
-id="productDesktopWidth"
-type="number"
->
-
+<label>عرض الكرت px</label>
+<input id="productDesktopWidth" type="number">
 </div>
 
-
 <div>
-
-<label>
-ارتفاع الصورة px
-</label>
-
-<input
-id="productDesktopImageHeight"
-type="number"
->
-
+<label>ارتفاع الصورة px</label>
+<input id="productDesktopImageHeight" type="number">
 </div>
 
-
 <div>
-
-<label>
-حجم الاسم px
-</label>
-
-<input
-id="productDesktopFont"
-type="number"
->
-
+<label>حجم الاسم px</label>
+<input id="productDesktopFont" type="number">
 </div>
 
 </div>
@@ -3208,44 +2054,18 @@ type="number"
 <div class="grid3">
 
 <div>
-
-<label>
-عرض الكرت px
-</label>
-
-<input
-id="productTabletWidth"
-type="number"
->
-
+<label>عرض الكرت px</label>
+<input id="productTabletWidth" type="number">
 </div>
 
-
 <div>
-
-<label>
-ارتفاع الصورة px
-</label>
-
-<input
-id="productTabletImageHeight"
-type="number"
->
-
+<label>ارتفاع الصورة px</label>
+<input id="productTabletImageHeight" type="number">
 </div>
 
-
 <div>
-
-<label>
-حجم الاسم px
-</label>
-
-<input
-id="productTabletFont"
-type="number"
->
-
+<label>حجم الاسم px</label>
+<input id="productTabletFont" type="number">
 </div>
 
 </div>
@@ -3258,44 +2078,18 @@ type="number"
 <div class="grid3">
 
 <div>
-
-<label>
-عرض الكرت %
-</label>
-
-<input
-id="productMobileWidth"
-type="number"
->
-
+<label>عرض الكرت %</label>
+<input id="productMobileWidth" type="number">
 </div>
 
-
 <div>
-
-<label>
-ارتفاع الصورة px
-</label>
-
-<input
-id="productMobileImageHeight"
-type="number"
->
-
+<label>ارتفاع الصورة px</label>
+<input id="productMobileImageHeight" type="number">
 </div>
 
-
 <div>
-
-<label>
-حجم الاسم px
-</label>
-
-<input
-id="productMobileFont"
-type="number"
->
-
+<label>حجم الاسم px</label>
+<input id="productMobileFont" type="number">
 </div>
 
 </div>
@@ -3322,78 +2116,31 @@ type="checkbox"
 
 </div>
 
-
 <div class="grid3">
 
 <div>
-
-<label>
-تكبير الوسط
-</label>
-
-<input
-id="carouselCenterScale"
-type="number"
-step=".05"
->
-
+<label>تكبير الوسط</label>
+<input id="carouselCenterScale" type="number" step=".05">
 </div>
 
-
 <div>
-
-<label>
-حجم الجوانب
-</label>
-
-<input
-id="carouselSideScale"
-type="number"
-step=".05"
->
-
+<label>حجم الجوانب</label>
+<input id="carouselSideScale" type="number" step=".05">
 </div>
 
-
 <div>
-
-<label>
-زاوية الميل
-</label>
-
-<input
-id="carouselRotation"
-type="number"
->
-
+<label>زاوية الميل</label>
+<input id="carouselRotation" type="number">
 </div>
 
-
 <div>
-
-<label>
-المسافة
-</label>
-
-<input
-id="carouselSpacing"
-type="number"
->
-
+<label>المسافة</label>
+<input id="carouselSpacing" type="number">
 </div>
 
-
 <div>
-
-<label>
-سرعة الحركة
-</label>
-
-<input
-id="carouselSpeed"
-type="number"
->
-
+<label>سرعة الحركة</label>
+<input id="carouselSpeed" type="number">
 </div>
 
 </div>
@@ -3408,9 +2155,7 @@ onclick="saveProductDesign()"
 </div>
 
 
-<!-- =========================================================
-FONT MANAGER
-========================================================= -->
+<!-- ================= FONTS ================= -->
 
 <div class="card">
 
@@ -3422,283 +2167,106 @@ FONT MANAGER
 اختر خطًا مستقلًا لكل جزء من المتجر. تستطيع الاختيار من القائمة أو كتابة اسم أي خط موجود في Google Fonts.
 </p>
 
-
 <div class="font-help">
 
 <strong>
 مثال:
 </strong>
 
-يمكن أن تجعل اسم المتجر بخط
+يمكن جعل اسم المتجر بخط
 <b>Aref Ruqaa</b>
 ،
-وأسماء المنتجات بخط
+والمنتجات بخط
 <b>Amiri</b>
 ،
 والأسعار بخط
 <b>Cairo</b>
 ،
-والفاتورة بخط مختلف تمامًا.
+والفاتورة بخط مختلف.
 
 </div>
 
 
 <div class="grid2">
 
-
 <div>
-
-<label>
-الخط العام للموقع
-</label>
-
-<input
-id="fontBody"
-list="fontOptions"
-placeholder="Tajawal"
-oninput="previewFonts()"
->
-
+<label>الخط العام للموقع</label>
+<input id="fontBody" list="fontOptions" placeholder="Tajawal" oninput="previewFonts()">
 </div>
 
-
 <div>
-
-<label>
-اسم المتجر والشعار النصي
-</label>
-
-<input
-id="fontBrand"
-list="fontOptions"
-placeholder="Aref Ruqaa"
-oninput="previewFonts()"
->
-
+<label>اسم المتجر والشعار النصي</label>
+<input id="fontBrand" list="fontOptions" placeholder="Aref Ruqaa" oninput="previewFonts()">
 </div>
 
-
 <div>
-
-<label>
-العنوان الرئيسي
-</label>
-
-<input
-id="fontHeroTitle"
-list="fontOptions"
-placeholder="Aref Ruqaa"
-oninput="previewFonts()"
->
-
+<label>العنوان الرئيسي</label>
+<input id="fontHeroTitle" list="fontOptions" placeholder="Aref Ruqaa" oninput="previewFonts()">
 </div>
 
-
 <div>
-
-<label>
-وصف الصفحة الرئيسية
-</label>
-
-<input
-id="fontHeroDescription"
-list="fontOptions"
-placeholder="Tajawal"
-oninput="previewFonts()"
->
-
+<label>وصف الصفحة الرئيسية</label>
+<input id="fontHeroDescription" list="fontOptions" placeholder="Tajawal" oninput="previewFonts()">
 </div>
 
-
 <div>
-
-<label>
-شريط التنقل
-</label>
-
-<input
-id="fontNav"
-list="fontOptions"
-placeholder="Cairo"
-oninput="previewFonts()"
->
-
+<label>شريط التنقل</label>
+<input id="fontNav" list="fontOptions" placeholder="Cairo" oninput="previewFonts()">
 </div>
 
-
 <div>
-
-<label>
-عناوين الأقسام
-</label>
-
-<input
-id="fontSectionTitles"
-list="fontOptions"
-placeholder="Aref Ruqaa"
-oninput="previewFonts()"
->
-
+<label>عناوين الأقسام</label>
+<input id="fontSectionTitles" list="fontOptions" placeholder="Aref Ruqaa" oninput="previewFonts()">
 </div>
 
-
 <div>
-
-<label>
-أسماء الأقسام / الأصناف
-</label>
-
-<input
-id="fontCategoryTitles"
-list="fontOptions"
-placeholder="Markazi Text"
-oninput="previewFonts()"
->
-
+<label>أسماء الأقسام / الأصناف</label>
+<input id="fontCategoryTitles" list="fontOptions" placeholder="Markazi Text" oninput="previewFonts()">
 </div>
 
-
 <div>
-
-<label>
-أسماء المنتجات
-</label>
-
-<input
-id="fontProductNames"
-list="fontOptions"
-placeholder="Aref Ruqaa"
-oninput="previewFonts()"
->
-
+<label>أسماء المنتجات</label>
+<input id="fontProductNames" list="fontOptions" placeholder="Aref Ruqaa" oninput="previewFonts()">
 </div>
 
-
 <div>
-
-<label>
-الأسعار
-</label>
-
-<input
-id="fontPrices"
-list="fontOptions"
-placeholder="Cairo"
-oninput="previewFonts()"
->
-
+<label>الأسعار</label>
+<input id="fontPrices" list="fontOptions" placeholder="Cairo" oninput="previewFonts()">
 </div>
 
-
 <div>
-
-<label>
-الأزرار
-</label>
-
-<input
-id="fontButtons"
-list="fontOptions"
-placeholder="Tajawal"
-oninput="previewFonts()"
->
-
+<label>الأزرار</label>
+<input id="fontButtons" list="fontOptions" placeholder="Tajawal" oninput="previewFonts()">
 </div>
 
-
 <div>
-
-<label>
-الباقات والعروض
-</label>
-
-<input
-id="fontBundles"
-list="fontOptions"
-placeholder="Aref Ruqaa"
-oninput="previewFonts()"
->
-
+<label>الباقات والعروض</label>
+<input id="fontBundles" list="fontOptions" placeholder="Aref Ruqaa" oninput="previewFonts()">
 </div>
 
-
 <div>
-
-<label>
-الهدايا والتغليف
-</label>
-
-<input
-id="fontGifts"
-list="fontOptions"
-placeholder="Cairo"
-oninput="previewFonts()"
->
-
+<label>الهدايا والتغليف</label>
+<input id="fontGifts" list="fontOptions" placeholder="Cairo" oninput="previewFonts()">
 </div>
 
-
 <div>
-
-<label>
-التقييمات
-</label>
-
-<input
-id="fontReviews"
-list="fontOptions"
-placeholder="Tajawal"
-oninput="previewFonts()"
->
-
+<label>التقييمات</label>
+<input id="fontReviews" list="fontOptions" placeholder="Tajawal" oninput="previewFonts()">
 </div>
 
-
 <div>
-
-<label>
-أسفل المتجر والسياسات
-</label>
-
-<input
-id="fontFooter"
-list="fontOptions"
-placeholder="Cairo"
-oninput="previewFonts()"
->
-
+<label>أسفل المتجر والسياسات</label>
+<input id="fontFooter" list="fontOptions" placeholder="Cairo" oninput="previewFonts()">
 </div>
 
-
 <div>
-
-<label>
-السلة والنوافذ وتتبع الطلب
-</label>
-
-<input
-id="fontModals"
-list="fontOptions"
-placeholder="Tajawal"
-oninput="previewFonts()"
->
-
+<label>السلة والنوافذ وتتبع الطلب</label>
+<input id="fontModals" list="fontOptions" placeholder="Tajawal" oninput="previewFonts()">
 </div>
 
-
 <div>
-
-<label>
-الفاتورة
-</label>
-
-<input
-id="fontInvoice"
-list="fontOptions"
-placeholder="Amiri"
-oninput="previewFonts()"
->
-
+<label>الفاتورة</label>
+<input id="fontInvoice" list="fontOptions" placeholder="Amiri" oninput="previewFonts()">
 </div>
 
 </div>
@@ -3707,51 +2275,28 @@ oninput="previewFonts()"
 <datalist id="fontOptions">
 
 <option value="Tajawal"></option>
-
 <option value="Cairo"></option>
-
 <option value="Amiri"></option>
-
 <option value="Aref Ruqaa"></option>
-
 <option value="Markazi Text"></option>
-
 <option value="Noto Kufi Arabic"></option>
-
 <option value="Noto Sans Arabic"></option>
-
 <option value="Noto Naskh Arabic"></option>
-
 <option value="Changa"></option>
-
 <option value="El Messiri"></option>
-
 <option value="Lalezar"></option>
-
 <option value="Reem Kufi"></option>
-
 <option value="Reem Kufi Fun"></option>
-
 <option value="Almarai"></option>
-
 <option value="IBM Plex Sans Arabic"></option>
-
 <option value="Mada"></option>
-
 <option value="Lateef"></option>
-
 <option value="Scheherazade New"></option>
-
 <option value="Rakkas"></option>
-
 <option value="Baloo Bhaijaan 2"></option>
-
 <option value="Readex Pro"></option>
-
 <option value="Noto Serif Arabic"></option>
-
 <option value="Vazirmatn"></option>
-
 <option value="Rubik"></option>
 
 </datalist>
@@ -3763,17 +2308,13 @@ oninput="previewFonts()"
 👁️ معاينة الخطوط
 </h3>
 
-
 <div class="font-preview-line">
 
 <div class="font-preview-label">
 اسم المتجر
 </div>
 
-<div
-id="fontPreviewBrand"
-class="font-preview-brand"
->
+<div id="fontPreviewBrand" class="font-preview-brand">
 متجر الشعيبي
 </div>
 
@@ -3786,10 +2327,7 @@ class="font-preview-brand"
 العنوان الرئيسي
 </div>
 
-<div
-id="fontPreviewHero"
-class="font-preview-hero"
->
+<div id="fontPreviewHero" class="font-preview-hero">
 صُنعت لمن يبحث عن الاختلاف
 </div>
 
@@ -3802,10 +2340,7 @@ class="font-preview-hero"
 عنوان قسم
 </div>
 
-<div
-id="fontPreviewSection"
-class="font-preview-section"
->
+<div id="fontPreviewSection" class="font-preview-section">
 تشكيلتنا
 </div>
 
@@ -3818,10 +2353,7 @@ class="font-preview-section"
 اسم صنف
 </div>
 
-<div
-id="fontPreviewCategory"
-class="font-preview-category"
->
+<div id="fontPreviewCategory" class="font-preview-category">
 العطور
 </div>
 
@@ -3834,10 +2366,7 @@ class="font-preview-category"
 اسم المنتج
 </div>
 
-<div
-id="fontPreviewProduct"
-class="font-preview-product"
->
+<div id="fontPreviewProduct" class="font-preview-product">
 عطر الشعيبي الفاخر
 </div>
 
@@ -3850,10 +2379,7 @@ class="font-preview-product"
 السعر
 </div>
 
-<div
-id="fontPreviewPrice"
-class="font-preview-price"
->
+<div id="fontPreviewPrice" class="font-preview-price">
 25,000 ر.ي
 </div>
 
@@ -3866,10 +2392,7 @@ class="font-preview-price"
 الباقة
 </div>
 
-<div
-id="fontPreviewBundle"
-style="font-size:24px"
->
+<div id="fontPreviewBundle" style="font-size:24px">
 🔥 باقة الشعيبي المميزة
 </div>
 
@@ -3882,10 +2405,7 @@ style="font-size:24px"
 الهدية
 </div>
 
-<div
-id="fontPreviewGift"
-style="font-size:21px"
->
+<div id="fontPreviewGift" style="font-size:21px">
 🎁 اصنع هديتك بنفسك
 </div>
 
@@ -3898,10 +2418,7 @@ style="font-size:21px"
 التقييم
 </div>
 
-<div
-id="fontPreviewReview"
-style="font-size:18px"
->
+<div id="fontPreviewReview" style="font-size:18px">
 ★★★★★ تجربة رائعة وخدمة ممتازة
 </div>
 
@@ -3914,24 +2431,14 @@ style="font-size:18px"
 الفاتورة
 </div>
 
-<div
-id="fontPreviewInvoice"
-style="font-size:20px"
->
+<div id="fontPreviewInvoice" style="font-size:20px">
 فاتورة الطلب رقم #1001
 </div>
 
 </div>
 
 
-<div
-style="
-display:flex;
-gap:7px;
-flex-wrap:wrap;
-margin-top:15px
-"
->
+<div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:15px">
 
 <button
 id="fontPreviewButton"
@@ -3954,10 +2461,7 @@ type="button"
 </div>
 
 
-<div
-class="actions"
-style="margin-top:18px"
->
+<div class="actions" style="margin-top:18px">
 
 <button
 id="saveFontsButton"
@@ -3981,14 +2485,9 @@ onclick="resetFontSettings()"
 </section>
 
 
-<!-- =========================================================
-PAYMENT
-========================================================= -->
+<!-- ================= PAYMENT ================= -->
 
-<section
-id="payment"
-class="page hidden"
->
+<section id="payment" class="page hidden">
 
 <div class="card">
 
@@ -3999,29 +2498,14 @@ class="page hidden"
 <div class="grid3">
 
 <div>
-
-<label>
-اسم الوسيلة
-</label>
-
+<label>اسم الوسيلة</label>
 <input id="paymentName">
-
 </div>
-
 
 <div>
-
-<label>
-الرمز
-</label>
-
-<input
-id="paymentId"
-placeholder="bank"
->
-
+<label>الرمز</label>
+<input id="paymentId" placeholder="bank">
 </div>
-
 
 <div>
 
@@ -4053,7 +2537,6 @@ placeholder="bank"
 
 </div>
 
-
 <label>
 التعليمات
 </label>
@@ -4070,10 +2553,7 @@ onclick="addPaymentMethod()"
 </div>
 
 
-<div
-id="paymentMethodsList"
-class="card"
-></div>
+<div id="paymentMethodsList" class="card"></div>
 
 
 <div class="card">
@@ -4085,50 +2565,26 @@ class="card"
 <div class="grid2">
 
 <div>
-
-<label>
-اسم البنك
-</label>
-
+<label>اسم البنك</label>
 <input id="bankName">
-
 </div>
 
-
 <div>
-
-<label>
-اسم صاحب الحساب
-</label>
-
+<label>اسم صاحب الحساب</label>
 <input id="bankHolder">
-
 </div>
 
-
 <div>
-
-<label>
-رقم الحساب
-</label>
-
+<label>رقم الحساب</label>
 <input id="bankAccount">
-
 </div>
-
 
 <div>
-
-<label>
-IBAN
-</label>
-
+<label>IBAN</label>
 <input id="bankIban">
-
 </div>
 
 </div>
-
 
 <label>
 تعليمات إضافية
@@ -4145,11 +2601,7 @@ onclick="addBankAccount()"
 
 </div>
 
-
-<div
-id="bankAccountsList"
-class="card"
-></div>
+<div id="bankAccountsList" class="card"></div>
 
 <button
 class="btn green"
@@ -4161,14 +2613,9 @@ onclick="savePaymentSettings()"
 </section>
 
 
-<!-- =========================================================
-FOOTER SETTINGS
-========================================================= -->
+<!-- ================= POLICIES ================= -->
 
-<section
-id="footer"
-class="page hidden"
->
+<section id="footer" class="page hidden">
 
 <div class="card">
 
@@ -4190,14 +2637,9 @@ onclick="saveFooterSettings()"
 </section>
 
 
-<!-- =========================================================
-GENERAL SETTINGS
-========================================================= -->
+<!-- ================= SETTINGS ================= -->
 
-<section
-id="settings"
-class="page hidden"
->
+<section id="settings" class="page hidden">
 
 <div class="card">
 
@@ -4208,68 +2650,33 @@ class="page hidden"
 <div class="grid2">
 
 <div>
-
-<label>
-اسم المتجر
-</label>
-
+<label>اسم المتجر</label>
 <input id="setStoreName">
-
 </div>
 
-
 <div>
-
-<label>
-الاسم الإنجليزي
-</label>
-
+<label>الاسم الإنجليزي</label>
 <input id="setStoreNameEn">
-
 </div>
 
-
 <div>
-
-<label>
-العنوان الصغير
-</label>
-
+<label>العنوان الصغير</label>
 <input id="setEyebrow">
-
 </div>
 
-
 <div>
-
-<label>
-الجوال
-</label>
-
+<label>الجوال</label>
 <input id="setPhone">
-
 </div>
 
-
 <div>
-
-<label>
-واتساب
-</label>
-
+<label>واتساب</label>
 <input id="setWhatsapp">
-
 </div>
 
-
 <div>
-
-<label>
-البريد
-</label>
-
+<label>البريد</label>
 <input id="setEmail">
-
 </div>
 
 </div>
@@ -4299,68 +2706,33 @@ class="page hidden"
 <div class="grid3">
 
 <div>
-
-<label>
-Instagram
-</label>
-
+<label>Instagram</label>
 <input id="setInstagram">
-
 </div>
 
-
 <div>
-
-<label>
-TikTok
-</label>
-
+<label>TikTok</label>
 <input id="setTiktok">
-
 </div>
 
-
 <div>
-
-<label>
-Facebook
-</label>
-
+<label>Facebook</label>
 <input id="setFacebook">
-
 </div>
 
-
 <div>
-
-<label>
-Telegram
-</label>
-
+<label>Telegram</label>
 <input id="setTelegram">
-
 </div>
 
-
 <div>
-
-<label>
-X
-</label>
-
+<label>X</label>
 <input id="setTwitter">
-
 </div>
 
-
 <div>
-
-<label>
-Snapchat
-</label>
-
+<label>Snapchat</label>
 <input id="setSnapchat">
-
 </div>
 
 </div>
@@ -4368,10 +2740,7 @@ Snapchat
 
 <div class="check-row">
 
-<input
-id="setSearch"
-type="checkbox"
->
+<input id="setSearch" type="checkbox">
 
 <label for="setSearch">
 تشغيل البحث
@@ -4382,10 +2751,7 @@ type="checkbox"
 
 <div class="check-row">
 
-<input
-id="setSort"
-type="checkbox"
->
+<input id="setSort" type="checkbox">
 
 <label for="setSort">
 تشغيل الترتيب
@@ -4396,10 +2762,7 @@ type="checkbox"
 
 <div class="check-row">
 
-<input
-id="setReviews"
-type="checkbox"
->
+<input id="setReviews" type="checkbox">
 
 <label for="setReviews">
 إظهار التقييمات
@@ -4419,7 +2782,6 @@ type="checkbox"
 <p class="note">
 هذه الإعدادات تتحكم في شاشة البداية التي تظهر عند فتح المتجر.
 </p>
-
 
 <div class="check-row">
 
@@ -4447,15 +2809,9 @@ accept="image/*"
 onchange="previewSplashFile()"
 >
 
-<div
-id="splashUploadStatus"
-class="upload-status"
-></div>
+<div id="splashUploadStatus" class="upload-status"></div>
 
-<div
-id="splashAdminPreview"
-class="media-preview-grid"
-></div>
+<div id="splashAdminPreview" class="media-preview-grid"></div>
 
 
 <div class="actions">
@@ -4474,79 +2830,28 @@ onclick="removeSplashLogo()"
 <div class="grid3">
 
 <div>
-
-<label>
-مدة ظهور الشاشة ms
-</label>
-
-<input
-id="setSplashDuration"
-type="number"
-min="300"
-step="100"
-value="2300"
->
-
+<label>مدة ظهور الشاشة ms</label>
+<input id="setSplashDuration" type="number" min="300" step="100" value="2300">
 </div>
 
-
 <div>
-
-<label>
-عرض الشعار - الكمبيوتر px
-</label>
-
-<input
-id="setSplashDesktopWidth"
-type="number"
-value="330"
->
-
+<label>عرض الشعار - الكمبيوتر px</label>
+<input id="setSplashDesktopWidth" type="number" value="330">
 </div>
 
-
 <div>
-
-<label>
-عرض الشعار - التابلت px
-</label>
-
-<input
-id="setSplashTabletWidth"
-type="number"
-value="280"
->
-
+<label>عرض الشعار - التابلت px</label>
+<input id="setSplashTabletWidth" type="number" value="280">
 </div>
 
-
 <div>
-
-<label>
-عرض الشعار - الجوال px
-</label>
-
-<input
-id="setSplashMobileWidth"
-type="number"
-value="220"
->
-
+<label>عرض الشعار - الجوال px</label>
+<input id="setSplashMobileWidth" type="number" value="220">
 </div>
 
-
 <div>
-
-<label>
-لون خلفية البداية
-</label>
-
-<input
-id="setSplashBackground"
-type="color"
-value="#F8EACB"
->
-
+<label>لون خلفية البداية</label>
+<input id="setSplashBackground" type="color" value="#F8EACB">
 </div>
 
 </div>
@@ -4575,9 +2880,7 @@ onclick="saveGeneralSettings()"
 </div>
 
 
-<!-- =========================================================
-MODALS
-========================================================= -->
+<!-- ================= MODALS ================= -->
 
 <div
 id="modalScrim"
@@ -4586,10 +2889,7 @@ onclick="closeOrderModal()"
 ></div>
 
 
-<div
-id="orderModal"
-class="modal"
->
+<div id="orderModal" class="modal">
 
 <div class="modal-head">
 
@@ -4611,10 +2911,7 @@ onclick="closeOrderModal()"
 </div>
 
 
-<div
-id="invoiceModal"
-class="modal"
->
+<div id="invoiceModal" class="modal">
 
 <div class="modal-head">
 
@@ -4636,10 +2933,7 @@ onclick="closeInvoiceModal()"
 </div>
 
 
-<div
-id="toast"
-class="toast"
-></div>
+<div id="toast" class="toast"></div>
 
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -4653,14 +2947,11 @@ SUPABASE
 const SUPABASE_URL =
 "https://bpxklyjahdjbnkxwtqig.supabase.co";
 
-
 const SUPABASE_KEY =
 "sb_publishable_7hoVcUR8Twi6s9IRATiruw_ICTw6wXn";
 
-
 const ADMIN_EMAIL =
 "omara1store@gmail.com";
-
 
 const STORAGE_BUCKET =
 "store-media";
@@ -4717,33 +3008,19 @@ NAV
 const tabs = [
 
 ["dashboard","الرئيسية"],
-
 ["productManager","المنتجات"],
-
 ["products","الخيارات"],
-
 ["bundles","العروض"],
-
 ["gifts","الهدايا"],
-
 ["coupons","الكوبونات"],
-
 ["customers","العملاء"],
-
 ["orders","الطلبات"],
-
 ["reviews","التقييمات"],
-
 ["recommend","الاقتراحات"],
-
 ["ads","الإعلانات"],
-
 ["design","التصميم والخطوط"],
-
 ["payment","الدفع والبنوك"],
-
 ["footer","السياسات"],
-
 ["settings","إعدادات المتجر"]
 
 ];
@@ -4752,21 +3029,13 @@ const tabs = [
 const policies = [
 
 ["about","من نحن"],
-
 ["returns","سياسة الاستبدال والاسترجاع"],
-
 ["privacy","سياسة الخصوصية"],
-
 ["terms","الشروط والأحكام"],
-
 ["discounts","سياسة التخفيضات"],
-
 ["customerService","خدمة العملاء"],
-
 ["hr","الموارد البشرية"],
-
 ["wholesale","مبيعات الجملة"],
-
 ["branches","فروعنا"]
 
 ];
@@ -4778,26 +3047,19 @@ HELPERS
 
 function toast(message){
 
-$("toast")
-.textContent =
+$("toast").textContent =
 message;
-
 
 $("toast")
 .classList
-.add(
-"show"
-);
-
+.add("show");
 
 setTimeout(
 () => {
 
 $("toast")
 .classList
-.remove(
-"show"
-);
+.remove("show");
 
 },
 2200
@@ -4814,17 +3076,11 @@ value ?? ""
 .replace(
 /[&<>"']/g,
 char => ({
-
 "&":"&amp;",
-
 "<":"&lt;",
-
 ">":"&gt;",
-
 '"':"&quot;",
-
 "'":"&#039;"
-
 }[char])
 );
 
@@ -4837,16 +3093,12 @@ currency = "ر.ي"
 ){
 
 return (
-Number(
-value || 0
-)
+Number(value || 0)
 .toFixed(2)
 +
 " "
 +
-(
-currency || "ر.ي"
-)
+(currency || "ر.ي")
 );
 
 }
@@ -4854,19 +3106,10 @@ currency || "ر.ي"
 
 function parseLines(value){
 
-return String(
-value || ""
-)
-.split(
-/[\n,]+/
-)
-.map(
-x =>
-x.trim()
-)
-.filter(
-Boolean
-);
+return String(value || "")
+.split(/[\n,]+/)
+.map(x => x.trim())
+.filter(Boolean);
 
 }
 
@@ -4875,30 +3118,15 @@ function statusText(status){
 
 return ({
 
-pending:
-"قيد الانتظار",
+pending:"قيد الانتظار",
+confirmed:"تم التأكيد",
+processing:"قيد التجهيز",
+shipped:"تم الشحن",
+delivered:"تم التسليم",
+cancelled:"ملغي",
+refunded:"مسترجع"
 
-confirmed:
-"تم التأكيد",
-
-processing:
-"قيد التجهيز",
-
-shipped:
-"تم الشحن",
-
-delivered:
-"تم التسليم",
-
-cancelled:
-"ملغي",
-
-refunded:
-"مسترجع"
-
-})[
-status
-]
+})[status]
 ||
 status
 ||
@@ -4913,22 +3141,15 @@ if(!value){
 return "—";
 }
 
-
 try{
 
-return new Date(
-value
-)
-.toLocaleString(
-"ar"
-);
+return new Date(value)
+.toLocaleString("ar");
 
 }
 catch(error){
 
-return String(
-value
-);
+return String(value);
 
 }
 
@@ -4949,14 +3170,9 @@ file.name || "file"
 ""
 );
 
-
 if(!ext){
-
-ext =
-"bin";
-
+ext = "bin";
 }
-
 
 return (
 Date.now()
@@ -4986,26 +3202,18 @@ new Set();
 function cleanAdminFontName(value){
 
 let name =
-String(
-value || ""
-)
+String(value || "")
 .trim();
-
 
 if(!name){
 return "";
 }
 
-
 name =
 name
-.replace(
-/["']/g,
-""
-)
+.replace(/["']/g,"")
 .split(",")[0]
 .trim();
-
 
 return name;
 
@@ -5015,52 +3223,35 @@ return name;
 function loadAdminGoogleFont(value){
 
 const name =
-cleanAdminFontName(
-value
-);
-
+cleanAdminFontName(value);
 
 if(!name){
 return;
 }
 
-
 if(
-loadedAdminFonts
-.has(
-name
-)
+loadedAdminFonts.has(name)
 ){
-
 return;
-
 }
 
 
 const builtInFonts = [
 
 "Tajawal",
-
 "Cairo",
-
 "Amiri",
-
 "Aref Ruqaa",
-
 "Markazi Text"
 
 ];
 
 
 if(
-builtInFonts.includes(
-name
-)
+builtInFonts.includes(name)
 ){
 
-loadedAdminFonts.add(
-name
-);
+loadedAdminFonts.add(name);
 
 return;
 
@@ -5068,24 +3259,14 @@ return;
 
 
 const link =
-document.createElement(
-"link"
-);
-
+document.createElement("link");
 
 link.rel =
 "stylesheet";
 
-
 const family =
-encodeURIComponent(
-name
-)
-.replace(
-/%20/g,
-"+"
-);
-
+encodeURIComponent(name)
+.replace(/%20/g,"+");
 
 link.href =
 "https://fonts.googleapis.com/css2?family="
@@ -5094,15 +3275,9 @@ family
 +
 ":wght@300;400;500;600;700;800;900&display=swap";
 
+document.head.appendChild(link);
 
-document.head.appendChild(
-link
-);
-
-
-loadedAdminFonts.add(
-name
-);
+loadedAdminFonts.add(name);
 
 }
 
@@ -5113,17 +3288,11 @@ fallback = "Tajawal"
 ){
 
 const name =
-cleanAdminFontName(
-value
-)
+cleanAdminFontName(value)
 ||
 fallback;
 
-
-loadAdminGoogleFont(
-name
-);
-
+loadAdminGoogleFont(name);
 
 return (
 "'"
@@ -5141,129 +3310,82 @@ function getFontFormData(){
 return {
 
 body:
-$("fontBody")
-.value
-.trim()
+$("fontBody").value.trim()
 ||
 "Tajawal",
-
 
 brand:
-$("fontBrand")
-.value
-.trim()
+$("fontBrand").value.trim()
 ||
 "Aref Ruqaa",
-
 
 heroTitle:
-$("fontHeroTitle")
-.value
-.trim()
+$("fontHeroTitle").value.trim()
 ||
 "Aref Ruqaa",
-
 
 heroDescription:
-$("fontHeroDescription")
-.value
-.trim()
+$("fontHeroDescription").value.trim()
 ||
 "Tajawal",
-
 
 nav:
-$("fontNav")
-.value
-.trim()
+$("fontNav").value.trim()
 ||
 "Tajawal",
-
 
 sectionTitles:
-$("fontSectionTitles")
-.value
-.trim()
+$("fontSectionTitles").value.trim()
 ||
 "Aref Ruqaa",
-
 
 categoryTitles:
-$("fontCategoryTitles")
-.value
-.trim()
+$("fontCategoryTitles").value.trim()
 ||
 "Aref Ruqaa",
-
 
 productNames:
-$("fontProductNames")
-.value
-.trim()
+$("fontProductNames").value.trim()
 ||
 "Aref Ruqaa",
-
 
 prices:
-$("fontPrices")
-.value
-.trim()
+$("fontPrices").value.trim()
 ||
 "Tajawal",
-
 
 buttons:
-$("fontButtons")
-.value
-.trim()
+$("fontButtons").value.trim()
 ||
 "Tajawal",
 
-
 bundles:
-$("fontBundles")
-.value
-.trim()
+$("fontBundles").value.trim()
 ||
 "Aref Ruqaa",
 
-
 gifts:
-$("fontGifts")
-.value
-.trim()
+$("fontGifts").value.trim()
 ||
 "Tajawal",
-
 
 reviews:
-$("fontReviews")
-.value
-.trim()
+$("fontReviews").value.trim()
 ||
 "Tajawal",
-
 
 footer:
-$("fontFooter")
-.value
-.trim()
+$("fontFooter").value.trim()
 ||
 "Tajawal",
-
 
 modals:
-$("fontModals")
-.value
-.trim()
+$("fontModals").value.trim()
 ||
 "Tajawal",
 
-
 invoice:
-$("fontInvoice")
-.value
-.trim()
+$("fontInvoice").value.trim()
 ||
 "Tajawal"
 
@@ -5274,139 +3396,53 @@ $("fontInvoice")
 
 function previewFonts(){
 
-if(
-!$("fontBody")
-){
-
+if(!$("fontBody")){
 return;
-
 }
-
 
 const fonts =
 getFontFormData();
 
-
-Object.values(
-fonts
-)
+Object.values(fonts)
 .forEach(
-font => {
-
-loadAdminGoogleFont(
-font
+font => loadAdminGoogleFont(font)
 );
 
-}
-);
+$("fontPreviewBrand").style.fontFamily =
+adminFontCSS(fonts.brand,"Aref Ruqaa");
 
+$("fontPreviewHero").style.fontFamily =
+adminFontCSS(fonts.heroTitle,"Aref Ruqaa");
 
-$("fontPreviewBrand")
-.style
-.fontFamily =
-adminFontCSS(
-fonts.brand,
-"Aref Ruqaa"
-);
+$("fontPreviewSection").style.fontFamily =
+adminFontCSS(fonts.sectionTitles,"Aref Ruqaa");
 
+$("fontPreviewCategory").style.fontFamily =
+adminFontCSS(fonts.categoryTitles,"Aref Ruqaa");
 
-$("fontPreviewHero")
-.style
-.fontFamily =
-adminFontCSS(
-fonts.heroTitle,
-"Aref Ruqaa"
-);
+$("fontPreviewProduct").style.fontFamily =
+adminFontCSS(fonts.productNames,"Aref Ruqaa");
 
+$("fontPreviewPrice").style.fontFamily =
+adminFontCSS(fonts.prices,"Tajawal");
 
-$("fontPreviewSection")
-.style
-.fontFamily =
-adminFontCSS(
-fonts.sectionTitles,
-"Aref Ruqaa"
-);
+$("fontPreviewButton").style.fontFamily =
+adminFontCSS(fonts.buttons,"Tajawal");
 
+$("fontPreviewNav").style.fontFamily =
+adminFontCSS(fonts.nav,"Tajawal");
 
-$("fontPreviewCategory")
-.style
-.fontFamily =
-adminFontCSS(
-fonts.categoryTitles,
-"Aref Ruqaa"
-);
+$("fontPreviewBundle").style.fontFamily =
+adminFontCSS(fonts.bundles,"Aref Ruqaa");
 
+$("fontPreviewGift").style.fontFamily =
+adminFontCSS(fonts.gifts,"Tajawal");
 
-$("fontPreviewProduct")
-.style
-.fontFamily =
-adminFontCSS(
-fonts.productNames,
-"Aref Ruqaa"
-);
+$("fontPreviewReview").style.fontFamily =
+adminFontCSS(fonts.reviews,"Tajawal");
 
-
-$("fontPreviewPrice")
-.style
-.fontFamily =
-adminFontCSS(
-fonts.prices,
-"Tajawal"
-);
-
-
-$("fontPreviewButton")
-.style
-.fontFamily =
-adminFontCSS(
-fonts.buttons,
-"Tajawal"
-);
-
-
-$("fontPreviewNav")
-.style
-.fontFamily =
-adminFontCSS(
-fonts.nav,
-"Tajawal"
-);
-
-
-$("fontPreviewBundle")
-.style
-.fontFamily =
-adminFontCSS(
-fonts.bundles,
-"Aref Ruqaa"
-);
-
-
-$("fontPreviewGift")
-.style
-.fontFamily =
-adminFontCSS(
-fonts.gifts,
-"Tajawal"
-);
-
-
-$("fontPreviewReview")
-.style
-.fontFamily =
-adminFontCSS(
-fonts.reviews,
-"Tajawal"
-);
-
-
-$("fontPreviewInvoice")
-.style
-.fontFamily =
-adminFontCSS(
-fonts.invoice,
-"Tajawal"
-);
+$("fontPreviewInvoice").style.fontFamily =
+adminFontCSS(fonts.invoice,"Tajawal");
 
 }
 
@@ -5416,24 +3452,19 @@ async function saveFontSettings(){
 const button =
 $("saveFontsButton");
 
-
 button.disabled =
 true;
-
 
 const oldText =
 button.textContent;
 
-
 button.textContent =
 "جارِ حفظ الخطوط...";
-
 
 try{
 
 const fonts =
 getFontFormData();
-
 
 const next = {
 
@@ -5443,21 +3474,17 @@ fonts
 
 };
 
-
 await saveSetting(
 "design",
 next
 );
 
-
 designSettings =
 next;
-
 
 toast(
 "تم حفظ خطوط المتجر ✓"
 );
-
 
 previewFonts();
 
@@ -5468,7 +3495,6 @@ console.error(
 "Save fonts:",
 error
 );
-
 
 alert(
 "تعذر حفظ الخطوط:\n"
@@ -5486,7 +3512,6 @@ finally{
 button.disabled =
 false;
 
-
 button.textContent =
 oldText;
 
@@ -5502,94 +3527,27 @@ if(
 "هل تريد استعادة جميع الخطوط الافتراضية؟"
 )
 ){
-
 return;
-
 }
 
-
-$("fontBody")
-.value =
-"Tajawal";
-
-
-$("fontBrand")
-.value =
-"Aref Ruqaa";
-
-
-$("fontHeroTitle")
-.value =
-"Aref Ruqaa";
-
-
-$("fontHeroDescription")
-.value =
-"Tajawal";
-
-
-$("fontNav")
-.value =
-"Tajawal";
-
-
-$("fontSectionTitles")
-.value =
-"Aref Ruqaa";
-
-
-$("fontCategoryTitles")
-.value =
-"Aref Ruqaa";
-
-
-$("fontProductNames")
-.value =
-"Aref Ruqaa";
-
-
-$("fontPrices")
-.value =
-"Tajawal";
-
-
-$("fontButtons")
-.value =
-"Tajawal";
-
-
-$("fontBundles")
-.value =
-"Aref Ruqaa";
-
-
-$("fontGifts")
-.value =
-"Tajawal";
-
-
-$("fontReviews")
-.value =
-"Tajawal";
-
-
-$("fontFooter")
-.value =
-"Tajawal";
-
-
-$("fontModals")
-.value =
-"Tajawal";
-
-
-$("fontInvoice")
-.value =
-"Tajawal";
-
+$("fontBody").value = "Tajawal";
+$("fontBrand").value = "Aref Ruqaa";
+$("fontHeroTitle").value = "Aref Ruqaa";
+$("fontHeroDescription").value = "Tajawal";
+$("fontNav").value = "Tajawal";
+$("fontSectionTitles").value = "Aref Ruqaa";
+$("fontCategoryTitles").value = "Aref Ruqaa";
+$("fontProductNames").value = "Aref Ruqaa";
+$("fontPrices").value = "Tajawal";
+$("fontButtons").value = "Tajawal";
+$("fontBundles").value = "Aref Ruqaa";
+$("fontGifts").value = "Tajawal";
+$("fontReviews").value = "Tajawal";
+$("fontFooter").value = "Tajawal";
+$("fontModals").value = "Tajawal";
+$("fontInvoice").value = "Tajawal";
 
 previewFonts();
-
 
 toast(
 "تمت استعادة القيم الافتراضية — اضغط حفظ"
@@ -5600,132 +3558,62 @@ toast(
 
 function fillFontSettings(){
 
-if(
-!$("fontBody")
-){
-
+if(!$("fontBody")){
 return;
-
 }
-
 
 const fonts =
 designSettings.fonts
 ||
 {};
 
+$("fontBody").value =
+fonts.body || "Tajawal";
 
-$("fontBody")
-.value =
-fonts.body
-||
-"Tajawal";
+$("fontBrand").value =
+fonts.brand || "Aref Ruqaa";
 
+$("fontHeroTitle").value =
+fonts.heroTitle || "Aref Ruqaa";
 
-$("fontBrand")
-.value =
-fonts.brand
-||
-"Aref Ruqaa";
+$("fontHeroDescription").value =
+fonts.heroDescription || "Tajawal";
 
+$("fontNav").value =
+fonts.nav || "Tajawal";
 
-$("fontHeroTitle")
-.value =
-fonts.heroTitle
-||
-"Aref Ruqaa";
+$("fontSectionTitles").value =
+fonts.sectionTitles || "Aref Ruqaa";
 
+$("fontCategoryTitles").value =
+fonts.categoryTitles || "Aref Ruqaa";
 
-$("fontHeroDescription")
-.value =
-fonts.heroDescription
-||
-"Tajawal";
+$("fontProductNames").value =
+fonts.productNames || "Aref Ruqaa";
 
+$("fontPrices").value =
+fonts.prices || "Tajawal";
 
-$("fontNav")
-.value =
-fonts.nav
-||
-"Tajawal";
+$("fontButtons").value =
+fonts.buttons || "Tajawal";
 
+$("fontBundles").value =
+fonts.bundles || "Aref Ruqaa";
 
-$("fontSectionTitles")
-.value =
-fonts.sectionTitles
-||
-"Aref Ruqaa";
+$("fontGifts").value =
+fonts.gifts || "Tajawal";
 
+$("fontReviews").value =
+fonts.reviews || "Tajawal";
 
-$("fontCategoryTitles")
-.value =
-fonts.categoryTitles
-||
-"Aref Ruqaa";
+$("fontFooter").value =
+fonts.footer || "Tajawal";
 
+$("fontModals").value =
+fonts.modals || "Tajawal";
 
-$("fontProductNames")
-.value =
-fonts.productNames
-||
-"Aref Ruqaa";
-
-
-$("fontPrices")
-.value =
-fonts.prices
-||
-"Tajawal";
-
-
-$("fontButtons")
-.value =
-fonts.buttons
-||
-"Tajawal";
-
-
-$("fontBundles")
-.value =
-fonts.bundles
-||
-"Aref Ruqaa";
-
-
-$("fontGifts")
-.value =
-fonts.gifts
-||
-"Tajawal";
-
-
-$("fontReviews")
-.value =
-fonts.reviews
-||
-"Tajawal";
-
-
-$("fontFooter")
-.value =
-fonts.footer
-||
-"Tajawal";
-
-
-$("fontModals")
-.value =
-fonts.modals
-||
-"Tajawal";
-
-
-$("fontInvoice")
-.value =
-fonts.invoice
-||
-"Tajawal";
-
+$("fontInvoice").value =
+fonts.invoice || "Tajawal";
 
 previewFonts();
 
@@ -5733,7 +3621,7 @@ previewFonts();
 
 
 /* =========================================================
-UPLOAD STATUS
+UPLOAD
 ========================================================= */
 
 function setUploadStatus(
@@ -5745,15 +3633,12 @@ show = true
 const e =
 $(id);
 
-
 if(!e){
 return;
 }
 
-
 e.textContent =
 text;
-
 
 e.classList.toggle(
 "show",
@@ -5762,10 +3647,6 @@ show
 
 }
 
-
-/* =========================================================
-UPLOAD
-========================================================= */
 
 async function uploadMediaFile(
 file,
@@ -5780,39 +3661,27 @@ throw new Error(
 
 }
 
-
 const path =
 folder
 +
 "/"
 +
-randomName(
-file
-);
-
+randomName(file);
 
 const {
 error
 } =
 await db.storage
-.from(
-STORAGE_BUCKET
-)
+.from(STORAGE_BUCKET)
 .upload(
 path,
 file,
 {
-
 upsert:false,
-
 cacheControl:"3600",
-
-contentType:
-file.type
-
+contentType:file.type
 }
 );
-
 
 if(error){
 
@@ -5821,13 +3690,10 @@ String(
 error.message || ""
 );
 
-
 if(
 message
 .toLowerCase()
-.includes(
-"bucket"
-)
+.includes("bucket")
 ){
 
 throw new Error(
@@ -5836,13 +3702,10 @@ throw new Error(
 
 }
 
-
 if(
 message
 .toLowerCase()
-.includes(
-"row-level security"
-)
+.includes("row-level security")
 ){
 
 throw new Error(
@@ -5851,23 +3714,16 @@ throw new Error(
 
 }
 
-
 throw error;
 
 }
-
 
 const {
 data
 } =
 db.storage
-.from(
-STORAGE_BUCKET
-)
-.getPublicUrl(
-path
-);
-
+.from(STORAGE_BUCKET)
+.getPublicUrl(path);
 
 return data.publicUrl;
 
@@ -5885,10 +3741,8 @@ Array.from(
 fileList || []
 );
 
-
 const result =
 [];
-
 
 for(
 let i = 0;
@@ -5907,41 +3761,27 @@ statusId,
 files.length
 );
 
-
 result.push(
-
 await uploadMediaFile(
 files[i],
 folder
 )
-
 );
 
 }
-
 
 return result;
 
 }
 
 
-/* =========================================================
-LOCAL PREVIEW
-========================================================= */
-
 function localFileHTML(file){
 
 const url =
-URL.createObjectURL(
-file
-);
-
+URL.createObjectURL(file);
 
 if(
-file.type
-.startsWith(
-"video/"
-)
+file.type.startsWith("video/")
 ){
 
 return `
@@ -5960,7 +3800,6 @@ muted
 
 }
 
-
 return `
 
 <div class="media-preview">
@@ -5977,23 +3816,18 @@ alt=""
 }
 
 
-/* =========================================================
-PREVIEWS
-========================================================= */
+/* ================= PREVIEWS ================= */
 
 function previewSelectedProductImages(){
 
 $("newProductImagesPreview")
 .innerHTML =
 Array.from(
-$("productImageFiles")
-.files
+$("productImageFiles").files
 ||
 []
 )
-.map(
-localFileHTML
-)
+.map(localFileHTML)
 .join("");
 
 }
@@ -6002,17 +3836,13 @@ localFileHTML
 function previewBundleImage(){
 
 const file =
-$("bundleImageFile")
-.files?.[0];
-
+$("bundleImageFile").files?.[0];
 
 $("bundleImagePreview")
 .innerHTML =
 file
 ?
-localFileHTML(
-file
-)
+localFileHTML(file)
 :
 "";
 
@@ -6022,17 +3852,13 @@ file
 function previewGiftImage(){
 
 const file =
-$("giftImageFile")
-.files?.[0];
-
+$("giftImageFile").files?.[0];
 
 $("giftImagePreview")
 .innerHTML =
 file
 ?
-localFileHTML(
-file
-)
+localFileHTML(file)
 :
 "";
 
@@ -6044,16 +3870,12 @@ function previewSelectedAdFiles(){
 $("newAdFilesPreview")
 .innerHTML =
 Array.from(
-$("adFiles")
-.files
+$("adFiles").files
 ||
 []
 )
-.map(
-localFileHTML
-)
+.map(localFileHTML)
 .join("");
-
 
 previewAd();
 
@@ -6063,20 +3885,15 @@ previewAd();
 function previewSplashFile(){
 
 const file =
-$("setSplashFile")
-.files?.[0];
-
+$("setSplashFile").files?.[0];
 
 if(!file){
 return;
 }
 
-
 $("splashAdminPreview")
 .innerHTML =
-localFileHTML(
-file
-);
+localFileHTML(file);
 
 }
 
@@ -6086,16 +3903,12 @@ function removeSplashLogo(){
 editingSplashLogo =
 "";
 
-
-$("setSplashFile")
-.value =
+$("setSplashFile").value =
 "";
-
 
 $("splashAdminPreview")
 .innerHTML =
 "";
-
 
 toast(
 "سيتم حذف شعار شاشة البداية عند حفظ الإعدادات"
@@ -6111,14 +3924,25 @@ AUTH
 async function getSession(){
 
 const {
-data
+data,
+error
 } =
 await db.auth
 .getSession();
 
+if(error){
+
+console.error(
+"Session error:",
+error
+);
+
+return null;
+
+}
 
 return (
-data.session
+data?.session
 ||
 null
 );
@@ -6126,22 +3950,37 @@ null
 }
 
 
+/*
+هذا التحقق لا يعتمد على البريد وحده.
+يجب أن يكون المستخدم الحالي موجودًا فعليًا داخل store_admins.
+*/
+
 async function isAdmin(){
 
 const session =
 await getSession();
 
+if(
+!session
+||
+!session.user
+){
 
-if(!session){
 return false;
+
 }
 
 
-if(
+const currentEmail =
 String(
 session.user.email || ""
 )
-.toLowerCase()
+.trim()
+.toLowerCase();
+
+
+if(
+currentEmail
 !==
 ADMIN_EMAIL
 .toLowerCase()
@@ -6157,12 +3996,8 @@ data,
 error
 } =
 await db
-.from(
-"store_admins"
-)
-.select(
-"user_id"
-)
+.from("store_admins")
+.select("user_id")
 .eq(
 "user_id",
 session.user.id
@@ -6177,7 +4012,6 @@ console.error(
 error
 );
 
-
 return false;
 
 }
@@ -6189,27 +4023,22 @@ return !!data;
 
 
 /* =========================================================
-LOGIN
+LOGIN - تحقق فعلي من كلمة المرور
 ========================================================= */
 
 async function login(){
 
 const password =
-$("password")
-.value;
+$("password").value;
 
-
-$("msg")
-.textContent =
+$("msg").textContent =
 "";
 
 
 if(!password){
 
-$("msg")
-.textContent =
+$("msg").textContent =
 "أدخل كلمة المرور";
-
 
 return;
 
@@ -6219,18 +4048,51 @@ return;
 const button =
 $("loginButton");
 
-
 button.disabled =
 true;
 
-
 button.textContent =
-"جارِ الدخول...";
+"جارِ التحقق...";
+
+
+/*
+نبقي التطبيق مخفيًا حتى اكتمال جميع خطوات التحقق.
+*/
+
+$("app")
+.classList
+.add("hidden");
 
 
 try{
 
+/*
+إلغاء أي جلسة قديمة قبل محاولة الدخول.
+*/
+
+try{
+
+await db.auth.signOut({
+scope:"local"
+});
+
+}
+catch(signOutError){
+
+console.warn(
+"Previous session cleanup:",
+signOutError
+);
+
+}
+
+
+/*
+التحقق الفعلي من كلمة المرور عن طريق Supabase Auth.
+*/
+
 const {
+data,
 error
 } =
 await db.auth
@@ -6245,32 +4107,96 @@ password
 
 
 if(error){
+
 throw error;
+
 }
 
 
 if(
-!await isAdmin()
+!data?.session
+||
+!data?.user
 ){
 
-await db.auth
-.signOut();
-
-
 throw new Error(
-"الحساب غير مسجل كمدير"
+"تعذر إنشاء جلسة تسجيل الدخول"
 );
 
 }
 
 
-await boot();
+/*
+التحقق الثاني:
+هل الحساب الحالي موجود فعليًا في store_admins؟
+*/
+
+const allowed =
+await isAdmin();
+
+
+if(!allowed){
+
+await db.auth.signOut({
+scope:"local"
+});
+
+throw new Error(
+"هذا الحساب غير مصرح له بالدخول إلى لوحة الإدارة"
+);
+
+}
+
+
+/*
+الدخول لا يحدث قبل نجاح كلمة المرور + تحقق المدير.
+*/
+
+$("login")
+.classList
+.add("hidden");
+
+
+$("app")
+.classList
+.remove("hidden");
+
+
+renderNav();
+
+
+await loadAll();
+
+
+$("password").value =
+"";
+
+
+toast(
+"تم تسجيل الدخول بنجاح ✓"
+);
 
 }
 catch(error){
 
+console.error(
+"Login error:",
+error
+);
+
+
+$("app")
+.classList
+.add("hidden");
+
+
+$("login")
+.classList
+.remove("hidden");
+
+
 let message =
-error.message
+error?.message
 ||
 "تعذر تسجيل الدخول";
 
@@ -6287,16 +4213,53 @@ message =
 }
 
 
+if(
+message.includes(
+"Email not confirmed"
+)
+){
+
+message =
+"البريد الإلكتروني غير مؤكد";
+
+}
+
+
+if(
+message.includes(
+"Too many requests"
+)
+){
+
+message =
+"محاولات كثيرة، انتظر قليلًا ثم حاول مرة أخرى";
+
+}
+
+
 $("msg")
 .textContent =
 message;
+
+
+/*
+أي خطأ يلغي الجلسة.
+*/
+
+try{
+
+await db.auth.signOut({
+scope:"local"
+});
+
+}
+catch(e){}
 
 }
 finally{
 
 button.disabled =
 false;
-
 
 button.textContent =
 "دخول";
@@ -6312,27 +4275,44 @@ LOGOUT
 
 async function logout(){
 
-await db.auth
-.signOut();
+try{
+
+await db.auth.signOut({
+scope:"local"
+});
+
+}
+catch(error){
+
+console.warn(
+"Logout:",
+error
+);
+
+}
 
 
 $("app")
 .classList
-.add(
-"hidden"
-);
+.add("hidden");
 
 
 $("login")
 .classList
-.remove(
-"hidden"
-);
+.remove("hidden");
 
 
-$("password")
-.value =
+$("password").value =
 "";
+
+
+$("msg").textContent =
+"";
+
+
+toast(
+"تم تسجيل الخروج"
+);
 
 }
 
@@ -6380,47 +4360,29 @@ button
 ){
 
 document
-.querySelectorAll(
-".page"
-)
+.querySelectorAll(".page")
 .forEach(
-page => {
-
-page.classList.add(
-"hidden"
-);
-
-}
+page =>
+page.classList.add("hidden")
 );
 
 
 $(id)
 .classList
-.remove(
-"hidden"
-);
+.remove("hidden");
 
 
 document
-.querySelectorAll(
-"#nav button"
-)
+.querySelectorAll("#nav button")
 .forEach(
-b => {
-
-b.classList.remove(
-"active"
-);
-
-}
+b =>
+b.classList.remove("active")
 );
 
 
 button
 ?.classList
-.add(
-"active"
-);
+.add("active");
 
 
 if(
@@ -6452,18 +4414,15 @@ try{
 const result =
 await promise;
 
-
 if(result.error){
 
 console.warn(
 result.error
 );
 
-
 return fallback;
 
 }
-
 
 return (
 result.data
@@ -6478,7 +4437,6 @@ console.warn(
 error
 );
 
-
 return fallback;
 
 }
@@ -6492,31 +4450,32 @@ BOOT
 
 async function boot(){
 
-if(
-!await isAdmin()
-){
+const allowed =
+await isAdmin();
+
+if(!allowed){
+
+$("app")
+.classList
+.add("hidden");
+
+$("login")
+.classList
+.remove("hidden");
 
 return;
 
 }
 
-
 $("login")
 .classList
-.add(
-"hidden"
-);
-
+.add("hidden");
 
 $("app")
 .classList
-.remove(
-"hidden"
-);
-
+.remove("hidden");
 
 renderNav();
-
 
 await loadAll();
 
@@ -6529,8 +4488,31 @@ LOAD ALL
 
 async function loadAll(){
 
-const [
+/*
+حماية إضافية:
+حتى لو تم استدعاء loadAll يدويًا يجب وجود جلسة مدير.
+*/
 
+if(
+!await isAdmin()
+){
+
+$("app")
+.classList
+.add("hidden");
+
+$("login")
+.classList
+.remove("hidden");
+
+throw new Error(
+"جلسة الإدارة غير صالحة"
+);
+
+}
+
+
+const [
 p,
 cat,
 v,
@@ -6543,20 +4525,13 @@ rel,
 stats,
 customerReport,
 settings
-
 ] =
 await Promise.all([
 
-
 safe(
-
 db
-.from(
-"products"
-)
-.select(
-"*"
-)
+.from("products")
+.select("*")
 .order(
 "sort_order",
 {
@@ -6569,155 +4544,89 @@ ascending:true
 ascending:false
 }
 )
-
 ),
 
-
 safe(
-
 db
-.from(
-"categories"
-)
-.select(
-"*"
-)
+.from("categories")
+.select("*")
 .order(
 "sort_order",
 {
 ascending:true
 }
 )
-
 ),
 
-
 safe(
-
 db
-.from(
-"product_variants"
-)
-.select(
-"*"
-)
-.order(
-"sort_order"
-)
-
+.from("product_variants")
+.select("*")
+.order("sort_order")
 ),
 
-
 safe(
-
 db
-.from(
-"bundles"
-)
-.select(
-"*"
-)
+.from("bundles")
+.select("*")
 .order(
 "created_at",
 {
 ascending:false
 }
 )
-
 ),
 
-
 safe(
-
 db
-.from(
-"gift_options"
-)
-.select(
-"*"
-)
-.order(
-"sort_order"
-)
-
+.from("gift_options")
+.select("*")
+.order("sort_order")
 ),
 
-
 safe(
-
 db
-.from(
-"coupons"
-)
-.select(
-"*"
-)
+.from("coupons")
+.select("*")
 .order(
 "created_at",
 {
 ascending:false
 }
 )
-
 ),
 
-
 safe(
-
 db
-.from(
-"orders"
-)
-.select(
-"*"
-)
+.from("orders")
+.select("*")
 .order(
 "created_at",
 {
 ascending:false
 }
 )
-.limit(
-300
-)
-
+.limit(300)
 ),
 
-
 safe(
-
 db
-.from(
-"reviews"
-)
-.select(
-"*"
-)
+.from("reviews")
+.select("*")
 .order(
 "created_at",
 {
 ascending:false
 }
 )
-
 ),
-
 
 safe(
-
 db
-.from(
-"product_relations"
-)
-.select(
-"*"
-)
-.order(
-"sort_order"
-)
-
+.from("product_relations")
+.select("*")
+.order("sort_order")
 ),
-
 
 safe(
 db.rpc(
@@ -6726,113 +4635,61 @@ db.rpc(
 {}
 ),
 
-
 safe(
 db.rpc(
 "admin_customer_report"
 )
 ),
 
-
 safe(
-
 db
-.from(
-"settings"
-)
-.select(
-"*"
-)
-
+.from("settings")
+.select("*")
 )
 
 ]);
 
 
-products =
-p || [];
-
-
-categories =
-cat || [];
-
-
-variants =
-v || [];
-
-
-bundles =
-b || [];
-
-
-gifts =
-g || [];
-
-
-coupons =
-c || [];
-
-
-orders =
-o || [];
-
-
-reviews =
-r || [];
-
-
-relations =
-rel || [];
-
-
-customers =
-customerReport || [];
-
-
-settingsRows =
-settings || [];
+products = p || [];
+categories = cat || [];
+variants = v || [];
+bundles = b || [];
+gifts = g || [];
+coupons = c || [];
+orders = o || [];
+reviews = r || [];
+relations = rel || [];
+customers = customerReport || [];
+settingsRows = settings || [];
 
 
 parseSettings();
-
 
 renderStats(
 stats || {}
 );
 
-
 fillProductCategories();
-
 
 fillProducts();
 
-
 renderAdminProducts();
-
 
 renderVariants();
 
-
 renderBundles();
-
 
 renderGifts();
 
-
 renderCoupons();
-
 
 renderCustomers();
 
-
 renderOrders();
-
 
 renderReviews();
 
-
 renderRelations();
-
 
 fillSettingsForms();
 
@@ -6840,7 +4697,7 @@ fillSettingsForms();
 
 
 /* =========================================================
-PARSE SETTINGS
+SETTINGS
 ========================================================= */
 
 function parseSettings(){
@@ -6848,10 +4705,8 @@ function parseSettings(){
 generalSettings =
 settingsRows.find(
 x =>
-x.id ===
-"general"
-)
-?.data
+x.id === "general"
+)?.data
 ||
 {};
 
@@ -6859,10 +4714,8 @@ x.id ===
 paymentSettings =
 settingsRows.find(
 x =>
-x.id ===
-"payment"
-)
-?.data
+x.id === "payment"
+)?.data
 ||
 {};
 
@@ -6870,10 +4723,8 @@ x.id ===
 designSettings =
 settingsRows.find(
 x =>
-x.id ===
-"design"
-)
-?.data
+x.id === "design"
+)?.data
 ||
 {};
 
@@ -6881,10 +4732,8 @@ x.id ===
 adSettings =
 settingsRows.find(
 x =>
-x.id ===
-"ads"
-)
-?.data
+x.id === "ads"
+)?.data
 ||
 {};
 
@@ -6892,10 +4741,8 @@ x.id ===
 footerSettings =
 settingsRows.find(
 x =>
-x.id ===
-"footer"
-)
-?.data
+x.id === "footer"
+)?.data
 ||
 {};
 
@@ -6948,22 +4795,27 @@ generalSettings.splashLogoUrl
 }
 
 
-/* =========================================================
-SAVE SETTING
-========================================================= */
-
 async function saveSetting(
 id,
 data
 ){
 
+if(
+!await isAdmin()
+){
+
+throw new Error(
+"انتهت جلسة الإدارة"
+);
+
+}
+
+
 const {
 error
 } =
 await db
-.from(
-"settings"
-)
+.from("settings")
 .upsert({
 
 id,
@@ -7021,8 +4873,7 @@ stats.delivered
 ??
 orders.filter(
 x =>
-x.status ===
-"delivered"
+x.status === "delivered"
 ).length
 ],
 
@@ -7078,7 +4929,8 @@ CATEGORIES
 function fillProductCategories(){
 
 $("productCategory")
-.innerHTML = `
+.innerHTML =
+`
 
 <option value="">
 اختر القسم
@@ -7117,9 +4969,7 @@ p => `
 ${esc(p.name)}
 
 ${
-Number(
-p.stock || 0
-)
+Number(p.stock || 0)
 <=
 0
 ?
@@ -7143,8 +4993,7 @@ p.stock || 0
 .forEach(
 id => {
 
-$(id)
-.innerHTML =
+$(id).innerHTML =
 html;
 
 }
@@ -7175,9 +5024,7 @@ index
 
 <div class="media-preview">
 
-<img
-src="${esc(url)}"
->
+<img src="${esc(url)}">
 
 <button
 class="media-remove"
@@ -7197,12 +5044,10 @@ onclick="removeExistingProductImage(${index})"
 
 function removeExistingProductImage(index){
 
-editingProductImages
-.splice(
+editingProductImages.splice(
 index,
 1
 );
-
 
 renderExistingProductImages();
 
@@ -7210,25 +5055,21 @@ renderExistingProductImages();
 
 
 /* =========================================================
-SAVE PRODUCT
+PRODUCT
 ========================================================= */
 
 async function saveProduct(){
 
 const id =
-$("productId")
-.value;
-
+$("productId").value;
 
 const name =
 $("productName")
 .value
 .trim();
 
-
 const category =
-$("productCategory")
-.value;
+$("productCategory").value;
 
 
 if(!name){
@@ -7256,10 +5097,8 @@ return;
 const button =
 $("saveProductButton");
 
-
 button.disabled =
 true;
-
 
 button.textContent =
 "جارِ الحفظ...";
@@ -7270,11 +5109,8 @@ try{
 let uploaded =
 [];
 
-
 const files =
-$("productImageFiles")
-.files;
-
+$("productImageFiles").files;
 
 if(
 files
@@ -7307,24 +5143,21 @@ null,
 
 price:
 Number(
-$("productPrice")
-.value
+$("productPrice").value
 ||
 0
 ),
 
 discount:
 Number(
-$("productDiscount")
-.value
+$("productDiscount").value
 ||
 0
 ),
 
 stock:
 Number(
-$("productStock")
-.value
+$("productStock").value
 ||
 0
 ),
@@ -7343,28 +5176,23 @@ images:[
 
 colors:
 parseLines(
-$("productColors")
-.value
+$("productColors").value
 ),
 
 sizes:
 parseLines(
-$("productSizes")
-.value
+$("productSizes").value
 ),
 
 is_active:
-$("productActive")
-.checked,
+$("productActive").checked,
 
 is_new:
-$("productNew")
-.checked,
+$("productNew").checked,
 
 sort_order:
 Number(
-$("productSortOrder")
-.value
+$("productSortOrder").value
 ||
 0
 )
@@ -7379,12 +5207,8 @@ if(id){
 
 result =
 await db
-.from(
-"products"
-)
-.update(
-row
-)
+.from("products")
+.update(row)
 .eq(
 "id",
 id
@@ -7394,19 +5218,13 @@ id
 
 result =
 await db
-.from(
-"products"
-)
-.insert(
-row
-);
+.from("products")
+.insert(row);
 
 }
 
 
-if(
-result.error
-){
+if(result.error){
 
 throw result.error;
 
@@ -7423,7 +5241,6 @@ id
 
 
 resetProductForm();
-
 
 await loadAll();
 
@@ -7446,10 +5263,8 @@ finally{
 button.disabled =
 false;
 
-
 button.textContent =
 "حفظ المنتج";
-
 
 setUploadStatus(
 "productUploadStatus",
@@ -7462,127 +5277,73 @@ false
 }
 
 
-/* =========================================================
-EDIT PRODUCT
-========================================================= */
-
 function editProduct(id){
 
 const product =
 products.find(
 p =>
-String(
-p.id
-)
+String(p.id)
 ===
-String(
-id
-)
+String(id)
 );
-
 
 if(!product){
 return;
 }
 
-
-$("productId")
-.value =
+$("productId").value =
 product.id;
 
-
-$("productName")
-.value =
+$("productName").value =
 product.name || "";
 
-
-$("productCategory")
-.value =
+$("productCategory").value =
 product.category || "";
 
+$("productPrice").value =
+Number(product.price || 0);
 
-$("productPrice")
-.value =
-Number(
-product.price || 0
-);
+$("productDiscount").value =
+Number(product.discount || 0);
 
+$("productStock").value =
+Number(product.stock || 0);
 
-$("productDiscount")
-.value =
-Number(
-product.discount || 0
-);
-
-
-$("productStock")
-.value =
-Number(
-product.stock || 0
-);
-
-
-$("productCurrency")
-.value =
+$("productCurrency").value =
 product.currency || "ر.ي";
 
+$("productSortOrder").value =
+Number(product.sort_order || 0);
 
-$("productSortOrder")
-.value =
-Number(
-product.sort_order || 0
-);
-
-
-$("productDescription")
-.value =
+$("productDescription").value =
 product.description || "";
 
-
-$("productColors")
-.value =
-Array.isArray(
-product.colors
-)
+$("productColors").value =
+Array.isArray(product.colors)
 ?
-product.colors.join(
-"\n"
-)
+product.colors.join("\n")
 :
 "";
 
-
-$("productSizes")
-.value =
-Array.isArray(
-product.sizes
-)
+$("productSizes").value =
+Array.isArray(product.sizes)
 ?
-product.sizes.join(
-"\n"
-)
+product.sizes.join("\n")
 :
 "";
 
-
-$("productActive")
-.checked =
+$("productActive").checked =
 product.is_active
 !==
 false;
 
-
-$("productNew")
-.checked =
+$("productNew").checked =
 product.is_new
 ===
 true;
 
-
 editingProductImages =
-Array.isArray(
-product.images
-)
+Array.isArray(product.images)
 ?
 [
 ...product.images
@@ -7590,119 +5351,76 @@ product.images
 :
 [];
 
-
 renderExistingProductImages();
 
-
-$("productImageFiles")
-.value =
+$("productImageFiles").value =
 "";
 
-
-$("newProductImagesPreview")
-.innerHTML =
+$("newProductImagesPreview").innerHTML =
 "";
 
-
-$("saveProductButton")
-.textContent =
+$("saveProductButton").textContent =
 "حفظ التعديلات";
-
 
 $("productManager")
 .scrollIntoView({
-
 behavior:"smooth",
-
 block:"start"
-
 });
 
 }
 
 
-/* =========================================================
-RESET PRODUCT
-========================================================= */
-
 function resetProductForm(){
 
 $("productId").value = "";
-
 $("productName").value = "";
-
 $("productCategory").value = "";
-
 $("productPrice").value = "";
-
 $("productDiscount").value = "0";
-
 $("productStock").value = "0";
-
 $("productCurrency").value = "ر.ي";
-
 $("productSortOrder").value = "0";
-
 $("productDescription").value = "";
-
 $("productColors").value = "";
-
 $("productSizes").value = "";
-
 $("productActive").checked = true;
-
 $("productNew").checked = false;
-
 $("productImageFiles").value = "";
-
 
 editingProductImages =
 [];
 
-
-$("existingProductImages")
-.innerHTML =
+$("existingProductImages").innerHTML =
 "";
 
-
-$("newProductImagesPreview")
-.innerHTML =
+$("newProductImagesPreview").innerHTML =
 "";
 
-
-$("saveProductButton")
-.textContent =
+$("saveProductButton").textContent =
 "حفظ المنتج";
 
 }
 
 
-/* =========================================================
-RENDER PRODUCTS
-========================================================= */
-
 function renderAdminProducts(){
 
-$("productsCount")
-.textContent =
+$("productsCount").textContent =
 products.length
 +
 " منتج";
 
 
-if(
-!products.length
-){
+if(!products.length){
 
-$("productsAdminList")
-.innerHTML = `
+$("productsAdminList").innerHTML =
+`
 
 <div class="note">
 لا توجد منتجات.
 </div>
 
 `;
-
 
 return;
 
@@ -7716,9 +5434,7 @@ products
 p => {
 
 const image =
-Array.isArray(
-p.images
-)
+Array.isArray(p.images)
 ?
 p.images[0]
 ||
@@ -7754,11 +5470,8 @@ alt="${esc(p.name)}"
 <div>
 
 <div class="product-admin-name">
-
 ${esc(p.name)}
-
 </div>
-
 
 <div class="product-admin-meta">
 
@@ -7774,17 +5487,13 @@ p.currency
 )}
 
 ${
-Number(
-p.discount || 0
-)
+Number(p.discount || 0)
 >
 0
 ?
 " · خصم "
 +
-Number(
-p.discount
-)
+Number(p.discount)
 +
 "%"
 :
@@ -7849,8 +5558,7 @@ async function saveVariant(){
 const row = {
 
 product_id:
-$("varProduct")
-.value,
+$("varProduct").value,
 
 title:
 $("varTitle")
@@ -7865,20 +5573,17 @@ $("varSku")
 null,
 
 price:
-$("varPrice")
-.value
+$("varPrice").value
 ?
 Number(
-$("varPrice")
-.value
+$("varPrice").value
 )
 :
 null,
 
 stock:
 Number(
-$("varStock")
-.value
+$("varStock").value
 ||
 0
 ),
@@ -7914,12 +5619,8 @@ const {
 error
 } =
 await db
-.from(
-"product_variants"
-)
-.insert(
-row
-);
+.from("product_variants")
+.insert(row);
 
 
 if(error){
@@ -7936,7 +5637,6 @@ return;
 toast(
 "تمت إضافة الخيار"
 );
-
 
 await loadAll();
 
@@ -7958,13 +5658,9 @@ v => `
 ${esc(
 products.find(
 p =>
-String(
-p.id
-)
+String(p.id)
 ===
-String(
-v.product_id
-)
+String(v.product_id)
 )?.name
 ||
 ""
@@ -7972,9 +5668,7 @@ v.product_id
 
 </td>
 
-
 <td>
-
 ${esc(
 v.title
 ||
@@ -7982,24 +5676,19 @@ v.size
 ||
 ""
 )}
-
 </td>
-
 
 <td>
 ${esc(v.sku || "")}
 </td>
 
-
 <td>
 ${money(v.price)}
 </td>
 
-
 <td>
 ${Number(v.stock || 0)}
 </td>
-
 
 <td>
 
@@ -8028,13 +5717,10 @@ BUNDLES
 async function saveBundle(){
 
 let id =
-$("bundleId")
-.value;
-
+$("bundleId").value;
 
 const button =
 $("saveBundleButton");
-
 
 button.disabled =
 true;
@@ -8043,16 +5729,12 @@ true;
 try{
 
 let imageUrl =
-$("bundleExistingImage")
-.value
+$("bundleExistingImage").value
 ||
 null;
 
-
 const file =
-$("bundleImageFile")
-.files?.[0];
-
+$("bundleImageFile").files?.[0];
 
 if(file){
 
@@ -8074,24 +5756,21 @@ $("bundleName")
 
 regular_price:
 Number(
-$("bundleRegular")
-.value
+$("bundleRegular").value
 ||
 0
 ),
 
 offer_price:
 Number(
-$("bundleOffer")
-.value
+$("bundleOffer").value
 ||
 0
 ),
 
 stock:
 Number(
-$("bundleStock")
-.value
+$("bundleStock").value
 ||
 0
 ),
@@ -8107,12 +5786,10 @@ $("bundleDesc")
 null,
 
 ends_at:
-$("bundleEnd")
-.value
+$("bundleEnd").value
 ?
 new Date(
-$("bundleEnd")
-.value
+$("bundleEnd").value
 )
 .toISOString()
 :
@@ -8123,9 +5800,7 @@ is_active:true
 };
 
 
-if(
-!row.name
-){
+if(!row.name){
 
 throw new Error(
 "اكتب اسم الباقة"
@@ -8141,12 +5816,8 @@ if(id){
 
 result =
 await db
-.from(
-"bundles"
-)
-.update(
-row
-)
+.from("bundles")
+.update(row)
 .eq(
 "id",
 id
@@ -8158,24 +5829,16 @@ id
 
 result =
 await db
-.from(
-"bundles"
-)
-.insert(
-row
-)
+.from("bundles")
+.insert(row)
 .select()
 .single();
 
 }
 
 
-if(
-result.error
-){
-
+if(result.error){
 throw result.error;
-
 }
 
 
@@ -8184,9 +5847,7 @@ result.data.id;
 
 
 await db
-.from(
-"bundle_items"
-)
+.from("bundle_items")
 .delete()
 .eq(
 "bundle_id",
@@ -8203,31 +5864,21 @@ const items =
 option => ({
 
 bundle_id:id,
-
-product_id:
-option.value,
-
+product_id:option.value,
 quantity:1
 
 })
 );
 
 
-if(
-items.length
-){
+if(items.length){
 
 const {
 error
 } =
 await db
-.from(
-"bundle_items"
-)
-.insert(
-items
-);
-
+.from("bundle_items")
+.insert(items);
 
 if(error){
 throw error;
@@ -8240,9 +5891,7 @@ toast(
 "تم حفظ الباقة"
 );
 
-
 resetBundle();
-
 
 await loadAll();
 
@@ -8271,72 +5920,47 @@ function editBundle(id){
 const b =
 bundles.find(
 x =>
-String(
-x.id
-)
+String(x.id)
 ===
-String(
-id
-)
+String(id)
 );
-
 
 if(!b){
 return;
 }
 
-
-$("bundleId")
-.value =
+$("bundleId").value =
 b.id;
 
-
-$("bundleName")
-.value =
+$("bundleName").value =
 b.name || "";
 
-
-$("bundleRegular")
-.value =
+$("bundleRegular").value =
 b.regular_price || 0;
 
-
-$("bundleOffer")
-.value =
+$("bundleOffer").value =
 b.offer_price || 0;
 
-
-$("bundleStock")
-.value =
+$("bundleStock").value =
 b.stock || 0;
 
-
-$("bundleDesc")
-.value =
+$("bundleDesc").value =
 b.description || "";
 
-
-$("bundleExistingImage")
-.value =
+$("bundleExistingImage").value =
 b.image_url || "";
 
-
-$("bundleImageFile")
-.value =
+$("bundleImageFile").value =
 "";
 
-
-$("bundleImagePreview")
-.innerHTML =
+$("bundleImagePreview").innerHTML =
 b.image_url
 ?
 `
 
 <div class="media-preview">
 
-<img
-src="${esc(b.image_url)}"
->
+<img src="${esc(b.image_url)}">
 
 </div>
 
@@ -8360,37 +5984,22 @@ function resetBundle(){
 "bundleExistingImage"
 ]
 .forEach(
-id => {
-
-$(id)
-.value =
-"";
-
-}
+id =>
+$(id).value = ""
 );
 
-
-$("bundleImageFile")
-.value =
+$("bundleImageFile").value =
 "";
 
-
-$("bundleImagePreview")
-.innerHTML =
+$("bundleImagePreview").innerHTML =
 "";
-
 
 [
-...$("bundleProducts")
-.options
+...$("bundleProducts").options
 ]
 .forEach(
-x => {
-
-x.selected =
-false;
-
-}
+x =>
+x.selected = false
 );
 
 }
@@ -8424,14 +6033,11 @@ b.currency
 )}
 
 · المخزون:
-${Number(
-b.stock || 0
-)}
+${Number(b.stock || 0)}
 
 </div>
 
 </div>
-
 
 <div class="actions">
 
@@ -8475,7 +6081,6 @@ $("giftName")
 .value
 .trim();
 
-
 if(!name){
 
 toast(
@@ -8492,11 +6097,8 @@ try{
 let imageUrl =
 null;
 
-
 const file =
-$("giftImageFile")
-.files?.[0];
-
+$("giftImageFile").files?.[0];
 
 if(file){
 
@@ -8513,17 +6115,14 @@ const {
 error
 } =
 await db
-.from(
-"gift_options"
-)
+.from("gift_options")
 .insert({
 
 name,
 
 price:
 Number(
-$("giftPrice")
-.value
+$("giftPrice").value
 ||
 0
 ),
@@ -8552,31 +6151,11 @@ toast(
 "تمت إضافة التغليف"
 );
 
-
-$("giftName")
-.value =
-"";
-
-
-$("giftPrice")
-.value =
-"";
-
-
-$("giftDesc")
-.value =
-"";
-
-
-$("giftImageFile")
-.value =
-"";
-
-
-$("giftImagePreview")
-.innerHTML =
-"";
-
+$("giftName").value = "";
+$("giftPrice").value = "";
+$("giftDesc").value = "";
+$("giftImageFile").value = "";
+$("giftImagePreview").innerHTML = "";
 
 await loadAll();
 
@@ -8682,8 +6261,7 @@ const next = {
 giftSection:{
 
 enabled:
-$("giftSectionEnabled")
-.checked,
+$("giftSectionEnabled").checked,
 
 title:
 $("giftSectionTitleAdmin")
@@ -8708,21 +6286,17 @@ $("giftSectionIconAdmin")
 "🎁",
 
 background:
-$("giftSectionBackground")
-.value,
+$("giftSectionBackground").value,
 
 textColor:
-$("giftSectionTextColor")
-.value,
+$("giftSectionTextColor").value,
 
 buttonColor:
-$("giftSectionButtonColor")
-.value,
+$("giftSectionButtonColor").value,
 
 radius:
 Number(
-$("giftSectionRadius")
-.value
+$("giftSectionRadius").value
 ||
 26
 )
@@ -8737,10 +6311,8 @@ await saveSetting(
 next
 );
 
-
 generalSettings =
 next;
-
 
 toast(
 "تم حفظ تصميم الهدية"
@@ -8775,54 +6347,45 @@ $("cpCode")
 .toUpperCase(),
 
 discount_type:
-$("cpType")
-.value,
+$("cpType").value,
 
 value:
 Number(
-$("cpValue")
-.value
+$("cpValue").value
 ||
 0
 ),
 
 min_order:
 Number(
-$("cpMin")
-.value
+$("cpMin").value
 ||
 0
 ),
 
 max_discount:
-$("cpMax")
-.value
+$("cpMax").value
 ?
 Number(
-$("cpMax")
-.value
+$("cpMax").value
 )
 :
 null,
 
 expires_at:
-$("cpExpiry")
-.value
+$("cpExpiry").value
 ||
 null,
 
 first_order_only:
-$("cpFirst")
-.checked,
+$("cpFirst").checked,
 
 is_active:true
 
 };
 
 
-if(
-!row.code
-){
+if(!row.code){
 
 toast(
 "اكتب الكود"
@@ -8837,12 +6400,8 @@ const {
 error
 } =
 await db
-.from(
-"coupons"
-)
-.insert(
-row
-);
+.from("coupons")
+.insert(row);
 
 
 if(error){
@@ -8859,7 +6418,6 @@ return;
 toast(
 "تم حفظ الكوبون"
 );
-
 
 await loadAll();
 
@@ -8889,13 +6447,9 @@ c.discount_type
 ===
 "percentage"
 ?
-c.value
-+
-"%"
+c.value + "%"
 :
-money(
-c.value
-)
+money(c.value)
 }
 
 </div>
@@ -9083,8 +6637,7 @@ item.name
 item.bundle_name
 ||
 (
-item.item_type
-===
+item.item_type ===
 "bundle"
 ?
 "باقة"
@@ -9148,7 +6701,6 @@ item.subtotal
 ??
 item.line_total;
 
-
 if(
 stored !==
 undefined
@@ -9157,21 +6709,14 @@ stored !==
 null
 ){
 
-return Number(
-stored
-);
+return Number(stored);
 
 }
 
-
 return (
-itemUnitPrice(
-item
-)
+itemUnitPrice(item)
 *
-itemQty(
-item
-)
+itemQty(item)
 );
 
 }
@@ -9186,19 +6731,15 @@ item.gift
 ||
 null;
 
-
 if(
-typeof gift
-===
+typeof gift ===
 "string"
 ){
 
 try{
 
 gift =
-JSON.parse(
-gift
-);
+JSON.parse(gift);
 
 }
 catch(error){
@@ -9210,12 +6751,10 @@ null;
 
 }
 
-
 return (
 gift
 &&
-typeof gift
-===
+typeof gift ===
 "object"
 )
 ?
@@ -9226,10 +6765,6 @@ null;
 }
 
 
-/* =========================================================
-ORDER ITEMS
-========================================================= */
-
 async function loadOrderItems(orderId){
 
 const {
@@ -9237,17 +6772,12 @@ data,
 error
 } =
 await db
-.from(
-"order_items"
-)
-.select(
-"*"
-)
+.from("order_items")
+.select("*")
 .eq(
 "order_id",
 orderId
 );
-
 
 if(error){
 
@@ -9256,40 +6786,34 @@ console.error(
 error
 );
 
-
 throw error;
 
 }
 
-
 return (
-data
-||
-[]
+data || []
 );
 
 }
 
 
 /* =========================================================
-RENDER ORDERS
+ORDERS
 ========================================================= */
 
 function renderOrders(){
 
-if(
-!orders.length
-){
+if(!orders.length){
 
 $("ordersCards")
-.innerHTML = `
+.innerHTML =
+`
 
 <div class="card">
 لا توجد طلبات.
 </div>
 
 `;
-
 
 return;
 
@@ -9347,14 +6871,12 @@ o.created_at
 
 <span
 class="pill ${
-o.status
-===
+o.status ===
 "delivered"
 ?
 "green"
 :
-o.status
-===
+o.status ===
 "cancelled"
 ?
 "red"
@@ -9401,9 +6923,7 @@ o.currency
 <strong>
 
 ${esc(
-getOrderPayment(
-o
-)
+getOrderPayment(o)
 )}
 
 </strong>
@@ -9441,9 +6961,7 @@ o.is_gift
 <strong>
 
 ${esc(
-getOrderCoupon(
-o
-)
+getOrderCoupon(o)
 )}
 
 </strong>
@@ -9453,10 +6971,7 @@ o
 </div>
 
 
-<div
-class="actions"
-style="margin-top:12px"
->
+<div class="actions" style="margin-top:12px">
 
 <button
 class="btn blue sm"
@@ -9475,16 +6990,8 @@ onclick="openInvoice('${o.id}')"
 
 
 <select
-style="
-width:auto;
-margin:0
-"
-onchange="
-changeStatus(
-'${o.id}',
-this.value
-)
-"
+style="width:auto;margin:0"
+onchange="changeStatus('${o.id}',this.value)"
 >
 
 ${
@@ -9503,8 +7010,7 @@ s => `
 <option
 value="${s}"
 ${
-o.status ===
-s
+o.status === s
 ?
 " selected"
 :
@@ -9534,10 +7040,6 @@ ${statusText(s)}
 }
 
 
-/* =========================================================
-STATUS
-========================================================= */
-
 async function changeStatus(
 id,
 status
@@ -9547,9 +7049,7 @@ const {
 error
 } =
 await db
-.from(
-"orders"
-)
+.from("orders")
 .update({
 
 status,
@@ -9564,7 +7064,6 @@ new Date()
 id
 );
 
-
 if(error){
 
 alert(
@@ -9575,11 +7074,9 @@ return;
 
 }
 
-
 toast(
 "تم تحديث الحالة"
 );
-
 
 await loadAll();
 
@@ -9587,7 +7084,7 @@ await loadAll();
 
 
 /* =========================================================
-ORDER DETAILS
+ORDER DETAIL
 ========================================================= */
 
 async function openOrderDetails(orderId){
@@ -9595,15 +7092,10 @@ async function openOrderDetails(orderId){
 const order =
 orders.find(
 item =>
-String(
-item.id
-)
+String(item.id)
 ===
-String(
-orderId
-)
+String(orderId)
 );
-
 
 if(!order){
 
@@ -9617,7 +7109,8 @@ return;
 
 
 $("orderModalBody")
-.innerHTML = `
+.innerHTML =
+`
 
 <div class="note">
 جارِ تحميل تفاصيل الطلب...
@@ -9628,16 +7121,12 @@ $("orderModalBody")
 
 $("modalScrim")
 .classList
-.add(
-"show"
-);
+.add("show");
 
 
 $("orderModal")
 .classList
-.add(
-"show"
-);
+.add("show");
 
 
 try{
@@ -9656,16 +7145,10 @@ items
 item => {
 
 const gift =
-extractGiftData(
-item
-);
-
+extractGiftData(item);
 
 const image =
-itemImage(
-item
-);
-
+itemImage(item);
 
 return `
 
@@ -9711,8 +7194,7 @@ place-items:center
 <div class="order-item-name">
 
 ${
-item.item_type
-===
+item.item_type ===
 "bundle"
 ?
 "🔥 "
@@ -9721,9 +7203,7 @@ item.item_type
 }
 
 ${esc(
-itemName(
-item
-)
+itemName(item)
 )}
 
 </div>
@@ -9739,9 +7219,7 @@ item.variant_title
 ?
 " · الخيار: "
 +
-esc(
-item.variant_title
-)
+esc(item.variant_title)
 :
 ""
 }
@@ -9751,9 +7229,7 @@ item.color
 ?
 " · اللون: "
 +
-esc(
-item.color
-)
+esc(item.color)
 :
 ""
 }
@@ -9763,9 +7239,7 @@ item.size
 ?
 " · الحجم: "
 +
-esc(
-item.size
-)
+esc(item.size)
 :
 ""
 }
@@ -9880,9 +7354,7 @@ gift.card_message
 <strong>
 
 ${money(
-itemTotal(
-item
-),
+itemTotal(item),
 order.currency
 )}
 
@@ -9908,7 +7380,8 @@ order.currency
 
 
 $("orderModalBody")
-.innerHTML = `
+.innerHTML =
+`
 
 <div class="detail-grid">
 
@@ -9938,9 +7411,7 @@ order.id
 </span>
 
 <strong>
-${statusText(
-order.status
-)}
+${statusText(order.status)}
 </strong>
 
 </div>
@@ -9988,9 +7459,7 @@ order.phone
 
 <strong>
 ${esc(
-getOrderAddress(
-order
-)
+getOrderAddress(order)
 )}
 </strong>
 
@@ -10005,9 +7474,7 @@ order
 
 <strong>
 ${esc(
-getOrderPayment(
-order
-)
+getOrderPayment(order)
 )}
 </strong>
 
@@ -10022,9 +7489,7 @@ order
 
 <strong>
 ${esc(
-getOrderCoupon(
-order
-)
+getOrderCoupon(order)
 )}
 </strong>
 
@@ -10054,9 +7519,7 @@ order.created_at
 
 <strong>
 ${esc(
-getOrderNotes(
-order
-)
+getOrderNotes(order)
 )}
 </strong>
 
@@ -10086,10 +7549,7 @@ order.is_gift
 </div>
 
 
-<div
-class="actions"
-style="margin-top:16px"
->
+<div class="actions" style="margin-top:16px">
 
 <button
 class="btn gold"
@@ -10124,7 +7584,8 @@ ${itemsHTML}
 catch(error){
 
 $("orderModalBody")
-.innerHTML = `
+.innerHTML =
+`
 
 <div
 style="
@@ -10152,32 +7613,21 @@ error.message
 }
 
 
-/* =========================================================
-CLOSE ORDER
-========================================================= */
-
 function closeOrderModal(){
 
 $("orderModal")
 .classList
-.remove(
-"show"
-);
-
+.remove("show");
 
 if(
 !$("invoiceModal")
 .classList
-.contains(
-"show"
-)
+.contains("show")
 ){
 
 $("modalScrim")
 .classList
-.remove(
-"show"
-);
+.remove("show");
 
 }
 
@@ -10198,18 +7648,11 @@ order.currency
 ||
 "ر.ي";
 
-
 const subtotal =
-orderSubtotal(
-order
-);
-
+orderSubtotal(order);
 
 const discount =
-orderDiscount(
-order
-);
-
+orderDiscount(order);
 
 const total =
 Number(
@@ -10235,12 +7678,10 @@ index
 ${index + 1}
 </td>
 
-
 <td>
 
 ${
-item.item_type
-===
+item.item_type ===
 "bundle"
 ?
 "🔥 "
@@ -10249,9 +7690,7 @@ item.item_type
 }
 
 ${esc(
-itemName(
-item
-)
+itemName(item)
 )}
 
 ${
@@ -10259,9 +7698,7 @@ item.variant_title
 ?
 "<br><small>"
 +
-esc(
-item.variant_title
-)
+esc(item.variant_title)
 +
 "</small>"
 :
@@ -10273,9 +7710,7 @@ item.color
 ?
 "<br><small>اللون: "
 +
-esc(
-item.color
-)
+esc(item.color)
 +
 "</small>"
 :
@@ -10287,9 +7722,7 @@ item.size
 ?
 "<br><small>الحجم: "
 +
-esc(
-item.size
-)
+esc(item.size)
 +
 "</small>"
 :
@@ -10298,30 +7731,23 @@ item.size
 
 </td>
 
-
 <td>
 ${itemQty(item)}
 </td>
 
-
 <td>
 
 ${money(
-itemUnitPrice(
-item
-),
+itemUnitPrice(item),
 currency
 )}
 
 </td>
 
-
 <td>
 
 ${money(
-itemTotal(
-item
-),
+itemTotal(item),
 currency
 )}
 
@@ -10352,9 +7778,7 @@ style="text-align:center"
 const giftItems =
 items.filter(
 item =>
-!!extractGiftData(
-item
-)
+!!extractGiftData(item)
 );
 
 
@@ -10375,10 +7799,7 @@ giftItems
 item => {
 
 const gift =
-extractGiftData(
-item
-);
-
+extractGiftData(item);
 
 return `
 
@@ -10394,9 +7815,7 @@ line-height:1.8
 <strong>
 
 ${esc(
-itemName(
-item
-)
+itemName(item)
 )}
 
 </strong>
@@ -10453,9 +7872,7 @@ gift?.wrap_name
 ?
 "<br>التغليف: "
 +
-esc(
-gift.wrap_name
-)
+esc(gift.wrap_name)
 :
 ""
 }
@@ -10465,9 +7882,7 @@ gift?.card_message
 ?
 "<br>رسالة البطاقة: "
 +
-esc(
-gift.card_message
-)
+esc(gift.card_message)
 :
 ""
 }
@@ -10588,9 +8003,7 @@ order.phone
 </strong>
 
 ${esc(
-getOrderAddress(
-order
-)
+getOrderAddress(order)
 )}
 
 </div>
@@ -10603,9 +8016,7 @@ order
 </strong>
 
 ${esc(
-getOrderPayment(
-order
-)
+getOrderPayment(order)
 )}
 
 </div>
@@ -10618,21 +8029,14 @@ order
 <thead>
 
 <tr>
-
 <th>#</th>
-
 <th>المنتج</th>
-
 <th>الكمية</th>
-
 <th>السعر</th>
-
 <th>الإجمالي</th>
-
 </tr>
 
 </thead>
-
 
 <tbody>
 
@@ -10706,9 +8110,7 @@ currency
 
 
 ${
-getOrderCoupon(
-order
-)
+getOrderCoupon(order)
 !==
 "—"
 ?
@@ -10721,9 +8123,7 @@ order
 </strong>
 
 ${esc(
-getOrderCoupon(
-order
-)
+getOrderCoupon(order)
 )}
 
 </p>
@@ -10735,9 +8135,7 @@ order
 
 
 ${
-getOrderNotes(
-order
-)
+getOrderNotes(order)
 !==
 "—"
 ?
@@ -10750,9 +8148,7 @@ order
 </strong>
 
 ${esc(
-getOrderNotes(
-order
-)
+getOrderNotes(order)
 )}
 
 </p>
@@ -10795,15 +8191,10 @@ async function openInvoice(orderId){
 const order =
 orders.find(
 item =>
-String(
-item.id
-)
+String(item.id)
 ===
-String(
-orderId
-)
+String(orderId)
 );
-
 
 if(!order){
 
@@ -10817,7 +8208,8 @@ return;
 
 
 $("invoiceModalBody")
-.innerHTML = `
+.innerHTML =
+`
 
 <div class="note">
 جارِ تجهيز الفاتورة...
@@ -10828,16 +8220,12 @@ $("invoiceModalBody")
 
 $("modalScrim")
 .classList
-.add(
-"show"
-);
+.add("show");
 
 
 $("invoiceModal")
 .classList
-.add(
-"show"
-);
+.add("show");
 
 
 try{
@@ -10847,21 +8235,17 @@ await loadOrderItems(
 order.id
 );
 
-
 currentInvoiceHTML =
 buildInvoiceHTML(
 order,
 items
 );
 
-
 $("invoiceModalBody")
-.innerHTML = `
+.innerHTML =
+`
 
-<div
-class="actions"
-style="margin-bottom:15px"
->
+<div class="actions" style="margin-bottom:15px">
 
 <button
 class="btn green"
@@ -10880,7 +8264,8 @@ ${currentInvoiceHTML}
 catch(error){
 
 $("invoiceModalBody")
-.innerHTML = `
+.innerHTML =
+`
 
 <div
 style="
@@ -10912,33 +8297,22 @@ function closeInvoiceModal(){
 
 $("invoiceModal")
 .classList
-.remove(
-"show"
-);
-
+.remove("show");
 
 if(
 !$("orderModal")
 .classList
-.contains(
-"show"
-)
+.contains("show")
 ){
 
 $("modalScrim")
 .classList
-.remove(
-"show"
-);
+.remove("show");
 
 }
 
 }
 
-
-/* =========================================================
-PRINT INVOICE
-========================================================= */
 
 function getSavedInvoiceFont(){
 
@@ -10946,7 +8320,6 @@ const fonts =
 designSettings.fonts
 ||
 {};
-
 
 return (
 fonts.invoice
@@ -10978,7 +8351,6 @@ window.open(
 "_blank"
 );
 
-
 if(!printWindow){
 
 toast(
@@ -10999,13 +8371,8 @@ getSavedInvoiceFont()
 
 
 const family =
-encodeURIComponent(
-invoiceFont
-)
-.replace(
-/%20/g,
-"+"
-);
+encodeURIComponent(invoiceFont)
+.replace(/%20/g,"+");
 
 
 printWindow.document.write(`
@@ -11030,93 +8397,52 @@ rel="stylesheet"
 <style>
 
 body{
-
-font-family:
-'${invoiceFont}',
-sans-serif;
-
+font-family:'${invoiceFont}',sans-serif;
 direction:rtl;
-
 color:#111;
-
 margin:0;
-
 padding:25px;
-
 }
 
 .invoice{
-
 max-width:900px;
-
 margin:auto;
-
-font-family:
-'${invoiceFont}',
-sans-serif;
-
+font-family:'${invoiceFont}',sans-serif;
 }
 
 .invoice-header{
-
 text-align:center;
-
 padding-bottom:18px;
-
-border-bottom:
-2px solid #222;
-
+border-bottom:2px solid #222;
 }
 
 .invoice-header h1{
-
 margin:0;
-
 font-size:30px;
-
 }
 
 .invoice-meta{
-
 display:grid;
-
-grid-template-columns:
-1fr 1fr;
-
+grid-template-columns:1fr 1fr;
 gap:10px;
-
-margin:
-20px 0;
-
+margin:20px 0;
 }
 
 .invoice-meta div{
-
-border:
-1px solid #ddd;
-
+border:1px solid #ddd;
 padding:10px;
-
 }
 
 table{
-
 width:100%;
-
 border-collapse:collapse;
-
 }
 
 th,
 td{
-
-border:
-1px solid #ccc;
-
+border:1px solid #ccc;
 padding:9px;
-
 text-align:right;
-
 }
 
 th{
@@ -11124,39 +8450,22 @@ background:#eee;
 }
 
 .invoice-total{
-
 width:380px;
-
 max-width:100%;
-
-margin:
-18px 0 0 auto;
-
+margin:18px 0 0 auto;
 }
 
 .invoice-total-row{
-
 display:flex;
-
 justify-content:space-between;
-
-padding:
-8px 0;
-
-border-bottom:
-1px solid #ccc;
-
+padding:8px 0;
+border-bottom:1px solid #ccc;
 }
 
 .invoice-total-row.final{
-
 font-weight:bold;
-
 font-size:18px;
-
-border-bottom:
-2px solid #111;
-
+border-bottom:2px solid #111;
 }
 
 @media print{
@@ -11210,15 +8519,10 @@ async function printInvoiceByOrder(orderId){
 const order =
 orders.find(
 item =>
-String(
-item.id
-)
+String(item.id)
 ===
-String(
-orderId
-)
+String(orderId)
 );
-
 
 if(!order){
 
@@ -11238,13 +8542,11 @@ await loadOrderItems(
 order.id
 );
 
-
 currentInvoiceHTML =
 buildInvoiceHTML(
 order,
 items
 );
-
 
 printCurrentInvoice();
 
@@ -11295,11 +8597,7 @@ r.name
 </strong>
 
 <div>
-
-⭐ ${Number(
-r.rating || 0
-)}
-
+⭐ ${Number(r.rating || 0)}
 </div>
 
 <p>
@@ -11313,7 +8611,6 @@ r.comment
 )}
 
 </p>
-
 
 <div class="actions">
 
@@ -11331,7 +8628,6 @@ r.is_approved
 }
 
 </button>
-
 
 <button
 class="btn red sm"
@@ -11359,20 +8655,14 @@ value
 ){
 
 await db
-.from(
-"reviews"
-)
+.from("reviews")
 .update({
-
-is_approved:
-value
-
+is_approved:value
 })
 .eq(
 "id",
 id
 );
-
 
 await loadAll();
 
@@ -11386,11 +8676,9 @@ RELATIONS
 async function saveRelation(){
 
 if(
-$("relFrom")
-.value
+$("relFrom").value
 ===
-$("relTo")
-.value
+$("relTo").value
 ){
 
 toast(
@@ -11406,22 +8694,17 @@ const {
 error
 } =
 await db
-.from(
-"product_relations"
-)
+.from("product_relations")
 .insert({
 
 product_id:
-$("relFrom")
-.value,
+$("relFrom").value,
 
 related_product_id:
-$("relTo")
-.value,
+$("relTo").value,
 
 relation_type:
-$("relType")
-.value
+$("relType").value
 
 });
 
@@ -11440,7 +8723,6 @@ return;
 toast(
 "تم الربط"
 );
-
 
 await loadAll();
 
@@ -11462,13 +8744,9 @@ r => `
 ${esc(
 products.find(
 p =>
-String(
-p.id
-)
+String(p.id)
 ===
-String(
-r.product_id
-)
+String(r.product_id)
 )?.name
 ||
 ""
@@ -11479,13 +8757,9 @@ r.product_id
 ${esc(
 products.find(
 p =>
-String(
-p.id
-)
+String(p.id)
 ===
-String(
-r.related_product_id
-)
+String(r.related_product_id)
 )?.name
 ||
 ""
@@ -11510,7 +8784,7 @@ onclick="removeRow('product_relations','${r.id}')"
 
 
 /* =========================================================
-AD MEDIA
+ADS
 ========================================================= */
 
 function renderExistingAdMedia(){
@@ -11526,10 +8800,7 @@ index
 
 const video =
 /\.(mp4|webm|mov)(\?|$)/i
-.test(
-url
-);
-
+.test(url);
 
 return `
 
@@ -11550,9 +8821,7 @@ muted
 :
 `
 
-<img
-src="${esc(url)}"
->
+<img src="${esc(url)}">
 
 `
 }
@@ -11577,30 +8846,22 @@ onclick="removeExistingAdMedia(${index})"
 
 function removeExistingAdMedia(index){
 
-editingAdMedia
-.splice(
+editingAdMedia.splice(
 index,
 1
 );
 
-
 renderExistingAdMedia();
-
 
 previewAd();
 
 }
 
 
-/* =========================================================
-SAVE ADS
-========================================================= */
-
 async function saveAds(){
 
 const button =
 $("saveAdsButton");
-
 
 button.disabled =
 true;
@@ -11611,17 +8872,13 @@ try{
 let uploaded =
 [];
 
-
 if(
-$("adFiles")
-.files
-.length
+$("adFiles").files.length
 ){
 
 uploaded =
 await uploadMultipleFiles(
-$("adFiles")
-.files,
+$("adFiles").files,
 "ads",
 "adUploadStatus"
 );
@@ -11634,105 +8891,90 @@ const next = {
 ...adSettings,
 
 enabled:
-$("adEnabled")
-.checked,
+$("adEnabled").checked,
 
 type:
-$("adType")
-.value,
+$("adType").value,
 
 fit:
-$("adFit")
-.value,
+$("adFit").value,
 
 position:
-$("adPosition")
-.value,
+$("adPosition").value,
 
 radius:
 Number(
-$("adRadius")
-.value
+$("adRadius").value
 ||
 0
 ),
 
 interval:
 Number(
-$("adInterval")
-.value
+$("adInterval").value
 ||
 4000
 ),
 
 desktopWidth:
 Number(
-$("adDesktopWidth")
-.value
+$("adDesktopWidth").value
 ||
 100
 ),
 
 desktopHeight:
 Number(
-$("adDesktopHeight")
-.value
+$("adDesktopHeight").value
 ||
 650
 ),
 
 desktopMaxWidth:
 Number(
-$("adDesktopMaxWidth")
-.value
+$("adDesktopMaxWidth").value
 ||
 1600
 ),
 
 tabletWidth:
 Number(
-$("adTabletWidth")
-.value
+$("adTabletWidth").value
 ||
 100
 ),
 
 tabletHeight:
 Number(
-$("adTabletHeight")
-.value
+$("adTabletHeight").value
 ||
 550
 ),
 
 tabletMaxWidth:
 Number(
-$("adTabletMaxWidth")
-.value
+$("adTabletMaxWidth").value
 ||
 1100
 ),
 
 mobileWidth:
 Number(
-$("adMobileWidth")
-.value
+$("adMobileWidth").value
 ||
 100
 ),
 
 mobileHeight:
 Number(
-$("adMobileHeight")
-.value
+$("adMobileHeight").value
 ||
 220
 ),
 
 mobileMaxWidth:
 Number(
-$("adMobileMaxWidth")
-.value
+$("adMobileMaxWidth").value
 ||
 600
 ),
@@ -11759,30 +9001,23 @@ next
 adSettings =
 next;
 
-
 editingAdMedia =
 [
 ...next.media
 ];
 
-
-$("adFiles")
-.value =
+$("adFiles").value =
 "";
-
 
 $("newAdFilesPreview")
 .innerHTML =
 "";
 
-
 renderExistingAdMedia();
-
 
 toast(
 "تم حفظ الإعلان"
 );
-
 
 previewAd();
 
@@ -11801,7 +9036,6 @@ finally{
 button.disabled =
 false;
 
-
 setUploadStatus(
 "adUploadStatus",
 "",
@@ -11813,22 +9047,15 @@ false
 }
 
 
-/* =========================================================
-AD PREVIEW
-========================================================= */
-
 function previewAd(){
 
 const file =
-$("adFiles")
-.files?.[0];
-
+$("adFiles").files?.[0];
 
 let url =
 editingAdMedia[0]
 ||
 "";
-
 
 let video =
 false;
@@ -11837,34 +9064,25 @@ false;
 if(file){
 
 url =
-URL.createObjectURL(
-file
-);
-
+URL.createObjectURL(file);
 
 video =
 file.type
-.startsWith(
-"video/"
-);
+.startsWith("video/");
 
 }else{
 
 video =
 /\.(mp4|webm|mov)(\?|$)/i
-.test(
-url
-);
+.test(url);
 
 }
 
 
 if(!url){
 
-$("adPreview")
-.innerHTML =
+$("adPreview").innerHTML =
 "لا توجد معاينة";
-
 
 return;
 
@@ -11876,8 +9094,7 @@ $("adPreview")
 Math.min(
 500,
 Number(
-$("adDesktopHeight")
-.value
+$("adDesktopHeight").value
 ||
 400
 )
@@ -11889,7 +9106,8 @@ $("adDesktopHeight")
 if(video){
 
 $("adPreview")
-.innerHTML = `
+.innerHTML =
+`
 
 <video
 src="${esc(url)}"
@@ -11906,7 +9124,8 @@ object-position:${$("adPosition").value}
 }else{
 
 $("adPreview")
-.innerHTML = `
+.innerHTML =
+`
 
 <img
 src="${esc(url)}"
@@ -11924,7 +9143,7 @@ object-position:${$("adPosition").value}
 
 
 /* =========================================================
-PRODUCT DESIGN
+DESIGN
 ========================================================= */
 
 async function saveProductDesign(){
@@ -11937,72 +9156,63 @@ const next = {
 
 productDesktopWidth:
 Number(
-$("productDesktopWidth")
-.value
+$("productDesktopWidth").value
 ||
 320
 ),
 
 productDesktopImageHeight:
 Number(
-$("productDesktopImageHeight")
-.value
+$("productDesktopImageHeight").value
 ||
 330
 ),
 
 productDesktopFont:
 Number(
-$("productDesktopFont")
-.value
+$("productDesktopFont").value
 ||
 30
 ),
 
 productTabletWidth:
 Number(
-$("productTabletWidth")
-.value
+$("productTabletWidth").value
 ||
 280
 ),
 
 productTabletImageHeight:
 Number(
-$("productTabletImageHeight")
-.value
+$("productTabletImageHeight").value
 ||
 300
 ),
 
 productTabletFont:
 Number(
-$("productTabletFont")
-.value
+$("productTabletFont").value
 ||
 27
 ),
 
 productMobileWidth:
 Number(
-$("productMobileWidth")
-.value
+$("productMobileWidth").value
 ||
 72
 ),
 
 productMobileImageHeight:
 Number(
-$("productMobileImageHeight")
-.value
+$("productMobileImageHeight").value
 ||
 280
 ),
 
 productMobileFont:
 Number(
-$("productMobileFont")
-.value
+$("productMobileFont").value
 ||
 26
 ),
@@ -12010,45 +9220,39 @@ $("productMobileFont")
 carousel:{
 
 enabled:
-$("productCarouselEnabled")
-.checked,
+$("productCarouselEnabled").checked,
 
 centerScale:
 Number(
-$("carouselCenterScale")
-.value
+$("carouselCenterScale").value
 ||
 1
 ),
 
 sideScale:
 Number(
-$("carouselSideScale")
-.value
+$("carouselSideScale").value
 ||
 .82
 ),
 
 rotation:
 Number(
-$("carouselRotation")
-.value
+$("carouselRotation").value
 ||
 0
 ),
 
 spacing:
 Number(
-$("carouselSpacing")
-.value
+$("carouselSpacing").value
 ||
 14
 ),
 
 speed:
 Number(
-$("carouselSpeed")
-.value
+$("carouselSpeed").value
 ||
 350
 )
@@ -12063,10 +9267,8 @@ await saveSetting(
 next
 );
 
-
 designSettings =
 next;
-
 
 toast(
 "تم حفظ تصميم المنتجات"
@@ -12087,7 +9289,7 @@ error.message
 
 
 /* =========================================================
-PAYMENTS
+PAYMENT
 ========================================================= */
 
 function addPaymentMethod(){
@@ -12096,7 +9298,6 @@ const name =
 $("paymentName")
 .value
 .trim();
-
 
 if(!name){
 
@@ -12124,8 +9325,7 @@ Date.now(),
 name,
 
 type:
-$("paymentType")
-.value,
+$("paymentType").value,
 
 description:
 $("paymentDescription")
@@ -12156,19 +9356,15 @@ index
 <div class="payment-row">
 
 <strong>
-
 ${esc(x.name)}
-
 </strong>
 
 <div class="note">
-
 ${esc(
 x.type
 ||
 ""
 )}
-
 </div>
 
 <button
@@ -12198,7 +9394,6 @@ const bankName =
 $("bankName")
 .value
 .trim();
-
 
 if(!bankName){
 
@@ -12260,9 +9455,7 @@ index
 <div class="bank-row">
 
 <strong>
-
 🏦 ${esc(x.bankName)}
-
 </strong>
 
 <div class="note">
@@ -12286,9 +9479,7 @@ x.iban
 ?
 "<br>IBAN: "
 +
-esc(
-x.iban
-)
+esc(x.iban)
 :
 ""
 }
@@ -12338,10 +9529,8 @@ await saveSetting(
 next
 );
 
-
 paymentSettings =
 next;
-
 
 toast(
 "تم حفظ الدفع والبنوك"
@@ -12382,7 +9571,6 @@ item => {
 const key =
 item[0];
 
-
 const title =
 item[1];
 
@@ -12411,9 +9599,7 @@ false
 }
 >
 
-<label
-for="policyEnabled_${key}"
->
+<label for="policyEnabled_${key}">
 إظهار ${esc(title)}
 </label>
 
@@ -12476,7 +9662,6 @@ item => {
 const key =
 item[0];
 
-
 data[
 key
 +
@@ -12484,7 +9669,6 @@ key
 ] =
 $("policyEnabled_" + key)
 .checked;
-
 
 data[
 key
@@ -12494,7 +9678,6 @@ key
 $("policyTitle_" + key)
 .value
 .trim();
-
 
 data[key] =
 $("policyText_" + key)
@@ -12520,10 +9703,8 @@ await saveSetting(
 next
 );
 
-
 footerSettings =
 next;
-
 
 toast(
 "تم حفظ السياسات"
@@ -12544,7 +9725,7 @@ error.message
 
 
 /* =========================================================
-GENERAL SETTINGS
+GENERAL
 ========================================================= */
 
 async function saveGeneralSettings(){
@@ -12552,10 +9733,8 @@ async function saveGeneralSettings(){
 const button =
 $("saveGeneralButton");
 
-
 button.disabled =
 true;
-
 
 button.textContent =
 "جارِ الحفظ...";
@@ -12566,11 +9745,8 @@ try{
 let splashLogoUrl =
 editingSplashLogo;
 
-
 const splashFile =
-$("setSplashFile")
-.files?.[0];
-
+$("setSplashFile").files?.[0];
 
 if(splashFile){
 
@@ -12579,13 +9755,11 @@ setUploadStatus(
 "جارِ رفع شعار شاشة البداية..."
 );
 
-
 splashLogoUrl =
 await uploadMediaFile(
 splashFile,
 "splash"
 );
-
 
 setUploadStatus(
 "splashUploadStatus",
@@ -12675,20 +9849,16 @@ $("setSnapchat")
 .trim(),
 
 enableSearch:
-$("setSearch")
-.checked,
+$("setSearch").checked,
 
 enableSort:
-$("setSort")
-.checked,
+$("setSort").checked,
 
 featureReviews:
-$("setReviews")
-.checked,
+$("setReviews").checked,
 
 splashEnabled:
-$("setSplashEnabled")
-.checked,
+$("setSplashEnabled").checked,
 
 splashLogoUrl:
 splashLogoUrl,
@@ -12697,8 +9867,7 @@ splashDuration:
 Math.max(
 300,
 Number(
-$("setSplashDuration")
-.value
+$("setSplashDuration").value
 ||
 2300
 )
@@ -12706,31 +9875,27 @@ $("setSplashDuration")
 
 splashDesktopWidth:
 Number(
-$("setSplashDesktopWidth")
-.value
+$("setSplashDesktopWidth").value
 ||
 330
 ),
 
 splashTabletWidth:
 Number(
-$("setSplashTabletWidth")
-.value
+$("setSplashTabletWidth").value
 ||
 280
 ),
 
 splashMobileWidth:
 Number(
-$("setSplashMobileWidth")
-.value
+$("setSplashMobileWidth").value
 ||
 220
 ),
 
 splashBackground:
-$("setSplashBackground")
-.value
+$("setSplashBackground").value
 
 };
 
@@ -12740,24 +9905,18 @@ await saveSetting(
 next
 );
 
-
 generalSettings =
 next;
-
 
 editingSplashLogo =
 splashLogoUrl;
 
-
-$("setSplashFile")
-.value =
+$("setSplashFile").value =
 "";
-
 
 toast(
 "تم حفظ إعدادات المتجر وشاشة البداية ✓"
 );
-
 
 fillSettingsForms();
 
@@ -12776,10 +9935,8 @@ finally{
 button.disabled =
 false;
 
-
 button.textContent =
 "حفظ إعدادات المتجر وشاشة البداية";
-
 
 setUploadStatus(
 "splashUploadStatus",
@@ -12798,127 +9955,92 @@ FILL SETTINGS
 
 function fillSettingsForms(){
 
-$("setStoreName")
-.value =
+$("setStoreName").value =
 generalSettings.storeName
 ||
 "الشعيبي";
 
-
-$("setStoreNameEn")
-.value =
+$("setStoreNameEn").value =
 generalSettings.storeNameEn
 ||
 "ALSHUAIIBE STORE";
 
-
-$("setEyebrow")
-.value =
+$("setEyebrow").value =
 generalSettings.storeEyebrow
 ||
 "متجر الشعيبي";
 
-
-$("setPhone")
-.value =
+$("setPhone").value =
 generalSettings.phone
 ||
 "";
 
-
-$("setWhatsapp")
-.value =
+$("setWhatsapp").value =
 generalSettings.whatsapp
 ||
 "";
 
-
-$("setEmail")
-.value =
+$("setEmail").value =
 generalSettings.email
 ||
 "";
 
-
-$("setSloganTitle")
-.value =
+$("setSloganTitle").value =
 generalSettings.sloganTitle
 ||
 "صُنعت لمن يبحث عن الاختلاف";
 
-
-$("setSloganDesc")
-.value =
+$("setSloganDesc").value =
 generalSettings.sloganDesc
 ||
 "";
 
-
-$("setAbout")
-.value =
+$("setAbout").value =
 generalSettings.aboutText
 ||
 "";
 
-
-$("setInstagram")
-.value =
+$("setInstagram").value =
 generalSettings.instagram
 ||
 "";
 
-
-$("setTiktok")
-.value =
+$("setTiktok").value =
 generalSettings.tiktok
 ||
 "";
 
-
-$("setFacebook")
-.value =
+$("setFacebook").value =
 generalSettings.facebook
 ||
 "";
 
-
-$("setTelegram")
-.value =
+$("setTelegram").value =
 generalSettings.telegram
 ||
 "";
 
-
-$("setTwitter")
-.value =
+$("setTwitter").value =
 generalSettings.twitter
 ||
 "";
 
-
-$("setSnapchat")
-.value =
+$("setSnapchat").value =
 generalSettings.snapchat
 ||
 "";
 
-
-$("setSearch")
-.checked =
+$("setSearch").checked =
 generalSettings.enableSearch
 !==
 false;
 
-
-$("setSort")
-.checked =
+$("setSort").checked =
 generalSettings.enableSort
 !==
 false;
 
-
-$("setReviews")
-.checked =
+$("setReviews").checked =
 generalSettings.featureReviews
 !==
 false;
@@ -12931,25 +10053,19 @@ generalSettings.splashLogoUrl
 ||
 "";
 
-
-$("setSplashEnabled")
-.checked =
+$("setSplashEnabled").checked =
 generalSettings.splashEnabled
 !==
 false;
 
-
-$("setSplashDuration")
-.value =
+$("setSplashDuration").value =
 Number(
 generalSettings.splashDuration
 ||
 2300
 );
 
-
-$("setSplashDesktopWidth")
-.value =
+$("setSplashDesktopWidth").value =
 Number(
 generalSettings.splashDesktopWidth
 ||
@@ -12958,27 +10074,21 @@ generalSettings.splashLogoWidth
 330
 );
 
-
-$("setSplashTabletWidth")
-.value =
+$("setSplashTabletWidth").value =
 Number(
 generalSettings.splashTabletWidth
 ||
 280
 );
 
-
-$("setSplashMobileWidth")
-.value =
+$("setSplashMobileWidth").value =
 Number(
 generalSettings.splashMobileWidth
 ||
 220
 );
 
-
-$("setSplashBackground")
-.value =
+$("setSplashBackground").value =
 generalSettings.splashBackground
 ||
 "#F8EACB";
@@ -13011,65 +10121,47 @@ generalSettings.giftSection
 ||
 {};
 
-
-$("giftSectionEnabled")
-.checked =
+$("giftSectionEnabled").checked =
 gift.enabled
 !==
 false;
 
-
-$("giftSectionTitleAdmin")
-.value =
+$("giftSectionTitleAdmin").value =
 gift.title
 ||
 "اصنع هديتك بنفسك";
 
-
-$("giftSectionDescriptionAdmin")
-.value =
+$("giftSectionDescriptionAdmin").value =
 gift.description
 ||
 "اختر المنتج والتغليف واكتب بطاقة الإهداء.";
 
-
-$("giftSectionButtonText")
-.value =
+$("giftSectionButtonText").value =
 gift.buttonText
 ||
 "ابدأ تجهيز الهدية";
 
-
-$("giftSectionIconAdmin")
-.value =
+$("giftSectionIconAdmin").value =
 gift.icon
 ||
 "🎁";
 
-
-$("giftSectionBackground")
-.value =
+$("giftSectionBackground").value =
 gift.background
 ||
 "#F1DDA6";
 
-
-$("giftSectionTextColor")
-.value =
+$("giftSectionTextColor").value =
 gift.textColor
 ||
 "#20301C";
 
-
-$("giftSectionButtonColor")
-.value =
+$("giftSectionButtonColor").value =
 gift.buttonColor
 ||
 "#A9793C";
 
-
-$("giftSectionRadius")
-.value =
+$("giftSectionRadius").value =
 gift.radius
 ??
 26;
@@ -13077,117 +10169,85 @@ gift.radius
 
 /* ADS */
 
-$("adEnabled")
-.checked =
+$("adEnabled").checked =
 adSettings.enabled
 ===
 true;
 
-
-$("adType")
-.value =
+$("adType").value =
 adSettings.type
 ||
 "image";
 
-
-$("adFit")
-.value =
+$("adFit").value =
 adSettings.fit
 ||
 "cover";
 
-
-$("adPosition")
-.value =
+$("adPosition").value =
 adSettings.position
 ||
 "center";
 
-
-$("adRadius")
-.value =
+$("adRadius").value =
 adSettings.radius
 ??
 0;
 
-
-$("adInterval")
-.value =
+$("adInterval").value =
 adSettings.interval
 ||
 4000;
 
-
-$("adDesktopWidth")
-.value =
+$("adDesktopWidth").value =
 adSettings.desktopWidth
 ??
 100;
 
-
-$("adDesktopHeight")
-.value =
+$("adDesktopHeight").value =
 adSettings.desktopHeight
 ??
 650;
 
-
-$("adDesktopMaxWidth")
-.value =
+$("adDesktopMaxWidth").value =
 adSettings.desktopMaxWidth
 ??
 1600;
 
-
-$("adTabletWidth")
-.value =
+$("adTabletWidth").value =
 adSettings.tabletWidth
 ??
 100;
 
-
-$("adTabletHeight")
-.value =
+$("adTabletHeight").value =
 adSettings.tabletHeight
 ??
 550;
 
-
-$("adTabletMaxWidth")
-.value =
+$("adTabletMaxWidth").value =
 adSettings.tabletMaxWidth
 ??
 1100;
 
-
-$("adMobileWidth")
-.value =
+$("adMobileWidth").value =
 adSettings.mobileWidth
 ??
 100;
 
-
-$("adMobileHeight")
-.value =
+$("adMobileHeight").value =
 adSettings.mobileHeight
 ??
 220;
 
-
-$("adMobileMaxWidth")
-.value =
+$("adMobileMaxWidth").value =
 adSettings.mobileMaxWidth
 ??
 600;
 
-
-$("adLinkAdmin")
-.value =
+$("adLinkAdmin").value =
 adSettings.link
 ||
 "";
-
 
 editingAdMedia =
 Array.isArray(
@@ -13200,70 +10260,52 @@ adSettings.media
 :
 [];
 
-
 renderExistingAdMedia();
 
 
-/* PRODUCT DESIGN */
+/* DESIGN */
 
-$("productDesktopWidth")
-.value =
+$("productDesktopWidth").value =
 designSettings.productDesktopWidth
 ??
 320;
 
-
-$("productDesktopImageHeight")
-.value =
+$("productDesktopImageHeight").value =
 designSettings.productDesktopImageHeight
 ??
 330;
 
-
-$("productDesktopFont")
-.value =
+$("productDesktopFont").value =
 designSettings.productDesktopFont
 ??
 30;
 
-
-$("productTabletWidth")
-.value =
+$("productTabletWidth").value =
 designSettings.productTabletWidth
 ??
 280;
 
-
-$("productTabletImageHeight")
-.value =
+$("productTabletImageHeight").value =
 designSettings.productTabletImageHeight
 ??
 300;
 
-
-$("productTabletFont")
-.value =
+$("productTabletFont").value =
 designSettings.productTabletFont
 ??
 27;
 
-
-$("productMobileWidth")
-.value =
+$("productMobileWidth").value =
 designSettings.productMobileWidth
 ??
 72;
 
-
-$("productMobileImageHeight")
-.value =
+$("productMobileImageHeight").value =
 designSettings.productMobileImageHeight
 ??
 280;
 
-
-$("productMobileFont")
-.value =
+$("productMobileFont").value =
 designSettings.productMobileFont
 ??
 26;
@@ -13274,68 +10316,44 @@ designSettings.carousel
 ||
 {};
 
-
-$("productCarouselEnabled")
-.checked =
+$("productCarouselEnabled").checked =
 carousel.enabled
 !==
 false;
 
-
-$("carouselCenterScale")
-.value =
+$("carouselCenterScale").value =
 carousel.centerScale
 ??
 1;
 
-
-$("carouselSideScale")
-.value =
+$("carouselSideScale").value =
 carousel.sideScale
 ??
 .82;
 
-
-$("carouselRotation")
-.value =
+$("carouselRotation").value =
 carousel.rotation
 ??
 0;
 
-
-$("carouselSpacing")
-.value =
+$("carouselSpacing").value =
 carousel.spacing
 ??
 14;
 
-
-$("carouselSpeed")
-.value =
+$("carouselSpeed").value =
 carousel.speed
 ??
 350;
 
 
-/* PAYMENT */
-
 renderPaymentDraft();
-
 
 renderBankDraft();
 
-
-/* POLICIES */
-
 renderPoliciesEditor();
 
-
-/* AD PREVIEW */
-
 previewAd();
-
-
-/* FONT SETTINGS */
 
 fillFontSettings();
 
@@ -13343,7 +10361,7 @@ fillFontSettings();
 
 
 /* =========================================================
-DELETE ROW
+DELETE
 ========================================================= */
 
 async function removeRow(
@@ -13356,6 +10374,19 @@ if(
 "تأكيد الحذف؟"
 )
 ){
+return;
+}
+
+
+if(
+!await isAdmin()
+){
+
+alert(
+"انتهت جلسة الإدارة. سجل الدخول مجددًا."
+);
+
+await logout();
 
 return;
 
@@ -13366,9 +10397,7 @@ const {
 error
 } =
 await db
-.from(
-table
-)
+.from(table)
 .delete()
 .eq(
 "id",
@@ -13391,7 +10420,6 @@ toast(
 "تم الحذف"
 );
 
-
 await loadAll();
 
 }
@@ -13399,60 +10427,111 @@ await loadAll();
 
 /* =========================================================
 START ADMIN
+هذا الجزء هو الإصلاح الأساسي
 ========================================================= */
 
 async function startAdmin(){
 
-const session =
-await getSession();
+/*
+مهم جدًا:
+عند فتح صفحة الإدارة يتم إلغاء الجلسة المحلية القديمة.
+وبالتالي لا يمكن فتح لوحة الإدارة اعتمادًا على جلسة محفوظة
+من زيارة سابقة.
+*/
 
+try{
 
-if(session){
+await db.auth.signOut({
+scope:"local"
+});
 
-const admin =
-await isAdmin();
+}
+catch(error){
 
-
-if(admin){
-
-await boot();
-
-return;
+console.warn(
+"Initial logout:",
+error
+);
 
 }
 
 
-await db.auth
-.signOut();
-
-}
-
+/*
+لوحة الإدارة مخفية دائمًا عند بدء الصفحة.
+*/
 
 $("app")
 .classList
-.add(
-"hidden"
-);
+.add("hidden");
 
 
 $("login")
 .classList
-.remove(
-"hidden"
-);
+.remove("hidden");
 
+
+$("password").value =
+"";
+
+
+$("msg").textContent =
+"";
+
+
+/*
+وضع التركيز مباشرة على خانة كلمة المرور.
+*/
+
+setTimeout(
+() => {
 
 $("password")
-.value =
-"";
+?.focus();
 
-
-$("msg")
-.textContent =
-"";
+},
+150
+);
 
 }
 
+
+/* =========================================================
+AUTH STATE SAFETY
+========================================================= */
+
+/*
+إذا تم تسجيل الخروج من Supabase أثناء استخدام الإدارة،
+يتم إغلاق اللوحة فورًا.
+*/
+
+db.auth.onAuthStateChange(
+(
+event,
+session
+) => {
+
+if(
+event ===
+"SIGNED_OUT"
+){
+
+$("app")
+.classList
+.add("hidden");
+
+$("login")
+.classList
+.remove("hidden");
+
+}
+
+}
+);
+
+
+/* =========================================================
+START
+========================================================= */
 
 startAdmin();
 
