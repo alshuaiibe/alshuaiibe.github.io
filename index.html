@@ -44,9 +44,18 @@ href="https://fonts.googleapis.com"
 >
 
 <link
-href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Markazi+Text:wght@400;600;700&family=Tajawal:wght@300;400;500;700;900&display=swap"
+rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin
+>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@300;400;500;600;700;800;900&family=Markazi+Text:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700;800;900&display=swap"
 rel="stylesheet"
 >
+
+<!-- الخطوط المخصصة التي يتم تحميلها من لوحة الإدارة -->
+<div id="dynamicFontsContainer"></div>
 
 
 <!-- ======================================================
@@ -129,8 +138,54 @@ error
 --shadow:
 0 12px 35px rgba(32,48,28,.11);
 
+
+/* ======================================================
+   FONT VARIABLES
+   يتم تعديلها من لوحة الإدارة
+====================================================== */
+
+--font-body:'Tajawal',sans-serif;
+
+--font-brand:'Aref Ruqaa',serif;
+
+--font-hero-title:'Aref Ruqaa',serif;
+
+--font-hero-description:'Tajawal',sans-serif;
+
+--font-nav:'Tajawal',sans-serif;
+
+--font-section-title:'Aref Ruqaa',serif;
+
+--font-category-title:'Aref Ruqaa',serif;
+
+--font-product:'Aref Ruqaa',serif;
+
+--font-price:'Tajawal',sans-serif;
+
+--font-buttons:'Tajawal',sans-serif;
+
+--font-bundle:'Aref Ruqaa',serif;
+
+--font-gift:'Tajawal',sans-serif;
+
+--font-reviews:'Tajawal',sans-serif;
+
+--font-footer:'Tajawal',sans-serif;
+
+--font-modal:'Tajawal',sans-serif;
+
+--font-invoice:'Tajawal',sans-serif;
+
+
+/* توافق مع الكود السابق */
+
 --product-font:
-'Aref Ruqaa',serif;
+var(--font-product);
+
+
+/* ======================================================
+   PRODUCT DESIGN
+====================================================== */
 
 --desktop-card-width:260px;
 --tablet-card-width:240px;
@@ -183,8 +238,7 @@ body{
 min-height:100vh;
 
 font-family:
-'Tajawal',
-sans-serif;
+var(--font-body);
 
 color:
 var(--ink);
@@ -205,7 +259,12 @@ button,
 input,
 textarea,
 select{
-font:inherit;
+
+font-family:
+var(--font-buttons);
+
+font-size:inherit;
+
 }
 
 button{
@@ -241,6 +300,9 @@ text-align:center;
 
 color:
 var(--ink-soft);
+
+font-family:
+var(--font-body);
 
 }
 
@@ -297,6 +359,9 @@ border-radius:13px;
 
 padding:
 11px 16px;
+
+font-family:
+var(--font-buttons);
 
 font-weight:800;
 
@@ -524,7 +589,7 @@ position:relative;
 z-index:3;
 
 font-family:
-'Aref Ruqaa';
+var(--font-brand);
 
 font-size:
 clamp(55px,14vw,120px);
@@ -542,6 +607,9 @@ max(
 35px,
 env(safe-area-inset-bottom)
 );
+
+font-family:
+var(--font-brand);
 
 font-size:10px;
 
@@ -644,6 +712,9 @@ opacity:0;
 visibility:hidden;
 
 transition:.4s ease;
+
+font-family:
+var(--font-body);
 
 }
 
@@ -773,7 +844,7 @@ display:block;
 .brand-name{
 
 font-family:
-'Aref Ruqaa';
+var(--font-brand);
 
 font-size:
 29px;
@@ -787,6 +858,9 @@ line-height:1;
 .brand-en{
 
 margin-top:3px;
+
+font-family:
+var(--font-brand);
 
 font-size:9px;
 
@@ -830,6 +904,9 @@ background:
 var(--card);
 
 position:relative;
+
+font-family:
+var(--font-buttons);
 
 }
 
@@ -876,6 +953,9 @@ var(--ink);
 
 color:
 var(--cream);
+
+font-family:
+var(--font-buttons);
 
 font-weight:800;
 
@@ -926,6 +1006,9 @@ rgba(248,234,203,.95);
 border-bottom:
 1px solid var(--line);
 
+font-family:
+var(--font-nav);
+
 }
 
 .main-nav{
@@ -944,6 +1027,9 @@ padding:
 overflow-x:auto;
 
 scrollbar-width:none;
+
+font-family:
+var(--font-nav);
 
 }
 
@@ -965,6 +1051,9 @@ border-radius:999px;
 
 padding:
 8px 13px;
+
+font-family:
+var(--font-nav);
 
 font-size:12px;
 
@@ -1022,6 +1111,9 @@ var(--card);
 
 box-shadow:
 0 20px 55px rgba(0,0,0,.18);
+
+font-family:
+var(--font-body);
 
 }
 
@@ -1101,7 +1193,7 @@ text-align:center;
 .hero-eyebrow{
 
 font-family:
-'Markazi Text';
+var(--font-section-title);
 
 font-size:20px;
 
@@ -1113,7 +1205,7 @@ var(--gold);
 .hero h1{
 
 font-family:
-'Aref Ruqaa';
+var(--font-hero-title);
 
 font-size:
 clamp(
@@ -1134,6 +1226,9 @@ margin:
 max-width:600px;
 
 margin:auto;
+
+font-family:
+var(--font-hero-description);
 
 font-size:14px;
 
@@ -1290,6 +1385,9 @@ border:
 box-shadow:
 var(--shadow);
 
+font-family:
+var(--font-gift);
+
 }
 
 #giftSection.show{
@@ -1299,7 +1397,7 @@ display:grid;
 .gift-main-title{
 
 font-family:
-'Aref Ruqaa';
+var(--font-gift);
 
 font-size:29px;
 
@@ -1313,6 +1411,9 @@ margin:0;
 
 margin:
 5px 0 0;
+
+font-family:
+var(--font-gift);
 
 font-size:13px;
 
@@ -1334,12 +1435,15 @@ margin:auto;
 padding:
 18px 12px 28px;
 
+font-family:
+var(--font-bundle);
+
 }
 
 .section-title{
 
 font-family:
-'Aref Ruqaa';
+var(--font-section-title);
 
 font-size:31px;
 
@@ -1349,6 +1453,9 @@ margin:
 }
 
 .section-note{
+
+font-family:
+var(--font-body);
 
 font-size:12px;
 
@@ -1405,6 +1512,9 @@ overflow:hidden;
 box-shadow:
 var(--shadow);
 
+font-family:
+var(--font-bundle);
+
 }
 
 .bundle-image{
@@ -1435,7 +1545,7 @@ padding:13px;
 .bundle-name{
 
 font-family:
-var(--product-font);
+var(--font-bundle);
 
 font-size:23px;
 
@@ -1447,6 +1557,9 @@ font-weight:700;
 
 margin:
 4px 0 9px;
+
+font-family:
+var(--font-body);
 
 font-size:11px;
 
@@ -1469,9 +1582,15 @@ flex-wrap:wrap;
 
 margin-bottom:9px;
 
+font-family:
+var(--font-price);
+
 }
 
 .bundle-offer{
+
+font-family:
+var(--font-price);
 
 font-weight:900;
 
@@ -1480,6 +1599,9 @@ font-size:17px;
 }
 
 .bundle-old{
+
+font-family:
+var(--font-price);
 
 text-decoration:line-through;
 
@@ -1525,7 +1647,7 @@ margin-bottom:13px;
 .shop-head h2{
 
 font-family:
-'Aref Ruqaa';
+var(--font-section-title);
 
 font-size:32px;
 
@@ -1544,6 +1666,9 @@ max-width:100%;
 overflow-x:auto;
 
 scrollbar-width:none;
+
+font-family:
+var(--font-nav);
 
 }
 
@@ -1565,6 +1690,9 @@ var(--card);
 
 padding:
 8px 13px;
+
+font-family:
+var(--font-nav);
 
 font-size:12px;
 
@@ -1606,6 +1734,9 @@ border-radius:999px;
 padding:
 10px 13px;
 
+font-family:
+var(--font-body);
+
 color:
 var(--ink);
 
@@ -1638,7 +1769,7 @@ clear:both;
 .category-title{
 
 font-family:
-var(--product-font);
+var(--font-category-title);
 
 font-size:28px;
 
@@ -1779,6 +1910,9 @@ border-radius:50%;
 background:
 rgba(255,255,255,.94);
 
+font-family:
+var(--font-buttons);
+
 }
 
 .discount-badge{
@@ -1797,6 +1931,9 @@ background:
 var(--danger);
 
 color:#fff;
+
+font-family:
+var(--font-body);
 
 font-size:10px;
 
@@ -1821,6 +1958,9 @@ var(--gold);
 
 color:#fff;
 
+font-family:
+var(--font-body);
+
 font-size:9px;
 
 }
@@ -1841,6 +1981,9 @@ rgba(32,48,28,.6);
 
 color:#fff;
 
+font-family:
+var(--font-body);
+
 font-weight:900;
 
 }
@@ -1848,7 +1991,7 @@ font-weight:900;
 .product-name{
 
 font-family:
-var(--product-font);
+var(--font-product);
 
 font-size:
 var(--desktop-name-size);
@@ -1871,9 +2014,15 @@ gap:6px;
 
 flex-wrap:wrap;
 
+font-family:
+var(--font-price);
+
 }
 
 .current-price{
+
+font-family:
+var(--font-price);
 
 font-size:16px;
 
@@ -1882,6 +2031,9 @@ font-weight:900;
 }
 
 .old-price{
+
+font-family:
+var(--font-price);
 
 font-size:11px;
 
@@ -1911,6 +2063,9 @@ border-radius:11px;
 
 padding:
 9px 5px;
+
+font-family:
+var(--font-buttons);
 
 font-size:11px;
 
@@ -1973,6 +2128,9 @@ rgba(255,251,240,.94);
 box-shadow:
 var(--shadow);
 
+font-family:
+var(--font-buttons);
+
 font-size:20px;
 
 }
@@ -2014,13 +2172,16 @@ text-align:center;
 .about-box h2{
 
 font-family:
-'Aref Ruqaa';
+var(--font-section-title);
 
 font-size:31px;
 
 }
 
 .about-box p{
+
+font-family:
+var(--font-body);
 
 white-space:pre-line;
 
@@ -2046,6 +2207,9 @@ scrollbar-width:none;
 
 padding-bottom:10px;
 
+font-family:
+var(--font-reviews);
+
 }
 
 .review-card{
@@ -2070,6 +2234,9 @@ var(--card);
 box-shadow:
 var(--shadow);
 
+font-family:
+var(--font-reviews);
+
 }
 
 .review-stars{
@@ -2085,6 +2252,9 @@ font-size:18px;
 
 margin-top:7px;
 
+font-family:
+var(--font-reviews);
+
 font-size:13px;
 
 line-height:1.8;
@@ -2097,6 +2267,9 @@ var(--ink-soft);
 .review-name{
 
 margin-top:9px;
+
+font-family:
+var(--font-reviews);
 
 font-size:12px;
 
@@ -2120,6 +2293,9 @@ background:#DDEBD6;
 color:
 var(--ok);
 
+font-family:
+var(--font-reviews);
+
 font-size:9px;
 
 font-weight:900;
@@ -2142,6 +2318,9 @@ color:
 padding:
 38px 18px 22px;
 
+font-family:
+var(--font-footer);
+
 }
 
 .store-info-grid{
@@ -2159,10 +2338,17 @@ gap:24px;
 
 }
 
+.footer-column{
+
+font-family:
+var(--font-footer);
+
+}
+
 .footer-column h3{
 
 font-family:
-'Aref Ruqaa';
+var(--font-footer);
 
 font-size:24px;
 
@@ -2190,6 +2376,9 @@ text-align:right;
 color:
 #f6efe4;
 
+font-family:
+var(--font-footer);
+
 font-size:12px;
 
 }
@@ -2205,6 +2394,9 @@ border:
 1px solid rgba(255,255,255,.17);
 
 border-radius:10px;
+
+font-family:
+var(--font-footer);
 
 font-size:11px;
 
@@ -2235,6 +2427,9 @@ background:#fff;
 
 color:#222;
 
+font-family:
+var(--font-footer);
+
 font-size:9px;
 
 font-weight:900;
@@ -2254,6 +2449,9 @@ border-top:
 1px dashed rgba(255,255,255,.25);
 
 text-align:center;
+
+font-family:
+var(--font-footer);
 
 font-size:11px;
 
@@ -2290,6 +2488,9 @@ border:
 1px solid rgba(255,255,255,.2);
 
 border-radius:999px;
+
+font-family:
+var(--font-footer);
 
 font-size:10px;
 
@@ -2353,6 +2554,9 @@ transition:.3s ease;
 box-shadow:
 20px 0 50px rgba(0,0,0,.2);
 
+font-family:
+var(--font-modal);
+
 }
 
 .drawer.show{
@@ -2375,7 +2579,12 @@ border-bottom:
 }
 
 .drawer-head h3{
+
 margin:0;
+
+font-family:
+var(--font-modal);
+
 }
 
 .close-btn{
@@ -2383,6 +2592,9 @@ margin:0;
 border:0;
 
 background:none;
+
+font-family:
+var(--font-buttons);
 
 font-size:22px;
 
@@ -2445,6 +2657,9 @@ flex:1;
 
 .cart-item-name{
 
+font-family:
+var(--font-product);
+
 font-size:13px;
 
 font-weight:900;
@@ -2452,6 +2667,9 @@ font-weight:900;
 }
 
 .cart-meta{
+
+font-family:
+var(--font-modal);
 
 font-size:10px;
 
@@ -2472,6 +2690,9 @@ padding:
 border-radius:8px;
 
 background:#fff0c7;
+
+font-family:
+var(--font-gift);
 
 font-size:10px;
 
@@ -2504,6 +2725,9 @@ var(--cream);
 
 border-radius:7px;
 
+font-family:
+var(--font-buttons);
+
 }
 
 .cart-total{
@@ -2511,6 +2735,9 @@ border-radius:7px;
 display:flex;
 
 justify-content:space-between;
+
+font-family:
+var(--font-price);
 
 font-weight:900;
 
@@ -2559,6 +2786,9 @@ var(--card);
 box-shadow:
 0 30px 70px rgba(0,0,0,.28);
 
+font-family:
+var(--font-modal);
+
 }
 
 .modal.show{
@@ -2578,7 +2808,12 @@ gap:10px;
 }
 
 .modal-head h3{
+
 margin:0;
+
+font-family:
+var(--font-modal);
+
 }
 
 .modal label{
@@ -2587,6 +2822,9 @@ display:block;
 
 margin:
 10px 0 4px;
+
+font-family:
+var(--font-modal);
 
 font-size:11px;
 
@@ -2613,6 +2851,9 @@ border-radius:10px;
 
 background:
 var(--cream);
+
+font-family:
+var(--font-modal);
 
 color:
 var(--ink);
@@ -2688,7 +2929,7 @@ padding:22px;
 .product-detail-name{
 
 font-family:
-var(--product-font);
+var(--font-product);
 
 font-size:34px;
 
@@ -2698,6 +2939,9 @@ margin:
 }
 
 .product-description{
+
+font-family:
+var(--font-body);
 
 font-size:13px;
 
@@ -2733,6 +2977,9 @@ var(--cream);
 padding:
 6px 10px;
 
+font-family:
+var(--font-buttons);
+
 font-size:11px;
 
 }
@@ -2760,6 +3007,9 @@ min(
 95vw
 );
 
+font-family:
+var(--font-gift);
+
 }
 
 .gift-step{
@@ -2776,9 +3026,15 @@ border-radius:14px;
 background:
 rgba(248,234,203,.35);
 
+font-family:
+var(--font-gift);
+
 }
 
 .gift-step-title{
+
+font-family:
+var(--font-gift);
 
 font-weight:900;
 
@@ -2817,6 +3073,9 @@ text-align:center;
 
 cursor:pointer;
 
+font-family:
+var(--font-gift);
+
 }
 
 .gift-product-card.selected{
@@ -2843,6 +3102,9 @@ object-fit:contain;
 display:block;
 
 margin-top:4px;
+
+font-family:
+var(--font-product);
 
 font-size:10px;
 
@@ -2874,6 +3136,9 @@ var(--card);
 text-align:center;
 
 cursor:pointer;
+
+font-family:
+var(--font-gift);
 
 }
 
@@ -2922,6 +3187,9 @@ border-radius:11px;
 
 background:#fff8e5;
 
+font-family:
+var(--font-gift);
+
 font-size:11px;
 
 line-height:1.8;
@@ -2957,6 +3225,9 @@ border-radius:15px;
 
 background:#fff;
 
+font-family:
+var(--font-modal);
+
 }
 
 .order-card-head{
@@ -2973,6 +3244,9 @@ flex-wrap:wrap;
 
 .order-number{
 
+font-family:
+var(--font-modal);
+
 font-size:16px;
 
 font-weight:900;
@@ -2982,6 +3256,9 @@ font-weight:900;
 .order-date{
 
 margin-top:3px;
+
+font-family:
+var(--font-modal);
 
 font-size:10px;
 
@@ -2998,6 +3275,9 @@ padding:
 5px 9px;
 
 border-radius:999px;
+
+font-family:
+var(--font-modal);
 
 font-size:10px;
 
@@ -3039,6 +3319,9 @@ overflow-x:auto;
 padding:
 15px 0 12px;
 
+font-family:
+var(--font-modal);
+
 }
 
 .track-step{
@@ -3048,6 +3331,9 @@ flex:1;
 min-width:80px;
 
 text-align:center;
+
+font-family:
+var(--font-modal);
 
 font-size:9px;
 
@@ -3125,6 +3411,9 @@ border-radius:9px;
 background:
 var(--cream);
 
+font-family:
+var(--font-modal);
+
 }
 
 .order-info small{
@@ -3186,6 +3475,9 @@ flex:1;
 
 display:block;
 
+font-family:
+var(--font-product);
+
 font-size:12px;
 
 }
@@ -3195,6 +3487,9 @@ font-size:12px;
 display:block;
 
 margin-top:2px;
+
+font-family:
+var(--font-modal);
 
 font-size:9px;
 
@@ -3232,6 +3527,9 @@ gap:4px;
 
 margin:
 10px 0;
+
+font-family:
+var(--font-reviews);
 
 }
 
@@ -3279,6 +3577,9 @@ color:#222;
 
 border-radius:13px;
 
+font-family:
+var(--font-invoice);
+
 }
 
 .invoice-head{
@@ -3299,7 +3600,7 @@ border-bottom:
 .invoice-brand{
 
 font-family:
-'Aref Ruqaa';
+var(--font-brand);
 
 font-size:32px;
 
@@ -3308,6 +3609,9 @@ font-weight:700;
 }
 
 .invoice-brand-en{
+
+font-family:
+var(--font-brand);
 
 font-size:9px;
 
@@ -3349,6 +3653,9 @@ border:
 
 border-radius:8px;
 
+font-family:
+var(--font-invoice);
+
 font-size:11px;
 
 line-height:1.8;
@@ -3367,6 +3674,9 @@ min-width:560px;
 
 border-collapse:collapse;
 
+font-family:
+var(--font-invoice);
+
 }
 
 .invoice-table th,
@@ -3376,6 +3686,9 @@ padding:7px;
 
 border:
 1px solid #ddd;
+
+font-family:
+var(--font-invoice);
 
 font-size:10px;
 
@@ -3397,6 +3710,9 @@ min(
 
 margin:
 14px 0 0 auto;
+
+font-family:
+var(--font-invoice);
 
 }
 
@@ -3436,6 +3752,9 @@ white-space:pre-line;
 
 line-height:2;
 
+font-family:
+var(--font-footer);
+
 font-size:13px;
 
 color:
@@ -3472,6 +3791,9 @@ var(--ink);
 
 color:
 var(--cream);
+
+font-family:
+var(--font-body);
 
 font-size:12px;
 
@@ -3544,7 +3866,7 @@ repeat(2,1fr);
 
 
 /* ======================================================
-   MOBILE FIRST OVERRIDES
+   MOBILE
 ====================================================== */
 
 @media(max-width:768px){
@@ -3641,7 +3963,7 @@ font-size:10px;
 }
 
 
-/* الإعلان - جوال */
+/* الإعلان */
 
 #adSection{
 
@@ -3672,7 +3994,7 @@ min-height:
 }
 
 
-/* هدية */
+/* الهدية */
 
 #giftSection{
 
@@ -3718,7 +4040,7 @@ flex-basis:
 }
 
 
-/* متجر */
+/* المتجر */
 
 .shop-section{
 
@@ -3773,7 +4095,6 @@ gap:
 var(--carousel-spacing);
 
 padding:
-
 8px
 14vw
 20px;
@@ -4011,10 +4332,13 @@ ALSHUAIIBE STORE
 <div id="pushBox">
 
 <div class="push-title">
+
 🔔
+
 <span id="pushTitle">
 فعّل إشعارات متجر الشعيبي
 </span>
+
 </div>
 
 <div
@@ -4469,7 +4793,7 @@ class="reviews-row"
 
 
 <!-- ======================================================
-     FOOTER INFORMATION
+     FOOTER
 ====================================================== -->
 
 <section class="store-info">
@@ -4643,10 +4967,6 @@ onclick="openCheckout()"
 
 </aside>
 
-
-<!-- ======================================================
-     MODAL SCRIM
-====================================================== -->
 
 <div
 id="modalScrim"
@@ -5152,40 +5472,11 @@ id="reviewStars"
 class="review-stars-select"
 >
 
-<button
-class="review-star"
-onclick="setReviewRating(1)"
->
-★
-</button>
-
-<button
-class="review-star"
-onclick="setReviewRating(2)"
->
-★
-</button>
-
-<button
-class="review-star"
-onclick="setReviewRating(3)"
->
-★
-</button>
-
-<button
-class="review-star"
-onclick="setReviewRating(4)"
->
-★
-</button>
-
-<button
-class="review-star"
-onclick="setReviewRating(5)"
->
-★
-</button>
+<button class="review-star" onclick="setReviewRating(1)">★</button>
+<button class="review-star" onclick="setReviewRating(2)">★</button>
+<button class="review-star" onclick="setReviewRating(3)">★</button>
+<button class="review-star" onclick="setReviewRating(4)">★</button>
+<button class="review-star" onclick="setReviewRating(5)">★</button>
 
 </div>
 
@@ -5330,10 +5621,6 @@ class="toast"
 ></div>
 
 
-<!-- ======================================================
-     SUPABASE
-====================================================== -->
-
 <script
 src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
 ></script>
@@ -5379,40 +5666,28 @@ eyebrow:
 
 
 /* ======================================================
-   DATABASE DATA
+   DATA
 ====================================================== */
 
 let products = [];
-
 let categories = [];
-
 let bundles = [];
-
 let bundleItems = [];
-
 let giftOptions = [];
-
 let reviews = [];
-
 let notifications = [];
-
 let coupons = [];
-
 let settingsRows = [];
 
 
 /* ======================================================
-   SETTINGS DATA
+   SETTINGS
 ====================================================== */
 
 let generalSettings = {};
-
 let designSettings = {};
-
 let adSettings = {};
-
 let paymentSettings = {};
-
 let footerSettings = {};
 
 
@@ -5576,13 +5851,9 @@ value ?? ""
 char => ({
 
 "&":"&amp;",
-
 "<":"&lt;",
-
 ">":"&gt;",
-
 '"':"&quot;",
-
 "'":"&#039;"
 
 }[char])
@@ -5738,7 +6009,7 @@ updateModalScrim();
 
 
 /* ======================================================
-   SETTING PARSER
+   SETTINGS PARSER
 ====================================================== */
 
 function parseSettings(){
@@ -5801,6 +6072,454 @@ row.id ===
 
 
 /* ======================================================
+   FONT SYSTEM
+====================================================== */
+
+function cleanFontName(value){
+
+let name =
+String(
+value || ""
+)
+.trim();
+
+
+if(!name){
+return "";
+}
+
+
+name =
+name
+.replace(
+/["']/g,
+""
+)
+.split(",")[0]
+.trim();
+
+
+return name;
+
+}
+
+
+function fontCSS(
+value,
+fallback
+){
+
+const valueText =
+String(
+value || ""
+)
+.trim();
+
+
+if(!valueText){
+
+return fallback;
+
+}
+
+
+/*
+إذا كانت القيمة محفوظة بصيغة CSS كاملة:
+'Aref Ruqaa', serif
+*/
+
+if(
+valueText.includes(",")
+){
+
+return valueText;
+
+}
+
+
+/*
+إذا كان مجرد اسم خط:
+Cairo
+Amiri
+Tajawal
+*/
+
+const safeName =
+valueText
+.replace(
+/["']/g,
+""
+)
+.trim();
+
+
+return (
+"'"
++
+safeName
++
+"', sans-serif"
+);
+
+}
+
+
+/* ======================================================
+   DYNAMIC GOOGLE FONT LOADER
+====================================================== */
+
+const loadedDynamicFonts =
+new Set();
+
+
+function loadGoogleFont(
+fontValue
+){
+
+const name =
+cleanFontName(
+fontValue
+);
+
+
+if(!name){
+return;
+}
+
+
+const builtInFonts =
+new Set([
+
+"Tajawal",
+"Cairo",
+"Amiri",
+"Aref Ruqaa",
+"Markazi Text"
+
+]);
+
+
+/*
+هذه موجودة أصلاً في <head>
+*/
+
+if(
+builtInFonts.has(
+name
+)
+){
+
+return;
+
+}
+
+
+if(
+loadedDynamicFonts.has(
+name
+)
+){
+
+return;
+
+}
+
+
+const link =
+document.createElement(
+"link"
+);
+
+
+link.rel =
+"stylesheet";
+
+
+link.dataset.dynamicFont =
+name;
+
+
+const family =
+name
+.trim()
+.replace(
+/\s+/g,
+"+"
+);
+
+
+link.href =
+"https://fonts.googleapis.com/css2?family="
++
+encodeURIComponent(
+family
+)
+.replace(
+/%2B/g,
+"+"
+)
++
+":wght@300;400;500;600;700;800;900&display=swap";
+
+
+document.head.appendChild(
+link
+);
+
+
+loadedDynamicFonts.add(
+name
+);
+
+}
+
+
+/* ======================================================
+   APPLY ALL FONT SETTINGS
+====================================================== */
+
+function applyFontSettings(){
+
+const fonts =
+designSettings.fonts
+||
+{};
+
+
+const defaults = {
+
+body:
+"Tajawal",
+
+brand:
+"Aref Ruqaa",
+
+heroTitle:
+"Aref Ruqaa",
+
+heroDescription:
+"Tajawal",
+
+nav:
+"Tajawal",
+
+sectionTitles:
+"Aref Ruqaa",
+
+categoryTitles:
+"Aref Ruqaa",
+
+productNames:
+"Aref Ruqaa",
+
+prices:
+"Tajawal",
+
+buttons:
+"Tajawal",
+
+bundles:
+"Aref Ruqaa",
+
+gifts:
+"Tajawal",
+
+reviews:
+"Tajawal",
+
+footer:
+"Tajawal",
+
+modals:
+"Tajawal",
+
+invoice:
+"Tajawal"
+
+};
+
+
+/*
+تحميل أي خط Google Fonts جديد
+تم اختياره من الإدارة
+*/
+
+Object.keys(
+defaults
+)
+.forEach(
+key => {
+
+loadGoogleFont(
+fonts[key]
+||
+defaults[key]
+);
+
+}
+);
+
+
+const root =
+document.documentElement;
+
+
+root.style.setProperty(
+"--font-body",
+fontCSS(
+fonts.body,
+"'Tajawal',sans-serif"
+)
+);
+
+
+root.style.setProperty(
+"--font-brand",
+fontCSS(
+fonts.brand,
+"'Aref Ruqaa',serif"
+)
+);
+
+
+root.style.setProperty(
+"--font-hero-title",
+fontCSS(
+fonts.heroTitle,
+"'Aref Ruqaa',serif"
+)
+);
+
+
+root.style.setProperty(
+"--font-hero-description",
+fontCSS(
+fonts.heroDescription,
+"'Tajawal',sans-serif"
+)
+);
+
+
+root.style.setProperty(
+"--font-nav",
+fontCSS(
+fonts.nav,
+"'Tajawal',sans-serif"
+)
+);
+
+
+root.style.setProperty(
+"--font-section-title",
+fontCSS(
+fonts.sectionTitles,
+"'Aref Ruqaa',serif"
+)
+);
+
+
+root.style.setProperty(
+"--font-category-title",
+fontCSS(
+fonts.categoryTitles,
+"'Aref Ruqaa',serif"
+)
+);
+
+
+root.style.setProperty(
+"--font-product",
+fontCSS(
+fonts.productNames,
+"'Aref Ruqaa',serif"
+)
+);
+
+
+root.style.setProperty(
+"--product-font",
+fontCSS(
+fonts.productNames,
+"'Aref Ruqaa',serif"
+)
+);
+
+
+root.style.setProperty(
+"--font-price",
+fontCSS(
+fonts.prices,
+"'Tajawal',sans-serif"
+)
+);
+
+
+root.style.setProperty(
+"--font-buttons",
+fontCSS(
+fonts.buttons,
+"'Tajawal',sans-serif"
+)
+);
+
+
+root.style.setProperty(
+"--font-bundle",
+fontCSS(
+fonts.bundles,
+"'Aref Ruqaa',serif"
+)
+);
+
+
+root.style.setProperty(
+"--font-gift",
+fontCSS(
+fonts.gifts,
+"'Tajawal',sans-serif"
+)
+);
+
+
+root.style.setProperty(
+"--font-reviews",
+fontCSS(
+fonts.reviews,
+"'Tajawal',sans-serif"
+)
+);
+
+
+root.style.setProperty(
+"--font-footer",
+fontCSS(
+fonts.footer,
+"'Tajawal',sans-serif"
+)
+);
+
+
+root.style.setProperty(
+"--font-modal",
+fontCSS(
+fonts.modals,
+"'Tajawal',sans-serif"
+)
+);
+
+
+root.style.setProperty(
+"--font-invoice",
+fontCSS(
+fonts.invoice,
+"'Tajawal',sans-serif"
+)
+);
+
+}
+
+
+/* ======================================================
    APPLY SETTINGS
 ====================================================== */
 
@@ -5809,6 +6528,13 @@ function applySettings(){
 applyIdentity();
 
 applyDesign();
+
+/*
+الجديد:
+تطبيق الخطوط بعد قراءة design
+*/
+
+applyFontSettings();
 
 applyGiftSection();
 
@@ -6604,9 +7330,7 @@ blob
 
 
 /* ======================================================
-   GIFT SECTION DESIGN
-   يقرأ generalSettings.giftSection
-   نفس لوحة الإدارة
+   GIFT SECTION
 ====================================================== */
 
 function applyGiftSection(){
@@ -6703,8 +7427,7 @@ settings.buttonColor
 
 
 /* ======================================================
-   ADVERTISEMENT
-   يقرأ نفس settings/ads من لوحة الإدارة
+   ADS
 ====================================================== */
 
 function getAdMedia(){
@@ -7039,8 +7762,6 @@ $("adLink")
 }
 
 
-/* فيديو */
-
 if(
 type ===
 "video"
@@ -7068,8 +7789,6 @@ return;
 }
 
 
-/* صورة واحدة */
-
 if(
 type ===
 "image"
@@ -7096,8 +7815,6 @@ return;
 
 }
 
-
-/* Slider */
 
 container.innerHTML =
 media.map(
@@ -7196,7 +7913,7 @@ interval
 
 
 /* ======================================================
-   LOAD DATABASE
+   SAFE DATABASE QUERY
 ====================================================== */
 
 async function safeQuery(
@@ -7240,6 +7957,10 @@ return fallback;
 
 }
 
+
+/* ======================================================
+   LOAD DATABASE
+====================================================== */
 
 async function loadStoreData(){
 
@@ -7528,9 +8249,7 @@ renderCart();
 
 
 /* ======================================================
-   CATEGORY SYSTEM
-   نفس لوحة الإدارة:
-   products.category = categories.name
+   CATEGORY
 ====================================================== */
 
 function categoryNameOfProduct(
@@ -7547,72 +8266,7 @@ product?.category
 }
 
 
-function validCategoryNames(){
-
-return new Set(
-categories.map(
-category =>
-String(
-category.name || ""
-)
-.trim()
-)
-);
-
-}
-
-
-function productHasValidCategory(
-product
-){
-
-return validCategoryNames()
-.has(
-categoryNameOfProduct(
-product
-)
-);
-
-}
-
-
-/* ======================================================
-   CATEGORY FILTERS
-====================================================== */
-
 function renderCategoryFilters(){
-
-const filteredCategories =
-categories.filter(
-category => {
-
-const name =
-String(
-category.name || ""
-);
-
-
-return !(
-name.includes(
-"باقة"
-)
-||
-name.includes(
-"باقات"
-)
-||
-name.includes(
-"عرض"
-)
-||
-name.includes(
-"عروض"
-)
-);
-
-}
-);
-
 
 const html = [
 
@@ -7637,7 +8291,7 @@ onclick="setCategory('الكل')"
 ];
 
 
-filteredCategories.forEach(
+categories.forEach(
 category => {
 
 html.push(
@@ -7658,7 +8312,11 @@ category.name
 )
 })"
 >
-${escapeHTML(category.name)}
+
+${escapeHTML(
+category.name
+)}
+
 </button>
 
 `
@@ -7760,6 +8418,43 @@ renderProducts();
 
 
 /* ======================================================
+   PRODUCT PRICE
+====================================================== */
+
+function productFinalPrice(
+product
+){
+
+const price =
+Number(
+product?.price || 0
+);
+
+
+const discount =
+Math.max(
+0,
+Math.min(
+100,
+Number(
+product?.discount || 0
+)
+)
+);
+
+
+return (
+price *
+(
+1 -
+discount / 100
+)
+);
+
+}
+
+
+/* ======================================================
    FILTER PRODUCTS
 ====================================================== */
 
@@ -7820,8 +8515,7 @@ product.name || ""
 " "
 +
 String(
-product.description || ""
-)
+product.description || "")
 +
 " "
 +
@@ -7899,10 +8593,7 @@ sortMode ===
 "priceAsc"
 ){
 
-return (
-priceA -
-priceB
-);
+return priceA - priceB;
 
 }
 
@@ -7912,10 +8603,7 @@ sortMode ===
 "priceDesc"
 ){
 
-return (
-priceB -
-priceA
-);
+return priceB - priceA;
 
 }
 
@@ -7945,43 +8633,6 @@ return 0;
 
 
 return list;
-
-}
-
-
-/* ======================================================
-   PRODUCT PRICE
-====================================================== */
-
-function productFinalPrice(
-product
-){
-
-const price =
-Number(
-product?.price || 0
-);
-
-
-const discount =
-Math.max(
-0,
-Math.min(
-100,
-Number(
-product?.discount || 0
-)
-)
-);
-
-
-return (
-price *
-(
-1 -
-discount / 100
-)
-);
 
 }
 
@@ -8045,18 +8696,14 @@ return `
 <article
 class="product-card"
 data-product-id="${escapeHTML(
-String(
-product.id
-)
+String(product.id)
 )}"
 >
 
 <div
 class="product-image"
 onclick="openProduct('${escapeHTML(
-String(
-product.id
-)
+String(product.id)
 )}')"
 >
 
@@ -8078,17 +8725,17 @@ loading="lazy"
 ""
 }
 
+
 <button
 class="product-favorite"
 onclick="
 event.stopPropagation();
 toggleFavorite('${escapeHTML(
-String(
-product.id
-)
+String(product.id)
 )}')
 "
 >
+
 ${
 favorite
 ?
@@ -8096,6 +8743,7 @@ favorite
 :
 "🤍"
 }
+
 </button>
 
 
@@ -8147,9 +8795,11 @@ out
 
 
 <h3 class="product-name">
+
 ${escapeHTML(
 product.name || ""
 )}
+
 </h3>
 
 
@@ -8199,11 +8849,10 @@ out
 ""
 }
 onclick="quickAdd('${escapeHTML(
-String(
-product.id
-)
+String(product.id)
 )}')"
 >
+
 ${
 out
 ?
@@ -8211,6 +8860,7 @@ out
 :
 "أضف للسلة"
 }
+
 </button>
 
 
@@ -8224,9 +8874,7 @@ out
 ""
 }
 onclick="openGiftBuilder('${escapeHTML(
-String(
-product.id
-)
+String(product.id)
 )}')"
 >
 🎁 شراء كهدية
@@ -8294,7 +8942,6 @@ onclick="moveProductRow('${rowId}',1)"
 
 /* ======================================================
    RENDER PRODUCTS
-   لا يوجد "منتجات أخرى"
 ====================================================== */
 
 function renderProducts(){
@@ -8361,8 +9008,6 @@ return;
 }
 
 
-/* قسم محدد */
-
 if(
 activeCategory !==
 "الكل"
@@ -8390,9 +9035,11 @@ $("productsArea")
 <div class="category-group">
 
 <h3 class="category-title">
+
 ${escapeHTML(
 activeCategory
 )}
+
 </h3>
 
 ${
@@ -8422,8 +9069,6 @@ return;
 
 }
 
-
-/* جميع الأقسام */
 
 const groups =
 categories
@@ -8456,7 +9101,8 @@ items
 )
 .filter(
 group =>
-group.items.length > 0
+group.items.length >
+0
 );
 
 
@@ -8474,13 +9120,6 @@ $("productsArea")
 return;
 
 }
-
-
-/*
-مهم جداً:
-أي منتج لا يحمل اسم قسم موجود فعلياً
-لن يتم دمجه في "منتجات أخرى".
-*/
 
 
 $("productsArea")
@@ -8504,13 +9143,6 @@ return `
 
 <h3
 class="category-title"
-style="
-font-family:${
-group.category.font_family
-||
-"var(--product-font)"
-}
-"
 >
 
 ${escapeHTML(
@@ -8518,7 +9150,6 @@ group.category.name
 )}
 
 </h3>
-
 
 ${
 buildProductRow(
@@ -8866,8 +9497,6 @@ renderProducts();
 
 /* ======================================================
    BUNDLES
-   المصدر الحقيقي:
-   bundles + bundle_items
 ====================================================== */
 
 function activeBundles(){
@@ -9006,9 +9635,7 @@ return `
 <div
 class="bundle-image"
 onclick="openBundle('${escapeHTML(
-String(
-bundle.id
-)
+String(bundle.id)
 )}')"
 >
 
@@ -9125,9 +9752,7 @@ bundle.stock || 0
 ""
 }
 onclick="addBundleToCart('${escapeHTML(
-String(
-bundle.id
-)
+String(bundle.id)
 )}')"
 >
 
@@ -9155,7 +9780,10 @@ bundle.stock || 0
 )
 .join("");
 
-}/* ======================================================
+}
+
+
+/* ======================================================
    OPEN BUNDLE
 ====================================================== */
 
@@ -9202,7 +9830,7 @@ names
 
 
 /* ======================================================
-   ADD BUNDLE TO CART
+   ADD BUNDLE
 ====================================================== */
 
 function addBundleToCart(bundleId){
@@ -9322,14 +9950,9 @@ Number(
 bundle.stock || 0
 ),
 
-color:
-null,
-
-size:
-null,
-
-giftData:
-null
+color:null,
+size:null,
+giftData:null
 
 });
 
@@ -9520,10 +10143,6 @@ showModal(
 }
 
 
-/* ======================================================
-   PRODUCT OPTIONS
-====================================================== */
-
 function renderProductOptions(product){
 
 let html =
@@ -9682,9 +10301,7 @@ button.classList.add(
 }
 
 
-function selectedOption(
-id
-){
+function selectedOption(id){
 
 return (
 $(id)
@@ -9699,10 +10316,6 @@ null
 
 }
 
-
-/* ======================================================
-   QUICK ADD
-====================================================== */
 
 function quickAdd(productId){
 
@@ -9767,10 +10380,6 @@ null
 }
 
 
-/* ======================================================
-   ADD CURRENT PRODUCT
-====================================================== */
-
 function addCurrentProduct(){
 
 if(!currentProduct){
@@ -9801,10 +10410,6 @@ closeProductModal();
 
 }
 
-
-/* ======================================================
-   ADD PRODUCT TO CART
-====================================================== */
 
 function addProductToCart(
 product,
@@ -9917,8 +10522,7 @@ color || null,
 size:
 size || null,
 
-giftData:
-null
+giftData:null
 
 });
 
@@ -9934,10 +10538,6 @@ toast(
 
 }
 
-
-/* ======================================================
-   PRODUCT MODAL CLOSE
-====================================================== */
 
 function closeProductModal(){
 
@@ -9957,7 +10557,7 @@ updateModalScrim();
 
 
 /* ======================================================
-   CART STORAGE
+   CART
 ====================================================== */
 
 function cleanCart(){
@@ -10015,10 +10615,6 @@ renderCart();
 }
 
 
-/* ======================================================
-   CART
-====================================================== */
-
 function openCart(){
 
 renderCart();
@@ -10053,10 +10649,6 @@ $("cartDrawer")
 
 }
 
-
-/* ======================================================
-   CART TOTAL
-====================================================== */
 
 function cartSubtotal(){
 
@@ -10095,10 +10687,6 @@ products[0]?.currency
 
 }
 
-
-/* ======================================================
-   CART RENDER
-====================================================== */
 
 function renderCart(){
 
@@ -10318,10 +10906,6 @@ cartCurrency()
 }
 
 
-/* ======================================================
-   CART QTY
-====================================================== */
-
 function changeCartQty(
 index,
 change
@@ -10387,9 +10971,7 @@ saveCart();
 }
 
 
-function removeCartItem(
-index
-){
+function removeCartItem(index){
 
 cart.splice(
 index,
@@ -10404,7 +10986,6 @@ saveCart();
 
 /* ======================================================
    GIFT BUILDER
-   المصدر الحقيقي: gift_options
 ====================================================== */
 
 function openGiftBuilder(
@@ -10445,44 +11026,19 @@ String(product.id)
 }
 
 
-$("giftSenderName")
-.value =
-"";
-
-
-$("giftSenderPhone")
-.value =
-"";
-
-
-$("giftRecipientName")
-.value =
-"";
-
-
-$("giftRecipientPhone")
-.value =
-"";
-
-
-$("giftRecipientAddress")
-.value =
-"";
-
-
-$("giftCardMessage")
-.value =
-"";
+$("giftSenderName").value = "";
+$("giftSenderPhone").value = "";
+$("giftRecipientName").value = "";
+$("giftRecipientPhone").value = "";
+$("giftRecipientAddress").value = "";
+$("giftCardMessage").value = "";
 
 
 renderGiftProducts();
 
-
 renderGiftWraps();
 
-
 updateGiftSummary();
-
 
 showModal(
 "giftModal"
@@ -10490,10 +11046,6 @@ showModal(
 
 }
 
-
-/* ======================================================
-   GIFT PRODUCTS
-====================================================== */
 
 function renderGiftProducts(){
 
@@ -10608,13 +11160,7 @@ product.currency
 }
 
 
-/* ======================================================
-   SELECT GIFT PRODUCTS
-====================================================== */
-
-function toggleGiftProduct(
-productId
-){
+function toggleGiftProduct(productId){
 
 const id =
 String(
@@ -10648,15 +11194,10 @@ id
 
 renderGiftProducts();
 
-
 updateGiftSummary();
 
 }
 
-
-/* ======================================================
-   GIFT WRAPS
-====================================================== */
 
 function renderGiftWraps(){
 
@@ -10785,9 +11326,7 @@ cartCurrency()
 }
 
 
-function selectGiftWrap(
-wrapId
-){
+function selectGiftWrap(wrapId){
 
 giftSelectedWrap =
 giftOptions.find(
@@ -10802,15 +11341,10 @@ null;
 
 renderGiftWraps();
 
-
 updateGiftSummary();
 
 }
 
-
-/* ======================================================
-   GIFT TOTAL
-====================================================== */
 
 function giftProductsTotal(){
 
@@ -10865,10 +11399,6 @@ giftSelectedWrap?.price
 
 }
 
-
-/* ======================================================
-   GIFT SUMMARY
-====================================================== */
 
 function updateGiftSummary(){
 
@@ -10941,10 +11471,6 @@ cartCurrency()
 
 }
 
-
-/* ======================================================
-   ADD GIFT TO CART
-====================================================== */
 
 function addGiftToCart(){
 
@@ -11099,12 +11625,6 @@ cardMessage
 };
 
 
-/*
-كل منتج هدية يدخل كسطر طلب مستقل.
-وهذا يجعل لوحة الإدارة تعرض بيانات الهدية
-مع المنتج داخل order_items.
-*/
-
 selectedProducts
 .forEach(
 product => {
@@ -11155,11 +11675,9 @@ Number(
 product.stock || 0
 ),
 
-color:
-null,
+color:null,
 
-size:
-null,
+size:null,
 
 giftData:{
 ...giftData
@@ -11170,11 +11688,6 @@ giftData:{
 }
 );
 
-
-/*
-سعر التغليف كسطر مستقل حتى يتم احتساب السعر
-بدون تغيير سعر المنتجات.
-*/
 
 if(
 Number(
@@ -11228,11 +11741,9 @@ qty:
 stock:
 999,
 
-color:
-null,
+color:null,
 
-size:
-null,
+size:null,
 
 giftData:{
 ...giftData
@@ -11245,9 +11756,7 @@ giftData:{
 
 saveCart();
 
-
 closeGiftBuilder();
-
 
 toast(
 "تمت إضافة الهدية للسلة 🎁"
@@ -11283,9 +11792,7 @@ updateModalScrim();
    COUPONS
 ====================================================== */
 
-function couponValidNow(
-coupon
-){
+function couponValidNow(coupon){
 
 if(
 coupon.is_active ===
@@ -11437,10 +11944,6 @@ renderPaymentDetails();
 }
 
 
-/* ======================================================
-   DISCOUNT
-====================================================== */
-
 function couponDiscount(){
 
 if(!currentCoupon){
@@ -11528,7 +12031,7 @@ couponDiscount()
 
 
 /* ======================================================
-   PAYMENT SETTINGS
+   PAYMENT
 ====================================================== */
 
 function enabledPaymentMethods(){
@@ -11555,8 +12058,6 @@ return methods;
 
 }
 
-
-/* توافق مع النسخة القديمة */
 
 return [
 
@@ -11587,48 +12088,6 @@ enabled:true
 }
 
 
-/* ======================================================
-   PAYMENT METHODS UI
-====================================================== */
-
-function renderPaymentMethods(){
-
-const methods =
-enabledPaymentMethods();
-
-
-$("paymentMethod")
-.innerHTML =
-methods
-.map(
-method => `
-
-<option
-value="${escapeHTML(
-method.id || method.type || ""
-)}"
->
-
-${escapeHTML(
-method.name || "طريقة دفع"
-)}
-
-</option>
-
-`
-)
-.join("");
-
-
-renderPaymentDetails();
-
-}
-
-
-/* ======================================================
-   BANK ACCOUNTS
-====================================================== */
-
 function enabledBankAccounts(){
 
 const accounts =
@@ -11653,8 +12112,6 @@ return accounts;
 
 }
 
-
-/* توافق مع إعدادات البنك القديمة */
 
 if(
 paymentSettings.bankName
@@ -11707,9 +12164,39 @@ return [];
 }
 
 
-/* ======================================================
-   PAYMENT DETAILS
-====================================================== */
+function renderPaymentMethods(){
+
+const methods =
+enabledPaymentMethods();
+
+
+$("paymentMethod")
+.innerHTML =
+methods
+.map(
+method => `
+
+<option
+value="${escapeHTML(
+method.id || method.type || ""
+)}"
+>
+
+${escapeHTML(
+method.name || "طريقة دفع"
+)}
+
+</option>
+
+`
+)
+.join("");
+
+
+renderPaymentDetails();
+
+}
+
 
 function renderPaymentDetails(){
 
@@ -11943,10 +12430,6 @@ html;
 }
 
 
-/* ======================================================
-   CHECKOUT
-====================================================== */
-
 function openCheckout(){
 
 if(!cart.length){
@@ -12001,7 +12484,7 @@ updateModalScrim();
 
 
 /* ======================================================
-   ORDER HELPERS
+   ORDER
 ====================================================== */
 
 function makeOrderNumber(){
@@ -12041,10 +12524,6 @@ item =>
 
 }
 
-
-/* ======================================================
-   DATABASE ORDER OBJECT
-====================================================== */
 
 function buildOrderRow(){
 
@@ -12131,10 +12610,6 @@ cartHasGift()
 
 }
 
-
-/* ======================================================
-   ORDER ITEM ROW
-====================================================== */
 
 function buildOrderItemRow(
 item,
@@ -12229,18 +12704,7 @@ null
 }
 
 
-/* ======================================================
-   INSERT ORDER WITH FALLBACKS
-====================================================== */
-
-async function insertOrderCompatible(
-order
-){
-
-/*
-الصيغة الرئيسية مطابقة للوحة الإدارة:
-name / phone / address / pay_method
-*/
+async function insertOrderCompatible(order){
 
 let row = {
 
@@ -12312,11 +12776,6 @@ return result;
 }
 
 
-/*
-Fallback لنسخة أخرى من الجدول
-customer_name / customer_phone / customer_address
-*/
-
 console.warn(
 "Primary order insert:",
 result.error
@@ -12386,10 +12845,6 @@ return result;
 }
 
 
-/* ======================================================
-   INSERT ORDER ITEMS
-====================================================== */
-
 async function insertOrderItemsCompatible(
 orderId,
 items
@@ -12423,11 +12878,6 @@ return result;
 
 }
 
-
-/*
-Fallback أقل حقولاً
-في حال بعض الأعمدة الإضافية غير موجودة
-*/
 
 console.warn(
 "Primary order_items insert:",
@@ -12512,10 +12962,6 @@ return result;
 
 }
 
-
-/* ======================================================
-   SUBMIT ORDER
-====================================================== */
 
 async function submitOrder(){
 
@@ -12629,11 +13075,6 @@ if(
 itemsResult.error
 ){
 
-/*
-نحذف الطلب إذا فشل حفظ المنتجات
-حتى لا يظهر طلب ناقص في الإدارة.
-*/
-
 await client
 .from(
 "orders"
@@ -12650,8 +13091,6 @@ throw itemsResult.error;
 }
 
 
-/* حفظ رقم الهاتف ورقم الطلب */
-
 localStorage.setItem(
 "alshuaiibe_last_phone",
 phone
@@ -12667,8 +13106,6 @@ order.order_number
 )
 );
 
-
-/* تفريغ السلة */
 
 cart =
 [];
@@ -12764,10 +13201,6 @@ oldText;
 }
 
 
-/* ======================================================
-   REFRESH PRODUCTS
-====================================================== */
-
 async function refreshStockAfterOrder(){
 
 const data =
@@ -12799,7 +13232,6 @@ data || [];
 
 
 renderProducts();
-
 
 renderBundles();
 
@@ -12876,13 +13308,7 @@ updateModalScrim();
 }
 
 
-/* ======================================================
-   ORDER ALIASES
-====================================================== */
-
-function orderCustomerName(
-order
-){
+function orderCustomerName(order){
 
 return (
 order.name
@@ -12895,9 +13321,7 @@ order.customer_name
 }
 
 
-function orderPhone(
-order
-){
+function orderPhone(order){
 
 return normalizePhone(
 
@@ -12912,9 +13336,7 @@ order.customer_phone
 }
 
 
-function orderAddress(
-order
-){
+function orderAddress(order){
 
 return (
 
@@ -12931,9 +13353,7 @@ order.shipping_address
 }
 
 
-function orderPaymentMethod(
-order
-){
+function orderPaymentMethod(order){
 
 return (
 
@@ -12950,9 +13370,7 @@ order.payment
 }
 
 
-function orderDiscountAmount(
-order
-){
+function orderDiscountAmount(order){
 
 return Number(
 
@@ -12966,10 +13384,6 @@ order.discount
 
 }
 
-
-/* ======================================================
-   TRACK ORDER QUERY
-====================================================== */
 
 async function trackCustomerOrder(){
 
@@ -13165,13 +13579,7 @@ error.message || ""
 }
 
 
-/* ======================================================
-   STATUS
-====================================================== */
-
-function orderStatusText(
-status
-){
+function orderStatusText(status){
 
 return ({
 
@@ -13207,9 +13615,7 @@ status
 }
 
 
-function paymentStatusText(
-status
-){
+function paymentStatusText(status){
 
 return ({
 
@@ -13236,9 +13642,7 @@ status
 }
 
 
-function paymentMethodName(
-methodId
-){
+function paymentMethodName(methodId){
 
 const method =
 enabledPaymentMethods()
@@ -13265,30 +13669,15 @@ methodId
 }
 
 
-/* ======================================================
-   TRACKING STEPS
-====================================================== */
-
-function trackingStepIndex(
-status
-){
+function trackingStepIndex(status){
 
 return ({
 
-pending:
-0,
-
-confirmed:
-1,
-
-processing:
-2,
-
-shipped:
-3,
-
-delivered:
-4
+pending:0,
+confirmed:1,
+processing:2,
+shipped:3,
+delivered:4
 
 })[
 status
@@ -13299,9 +13688,7 @@ status
 }
 
 
-function renderTrackingTimeline(
-status
-){
+function renderTrackingTimeline(status){
 
 if(
 status ===
@@ -13355,30 +13742,11 @@ font-weight:900
 
 const steps = [
 
-[
-"pending",
-"استلام"
-],
-
-[
-"confirmed",
-"تأكيد"
-],
-
-[
-"processing",
-"تجهيز"
-],
-
-[
-"shipped",
-"شحن"
-],
-
-[
-"delivered",
-"تسليم"
-]
+["pending","استلام"],
+["confirmed","تأكيد"],
+["processing","تجهيز"],
+["shipped","شحن"],
+["delivered","تسليم"]
 
 ];
 
@@ -13459,13 +13827,7 @@ ${step[1]}
 }
 
 
-/* ======================================================
-   ITEM HELPERS
-====================================================== */
-
-function trackedItemName(
-item
-){
+function trackedItemName(item){
 
 return (
 
@@ -13489,9 +13851,7 @@ item.item_type ===
 }
 
 
-function trackedItemImage(
-item
-){
+function trackedItemImage(item){
 
 return (
 
@@ -13508,9 +13868,7 @@ item.image_url
 }
 
 
-function trackedItemQty(
-item
-){
+function trackedItemQty(item){
 
 return Number(
 
@@ -13525,9 +13883,7 @@ item.qty
 }
 
 
-function trackedItemPrice(
-item
-){
+function trackedItemPrice(item){
 
 return Number(
 
@@ -13542,9 +13898,7 @@ item.price
 }
 
 
-function parseGiftData(
-item
-){
+function parseGiftData(item){
 
 let gift =
 item.gift_data
@@ -13590,10 +13944,6 @@ null;
 
 }
 
-
-/* ======================================================
-   RENDER TRACKED ORDER
-====================================================== */
 
 function renderTrackedOrder(
 order,
@@ -13679,13 +14029,11 @@ status
 </small>
 
 <strong>
-
 ${escapeHTML(
 orderCustomerName(
 order
 )
 )}
-
 </strong>
 
 </div>
@@ -13729,145 +14077,7 @@ order
 
 </div>
 
-
-${
-order.payment_status
-?
-`
-
-<div class="order-info">
-
-<small>
-حالة الدفع
-</small>
-
-<strong>
-
-${escapeHTML(
-paymentStatusText(
-order.payment_status
-)
-)}
-
-</strong>
-
 </div>
-
-`
-:
-""
-}
-
-
-<div class="order-info">
-
-<small>
-العنوان
-</small>
-
-<strong>
-
-${escapeHTML(
-orderAddress(
-order
-)
-)}
-
-</strong>
-
-</div>
-
-
-${
-order.tracking_code
-?
-`
-
-<div class="order-info">
-
-<small>
-رقم التتبع
-</small>
-
-<strong>
-
-${escapeHTML(
-order.tracking_code
-)}
-
-</strong>
-
-</div>
-
-`
-:
-""
-}
-
-</div>
-
-
-${
-order.shipping_company
-||
-order.tracking_code
-?
-`
-
-<div
-style="
-margin-top:10px;
-padding:10px;
-border:1px dashed var(--gold);
-border-radius:10px;
-background:var(--cream);
-font-size:11px;
-line-height:1.8
-"
->
-
-<strong>
-🚚 بيانات الشحن
-</strong>
-
-${
-order.shipping_company
-?
-`
-
-<br>
-شركة الشحن:
-${escapeHTML(
-order.shipping_company
-)}
-
-`
-:
-""
-}
-
-${
-order.tracking_code
-?
-`
-
-<br>
-رقم التتبع:
-${escapeHTML(
-order.tracking_code
-)}
-
-`
-:
-""
-}
-
-</div>
-
-`
-:
-""
-}
 
 
 <h4
@@ -13917,15 +14127,6 @@ alt=""
 <div class="order-product-info">
 
 <strong>
-
-${
-item.item_type ===
-"bundle"
-?
-"🔥 "
-:
-""
-}
 
 ${escapeHTML(
 trackedItemName(
@@ -14168,13 +14369,6 @@ return;
 }
 
 
-/*
-إذا الطلب يحتوي عدة منتجات
-نبدأ بأول منتج.
-بعد التقييم يستطيع العميل فتح التقييم
-مرة أخرى للمنتجات الأخرى.
-*/
-
 openReviewForItem(
 items[0]
 );
@@ -14182,9 +14376,7 @@ items[0]
 }
 
 
-function openReviewForItem(
-item
-){
+function openReviewForItem(item){
 
 reviewContext = {
 
@@ -14250,9 +14442,7 @@ updateModalScrim();
 }
 
 
-function setReviewRating(
-rating
-){
+function setReviewRating(rating){
 
 reviewRating =
 Math.max(
@@ -14292,10 +14482,6 @@ reviewRating
 
 }
 
-
-/* ======================================================
-   SUBMIT REVIEW
-====================================================== */
 
 async function submitReview(){
 
@@ -14357,10 +14543,6 @@ button.textContent =
 
 try{
 
-/*
-نحاول أولاً استخدام RPC القديم الموثق بالطلب.
-*/
-
 let rpcResult =
 await client.rpc(
 "submit_order_review",
@@ -14405,10 +14587,6 @@ console.warn(
 rpcResult.error
 );
 
-
-/*
-Fallback إلى جدول reviews
-*/
 
 const directResult =
 await client
@@ -14674,10 +14852,6 @@ updateModalScrim();
 }
 
 
-/* ======================================================
-   INVOICE HTML
-====================================================== */
-
 function renderInvoice(
 order,
 items
@@ -14808,29 +14982,6 @@ order.id
 
 </strong>
 
-<br>
-
-<span
-style="
-font-size:10px
-"
->
-
-${
-order.created_at
-?
-new Date(
-order.created_at
-)
-.toLocaleString(
-"ar"
-)
-:
-""
-}
-
-</span>
-
 </div>
 
 </div>
@@ -14898,42 +15049,6 @@ order
 )
 )}
 
-${
-order.payment_status
-?
-`
-
-<br>
-
-حالة الدفع:
-${escapeHTML(
-paymentStatusText(
-order.payment_status
-)
-)}
-
-`
-:
-""
-}
-
-${
-order.tracking_code
-?
-`
-
-<br>
-
-رقم التتبع:
-${escapeHTML(
-order.tracking_code
-)}
-
-`
-:
-""
-}
-
 </div>
 
 </div>
@@ -14977,53 +15092,15 @@ order.tracking_code
 ${
 items
 .map(
-item => {
-
-const gift =
-parseGiftData(
-item
-);
-
-
-return `
+item => `
 
 <tr>
 
 <td>
 
-${
-item.item_type ===
-"bundle"
-?
-"🔥 "
-:
-""
-}
-
 ${escapeHTML(
 trackedItemName(item)
 )}
-
-${
-gift
-?
-`
-
-<br>
-
-<small>
-🎁 هدية إلى:
-${escapeHTML(
-gift.recipient_name
-||
-"—"
-)}
-</small>
-
-`
-:
-""
-}
 
 </td>
 
@@ -15093,9 +15170,7 @@ currency
 
 </tr>
 
-`;
-
-}
+`
 )
 .join("")
 }
@@ -15175,58 +15250,6 @@ currency
 </div>
 
 
-${
-order.coupon_code
-?
-`
-
-<div
-style="
-margin-top:12px;
-font-size:10px
-"
->
-
-كوبون الخصم:
-<strong>
-${escapeHTML(
-order.coupon_code
-)}
-</strong>
-
-</div>
-
-`
-:
-""
-}
-
-
-${
-order.notes
-?
-`
-
-<div
-style="
-margin-top:10px;
-font-size:10px
-"
->
-
-ملاحظات:
-${escapeHTML(
-order.notes
-)}
-
-</div>
-
-`
-:
-""
-}
-
-
 <div
 style="
 margin-top:25px;
@@ -15281,7 +15304,7 @@ window.open(
 if(!popup){
 
 alert(
-"المتصفح منع نافذة الطباعة. اسمح بالنوافذ المنبثقة ثم حاول مرة أخرى."
+"المتصفح منع نافذة الطباعة."
 );
 
 return;
@@ -15289,29 +15312,32 @@ return;
 }
 
 
+const invoiceFont =
+getComputedStyle(
+document.documentElement
+)
+.getPropertyValue(
+"--font-invoice"
+)
+.trim()
+||
+"'Tajawal',sans-serif";
+
+
 popup.document.write(`
 
 <!DOCTYPE html>
 
-<html
-lang="ar"
-dir="rtl"
->
+<html lang="ar" dir="rtl">
 
 <head>
 
 <meta charset="UTF-8">
 
-<meta
-name="viewport"
-content="width=device-width,initial-scale=1"
+<link
+href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@300;400;500;600;700;800;900&family=Markazi+Text:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700;800;900&display=swap"
+rel="stylesheet"
 >
-
-<title>
-فاتورة ${escapeHTML(
-getStoreName()
-)}
-</title>
 
 <style>
 
@@ -15321,9 +15347,7 @@ box-sizing:border-box;
 
 body{
 
-font-family:
-Arial,
-sans-serif;
+font-family:${invoiceFont};
 
 direction:rtl;
 
@@ -15341,6 +15365,8 @@ max-width:900px;
 
 margin:auto;
 
+font-family:${invoiceFont};
+
 }
 
 .invoice-head{
@@ -15355,8 +15381,7 @@ align-items:flex-start;
 
 padding-bottom:14px;
 
-border-bottom:
-2px solid #222;
+border-bottom:2px solid #222;
 
 }
 
@@ -15389,20 +15414,17 @@ direction:ltr;
 
 display:grid;
 
-grid-template-columns:
-1fr 1fr;
+grid-template-columns:1fr 1fr;
 
 gap:10px;
 
-margin:
-15px 0;
+margin:15px 0;
 
 }
 
 .invoice-info{
 
-border:
-1px solid #ddd;
+border:1px solid #ddd;
 
 padding:10px;
 
@@ -15423,8 +15445,7 @@ border-collapse:collapse;
 .invoice-table th,
 .invoice-table td{
 
-border:
-1px solid #ddd;
+border:1px solid #ddd;
 
 padding:8px;
 
@@ -15435,9 +15456,7 @@ text-align:right;
 }
 
 .invoice-table th{
-
 background:#eee;
-
 }
 
 .invoice-totals{
@@ -15446,8 +15465,7 @@ width:320px;
 
 max-width:100%;
 
-margin:
-15px 0 0 auto;
+margin:15px 0 0 auto;
 
 }
 
@@ -15457,11 +15475,9 @@ display:flex;
 
 justify-content:space-between;
 
-padding:
-6px 0;
+padding:6px 0;
 
-border-bottom:
-1px solid #ddd;
+border-bottom:1px solid #ddd;
 
 }
 
@@ -15471,8 +15487,7 @@ font-size:17px;
 
 font-weight:bold;
 
-border-top:
-2px solid #111;
+border-top:2px solid #111;
 
 }
 
@@ -15503,7 +15518,7 @@ function(){
 window.print();
 
 },
-300
+500
 );
 
 };
@@ -15530,22 +15545,14 @@ function renderFooter(){
 
 renderFooterPolicies();
 
-
 renderFooterBanks();
 
-
 renderFooterPayments();
-
 
 renderSocials();
 
 }
 
-
-/* ======================================================
-   FOOTER POLICIES
-   المصدر: settings/footer
-====================================================== */
 
 function renderFooterPolicies(){
 
@@ -15561,50 +15568,15 @@ footerSettings.policies
 
 const definitions = [
 
-[
-"about",
-"من نحن"
-],
-
-[
-"returns",
-"سياسة الاستبدال والاسترجاع"
-],
-
-[
-"privacy",
-"سياسة الخصوصية"
-],
-
-[
-"terms",
-"الشروط والأحكام"
-],
-
-[
-"discounts",
-"سياسة التخفيضات"
-],
-
-[
-"customerService",
-"خدمة العملاء"
-],
-
-[
-"hr",
-"الموارد البشرية"
-],
-
-[
-"wholesale",
-"مبيعات الجملة"
-],
-
-[
-"branches",
-"فروعنا"
-]
+["about","من نحن"],
+["returns","سياسة الاستبدال والاسترجاع"],
+["privacy","سياسة الخصوصية"],
+["terms","الشروط والأحكام"],
+["discounts","سياسة التخفيضات"],
+["customerService","خدمة العملاء"],
+["hr","الموارد البشرية"],
+["wholesale","مبيعات الجملة"],
+["branches","فروعنا"]
 
 ];
 
@@ -15640,10 +15612,8 @@ item => {
 const key =
 item[0];
 
-
 const defaultTitle =
 item[1];
-
 
 const title =
 saved[
@@ -15679,13 +15649,7 @@ title
 }
 
 
-/* ======================================================
-   OPEN POLICY
-====================================================== */
-
-function openFooterPolicy(
-key
-){
+function openFooterPolicy(key){
 
 const saved =
 footerSettings.policies
@@ -15695,8 +15659,7 @@ footerSettings.policies
 
 const fallbackTitles = {
 
-about:
-"من نحن",
+about:"من نحن",
 
 returns:
 "سياسة الاستبدال والاسترجاع",
@@ -15789,10 +15752,6 @@ updateModalScrim();
 
 }
 
-
-/* ======================================================
-   FOOTER BANKS
-====================================================== */
 
 function renderFooterBanks(){
 
@@ -15892,10 +15851,6 @@ opacity:.75
 }
 
 
-/* ======================================================
-   FOOTER PAYMENT METHODS
-====================================================== */
-
 function renderFooterPayments(){
 
 const methods =
@@ -15923,10 +15878,6 @@ method.name || ""
 }
 
 
-/* ======================================================
-   SOCIALS
-====================================================== */
-
 function renderSocials(){
 
 const rows = [
@@ -15947,43 +15898,37 @@ String(value)
 [
 "instagram",
 "إنستقرام",
-value =>
-value
+value => value
 ],
 
 [
 "tiktok",
 "تيك توك",
-value =>
-value
+value => value
 ],
 
 [
 "facebook",
 "فيسبوك",
-value =>
-value
+value => value
 ],
 
 [
 "telegram",
 "تيليجرام",
-value =>
-value
+value => value
 ],
 
 [
 "twitter",
 "إكس",
-value =>
-value
+value => value
 ],
 
 [
 "snapchat",
 "سناب",
-value =>
-value
+value => value
 ]
 
 ];
@@ -16117,13 +16062,7 @@ notification.message || ""
 }
 
 
-/* ======================================================
-   OPEN NOTIFICATION
-====================================================== */
-
-function openNotification(
-notificationId
-){
+function openNotification(notificationId){
 
 const notification =
 notifications.find(
@@ -16208,7 +16147,7 @@ $("notificationDot")
 
 
 /* ======================================================
-   PUSH NOTIFICATIONS
+   PUSH
 ====================================================== */
 
 function isIOSDevice(){
@@ -16322,10 +16261,6 @@ $("pushBox")
 }
 
 
-/* ======================================================
-   WAIT ONESIGNAL
-====================================================== */
-
 function waitForOneSignal(
 timeout = 10000
 ){
@@ -16403,10 +16338,6 @@ new Error(
 
 }
 
-
-/* ======================================================
-   ENABLE PUSH
-====================================================== */
 
 async function enablePushNotifications(){
 
@@ -16554,25 +16485,19 @@ client
 );
 
 
-/* PRODUCTS */
-
 channel.on(
 
 "postgres_changes",
 
 {
-
 event:"*",
-
 schema:"public",
-
 table:"products"
-
 },
 
 async () => {
 
-const data =
+products =
 await safeQuery(
 
 client
@@ -16596,12 +16521,7 @@ ascending:true
 );
 
 
-products =
-data || [];
-
-
 renderProducts();
-
 
 renderBundles();
 
@@ -16610,25 +16530,19 @@ renderBundles();
 );
 
 
-/* CATEGORIES */
-
 channel.on(
 
 "postgres_changes",
 
 {
-
 event:"*",
-
 schema:"public",
-
 table:"categories"
-
 },
 
 async () => {
 
-const data =
+categories =
 await safeQuery(
 
 client
@@ -16652,12 +16566,7 @@ ascending:true
 );
 
 
-categories =
-data || [];
-
-
 renderCategoryFilters();
-
 
 renderProducts();
 
@@ -16666,20 +16575,14 @@ renderProducts();
 );
 
 
-/* BUNDLES */
-
 channel.on(
 
 "postgres_changes",
 
 {
-
 event:"*",
-
 schema:"public",
-
 table:"bundles"
-
 },
 
 async () => {
@@ -16715,20 +16618,14 @@ renderBundles();
 );
 
 
-/* BUNDLE ITEMS */
-
 channel.on(
 
 "postgres_changes",
 
 {
-
 event:"*",
-
 schema:"public",
-
 table:"bundle_items"
-
 },
 
 async () => {
@@ -16754,20 +16651,14 @@ renderBundles();
 );
 
 
-/* GIFTS */
-
 channel.on(
 
 "postgres_changes",
 
 {
-
 event:"*",
-
 schema:"public",
-
 table:"gift_options"
-
 },
 
 async () => {
@@ -16812,20 +16703,20 @@ renderGiftWraps();
 );
 
 
-/* SETTINGS */
+/*
+مهم:
+عند تعديل الخط من لوحة الإدارة،
+يتغير المتجر فوراً عبر Realtime.
+*/
 
 channel.on(
 
 "postgres_changes",
 
 {
-
 event:"*",
-
 schema:"public",
-
 table:"settings"
-
 },
 
 async () => {
@@ -16852,7 +16743,6 @@ applySettings();
 
 renderProducts();
 
-
 renderBundles();
 
 }
@@ -16860,20 +16750,14 @@ renderBundles();
 );
 
 
-/* REVIEWS */
-
 channel.on(
 
 "postgres_changes",
 
 {
-
 event:"*",
-
 schema:"public",
-
 table:"reviews"
-
 },
 
 async () => {
@@ -16912,20 +16796,14 @@ renderReviews();
 );
 
 
-/* NOTIFICATIONS */
-
 channel.on(
 
 "postgres_changes",
 
 {
-
 event:"*",
-
 schema:"public",
-
 table:"notifications"
-
 },
 
 async () => {
@@ -16964,20 +16842,14 @@ renderNotifications();
 );
 
 
-/* ORDERS */
-
 channel.on(
 
 "postgres_changes",
 
 {
-
 event:"*",
-
 schema:"public",
-
 table:"orders"
-
 },
 
 async payload => {
@@ -17018,7 +16890,7 @@ channel.subscribe();
 
 
 /* ======================================================
-   CLOSE NOTIFICATION PANEL
+   GLOBAL EVENTS
 ====================================================== */
 
 document.addEventListener(
@@ -17062,10 +16934,6 @@ panel.classList.remove(
 );
 
 
-/* ======================================================
-   KEYBOARD
-====================================================== */
-
 document.addEventListener(
 "keydown",
 event => {
@@ -17083,15 +16951,12 @@ return;
 
 closeCart();
 
-
 closeAllModals();
-
 
 $("notificationsPanel")
 .classList.remove(
 "show"
 );
-
 
 $("pushBox")
 .classList.remove(
@@ -17149,7 +17014,7 @@ row
 
 
 /* ======================================================
-   INITIAL PUSH
+   PUSH SCHEDULE
 ====================================================== */
 
 function schedulePushPrompt(){
@@ -17215,7 +17080,7 @@ showPushPrompt();
 
 
 /* ======================================================
-   START STORE
+   INITIALIZE
 ====================================================== */
 
 async function initializeStore(){
