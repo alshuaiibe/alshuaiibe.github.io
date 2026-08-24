@@ -850,7 +850,7 @@ line-height:1.7;
 
 .ad-section{
 
-display:none;
+display:block;
 
 width:100%;
 
@@ -861,6 +861,13 @@ padding:0;
 position:relative;
 
 z-index:1;
+
+}
+
+
+.ad-section.is-empty{
+
+display:none!important;
 
 }
 
@@ -1264,7 +1271,7 @@ padding:
 7px 2px 25px;
 
 scroll-snap-type:
-x mandatory;
+x proximity;
 
 -webkit-overflow-scrolling:
 touch;
@@ -1532,6 +1539,10 @@ display:flex;
 
 align-items:center;
 
+touch-action:pan-x;
+
+overscroll-behavior-x:contain;
+
 gap:
 var(--carousel-spacing);
 
@@ -1542,7 +1553,7 @@ padding:
 25px 5vw 45px;
 
 scroll-snap-type:
-x mandatory;
+x proximity;
 
 -webkit-overflow-scrolling:
 touch;
@@ -3537,10 +3548,11 @@ margin:auto;
 
 width:100%;
 
-height:
-var(--ad-mobile-height);
+aspect-ratio:16 / 9;
 
-min-height:120px;
+height:min(max(180px,56.25vw),max(180px,var(--ad-mobile-height)));
+
+min-height:180px;
 
 max-height:none;
 
@@ -3627,7 +3639,7 @@ font-size:50px;
 .section{
 
 padding:
-38px 12px;
+38px 16px;
 
 }
 
@@ -3662,9 +3674,9 @@ min-height:80px;
 .bundle-card{
 
 flex:
-0 0 84vw;
+0 0 78vw;
 
-width:84vw;
+width:78vw;
 
 max-width:340px;
 
@@ -3677,7 +3689,7 @@ gap:
 var(--carousel-spacing);
 
 padding:
-25px 9vw 45px;
+25px 16px 45px;
 
 }
 
@@ -3691,6 +3703,12 @@ width:
 var(--product-mobile-width);
 
 max-width:360px;
+
+transform:none!important;
+
+opacity:1;
+
+filter:none;
 
 }
 
@@ -3813,9 +3831,9 @@ max-width:88vw;
 
 .bundle-card{
 
-flex-basis:86vw;
+flex-basis:82vw;
 
-width:86vw;
+width:82vw;
 
 }
 
@@ -4000,7 +4018,7 @@ class="cart-count"
 
 <section
 id="adSection"
-class="ad-section"
+class="ad-section is-empty"
 >
 
 <a
@@ -5149,6 +5167,75 @@ id =>
 document.getElementById(id);
 
 
+function safeStorageGet(key){
+
+try{
+
+return window.localStorage.getItem(key);
+
+}
+catch(error){
+
+console.warn("Storage read unavailable:",key,error);
+
+return null;
+
+}
+
+}
+
+
+function safeStorageSet(key,value){
+
+try{
+
+window.localStorage.setItem(key,value);
+
+return true;
+
+}
+catch(error){
+
+console.warn("Storage write unavailable:",key,error);
+
+return false;
+
+}
+
+}
+
+
+function safeStorageRemove(key){
+
+try{
+
+window.localStorage.removeItem(key);
+
+}
+catch(error){
+
+console.warn("Storage remove unavailable:",key,error);
+
+}
+
+}
+
+
+function parseDateValue(value){
+
+if(!value){
+
+return null;
+
+}
+
+const date = new Date(value);
+
+return Number.isNaN(date.getTime()) ? null : date;
+
+}
+
+
 /* =========================================================
    DEFAULTS
 ========================================================= */
@@ -5202,6 +5289,13 @@ let variants = [];
 let bundles = [];
 let giftOptions = [];
 
+let bundleLoadState = {
+status:"idle",
+rawCount:0,
+activeCount:0,
+error:null
+};
+
 let generalSettings = {};
 let paymentSettings = {};
 let designSettings = {};
@@ -5219,6 +5313,7 @@ let verifiedOrder = null;
 
 let adTimer = null;
 let currentAdIndex = 0;
+let adRenderSignature = "";
 
 let giftBundleDraft = null;
 
@@ -5538,7 +5633,7 @@ try{
 
 const value =
 JSON.parse(
-localStorage.getItem(
+safeStorageGet(
 "alshuaiibe_cart"
 )
 ||
@@ -5572,7 +5667,7 @@ try{
 
 const value =
 JSON.parse(
-localStorage.getItem(
+safeStorageGet(
 "alshuaiibe_favorites"
 )
 ||
@@ -7348,104 +7443,102 @@ method.title
    ADVERTISEMENT — FIXED
 ========================================================= */
 
+function normalizeAdMediaValue(value){
+
+let list = [];
+
+if(Array.isArray(value)){
+
+list = value;
+
+}
+else if(typeof value === "string"){
+
+const text = value.trim();
+
+if(!text){
+
+return [];
+
+}
+
+if(text[0] === "[" || text[0] === "{"){
+
+try{
+
+const parsed = JSON.parse(text);
+
+return normalizeAdMediaValue(parsed);
+
+}
+catch(error){
+
+console.warn("Advertisement media JSON parse error:",error);
+
+}
+
+}
+
+list = [text];
+
+}
+else if(value && typeof value === "object"){
+
+list = Array.isArray(value.items)
+? value.items
+: Array.isArray(value.slides)
+? value.slides
+: [value];
+
+}
+
+return list.flatMap(item => {
+
+if(typeof item === "string"){
+
+return item.trim() ? [item.trim()] : [];
+
+}
+
+if(item && typeof item === "object"){
+
+const url = item.url || item.src || item.image_url || item.imageUrl || item.video_url || item.videoUrl || "";
+
+return String(url).trim() ? [String(url).trim()] : [];
+
+}
+
+return [];
+
+});
+
+}
+
+
 function getAdMedia(){
 
-let media = [];
+const values = [
 
-
-/* الصيغة الجديدة */
-
-if(
-Array.isArray(
-adSettings.media
-)
-){
-
-media.push(
-...adSettings.media
-);
-
-}
-
-
-/* دعم صيغ قديمة */
-
-if(
-Array.isArray(
-adSettings.images
-)
-){
-
-media.push(
-...adSettings.images
-);
-
-}
-
-
-if(adSettings.imageUrl){
-
-media.push(
-adSettings.imageUrl
-);
-
-}
-
-
-if(adSettings.image_url){
-
-media.push(
-adSettings.image_url
-);
-
-}
-
-
-if(adSettings.videoUrl){
-
-media.push(
-adSettings.videoUrl
-);
-
-}
-
-
-if(adSettings.video_url){
-
-media.push(
+adSettings.media,
+adSettings.images,
+adSettings.slides,
+adSettings.media_urls,
+adSettings.imageUrl,
+adSettings.image_url,
+adSettings.videoUrl,
 adSettings.video_url
-);
 
-}
-
-
-if(adSettings.url){
-
-media.push(
-adSettings.url
-);
-
-}
-
-
-return [
-...new Set(
-media
-.map(
-item =>
-typeof item === "string"
-?
-item.trim()
-:
-item?.url
-||
-item?.src
-||
-""
-)
-.filter(Boolean)
-)
 ];
+
+const legacyUrl = String(adSettings.url || "").trim();
+
+if(legacyUrl && (!values.some(value => normalizeAdMediaValue(value).length) || /(?:\.(?:png|jpe?g|gif|webp|avif|svg|mp4|webm|mov|m4v|ogg))(?:[?#]|$)/i.test(legacyUrl))){
+
+values.push(legacyUrl);
+
+}
+
+return [...new Set(values.flatMap(normalizeAdMediaValue).filter(Boolean))];
 
 }
 
@@ -7502,270 +7595,120 @@ loading="eager"
 }
 
 
-function renderAdvertisement(){
+function renderAdvertisement(force = false){
+
+const section = $("adSection");
+const wrap = $("adWrap");
+
+if(!section || !wrap){
+
+return;
+
+}
+
+const media = getAdMedia();
+
+const enabled = adSettings.enabled === undefined || adSettings.enabled === null
+? (adSettings.is_active === undefined || adSettings.is_active === null
+? media.length > 0
+: boolValue(adSettings.is_active,true))
+: boolValue(adSettings.enabled,true);
+
+const signature = JSON.stringify({
+media,
+type:String(adSettings.type || ""),
+link:String(adSettings.link || ""),
+interval:Number(adSettings.interval || 4000),
+enabled
+});
+
+console.log("ADVERTISEMENT:",{enabled,type:adSettings.type,media,settings:adSettings});
+
+if(!enabled || !media.length){
 
 if(adTimer){
 
 clearInterval(adTimer);
-
 adTimer = null;
 
 }
 
+section.classList.add("is-empty");
+section.style.visibility = "hidden";
+section.style.opacity = "0";
+wrap.innerHTML = "";
+adRenderSignature = "";
+return;
 
-const media =
-getAdMedia();
-
-
-/*
-المهم هنا:
-إذا كانت enabled غير موجودة لكن توجد ملفات إعلان
-نسمح بظهور الإعلان.
-فقط false الصريح يخفيه.
-*/
-
-const enabled =
-
-adSettings.enabled === undefined
-||
-adSettings.enabled === null
-
-?
-media.length > 0
-
-:
-boolValue(
-adSettings.enabled,
-true
-);
-
-
-console.log(
-"ADVERTISEMENT:",
-{
-enabled,
-type:adSettings.type,
-media,
-settings:adSettings
 }
-);
 
+section.classList.remove("is-empty");
+section.style.display = "block";
+section.style.visibility = "visible";
+section.style.opacity = "1";
 
-if(
-!enabled
-||
-!media.length
-){
-
-$("adSection").style.display =
-"none";
-
-$("adWrap").innerHTML =
-"";
+if(!force && signature === adRenderSignature && wrap.childElementCount){
 
 return;
 
 }
 
+if(adTimer){
 
-$("adSection").style.display =
-"block";
+clearInterval(adTimer);
+adTimer = null;
 
-$("adSection").style.visibility =
-"visible";
+}
 
-$("adSection").style.opacity =
-"1";
+adRenderSignature = signature;
+currentAdIndex = 0;
 
-
-const link =
-String(
-adSettings.link
-||
-""
-)
-.trim();
-
+const link = String(adSettings.link || "").trim();
 
 if(link){
 
-$("adLink").href =
-link;
+$("adLink").href = link;
 
 }
 else{
 
-$("adLink").removeAttribute(
-"href"
-);
+$("adLink").removeAttribute("href");
 
 }
 
+let adType = String(adSettings.type || "").toLowerCase();
 
-let adType =
-String(
-adSettings.type
-||
-""
-)
-.toLowerCase();
+if(!["image","video","slider"].includes(adType)){
 
-
-if(
-!adType
-){
-
-adType =
-media.length > 1
-?
-"slider"
-:
-(
-isVideoUrl(media[0])
-?
-"video"
-:
-"image"
-);
+adType = media.length > 1 ? "slider" : (isVideoUrl(media[0]) ? "video" : "image");
 
 }
 
+if(adType === "video"){
 
-/* فيديو */
-
-if(
-adType === "video"
-&&
-media.length
-){
-
-$("adWrap").innerHTML =
-advertisementItemHTML(
-media[0]
-);
-
-
+wrap.innerHTML = advertisementItemHTML(media[0]);
 return;
 
 }
 
+if(adType === "slider" || media.length > 1){
 
-/* Slider */
+wrap.innerHTML = media.map((url,index) => advertisementItemHTML(url,"ad-slide " + (index === 0 ? "active" : ""))).join("") + `
 
-if(
-adType === "slider"
-||
-media.length > 1
-){
-
-currentAdIndex = 0;
-
-
-$("adWrap").innerHTML =
-
-media
-
-.map(
-(url,index) =>
-
-advertisementItemHTML(
-
-url,
-
-"ad-slide "
-+
-(
-index === 0
-?
-"active"
-:
-""
-)
-
-)
-
-)
-
-.join("")
-
-+
-
-`
-
-<button
-type="button"
-class="ad-arrow prev"
-onclick="
-event.preventDefault();
-event.stopPropagation();
-moveAd(-1);
-"
->
-›
-</button>
-
-
-<button
-type="button"
-class="ad-arrow next"
-onclick="
-event.preventDefault();
-event.stopPropagation();
-moveAd(1);
-"
->
-‹
-</button>
-
-
+<button type="button" class="ad-arrow prev" aria-label="الإعلان السابق" onclick="event.preventDefault();event.stopPropagation();moveAd(-1)">›</button>
+<button type="button" class="ad-arrow next" aria-label="الإعلان التالي" onclick="event.preventDefault();event.stopPropagation();moveAd(1)">‹</button>
 <div class="ad-indicators">
-
-${
-media
-
-.map(
-(url,index) => `
-
-<button
-type="button"
-class="ad-dot ${
-index === 0
-?
-"active"
-:
-""
-}"
-onclick="
-event.preventDefault();
-event.stopPropagation();
-goAd(${index});
-"
-></button>
-
-`
-)
-
-.join("")
-}
-
+${media.map((url,index) => `<button type="button" class="ad-dot ${index === 0 ? "active" : ""}" aria-label="الإعلان ${index + 1}" onclick="event.preventDefault();event.stopPropagation();goAd(${index})"></button>`).join("")}
 </div>
 
 `;
 
-
 startAdTimer();
-
 return;
 
 }
 
-
-/* صورة */
-
-$("adWrap").innerHTML =
-advertisementItemHTML(
-media[0]
-);
+wrap.innerHTML = advertisementItemHTML(media[0]);
 
 }
 
@@ -8116,6 +8059,8 @@ renderCart();
 
 async function fetchBundles(){
 
+bundleLoadState = {status:"loading",rawCount:0,activeCount:0,error:null};
+
 const row =
 $("bundlesRow");
 
@@ -8160,10 +8105,11 @@ throw error;
 }
 
 
-console.log(
-"BUNDLES RAW:",
-data
-);
+const rawBundles = Array.isArray(data) ? data : [];
+
+bundleLoadState.rawCount = rawBundles.length;
+
+console.log("BUNDLES RAW:",rawBundles);
 
 
 const now =
@@ -8267,11 +8213,16 @@ a.created_at || 0
 );
 
 
-console.log(
-"BUNDLES ACTIVE:",
-bundles
-);
+bundleLoadState.status = "loaded";
+bundleLoadState.activeCount = bundles.length;
 
+console.log("BUNDLES ACTIVE:",bundles);
+
+if(!bundles.length && rawBundles.length){
+
+console.warn("BUNDLES FILTERED OUT:", {rawCount:rawBundles.length, now:now.toISOString()});
+
+}
 
 renderBundles();
 
@@ -8285,6 +8236,12 @@ console.error(
 error
 );
 
+bundleLoadState = {
+status:"error",
+rawCount:0,
+activeCount:0,
+error
+};
 
 bundles = [];
 
@@ -9123,6 +9080,20 @@ return;
 }
 
 
+if(window.matchMedia && window.matchMedia("(max-width:768px)").matches){
+
+cards.forEach(card => {
+card.classList.remove("carousel-center","carousel-before","carousel-after");
+card.style.transform = "none";
+card.style.opacity = "1";
+card.style.filter = "none";
+});
+
+return;
+
+}
+
+
 /* إذا الحركة معطلة */
 
 const enabled =
@@ -9274,16 +9245,10 @@ row.addEventListener(
 "scroll",
 () => {
 
-cancelAnimationFrame(
-carouselRAF
-);
+cancelAnimationFrame(row.__carouselRAF || 0);
 
 
-carouselRAF =
-requestAnimationFrame(
-() =>
-updateCarouselRow(row)
-);
+row.__carouselRAF = requestAnimationFrame(() => updateCarouselRow(row));
 
 },
 {
@@ -9305,6 +9270,11 @@ event.target.closest(
 
 
 if(!card){
+return;
+}
+
+
+if(window.matchMedia && window.matchMedia("(max-width:768px)").matches){
 return;
 }
 
@@ -9397,7 +9367,7 @@ favorites.push(id);
 }
 
 
-localStorage.setItem(
+safeStorageSet(
 
 "alshuaiibe_favorites",
 
@@ -10167,16 +10137,16 @@ row.style.opacity =
 
 if(!bundles.length){
 
-row.innerHTML = `
+const message = bundleLoadState.status === "error"
+? "تعذر تحميل الباقات. راجع Console لمعرفة خطأ Supabase."
+: bundleLoadState.status === "loading" || bundleLoadState.status === "idle"
+? "جارِ تحميل العروض…"
+: bundleLoadState.rawCount === 0
+? "لم تُرجع قاعدة البيانات أي باقات."
+: "لا توجد عروض نشطة حالياً؛ راجع حالة التفعيل وتواريخ البداية والنهاية.";
 
-<div class="empty">
-لا توجد عروض نشطة حالياً.
-</div>
-
-`;
-
+row.innerHTML = `<div class="empty">${escapeHTML(message)}</div>`;
 return;
-
 }
 
 
@@ -11541,7 +11511,7 @@ item.qty || 0
 
 if(cart.length){
 
-localStorage.setItem(
+safeStorageSet(
 
 "alshuaiibe_cart",
 
@@ -11554,7 +11524,7 @@ cart
 }
 else{
 
-localStorage.removeItem(
+safeStorageRemove(
 "alshuaiibe_cart"
 );
 
@@ -12674,7 +12644,7 @@ data?.order_number
 "";
 
 
-localStorage.setItem(
+safeStorageSet(
 "alshuaiibe_last_phone",
 phone
 );
@@ -12682,7 +12652,7 @@ phone
 
 if(orderNumber){
 
-localStorage.setItem(
+safeStorageSet(
 
 "alshuaiibe_last_order_number",
 
@@ -12698,7 +12668,7 @@ orderNumber
 cart = [];
 
 
-localStorage.removeItem(
+safeStorageRemove(
 "alshuaiibe_cart"
 );
 
@@ -13036,7 +13006,7 @@ verifiedOrder = null;
 
 $("ordersPhone").value =
 
-localStorage.getItem(
+safeStorageGet(
 "alshuaiibe_last_phone"
 )
 ||
@@ -13045,7 +13015,7 @@ localStorage.getItem(
 
 $("ordersNumber").value =
 
-localStorage.getItem(
+safeStorageGet(
 "alshuaiibe_last_order_number"
 )
 ||
@@ -13223,13 +13193,13 @@ currentCustomerPhone =
 phone;
 
 
-localStorage.setItem(
+safeStorageSet(
 "alshuaiibe_last_phone",
 phone
 );
 
 
-localStorage.setItem(
+safeStorageSet(
 
 "alshuaiibe_last_order_number",
 
@@ -14856,12 +14826,7 @@ resizeTimer =
 setTimeout(
 () => {
 
-try{
-
-renderAdvertisement();
-
-}
-catch(error){}
+/* Advertisement dimensions are CSS-driven; keep media DOM stable on resize. */
 
 
 try{
@@ -14890,12 +14855,7 @@ window.addEventListener(
 setTimeout(
 () => {
 
-try{
-
-renderAdvertisement();
-
-}
-catch(error){}
+/* Advertisement dimensions are CSS-driven; keep media DOM stable on resize. */
 
 
 try{
@@ -14936,12 +14896,7 @@ document.visibilityState === "visible"
 setTimeout(
 () => {
 
-try{
-
-renderAdvertisement();
-
-}
-catch(error){}
+/* Advertisement dimensions are CSS-driven; keep media DOM stable on resize. */
 
 
 try{
