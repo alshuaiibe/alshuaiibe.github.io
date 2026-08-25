@@ -11,43 +11,21 @@ content="width=device-width,initial-scale=1,viewport-fit=cover"
 
 <title>متجر الشعيبي | ALSHUAIIBE STORE</title>
 
-<meta
-id="metaDesc"
-name="description"
-content="متجر الشعيبي"
->
+<meta id="metaDesc" name="description" content="متجر الشعيبي">
 
 <meta property="og:type" content="website">
-
-<meta
-id="ogTitle"
-property="og:title"
-content="متجر الشعيبي"
->
-
-<meta
-id="ogDesc"
-property="og:description"
-content="متجر الشعيبي"
->
+<meta id="ogTitle" property="og:title" content="متجر الشعيبي">
+<meta id="ogDesc" property="og:description" content="متجر الشعيبي">
 
 <link id="dynamicManifest" rel="manifest" href="">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-
-<link
-rel="preconnect"
-href="https://fonts.gstatic.com"
-crossorigin
->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link
 href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@300;400;500;600;700;800;900&family=Markazi+Text:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700;800;900&display=swap"
 rel="stylesheet"
 >
-
-
-<!-- ================= ONESIGNAL ================= -->
 
 <script
 src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js"
@@ -66,8 +44,7 @@ try{
 
 await OneSignal.init({
 
-appId:
-"3fe0707f-ffa3-48ca-9737-11425770bcc2",
+appId:"3fe0707f-ffa3-48ca-9737-11425770bcc2",
 
 notifyButton:{
 enable:false
@@ -83,9 +60,7 @@ window.__ALSHUAIIBE_ONESIGNAL__ =
 OneSignal;
 
 window.dispatchEvent(
-new Event(
-"alshuaiibe-onesignal-ready"
-)
+new Event("alshuaiibe-onesignal-ready")
 );
 
 }
@@ -102,7 +77,6 @@ error
 );
 
 </script>
-
 
 <style>
 
@@ -147,30 +121,22 @@ error
 
 }
 
-
 *{
 box-sizing:border-box;
 }
-
 
 html{
 scroll-behavior:smooth;
 }
 
-
 html,
 body{
-
 margin:0;
 padding:0;
-
 width:100%;
 max-width:100%;
-
 overflow-x:hidden;
-
 }
-
 
 body{
 
@@ -185,11 +151,9 @@ transparent 60%
 var(--cream);
 
 color:var(--ink);
-
 font-family:var(--font-body);
 
 }
-
 
 button,
 input,
@@ -198,151 +162,101 @@ select{
 font:inherit;
 }
 
-
 button{
 cursor:pointer;
 }
-
 
 button:disabled{
 opacity:.55;
 cursor:not-allowed;
 }
 
-
 a{
 color:inherit;
 text-decoration:none;
 }
 
-
 img{
 max-width:100%;
 }
-
 
 .hidden{
 display:none!important;
 }
 
-
 .hint{
-
 font-size:11px;
 line-height:1.7;
 color:var(--ink-soft);
-
 }
-
-
-/* ================= BACKGROUND ================= */
 
 #customBackground{
 
 position:fixed;
 inset:0;
-
 z-index:-3;
-
 pointer-events:none;
-
 background-position:center;
 background-size:cover;
 background-repeat:no-repeat;
-
 display:none;
 
 }
-
 
 #watermark{
 
 position:fixed;
 inset:0;
-
 z-index:-2;
-
 pointer-events:none;
-
 background-position:center;
 background-repeat:repeat;
-
 display:none;
 
 }
 
-
-/* ================= BUTTONS ================= */
-
 .btn{
 
 border:0;
-
 padding:12px 18px;
-
 border-radius:12px;
-
 font-weight:700;
-
 background:var(--ink);
 color:var(--cream);
-
 font-family:var(--font-buttons);
 
 }
 
-
 .btn.secondary{
-
 background:transparent;
-
 border:1px solid var(--ink);
-
 color:var(--ink);
-
 }
-
 
 .btn.gold{
-
 background:var(--gold);
 color:#fff;
-
 }
-
 
 .btn.green{
-
 background:var(--ok);
 color:#fff;
-
 }
-
 
 .btn.blue{
-
 background:var(--blue);
 color:#fff;
-
 }
-
 
 .btn.red{
-
 background:var(--danger);
 color:#fff;
-
 }
-
 
 .btn.small{
-
 padding:8px 13px;
-
 font-size:12px;
-
 }
-
 
 /* ================= SPLASH ================= */
 
@@ -350,11 +264,9 @@ font-size:12px;
 
 position:fixed;
 inset:0;
-
 z-index:999999;
 
 display:flex;
-
 align-items:center;
 justify-content:center;
 
@@ -375,151 +287,103 @@ visibility .8s ease;
 
 }
 
-
 #storeSplash.hide{
-
 opacity:0;
 visibility:hidden;
-
 pointer-events:none;
-
 }
-
 
 .splash-inner{
 
 width:100%;
 height:100%;
-
 display:flex;
-
 align-items:center;
 justify-content:center;
-
 position:relative;
 
 }
 
-
 .splash-ring{
 
 position:absolute;
-
 width:520px;
 height:520px;
-
 max-width:88vw;
 max-height:88vw;
-
 border:1px solid rgba(32,48,28,.1);
-
 border-radius:50%;
-
 animation:splashRing 2.2s ease-in-out infinite alternate;
 
 }
-
 
 .splash-ring::before,
 .splash-ring::after{
 
 content:"";
-
 position:absolute;
-
 border-radius:50%;
-
 border:1px solid rgba(169,121,60,.16);
 
 }
-
 
 .splash-ring::before{
 inset:35px;
 }
 
-
 .splash-ring::after{
 inset:80px;
 }
 
-
 .splash-glow{
 
 position:absolute;
-
 width:380px;
 height:380px;
-
 max-width:78vw;
 max-height:78vw;
-
 border-radius:50%;
-
 background:rgba(255,255,255,.35);
-
 filter:blur(24px);
-
 animation:splashGlow 1.8s ease-in-out infinite alternate;
 
 }
 
-
 #splashLogo{
 
 position:relative;
-
 z-index:4;
-
 width:330px;
-
 max-width:84vw;
 max-height:64vh;
-
 object-fit:contain;
-
 display:none;
-
 filter:drop-shadow(0 22px 34px rgba(32,48,28,.18));
-
 animation:splashLogoEnter 1.3s cubic-bezier(.2,.85,.3,1);
 
 }
-
 
 #splashTextFallback{
 
 position:relative;
-
 z-index:4;
-
 font-family:var(--font-brand);
-
 font-size:clamp(58px,14vw,125px);
-
 font-weight:700;
-
 animation:splashLogoEnter 1.3s cubic-bezier(.2,.85,.3,1);
 
 }
 
-
 .splash-subtitle{
 
 position:absolute;
-
 bottom:max(40px,env(safe-area-inset-bottom));
-
 font-size:11px;
-
 letter-spacing:.24em;
-
 opacity:.65;
-
 direction:ltr;
 
 }
-
 
 @keyframes splashLogoEnter{
 
@@ -560,27 +424,19 @@ rotate(0);
 
 }
 
-
 @keyframes splashGlow{
 
 from{
-
 opacity:.28;
-
 transform:scale(.75);
-
 }
 
 to{
-
 opacity:.85;
-
 transform:scale(1.18);
-
 }
 
 }
-
 
 @keyframes splashRing{
 
@@ -606,17 +462,13 @@ opacity:.9;
 
 }
 
-
 /* ================= PUSH ================= */
 
 #pushPermissionBox{
 
 position:fixed;
-
 z-index:99990;
-
 left:50%;
-
 bottom:20px;
 
 transform:
@@ -644,7 +496,6 @@ transition:.45s ease;
 
 }
 
-
 #pushPermissionBox.show{
 
 transform:
@@ -653,227 +504,155 @@ translateY(0);
 
 opacity:1;
 visibility:visible;
-
 pointer-events:auto;
 
 }
 
-
 .push-title{
 
 display:flex;
-
 align-items:center;
-
 gap:10px;
-
 font-size:18px;
-
 font-weight:900;
 
 }
-
 
 .push-icon{
 
 width:44px;
 height:44px;
-
 border-radius:50%;
-
 display:flex;
-
 align-items:center;
 justify-content:center;
-
 background:var(--cream-deep);
-
 font-size:21px;
 
 }
 
-
 .push-message{
 
 margin-top:8px;
-
 line-height:1.8;
-
 font-size:13px;
-
 color:var(--ink-soft);
 
 }
 
-
 .push-actions{
 
 margin-top:14px;
-
 display:flex;
-
 gap:8px;
-
 flex-wrap:wrap;
 
 }
 
-
 .push-actions .btn{
 flex:1;
 }
-
 
 /* ================= HEADER ================= */
 
 .topbar{
 
 position:sticky;
-
 top:0;
-
 z-index:50;
-
 border-bottom:1px solid var(--line);
-
 background:rgba(255,251,240,.88);
-
 backdrop-filter:blur(14px);
 
 }
 
-
 .topbar-inner{
 
 width:100%;
-
 max-width:1180px;
-
 margin:0 auto;
-
 padding:13px 20px;
 
 display:flex;
-
 align-items:center;
-
 justify-content:space-between;
-
 gap:12px;
 
 }
 
-
 .brand{
 
 display:flex;
-
 align-items:center;
-
 gap:9px;
-
 flex:0 0 auto;
 
 }
-
 
 .store-logo-img{
 
 width:62px;
 height:62px;
-
 object-fit:contain;
-
 border-radius:13px;
-
 display:none;
 
 }
-
 
 .store-logo-img.show{
 display:block;
 }
 
-
 .brand-name{
 
 font-family:var(--font-brand);
-
 font-size:30px;
-
 font-weight:700;
-
 line-height:1;
 
 }
 
-
 .brand-en{
 
 color:var(--ink-soft);
-
 font-size:10px;
-
 letter-spacing:.16em;
-
 direction:ltr;
 
 }
 
-
 .main-nav{
 
 display:flex;
-
 align-items:center;
-
 gap:6px;
-
 padding:5px;
-
 border:1px solid var(--line);
-
 border-radius:999px;
-
 background:var(--card);
-
 overflow-x:auto;
-
 scrollbar-width:none;
-
 font-family:var(--font-nav);
 
 }
-
 
 .main-nav::-webkit-scrollbar{
 display:none;
 }
 
-
 .main-nav button{
 
 flex:0 0 auto;
-
 border:0;
-
 background:transparent;
-
 border-radius:999px;
-
 padding:8px 15px;
-
 color:var(--ink-soft);
-
 font-weight:700;
-
 white-space:nowrap;
-
 font-family:var(--font-nav);
 
 }
-
 
 .main-nav button.active,
 .main-nav button:hover{
@@ -883,19 +662,14 @@ color:var(--cream);
 
 }
 
-
 .header-actions{
 
 display:flex;
-
 align-items:center;
-
 gap:8px;
-
 position:relative;
 
 }
-
 
 .round-btn{
 
@@ -903,16 +677,13 @@ width:42px;
 height:42px;
 
 display:flex;
-
 align-items:center;
 justify-content:center;
 
 border-radius:50%;
-
 border:1px solid var(--line);
 
 background:var(--card);
-
 color:var(--ink);
 
 box-shadow:var(--shadow);
@@ -921,805 +692,553 @@ position:relative;
 
 }
 
-
 .notification-dot{
 
 width:10px;
 height:10px;
-
 border-radius:50%;
-
 background:var(--danger);
-
 position:absolute;
-
 right:1px;
 top:1px;
-
 display:none;
 
 }
-
 
 .notification-dot.show{
 display:block;
 }
 
-
 .cart-btn{
 
 border:0;
-
 border-radius:999px;
-
 padding:11px 17px;
-
 display:flex;
-
 align-items:center;
-
 gap:7px;
-
 background:var(--ink);
-
 color:var(--cream);
-
 font-weight:700;
-
 box-shadow:var(--shadow);
-
 white-space:nowrap;
-
 font-family:var(--font-buttons);
 
 }
 
-
 .cart-count{
 
 min-width:20px;
-
 height:20px;
-
 padding:0 5px;
-
 border-radius:999px;
-
 background:var(--gold);
-
 color:white;
-
 display:inline-flex;
-
 align-items:center;
 justify-content:center;
-
 font-size:11px;
 
 }
 
-
 .notifications-panel{
 
 position:absolute;
-
 top:50px;
-
 left:0;
-
 width:min(340px,88vw);
-
 max-height:430px;
-
 overflow:auto;
-
 background:var(--card);
-
 border:1px solid var(--line);
-
 border-radius:18px;
-
 padding:14px;
-
 box-shadow:0 20px 60px rgba(0,0,0,.18);
-
 display:none;
 
 }
-
 
 .notifications-panel.show{
 display:block;
 }
 
-
 .notification-item{
 
 padding:11px;
-
 border-bottom:1px solid var(--line);
-
 display:flex;
-
 gap:10px;
-
 cursor:pointer;
 
 }
-
 
 .notification-item:last-child{
 border-bottom:0;
 }
 
-
 .notification-item img{
 
 width:52px;
 height:52px;
-
 object-fit:cover;
-
 border-radius:9px;
 
 }
 
-
 .notification-title{
-
 font-weight:700;
-
 font-size:13px;
-
 }
-
 
 .notification-message{
 
 font-size:12px;
-
 color:var(--ink-soft);
-
 margin-top:3px;
-
 line-height:1.6;
 
 }
-
 
 /* ================= HERO ================= */
 
 .hero{
 
 max-width:900px;
-
 margin:55px auto 20px;
-
 padding:0 20px;
-
 text-align:center;
 
 }
 
-
 .hero-eyebrow{
 
 color:var(--gold);
-
 font-family:'Markazi Text',serif;
-
 font-size:20px;
 
 }
 
-
 .hero h1{
 
 margin:5px 0 12px;
-
 font-family:var(--font-hero-title);
-
 font-size:clamp(42px,8vw,68px);
-
 line-height:1.3;
 
 }
 
-
 .hero p{
 
 max-width:600px;
-
 margin:0 auto;
-
 color:var(--ink-soft);
-
 font-size:16px;
-
 line-height:2;
-
 white-space:pre-line;
-
 font-family:var(--font-hero-description);
 
 }
 
-
 .hero-buttons{
 
 margin-top:20px;
-
 display:flex;
-
 justify-content:center;
-
 gap:9px;
-
 flex-wrap:wrap;
 
 }
 
-
 .hero-buttons a{
 
 display:inline-flex;
-
 align-items:center;
 justify-content:center;
 
 }
 
-
 .sunrise{
 
 width:100%;
-
 display:flex;
-
 justify-content:center;
-
 margin:4px 0 12px;
 
 }
 
-
 .sunrise svg{
 
 width:260px;
-
 max-width:70vw;
-
 opacity:.7;
 
 }
 
-
-/* ================= ADVERTISEMENT ================= */
+/* ================= ADS ================= */
 
 .ad-section{
 
 width:100%;
-
 margin:16px auto 26px;
-
 padding:0 15px;
-
 display:none;
 
 }
-
 
 .ad-section.show{
 display:block;
 }
 
-
 .ad-shell{
 
 margin:auto;
-
 width:100%;
 
 }
-
 
 .ad-wrap{
 
 width:100%;
-
 position:relative;
-
 overflow:hidden;
-
 border:1px solid var(--line);
-
 background:var(--cream-deep);
-
 box-shadow:var(--shadow);
 
 }
-
 
 .ad-wrap img,
 .ad-wrap video{
 
 display:block;
-
 width:100%;
 height:100%;
 
 }
 
-
 .ad-slide{
 
 position:absolute;
-
 inset:0;
-
 opacity:0;
-
 visibility:hidden;
-
 transition:opacity .55s ease;
 
 }
 
-
 .ad-slide.active{
 
 opacity:1;
-
 visibility:visible;
 
 }
 
-
 .ad-dots{
 
 position:absolute;
-
 z-index:5;
-
 left:50%;
-
 bottom:10px;
-
 transform:translateX(-50%);
-
 display:flex;
-
 gap:6px;
 
 }
-
 
 .ad-dot{
 
 width:7px;
 height:7px;
-
 border:0;
-
 padding:0;
-
 border-radius:999px;
-
 background:rgba(255,255,255,.55);
-
 box-shadow:0 1px 5px rgba(0,0,0,.2);
 
 }
 
-
 .ad-dot.active{
 
 width:22px;
-
 background:#fff;
 
 }
 
-
-/* ================= GIFT SECTION ================= */
+/* ================= GIFTS ================= */
 
 .gift-section{
 
 width:min(1050px,calc(100% - 28px));
-
 margin:18px auto 32px;
-
 display:none;
 
 }
-
 
 .gift-section.show{
 display:block;
 }
 
-
 .gift-banner{
 
 display:flex;
-
 align-items:center;
-
 justify-content:space-between;
-
 gap:18px;
-
 padding:22px;
-
 border:1px solid rgba(169,121,60,.25);
-
 box-shadow:var(--shadow);
 
 }
 
-
 .gift-copy{
 
 flex:1;
-
 font-family:var(--font-gifts);
 
 }
 
-
 .gift-title{
 
 font-size:clamp(24px,4vw,34px);
-
 font-weight:900;
-
 margin-bottom:7px;
 
 }
 
-
 .gift-desc{
 
 font-size:13px;
-
 line-height:1.8;
-
 color:var(--ink-soft);
 
 }
 
-
 .gift-actions{
 
 display:flex;
-
 gap:8px;
-
 flex-wrap:wrap;
 
 }
-
 
 /* ================= BUNDLES ================= */
 
 .bundles-section{
 
 max-width:1180px;
-
 margin:auto;
-
 padding:20px 20px 32px;
 
 }
 
-
 .bundles-head{
 
 display:flex;
-
 align-items:flex-end;
-
 justify-content:space-between;
-
 gap:12px;
-
 margin-bottom:14px;
 
 }
 
-
 .bundles-head h2{
 
 margin:0;
-
 font-size:34px;
-
 font-family:var(--font-bundles);
 
 }
-
 
 .bundles-head p{
 
 margin:5px 0 0;
-
 font-size:12px;
-
 color:var(--ink-soft);
 
 }
 
-
 .bundles-row{
 
 display:flex;
-
 gap:16px;
-
 overflow-x:auto;
-
 padding:8px 3px 18px;
-
 scroll-snap-type:x mandatory;
-
 -webkit-overflow-scrolling:touch;
 
 }
 
-
 .bundle-card{
 
 flex:0 0 270px;
-
 max-width:82vw;
-
 scroll-snap-align:start;
-
 background:var(--card);
-
 border:1px solid var(--line);
-
 border-radius:20px;
-
 overflow:hidden;
-
 box-shadow:var(--shadow);
-
 font-family:var(--font-bundles);
 
 }
 
-
 .bundle-image{
 
 height:220px;
-
 background:var(--cream-deep);
-
 display:flex;
-
 align-items:center;
-
 justify-content:center;
-
 overflow:hidden;
 
 }
-
 
 .bundle-image img{
 
 width:100%;
 height:100%;
-
 object-fit:contain;
-
 padding:10px;
 
 }
 
-
 .bundle-body{
-
 padding:15px;
-
 }
-
 
 .bundle-name{
 
 font-size:23px;
-
 font-weight:700;
 
 }
 
-
 .bundle-desc{
 
 margin-top:6px;
-
 font-size:12px;
-
 line-height:1.7;
-
 color:var(--ink-soft);
-
 font-family:var(--font-body);
 
 }
-
 
 .bundle-price-row{
 
 display:flex;
-
 align-items:center;
-
 gap:8px;
-
 flex-wrap:wrap;
-
 margin-top:10px;
 
 }
 
-
 .bundle-price{
 
 font-size:20px;
-
 font-weight:900;
-
 font-family:var(--font-price);
 
 }
-
 
 .bundle-old-price{
 
 font-size:13px;
-
 color:var(--ink-soft);
-
 text-decoration:line-through;
-
 font-family:var(--font-price);
 
 }
 
-
 .bundle-expiry{
 
 margin-top:6px;
-
 font-size:11px;
-
 color:var(--danger);
-
 font-family:var(--font-body);
 
 }
 
-
 .bundle-actions{
 
 display:flex;
-
 gap:7px;
-
 margin-top:12px;
 
 }
-
 
 .bundle-actions .btn{
 flex:1;
 }
 
-
 .bundle-empty{
 
 padding:28px 15px;
-
 text-align:center;
-
 color:var(--ink-soft);
-
 border:1px dashed var(--line);
-
 border-radius:18px;
-
 background:rgba(255,255,255,.28);
 
 }
-
 
 /* ================= SHOP ================= */
 
 .section{
 
 max-width:1180px;
-
 margin:0 auto;
-
 padding:35px 20px 65px;
 
 }
 
-
 .section-head{
 
 display:flex;
-
 align-items:center;
-
 justify-content:space-between;
-
 gap:12px;
-
 flex-wrap:wrap;
-
 margin-bottom:18px;
 
 }
 
-
 .section-head h2{
 
 margin:0;
-
 font-family:var(--font-section);
-
 font-size:35px;
 
 }
 
-
 .category-filters{
 
 display:flex;
-
 align-items:center;
-
 gap:7px;
-
 overflow-x:auto;
-
 max-width:100%;
-
 scrollbar-width:none;
 
 }
-
 
 .category-filters::-webkit-scrollbar{
 display:none;
 }
 
-
 .category-filters button{
 
 flex:0 0 auto;
-
 border:1px solid var(--line);
-
 border-radius:999px;
-
 padding:8px 15px;
-
 background:var(--card);
-
 color:var(--ink-soft);
-
 font-weight:700;
-
 white-space:nowrap;
-
 font-family:var(--font-nav);
 
 }
-
 
 .category-filters button.active{
 
@@ -1728,103 +1247,70 @@ color:var(--cream);
 
 }
 
-
 .tools{
 
 display:none;
-
 gap:9px;
-
 flex-wrap:wrap;
-
 margin-bottom:22px;
 
 }
-
 
 .tools input,
 .tools select{
 
 padding:10px 14px;
-
 border:1px solid var(--line);
-
 border-radius:999px;
-
 background:var(--card);
-
 color:var(--ink);
 
 }
 
-
 .search-wrap{
 
 flex:1;
-
 min-width:220px;
 
 }
-
 
 .products-area{
 width:100%;
 }
 
-
 .category-group{
-
 margin-bottom:48px;
-
 }
-
 
 .category-title{
 
 margin:0 0 16px;
-
 font-size:31px;
-
 color:var(--ink);
-
 font-family:var(--font-category);
 
 }
 
-
 .product-row{
 
 width:100%;
-
 display:flex;
-
 gap:20px;
-
 overflow-x:auto;
-
 padding:14px 12px 22px;
-
 scroll-snap-type:x mandatory;
-
 -webkit-overflow-scrolling:touch;
-
 scrollbar-width:thin;
-
 perspective:1200px;
 
 }
 
-
 .product-card{
 
 flex:0 0 min(var(--card-width),42vw);
-
 width:min(var(--card-width),42vw);
-
 max-width:min(var(--card-width),42vw);
-
 scroll-snap-align:center;
-
 text-align:center;
 
 transition:
@@ -1835,2092 +1321,1454 @@ transform-origin:center;
 
 }
 
-
 .product-row.carousel-enabled
 .product-card{
 
 opacity:.75;
-
 transform:scale(.92);
 
 }
-
 
 .product-row.carousel-enabled
 .product-card.carousel-center{
 
 opacity:1;
-
 transform:scale(1);
 
 }
 
-
 .product-image{
 
 width:100%;
-
 aspect-ratio:1/1;
-
 position:relative;
-
 cursor:pointer;
-
 border-radius:18px;
-
 background:rgba(255,255,255,.16);
-
 overflow:hidden;
 
 }
-
 
 .product-image img{
 
 width:100%;
 height:100%;
-
 object-fit:contain;
-
 padding:8px;
-
 transition:.3s;
 
 }
-
 
 .product-image:hover img{
 transform:scale(1.06);
 }
 
-
 .favorite-btn{
 
 position:absolute;
-
 z-index:4;
-
 top:7px;
 left:7px;
-
 width:34px;
 height:34px;
-
 border:0;
-
 border-radius:50%;
-
 background:rgba(255,255,255,.9);
-
 box-shadow:0 4px 10px rgba(0,0,0,.1);
 
 }
 
-
 .discount-badge{
 
 position:absolute;
-
 top:7px;
 right:7px;
-
 background:var(--danger);
-
 color:white;
-
 border-radius:999px;
-
 padding:4px 8px;
-
 font-size:11px;
-
 font-weight:700;
 
 }
-
 
 .new-badge{
 
 position:absolute;
-
 bottom:7px;
 right:7px;
-
 background:var(--gold);
-
 color:white;
-
 border-radius:999px;
-
 padding:4px 8px;
-
 font-size:10px;
 
 }
 
-
 .out-layer{
 
 position:absolute;
-
 inset:0;
-
 border-radius:18px;
-
 background:rgba(32,48,28,.58);
-
 color:white;
-
 display:flex;
-
 align-items:center;
 justify-content:center;
-
 font-weight:700;
 
 }
 
-
 .product-card h3{
 
 font-family:var(--font-product);
-
 font-size:23px;
-
 line-height:1.4;
-
 margin:9px 0 5px;
 
 }
 
-
 .price-row{
 
 display:flex;
-
 justify-content:center;
-
 align-items:center;
-
 flex-wrap:wrap;
-
 gap:6px;
 
 }
 
-
 .price{
 
 font-size:17px;
-
 font-weight:900;
-
 direction:ltr;
-
 font-family:var(--font-price);
 
 }
-
 
 .old-price{
 
 font-size:12px;
-
 text-decoration:line-through;
-
 color:var(--ink-soft);
-
 direction:ltr;
-
 font-family:var(--font-price);
 
 }
 
-
 .product-card-actions{
 
 display:grid;
-
 grid-template-columns:1fr;
-
 gap:7px;
-
 margin-top:9px;
 
 }
-
 
 .add-btn,
 .gift-buy-btn{
 
 width:100%;
-
 border:0;
-
 border-radius:11px;
-
 padding:10px;
-
 font-weight:700;
-
 font-family:var(--font-buttons);
 
 }
 
-
 .add-btn{
 
 background:var(--ink);
-
 color:var(--cream);
 
 }
 
-
 .gift-buy-btn{
 
 background:transparent;
-
 border:1px solid var(--gold);
-
 color:var(--gold);
 
 }
 
-
 .empty{
 
 width:100%;
-
 text-align:center;
-
 padding:45px 15px;
-
 color:var(--ink-soft);
 
 }
-
 
 /* ================= REVIEWS ================= */
 
 .reviews-row{
 
 display:flex;
-
 gap:14px;
-
 overflow-x:auto;
-
 padding-bottom:10px;
-
 scroll-snap-type:x mandatory;
-
 font-family:var(--font-reviews);
 
 }
 
-
 .review-card{
 
 flex:0 0 290px;
-
 max-width:84vw;
-
 padding:18px;
-
 background:var(--card);
-
 border:1px solid var(--line);
-
 border-radius:16px;
-
 box-shadow:var(--shadow);
-
 scroll-snap-align:start;
 
 }
 
-
 .review-stars{
 
 color:var(--gold);
-
 margin-bottom:8px;
-
 font-size:18px;
 
 }
 
-
 .review-text{
 
 color:var(--ink-soft);
-
 line-height:1.8;
 
 }
 
-
 .review-name{
 
 margin-top:10px;
-
 font-weight:700;
 
 }
-
 
 .verified{
 
 display:inline-flex;
-
 margin-top:7px;
-
 padding:4px 8px;
-
 border-radius:999px;
-
 background:#D6E7CC;
-
 color:var(--ok);
-
 font-size:10px;
-
 font-weight:700;
 
 }
 
-
 .about-box{
 
 max-width:700px;
-
 margin:0 auto;
-
 text-align:center;
 
 }
 
-
 .about-box p{
 
 white-space:pre-line;
-
 line-height:2;
-
 color:var(--ink-soft);
 
 }
-
 
 /* ================= FOOTER ================= */
 
 .store-footer{
 
 border-top:1px solid var(--line);
-
 padding:38px 20px 28px;
-
 color:var(--ink-soft);
-
 font-family:var(--font-footer);
 
 }
-
 
 .footer-shell{
 
 max-width:1000px;
-
 margin:auto;
 
 }
 
-
 .footer-title{
 
 text-align:center;
-
 font-family:var(--font-section);
-
 font-size:28px;
-
 font-weight:700;
-
 color:var(--ink);
-
 margin-bottom:18px;
 
 }
 
-
 .footer-links{
 
 display:flex;
-
 flex-direction:column;
-
 align-items:center;
-
 gap:10px;
 
 }
-
 
 .footer-policy-button{
 
 border:0;
-
 background:transparent;
-
 color:var(--ink-soft);
-
 font-size:15px;
-
 padding:4px 8px;
-
 cursor:pointer;
-
 font-family:var(--font-footer);
 
 }
 
-
 .footer-policy-button:hover{
-
 color:var(--gold);
-
 }
-
 
 .footer-separator{
 
 border:0;
-
 border-top:1px dashed rgba(32,48,28,.28);
-
 margin:26px 0;
 
 }
 
-
 .contact-grid{
 
 display:grid;
-
 grid-template-columns:repeat(2,1fr);
-
 gap:12px;
 
 }
 
-
 .contact-card{
 
 border:1px solid var(--line);
-
 border-radius:15px;
-
 padding:15px;
-
 background:rgba(255,255,255,.25);
-
 text-align:center;
 
 }
-
 
 .contact-card strong{
 
 display:block;
-
 color:var(--ink);
-
 margin-bottom:5px;
 
 }
 
-
 .payment-footer{
 
 display:flex;
-
 justify-content:center;
-
 gap:7px;
-
 flex-wrap:wrap;
-
 margin-top:12px;
 
 }
 
-
 .payment-chip{
 
 border:1px solid var(--line);
-
 border-radius:8px;
-
 padding:8px 12px;
-
 background:#fff;
-
 font-size:11px;
-
 font-weight:700;
-
 color:#222;
 
 }
 
-
 .bank-footer-list{
 
 display:grid;
-
 grid-template-columns:repeat(2,1fr);
-
 gap:10px;
-
 margin-top:14px;
 
 }
 
-
 .bank-footer-card{
 
 border:1px solid var(--line);
-
 border-radius:13px;
-
 padding:12px;
-
 background:rgba(255,255,255,.28);
-
 line-height:1.8;
-
 font-size:12px;
 
 }
-
 
 .bank-footer-card strong{
 
 font-size:14px;
-
 color:var(--ink);
 
 }
 
-
 .socials{
 
 margin-top:18px;
-
 display:flex;
-
 justify-content:center;
-
 gap:8px;
-
 flex-wrap:wrap;
 
 }
 
-
 .socials a{
 
 min-width:42px;
-
 height:42px;
-
 padding:0 12px;
-
 border:1px solid var(--line);
-
 border-radius:999px;
-
 background:var(--card);
-
 display:flex;
-
 align-items:center;
 justify-content:center;
-
 font-size:12px;
-
 font-weight:700;
 
 }
 
-
 .footer-copy{
 
 text-align:center;
-
 margin-top:24px;
 
 }
-
 
 /* ================= DRAWER ================= */
 
 .scrim{
 
 position:fixed;
-
 inset:0;
-
 z-index:80;
-
 background:rgba(16,22,13,.55);
-
 backdrop-filter:blur(3px);
-
 display:none;
 
 }
-
 
 .scrim.show{
 display:block;
 }
 
-
 .drawer{
 
 position:fixed;
-
 z-index:90;
-
 top:0;
 bottom:0;
 left:0;
-
 width:min(420px,94vw);
-
 background:var(--card);
-
 transform:translateX(-100%);
-
 transition:.3s;
-
 display:flex;
-
 flex-direction:column;
-
 box-shadow:20px 0 50px rgba(0,0,0,.18);
-
 font-family:var(--font-modals);
 
 }
 
-
 .drawer.show{
-
 transform:translateX(0);
-
 }
-
 
 .drawer-head{
 
 padding:18px;
-
 border-bottom:1px solid var(--line);
-
 display:flex;
-
 align-items:center;
-
 justify-content:space-between;
 
 }
-
 
 .drawer-head h3{
 margin:0;
 }
 
-
 .close-btn{
 
 border:0;
-
 background:none;
-
 font-size:22px;
 
 }
 
-
 .drawer-body{
 
 flex:1;
-
 overflow:auto;
-
 padding:12px 18px;
 
 }
 
-
 .drawer-foot{
 
 padding:17px;
-
 border-top:1px solid var(--line);
-
 background:var(--cream);
 
 }
 
-
 .cart-item{
 
 display:flex;
-
 gap:10px;
-
 padding:11px 0;
-
 border-bottom:1px solid var(--line);
 
 }
-
 
 .cart-item img{
 
 width:65px;
 height:65px;
-
 object-fit:cover;
-
 border-radius:9px;
 
 }
-
 
 .cart-info{
 flex:1;
 }
 
-
 .cart-name{
 font-weight:700;
 }
 
-
 .cart-meta{
 
 font-size:11px;
-
 color:var(--ink-soft);
-
 margin:3px 0;
 
 }
 
-
 .cart-gift-tag{
 
 display:inline-flex;
-
 padding:3px 7px;
-
 border-radius:999px;
-
 background:#fff1c9;
-
 color:#7c5a16;
-
 font-size:10px;
-
 font-weight:700;
 
 }
 
-
 .qty{
 
 display:flex;
-
 align-items:center;
-
 gap:6px;
-
 margin-top:6px;
 
 }
 
-
 .qty button{
 
 min-width:27px;
-
 height:27px;
-
 border:1px solid var(--line);
-
 background:var(--cream);
-
 border-radius:7px;
 
 }
 
-
 .cart-total{
 
 display:flex;
-
 justify-content:space-between;
-
 align-items:center;
-
 margin-bottom:12px;
-
 font-size:18px;
-
 font-weight:900;
 
 }
-
 
 /* ================= MODALS ================= */
 
 .modal{
 
 position:fixed;
-
 z-index:95;
-
 top:50%;
 left:50%;
-
 transform:translate(-50%,-50%);
-
 width:min(550px,94vw);
-
 max-height:90vh;
-
 overflow:auto;
-
 background:var(--card);
-
 border-radius:20px;
-
 padding:22px;
-
 box-shadow:0 30px 70px rgba(0,0,0,.25);
-
 display:none;
-
 font-family:var(--font-modals);
 
 }
-
 
 .modal.show{
 display:block;
 }
 
-
 .modal h3{
 margin-top:0;
 }
 
-
 .modal label{
 
 display:block;
-
 margin:11px 0 5px;
-
 font-size:12px;
-
 font-weight:700;
-
 color:var(--ink-soft);
 
 }
-
 
 .modal input,
 .modal textarea,
 .modal select{
 
 width:100%;
-
 padding:10px 11px;
-
 border:1px solid var(--line);
-
 border-radius:10px;
-
 background:var(--cream);
-
 color:var(--ink);
 
 }
 
-
 .modal textarea{
 
 min-height:70px;
-
 resize:vertical;
 
 }
 
-
 .product-modal{
 
 width:min(860px,95vw);
-
 padding:0;
-
 overflow:hidden;
 
 }
 
-
 .product-detail{
 
 display:grid;
-
 grid-template-columns:1fr 1fr;
 
 }
-
 
 .product-detail-image{
 
 padding:25px;
-
 background:var(--cream);
-
 display:flex;
-
 align-items:center;
-
 justify-content:center;
 
 }
 
-
 .product-detail-image img{
 
 width:100%;
-
 max-height:440px;
-
 object-fit:contain;
 
 }
-
 
 .product-detail-info{
 
 padding:30px 25px;
-
 overflow:auto;
 
 }
-
 
 .product-detail-info h2{
 
 margin:0 0 10px;
-
 font-family:var(--font-product);
-
 font-size:36px;
 
 }
 
-
 .swatches{
 
 display:flex;
-
 gap:6px;
-
 flex-wrap:wrap;
 
 }
 
-
 .swatch{
 
 border:1px solid var(--line);
-
 border-radius:999px;
-
 padding:6px 11px;
-
 background:var(--cream);
-
 font-size:12px;
-
 cursor:pointer;
 
 }
-
 
 .swatch.active{
 
 background:var(--ink);
-
 color:var(--cream);
 
 }
 
-
 .pay-box{
 
 margin-top:10px;
-
 padding:11px;
-
 border:1px dashed var(--gold);
-
 border-radius:11px;
-
 background:var(--cream);
-
 white-space:pre-line;
-
 line-height:1.8;
-
 font-size:12px;
 
 }
-
 
 .coupon-message{
 
 min-height:18px;
-
 margin-top:4px;
-
 font-size:12px;
-
 font-weight:700;
 
 }
 
-
-/* ================= GIFT BUILDER ================= */
+/* ================= GIFT MODAL ================= */
 
 .gift-modal{
-
 width:min(850px,95vw);
-
 }
-
 
 .gift-builder-grid{
 
 display:grid;
-
 grid-template-columns:1fr 1fr;
-
 gap:12px;
 
 }
 
-
 .gift-product-picker{
 
 display:grid;
-
 grid-template-columns:repeat(2,1fr);
-
 gap:9px;
-
 max-height:280px;
-
 overflow:auto;
-
 padding:5px;
 
 }
 
-
 .gift-product-option{
 
 position:relative;
-
 border:1px solid var(--line);
-
 border-radius:14px;
-
 padding:8px;
-
 background:#fff;
-
 cursor:pointer;
 
 }
-
 
 .gift-product-option.selected{
 
 border:2px solid var(--gold);
-
 background:#fff8e4;
 
 }
-
 
 .gift-product-option img{
 
 width:100%;
-
 height:110px;
-
 object-fit:contain;
-
 background:var(--cream);
-
 border-radius:10px;
 
 }
 
-
 .gift-product-option strong{
 
 display:block;
-
 font-size:12px;
-
 margin-top:6px;
 
 }
 
-
 .gift-wrap-options{
 
 display:grid;
-
 grid-template-columns:repeat(2,1fr);
-
 gap:8px;
 
 }
 
-
 .gift-wrap-option{
 
 border:1px solid var(--line);
-
 border-radius:13px;
-
 padding:9px;
-
 background:#fff;
-
 cursor:pointer;
 
 }
 
-
 .gift-wrap-option.selected{
 
 border:2px solid var(--gold);
-
 background:#fff8e4;
 
 }
 
-
 .gift-wrap-option img{
 
 width:100%;
-
 height:100px;
-
 object-fit:contain;
-
 border-radius:9px;
 
 }
 
-
 .gift-summary{
 
 margin-top:12px;
-
 padding:12px;
-
 border:1px dashed var(--gold);
-
 border-radius:12px;
-
 background:#fff9e8;
-
 line-height:1.9;
-
 font-size:12px;
 
 }
 
-
 /* ================= ORDERS ================= */
 
 .orders-modal{
-
 width:min(800px,95vw);
-
 }
-
 
 .my-orders-title{
 
 display:flex;
-
 justify-content:space-between;
-
 align-items:center;
-
 gap:10px;
-
 margin-bottom:15px;
 
 }
-
 
 .my-orders-title h3{
 margin:0;
 }
 
-
 .orders-search{
 
 display:grid;
-
 grid-template-columns:1fr 1fr auto;
-
 gap:8px;
-
 align-items:end;
 
 }
 
-
 .customer-order{
 
 border:1px solid var(--line);
-
 border-radius:17px;
-
 background:#fff;
-
 overflow:hidden;
-
 margin-top:14px;
 
 }
 
-
 .customer-order-head{
 
 padding:14px;
-
 background:var(--cream);
-
 display:flex;
-
 justify-content:space-between;
-
 gap:12px;
-
 align-items:flex-start;
-
 flex-wrap:wrap;
-
 border-bottom:1px solid var(--line);
 
 }
 
-
 .order-number{
 
 font-size:17px;
-
 font-weight:900;
 
 }
 
-
 .order-date{
 
 font-size:11px;
-
 color:var(--ink-soft);
-
 margin-top:4px;
 
 }
 
-
 .order-status{
 
 display:inline-flex;
-
 padding:6px 11px;
-
 border-radius:999px;
-
 font-size:11px;
-
 font-weight:700;
 
 }
 
-
 .order-status.pending{
-
 background:#F3E3B8;
 color:#7A5B10;
-
 }
-
 
 .order-status.confirmed{
-
 background:#D6E7CC;
 color:#456A39;
-
 }
-
 
 .order-status.processing{
-
 background:#E5DBF4;
 color:#644A83;
-
 }
-
 
 .order-status.shipped{
-
 background:#CFE1F0;
 color:#2C5A82;
-
 }
-
 
 .order-status.delivered{
-
 background:#CFE8D2;
 color:#35613D;
-
 }
-
 
 .order-status.cancelled,
 .order-status.refunded{
-
 background:#F0D5D0;
 color:#8B3328;
-
 }
-
 
 .customer-order-body{
 padding:14px;
 }
 
-
 .order-info-grid{
 
 display:grid;
-
 grid-template-columns:repeat(3,1fr);
-
 gap:8px;
-
 margin-bottom:14px;
 
 }
 
-
 .order-info-box{
 
 border:1px solid var(--line);
-
 border-radius:10px;
-
 padding:9px;
-
 background:var(--card);
 
 }
 
-
 .order-info-box small{
 
 display:block;
-
 font-size:10px;
-
 color:var(--ink-soft);
-
 margin-bottom:3px;
 
 }
-
 
 .order-info-box strong{
 font-size:12px;
 }
 
-
 .customer-order-item{
 
 display:flex;
-
 gap:10px;
-
 align-items:center;
-
 padding:10px 0;
-
 border-top:1px solid var(--line);
 
 }
-
 
 .customer-order-item:first-child{
 border-top:0;
 }
 
-
 .customer-order-item img{
 
 width:60px;
 height:60px;
-
 object-fit:cover;
-
 border-radius:10px;
-
 background:var(--cream);
 
 }
-
 
 .customer-order-product{
 flex:1;
 }
 
-
 .customer-order-product strong{
 display:block;
 }
 
-
 .customer-order-product small{
 
 display:block;
-
 color:var(--ink-soft);
-
 margin-top:3px;
 
 }
 
-
 .order-buttons{
 
 display:flex;
-
 gap:7px;
-
 flex-wrap:wrap;
-
 margin-top:12px;
 
 }
-
 
 .tracking-box{
 
 background:var(--cream);
-
 border:1px dashed var(--gold);
-
 border-radius:12px;
-
 padding:11px;
-
 margin-top:12px;
-
 font-size:12px;
-
 line-height:1.8;
 
 }
 
+.gift-detail{
+
+margin-top:8px;
+padding:10px;
+border-radius:10px;
+background:#fff3cf;
+border:1px dashed var(--gold);
+font-size:12px;
+line-height:1.8;
+
+}
 
 /* ================= REVIEW ================= */
 
 .review-stars-select{
 
 display:flex;
-
 justify-content:center;
-
 gap:5px;
-
 direction:ltr;
-
 font-size:36px;
-
 margin:10px 0;
 
 }
 
-
 .review-star{
 
 border:0;
-
 background:none;
-
 padding:0;
-
 font-size:36px;
-
 color:#c8c0ad;
 
 }
-
 
 .review-star.active{
 color:var(--gold);
 }
 
-
 /* ================= INVOICE ================= */
 
 .invoice-modal{
-
 width:min(850px,96vw);
-
 }
-
 
 .invoice-sheet{
 
 background:#fff;
-
 color:#1f1f1f;
-
 padding:25px;
-
 border-radius:15px;
-
 font-family:var(--font-invoice);
 
 }
 
-
 .invoice-head{
 
 display:flex;
-
 justify-content:space-between;
-
 gap:15px;
-
 align-items:flex-start;
-
 padding-bottom:14px;
-
 border-bottom:2px solid #222;
 
 }
-
 
 .invoice-logo{
 
 width:82px;
 height:82px;
-
 object-fit:contain;
-
 display:none;
-
 margin-bottom:5px;
 
 }
 
-
 .invoice-brand{
 
 font-family:var(--font-invoice);
-
 font-weight:700;
-
 font-size:36px;
 
 }
 
-
 .invoice-brand-en{
 
 font-size:10px;
-
 letter-spacing:.15em;
-
 direction:ltr;
 
 }
 
-
 .invoice-title{
 
 font-size:21px;
-
 font-weight:900;
 
 }
 
-
 .invoice-grid{
 
 display:grid;
-
 grid-template-columns:1fr 1fr;
-
 gap:10px;
-
 margin:15px 0;
 
 }
 
-
 .invoice-info{
 
 border:1px solid #ddd;
-
 padding:11px;
-
 border-radius:10px;
-
 font-size:12px;
-
 line-height:1.9;
 
 }
-
 
 .invoice-table-wrap{
 overflow-x:auto;
 }
 
-
 .invoice-table{
 
 width:100%;
-
 border-collapse:collapse;
-
 margin-top:12px;
-
 min-width:600px;
 
 }
-
 
 .invoice-table th,
 .invoice-table td{
 
 padding:8px;
-
 border:1px solid #ddd;
-
 font-size:11px;
-
 text-align:right;
 
 }
-
 
 .invoice-table th{
 background:#f2ecdf;
 }
 
-
 .invoice-totals{
 
 width:min(330px,100%);
-
 margin:15px 0 0 auto;
 
 }
 
-
 .invoice-totals div{
 
 display:flex;
-
 justify-content:space-between;
-
 padding:6px 0;
-
 border-bottom:1px solid #ddd;
 
 }
 
-
 .invoice-totals .grand{
 
 font-size:17px;
-
 font-weight:900;
-
 border-top:2px solid #222;
-
 border-bottom:0;
 
 }
 
-
-/* ================= POLICY MODAL ================= */
+/* ================= POLICY ================= */
 
 .policy-modal{
-
 width:min(720px,95vw);
-
 }
-
 
 .policy-body{
 
 white-space:pre-line;
-
 line-height:2;
-
 color:var(--ink-soft);
 
 }
-
 
 /* ================= TOAST ================= */
 
 .toast{
 
 position:fixed;
-
 z-index:300;
-
 left:50%;
-
 bottom:20px;
-
 transform:translateX(-50%);
-
 max-width:90vw;
-
 background:var(--ink);
-
 color:var(--cream);
-
 border-radius:999px;
-
 padding:11px 20px;
-
 font-weight:700;
-
 font-size:13px;
-
 opacity:0;
-
 pointer-events:none;
-
 transition:.25s;
-
 text-align:center;
 
 }
 
-
 .toast.show{
-
 opacity:1;
-
 bottom:32px;
-
 }
-
 
 /* ================= MOBILE ================= */
 
 @media(max-width:768px){
 
 .topbar-inner{
-
 padding:9px 10px;
-
 flex-wrap:wrap;
-
 }
-
 
 .brand{
 flex:1;
 }
 
-
 .store-logo-img{
-
 width:46px;
 height:46px;
-
 }
-
 
 .brand-name{
 font-size:25px;
 }
 
-
 .main-nav{
 
 order:3;
-
 width:100%;
-
 border:0;
-
 background:transparent;
-
 padding:0;
 
 }
 
-
 .main-nav button{
-
 background:var(--card);
-
 border:1px solid var(--line);
-
 }
-
 
 .cart-btn{
-
 padding:10px 12px;
-
 font-size:12px;
-
 }
-
 
 .hero{
-
 margin-top:35px;
-
 padding:0 14px;
-
 }
-
 
 .hero p{
 font-size:14px;
 }
 
-
 .ad-section{
 
 padding:0 10px;
-
 margin:10px auto 18px;
 
 }
 
-
 .gift-section{
 
 width:calc(100% - 20px);
-
 margin:12px auto 25px;
 
 }
 
-
 .gift-banner{
 
 padding:16px;
-
 flex-direction:column;
-
 align-items:stretch;
 
 }
-
 
 .gift-actions{
 width:100%;
 }
 
-
 .gift-actions .btn{
 flex:1;
 }
 
-
 .bundles-section{
-
 padding:18px 10px 26px;
-
 }
-
 
 .bundles-head h2{
 font-size:28px;
 }
 
-
 .bundle-card{
-
 flex:0 0 76vw;
-
 }
-
 
 .bundle-image{
 height:210px;
 }
 
-
 .section{
-
 padding:28px 12px 52px;
-
 }
-
 
 .section-head h2{
 font-size:29px;
 }
 
-
 .product-row{
 
 gap:12px;
-
 padding:14px 5vw 24px;
-
 scroll-padding:0 14vw;
 
 }
 
-
 .product-card{
 
 flex:0 0 min(var(--card-width),76vw);
-
 width:min(var(--card-width),76vw);
-
 max-width:min(var(--card-width),76vw);
 
 }
-
 
 .product-card h3{
 font-size:19px;
 }
 
-
 .price{
 font-size:15px;
 }
-
 
 .add-btn,
 .gift-buy-btn{
 font-size:12px;
 }
 
-
 .product-detail{
 grid-template-columns:1fr;
 }
-
 
 .product-detail-image{
 padding:18px;
 }
 
-
 .product-detail-image img{
 max-height:290px;
 }
-
 
 .product-detail-info{
 padding:20px 16px;
 }
 
-
 .product-detail-info h2{
 font-size:29px;
 }
-
 
 .gift-builder-grid{
 grid-template-columns:1fr;
 }
 
-
 .gift-product-picker{
 grid-template-columns:1fr 1fr;
 }
 
-
 .order-info-grid,
 .invoice-grid{
-
 grid-template-columns:1fr;
-
 }
-
 
 .orders-search{
 grid-template-columns:1fr;
 }
 
-
 .invoice-sheet{
 padding:13px;
 }
-
 
 .push-actions{
 flex-direction:column;
 }
 
-
 .push-actions .btn{
 width:100%;
 }
 
-
 .contact-grid,
 .bank-footer-list{
-
 grid-template-columns:1fr;
-
 }
 
 }
-
 
 @media(max-width:420px){
 
@@ -3928,32 +2776,22 @@ grid-template-columns:1fr;
 --card-width:74vw;
 }
 
-
 .product-row{
 gap:10px;
 }
 
-
 .round-btn{
-
 width:38px;
 height:38px;
-
 }
-
 
 .bundle-card{
-
 flex:0 0 82vw;
-
 }
-
 
 .gift-product-picker,
 .gift-wrap-options{
-
 grid-template-columns:1fr;
-
 }
 
 }
@@ -3962,11 +2800,7 @@ grid-template-columns:1fr;
 
 </head>
 
-
 <body>
-
-
-<!-- ================= SPLASH ================= -->
 
 <div id="storeSplash">
 
@@ -3975,28 +2809,19 @@ grid-template-columns:1fr;
 <div class="splash-ring"></div>
 <div class="splash-glow"></div>
 
-<img
-id="splashLogo"
-alt="شعار المتجر"
->
+<img id="splashLogo" alt="شعار المتجر">
 
 <div id="splashTextFallback">
 الشعيبي
 </div>
 
-<div
-id="splashSubtitle"
-class="splash-subtitle"
->
+<div id="splashSubtitle" class="splash-subtitle">
 ALSHUAIIBE STORE
 </div>
 
 </div>
 
 </div>
-
-
-<!-- ================= PUSH ================= -->
 
 <div id="pushPermissionBox">
 
@@ -4012,10 +2837,7 @@ ALSHUAIIBE STORE
 
 </div>
 
-<div
-id="pushPermissionMessage"
-class="push-message"
->
+<div id="pushPermissionMessage" class="push-message">
 اسمح لنا بإرسال إشعارات الطلبات والعروض الجديدة لك.
 </div>
 
@@ -4042,12 +2864,8 @@ onclick="dismissPushPermission()"
 
 </div>
 
-
 <div id="customBackground"></div>
 <div id="watermark"></div>
-
-
-<!-- ================= HEADER ================= -->
 
 <header class="topbar">
 
@@ -4063,17 +2881,11 @@ alt="شعار المتجر"
 
 <div>
 
-<div
-id="storeBrandName"
-class="brand-name"
->
+<div id="storeBrandName" class="brand-name">
 الشعيبي
 </div>
 
-<div
-id="storeBrandEn"
-class="brand-en"
->
+<div id="storeBrandEn" class="brand-en">
 ALSHUAIIBE STORE
 </div>
 
@@ -4081,22 +2893,13 @@ ALSHUAIIBE STORE
 
 </div>
 
+<nav class="main-nav" id="mainNav">
 
-<nav
-class="main-nav"
-id="mainNav"
->
-
-<button
-class="active"
-onclick="goShop()"
->
+<button class="active" onclick="goShop()">
 المتجر
 </button>
 
-<button
-onclick="scrollSection('about')"
->
+<button onclick="scrollSection('about')">
 من نحن
 </button>
 
@@ -4114,7 +2917,6 @@ onclick="showFavorites()"
 
 </nav>
 
-
 <div class="header-actions">
 
 <button
@@ -4122,19 +2924,10 @@ class="round-btn"
 onclick="toggleNotifications()"
 >
 🔔
-
-<span
-id="notificationDot"
-class="notification-dot"
-></span>
-
+<span id="notificationDot" class="notification-dot"></span>
 </button>
 
-
-<div
-id="notificationsPanel"
-class="notifications-panel"
->
+<div id="notificationsPanel" class="notifications-panel">
 
 <h4 style="margin:0 0 9px">
 الإشعارات
@@ -4146,7 +2939,6 @@ class="notifications-panel"
 
 </div>
 
-
 <button
 class="cart-btn"
 onclick="openCart()"
@@ -4154,10 +2946,7 @@ onclick="openCart()"
 
 🛍️ السلة
 
-<span
-id="cartCount"
-class="cart-count"
->
+<span id="cartCount" class="cart-count">
 0
 </span>
 
@@ -4169,15 +2958,9 @@ class="cart-count"
 
 </header>
 
-
-<!-- ================= HERO ================= -->
-
 <section class="hero">
 
-<div
-id="storeEyebrow"
-class="hero-eyebrow"
->
+<div id="storeEyebrow" class="hero-eyebrow">
 متجر الشعيبي
 </div>
 
@@ -4195,35 +2978,26 @@ class="hero-eyebrow"
 id="whatsappButton"
 class="btn"
 target="_blank"
+rel="noopener"
 >
 تواصل عبر واتساب
 </a>
 
-<button
-class="btn secondary"
-onclick="goShop()"
->
+<button class="btn secondary" onclick="goShop()">
 تسوق الآن
 </button>
 
-<button
-class="btn gold"
-onclick="openMyOrders()"
->
+<button class="btn gold" onclick="openMyOrders()">
 📦 تتبع طلبك
 </button>
 
-<button
-class="btn secondary"
-onclick="showPushPermission(true)"
->
+<button class="btn secondary" onclick="showPushPermission(true)">
 🔔 تفعيل الإشعارات
 </button>
 
 </div>
 
 </section>
-
 
 <div class="sunrise">
 
@@ -4243,18 +3017,9 @@ stroke="currentColor"
 
 </div>
 
+<section id="adSection" class="ad-section">
 
-<!-- ================= ADVERTISEMENT ================= -->
-
-<section
-id="adSection"
-class="ad-section"
->
-
-<div
-id="adShell"
-class="ad-shell"
->
+<div id="adShell" class="ad-shell">
 
 <a
 id="adLink"
@@ -4262,10 +3027,7 @@ target="_blank"
 rel="noopener"
 >
 
-<div
-id="adWrap"
-class="ad-wrap"
-></div>
+<div id="adWrap" class="ad-wrap"></div>
 
 </a>
 
@@ -4273,32 +3035,17 @@ class="ad-wrap"
 
 </section>
 
+<section id="giftSection" class="gift-section">
 
-<!-- ================= GIFT ================= -->
-
-<section
-id="giftSection"
-class="gift-section"
->
-
-<div
-id="giftBanner"
-class="gift-banner"
->
+<div id="giftBanner" class="gift-banner">
 
 <div class="gift-copy">
 
-<div
-id="giftSectionTitle"
-class="gift-title"
->
+<div id="giftSectionTitle" class="gift-title">
 🎁 اصنع هديتك بنفسك
 </div>
 
-<div
-id="giftSectionDescription"
-class="gift-desc"
->
+<div id="giftSectionDescription" class="gift-desc">
 اختر المنتج والتغليف واكتب بطاقة الإهداء.
 </div>
 
@@ -4327,13 +3074,7 @@ onclick="goShop()"
 
 </section>
 
-
-<!-- ================= BUNDLES ================= -->
-
-<section
-id="bundlesSection"
-class="bundles-section"
->
+<section id="bundlesSection" class="bundles-section">
 
 <div class="bundles-head">
 
@@ -4351,10 +3092,7 @@ class="bundles-section"
 
 </div>
 
-<div
-id="bundlesRow"
-class="bundles-row"
->
+<div id="bundlesRow" class="bundles-row">
 
 <div class="bundle-empty">
 جارِ تحميل الباقات والعروض…
@@ -4364,13 +3102,7 @@ class="bundles-row"
 
 </section>
 
-
-<!-- ================= SHOP ================= -->
-
-<section
-class="section"
-id="shop"
->
+<section class="section" id="shop">
 
 <div class="section-head">
 
@@ -4378,23 +3110,13 @@ id="shop"
 تشكيلتنا
 </h2>
 
-<div
-id="categoryFilters"
-class="category-filters"
-></div>
+<div id="categoryFilters" class="category-filters"></div>
 
 </div>
 
+<div id="tools" class="tools">
 
-<div
-id="tools"
-class="tools"
->
-
-<div
-id="searchWrap"
-class="search-wrap"
->
+<div id="searchWrap" class="search-wrap">
 
 <input
 id="searchInput"
@@ -4438,11 +3160,7 @@ onchange="handleSort()"
 
 </div>
 
-
-<div
-id="productsArea"
-class="products-area"
->
+<div id="productsArea" class="products-area">
 
 <div class="empty">
 جارِ تحميل المنتجات…
@@ -4452,22 +3170,13 @@ class="products-area"
 
 </section>
 
-
-<!-- ================= ABOUT ================= -->
-
-<section
-class="section"
-id="about"
->
+<section class="section" id="about">
 
 <div class="about-box">
 
 <h2
 id="aboutStoreTitle"
-style="
-font-family:var(--font-section);
-font-size:32px
-"
+style="font-family:var(--font-section);font-size:32px"
 >
 قصة الشعيبي
 </h2>
@@ -4480,31 +3189,15 @@ font-size:32px
 
 </section>
 
-
-<!-- ================= REVIEWS ================= -->
-
-<section
-class="section"
-id="reviewsSection"
->
+<section class="section" id="reviewsSection">
 
 <div class="section-head">
-
-<h2>
-آراء عملائنا
-</h2>
-
+<h2>آراء عملائنا</h2>
 </div>
 
-<div
-id="reviewsRow"
-class="reviews-row"
-></div>
+<div id="reviewsRow" class="reviews-row"></div>
 
 </section>
-
-
-<!-- ================= FOOTER ================= -->
 
 <footer class="store-footer">
 
@@ -4514,38 +3207,17 @@ class="reviews-row"
 روابط مهمة
 </div>
 
-<div
-id="footerPoliciesLinks"
-class="footer-links"
-></div>
-
+<div id="footerPoliciesLinks" class="footer-links"></div>
 
 <hr class="footer-separator">
 
+<div id="footerContacts" class="contact-grid"></div>
 
-<div
-id="footerContacts"
-class="contact-grid"
-></div>
+<div id="footerBanks" class="bank-footer-list"></div>
 
+<div id="footerPayments" class="payment-footer"></div>
 
-<div
-id="footerBanks"
-class="bank-footer-list"
-></div>
-
-
-<div
-id="footerPayments"
-class="payment-footer"
-></div>
-
-
-<div
-id="socialLinks"
-class="socials"
-></div>
-
+<div id="socialLinks" class="socials"></div>
 
 <div class="footer-copy">
 
@@ -4565,20 +3237,13 @@ class="socials"
 
 </footer>
 
-
-<!-- ================= CART ================= -->
-
 <div
 id="cartScrim"
 class="scrim"
 onclick="closeCart()"
 ></div>
 
-
-<div
-id="cartDrawer"
-class="drawer"
->
+<div id="cartDrawer" class="drawer">
 
 <div class="drawer-head">
 
@@ -4586,19 +3251,13 @@ class="drawer"
 سلة المشتريات
 </h3>
 
-<button
-class="close-btn"
-onclick="closeCart()"
->
+<button class="close-btn" onclick="closeCart()">
 ✕
 </button>
 
 </div>
 
-<div
-id="cartBody"
-class="drawer-body"
-></div>
+<div id="cartBody" class="drawer-body"></div>
 
 <div class="drawer-foot">
 
@@ -4626,31 +3285,19 @@ onclick="openCheckout()"
 
 </div>
 
-
-<!-- ================= MAIN SCRIM ================= -->
-
 <div
 id="modalScrim"
 class="scrim"
 onclick="closeAllModals()"
 ></div>
 
-
-<!-- ================= PRODUCT MODAL ================= -->
-
-<div
-id="productModal"
-class="modal product-modal"
->
+<div id="productModal" class="modal product-modal">
 
 <div class="product-detail">
 
 <div class="product-detail-image">
 
-<img
-id="modalProductImage"
-alt=""
->
+<img id="modalProductImage" alt="">
 
 </div>
 
@@ -4669,10 +3316,7 @@ onclick="closeProductModal()"
 <div
 id="modalProductPrice"
 class="price-row"
-style="
-justify-content:flex-start;
-margin-bottom:14px
-"
+style="justify-content:flex-start;margin-bottom:14px"
 ></div>
 
 <div
@@ -4689,10 +3333,7 @@ white-space:pre-line
 <button
 id="modalAddButton"
 class="btn"
-style="
-width:100%;
-margin-top:20px
-"
+style="width:100%;margin-top:20px"
 >
 أضف للسلة
 </button>
@@ -4700,10 +3341,7 @@ margin-top:20px
 <button
 id="modalGiftButton"
 class="btn secondary"
-style="
-width:100%;
-margin-top:8px
-"
+style="width:100%;margin-top:8px"
 >
 🎁 شراء كهدية
 </button>
@@ -4714,13 +3352,7 @@ margin-top:8px
 
 </div>
 
-
-<!-- ================= GIFT BUILDER ================= -->
-
-<div
-id="giftBuilderModal"
-class="modal gift-modal"
->
+<div id="giftBuilderModal" class="modal gift-modal">
 
 <div
 style="
@@ -4744,7 +3376,6 @@ onclick="closeGiftBuilder()"
 
 </div>
 
-
 <div class="gift-builder-grid">
 
 <div>
@@ -4753,13 +3384,9 @@ onclick="closeGiftBuilder()"
 اختر المنتج
 </label>
 
-<div
-id="giftProductsPicker"
-class="gift-product-picker"
-></div>
+<div id="giftProductsPicker" class="gift-product-picker"></div>
 
 </div>
-
 
 <div>
 
@@ -4767,65 +3394,41 @@ class="gift-product-picker"
 نوع التغليف
 </label>
 
-<div
-id="giftWrapOptions"
-class="gift-wrap-options"
-></div>
+<div id="giftWrapOptions" class="gift-wrap-options"></div>
 
 </div>
 
 </div>
-
 
 <label>
 اسم المرسل
 </label>
 
-<input
-id="giftSenderName"
-type="text"
->
-
+<input id="giftSenderName" type="text">
 
 <label>
 رقم المرسل
 </label>
 
-<input
-id="giftSenderPhone"
-type="tel"
->
-
+<input id="giftSenderPhone" type="tel">
 
 <label>
 اسم المستلم
 </label>
 
-<input
-id="giftRecipientName"
-type="text"
->
-
+<input id="giftRecipientName" type="text">
 
 <label>
 رقم المستلم
 </label>
 
-<input
-id="giftRecipientPhone"
-type="tel"
->
-
+<input id="giftRecipientPhone" type="tel">
 
 <label>
 عنوان المستلم
 </label>
 
-<input
-id="giftRecipientAddress"
-type="text"
->
-
+<input id="giftRecipientAddress" type="text">
 
 <label>
 رسالة كرت الهدية
@@ -4836,19 +3439,11 @@ id="giftCardMessage"
 placeholder="اكتب رسالتك..."
 ></textarea>
 
-
-<div
-id="giftSummary"
-class="gift-summary"
-></div>
-
+<div id="giftSummary" class="gift-summary"></div>
 
 <button
 class="btn gold"
-style="
-width:100%;
-margin-top:12px
-"
+style="width:100%;margin-top:12px"
 onclick="addGiftToCart()"
 >
 🎁 أضف الهدية إلى السلة
@@ -4856,13 +3451,7 @@ onclick="addGiftToCart()"
 
 </div>
 
-
-<!-- ================= CHECKOUT ================= -->
-
-<div
-id="checkoutModal"
-class="modal"
->
+<div id="checkoutModal" class="modal">
 
 <h3>
 إتمام الطلب
@@ -4872,10 +3461,7 @@ class="modal"
 الاسم الكامل
 </label>
 
-<input
-id="checkoutName"
-type="text"
->
+<input id="checkoutName" type="text">
 
 <label>
 رقم الهاتف
@@ -4891,10 +3477,7 @@ placeholder="مثال: 776881748"
 العنوان
 </label>
 
-<input
-id="checkoutAddress"
-type="text"
->
+<input id="checkoutAddress" type="text">
 
 <label>
 ملاحظات
@@ -4923,11 +3506,7 @@ onclick="applyCoupon()"
 
 </div>
 
-<div
-id="couponMessage"
-class="coupon-message"
-></div>
-
+<div id="couponMessage" class="coupon-message"></div>
 
 <label>
 طريقة الدفع
@@ -4938,20 +3517,12 @@ id="paymentMethod"
 onchange="renderPaymentDetails()"
 ></select>
 
-
-<div
-id="paymentDetails"
-class="pay-box"
-></div>
-
+<div id="paymentDetails" class="pay-box"></div>
 
 <button
 id="submitOrderButton"
 class="btn"
-style="
-width:100%;
-margin-top:16px
-"
+style="width:100%;margin-top:16px"
 onclick="submitOrder()"
 >
 تأكيد الطلب
@@ -4959,10 +3530,7 @@ onclick="submitOrder()"
 
 <button
 class="btn secondary"
-style="
-width:100%;
-margin-top:8px
-"
+style="width:100%;margin-top:8px"
 onclick="closeCheckout()"
 >
 إلغاء
@@ -4970,13 +3538,7 @@ onclick="closeCheckout()"
 
 </div>
 
-
-<!-- ================= MY ORDERS ================= -->
-
-<div
-id="myOrdersModal"
-class="modal orders-modal"
->
+<div id="myOrdersModal" class="modal orders-modal">
 
 <div class="my-orders-title">
 
@@ -5000,7 +3562,6 @@ onclick="closeMyOrders()"
 </button>
 
 </div>
-
 
 <div class="orders-search">
 
@@ -5041,7 +3602,6 @@ onclick="loadCustomerOrders()"
 
 </div>
 
-
 <div
 id="customerOrdersResults"
 style="margin-top:10px"
@@ -5049,13 +3609,7 @@ style="margin-top:10px"
 
 </div>
 
-
-<!-- ================= REVIEW ================= -->
-
-<div
-id="reviewModal"
-class="modal"
->
+<div id="reviewModal" class="modal">
 
 <div
 style="
@@ -5087,10 +3641,7 @@ margin-bottom:8px
 "
 ></div>
 
-<div
-class="review-stars-select"
-id="reviewStars"
->
+<div class="review-stars-select" id="reviewStars">
 
 <button class="review-star" onclick="setReviewRating(1)">★</button>
 <button class="review-star" onclick="setReviewRating(2)">★</button>
@@ -5111,7 +3662,6 @@ color:var(--gold)
 5 من 5
 </div>
 
-
 <label>
 اسمك
 </label>
@@ -5122,7 +3672,6 @@ type="text"
 placeholder="اسم العميل"
 >
 
-
 <label>
 رأيك في المنتج
 </label>
@@ -5132,14 +3681,10 @@ id="reviewText"
 placeholder="اكتب تجربتك مع المنتج..."
 ></textarea>
 
-
 <button
 id="submitReviewButton"
 class="btn"
-style="
-width:100%;
-margin-top:12px
-"
+style="width:100%;margin-top:12px"
 onclick="submitVerifiedReview()"
 >
 إرسال التقييم
@@ -5147,13 +3692,7 @@ onclick="submitVerifiedReview()"
 
 </div>
 
-
-<!-- ================= INVOICE ================= -->
-
-<div
-id="invoiceModal"
-class="modal invoice-modal"
->
+<div id="invoiceModal" class="modal invoice-modal">
 
 <div
 style="
@@ -5207,13 +3746,7 @@ onclick="closeInvoiceModal()"
 
 </div>
 
-
-<!-- ================= POLICY ================= -->
-
-<div
-id="policyModal"
-class="modal policy-modal"
->
+<div id="policyModal" class="modal policy-modal">
 
 <div
 style="
@@ -5244,24 +3777,21 @@ class="policy-body"
 
 </div>
 
-
 <div id="toast" class="toast"></div>
-
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-
 <script>
 
-/* ================= SUPABASE ================= */
+/* =========================================================
+   SUPABASE
+========================================================= */
 
 const SUPABASE_URL =
 "https://bpxklyjahdjbnkxwtqig.supabase.co";
 
-
 const SUPABASE_KEY =
 "sb_publishable_7hoVcUR8Twi6s9IRATiruw_ICTw6wXn";
-
 
 const client =
 supabase.createClient(
@@ -5270,23 +3800,24 @@ SUPABASE_KEY
 );
 
 
-/* ================= DEFAULT STORE ================= */
+/* =========================================================
+   DEFAULT STORE
+========================================================= */
 
 const DEFAULT_STORE = {
 
-name:
-"الشعيبي",
+name:"الشعيبي",
 
-nameEn:
-"ALSHUAIIBE STORE",
+nameEn:"ALSHUAIIBE STORE",
 
-eyebrow:
-"متجر الشعيبي"
+eyebrow:"متجر الشعيبي"
 
 };
 
 
-/* ================= DATA ================= */
+/* =========================================================
+   DATA
+========================================================= */
 
 let products = [];
 let categories = [];
@@ -5350,7 +3881,9 @@ let giftForcedProductId =
 null;
 
 
-/* ================= CART ================= */
+/* =========================================================
+   CART
+========================================================= */
 
 let cart =
 [];
@@ -5395,7 +3928,9 @@ localStorage.removeItem(
 }
 
 
-/* ================= FAVORITES ================= */
+/* =========================================================
+   FAVORITES
+========================================================= */
 
 let favorites =
 [];
@@ -5433,17 +3968,17 @@ localStorage.removeItem(
 }
 
 
-/* ================= HELPERS ================= */
+/* =========================================================
+   HELPERS
+========================================================= */
 
 const $ =
 id =>
 document.getElementById(id);
 
 
-$("year")
-.textContent =
-new Date()
-.getFullYear();
+$("year").textContent =
+new Date().getFullYear();
 
 
 function toast(message){
@@ -5460,9 +3995,7 @@ el.classList.add(
 
 setTimeout(
 () =>
-el.classList.remove(
-"show"
-),
+el.classList.remove("show"),
 2200
 );
 
@@ -5496,6 +4029,20 @@ phone || ""
 .replace(
 /[^0-9]/g,
 ""
+);
+
+}
+
+
+function normalizeCategoryName(value){
+
+return String(
+value || ""
+)
+.trim()
+.replace(
+/\s+/g,
+" "
 );
 
 }
@@ -5597,7 +4144,9 @@ scrollSection(
 }
 
 
-/* ================= FONT SYSTEM ================= */
+/* =========================================================
+   FONT SYSTEM
+========================================================= */
 
 const loadedStoreFonts =
 new Set();
@@ -5641,12 +4190,11 @@ return;
 }
 
 if(
-loadedStoreFonts.has(
-name
-)
+loadedStoreFonts.has(name)
 ){
 return;
 }
+
 
 const builtIn = [
 
@@ -5658,19 +4206,17 @@ const builtIn = [
 
 ];
 
+
 if(
-builtIn.includes(
-name
-)
+builtIn.includes(name)
 ){
 
-loadedStoreFonts.add(
-name
-);
+loadedStoreFonts.add(name);
 
 return;
 
 }
+
 
 const link =
 document.createElement(
@@ -5680,14 +4226,14 @@ document.createElement(
 link.rel =
 "stylesheet";
 
+
 const family =
-encodeURIComponent(
-name
-)
+encodeURIComponent(name)
 .replace(
 /%20/g,
 "+"
 );
+
 
 link.href =
 "https://fonts.googleapis.com/css2?family="
@@ -5696,9 +4242,11 @@ family
 +
 ":wght@300;400;500;600;700;800;900&display=swap";
 
+
 document.head.appendChild(
 link
 );
+
 
 loadedStoreFonts.add(
 name
@@ -5713,15 +4261,13 @@ fallback
 ){
 
 const name =
-cleanFontName(
-value
-)
+cleanFontName(value)
 ||
 fallback;
 
-loadGoogleFont(
-name
-);
+
+loadGoogleFont(name);
+
 
 return (
 "'"
@@ -5741,8 +4287,10 @@ designSettings.fonts
 ||
 {};
 
+
 const root =
 document.documentElement;
+
 
 root.style.setProperty(
 "--font-body",
@@ -5752,6 +4300,7 @@ fonts.body,
 )
 );
 
+
 root.style.setProperty(
 "--font-brand",
 fontCSS(
@@ -5759,6 +4308,7 @@ fonts.brand,
 "Aref Ruqaa"
 )
 );
+
 
 root.style.setProperty(
 "--font-hero-title",
@@ -5768,6 +4318,7 @@ fonts.heroTitle,
 )
 );
 
+
 root.style.setProperty(
 "--font-hero-description",
 fontCSS(
@@ -5775,6 +4326,7 @@ fonts.heroDescription,
 "Tajawal"
 )
 );
+
 
 root.style.setProperty(
 "--font-nav",
@@ -5784,6 +4336,7 @@ fonts.nav,
 )
 );
 
+
 root.style.setProperty(
 "--font-section",
 fontCSS(
@@ -5791,6 +4344,7 @@ fonts.sectionTitles,
 "Aref Ruqaa"
 )
 );
+
 
 root.style.setProperty(
 "--font-category",
@@ -5800,6 +4354,7 @@ fonts.categoryTitles,
 )
 );
 
+
 root.style.setProperty(
 "--font-product",
 fontCSS(
@@ -5807,6 +4362,7 @@ fonts.productNames,
 "Aref Ruqaa"
 )
 );
+
 
 root.style.setProperty(
 "--font-price",
@@ -5816,6 +4372,7 @@ fonts.prices,
 )
 );
 
+
 root.style.setProperty(
 "--font-buttons",
 fontCSS(
@@ -5823,6 +4380,7 @@ fonts.buttons,
 "Tajawal"
 )
 );
+
 
 root.style.setProperty(
 "--font-bundles",
@@ -5832,6 +4390,7 @@ fonts.bundles,
 )
 );
 
+
 root.style.setProperty(
 "--font-gifts",
 fontCSS(
@@ -5839,6 +4398,7 @@ fonts.gifts,
 "Tajawal"
 )
 );
+
 
 root.style.setProperty(
 "--font-reviews",
@@ -5848,6 +4408,7 @@ fonts.reviews,
 )
 );
 
+
 root.style.setProperty(
 "--font-footer",
 fontCSS(
@@ -5856,6 +4417,7 @@ fonts.footer,
 )
 );
 
+
 root.style.setProperty(
 "--font-modals",
 fontCSS(
@@ -5863,6 +4425,7 @@ fonts.modals,
 "Tajawal"
 )
 );
+
 
 root.style.setProperty(
 "--font-invoice",
@@ -5875,7 +4438,9 @@ fonts.invoice,
 }
 
 
-/* ================= PUSH ================= */
+/* =========================================================
+   PUSH
+========================================================= */
 
 function isIOSDevice(){
 
@@ -6002,6 +4567,7 @@ reject
 const start =
 Date.now();
 
+
 const timer =
 setInterval(
 () => {
@@ -6010,9 +4576,7 @@ if(
 window.__ALSHUAIIBE_ONESIGNAL__
 ){
 
-clearInterval(
-timer
-);
+clearInterval(timer);
 
 resolve(
 window.__ALSHUAIIBE_ONESIGNAL__
@@ -6022,6 +4586,7 @@ return;
 
 }
 
+
 if(
 Date.now()
 -
@@ -6030,9 +4595,7 @@ start
 timeout
 ){
 
-clearInterval(
-timer
-);
+clearInterval(timer);
 
 reject(
 new Error(
@@ -6057,8 +4620,10 @@ async function enablePushNotifications(){
 const box =
 $("pushPermissionBox");
 
+
 const button =
 $("enablePushButton");
+
 
 const oldText =
 button?.innerHTML
@@ -6075,6 +4640,7 @@ isIOSDevice()
 box?.classList.remove(
 "show"
 );
+
 
 alert(
 "📱 لتفعيل الإشعارات على iPhone أو iPad:\n\n"
@@ -6123,7 +4689,8 @@ await OneSignal
 .PushSubscription
 .optIn();
 
-}catch(error){}
+}
+catch(error){}
 
 
 localStorage.setItem(
@@ -6131,13 +4698,16 @@ localStorage.setItem(
 "true"
 );
 
+
 box?.classList.remove(
 "show"
 );
 
+
 toast(
 "الإشعارات مفعلة بالفعل 🔔"
 );
+
 
 return;
 
@@ -6169,7 +4739,8 @@ await OneSignal
 .PushSubscription
 .optIn();
 
-}catch(error){}
+}
+catch(error){}
 
 
 localStorage.setItem(
@@ -6177,9 +4748,11 @@ localStorage.setItem(
 "true"
 );
 
+
 box?.classList.remove(
 "show"
 );
+
 
 toast(
 "تم تفعيل الإشعارات بنجاح 🔔"
@@ -6190,6 +4763,7 @@ toast(
 box?.classList.remove(
 "show"
 );
+
 
 alert(
 "لم يتم السماح بالإشعارات."
@@ -6204,9 +4778,11 @@ console.error(
 error
 );
 
+
 box?.classList.remove(
 "show"
 );
+
 
 alert(
 "تعذر تشغيل الإشعارات حالياً."
@@ -6230,7 +4806,9 @@ oldText;
 }
 
 
-/* ================= CART STORAGE ================= */
+/* =========================================================
+   CART STORAGE
+========================================================= */
 
 function saveCart(){
 
@@ -6244,9 +4822,9 @@ item.key
 Number(item.qty || 0) > 0
 );
 
+
 if(
-cart.length ===
-0
+cart.length === 0
 ){
 
 localStorage.removeItem(
@@ -6261,6 +4839,7 @@ JSON.stringify(cart)
 );
 
 }
+
 
 renderCart();
 
@@ -6286,6 +4865,7 @@ if(event){
 event.stopPropagation();
 }
 
+
 if(
 favorites.includes(
 productId
@@ -6304,11 +4884,13 @@ favorites.push(
 productId
 );
 
+
 toast(
 "تمت الإضافة للمفضلة ❤️"
 );
 
 }
+
 
 saveFavorites();
 
@@ -6317,7 +4899,9 @@ renderProducts();
 }
 
 
-/* ================= SETTINGS ================= */
+/* =========================================================
+   SETTINGS
+========================================================= */
 
 async function fetchSettings(){
 
@@ -6337,6 +4921,7 @@ console.error(
 error
 );
 
+
 applySettings();
 
 return;
@@ -6351,8 +4936,7 @@ data || [];
 generalSettings =
 docs.find(
 x =>
-x.id ===
-"general"
+x.id === "general"
 )
 ?.data
 ||
@@ -6362,8 +4946,7 @@ x.id ===
 paymentSettings =
 docs.find(
 x =>
-x.id ===
-"payment"
+x.id === "payment"
 )
 ?.data
 ||
@@ -6373,8 +4956,7 @@ x.id ===
 designSettings =
 docs.find(
 x =>
-x.id ===
-"design"
+x.id === "design"
 )
 ?.data
 ||
@@ -6384,8 +4966,7 @@ x.id ===
 adSettings =
 docs.find(
 x =>
-x.id ===
-"ads"
+x.id === "ads"
 )
 ?.data
 ||
@@ -6395,8 +4976,7 @@ x.id ===
 footerSettings =
 docs.find(
 x =>
-x.id ===
-"footer"
+x.id === "footer"
 )
 ?.data
 ||
@@ -6413,14 +4993,18 @@ function applyStoreIdentity(){
 const storeName =
 getStoreName();
 
+
 const storeNameEn =
 getStoreNameEn();
+
 
 const eyebrow =
 getStoreEyebrow();
 
+
 const logoUrl =
 getStoreLogo();
+
 
 const splashLogoUrl =
 generalSettings.splashLogoUrl
@@ -6441,8 +5025,7 @@ generalSettings.splashLogoWidth
 
 
 if(
-window.innerWidth <=
-600
+window.innerWidth <= 600
 ){
 
 splashLogoWidth =
@@ -6452,9 +5035,9 @@ generalSettings.splashMobileWidth
 220
 );
 
-}else if(
-window.innerWidth <=
-1024
+}
+else if(
+window.innerWidth <= 1024
 ){
 
 splashLogoWidth =
@@ -6579,6 +5162,7 @@ generalSettings.splashBackground;
 const splashLogo =
 $("splashLogo");
 
+
 const splashFallback =
 $("splashTextFallback");
 
@@ -6626,13 +5210,16 @@ setTimeout(
 const currentSplash =
 $("storeSplash");
 
+
 if(!currentSplash){
 return;
 }
 
+
 currentSplash.classList.add(
 "hide"
 );
+
 
 setTimeout(
 () => {
@@ -6720,8 +5307,7 @@ generalSettings.cardWidth
 
 
 if(
-window.innerWidth <=
-600
+window.innerWidth <= 600
 ){
 
 const mobilePercent =
@@ -6730,6 +5316,7 @@ designSettings.productMobileWidth
 ||
 72
 );
+
 
 cardWidth =
 Math.max(
@@ -6741,9 +5328,9 @@ mobilePercent / 100
 )
 );
 
-}else if(
-window.innerWidth <=
-1024
+}
+else if(
+window.innerWidth <= 1024
 ){
 
 cardWidth =
@@ -6776,6 +5363,7 @@ $("customBackground")
 .style.backgroundImage =
 `url("${background}")`;
 
+
 $("customBackground")
 .style.opacity =
 String(
@@ -6783,6 +5371,7 @@ designSettings.backgroundOpacity
 ??
 .15
 );
+
 
 $("customBackground")
 .style.display =
@@ -6809,9 +5398,11 @@ $("watermark")
 .style.backgroundImage =
 `url("${watermark}")`;
 
+
 $("watermark")
 .style.backgroundSize =
 "180px auto";
+
 
 $("watermark")
 .style.opacity =
@@ -6820,6 +5411,7 @@ designSettings.watermarkOpacity
 ??
 .1
 );
+
 
 $("watermark")
 .style.display =
@@ -6875,6 +5467,7 @@ whatsapp.replace(
 /\D/g,
 ""
 );
+
 
 $("whatsappButton")
 .style.display =
@@ -7115,11 +5708,9 @@ getStoreEyebrow(),
 short_name:
 getStoreName(),
 
-start_url:
-".",
+start_url:".",
 
-display:
-"standalone",
+display:"standalone",
 
 background_color:
 getComputedStyle(
@@ -7164,7 +5755,27 @@ blob
 }
 
 
-/* ================= ADVERTISEMENT FIX ================= */
+/* =========================================================
+   ADS
+========================================================= */
+
+function adIsEnabled(){
+
+return (
+adSettings.enabled === true
+||
+adSettings.enabled === 1
+||
+String(
+adSettings.enabled
+)
+.toLowerCase()
+===
+"true"
+);
+
+}
+
 
 function getAdDimensions(){
 
@@ -7179,8 +5790,7 @@ let maxWidth =
 
 
 if(
-window.innerWidth <=
-600
+window.innerWidth <= 600
 ){
 
 width =
@@ -7190,12 +5800,14 @@ adSettings.mobileWidth
 100
 );
 
+
 height =
 Number(
 adSettings.mobileHeight
 ??
 220
 );
+
 
 maxWidth =
 Number(
@@ -7206,8 +5818,7 @@ adSettings.mobileMaxWidth
 
 }
 else if(
-window.innerWidth <=
-1024
+window.innerWidth <= 1024
 ){
 
 width =
@@ -7217,12 +5828,14 @@ adSettings.tabletWidth
 100
 );
 
+
 height =
 Number(
 adSettings.tabletHeight
 ??
 360
 );
+
 
 maxWidth =
 Number(
@@ -7241,12 +5854,14 @@ adSettings.desktopWidth
 100
 );
 
+
 height =
 Number(
 adSettings.desktopHeight
 ??
 420
 );
+
 
 maxWidth =
 Number(
@@ -7303,8 +5918,10 @@ null;
 const section =
 $("adSection");
 
+
 const wrap =
 $("adWrap");
+
 
 const shell =
 $("adShell");
@@ -7324,11 +5941,7 @@ return;
 
 
 const enabled =
-(
-adSettings.enabled === true
-||
-String(adSettings.enabled) === "true"
-);
+adIsEnabled();
 
 
 const type =
@@ -7356,19 +5969,21 @@ adSettings.link
 if(
 !enabled
 ||
-media.length ===
-0
+media.length === 0
 ){
 
 section.classList.remove(
 "show"
 );
 
+
 section.style.display =
 "none";
 
+
 wrap.innerHTML =
 "";
+
 
 return;
 
@@ -7455,8 +6070,7 @@ link
 
 
 if(
-type ===
-"video"
+type === "video"
 ){
 
 const videoUrl =
@@ -7496,6 +6110,18 @@ video.muted =
 true;
 
 
+video.playsInline =
+true;
+
+
+video.autoplay =
+true;
+
+
+video.loop =
+true;
+
+
 video.setAttribute(
 "muted",
 ""
@@ -7514,34 +6140,73 @@ video.setAttribute(
 );
 
 
-const playPromise =
+video.setAttribute(
+"preload",
+"auto"
+);
+
+
+const tryPlay =
+() => {
+
+const promise =
 video.play();
 
 
 if(
-playPromise
+promise
 &&
-typeof playPromise.catch ===
+typeof promise.catch ===
 "function"
 ){
 
-playPromise.catch(
+promise.catch(
 error => {
 
 console.warn(
-"Autoplay blocked:",
+"[ALSHUAIIBE] autoplay blocked:",
 error
 );
 
 
-/*
-إذا منع المتصفح التشغيل التلقائي
-نظهر أدوات التشغيل بدل إخفاء الإعلان.
-*/
-
 video.controls =
 true;
 
+
+video.muted =
+true;
+
+
+if(
+generalSettings.logoUrl
+){
+
+video.poster =
+generalSettings.logoUrl;
+
+}
+
+}
+);
+
+}
+
+};
+
+
+if(
+video.readyState >= 2
+){
+
+tryPlay();
+
+}else{
+
+video.addEventListener(
+"loadeddata",
+tryPlay,
+{
+once:true
 }
 );
 
@@ -7556,8 +6221,7 @@ return;
 
 
 if(
-type ===
-"slider"
+type === "slider"
 ||
 media.length > 1
 ){
@@ -7660,8 +6324,7 @@ wrap.querySelectorAll(
 
 
 if(
-slides.length <
-2
+slides.length < 2
 ){
 return;
 }
@@ -7721,9 +6384,7 @@ $("adWrap")
 );
 
 
-if(
-!slides.length
-){
+if(!slides.length){
 return;
 }
 
@@ -7776,7 +6437,9 @@ safeIndex;
 }
 
 
-/* ================= GIFT SECTION ================= */
+/* =========================================================
+   GIFT SECTION
+========================================================= */
 
 function renderGiftSection(){
 
@@ -7787,9 +6450,7 @@ generalSettings.giftSection
 
 
 if(
-gift.enabled
-===
-false
+gift.enabled === false
 ){
 
 $("giftSection")
@@ -7873,7 +6534,9 @@ gift.buttonColor
 }
 
 
-/* ================= FOOTER ================= */
+/* =========================================================
+   FOOTER
+========================================================= */
 
 const footerPolicyDefinitions = [
 
@@ -7942,6 +6605,7 @@ item => {
 const key =
 item[0];
 
+
 return (
 policies[
 key
@@ -7960,8 +6624,10 @@ item => {
 const key =
 item[0];
 
+
 const fallbackTitle =
 item[1];
+
 
 const title =
 policies[
@@ -8056,9 +6722,7 @@ paymentSettings.bankAccounts.filter(
 item =>
 item
 &&
-item.enabled
-!==
-false
+item.enabled !== false
 )
 :
 [];
@@ -8131,9 +6795,7 @@ paymentSettings.paymentMethods.filter(
 item =>
 item
 &&
-item.enabled
-!==
-false
+item.enabled !== false
 )
 :
 [];
@@ -8146,7 +6808,13 @@ methods
 method => `
 
 <div class="payment-chip">
-${escapeHTML(method.name || method.id || "دفع")}
+${escapeHTML(
+method.name
+||
+method.id
+||
+"دفع"
+)}
 </div>
 
 `
@@ -8167,8 +6835,7 @@ footerSettings.policies
 const definition =
 footerPolicyDefinitions.find(
 item =>
-item[0] ===
-key
+item[0] === key
 );
 
 
@@ -8218,12 +6885,15 @@ $("policyModal")
 "show"
 );
 
+
 updateMainScrim();
 
 }
 
 
-/* ================= PAYMENT OPTIONS ================= */
+/* =========================================================
+   PAYMENT OPTIONS
+========================================================= */
 
 function renderPaymentMethods(){
 
@@ -8236,17 +6906,14 @@ paymentSettings.paymentMethods.filter(
 item =>
 item
 &&
-item.enabled
-!==
-false
+item.enabled !== false
 )
 :
 [];
 
 
 if(
-methods.length ===
-0
+methods.length === 0
 ){
 
 methods = [
@@ -8275,9 +6942,19 @@ methods
 method => `
 
 <option
-value="${escapeHTML(method.id || method.type || "bank")}"
+value="${escapeHTML(
+method.id
+||
+method.type
+||
+"bank"
+)}"
 >
-${escapeHTML(method.name || "وسيلة دفع")}
+${escapeHTML(
+method.name
+||
+"وسيلة دفع"
+)}
 </option>
 
 `
@@ -8287,7 +6964,9 @@ ${escapeHTML(method.name || "وسيلة دفع")}
 }
 
 
-/* ================= DATABASE ================= */
+/* =========================================================
+   DATABASE
+========================================================= */
 
 async function fetchCategories(){
 
@@ -8374,6 +7053,7 @@ $("productsArea")
 </div>
 
 `;
+
 
 return;
 
@@ -8514,9 +7194,15 @@ data || [];
 }
 
 
-/* ================= BUNDLES FIX ================= */
+/* =========================================================
+   BUNDLES — FIXED
+========================================================= */
 
 async function fetchBundles(){
+
+const container =
+$("bundlesRow");
+
 
 try{
 
@@ -8545,7 +7231,7 @@ throw error;
 
 
 const now =
-new Date();
+Date.now();
 
 
 bundles =
@@ -8562,8 +7248,7 @@ bundle.stock
 
 
 if(
-stock <=
-0
+stock <= 0
 ){
 
 return false;
@@ -8575,18 +7260,17 @@ if(
 bundle.ends_at
 ){
 
-const end =
+const endTime =
 new Date(
 bundle.ends_at
-);
+)
+.getTime();
 
 
 if(
-!Number.isNaN(
-end.getTime()
-)
+Number.isFinite(endTime)
 &&
-end <= now
+endTime <= now
 ){
 
 return false;
@@ -8602,13 +7286,27 @@ return true;
 );
 
 
-bundleItems =
-[];
+/*
+نعرض الباقات فورًا.
+فشل bundle_items لن يخفي الباقة.
+*/
+
+renderBundles();
 
 
 if(
-bundles.length
+!bundles.length
 ){
+
+bundleItems =
+[];
+
+return;
+
+}
+
+
+try{
 
 const bundleIds =
 bundles.map(
@@ -8627,45 +7325,50 @@ await client
 .in(
 "bundle_id",
 bundleIds
-)
-.order(
-"sort_order",
-{
-ascending:true
-}
 );
 
 
 if(itemsError){
 
-console.error(
-"bundle_items error:",
+console.warn(
+"[ALSHUAIIBE] bundle_items failed:",
 itemsError
 );
 
-}else{
+
+bundleItems =
+[];
+
+return;
+
+}
+
 
 bundleItems =
 items || [];
-
-}
-
-}
-
-
-console.log(
-"Active bundles:",
-bundles
-);
 
 
 renderBundles();
 
 }
+catch(itemsError){
+
+console.warn(
+"[ALSHUAIIBE] bundle_items exception:",
+itemsError
+);
+
+
+bundleItems =
+[];
+
+}
+
+}
 catch(error){
 
 console.error(
-"fetchBundles error:",
+"[ALSHUAIIBE] fetchBundles failed:",
 error
 );
 
@@ -8677,8 +7380,9 @@ bundleItems =
 [];
 
 
-$("bundlesRow")
-.innerHTML = `
+if(container){
+
+container.innerHTML = `
 
 <div class="bundle-empty">
 
@@ -8695,6 +7399,8 @@ error.message || ""
 </div>
 
 `;
+
+}
 
 }
 
@@ -8726,6 +7432,7 @@ container.innerHTML = `
 
 `;
 
+
 return;
 
 }
@@ -8736,7 +7443,7 @@ bundles
 .map(
 bundle => {
 
-const regularPrice =
+const regular =
 Number(
 bundle.regular_price
 ??
@@ -8744,12 +7451,24 @@ bundle.regular_price
 );
 
 
-const offerPrice =
+let offer =
 Number(
 bundle.offer_price
 ??
-regularPrice
+regular
 );
+
+
+if(
+!offer
+&&
+regular
+){
+
+offer =
+regular;
+
+}
 
 
 const currency =
@@ -8758,24 +7477,18 @@ bundle.currency
 "ر.ي";
 
 
-const stock =
-Number(
-bundle.stock
-??
-0
-);
-
-
 const image =
 bundle.image_url
 ||
 "";
 
 
-const description =
-bundle.description
-||
-"";
+const stock =
+Number(
+bundle.stock
+??
+0
+);
 
 
 return `
@@ -8801,6 +7514,7 @@ bundle.name || "باقة"
 )}"
 loading="lazy"
 onerror="
+this.onerror=null;
 this.style.display='none';
 "
 >
@@ -8809,7 +7523,7 @@ this.style.display='none';
 :
 `
 
-<div style="font-size:48px">
+<div style="font-size:52px">
 🔥
 </div>
 
@@ -8817,7 +7531,6 @@ this.style.display='none';
 }
 
 </div>
-
 
 <div class="bundle-body">
 
@@ -8830,40 +7543,39 @@ bundle.name || "باقة"
 
 </div>
 
-
 ${
-description
+bundle.description
 ?
 `
 
 <div class="bundle-desc">
-${escapeHTML(description)}
+${escapeHTML(
+bundle.description
+)}
 </div>
 
 `
 :
 ""
 }
-
 
 <div class="bundle-price-row">
 
 <span class="bundle-price">
 
-${offerPrice.toFixed(2)}
+${offer.toFixed(2)}
 ${escapeHTML(currency)}
 
 </span>
 
-
 ${
-regularPrice > offerPrice
+regular > offer
 ?
 `
 
 <span class="bundle-old-price">
 
-${regularPrice.toFixed(2)}
+${regular.toFixed(2)}
 ${escapeHTML(currency)}
 
 </span>
@@ -8874,7 +7586,6 @@ ${escapeHTML(currency)}
 }
 
 </div>
-
 
 <div class="hint">
 
@@ -8882,7 +7593,6 @@ ${escapeHTML(currency)}
 ${stock}
 
 </div>
-
 
 ${
 bundle.ends_at
@@ -8907,7 +7617,6 @@ bundle.ends_at
 ""
 }
 
-
 <div class="bundle-actions">
 
 <button
@@ -8915,9 +7624,7 @@ class="btn gold small"
 type="button"
 onclick="addBundleToCart('${bundle.id}')"
 >
-
-أضف الباقة للسلة
-
+🔥 أضف الباقة للسلة
 </button>
 
 </div>
@@ -9009,8 +7716,7 @@ bundle.id;
 const existing =
 cart.find(
 item =>
-item.key ===
-key
+item.key === key
 );
 
 
@@ -9038,8 +7744,7 @@ cart.push({
 
 key,
 
-itemType:
-"bundle",
+itemType:"bundle",
 
 id:
 String(bundle.id),
@@ -9091,16 +7796,20 @@ product.name
 
 saveCart();
 
+
 toast(
 "تمت إضافة الباقة للسلة 🔥"
 );
+
 
 openCart();
 
 }
 
 
-/* ================= GIFT OPTIONS ================= */
+/* =========================================================
+   GIFT OPTIONS
+========================================================= */
 
 async function fetchGiftOptions(){
 
@@ -9130,6 +7839,7 @@ console.error(
 error
 );
 
+
 giftOptions =
 [];
 
@@ -9146,7 +7856,9 @@ renderGiftBuilderWraps();
 }
 
 
-/* ================= CATEGORY + PRODUCTS ================= */
+/* =========================================================
+   CATEGORY
+========================================================= */
 
 function renderCategoryFilters(){
 
@@ -9156,8 +7868,7 @@ const buttons = [
 
 <button
 class="${
-activeCategory ===
-"الكل"
+activeCategory === "الكل"
 ?
 "active"
 :
@@ -9181,8 +7892,7 @@ buttons.push(
 
 <button
 class="${
-activeCategory ===
-category.name
+activeCategory === category.name
 ?
 "active"
 :
@@ -9231,6 +7941,7 @@ $("searchInput")
 .trim()
 .toLowerCase();
 
+
 renderProducts();
 
 }
@@ -9241,6 +7952,7 @@ function handleSort(){
 sortMode =
 $("sortSelect")
 .value;
+
 
 renderProducts();
 
@@ -9254,8 +7966,7 @@ let list =
 
 
 if(
-activeCategory ===
-"__favorites__"
+activeCategory === "__favorites__"
 ){
 
 list =
@@ -9268,15 +7979,23 @@ product.id
 
 }
 else if(
-activeCategory !==
-"الكل"
+activeCategory !== "الكل"
 ){
+
+const selected =
+normalizeCategoryName(
+activeCategory
+);
+
 
 list =
 list.filter(
 product =>
-product.category ===
-activeCategory
+normalizeCategoryName(
+product.category
+)
+===
+selected
 );
 
 }
@@ -9302,6 +8021,7 @@ product.name
 )
 .toLowerCase();
 
+
 return haystack.includes(
 searchText
 );
@@ -9313,8 +8033,7 @@ searchText
 
 
 if(
-sortMode ===
-"default"
+sortMode === "default"
 ){
 
 list.sort(
@@ -9327,6 +8046,7 @@ a.sort_order
 0
 );
 
+
 const sortB =
 Number(
 b.sort_order
@@ -9334,14 +8054,15 @@ b.sort_order
 0
 );
 
+
 if(
-sortA !==
-sortB
+sortA !== sortB
 ){
 
 return sortA - sortB;
 
 }
+
 
 return new Date(
 b.created_at
@@ -9353,6 +8074,7 @@ a.created_at
 
 }
 );
+
 
 return list;
 
@@ -9385,8 +8107,7 @@ Number(b.discount || 0)
 
 
 if(
-sortMode ===
-"priceAsc"
+sortMode === "priceAsc"
 ){
 
 return aPrice - bPrice;
@@ -9395,8 +8116,7 @@ return aPrice - bPrice;
 
 
 if(
-sortMode ===
-"priceDesc"
+sortMode === "priceDesc"
 ){
 
 return bPrice - aPrice;
@@ -9405,8 +8125,7 @@ return bPrice - aPrice;
 
 
 if(
-sortMode ===
-"name"
+sortMode === "name"
 ){
 
 return String(a.name)
@@ -9476,7 +8195,9 @@ return `
 
 <article
 class="product-card"
-data-product-id="${escapeHTML(String(product.id))}"
+data-product-id="${escapeHTML(
+String(product.id)
+)}"
 >
 
 <div
@@ -9504,7 +8225,6 @@ loading="lazy"
 ""
 }
 
-
 ${
 generalSettings.featureWish
 !== false
@@ -9518,7 +8238,6 @@ onclick="toggleFavorite(
 event
 )"
 >
-
 ${
 favorite
 ?
@@ -9526,14 +8245,12 @@ favorite
 :
 "🤍"
 }
-
 </button>
 
 `
 :
 ""
 }
-
 
 ${
 discount > 0
@@ -9549,7 +8266,6 @@ discount > 0
 ""
 }
 
-
 ${
 product.is_new
 ?
@@ -9563,7 +8279,6 @@ product.is_new
 :
 ""
 }
-
 
 ${
 out
@@ -9581,21 +8296,16 @@ out
 
 </div>
 
-
 <h3>
 ${escapeHTML(product.name)}
 </h3>
 
-
 <div class="price-row">
 
 <span class="price">
-
 ${finalPrice.toFixed(2)}
 ${escapeHTML(product.currency || "ر.ي")}
-
 </span>
-
 
 ${
 discount > 0
@@ -9603,9 +8313,7 @@ discount > 0
 `
 
 <span class="old-price">
-
 ${price.toFixed(2)}
-
 </span>
 
 `
@@ -9614,7 +8322,6 @@ ${price.toFixed(2)}
 }
 
 </div>
-
 
 <div class="product-card-actions">
 
@@ -9629,7 +8336,6 @@ out
 }
 onclick="quickAdd('${product.id}')"
 >
-
 ${
 out
 ?
@@ -9637,9 +8343,7 @@ out
 :
 "أضف للسلة"
 }
-
 </button>
-
 
 <button
 class="gift-buy-btn"
@@ -9664,6 +8368,10 @@ onclick="buyProductAsGift('${product.id}')"
 }
 
 
+/* =========================================================
+   PRODUCTS — CATEGORY FIX
+========================================================= */
+
 function renderProducts(){
 
 const list =
@@ -9678,8 +8386,7 @@ $("productsArea")
 <div class="empty">
 
 ${
-activeCategory ===
-"__favorites__"
+activeCategory === "__favorites__"
 ?
 "قائمة المفضلة فارغة."
 :
@@ -9690,19 +8397,22 @@ activeCategory ===
 
 `;
 
+
 return;
 
 }
 
 
+/*
+عرض قسم محدد أو المفضلة
+*/
+
 if(
-activeCategory !==
-"الكل"
+activeCategory !== "الكل"
 ){
 
 const title =
-activeCategory ===
-"__favorites__"
+activeCategory === "__favorites__"
 ?
 "المفضلة"
 :
@@ -9720,11 +8430,7 @@ ${escapeHTML(title)}
 
 <div class="product-row">
 
-${
-list
-.map(productCard)
-.join("")
-}
+${list.map(productCard).join("")}
 
 </div>
 
@@ -9735,137 +8441,175 @@ list
 
 setupProductCarousels();
 
+
 return;
 
 }
 
 
-const groups =
+/*
+إنشاء الأقسام من بيانات المنتجات نفسها.
+لا يوجد "منتجات أخرى".
+*/
+
+const categoryMap =
+new Map();
+
+
+list.forEach(
+product => {
+
+const rawCategory =
+normalizeCategoryName(
+product.category
+);
+
+
+const categoryName =
+rawCategory
+||
+"بدون قسم";
+
+
+if(
+!categoryMap.has(
+categoryName
+)
+){
+
+categoryMap.set(
+categoryName,
+[]
+);
+
+}
+
+
+categoryMap.get(
+categoryName
+)
+.push(
+product
+);
+
+}
+);
+
+
+/*
+ترتيب الأقسام المسجلة في جدول categories أولاً.
+*/
+
+const orderedGroups =
 [];
+
+
+const added =
+new Set();
 
 
 categories.forEach(
 category => {
 
-const items =
-list.filter(
-product =>
-String(
-product.category || ""
-)
-.trim()
-===
-String(
-category.name || ""
-)
-.trim()
+const name =
+normalizeCategoryName(
+category.name
 );
 
 
-if(items.length){
+if(
+!name
+||
+!categoryMap.has(name)
+){
 
-groups.push({
+return;
 
-name:
-category.name,
+}
+
+
+orderedGroups.push({
+
+name,
 
 font:
-category.font_family,
+category.font_family
+||
+null,
+
+items:
+categoryMap.get(name)
+
+});
+
+
+added.add(name);
+
+}
+);
+
+
+/*
+أي قسم موجود داخل منتج ولكنه غير مسجل في categories
+يظهر باسمه الحقيقي.
+*/
+
+categoryMap.forEach(
+(
+items,
+name
+) => {
+
+if(
+added.has(name)
+){
+
+return;
+
+}
+
+
+orderedGroups.push({
+
+name,
+
+font:null,
 
 items
 
 });
 
 }
-
-}
 );
-
-
-const knownCategoryNames =
-new Set(
-categories
-.map(
-category =>
-String(
-category.name || ""
-)
-.trim()
-)
-);
-
-
-const uncategorized =
-list.filter(
-product => {
-
-const categoryName =
-String(
-product.category || ""
-)
-.trim();
-
-return (
-!categoryName
-||
-!knownCategoryNames.has(
-categoryName
-)
-);
-
-}
-);
-
-
-if(
-uncategorized.length
-){
-
-groups.push({
-
-name:
-"منتجات أخرى",
-
-font:null,
-
-items:
-uncategorized
-
-});
-
-}
 
 
 $("productsArea")
 .innerHTML =
-groups
+orderedGroups
 .map(
 group => `
 
-<div class="category-group">
+<div
+class="category-group"
+data-category="${escapeHTML(group.name)}"
+>
 
 <h3
 class="category-title"
-style="
-font-family:${
+style="${
 group.font
 ?
-`'${escapeHTML(group.font)}', var(--font-category)`
+`font-family:'${escapeHTML(group.font)}',var(--font-category);`
 :
-"var(--font-category)"
-}
-"
+""
+}"
 >
 ${escapeHTML(group.name)}
 </h3>
 
 <div class="product-row">
 
-${
-group.items
-.map(productCard)
-.join("")
-}
+${group.items.map(productCard).join("")}
 
 </div>
 
@@ -9881,7 +8625,9 @@ setupProductCarousels();
 }
 
 
-/* ================= PRODUCT CAROUSEL ================= */
+/* =========================================================
+   PRODUCT CAROUSEL
+========================================================= */
 
 function setupProductCarousels(){
 
@@ -9923,14 +8669,17 @@ card.classList.remove(
 "carousel-center"
 );
 
+
 card.style.transform =
 "";
+
 
 card.style.opacity =
 "";
 
 }
 );
+
 
 return;
 
@@ -9965,6 +8714,7 @@ rowRect.width / 2;
 
 let closest =
 null;
+
 
 let closestDistance =
 Infinity;
@@ -10010,8 +8760,7 @@ cards.forEach(
 card => {
 
 const active =
-card ===
-closest;
+card === closest;
 
 
 card.classList.toggle(
@@ -10101,7 +8850,12 @@ update,
 }
 );
 
-}/* ================= PRODUCT MODAL ================= */
+}
+
+
+/* =========================================================
+   PRODUCT MODAL
+========================================================= */
 
 function quickAdd(productId){
 
@@ -10252,10 +9006,7 @@ optionsHTML += `
 اللون
 </label>
 
-<div
-class="swatches"
-id="modalColors"
->
+<div class="swatches" id="modalColors">
 
 ${
 product.colors
@@ -10302,10 +9053,7 @@ optionsHTML += `
 الحجم
 </label>
 
-<div
-class="swatches"
-id="modalSizes"
->
+<div class="swatches" id="modalSizes">
 
 ${
 product.sizes
@@ -10460,7 +9208,9 @@ closeProductModal();
 }
 
 
-/* ================= CART ================= */
+/* =========================================================
+   CART
+========================================================= */
 
 function addCartItem(
 product,
@@ -10515,8 +9265,7 @@ String(product.id)
 const existing =
 cart.find(
 item =>
-item.key ===
-key
+item.key === key
 );
 
 
@@ -10544,8 +9293,7 @@ cart.push({
 
 key,
 
-itemType:
-"product",
+itemType:"product",
 
 id:
 String(product.id),
@@ -10576,16 +9324,20 @@ product.currency
 
 saveCart();
 
+
 toast(
 "أُضيف إلى السلة"
 );
+
 
 openCart();
 
 }
 
 
-/* ================= GIFT BUILDER ================= */
+/* =========================================================
+   GIFT BUILDER
+========================================================= */
 
 function buyProductAsGift(productId){
 
@@ -10682,9 +9434,7 @@ return;
 const availableProducts =
 products.filter(
 product =>
-Number(product.stock || 0)
->
-0
+Number(product.stock || 0) > 0
 );
 
 
@@ -10697,6 +9447,7 @@ container.innerHTML = `
 </div>
 
 `;
+
 
 return;
 
@@ -10828,9 +9579,7 @@ return;
 }
 
 
-if(
-!giftOptions.length
-){
+if(!giftOptions.length){
 
 container.innerHTML = `
 
@@ -10839,6 +9588,7 @@ container.innerHTML = `
 </div>
 
 `;
+
 
 return;
 
@@ -10952,6 +9702,7 @@ if(!product){
 
 container.innerHTML =
 "اختر المنتج أولاً.";
+
 
 return;
 
@@ -11173,8 +9924,7 @@ cart.push({
 
 key,
 
-itemType:
-"product",
+itemType:"product",
 
 id:
 String(product.id),
@@ -11220,7 +9970,9 @@ openCart();
 }
 
 
-/* ================= CART VALIDATION ================= */
+/* =========================================================
+   CART VALIDATION
+========================================================= */
 
 function cleanCartAgainstData(){
 
@@ -11244,8 +9996,7 @@ return false;
 
 
 if(
-item.itemType ===
-"bundle"
+item.itemType === "bundle"
 ){
 
 return bundles.some(
@@ -11274,8 +10025,7 @@ String(item.id)
 function getCartItemPricing(item){
 
 if(
-item.itemType ===
-"bundle"
+item.itemType === "bundle"
 ){
 
 const bundle =
@@ -11433,9 +10183,7 @@ $("cartCount")
 String(count);
 
 
-if(
-!cart.length
-){
+if(!cart.length){
 
 localStorage.removeItem(
 "alshuaiibe_cart"
@@ -11473,9 +10221,7 @@ cart
 item => {
 
 const pricing =
-getCartItemPricing(
-item
-);
+getCartItemPricing(item);
 
 
 if(!pricing){
@@ -11524,14 +10270,12 @@ alt="${escapeHTML(pricing.name || "")}"
 ""
 }
 
-
 <div class="cart-info">
 
 <div class="cart-name">
 
 ${
-item.itemType ===
-"bundle"
+item.itemType === "bundle"
 ?
 "🔥 "
 :
@@ -11541,7 +10285,6 @@ item.itemType ===
 ${escapeHTML(pricing.name || "")}
 
 </div>
-
 
 ${
 item.isGift
@@ -11557,7 +10300,6 @@ item.isGift
 ""
 }
 
-
 <div class="cart-meta">
 
 ${
@@ -11572,7 +10314,6 @@ item.size
 
 </div>
 
-
 ${
 item.isGift
 &&
@@ -11583,7 +10324,9 @@ item.giftData
 <div class="cart-meta">
 
 إلى:
-${escapeHTML(item.giftData.recipient_name || "")}
+${escapeHTML(
+item.giftData.recipient_name || ""
+)}
 
 ${
 item.giftData.wrap_name
@@ -11602,7 +10345,6 @@ item.giftData.wrap_name
 ""
 }
 
-
 <div class="cart-meta">
 
 ${pricing.unitPrice.toFixed(2)}
@@ -11610,14 +10352,10 @@ ${escapeHTML(pricing.currency)}
 
 </div>
 
-
 <div class="qty">
 
 <button
-onclick="changeQty(
-'${item.key}',
--1
-)"
+onclick="changeQty('${item.key}',-1)"
 >
 −
 </button>
@@ -11627,18 +10365,13 @@ ${qty}
 </span>
 
 <button
-onclick="changeQty(
-'${item.key}',
-1
-)"
+onclick="changeQty('${item.key}',1)"
 >
 +
 </button>
 
 <button
-onclick="removeCartItem(
-'${item.key}'
-)"
+onclick="removeCartItem('${item.key}')"
 style="
 width:auto;
 padding:0 8px;
@@ -11694,8 +10427,7 @@ change
 const item =
 cart.find(
 item =>
-item.key ===
-key
+item.key === key
 );
 
 
@@ -11705,16 +10437,12 @@ return;
 
 
 const pricing =
-getCartItemPricing(
-item
-);
+getCartItemPricing(item);
 
 
 if(!pricing){
 
-removeCartItem(
-key
-);
+removeCartItem(key);
 
 return;
 
@@ -11735,6 +10463,7 @@ pricing.stock
 item.qty =
 pricing.stock;
 
+
 toast(
 "وصلت للكمية المتوفرة"
 );
@@ -11743,15 +10472,13 @@ toast(
 
 
 if(
-item.qty <=
-0
+item.qty <= 0
 ){
 
 cart =
 cart.filter(
 cartItem =>
-cartItem.key !==
-key
+cartItem.key !== key
 );
 
 }
@@ -11767,8 +10494,7 @@ function removeCartItem(key){
 cart =
 cart.filter(
 item =>
-item.key !==
-key
+item.key !== key
 );
 
 
@@ -11812,7 +10538,9 @@ $("cartDrawer")
 }
 
 
-/* ================= MODALS ================= */
+/* =========================================================
+   MODALS
+========================================================= */
 
 function showMainScrim(){
 
@@ -11970,7 +10698,9 @@ updateMainScrim();
 }
 
 
-/* ================= TOTAL + COUPONS ================= */
+/* =========================================================
+   TOTAL + COUPONS
+========================================================= */
 
 function calculateCart(){
 
@@ -11986,9 +10716,7 @@ cart.forEach(
 item => {
 
 const pricing =
-getCartItemPricing(
-item
-);
+getCartItemPricing(item);
 
 
 if(!pricing){
@@ -12028,8 +10756,7 @@ currentCoupon.min_order
 
 
 if(
-subtotal >=
-minOrder
+subtotal >= minOrder
 ){
 
 const type =
@@ -12047,8 +10774,7 @@ currentCoupon.value
 
 
 if(
-type ===
-"fixed"
+type === "fixed"
 ){
 
 discount =
@@ -12132,6 +10858,7 @@ $("couponMessage")
 
 renderPaymentDetails();
 
+
 return;
 
 }
@@ -12165,6 +10892,7 @@ $("couponMessage")
 
 renderPaymentDetails();
 
+
 return;
 
 }
@@ -12196,6 +10924,7 @@ $("couponMessage")
 
 renderPaymentDetails();
 
+
 return;
 
 }
@@ -12220,7 +10949,9 @@ renderPaymentDetails();
 }
 
 
-/* ================= PAYMENT ================= */
+/* =========================================================
+   PAYMENT
+========================================================= */
 
 function renderPaymentDetails(){
 
@@ -12279,23 +11010,18 @@ paymentSettings.bankAccounts.filter(
 item =>
 item
 &&
-item.enabled
-!==
-false
+item.enabled !== false
 )
 :
 [];
 
 
 if(
-method?.type ===
-"bank"
+method?.type === "bank"
 ||
-methodId ===
-"bank"
+methodId === "bank"
 ||
-methodId ===
-"deposit"
+methodId === "deposit"
 ){
 
 if(banks.length){
@@ -12310,6 +11036,7 @@ bank => {
 const lines =
 [];
 
+
 if(bank.bankName){
 
 lines.push(
@@ -12319,6 +11046,7 @@ bank.bankName
 );
 
 }
+
 
 if(bank.accountName){
 
@@ -12330,6 +11058,7 @@ bank.accountName
 
 }
 
+
 if(bank.accountNumber){
 
 lines.push(
@@ -12339,6 +11068,7 @@ bank.accountNumber
 );
 
 }
+
 
 if(bank.iban){
 
@@ -12350,6 +11080,7 @@ bank.iban
 
 }
 
+
 if(bank.instructions){
 
 lines.push(
@@ -12357,6 +11088,7 @@ bank.instructions
 );
 
 }
+
 
 return lines.join(
 "\n"
@@ -12367,44 +11099,6 @@ return lines.join(
 .join(
 "\n\n"
 );
-
-}
-else if(
-paymentSettings.bankName
-||
-paymentSettings.bankAccount
-){
-
-text +=
-`\n\nالبنك: ${
-paymentSettings.bankName
-||
-"—"
-}
-
-اسم الحساب: ${
-paymentSettings.bankHolder
-||
-"—"
-}
-
-رقم الحساب: ${
-paymentSettings.bankAccount
-||
-"—"
-}
-
-IBAN: ${
-paymentSettings.bankIban
-||
-"—"
-}
-
-${
-paymentSettings.bankInstructions
-||
-""
-}`;
 
 }
 
@@ -12430,7 +11124,9 @@ total.currency;
 }
 
 
-/* ================= CREATE ORDER ================= */
+/* =========================================================
+   CREATE ORDER
+========================================================= */
 
 async function submitOrder(){
 
@@ -12506,14 +11202,12 @@ cart.map(
 item => {
 
 if(
-item.itemType ===
-"bundle"
+item.itemType === "bundle"
 ){
 
 return {
 
-item_type:
-"bundle",
+item_type:"bundle",
 
 bundle_id:
 String(item.id),
@@ -12535,8 +11229,7 @@ null
 
 return {
 
-item_type:
-"product",
+item_type:"product",
 
 id:
 String(item.id),
@@ -12566,28 +11259,10 @@ null
 );
 
 
-const hasGift =
-cart.some(
-item =>
-item.isGift
-);
-
-
-let response =
-null;
-
-
-let error =
-null;
-
-
-/*
-نجرب دالة الطلب الموسعة أولاً.
-إذا كانت قاعدة البيانات تستخدم الدالة القديمة،
-نرجع تلقائياً للدالة الأصلية.
-*/
-
-let result =
+const {
+data,
+error
+} =
 await client.rpc(
 "place_order",
 {
@@ -12620,29 +11295,9 @@ items
 );
 
 
-response =
-result.data;
-
-error =
-result.error;
-
-
 if(error){
-
-console.error(
-"place_order:",
-error
-);
-
 throw error;
-
 }
-
-
-const data =
-response
-||
-{};
 
 
 const orderNumber =
@@ -12705,9 +11360,7 @@ fetchBundles()
 
 
 if(
-generalSettings.featureWaCheck
-===
-true
+generalSettings.featureWaCheck === true
 &&
 generalSettings.whatsapp
 ){
@@ -12730,8 +11383,7 @@ item => {
 
 message +=
 `- ${
-item.itemType ===
-"bundle"
+item.itemType === "bundle"
 ?
 "🔥 "
 :
@@ -12763,9 +11415,7 @@ item.giftData
 
 message +=
 ` | 🎁 للمستلم: ${
-item.giftData.recipient_name
-||
-""
+item.giftData.recipient_name || ""
 }`;
 
 }
@@ -12788,7 +11438,6 @@ data?.currency || ""
 
 
 window.open(
-
 "https://wa.me/"
 +
 generalSettings.whatsapp
@@ -12797,9 +11446,7 @@ generalSettings.whatsapp
 "?text="
 +
 encodeURIComponent(message),
-
 "_blank"
-
 );
 
 }
@@ -12869,32 +11516,21 @@ button.textContent =
 }
 
 
-/* ================= ORDERS ================= */
+/* =========================================================
+   ORDER TEXT
+========================================================= */
 
 function orderStatusText(status){
 
 return ({
 
-pending:
-"قيد الانتظار",
-
-confirmed:
-"تم التأكيد",
-
-processing:
-"قيد التجهيز",
-
-shipped:
-"تم الشحن",
-
-delivered:
-"تم التسليم",
-
-cancelled:
-"ملغي",
-
-refunded:
-"مسترجع"
+pending:"قيد الانتظار",
+confirmed:"تم التأكيد",
+processing:"قيد التجهيز",
+shipped:"تم الشحن",
+delivered:"تم التسليم",
+cancelled:"ملغي",
+refunded:"مسترجع"
 
 })[
 status
@@ -12911,17 +11547,10 @@ function paymentStatusText(status){
 
 return ({
 
-unpaid:
-"غير مدفوع",
-
-paid:
-"مدفوع",
-
-failed:
-"فشل الدفع",
-
-refunded:
-"مسترجع"
+unpaid:"غير مدفوع",
+paid:"مدفوع",
+failed:"فشل الدفع",
+refunded:"مسترجع"
 
 })[
 status
@@ -12960,14 +11589,9 @@ return configured.name;
 
 return ({
 
-bank:
-"تحويل بنكي",
-
-deposit:
-"إيداع بنكي",
-
-cash:
-"نقداً"
+bank:"تحويل بنكي",
+deposit:"إيداع بنكي",
+cash:"نقداً"
 
 })[
 method
@@ -12979,6 +11603,10 @@ method
 
 }
 
+
+/* =========================================================
+   TRACK ORDER
+========================================================= */
 
 function openMyOrders(){
 
@@ -13134,11 +11762,6 @@ let error =
 null;
 
 
-/*
-دالة جديدة إن كانت موجودة:
-track_order_by_phone_and_number
-*/
-
 let result =
 await client.rpc(
 "track_order_by_phone_and_number",
@@ -13160,17 +11783,15 @@ result.error
 (
 String(result.error.message || "")
 .toLowerCase()
-.includes("function")
+.includes(
+"function"
+)
 ||
 String(result.error.code || "")
 ===
 "PGRST202"
 )
 ){
-
-/*
-Fallback للدالة القديمة ثم نفلتر رقم الطلب محلياً.
-*/
 
 result =
 await client.rpc(
@@ -13199,6 +11820,7 @@ String(order.order_number)
 ===
 String(orderNumber)
 );
+
 
 error =
 null;
@@ -13244,6 +11866,7 @@ ${escapeHTML(error.message || "")}
 
 `;
 
+
 return;
 
 }
@@ -13286,6 +11909,7 @@ $("customerOrdersResults")
 
 `;
 
+
 return;
 
 }
@@ -13296,7 +11920,9 @@ renderCustomerOrders();
 }
 
 
-/* ================= RENDER ORDERS ================= */
+/* =========================================================
+   CUSTOMER ORDERS
+========================================================= */
 
 function renderCustomerOrders(){
 
@@ -13323,9 +11949,7 @@ return `
 <div>
 
 <div class="order-number">
-
 طلب #${escapeHTML(order.order_number || "")}
-
 </div>
 
 <div class="order-date">
@@ -13347,19 +11971,15 @@ order.created_at
 
 </div>
 
-
 <span
 class="order-status ${escapeHTML(order.status || "pending")}"
 >
-
 ${escapeHTML(
 orderStatusText(order.status)
 )}
-
 </span>
 
 </div>
-
 
 <div class="customer-order-body">
 
@@ -13372,14 +11992,11 @@ orderStatusText(order.status)
 </small>
 
 <strong>
-
 ${Number(order.total || 0).toFixed(2)}
 ${escapeHTML(order.currency || "")}
-
 </strong>
 
 </div>
-
 
 <div class="order-info-box">
 
@@ -13388,17 +12005,14 @@ ${escapeHTML(order.currency || "")}
 </small>
 
 <strong>
-
 ${escapeHTML(
 paymentStatusText(
 order.payment_status
 )
 )}
-
 </strong>
 
 </div>
-
 
 <div class="order-info-box">
 
@@ -13407,7 +12021,6 @@ order.payment_status
 </small>
 
 <strong>
-
 ${escapeHTML(
 paymentMethodText(
 order.pay_method
@@ -13415,11 +12028,9 @@ order.pay_method
 order.payment_method
 )
 )}
-
 </strong>
 
 </div>
-
 
 ${
 order.address
@@ -13443,7 +12054,6 @@ ${escapeHTML(order.address)}
 ""
 }
 
-
 ${
 order.invoice_number
 ?
@@ -13456,9 +12066,7 @@ order.invoice_number
 </small>
 
 <strong>
-
 #${escapeHTML(order.invoice_number)}
-
 </strong>
 
 </div>
@@ -13470,11 +12078,9 @@ order.invoice_number
 
 </div>
 
-
 <h4 style="margin:4px 0 8px">
 المنتجات
 </h4>
-
 
 ${
 items.length
@@ -13492,8 +12098,7 @@ null;
 
 
 if(
-typeof giftData ===
-"string"
+typeof giftData === "string"
 ){
 
 try{
@@ -13503,7 +12108,8 @@ JSON.parse(
 giftData
 );
 
-}catch(error){
+}
+catch(error){
 
 giftData =
 null;
@@ -13553,29 +12159,24 @@ display:grid;
 place-items:center;
 "
 >
-
 ${
-item.item_type ===
-"bundle"
+item.item_type === "bundle"
 ?
 "🔥"
 :
 "🛍️"
 }
-
 </div>
 
 `
 }
-
 
 <div class="customer-order-product">
 
 <strong>
 
 ${
-item.item_type ===
-"bundle"
+item.item_type === "bundle"
 ?
 "🔥 "
 :
@@ -13593,7 +12194,6 @@ item.name
 )}
 
 </strong>
-
 
 <small>
 
@@ -13623,7 +12223,6 @@ item.size
 }
 
 </small>
-
 
 ${
 giftData
@@ -13712,13 +12311,10 @@ giftData.card_message
 ""
 }
 
-
 ${
-order.status ===
-"delivered"
+order.status === "delivered"
 &&
-item.item_type !==
-"bundle"
+item.item_type !== "bundle"
 ?
 (
 item.reviewed
@@ -13737,13 +12333,17 @@ item.reviewed
 class="btn small gold review-product-btn"
 type="button"
 style="margin-top:7px"
-data-order-number="${escapeHTML(String(order.order_number || ""))}"
-data-product-id="${escapeHTML(String(item.product_id || ""))}"
-data-product-name="${escapeHTML(String(item.product_name || ""))}"
+data-order-number="${escapeHTML(
+String(order.order_number || "")
+)}"
+data-product-id="${escapeHTML(
+String(item.product_id || "")
+)}"
+data-product-name="${escapeHTML(
+String(item.product_name || "")
+)}"
 >
-
 ⭐ قيّم المنتج
-
 </button>
 
 `
@@ -13770,7 +12370,6 @@ data-product-name="${escapeHTML(String(item.product_name || ""))}"
 
 `
 }
-
 
 ${
 order.tracking_code
@@ -13832,14 +12431,11 @@ ${escapeHTML(order.tracking_code)}
 `
 
 <div class="tracking-box">
-
 بيانات التتبع ستظهر هنا عندما يقوم المتجر بشحن الطلب.
-
 </div>
 
 `
 }
-
 
 <div class="order-buttons">
 
@@ -13847,11 +12443,8 @@ ${escapeHTML(order.tracking_code)}
 class="btn secondary small"
 onclick="loadCustomerOrders()"
 >
-
 ↻ تحديث الحالة
-
 </button>
-
 
 ${
 order.invoice_snapshot
@@ -13861,12 +12454,18 @@ order.invoice_snapshot
 <button
 class="btn gold small"
 onclick="openCustomerInvoice(
-'${escapeHTML(String(order.order_id || order.id || ""))}'
+'${escapeHTML(
+String(
+order.order_id
+||
+order.id
+||
+""
+)
+)}'
 )"
 >
-
 🧾 عرض الفاتورة
-
 </button>
 
 `
@@ -13877,9 +12476,7 @@ onclick="openCustomerInvoice(
 class="btn secondary small"
 disabled
 >
-
 الفاتورة لم تصدر بعد
-
 </button>
 
 `
@@ -13900,7 +12497,9 @@ disabled
 }
 
 
-/* ================= REVIEW BUTTON HANDLER ================= */
+/* =========================================================
+   REVIEW BUTTON
+========================================================= */
 
 document.addEventListener(
 "click",
@@ -13922,39 +12521,19 @@ event.preventDefault();
 event.stopPropagation();
 
 
-const orderNumber =
-button.dataset.orderNumber
-||
-"";
-
-
-const productId =
-String(
-button.dataset.productId
-||
-""
-);
-
-
-const productName =
-String(
-button.dataset.productName
-||
-""
-);
-
-
 openReviewModal(
-orderNumber,
-productId,
-productName
+button.dataset.orderNumber || "",
+button.dataset.productId || "",
+button.dataset.productName || ""
 );
 
 }
 );
 
 
-/* ================= REVIEW ================= */
+/* =========================================================
+   REVIEW
+========================================================= */
 
 function openReviewModal(
 orderNumber,
@@ -14003,7 +12582,6 @@ return;
 
 reviewContext = {
 
-orderNumber:
 orderNumber,
 
 productId:
@@ -14266,7 +12844,9 @@ button.textContent =
 }
 
 
-/* ================= CUSTOMER INVOICE ================= */
+/* =========================================================
+   CUSTOMER INVOICE
+========================================================= */
 
 function openCustomerInvoice(orderId){
 
@@ -14410,19 +12990,14 @@ src="${escapeHTML(logo)}"
 }
 
 <div class="invoice-brand">
-
 ${escapeHTML(getStoreName())}
-
 </div>
 
 <div class="invoice-brand-en">
-
 ${escapeHTML(getStoreNameEn())}
-
 </div>
 
 </div>
-
 
 <div style="text-align:left">
 
@@ -14435,7 +13010,11 @@ ${escapeHTML(getStoreNameEn())}
 رقم الفاتورة:
 
 <strong>
-#${escapeHTML(invoice.invoice_number || "")}
+#${escapeHTML(
+invoice.invoice_number
+||
+""
+)}
 </strong>
 
 </div>
@@ -14463,7 +13042,6 @@ invoice.issued_at
 
 </div>
 
-
 <div class="invoice-grid">
 
 <div class="invoice-info">
@@ -14473,28 +13051,21 @@ invoice.issued_at
 </strong>
 
 <div>
-
 الاسم:
 ${escapeHTML(customer.name || "—")}
-
 </div>
 
 <div>
-
 الهاتف:
 ${escapeHTML(customer.phone || "—")}
-
 </div>
 
 <div>
-
 العنوان:
 ${escapeHTML(customer.address || "—")}
-
 </div>
 
 </div>
-
 
 <div class="invoice-info">
 
@@ -14503,41 +13074,35 @@ ${escapeHTML(customer.address || "—")}
 </strong>
 
 <div>
-
 رقم الطلب:
 #${escapeHTML(snapshot.order_number || "—")}
-
 </div>
 
 <div>
-
 الحالة:
 ${escapeHTML(
-orderStatusText(order.status)
+orderStatusText(
+order.status
+)
 )}
-
 </div>
 
 <div>
-
 حالة الدفع:
 ${escapeHTML(
 paymentStatusText(
 order.payment_status
 )
 )}
-
 </div>
 
 <div>
-
 طريقة الدفع:
 ${escapeHTML(
 paymentMethodText(
 order.pay_method
 )
 )}
-
 </div>
 
 ${
@@ -14546,10 +13111,8 @@ order.shipping_company
 `
 
 <div>
-
 شركة الشحن:
 ${escapeHTML(order.shipping_company)}
-
 </div>
 
 `
@@ -14563,10 +13126,8 @@ order.tracking_code
 `
 
 <div>
-
 رقم التتبع:
 ${escapeHTML(order.tracking_code)}
-
 </div>
 
 `
@@ -14577,7 +13138,6 @@ ${escapeHTML(order.tracking_code)}
 </div>
 
 </div>
-
 
 <div class="invoice-table-wrap">
 
@@ -14611,7 +13171,6 @@ ${escapeHTML(order.tracking_code)}
 
 </thead>
 
-
 <tbody>
 
 ${
@@ -14624,8 +13183,7 @@ item => `
 <td>
 
 ${
-item.item_type ===
-"bundle"
+item.item_type === "bundle"
 ?
 "🔥 "
 :
@@ -14680,7 +13238,8 @@ item.unit_price
 item.price
 ||
 0
-).toFixed(2)}
+)
+.toFixed(2)}
 
 ${escapeHTML(
 item.currency
@@ -14702,7 +13261,8 @@ item.total_price
 item.line_total
 ||
 0
-).toFixed(2)}
+)
+.toFixed(2)}
 
 ${escapeHTML(
 item.currency
@@ -14729,7 +13289,6 @@ totals.currency
 
 </div>
 
-
 <div class="invoice-totals">
 
 <div>
@@ -14739,23 +13298,20 @@ totals.currency
 </span>
 
 <span>
-
 ${Number(
 totals.subtotal
 ||
 0
-).toFixed(2)}
-
+)
+.toFixed(2)}
 ${escapeHTML(
 totals.currency
 ||
 ""
 )}
-
 </span>
 
 </div>
-
 
 <div>
 
@@ -14764,23 +13320,20 @@ totals.currency
 </span>
 
 <span>
-
 ${Number(
 totals.discount_amount
 ||
 0
-).toFixed(2)}
-
+)
+.toFixed(2)}
 ${escapeHTML(
 totals.currency
 ||
 ""
 )}
-
 </span>
 
 </div>
-
 
 <div>
 
@@ -14789,23 +13342,20 @@ totals.currency
 </span>
 
 <span>
-
 ${Number(
 totals.shipping_amount
 ||
 0
-).toFixed(2)}
-
+)
+.toFixed(2)}
 ${escapeHTML(
 totals.currency
 ||
 ""
 )}
-
 </span>
 
 </div>
-
 
 <div class="grand">
 
@@ -14814,25 +13364,22 @@ totals.currency
 </span>
 
 <span>
-
 ${Number(
 totals.total
 ||
 0
-).toFixed(2)}
-
+)
+.toFixed(2)}
 ${escapeHTML(
 totals.currency
 ||
 ""
 )}
-
 </span>
 
 </div>
 
 </div>
-
 
 <div
 style="
@@ -14842,10 +13389,8 @@ margin-top:25px;
 color:#666
 "
 >
-
 شكراً لتسوقكم من
 ${escapeHTML(getStoreEyebrow())}
-
 </div>
 
 </div>
@@ -14887,7 +13432,7 @@ window.open(
 if(!popup){
 
 alert(
-"المتصفح منع نافذة الطباعة. اسمح بالنوافذ المنبثقة ثم حاول مرة أخرى."
+"المتصفح منع نافذة الطباعة."
 );
 
 return;
@@ -14909,16 +13454,13 @@ dir="rtl"
 <meta charset="UTF-8">
 
 <title>
-
 فاتورة ${escapeHTML(getStoreName())}
-#${escapeHTML(currentInvoiceData.invoice_number || "")}
-
+#${escapeHTML(
+currentInvoiceData.invoice_number
+||
+""
+)}
 </title>
-
-<link
-href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Tajawal:wght@400;500;700;900&display=swap"
-rel="stylesheet"
->
 
 <style>
 
@@ -14927,128 +13469,77 @@ box-sizing:border-box;
 }
 
 body{
-
-font-family:Tajawal,sans-serif;
-
+font-family:Arial,sans-serif;
 padding:25px;
-
 margin:0;
-
 color:#1e1e1e;
-
+direction:rtl;
 }
 
 .invoice-sheet{
-
 max-width:900px;
-
 margin:auto;
-
 }
 
 .invoice-head{
-
 display:flex;
-
 justify-content:space-between;
-
 gap:15px;
-
 align-items:flex-start;
-
 padding-bottom:14px;
-
 border-bottom:2px solid #222;
-
 }
 
 .invoice-logo{
-
 width:82px;
-
 height:82px;
-
 object-fit:contain;
-
 display:block;
-
 }
 
 .invoice-brand{
-
-font-family:'Aref Ruqaa';
-
 font-weight:700;
-
 font-size:36px;
-
 }
 
 .invoice-brand-en{
-
 font-size:10px;
-
 letter-spacing:.15em;
-
 direction:ltr;
-
 }
 
 .invoice-title{
-
 font-size:21px;
-
 font-weight:900;
-
 }
 
 .invoice-grid{
-
 display:grid;
-
 grid-template-columns:1fr 1fr;
-
 gap:10px;
-
 margin:15px 0;
-
 }
 
 .invoice-info{
-
 border:1px solid #ddd;
-
 padding:11px;
-
 border-radius:10px;
-
 font-size:12px;
-
 line-height:1.9;
-
 }
 
 .invoice-table{
-
 width:100%;
-
 border-collapse:collapse;
-
 margin-top:12px;
-
 }
 
 .invoice-table th,
 .invoice-table td{
-
 padding:8px;
-
 border:1px solid #ddd;
-
 font-size:11px;
-
 text-align:right;
-
 }
 
 .invoice-table th{
@@ -15056,37 +13547,23 @@ background:#f2ecdf;
 }
 
 .invoice-totals{
-
 width:330px;
-
 max-width:100%;
-
 margin:15px 0 0 auto;
-
 }
 
 .invoice-totals div{
-
 display:flex;
-
 justify-content:space-between;
-
 padding:6px 0;
-
 border-bottom:1px solid #ddd;
-
 }
 
 .invoice-totals .grand{
-
 font-size:17px;
-
 font-weight:900;
-
 border-top:2px solid #222;
-
 border-bottom:0;
-
 }
 
 @media print{
@@ -15135,7 +13612,9 @@ popup.document.close();
 }
 
 
-/* ================= REVIEWS DISPLAY ================= */
+/* =========================================================
+   REVIEWS DISPLAY
+========================================================= */
 
 function renderReviews(){
 
@@ -15149,6 +13628,7 @@ $("reviewsRow")
 </div>
 
 `;
+
 
 return;
 
@@ -15230,7 +13710,9 @@ review.is_verified_purchase
 }
 
 
-/* ================= NOTIFICATIONS ================= */
+/* =========================================================
+   NOTIFICATIONS
+========================================================= */
 
 function renderNotifications(){
 
@@ -15283,7 +13765,9 @@ notification.image_url
 `
 
 <img
-src="${escapeHTML(notification.image_url)}"
+src="${escapeHTML(
+notification.image_url
+)}"
 >
 
 `
@@ -15294,15 +13778,11 @@ src="${escapeHTML(notification.image_url)}"
 <div>
 
 <div class="notification-title">
-
 ${escapeHTML(notification.title)}
-
 </div>
 
 <div class="notification-message">
-
 ${escapeHTML(notification.message)}
-
 </div>
 
 </div>
@@ -15383,7 +13863,9 @@ panel.classList.remove(
 );
 
 
-/* ================= SKELETON ================= */
+/* =========================================================
+   SKELETON
+========================================================= */
 
 function renderSkeletons(){
 
@@ -15434,7 +13916,9 @@ border:1px solid var(--line);
 }
 
 
-/* ================= RESPONSIVE REFRESH ================= */
+/* =========================================================
+   RESIZE
+========================================================= */
 
 let resizeTimer =
 null;
@@ -15467,7 +13951,9 @@ setupProductCarousels();
 );
 
 
-/* ================= START ================= */
+/* =========================================================
+   INITIALIZE
+========================================================= */
 
 async function initializeStore(){
 
@@ -15476,11 +13962,19 @@ $("cartCount")
 "0";
 
 
+/*
+الإعدادات أولاً
+*/
+
 await fetchSettings();
 
 
 renderSkeletons();
 
+
+/*
+تحميل البيانات الأساسية أولاً
+*/
 
 await Promise.all([
 
@@ -15494,15 +13988,21 @@ fetchNotifications(),
 
 fetchCoupons(),
 
-fetchBundles(),
-
 fetchGiftOptions()
 
 ]);
 
 
 /*
-تأكيد إعادة الرسم بعد وصول جميع البيانات
+تحميل الباقات بشكل مستقل
+حتى لا يمنعها خطأ في عنصر آخر.
+*/
+
+await fetchBundles();
+
+
+/*
+إعادة رسم نهائية
 */
 
 renderAdvertisement();
@@ -15515,12 +14015,56 @@ renderPaymentMethods();
 
 renderFooter();
 
+renderCategoryFilters();
+
 renderProducts();
+
+renderReviews();
+
+renderNotifications();
+
+renderGiftBuilderWraps();
 
 
 cleanCartAgainstData();
 
 saveCart();
+
+
+console.log(
+"[ALSHUAIIBE] Store ready",
+{
+
+products:
+products.length,
+
+categories:
+categories.length,
+
+bundles:
+bundles.length,
+
+bundleItems:
+bundleItems.length,
+
+giftOptions:
+giftOptions.length,
+
+adEnabled:
+adSettings.enabled,
+
+adType:
+adSettings.type,
+
+adMedia:
+Array.isArray(adSettings.media)
+?
+adSettings.media.length
+:
+0
+
+}
+);
 
 
 setTimeout(
@@ -15543,7 +14087,9 @@ showPushPermission();
 );
 
 
-/* ================= REALTIME ================= */
+/* =========================================================
+   REALTIME
+========================================================= */
 
 client
 .channel(
@@ -15552,13 +14098,11 @@ client
 
 .on(
 "postgres_changes",
-
 {
 event:"*",
 schema:"public",
 table:"products"
 },
-
 async () => {
 
 await fetchProducts();
@@ -15566,37 +14110,33 @@ await fetchProducts();
 renderProducts();
 
 }
-
 )
 
 .on(
 "postgres_changes",
-
 {
 event:"*",
 schema:"public",
 table:"categories"
 },
-
 async () => {
 
 await fetchCategories();
 
+renderCategoryFilters();
+
 renderProducts();
 
 }
-
 )
 
 .on(
 "postgres_changes",
-
 {
 event:"*",
 schema:"public",
 table:"settings"
 },
-
 async () => {
 
 await fetchSettings();
@@ -15605,25 +14145,22 @@ renderAdvertisement();
 
 renderGiftSection();
 
-renderFooter();
-
 renderPaymentMethods();
+
+renderFooter();
 
 renderProducts();
 
 }
-
 )
 
 .on(
 "postgres_changes",
-
 {
 event:"*",
 schema:"public",
 table:"bundles"
 },
-
 async () => {
 
 await fetchBundles();
@@ -15631,18 +14168,15 @@ await fetchBundles();
 renderBundles();
 
 }
-
 )
 
 .on(
 "postgres_changes",
-
 {
 event:"*",
 schema:"public",
 table:"bundle_items"
 },
-
 async () => {
 
 await fetchBundles();
@@ -15650,18 +14184,15 @@ await fetchBundles();
 renderBundles();
 
 }
-
 )
 
 .on(
 "postgres_changes",
-
 {
 event:"*",
 schema:"public",
 table:"gift_options"
 },
-
 async () => {
 
 await fetchGiftOptions();
@@ -15669,34 +14200,36 @@ await fetchGiftOptions();
 renderGiftBuilderWraps();
 
 }
-
 )
 
 .on(
 "postgres_changes",
-
 {
 event:"*",
 schema:"public",
 table:"notifications"
 },
+async () => {
 
-fetchNotifications
+await fetchNotifications();
 
+renderNotifications();
+
+}
 )
 
 .on(
 "postgres_changes",
-
 {
 event:"*",
 schema:"public",
 table:"reviews"
 },
-
 async () => {
 
 await fetchReviews();
+
+renderReviews();
 
 
 if(
@@ -15715,18 +14248,15 @@ await loadCustomerOrders();
 }
 
 }
-
 )
 
 .on(
 "postgres_changes",
-
 {
 event:"*",
 schema:"public",
 table:"orders"
 },
-
 async () => {
 
 if(
@@ -15745,15 +14275,54 @@ await loadCustomerOrders();
 }
 
 }
-
 )
 
-.subscribe();
+.subscribe(
+status => {
+
+console.log(
+"[ALSHUAIIBE] Realtime:",
+status
+);
+
+}
+);
 
 }
 
 
-initializeStore();
+/* =========================================================
+   START
+========================================================= */
+
+initializeStore()
+.catch(
+error => {
+
+console.error(
+"[ALSHUAIIBE] Initialization failed:",
+error
+);
+
+
+try{
+
+renderAdvertisement();
+
+renderBundles();
+
+}
+catch(renderError){
+
+console.error(
+"[ALSHUAIIBE] Render fallback:",
+renderError
+);
+
+}
+
+}
+);
 
 </script>
 
