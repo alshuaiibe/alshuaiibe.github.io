@@ -1960,7 +1960,7 @@ function buildInvoiceSnapshotFromOrder(o){
     order_number:saved.order_number||o?.order_number||"",
     customer:{
       ...savedCustomer,
-      name:savedCustomer.name||o?.name||o?.customer_name||"—",
+      name:savedCustomer.name||o?.name||o?.customer_name||o?.customerName||"",
       phone:savedCustomer.phone||o?.phone||currentCustomerPhone||"—",
       address:savedCustomer.address||o?.address||"—"
     },
@@ -1985,19 +1985,102 @@ function buildInvoiceSnapshotFromOrder(o){
   }
 }
 
-function openCustomerInvoice(orderId){
-  const o=customerOrders.find(x=>String(x.order_id||x.id||"")===String(orderId));
-  if(!o){toast("تعذر تحديد الطلب");return}
+async function openCustomerInvoice(orderId){
+  const o=customerOrders.find(
+    x=>String(x.order_id||x.id||"")===String(orderId)
+  );
+
+  if(!o){
+    toast("تعذر تحديد الطلب");
+    return;
+  }
+
   const snapshot=buildInvoiceSnapshotFromOrder(o);
-  if(!snapshot.items.length){toast("لا توجد تفاصيل منتجات في هذا الطلب");return}
+
+  if(!snapshot.items.length){
+    toast("لا توجد تفاصيل منتجات في هذا الطلب");
+    return;
+  }
+
+  /*
+    بعض نسخ track_order_secure القديمة لا ترجع اسم العميل.
+    عندها نجلب الاسم فقط من دالة آمنة باستخدام رقم الهاتف + رقم الطلب.
+  */
+  const currentName=String(snapshot.customer?.name||"").trim();
+
+  if(!currentName || currentName==="—"){
+
+    try{
+
+      const phone=
+        normalizePhone(
+          o.phone
+          ||snapshot.customer?.phone
+          ||currentCustomerPhone
+          ||""
+        );
+
+      const orderNumber=
+        Number(
+          o.order_number
+          ||snapshot.order_number
+          ||0
+        );
+
+      if(phone && orderNumber){
+
+        const {data:nameData,error:nameError}=
+          await client.rpc(
+            "get_order_customer_name_secure",
+            {
+              p_phone:phone,
+              p_order_number:orderNumber
+            }
+          );
+
+        if(!nameError && nameData){
+
+          snapshot.customer={
+            ...(snapshot.customer||{}),
+            name:String(nameData).trim()
+          };
+
+        }
+
+      }
+
+    }
+    catch(error){
+      console.warn(
+        "Customer name lookup:",
+        error
+      );
+    }
+
+  }
+
   currentInvoiceData={
-    invoice_number:o.invoice_number||String(o.order_number||""),
-    issued_at:o.invoice_issued_at||o.created_at||new Date().toISOString(),
+    invoice_number:
+      o.invoice_number
+      ||String(o.order_number||""),
+
+    issued_at:
+      o.invoice_issued_at
+      ||o.created_at
+      ||new Date().toISOString(),
+
     snapshot
   };
-  renderCustomerInvoice(currentInvoiceData);
+
+  renderCustomerInvoice(
+    currentInvoiceData
+  );
+
   showMainScrim();
-  $("invoiceModal").classList.add("show")
+
+  $("invoiceModal")
+  .classList
+  .add("show");
 }
 function closeInvoiceModal(){$("invoiceModal").classList.remove("show");currentInvoiceData=null;updateMainScrim()}
 function renderCustomerInvoice(invoice){
