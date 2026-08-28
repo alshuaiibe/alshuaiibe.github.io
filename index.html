@@ -383,6 +383,10 @@ const client=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 
 const DEFAULT_STORE={name:"الشعيبي",nameEn:"ALSHUAIIBE STORE",eyebrow:"متجر الشعيبي"};
 let products=[],categories=[],reviews=[],notifications=[],coupons=[];
+let catalogLoaded=false;
+let catalogRefreshTimer=null;
+let catalogRefreshRunning=false;
+let catalogRefreshPending=false;
 let generalSettings={},paymentSettings={},designSettings={},adSettings={},giftSettings={};
 let activeCategory="الكل",searchText="",sortMode="newest",currentProduct=null,currentCoupon=null,adTimer=null;
 let customerOrders=[],currentCustomerPhone="",currentCustomerOrderNumber="",currentInvoiceData=null,reviewContext=null,reviewRating=5;
@@ -550,8 +554,95 @@ function renderAdvertisement(){
   wrap.innerHTML=`<img src="${escapeHTML(media[0])}" alt="إعلان متجر الشعيبي" loading="eager">`;
 }
 
-async function fetchCategories(){const {data,error}=await client.from("categories").select("*").eq("is_active",true).order("sort_order",{ascending:true});if(error){console.error(error);return}categories=data||[];renderCategoryFilters()}
-async function fetchProducts(){const {data,error}=await client.from("products").select("*").eq("is_active",true).order("sort_order",{ascending:true}).order("created_at",{ascending:false});if(error){console.error(error);$("productsArea").innerHTML='<div class="empty">تعذر تحميل المنتجات.</div>';return}products=data||[];cleanCartAgainstProducts();saveCart();renderBundles();renderProducts()}
+async function fetchCatalog({silent=false}={}){
+  if(catalogRefreshRunning){
+    catalogRefreshPending=true;
+    return false;
+  }
+
+  catalogRefreshRunning=true;
+
+  try{
+    const [categoriesResult,productsResult]=await Promise.all([
+      client
+        .from("categories")
+        .select("*")
+        .eq("is_active",true)
+        .order("sort_order",{ascending:true}),
+
+      client
+        .from("products")
+        .select("*")
+        .eq("is_active",true)
+        .order("sort_order",{ascending:true})
+        .order("created_at",{ascending:false})
+    ]);
+
+    if(categoriesResult.error) throw categoriesResult.error;
+    if(productsResult.error) throw productsResult.error;
+
+    /*
+      مهم:
+      لا نغيّر البيانات الحالية إلا بعد نجاح الاستعلامين معًا.
+      لذلك عند تعديل منتج أو قسم من لوحة الإدارة تبقى المنتجات
+      القديمة ظاهرة حتى تصبح النسخة الجديدة كاملة وجاهزة.
+    */
+    const nextCategories=Array.isArray(categoriesResult.data)?categoriesResult.data:[];
+    const nextProducts=Array.isArray(productsResult.data)?productsResult.data:[];
+
+    categories=nextCategories;
+    products=nextProducts;
+    catalogLoaded=true;
+
+    cleanCartAgainstProducts();
+    saveCart();
+    renderCategoryFilters();
+    renderBundles();
+    renderProducts();
+
+    return true;
+  }catch(error){
+    console.error("fetchCatalog:",error);
+
+    /*
+      في حالة خطأ مؤقت لا نمسح المنتجات الموجودة ولا نعرض
+      رسالة فارغة مكانها. إذا كان هذا أول تحميل فقط نظهر
+      رسالة اتصال ثم نعيد المحاولة.
+    */
+    if(!catalogLoaded && !products.length && !silent){
+      $("productsArea").innerHTML='<div class="empty">جارِ إعادة الاتصال وتحميل المنتجات…</div>';
+    }
+
+    setTimeout(()=>scheduleCatalogRefresh(900),1200);
+    return false;
+  }finally{
+    catalogRefreshRunning=false;
+
+    if(catalogRefreshPending){
+      catalogRefreshPending=false;
+      scheduleCatalogRefresh(250);
+    }
+  }
+}
+
+function scheduleCatalogRefresh(delay=350){
+  clearTimeout(catalogRefreshTimer);
+  catalogRefreshTimer=setTimeout(()=>{
+    fetchCatalog({silent:true});
+  },delay);
+}
+
+/*
+  نبقي الاسمين القديمين لأي جزء آخر في الملف قد يستدعيهما،
+  لكنهما الآن يحدثان الكتالوج كاملًا بشكل آمن.
+*/
+async function fetchCategories(){
+  return fetchCatalog({silent:true});
+}
+
+async function fetchProducts(){
+  return fetchCatalog({silent:true});
+}
 async function fetchReviews(){const {data,error}=await client.from("reviews").select("*").eq("is_approved",true).order("created_at",{ascending:false}).limit(30);if(error){console.error(error);return}reviews=data||[];renderReviews()}
 async function fetchNotifications(){const {data,error}=await client.from("notifications").select("*").eq("is_active",true).order("created_at",{ascending:false}).limit(20);if(error){console.error(error);return}notifications=data||[];renderNotifications()}
 async function fetchCoupons(){const {data,error}=await client.from("coupons").select("*").eq("is_active",true);if(error){console.error(error);return}coupons=data||[]}
@@ -653,7 +744,17 @@ function filteredProducts(){
   return list;
 }
 function renderProducts(){
+  /*
+    لا نعرض "لا توجد منتجات" أثناء التحديث المؤقت.
+    إذا كان لدينا كتالوج سابق يبقى ظاهرًا حتى يكتمل التحديث الجديد.
+  */
+  if(!catalogLoaded && !products.length){
+    $("productsArea").innerHTML='<div class="empty">جارِ تحميل المنتجات…</div>';
+    return;
+  }
+
   const list=filteredProducts();
+
   if(!list.length){
     $("productsArea").innerHTML=`<div class="empty">${activeCategory==="__favorites__"?"قائمة المفضلة فارغة.":"لا توجد منتجات مطابقة."}</div>`;
     return;
@@ -703,36 +804,6 @@ function groupHTML(name,items,font){
   <div class="product-row" id="${gid}" onscroll="syncFlow('${gid}')">${items.map((p,i)=>productCard(p,i)).join("")}</div>
   <div class="flow-meta"><span id="${gid}_count">01 / ${String(items.length).padStart(2,"0")}</span></div>
   <div class="flow-dots" id="${gid}_dots">${items.map((_,i)=>`<span class="flow-dot ${i===0?"active":""}"></span>`).join("")}</div></div></div>`
-}
-function renderProducts(){
-  const list=filteredProducts();
-  if(!list.length){
-    $("productsArea").innerHTML=`<div class="empty">${activeCategory==="__favorites__"?"قائمة المفضلة فارغة.":"لا توجد منتجات مطابقة."}</div>`;
-    return;
-  }
-
-  if(activeCategory!=="الكل"){
-    const title=activeCategory==="__favorites__"?"المفضلة":activeCategory;
-    $("productsArea").innerHTML=groupHTML(title,list,null);
-    requestAnimationFrame(()=>{centerInitialProductRows();document.querySelectorAll("#productsArea .product-row").forEach(r=>syncFlow(r.id));});
-    return;
-  }
-
-  const groups=[];
-  categories
-    .filter(c=>!/باقة|باقات|عرض|عروض/.test(String(c.name||"")))
-    .forEach(category=>{
-      const items=list.filter(product=>productBelongsToCategory(product,category));
-      if(items.length)groups.push({name:category.name,font:category.font_family,items});
-    });
-
-  if(!groups.length){
-    $("productsArea").innerHTML='<div class="empty">لا توجد منتجات مرتبطة بالأقسام الحالية.</div>';
-    return;
-  }
-
-  $("productsArea").innerHTML=groups.map(g=>groupHTML(g.name,g.items,g.font)).join("");
-  requestAnimationFrame(()=>{centerInitialProductRows();document.querySelectorAll("#productsArea .product-row").forEach(r=>syncFlow(r.id));});
 }
 function scrollFlow(id,dir){const row=$(id);if(!row)return;const card=row.querySelector(".product-card");row.scrollBy({left:dir*(card?.getBoundingClientRect().width||180)*-1.1,behavior:"smooth"});setTimeout(()=>syncFlow(id),350)}
 function syncFlow(id){
@@ -998,11 +1069,34 @@ function closePolicy(){$("policyModal").classList.remove("show");updateMainScrim
 
 function renderSkeletons(){if(generalSettings.featureSkel!==true)return;$("productsArea").innerHTML='<div class="empty">جارِ تحميل المنتجات…</div>'}
 async function initializeStore(){
-  $("cartCount").textContent="0";await fetchSettings();renderSkeletons();await Promise.all([fetchCategories(),fetchProducts(),fetchReviews(),fetchNotifications(),fetchCoupons()]);cleanCartAgainstProducts();saveCart();
+  $("cartCount").textContent="0";
+  await fetchSettings();
+  renderSkeletons();
+
+  /*
+    أول تحميل للمنتجات والأقسام يتم معًا حتى لا ترسم الصفحة
+    أقسامًا جديدة فوق منتجات قديمة أو العكس.
+  */
+  await Promise.all([
+    fetchCatalog(),
+    fetchReviews(),
+    fetchNotifications(),
+    fetchCoupons()
+  ]);
+
+  cleanCartAgainstProducts();
+  saveCart();
+
   setTimeout(()=>{if(localStorage.getItem("alshuaiibe_push_subscribed")!=="true")showPushPermission()},5200);
+
   client.channel("alshuaiibe-store-live")
-    .on("postgres_changes",{event:"*",schema:"public",table:"products"},async()=>{await fetchProducts()})
-    .on("postgres_changes",{event:"*",schema:"public",table:"categories"},async()=>{await fetchCategories();renderProducts()})
+    /*
+      أي إضافة/تعديل/حذف في المنتجات أو الأقسام:
+      ننتظر لحظة قصيرة ثم نجلب الاثنين معًا دفعة واحدة.
+      هذا يمنع اختفاء المنتجات المؤقت الذي كان يظهر للعملاء.
+    */
+    .on("postgres_changes",{event:"*",schema:"public",table:"products"},()=>scheduleCatalogRefresh(300))
+    .on("postgres_changes",{event:"*",schema:"public",table:"categories"},()=>scheduleCatalogRefresh(300))
     .on("postgres_changes",{event:"*",schema:"public",table:"settings"},async()=>{await fetchSettings();renderProducts()})
     .on("postgres_changes",{event:"*",schema:"public",table:"notifications"},fetchNotifications)
     .on("postgres_changes",{event:"*",schema:"public",table:"reviews"},async()=>{await fetchReviews();if(currentCustomerPhone&&currentCustomerOrderNumber&&$("myOrdersModal").classList.contains("show"))await loadCustomerOrders()})
@@ -1012,4 +1106,5 @@ async function initializeStore(){
 initializeStore();
 </script>
 </body>
+</html></body>
 </html>
