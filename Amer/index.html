@@ -71,6 +71,68 @@ main{max-width:1500px;margin:auto;padding:18px 14px 80px}.card{margin-bottom:16p
 <section id="productManager" class="page hidden">
 <div class="card">
 <h2>🛍️ إضافة وتعديل المنتجات</h2>
+
+<div
+  class="card"
+  style="
+    background:linear-gradient(135deg,#fffaf0,#f4e7c5);
+    border:1px solid rgba(169,121,60,.35);
+    margin-bottom:16px;
+  "
+>
+  <div class="order-card-head">
+    <div>
+      <h3 style="margin:0 0 6px">🤖 مساعد Gemini للمنتجات</h3>
+      <div class="note">
+        اختر صور المنتج من خانة الصور بالأسفل، ثم اضغط تحليل.
+        سيقوم Gemini بتعبئة اسم المنتج والوصف والقسم والألوان والأحجام،
+        وبعدها تراجع البيانات بنفسك قبل الضغط على حفظ المنتج.
+      </div>
+    </div>
+
+    <span class="pill gold">مسودة فقط — لا يحفظ تلقائياً</span>
+  </div>
+
+  <div class="actions" style="margin-top:12px">
+    <button
+      id="geminiAnalyzeButton"
+      type="button"
+      class="btn blue"
+      onclick="analyzeProductWithGemini()"
+    >
+      ✨ حلّل الصور وعبّئ المنتج
+    </button>
+
+    <button
+      type="button"
+      class="btn out"
+      onclick="clearGeminiResult()"
+    >
+      مسح نتيجة الذكاء الاصطناعي
+    </button>
+  </div>
+
+  <div
+    id="geminiStatus"
+    class="upload-status"
+    style="margin-top:12px"
+  ></div>
+
+  <div
+    id="geminiResult"
+    class="hidden"
+    style="
+      margin-top:12px;
+      padding:12px;
+      border:1px dashed var(--gold);
+      border-radius:12px;
+      background:#fff;
+      line-height:1.9;
+      font-size:12px;
+    "
+  ></div>
+</div>
+
 <input id="productId" type="hidden">
 <div class="grid3">
 <div><label>اسم المنتج</label><input id="productName"></div>
@@ -84,7 +146,10 @@ main{max-width:1500px;margin:auto;padding:18px 14px 80px}.card{margin-bottom:16p
 <label>وصف المنتج</label>
 <textarea id="productDescription"></textarea>
 <h3>📷 صور المنتج</h3>
-<input id="productImageFiles" type="file" accept="image/*" multiple onchange="previewSelectedProductImages()">
+<p class="note">
+ارفع صورة أو أكثر لنفس المنتج. نفس الصور تُستخدم للتحليل بالذكاء الاصطناعي ثم تُرفع عند حفظ المنتج.
+</p>
+<input id="productImageFiles" type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif" multiple onchange="previewSelectedProductImages()">
 <div id="productUploadStatus" class="upload-status"></div>
 <div id="existingProductImages" class="media-preview-grid"></div>
 <div id="newProductImagesPreview" class="media-preview-grid"></div>
@@ -692,6 +757,582 @@ function renderCategories(){
  $("categoriesAdminList").innerHTML=categories.length?categories.map(c=>{const n=products.filter(p=>String(p.category||"")===String(c.name||"")).length;return `<div class="order-card"><div class="order-card-head"><div><strong style="font-size:18px">🏷️ ${esc(c.name)}</strong><div class="note">عدد المنتجات: <strong>${n}</strong> · ترتيب الظهور: <strong>${Number(c.sort_order||0)}</strong></div></div><div class="actions"><button class="btn sm" onclick="editCategory('${c.id}')">✏️ تعديل</button><button class="btn red sm" onclick="deleteCategory('${c.id}')">🗑️ حذف</button></div></div></div>`}).join(""):'<div class="note">لا توجد أقسام. أضف إبراق أو دخون أو عساف.</div>';
 }
 
+
+/* =========================================================
+GEMINI AI PRODUCT ASSISTANT
+========================================================= */
+
+const GEMINI_PRODUCT_FUNCTION =
+"gemini-product-analyzer";
+
+let lastGeminiProductDraft=null;
+
+function fileToBase64(file){
+
+  return new Promise(
+    (resolve,reject)=>{
+
+      const reader=
+      new FileReader();
+
+      reader.onload=()=>{
+
+        const result=
+        String(
+          reader.result
+          ||""
+        );
+
+        const comma=
+        result.indexOf(",");
+
+        resolve(
+          comma>=0
+          ? result.slice(comma+1)
+          : result
+        );
+
+      };
+
+      reader.onerror=()=>{
+        reject(
+          reader.error
+          ||new Error(
+            "تعذر قراءة الصورة"
+          )
+        );
+      };
+
+      reader.readAsDataURL(
+        file
+      );
+
+    }
+  );
+
+}
+
+function normalizeAiArray(value){
+
+  if(Array.isArray(value)){
+    return value
+      .map(
+        item=>String(item||"").trim()
+      )
+      .filter(Boolean);
+  }
+
+  if(typeof value==="string"){
+    return value
+      .split(/[\n,،]+/)
+      .map(
+        item=>item.trim()
+      )
+      .filter(Boolean);
+  }
+
+  return [];
+
+}
+
+function bestMatchingCategory(
+  suggestedName
+){
+
+  const wanted=
+    String(
+      suggestedName
+      ||""
+    )
+    .trim()
+    .toLowerCase();
+
+  if(!wanted){
+    return "";
+  }
+
+  const exact=
+    categories.find(
+      category=>
+      String(
+        category.name
+        ||""
+      )
+      .trim()
+      .toLowerCase()
+      ===
+      wanted
+    );
+
+  if(exact){
+    return exact.name;
+  }
+
+  const partial=
+    categories.find(
+      category=>{
+
+        const name=
+          String(
+            category.name
+            ||""
+          )
+          .trim()
+          .toLowerCase();
+
+        return (
+          name.includes(wanted)
+          ||
+          wanted.includes(name)
+        );
+
+      }
+    );
+
+  return partial?.name||"";
+
+}
+
+function renderGeminiDraft(
+  draft
+){
+
+  const el=
+    $("geminiResult");
+
+  if(!el)return;
+
+  const colors=
+    normalizeAiArray(
+      draft.colors
+    );
+
+  const sizes=
+    normalizeAiArray(
+      draft.sizes
+    );
+
+  const detected=
+    normalizeAiArray(
+      draft.detected_text
+    );
+
+  el.innerHTML=
+  `
+    <strong>
+      ✅ تم تجهيز المسودة
+    </strong>
+
+    <br>
+
+    الاسم:
+    <strong>
+      ${esc(
+        draft.name
+        ||"—"
+      )}
+    </strong>
+
+    <br>
+
+    البراند:
+    <strong>
+      ${esc(
+        draft.brand
+        ||"غير مؤكد"
+      )}
+    </strong>
+
+    <br>
+
+    القسم المقترح:
+    <strong>
+      ${esc(
+        draft.category
+        ||"—"
+      )}
+    </strong>
+
+    <br>
+
+    الثقة:
+    <strong>
+      ${Math.round(
+        Number(
+          draft.confidence
+          ||0
+        )
+        *100
+      )}%
+    </strong>
+
+    ${
+      colors.length
+      ? `<br>الألوان: ${esc(colors.join("، "))}`
+      : ""
+    }
+
+    ${
+      sizes.length
+      ? `<br>الأحجام: ${esc(sizes.join("، "))}`
+      : ""
+    }
+
+    ${
+      detected.length
+      ? `<br>نصوص ظاهرة بالصورة: ${esc(detected.join(" | "))}`
+      : ""
+    }
+
+    <br><br>
+
+    <span class="note">
+      راجع البيانات قبل الحفظ.
+      Gemini لا يحذف ولا يعدل أي منتج قديم،
+      ولا يتم إنشاء المنتج إلا عند ضغطك زر «حفظ المنتج».
+    </span>
+  `;
+
+  el.classList.remove(
+    "hidden"
+  );
+
+}
+
+function applyGeminiDraft(
+  draft
+){
+
+  if(!draft){
+    return;
+  }
+
+  if(
+    draft.name
+    &&
+    !$("productName").value.trim()
+  ){
+    $("productName").value=
+      String(
+        draft.name
+      ).trim();
+  }
+  else if(draft.name){
+
+    $("productName").value=
+      String(
+        draft.name
+      ).trim();
+
+  }
+
+  const matchedCategory=
+    bestMatchingCategory(
+      draft.category
+    );
+
+  if(matchedCategory){
+    $("productCategory").value=
+      matchedCategory;
+  }
+
+  if(draft.description){
+
+    $("productDescription").value=
+      String(
+        draft.description
+      ).trim();
+
+  }
+
+  const colors=
+    normalizeAiArray(
+      draft.colors
+    );
+
+  if(colors.length){
+
+    $("productColors").value=
+      colors.join("\n");
+
+  }
+
+  const sizes=
+    normalizeAiArray(
+      draft.sizes
+    );
+
+  if(sizes.length){
+
+    $("productSizes").value=
+      sizes.join("\n");
+
+  }
+
+  /*
+    السعر لا يتم تخمينه.
+    نملأ السعر فقط إذا Gemini قرأ سعراً مطبوعاً بوضوح من الصورة.
+  */
+  const detectedPrice=
+    Number(
+      draft.detected_price
+      ||0
+    );
+
+  if(
+    detectedPrice>0
+    &&
+    Number(
+      $("productPrice").value
+      ||0
+    )<=0
+  ){
+
+    $("productPrice").value=
+      detectedPrice;
+
+  }
+
+  renderGeminiDraft(
+    draft
+  );
+
+}
+
+async function analyzeProductWithGemini(){
+
+  const input=
+    $("productImageFiles");
+
+  const files=
+    Array.from(
+      input?.files
+      ||[]
+    );
+
+  if(!files.length){
+
+    toast(
+      "اختر صور المنتج أولاً"
+    );
+
+    input?.focus();
+
+    return;
+
+  }
+
+  if(files.length>5){
+
+    alert(
+      "اختر بحد أقصى 5 صور لنفس المنتج في كل مرة."
+    );
+
+    return;
+
+  }
+
+  const oversized=
+    files.find(
+      file=>
+      Number(
+        file.size
+        ||0
+      )
+      >
+      8*1024*1024
+    );
+
+  if(oversized){
+
+    alert(
+      "الصورة "
+      +
+      oversized.name
+      +
+      " أكبر من 8MB. صغّرها ثم حاول من جديد."
+    );
+
+    return;
+
+  }
+
+  const button=
+    $("geminiAnalyzeButton");
+
+  button.disabled=true;
+
+  const oldText=
+    button.textContent;
+
+  button.textContent=
+    "⏳ Gemini يحلل الصور...";
+
+  setUploadStatus(
+    "geminiStatus",
+    "جارِ تجهيز الصور للتحليل...",
+    true
+  );
+
+  try{
+
+    const images=[];
+
+    for(
+      let i=0;
+      i<files.length;
+      i++
+    ){
+
+      setUploadStatus(
+        "geminiStatus",
+        `جارِ تجهيز الصورة ${i+1} من ${files.length}...`,
+        true
+      );
+
+      const file=
+        files[i];
+
+      images.push({
+        mimeType:
+          file.type
+          ||"image/jpeg",
+
+        data:
+          await fileToBase64(
+            file
+          )
+      });
+
+    }
+
+    setUploadStatus(
+      "geminiStatus",
+      "جارِ تحليل المنتج بالذكاء الاصطناعي...",
+      true
+    );
+
+    const {
+      data,
+      error
+    }=
+    await db.functions.invoke(
+      GEMINI_PRODUCT_FUNCTION,
+      {
+        body:{
+          images,
+          categories:
+            categories.map(
+              category=>({
+                id:category.id,
+                name:category.name
+              })
+            )
+        }
+      }
+    );
+
+    if(error){
+      throw error;
+    }
+
+    if(!data?.ok){
+      throw new Error(
+        data?.error
+        ||"لم يتمكن Gemini من تحليل المنتج"
+      );
+    }
+
+    const draft=
+      data.product
+      ||data.result
+      ||null;
+
+    if(!draft){
+      throw new Error(
+        "لم يرجع Gemini بيانات منتج"
+      );
+    }
+
+    lastGeminiProductDraft=
+      draft;
+
+    applyGeminiDraft(
+      draft
+    );
+
+    setUploadStatus(
+      "geminiStatus",
+      "تم التحليل ✓ راجع البيانات ثم اضغط حفظ المنتج.",
+      true
+    );
+
+    toast(
+      "تم تجهيز مسودة المنتج بالذكاء الاصطناعي ✓"
+    );
+
+  }
+  catch(error){
+
+    console.error(
+      "Gemini product analyzer:",
+      error
+    );
+
+    const message=
+      error?.context?.body?.error
+      ||error?.message
+      ||"حدث خطأ أثناء تحليل المنتج";
+
+    setUploadStatus(
+      "geminiStatus",
+      "تعذر التحليل",
+      true
+    );
+
+    alert(
+      "تعذر تحليل المنتج:\n"
+      +
+      message
+      +
+      "\n\nتأكد من نشر Edge Function وإضافة GEMINI_API_KEY داخل Supabase."
+    );
+
+  }
+  finally{
+
+    button.disabled=false;
+    button.textContent=
+      oldText;
+
+  }
+
+}
+
+function clearGeminiResult(){
+
+  lastGeminiProductDraft=
+    null;
+
+  const box=
+    $("geminiResult");
+
+  if(box){
+    box.innerHTML="";
+    box.classList.add(
+      "hidden"
+    );
+  }
+
+  setUploadStatus(
+    "geminiStatus",
+    "",
+    false
+  );
+
+}
+
+
 /* المنتجات */
 function fillProducts(){const h=products.map(p=>`<option value="${p.id}">${esc(p.name)}${Number(p.stock||0)<=0?" — نفدت الكمية":""}</option>`).join("");["varProduct","relFrom","relTo"].forEach(id=>$(id).innerHTML=h);$("bundleProducts").innerHTML=h}
 function renderExistingProductImages(){$("existingProductImages").innerHTML=editingProductImages.map((u,i)=>`<div class="media-preview"><img src="${esc(u)}"><button class="media-remove" onclick="editingProductImages.splice(${i},1);renderExistingProductImages()">×</button></div>`).join("")}
@@ -705,7 +1346,7 @@ async function saveProduct(){
  }catch(e){alert("تعذر حفظ المنتج:\n"+e.message)}finally{b.disabled=false;setUploadStatus("productUploadStatus","",false)}
 }
 function editProduct(id){const p=products.find(x=>String(x.id)===String(id));if(!p)return;$("productId").value=p.id;$("productName").value=p.name||"";$("productCategory").value=p.category||"";$("productPrice").value=Number(p.price||0);$("productDiscount").value=Number(p.discount||0);$("productStock").value=Number(p.stock||0);$("productCurrency").value=p.currency||"ر.ي";$("productSortOrder").value=Number(p.sort_order||0);$("productDescription").value=p.description||"";$("productColors").value=Array.isArray(p.colors)?p.colors.join("\n"):"";$("productSizes").value=Array.isArray(p.sizes)?p.sizes.join("\n"):"";$("productActive").checked=p.is_active!==false;$("productNew").checked=p.is_new===true;editingProductImages=Array.isArray(p.images)?[...p.images]:[];renderExistingProductImages();$("saveProductButton").textContent="حفظ التعديلات"}
-function resetProductForm(){["productId","productName","productPrice","productDescription","productColors","productSizes"].forEach(id=>$(id).value="");$("productCategory").value="";$("productDiscount").value="0";$("productStock").value="0";$("productCurrency").value="ر.ي";$("productSortOrder").value="0";$("productActive").checked=true;$("productNew").checked=false;$("productImageFiles").value="";editingProductImages=[];renderExistingProductImages();$("newProductImagesPreview").innerHTML="";$("saveProductButton").textContent="حفظ المنتج"}
+function resetProductForm(){clearGeminiResult();["productId","productName","productPrice","productDescription","productColors","productSizes"].forEach(id=>$(id).value="");$("productCategory").value="";$("productDiscount").value="0";$("productStock").value="0";$("productCurrency").value="ر.ي";$("productSortOrder").value="0";$("productActive").checked=true;$("productNew").checked=false;$("productImageFiles").value="";editingProductImages=[];renderExistingProductImages();$("newProductImagesPreview").innerHTML="";$("saveProductButton").textContent="حفظ المنتج"}
 function renderAdminProducts(){$("productsCount").textContent=products.length+" منتج";$("productsAdminList").innerHTML=products.map(p=>{const img=Array.isArray(p.images)?p.images[0]||"":"";return `<div class="product-admin-card"><div class="product-admin-image">${img?`<img src="${esc(img)}">`:"🛍️"}</div><div><div class="product-admin-name">${esc(p.name)}</div><div class="product-admin-meta">القسم: ${esc(p.category||"—")}<br>السعر: ${money(p.price,p.currency)} · المخزون: ${Number(p.stock||0)} · ${p.is_active!==false?"نشط ✅":"مخفي ⛔"}</div></div><div class="actions"><button class="btn sm" onclick="editProduct('${p.id}')">تعديل</button><button class="btn red sm" onclick="removeRow('products','${p.id}')">حذف</button></div></div>`}).join("")||'<div class="note">لا توجد منتجات.</div>'}
 
 /* بقية الإدارة */
