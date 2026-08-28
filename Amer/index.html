@@ -93,6 +93,19 @@ main{max-width:1500px;margin:auto;padding:18px 14px 80px}.card{margin-bottom:16p
     <span class="pill gold">مسودة فقط — لا يحفظ تلقائياً</span>
   </div>
 
+  <div style="margin-top:12px">
+    <label>✍️ وصفي وتعليماتي لـ Gemini</label>
+    <textarea
+      id="geminiCustomPrompt"
+      rows="5"
+      placeholder="مثال: هذا عطر رجالي. اكتب الاسم كما يظهر بالصورة، ثم وصفاً فاخراً من 3 أسطر، واذكر السعة إن كانت واضحة، ولا تخمن السعر أو أي معلومة غير ظاهرة."
+      style="min-height:120px"
+    ></textarea>
+    <div class="note">
+      اكتب هنا ما تعرفه عن المنتج وما تريد من Gemini أن يكتبه. سيستخدم الصور + وصفك معاً.
+    </div>
+  </div>
+
   <div class="actions" style="margin-top:12px">
     <button
       id="geminiAnalyzeButton"
@@ -151,6 +164,19 @@ main{max-width:1500px;margin:auto;padding:18px 14px 80px}.card{margin-bottom:16p
       </div>
     </div>
     <span class="pill gold">حتى 10 منتجات</span>
+  </div>
+
+  <div style="margin-top:12px">
+    <label>✍️ وصف وتعليمات Gemini لهذه الدفعة</label>
+    <textarea
+      id="batchGeminiCustomPrompt"
+      rows="5"
+      placeholder="مثال: جميع هذه المنتجات عطور. لكل صورة اكتب اسم المنتج كما يظهر، ووصفاً تسويقياً فاخراً ومختصراً، ولا تخمن السعر. كل صورة منتج مستقل."
+      style="min-height:120px"
+    ></textarea>
+    <div class="note">
+      هذه التعليمات ستُطبق على جميع المنتجات في الدفعة. ويمكنك كتابة معلومات تعرفها مسبقاً ليعتمد عليها Gemini مع الصور.
+    </div>
   </div>
 
   <div style="margin-top:12px">
@@ -1303,7 +1329,12 @@ async function analyzeProductWithGemini(){
                 id:category.id,
                 name:category.name
               })
-            )
+            ),
+          customPrompt:
+            String(
+              $("geminiCustomPrompt")?.value
+              ||""
+            ).trim()
         }
       }
     );
@@ -1506,7 +1537,7 @@ async function readFunctionError(error){
 
 }
 
-async function invokeGeminiProductWithRetry(images,maxAttempts=3){
+async function invokeGeminiProductWithRetry(images,maxAttempts=3,customPrompt=""){
 
   let lastError="";
 
@@ -1522,7 +1553,9 @@ async function invokeGeminiProductWithRetry(images,maxAttempts=3){
               categories.map(category=>({
                 id:category.id,
                 name:category.name
-              }))
+              })),
+            customPrompt:
+              String(customPrompt||"").trim()
           }
         }
       );
@@ -1932,7 +1965,11 @@ async function analyzeSingleBatchDraft(index){
             ||"image/jpeg",
           data:base64
         }],
-        3
+        3,
+        String(
+          $("batchGeminiCustomPrompt")?.value
+          ||""
+        ).trim()
       );
 
     draft.name=
