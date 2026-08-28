@@ -32,7 +32,7 @@ OneSignalDeferred.push(async function(OneSignal){
 :root{
   --cream:#F8EACB;--cream-deep:#F1DDA6;--card:#FFFBF0;--ink:#20301C;--ink-soft:#3B4A34;
   --gold:#A9793C;--gold-soft:#C9A96E;--line:rgba(32,48,28,.16);--danger:#9B3A2E;--ok:#4C6B3E;
-  --blue:#2C5A82;--shadow:0 10px 30px rgba(32,48,28,.10);--card-width:180px;--product-font:'Aref Ruqaa',serif;
+  --blue:#2C5A82;--shadow:0 10px 30px rgba(32,48,28,.10);--card-width:180px;--card-width-desktop:180px;--card-width-tablet:220px;--card-width-mobile:280px;--product-font:'Aref Ruqaa',serif;
 }
 *{box-sizing:border-box} html{scroll-behavior:smooth} html,body{margin:0;padding:0;width:100%;max-width:100%;overflow-x:hidden}
 body{min-height:100vh;background:radial-gradient(1200px 500px at 50% -10%,var(--cream-deep),transparent 60%),var(--cream);color:var(--ink);font-family:'Tajawal',sans-serif}
@@ -124,9 +124,9 @@ button,input,textarea,select{font:inherit} button{cursor:pointer} a{color:inheri
 }
 
 .product-card{
-  flex:0 0 min(var(--card-width),42vw);
-  width:min(var(--card-width),42vw);
-  max-width:min(var(--card-width),42vw);
+  flex:0 0 min(var(--card-width-desktop),42vw);
+  width:min(var(--card-width-desktop),42vw);
+  max-width:min(var(--card-width-desktop),42vw);
   text-align:center;
   direction:rtl;
   transform:scale(.84) rotateY(6deg);
@@ -285,6 +285,14 @@ button,input,textarea,select{font:inherit} button{cursor:pointer} a{color:inheri
 .flow-dot.active{background:var(--ink)}
 .empty{width:100%;text-align:center;padding:45px 15px;color:var(--ink-soft)}
 
+@media(min-width:769px) and (max-width:1100px){
+  .product-card{
+    flex:0 0 min(var(--card-width-tablet),48vw) !important;
+    width:min(var(--card-width-tablet),48vw) !important;
+    max-width:min(var(--card-width-tablet),48vw) !important;
+  }
+}
+
 @media(max-width:768px){
   .coverflow-shell{
     padding:3px 28px 8px;
@@ -297,9 +305,9 @@ button,input,textarea,select{font:inherit} button{cursor:pointer} a{color:inheri
     touch-action:pan-y;
   }
   .product-card{
-    flex:0 0 72vw !important;
-    width:72vw !important;
-    max-width:290px !important;
+    flex:0 0 min(var(--card-width-mobile),82vw) !important;
+    width:min(var(--card-width-mobile),82vw) !important;
+    max-width:min(var(--card-width-mobile),82vw) !important;
     transform:scale(.88);
     opacity:.42;
     filter:saturate(.55);
@@ -324,9 +332,9 @@ button,input,textarea,select{font:inherit} button{cursor:pointer} a{color:inheri
 
 @media(max-width:420px){
   .product-card{
-    flex-basis:74vw !important;
-    width:74vw !important;
-    max-width:280px !important
+    flex-basis:min(var(--card-width-mobile),84vw) !important;
+    width:min(var(--card-width-mobile),84vw) !important;
+    max-width:min(var(--card-width-mobile),84vw) !important
   }
   .coverflow-shell{padding-left:25px;padding-right:25px}
   .flow-arrow{width:32px;height:32px}
@@ -690,7 +698,36 @@ function applyStoreIdentity(){
 function applySettings(){
   const colors=designSettings.colors||generalSettings.colors||{},root=document.documentElement;
   ["cream","card","ink","gold"].forEach(k=>{if(colors[k])root.style.setProperty("--"+k,colors[k])});
-  root.style.setProperty("--card-width",Number(designSettings.cardWidth||generalSettings.cardWidth||180)+"px");
+  const cardSettings=designSettings.cards||{};
+
+  const desktopCardWidth=
+    Number(
+      cardSettings.desktopWidth
+      ||designSettings.cardWidthDesktop
+      ||designSettings.cardWidth
+      ||generalSettings.cardWidth
+      ||180
+    );
+
+  const tabletCardWidth=
+    Number(
+      cardSettings.tabletWidth
+      ||designSettings.cardWidthTablet
+      ||220
+    );
+
+  const mobileCardWidth=
+    Number(
+      cardSettings.mobileWidth
+      ||designSettings.cardWidthMobile
+      ||280
+    );
+
+  root.style.setProperty("--card-width",desktopCardWidth+"px");
+  root.style.setProperty("--card-width-desktop",desktopCardWidth+"px");
+  root.style.setProperty("--card-width-tablet",tabletCardWidth+"px");
+  root.style.setProperty("--card-width-mobile",mobileCardWidth+"px");
+
   root.style.setProperty("--product-font",designSettings.productFont||generalSettings.productFont||"'Aref Ruqaa', serif");
   const bg=designSettings.backgroundUrl||"";if(bg){$("customBackground").style.backgroundImage=`url("${bg}")`;$("customBackground").style.opacity=String(designSettings.backgroundOpacity??.15);$("customBackground").style.display="block"}else $("customBackground").style.display="none";
   const wm=designSettings.watermarkUrl||"";if(wm){$("watermark").style.backgroundImage=`url("${wm}")`;$("watermark").style.backgroundSize="180px auto";$("watermark").style.opacity=String(designSettings.watermarkOpacity??.1);$("watermark").style.display="block"}else $("watermark").style.display="none";
