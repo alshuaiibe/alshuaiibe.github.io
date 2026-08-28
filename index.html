@@ -603,6 +603,7 @@ function productBelongsToCategory(product,category){
 function isBundleProduct(p){
   const resolved=getProductCategory(p);
   const raw=[
+    p.name,p.title,p.slug,
     p.category,p.category_name,p.categoryName,p.category_slug,p.categorySlug,
     resolved?.name,resolved?.slug,p.type,p.product_type,p.kind
   ].map(v=>String(v??"")).join(" ");
