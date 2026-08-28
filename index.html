@@ -452,6 +452,278 @@ button,input,textarea,select{font:inherit} button{cursor:pointer} a{color:inheri
   }
 }
 
+
+/* =========================================================
+   IBRAQ-STYLE PRODUCT GRID — FINAL OVERRIDE
+   عرض شبكي ثابت مشابه لصفحة إبراق:
+   جوال: منتجان في الصف
+   تابلت: 3
+   كمبيوتر: 4
+========================================================= */
+
+#productsArea .ibraq-category-group{
+  margin:0 0 42px !important;
+}
+
+#productsArea .ibraq-category-title{
+  margin:0 0 18px !important;
+  padding:0 2px 10px !important;
+  font-size:clamp(24px,4vw,32px) !important;
+  line-height:1.3 !important;
+  text-align:right !important;
+  border-bottom:1px solid var(--line) !important;
+}
+
+#productsArea .ibraq-products-grid{
+  display:grid !important;
+  grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+  gap:24px 18px !important;
+  width:100% !important;
+  align-items:start !important;
+}
+
+#productsArea .ibraq-products-grid .product-card{
+  position:relative !important;
+  display:flex !important;
+  flex-direction:column !important;
+  min-width:0 !important;
+  width:100% !important;
+  max-width:none !important;
+  flex:none !important;
+  margin:0 !important;
+  padding:0 !important;
+  background:transparent !important;
+  border:0 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  text-align:center !important;
+  direction:rtl !important;
+  opacity:1 !important;
+  filter:none !important;
+  transform:none !important;
+  transition:none !important;
+}
+
+#productsArea .ibraq-products-grid .product-card.is-center{
+  transform:none !important;
+  opacity:1 !important;
+  filter:none !important;
+}
+
+#productsArea .ibraq-products-grid .product-image{
+  position:relative !important;
+  width:100% !important;
+  aspect-ratio:1 / 1.08 !important;
+  margin:0 0 9px !important;
+  overflow:hidden !important;
+  border:0 !important;
+  border-radius:0 !important;
+  background:#fff !important;
+  box-shadow:none !important;
+}
+
+#productsArea .ibraq-products-grid .product-image img{
+  display:block !important;
+  width:100% !important;
+  height:100% !important;
+  object-fit:contain !important;
+  padding:8px !important;
+  transform:none !important;
+}
+
+#productsArea .ibraq-products-grid .product-image:hover img{
+  transform:none !important;
+}
+
+#productsArea .ibraq-products-grid .favorite-btn{
+  top:7px !important;
+  left:7px !important;
+  width:31px !important;
+  height:31px !important;
+  background:rgba(255,255,255,.94) !important;
+  border:1px solid rgba(32,48,28,.08) !important;
+  box-shadow:0 2px 8px rgba(0,0,0,.08) !important;
+  font-size:15px !important;
+}
+
+#productsArea .ibraq-products-grid .discount-badge{
+  top:7px !important;
+  right:7px !important;
+  padding:4px 7px !important;
+  font-size:10px !important;
+}
+
+#productsArea .ibraq-products-grid .new-badge{
+  bottom:7px !important;
+  right:7px !important;
+  padding:4px 8px !important;
+  font-size:9px !important;
+}
+
+#productsArea .ibraq-products-grid .product-card h3{
+  display:-webkit-box !important;
+  -webkit-line-clamp:2 !important;
+  -webkit-box-orient:vertical !important;
+  overflow:hidden !important;
+  min-height:2.8em !important;
+  margin:0 2px 5px !important;
+  font-family:var(--product-font) !important;
+  font-size:15px !important;
+  font-weight:700 !important;
+  line-height:1.4 !important;
+  color:var(--ink) !important;
+}
+
+#productsArea .ibraq-products-grid .price-row{
+  min-height:27px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  flex-wrap:wrap !important;
+  gap:5px !important;
+  margin:0 0 8px !important;
+}
+
+#productsArea .ibraq-products-grid .price{
+  font-size:14px !important;
+  font-weight:900 !important;
+  color:var(--danger) !important;
+}
+
+#productsArea .ibraq-products-grid .old-price{
+  font-size:11px !important;
+  font-weight:500 !important;
+  color:#999 !important;
+  text-decoration:line-through !important;
+}
+
+#productsArea .ibraq-products-grid .add-btn{
+  width:100% !important;
+  min-height:39px !important;
+  margin:0 !important;
+  padding:9px 6px !important;
+  border:0 !important;
+  border-radius:0 !important;
+  background:var(--ink) !important;
+  color:#fff !important;
+  font-size:12px !important;
+  font-weight:800 !important;
+  line-height:1.2 !important;
+}
+
+#productsArea .ibraq-products-grid .add-btn:not(:disabled)::before{
+  content:"+";
+  display:inline-block;
+  margin-left:8px;
+  font-size:17px;
+  line-height:0;
+  vertical-align:-1px;
+}
+
+#productsArea .ibraq-products-grid .gift-btn{
+  width:100% !important;
+  margin:6px 0 0 !important;
+  padding:7px 4px !important;
+  border:1px solid var(--line) !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  color:var(--gold) !important;
+  font-size:10px !important;
+  font-weight:700 !important;
+}
+
+/* لا نحتاج أسهم أو نقاط الكاروسيل مع العرض الشبكي */
+#productsArea .flow-arrow,
+#productsArea .flow-meta,
+#productsArea .flow-dots{
+  display:none !important;
+}
+
+@media (max-width:900px){
+  #productsArea .ibraq-products-grid{
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    gap:22px 14px !important;
+  }
+}
+
+@media (max-width:640px){
+  .section{
+    padding-left:12px !important;
+    padding-right:12px !important;
+  }
+
+  #productsArea .ibraq-category-group{
+    margin-bottom:34px !important;
+  }
+
+  #productsArea .ibraq-category-title{
+    margin-bottom:13px !important;
+    font-size:24px !important;
+  }
+
+  #productsArea .ibraq-products-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:22px 10px !important;
+  }
+
+  #productsArea .ibraq-products-grid .product-image{
+    aspect-ratio:1 / 1.12 !important;
+    margin-bottom:7px !important;
+  }
+
+  #productsArea .ibraq-products-grid .product-image img{
+    padding:5px !important;
+  }
+
+  #productsArea .ibraq-products-grid .product-card h3{
+    min-height:2.72em !important;
+    margin-bottom:4px !important;
+    font-size:13px !important;
+    line-height:1.36 !important;
+  }
+
+  #productsArea .ibraq-products-grid .price{
+    font-size:13px !important;
+  }
+
+  #productsArea .ibraq-products-grid .old-price{
+    font-size:10px !important;
+  }
+
+  #productsArea .ibraq-products-grid .add-btn{
+    min-height:37px !important;
+    padding:8px 3px !important;
+    font-size:11px !important;
+  }
+
+  #productsArea .ibraq-products-grid .gift-btn{
+    margin-top:5px !important;
+    padding:6px 2px !important;
+    font-size:9px !important;
+  }
+
+  #productsArea .ibraq-products-grid .favorite-btn{
+    width:28px !important;
+    height:28px !important;
+    top:5px !important;
+    left:5px !important;
+  }
+}
+
+@media (max-width:360px){
+  #productsArea .ibraq-products-grid{
+    gap:18px 8px !important;
+  }
+
+  #productsArea .ibraq-products-grid .product-card h3{
+    font-size:12px !important;
+  }
+
+  #productsArea .ibraq-products-grid .add-btn{
+    font-size:10px !important;
+  }
+}
+
 </style>
 </head>
 
@@ -1102,61 +1374,18 @@ function productCard(product,index=0){
   </article>`
 }
 function groupHTML(name,items,font){
-  const gid="flow_"+Math.random().toString(36).slice(2,9);
-
   return `
-  <div class="category-group">
+  <div class="category-group ibraq-category-group">
 
     <h3
-      class="category-title"
+      class="category-title ibraq-category-title"
       style="font-family:${font||"var(--product-font)"}"
     >
       ${escapeHTML(name)}
     </h3>
 
-    <div class="coverflow-shell">
-
-      <button
-        type="button"
-        class="flow-arrow prev"
-        data-flow="${gid}"
-        data-dir="1"
-        aria-label="المنتج التالي"
-      >›</button>
-
-      <button
-        type="button"
-        class="flow-arrow next"
-        data-flow="${gid}"
-        data-dir="-1"
-        aria-label="المنتج السابق"
-      >‹</button>
-
-      <div
-        class="product-row"
-        id="${gid}"
-        data-index="0"
-      >
-        <div class="product-track">
-          ${items.map((p,i)=>productCard(p,i)).join("")}
-        </div>
-      </div>
-
-      <div class="flow-meta">
-        <span id="${gid}_count">
-          01 / ${String(items.length).padStart(2,"0")}
-        </span>
-      </div>
-
-      <div
-        class="flow-dots"
-        id="${gid}_dots"
-      >
-        ${items.map((_,i)=>`
-          <span class="flow-dot ${i===0?"active":""}"></span>
-        `).join("")}
-      </div>
-
+    <div class="ibraq-products-grid">
+      ${items.map((p,i)=>productCard(p,i)).join("")}
     </div>
 
   </div>
@@ -1960,7 +2189,7 @@ function buildInvoiceSnapshotFromOrder(o){
     order_number:saved.order_number||o?.order_number||"",
     customer:{
       ...savedCustomer,
-      name:savedCustomer.name||o?.name||o?.customer_name||o?.customerName||"",
+      name:savedCustomer.name||o?.name||o?.customer_name||"—",
       phone:savedCustomer.phone||o?.phone||currentCustomerPhone||"—",
       address:savedCustomer.address||o?.address||"—"
     },
@@ -1985,149 +2214,26 @@ function buildInvoiceSnapshotFromOrder(o){
   }
 }
 
-async function openCustomerInvoice(orderId){
-  const o=customerOrders.find(
-    x=>String(x.order_id||x.id||"")===String(orderId)
-  );
-
-  if(!o){
-    toast("تعذر تحديد الطلب");
-    return;
-  }
-
+function openCustomerInvoice(orderId){
+  const o=customerOrders.find(x=>String(x.order_id||x.id||"")===String(orderId));
+  if(!o){toast("تعذر تحديد الطلب");return}
   const snapshot=buildInvoiceSnapshotFromOrder(o);
-
-  if(!snapshot.items.length){
-    toast("لا توجد تفاصيل منتجات في هذا الطلب");
-    return;
-  }
-
-  /*
-    بعض نسخ track_order_secure القديمة لا ترجع اسم العميل.
-    عندها نجلب الاسم فقط من دالة آمنة باستخدام رقم الهاتف + رقم الطلب.
-  */
-  const currentName=String(snapshot.customer?.name||"").trim();
-
-  if(!currentName || currentName==="—"){
-
-    try{
-
-      const phone=
-        normalizePhone(
-          o.phone
-          ||snapshot.customer?.phone
-          ||currentCustomerPhone
-          ||""
-        );
-
-      const orderNumber=
-        Number(
-          o.order_number
-          ||snapshot.order_number
-          ||0
-        );
-
-      if(phone && orderNumber){
-
-        const {data:nameData,error:nameError}=
-          await client.rpc(
-            "get_order_customer_name_secure",
-            {
-              p_phone:phone,
-              p_order_number:orderNumber
-            }
-          );
-
-        if(!nameError && nameData){
-
-          snapshot.customer={
-            ...(snapshot.customer||{}),
-            name:String(nameData).trim()
-          };
-
-        }
-
-      }
-
-    }
-    catch(error){
-      console.warn(
-        "Customer name lookup:",
-        error
-      );
-    }
-
-  }
-
+  if(!snapshot.items.length){toast("لا توجد تفاصيل منتجات في هذا الطلب");return}
   currentInvoiceData={
-    invoice_number:
-      o.invoice_number
-      ||String(o.order_number||""),
-
-    issued_at:
-      o.invoice_issued_at
-      ||o.created_at
-      ||new Date().toISOString(),
-
+    invoice_number:o.invoice_number||String(o.order_number||""),
+    issued_at:o.invoice_issued_at||o.created_at||new Date().toISOString(),
     snapshot
   };
-
-  renderCustomerInvoice(
-    currentInvoiceData
-  );
-
+  renderCustomerInvoice(currentInvoiceData);
   showMainScrim();
-
-  $("invoiceModal")
-  .classList
-  .add("show");
+  $("invoiceModal").classList.add("show")
 }
 function closeInvoiceModal(){$("invoiceModal").classList.remove("show");currentInvoiceData=null;updateMainScrim()}
 function renderCustomerInvoice(invoice){
   const s=invoice.snapshot||{},customer=s.customer||{},order=s.order||{},totals=s.totals||{},items=Array.isArray(s.items)?s.items:[],logo=getStoreLogo();
-
-  const invoiceNo=
-    invoice.invoice_number
-    ||s.order_number
-    ||order.order_number
-    ||"—";
-
-  const customerName=
-    customer.name
-    ||customer.customer_name
-    ||customer.full_name
-    ||customer.fullName
-    ||s.customer_name
-    ||s.customerName
-    ||s.name
-    ||order.customer_name
-    ||order.customerName
-    ||order.name
-    ||"—";
-
-  const customerPhone=
-    customer.phone
-    ||customer.customer_phone
-    ||s.customer_phone
-    ||s.phone
-    ||order.customer_phone
-    ||order.phone
-    ||"—";
-
-  const customerAddress=
-    customer.address
-    ||customer.customer_address
-    ||customer.shipping_address
-    ||s.customer_address
-    ||s.shipping_address
-    ||s.address
-    ||order.customer_address
-    ||order.shipping_address
-    ||order.address
-    ||"—";
-
+  const invoiceNo=invoice.invoice_number||s.order_number||"—";
   $("invoiceContainer").innerHTML=`<div class="invoice-sheet" id="printInvoiceSheet"><div class="invoice-head"><div>${logo?`<img class="invoice-logo" style="display:block" src="${escapeHTML(logo)}">`:""}<div class="invoice-brand">${escapeHTML(getStoreName())}</div><div class="invoice-brand-en">${escapeHTML(getStoreNameEn())}</div></div><div style="text-align:left"><div class="invoice-title">فاتورة</div><div>رقم الفاتورة: <strong>#${escapeHTML(invoiceNo)}</strong></div><div>تاريخ الإصدار: ${invoice.issued_at?new Date(invoice.issued_at).toLocaleString("ar"):"—"}</div></div></div>
-  <div class="invoice-grid"><div class="invoice-info"><strong>بيانات العميل</strong><div>الاسم: ${escapeHTML(customerName)}</div><div>الهاتف: ${escapeHTML(customerPhone)}</div><div>العنوان: ${escapeHTML(customerAddress)}</div></div><div class="invoice-info"><strong>بيانات الطلب</strong><div>رقم الطلب: #${escapeHTML(s.order_number||"—")}</div><div>الحالة: ${escapeHTML(orderStatusText(order.status))}</div><div>حالة الدفع: ${escapeHTML(paymentStatusText(order.payment_status))}</div><div>طريقة الدفع: ${escapeHTML(paymentMethodText(order.pay_method))}</div>${order.notes?`<div>ملاحظات: ${escapeHTML(order.notes)}</div>`:""}${order.shipping_company?`<div>شركة الشحن: ${escapeHTML(order.shipping_company)}</div>`:""}${order.tracking_code?`<div>رقم التتبع: ${escapeHTML(order.tracking_code)}</div>`:""}</div></div>
+  <div class="invoice-grid"><div class="invoice-info"><strong>بيانات العميل</strong><div>الاسم: ${escapeHTML(customer.name||"—")}</div><div>الهاتف: ${escapeHTML(customer.phone||"—")}</div><div>العنوان: ${escapeHTML(customer.address||"—")}</div></div><div class="invoice-info"><strong>بيانات الطلب</strong><div>رقم الطلب: #${escapeHTML(s.order_number||"—")}</div><div>الحالة: ${escapeHTML(orderStatusText(order.status))}</div><div>حالة الدفع: ${escapeHTML(paymentStatusText(order.payment_status))}</div><div>طريقة الدفع: ${escapeHTML(paymentMethodText(order.pay_method))}</div>${order.notes?`<div>ملاحظات: ${escapeHTML(order.notes)}</div>`:""}${order.shipping_company?`<div>شركة الشحن: ${escapeHTML(order.shipping_company)}</div>`:""}${order.tracking_code?`<div>رقم التتبع: ${escapeHTML(order.tracking_code)}</div>`:""}</div></div>
   <div class="invoice-table-wrap"><table class="invoice-table"><thead><tr><th>المنتج</th><th>الخيارات</th><th>الكمية</th><th>سعر الوحدة</th><th>الإجمالي</th></tr></thead><tbody>${items.map(i=>`<tr><td>${escapeHTML(i.product_name||i.bundle_name||i.name||"منتج")}</td><td>${[i.color,i.size].filter(Boolean).map(escapeHTML).join(" / ")||"—"}</td><td>${Number(i.quantity||i.qty||1)}</td><td>${Number(i.unit_price??i.price??0).toFixed(2)} ${escapeHTML(i.currency||totals.currency||"")}</td><td><strong>${Number(i.total_price??i.line_total??((Number(i.unit_price??i.price??0)||0)*(Number(i.quantity||i.qty||1)||1))).toFixed(2)} ${escapeHTML(i.currency||totals.currency||"")}</strong></td></tr>`).join("")}</tbody></table></div>
   <div class="invoice-totals"><div><span>المجموع</span><span>${Number(totals.subtotal||0).toFixed(2)} ${escapeHTML(totals.currency||"")}</span></div><div><span>الخصم</span><span>${Number(totals.discount_amount||0).toFixed(2)} ${escapeHTML(totals.currency||"")}</span></div><div><span>الشحن</span><span>${Number(totals.shipping_amount||0).toFixed(2)} ${escapeHTML(totals.currency||"")}</span></div><div class="grand"><span>الإجمالي</span><span>${Number(totals.total||0).toFixed(2)} ${escapeHTML(totals.currency||"")}</span></div></div><div style="text-align:center;font-size:11px;margin-top:25px;color:#666">شكراً لتسوقكم من ${escapeHTML(getStoreEyebrow())}</div></div>`
 }
