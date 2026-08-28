@@ -193,17 +193,378 @@ main{max-width:1500px;margin:auto;padding:18px 14px 80px}.card{margin-bottom:16p
 
 <section id="recommend" class="page hidden"><div class="card"><h2>اقتراحات المنتجات</h2><div class="grid3"><select id="relFrom"></select><select id="relTo"></select><select id="relType"><option value="recommended">قد يعجبك</option><option value="complements">يكمل هذا المنتج</option><option value="frequently_bought">يُشترى معه</option></select></div><button class="btn" onclick="saveRelation()">ربط المنتجات</button></div><div id="relationsList" class="card"></div></section>
 
-<section id="ads" class="page hidden"><div class="card"><h2>🖼️ شاشة الإعلانات</h2><p class="note">إعدادات الإعلانات محفوظة كما هي في جدول settings.</p><div class="check-row"><input id="adEnabled" type="checkbox"><label for="adEnabled">تشغيل شاشة الإعلانات</label></div><input id="adFiles" type="file" accept="image/*,video/*" multiple onchange="previewSelectedAdFiles()"><div id="newAdFilesPreview" class="media-preview-grid"></div><button id="saveAdsButton" class="btn gold" onclick="saveAds()">حفظ الإعلان</button></div></section>
 
-<section id="design" class="page hidden"><div class="card"><h2>🎨 التصميم والخطوط</h2><p class="note">يمكنك متابعة استخدام إعدادات التصميم الحالية من جدول settings.</p></div></section>
+<section id="ads" class="page hidden">
+  <div class="card">
+    <h2>🖼️ شاشة الإعلانات</h2>
+    <p class="note">تحكم كامل بالإعلان: تشغيل/إيقاف، نوع العرض، المقاسات، الرابط والصور أو الفيديو.</p>
 
-<section id="payment" class="page hidden"><div class="card"><h2>💳 الدفع والبنوك</h2><p class="note">إعدادات الدفع محفوظة في settings.</p></div></section>
+    <div class="grid3">
+      <div>
+        <label>حالة الإعلان</label>
+        <select id="adEnabledSelect">
+          <option value="true">مفعل</option>
+          <option value="false">متوقف</option>
+        </select>
+      </div>
 
-<section id="footer" class="page hidden"><div class="card"><h2>📄 السياسات</h2><div id="policiesEditor"></div><button class="btn gold" onclick="saveFooterSettings()">حفظ السياسات</button></div></section>
+      <div>
+        <label>نوع الإعلان</label>
+        <select id="adType">
+          <option value="image">صورة</option>
+          <option value="slider">سلايدر صور</option>
+          <option value="video">فيديو</option>
+        </select>
+      </div>
 
-<section id="settings" class="page hidden"><div class="card"><h2>⚙️ إعدادات المتجر</h2>
-<div class="grid2"><div><label>اسم المتجر</label><input id="setStoreName"></div><div><label>الاسم الإنجليزي</label><input id="setStoreNameEn"></div><div><label>الجوال</label><input id="setPhone"></div><div><label>واتساب</label><input id="setWhatsapp"></div></div>
-<button id="saveGeneralButton" class="btn gold" onclick="saveGeneralSettings()">حفظ الإعدادات</button></div></section>
+      <div>
+        <label>طريقة ملاءمة الوسائط</label>
+        <select id="adFit">
+          <option value="cover">تغطية كاملة Cover</option>
+          <option value="contain">إظهار كامل Contain</option>
+        </select>
+      </div>
+
+      <div><label>ارتفاع الكمبيوتر</label><input id="adHeightDesktop" type="number" value="650"></div>
+      <div><label>ارتفاع التابلت</label><input id="adHeightTablet" type="number" value="520"></div>
+      <div><label>ارتفاع الجوال</label><input id="adHeightMobile" type="number" value="360"></div>
+
+      <div><label>تدوير الحواف</label><input id="adRadius" type="number" value="0"></div>
+      <div><label>مدة تبديل السلايدر بالمللي ثانية</label><input id="adInterval" type="number" value="3500"></div>
+      <div><label>موضع الصورة</label>
+        <select id="adPosition">
+          <option value="center">وسط</option>
+          <option value="top">أعلى</option>
+          <option value="bottom">أسفل</option>
+          <option value="left">يسار</option>
+          <option value="right">يمين</option>
+        </select>
+      </div>
+    </div>
+
+    <label>رابط الإعلان عند الضغط عليه</label>
+    <input id="adLinkInput" placeholder="https://example.com">
+
+    <label>إضافة صور / فيديو</label>
+    <input id="adFiles" type="file" accept="image/*,video/*" multiple onchange="previewSelectedAdFiles()">
+
+    <div id="adExistingMedia" class="media-preview-grid"></div>
+    <div id="newAdFilesPreview" class="media-preview-grid"></div>
+
+    <div class="actions">
+      <button id="saveAdsButton" class="btn gold" onclick="saveAds()">حفظ الإعلان</button>
+      <button class="btn red" onclick="clearAdMedia()">حذف جميع وسائط الإعلان</button>
+    </div>
+  </div>
+</section>
+
+<section id="design" class="page hidden">
+  <div class="card">
+    <h2>🎨 التصميم والخطوط</h2>
+    <p class="note">هذه الإعدادات تطبق مباشرة على صفحة العملاء بعد الحفظ.</p>
+
+    <h3>ألوان المتجر</h3>
+    <div class="grid4">
+      <div><label>لون الخلفية</label><input id="designCream" type="color" value="#F8EACB"></div>
+      <div><label>لون البطاقات</label><input id="designCard" type="color" value="#FFFBF0"></div>
+      <div><label>لون النص الأساسي</label><input id="designInk" type="color" value="#20301C"></div>
+      <div><label>اللون الذهبي</label><input id="designGold" type="color" value="#A9793C"></div>
+    </div>
+
+    <h3>📐 حجم بطاقات المنتجات</h3>
+    <p class="note">
+      حرّك المؤشر لتكبير أو تصغير بطاقة المنتج لكل جهاز بشكل مستقل.
+    </p>
+
+    <div class="grid3">
+      <div>
+        <label>كمبيوتر</label>
+        <input
+          id="designCardDesktop"
+          type="range"
+          min="130"
+          max="420"
+          step="5"
+          value="180"
+          oninput="updateProductSizePreview()"
+        >
+        <div class="note">
+          الحجم:
+          <strong id="designCardDesktopValue">180px</strong>
+        </div>
+      </div>
+
+      <div>
+        <label>تابلت</label>
+        <input
+          id="designCardTablet"
+          type="range"
+          min="140"
+          max="420"
+          step="5"
+          value="220"
+          oninput="updateProductSizePreview()"
+        >
+        <div class="note">
+          الحجم:
+          <strong id="designCardTabletValue">220px</strong>
+        </div>
+      </div>
+
+      <div>
+        <label>جوال</label>
+        <input
+          id="designCardMobile"
+          type="range"
+          min="150"
+          max="360"
+          step="5"
+          value="280"
+          oninput="updateProductSizePreview()"
+        >
+        <div class="note">
+          الحجم:
+          <strong id="designCardMobileValue">280px</strong>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="productSizePreviewBox"
+      style="
+        margin:16px 0;
+        padding:18px;
+        border:1px dashed var(--gold);
+        border-radius:16px;
+        background:var(--cream);
+        overflow:auto;
+      "
+    >
+      <div class="note" style="margin-bottom:10px">
+        معاينة حجم بطاقة المنتج
+      </div>
+
+      <div
+        id="productSizePreviewCard"
+        style="
+          width:180px;
+          max-width:100%;
+          margin:auto;
+          background:#fff;
+          border:1px solid var(--line);
+          border-radius:18px;
+          padding:12px;
+          text-align:center;
+          transition:width .2s ease;
+        "
+      >
+        <div
+          style="
+            aspect-ratio:1/1;
+            border-radius:14px;
+            background:var(--cream2);
+            display:grid;
+            place-items:center;
+            font-size:42px;
+          "
+        >🛍️</div>
+
+        <strong style="display:block;margin-top:10px">
+          نموذج منتج
+        </strong>
+
+        <div class="note">100.00 ر.س</div>
+
+        <button
+          type="button"
+          class="btn"
+          style="width:100%;margin-top:8px"
+        >
+          أضف للسلة
+        </button>
+      </div>
+    </div>
+
+    <h3>الخلفية</h3>
+    <div class="grid2">
+      <div>
+        <label>رابط صورة الخلفية</label>
+        <input id="designBackgroundUrl" placeholder="https://...">
+      </div>
+      <div>
+        <label>رفع صورة خلفية</label>
+        <input id="designBackgroundFile" type="file" accept="image/*">
+      </div>
+    </div>
+
+    <h3>الخطوط</h3>
+    <div class="grid3" id="fontSettingsGrid">
+      <div><label>خط المتجر العام</label><select id="fontBody"></select></div>
+      <div><label>اسم المتجر</label><select id="fontBrand"></select></div>
+      <div><label>العنوان الرئيسي</label><select id="fontHeroTitle"></select></div>
+      <div><label>وصف الواجهة</label><select id="fontHeroDescription"></select></div>
+      <div><label>القائمة العلوية</label><select id="fontNav"></select></div>
+      <div><label>عناوين الأقسام</label><select id="fontSectionTitles"></select></div>
+      <div><label>أسماء الأقسام</label><select id="fontCategoryTitles"></select></div>
+      <div><label>أسماء المنتجات</label><select id="fontProductNames"></select></div>
+      <div><label>الأسعار</label><select id="fontPrices"></select></div>
+      <div><label>الأزرار</label><select id="fontButtons"></select></div>
+      <div><label>الباقات</label><select id="fontBundles"></select></div>
+      <div><label>الهدايا</label><select id="fontGifts"></select></div>
+      <div><label>التقييمات</label><select id="fontReviews"></select></div>
+      <div><label>الفوتر</label><select id="fontFooter"></select></div>
+      <div><label>النوافذ</label><select id="fontModals"></select></div>
+      <div><label>الفاتورة</label><select id="fontInvoice"></select></div>
+    </div>
+
+    <div class="actions">
+      <button id="saveDesignButton" class="btn gold" onclick="saveDesignSettings()">حفظ التصميم والخطوط</button>
+    </div>
+  </div>
+</section>
+
+<section id="payment" class="page hidden">
+  <div class="card">
+    <h2>💳 طرق الدفع</h2>
+    <p class="note">أضف طرق الدفع التي تظهر للعميل عند إتمام الطلب.</p>
+
+    <input id="paymentMethodId" type="hidden">
+
+    <div class="grid3">
+      <div><label>اسم طريقة الدفع</label><input id="paymentMethodName" placeholder="مثال: تحويل بنكي"></div>
+      <div><label>الكود</label><input id="paymentMethodCode" placeholder="bank_transfer"></div>
+      <div>
+        <label>النوع</label>
+        <select id="paymentMethodType">
+          <option value="bank">تحويل بنكي</option>
+          <option value="cash">نقدي</option>
+          <option value="wallet">محفظة إلكترونية</option>
+          <option value="card">بطاقة</option>
+          <option value="other">أخرى</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="check-row">
+      <input id="paymentMethodEnabled" type="checkbox" checked>
+      <label for="paymentMethodEnabled">مفعل ويظهر للعملاء</label>
+    </div>
+
+    <div class="actions">
+      <button id="savePaymentMethodButton" class="btn gold" onclick="savePaymentMethod()">إضافة طريقة الدفع</button>
+      <button class="btn out" onclick="resetPaymentMethodForm()">جديد</button>
+    </div>
+
+    <div id="paymentMethodsList" style="margin-top:16px"></div>
+  </div>
+
+  <div class="card">
+    <h2>🏦 الحسابات البنكية</h2>
+    <p class="note">يمكن إضافة أكثر من بنك، وتظهر الحسابات المفعلة في المتجر.</p>
+
+    <input id="bankAccountId" type="hidden">
+
+    <div class="grid2">
+      <div><label>اسم البنك</label><input id="bankName" placeholder="اسم البنك"></div>
+      <div><label>اسم صاحب الحساب</label><input id="bankAccountName" placeholder="اسم صاحب الحساب"></div>
+      <div><label>رقم الحساب</label><input id="bankAccountNumber" dir="ltr"></div>
+      <div><label>IBAN</label><input id="bankIban" dir="ltr"></div>
+    </div>
+
+    <label>تعليمات التحويل</label>
+    <textarea id="bankInstructions" placeholder="مثال: أرسل صورة الحوالة عبر واتساب بعد إتمام الطلب."></textarea>
+
+    <div class="check-row">
+      <input id="bankEnabled" type="checkbox" checked>
+      <label for="bankEnabled">الحساب مفعل</label>
+    </div>
+
+    <div class="actions">
+      <button id="saveBankButton" class="btn gold" onclick="saveBankAccount()">إضافة الحساب البنكي</button>
+      <button class="btn out" onclick="resetBankForm()">حساب جديد</button>
+    </div>
+
+    <div id="bankAccountsList" style="margin-top:16px"></div>
+  </div>
+</section>
+
+<section id="footer" class="page hidden">
+  <div class="card">
+    <h2>📄 السياسات</h2>
+    <p class="note">عدّل النصوص التي تظهر للعملاء في أسفل المتجر.</p>
+    <div id="policiesEditor"></div>
+    <button class="btn gold" onclick="saveFooterSettings()">حفظ السياسات</button>
+  </div>
+</section>
+
+<section id="settings" class="page hidden">
+  <div class="card">
+    <h2>⚙️ إعدادات المتجر</h2>
+
+    <h3>هوية المتجر</h3>
+    <div class="grid2">
+      <div><label>اسم المتجر</label><input id="setStoreName"></div>
+      <div><label>الاسم الإنجليزي</label><input id="setStoreNameEn"></div>
+      <div><label>النص أعلى العنوان</label><input id="setStoreEyebrow"></div>
+      <div><label>البريد الإلكتروني</label><input id="setEmail" type="email"></div>
+      <div><label>الجوال</label><input id="setPhone" dir="ltr"></div>
+      <div><label>واتساب</label><input id="setWhatsapp" dir="ltr"></div>
+    </div>
+
+    <h3>واجهة المتجر</h3>
+    <div class="grid2">
+      <div><label>العنوان الرئيسي</label><input id="setSloganTitle"></div>
+      <div><label>وصف الواجهة</label><input id="setSloganDesc"></div>
+    </div>
+
+    <label>نبذة عن المتجر</label>
+    <textarea id="setAboutText"></textarea>
+
+    <h3>الشعار وشاشة البداية</h3>
+    <div class="grid2">
+      <div><label>رابط شعار المتجر</label><input id="setLogoUrl"></div>
+      <div><label>رفع شعار المتجر</label><input id="setLogoFile" type="file" accept="image/*"></div>
+      <div><label>رابط شعار شاشة البداية</label><input id="setSplashLogoUrl"></div>
+      <div><label>رفع شعار شاشة البداية</label><input id="setSplashLogoFile" type="file" accept="image/*"></div>
+    </div>
+
+    <div class="grid4">
+      <div><label>مدة شاشة البداية ms</label><input id="setSplashDuration" type="number" value="2300"></div>
+      <div><label>عرض الشعار كمبيوتر</label><input id="setSplashDesktopWidth" type="number" value="330"></div>
+      <div><label>عرض الشعار تابلت</label><input id="setSplashTabletWidth" type="number" value="280"></div>
+      <div><label>عرض الشعار جوال</label><input id="setSplashMobileWidth" type="number" value="220"></div>
+    </div>
+
+    <div class="grid2">
+      <div><label>لون خلفية شاشة البداية</label><input id="setSplashBackground" type="color" value="#F8EACB"></div>
+      <div class="check-row" style="align-self:end">
+        <input id="setSplashEnabled" type="checkbox" checked>
+        <label for="setSplashEnabled">تشغيل شاشة البداية</label>
+      </div>
+    </div>
+
+    <h3>روابط التواصل</h3>
+    <div class="grid3">
+      <div><label>Instagram</label><input id="setInstagram"></div>
+      <div><label>Facebook</label><input id="setFacebook"></div>
+      <div><label>TikTok</label><input id="setTiktok"></div>
+      <div><label>X / Twitter</label><input id="setTwitter"></div>
+      <div><label>Snapchat</label><input id="setSnapchat"></div>
+      <div><label>Telegram</label><input id="setTelegram"></div>
+    </div>
+
+    <h3>خصائص المتجر</h3>
+    <div class="grid3">
+      <div class="check-row"><input id="setEnableSearch" type="checkbox" checked><label for="setEnableSearch">تفعيل البحث</label></div>
+      <div class="check-row"><input id="setEnableSort" type="checkbox" checked><label for="setEnableSort">تفعيل الفرز</label></div>
+      <div class="check-row"><input id="setFeatureReviews" type="checkbox" checked><label for="setFeatureReviews">إظهار التقييمات</label></div>
+    </div>
+
+    <div class="actions">
+      <button id="saveGeneralButton" class="btn gold" onclick="saveGeneralSettings()">حفظ جميع إعدادات المتجر</button>
+    </div>
+  </div>
+</section>
 </main>
 </div>
 
@@ -371,11 +732,680 @@ function renderReviews(){$("reviewsList").innerHTML=reviews.map(r=>`<div class="
 async function saveRelation(){if($("relFrom").value===$("relTo").value)return toast("اختر منتجين مختلفين");const{error}=await db.from("product_relations").insert({product_id:$("relFrom").value,related_product_id:$("relTo").value,relation_type:$("relType").value});if(error)return alert(error.message);await loadAll()}
 function renderRelations(){$("relationsList").innerHTML=relations.map(r=>`<div class="order-card">${esc(products.find(p=>String(p.id)===String(r.product_id))?.name||"")} ← ${esc(products.find(p=>String(p.id)===String(r.related_product_id))?.name||"")} <button class="btn red sm" onclick="removeRow('product_relations','${r.id}')">حذف</button></div>`).join("")||"لا توجد روابط."}
 
-async function saveAds(){try{const uploaded=$("adFiles").files.length?await uploadMultipleFiles($("adFiles").files,"ads",""):[];const next={...adSettings,enabled:$("adEnabled").checked,media:[...(Array.isArray(adSettings.media)?adSettings.media:[]),...uploaded]};await saveSetting("ads",next);adSettings=next;toast("تم حفظ الإعلان")}catch(e){alert(e.message)}}
-function renderPoliciesEditor(){const saved=footerSettings.policies||{};$("policiesEditor").innerHTML=policies.map(([k,t])=>`<div class="order-card"><label>${t}</label><textarea id="policyText_${k}">${esc(saved[k]||"")}</textarea></div>`).join("")}
-async function saveFooterSettings(){const data={};policies.forEach(([k])=>data[k]=$("policyText_"+k).value.trim());await saveSetting("footer",{...footerSettings,policies:{...(footerSettings.policies||{}),...data}});toast("تم حفظ السياسات")}
-function fillSimpleSettings(){$("setStoreName").value=generalSettings.storeName||"الشعيبي";$("setStoreNameEn").value=generalSettings.storeNameEn||"ALSHUAIIBE STORE";$("setPhone").value=generalSettings.phone||"";$("setWhatsapp").value=generalSettings.whatsapp||"";$("adEnabled").checked=adSettings.enabled===true}
-async function saveGeneralSettings(){const next={...generalSettings,storeName:$("setStoreName").value.trim(),storeNameEn:$("setStoreNameEn").value.trim(),phone:$("setPhone").value.trim(),whatsapp:$("setWhatsapp").value.trim()};await saveSetting("general",next);generalSettings=next;toast("تم حفظ الإعدادات ✓")}
+
+const FONT_OPTIONS=[
+  "Tajawal",
+  "Cairo",
+  "Amiri",
+  "Aref Ruqaa",
+  "Markazi Text"
+];
+
+const FONT_KEYS=[
+  ["fontBody","body"],
+  ["fontBrand","brand"],
+  ["fontHeroTitle","heroTitle"],
+  ["fontHeroDescription","heroDescription"],
+  ["fontNav","nav"],
+  ["fontSectionTitles","sectionTitles"],
+  ["fontCategoryTitles","categoryTitles"],
+  ["fontProductNames","productNames"],
+  ["fontPrices","prices"],
+  ["fontButtons","buttons"],
+  ["fontBundles","bundles"],
+  ["fontGifts","gifts"],
+  ["fontReviews","reviews"],
+  ["fontFooter","footer"],
+  ["fontModals","modals"],
+  ["fontInvoice","invoice"]
+];
+
+function makeId(prefix){
+  return prefix+"_"+Date.now()+"_"+Math.random().toString(36).slice(2,8);
+}
+
+function cloneJson(value,fallback){
+  try{
+    return JSON.parse(JSON.stringify(value));
+  }catch{
+    return fallback;
+  }
+}
+
+/* ================= ADS ================= */
+
+function renderExistingAdMedia(){
+  const media=Array.isArray(adSettings.media)?adSettings.media:[];
+
+  $("adExistingMedia").innerHTML=media.map((url,index)=>{
+    const isVideo=/\.(mp4|webm|ogg)(\?|$)/i.test(String(url));
+    return `
+      <div class="media-preview">
+        ${isVideo
+          ? `<video src="${esc(url)}" controls muted></video>`
+          : `<img src="${esc(url)}" alt="">`
+        }
+        <button
+          class="media-remove"
+          onclick="removeAdMedia(${index})"
+          type="button"
+        >×</button>
+      </div>
+    `;
+  }).join("");
+}
+
+function removeAdMedia(index){
+  const media=Array.isArray(adSettings.media)?[...adSettings.media]:[];
+  media.splice(index,1);
+  adSettings={...adSettings,media};
+  renderExistingAdMedia();
+}
+
+function clearAdMedia(){
+  if(!confirm("حذف جميع صور وفيديوهات الإعلان؟"))return;
+  adSettings={...adSettings,media:[]};
+  renderExistingAdMedia();
+  toast("تم حذف الوسائط مؤقتاً، اضغط حفظ الإعلان");
+}
+
+async function saveAds(){
+  const button=$("saveAdsButton");
+  button.disabled=true;
+
+  try{
+    const uploaded=$("adFiles").files.length
+      ? await uploadMultipleFiles($("adFiles").files,"ads","")
+      : [];
+
+    const oldMedia=Array.isArray(adSettings.media)?adSettings.media:[];
+
+    const next={
+      ...adSettings,
+      enabled:$("adEnabledSelect").value==="true",
+      type:$("adType").value,
+      fit:$("adFit").value,
+      position:$("adPosition").value,
+      radius:Number($("adRadius").value||0),
+      interval:Number($("adInterval").value||3500),
+      heightDesktop:Number($("adHeightDesktop").value||650),
+      heightTablet:Number($("adHeightTablet").value||520),
+      heightMobile:Number($("adHeightMobile").value||360),
+      link:$("adLinkInput").value.trim(),
+      media:[...oldMedia,...uploaded]
+    };
+
+    await saveSetting("ads",next);
+    adSettings=next;
+    $("adFiles").value="";
+    $("newAdFilesPreview").innerHTML="";
+    renderExistingAdMedia();
+    toast("تم حفظ الإعلان ✓");
+  }catch(e){
+    alert("تعذر حفظ الإعلان:\n"+(e.message||e));
+  }finally{
+    button.disabled=false;
+  }
+}
+
+/* ================= DESIGN ================= */
+
+function fillFontSelects(){
+  FONT_KEYS.forEach(([elementId,key])=>{
+    const el=$(elementId);
+    if(!el)return;
+
+    const selected=
+      designSettings.fonts?.[key]
+      || designSettings[key]
+      || (key==="productNames" ? designSettings.productFont : "")
+      || "Tajawal";
+
+    el.innerHTML=FONT_OPTIONS
+      .map(font=>`<option value="${esc(font)}">${esc(font)}</option>`)
+      .join("");
+
+    if(FONT_OPTIONS.includes(selected)){
+      el.value=selected;
+    }
+  });
+}
+
+
+function updateProductSizePreview(){
+
+  const desktop=
+    Number(
+      $("designCardDesktop").value
+      ||180
+    );
+
+  const tablet=
+    Number(
+      $("designCardTablet").value
+      ||220
+    );
+
+  const mobile=
+    Number(
+      $("designCardMobile").value
+      ||280
+    );
+
+  $("designCardDesktopValue").textContent=
+    desktop+"px";
+
+  $("designCardTabletValue").textContent=
+    tablet+"px";
+
+  $("designCardMobileValue").textContent=
+    mobile+"px";
+
+  /*
+    المعاينة تستخدم الحجم المناسب لعرض شاشة الإدارة الحالي.
+  */
+  let previewWidth=desktop;
+
+  if(window.innerWidth<=768){
+    previewWidth=mobile;
+  }
+  else if(window.innerWidth<=1100){
+    previewWidth=tablet;
+  }
+
+  $("productSizePreviewCard").style.width=
+    previewWidth+"px";
+}
+
+async function saveDesignSettings(){
+  const button=$("saveDesignButton");
+  button.disabled=true;
+
+  try{
+    let backgroundUrl=$("designBackgroundUrl").value.trim();
+
+    const file=$("designBackgroundFile").files?.[0];
+
+    if(file){
+      backgroundUrl=await uploadMediaFile(file,"design");
+    }
+
+    const fonts={...(designSettings.fonts||{})};
+
+    FONT_KEYS.forEach(([elementId,key])=>{
+      fonts[key]=$(elementId).value;
+    });
+
+    const next={
+      ...designSettings,
+
+      colors:{
+        ...(designSettings.colors||{}),
+        cream:$("designCream").value,
+        card:$("designCard").value,
+        ink:$("designInk").value,
+        gold:$("designGold").value
+      },
+
+      cardWidth:Number($("designCardDesktop").value||180),
+
+      cards:{
+        ...(designSettings.cards||{}),
+        desktopWidth:Number($("designCardDesktop").value||180),
+        tabletWidth:Number($("designCardTablet").value||220),
+        mobileWidth:Number($("designCardMobile").value||280)
+      },
+
+      cardWidthDesktop:Number($("designCardDesktop").value||180),
+      cardWidthTablet:Number($("designCardTablet").value||220),
+      cardWidthMobile:Number($("designCardMobile").value||280),
+
+      productFont:$("fontProductNames").value,
+      backgroundUrl,
+      fonts
+    };
+
+    await saveSetting("design",next);
+    designSettings=next;
+    $("designBackgroundFile").value="";
+    $("designBackgroundUrl").value=backgroundUrl;
+    toast("تم حفظ التصميم والخطوط ✓");
+  }catch(e){
+    alert("تعذر حفظ التصميم:\n"+(e.message||e));
+  }finally{
+    button.disabled=false;
+  }
+}
+
+/* ================= PAYMENT METHODS ================= */
+
+function getPaymentMethodsAdmin(){
+  return Array.isArray(paymentSettings.paymentMethods)
+    ? paymentSettings.paymentMethods
+    : [];
+}
+
+function getBanksAdmin(){
+  return Array.isArray(paymentSettings.bankAccounts)
+    ? paymentSettings.bankAccounts
+    : [];
+}
+
+async function persistPaymentSettings(next){
+  await saveSetting("payment",next);
+  paymentSettings=next;
+  renderPaymentSettings();
+}
+
+function resetPaymentMethodForm(){
+  $("paymentMethodId").value="";
+  $("paymentMethodName").value="";
+  $("paymentMethodCode").value="";
+  $("paymentMethodType").value="bank";
+  $("paymentMethodEnabled").checked=true;
+  $("savePaymentMethodButton").textContent="إضافة طريقة الدفع";
+}
+
+function editPaymentMethod(id){
+  const item=getPaymentMethodsAdmin().find(x=>String(x.id)===String(id));
+  if(!item)return;
+
+  $("paymentMethodId").value=item.id||"";
+  $("paymentMethodName").value=item.name||item.title||"";
+  $("paymentMethodCode").value=item.code||item.id||"";
+  $("paymentMethodType").value=item.type||"bank";
+  $("paymentMethodEnabled").checked=item.enabled!==false;
+  $("savePaymentMethodButton").textContent="حفظ تعديل طريقة الدفع";
+}
+
+async function savePaymentMethod(){
+  const id=$("paymentMethodId").value;
+  const name=$("paymentMethodName").value.trim();
+  const code=$("paymentMethodCode").value.trim() || name.toLowerCase().replace(/\s+/g,"_");
+
+  if(!name){
+    toast("اكتب اسم طريقة الدفع");
+    return;
+  }
+
+  const list=cloneJson(getPaymentMethodsAdmin(),[]);
+
+  const row={
+    id:id||makeId("pay"),
+    code,
+    name,
+    title:name,
+    type:$("paymentMethodType").value,
+    enabled:$("paymentMethodEnabled").checked
+  };
+
+  const index=list.findIndex(x=>String(x.id)===String(id));
+
+  if(index>=0){
+    list[index]={...list[index],...row};
+  }else{
+    list.push(row);
+  }
+
+  try{
+    await persistPaymentSettings({
+      ...paymentSettings,
+      paymentMethods:list
+    });
+
+    resetPaymentMethodForm();
+    toast(id?"تم تعديل طريقة الدفع ✓":"تمت إضافة طريقة الدفع ✓");
+  }catch(e){
+    alert("تعذر حفظ طريقة الدفع:\n"+(e.message||e));
+  }
+}
+
+async function deletePaymentMethod(id){
+  if(!confirm("حذف طريقة الدفع؟"))return;
+
+  const list=getPaymentMethodsAdmin()
+    .filter(x=>String(x.id)!==String(id));
+
+  try{
+    await persistPaymentSettings({
+      ...paymentSettings,
+      paymentMethods:list
+    });
+    toast("تم حذف طريقة الدفع");
+  }catch(e){
+    alert(e.message||e);
+  }
+}
+
+/* ================= BANKS ================= */
+
+function resetBankForm(){
+  $("bankAccountId").value="";
+  $("bankName").value="";
+  $("bankAccountName").value="";
+  $("bankAccountNumber").value="";
+  $("bankIban").value="";
+  $("bankInstructions").value="";
+  $("bankEnabled").checked=true;
+  $("saveBankButton").textContent="إضافة الحساب البنكي";
+}
+
+function editBankAccount(id){
+  const item=getBanksAdmin().find(x=>String(x.id)===String(id));
+  if(!item)return;
+
+  $("bankAccountId").value=item.id||"";
+  $("bankName").value=item.bankName||"";
+  $("bankAccountName").value=item.accountName||item.bankHolder||"";
+  $("bankAccountNumber").value=item.accountNumber||item.bankAccount||"";
+  $("bankIban").value=item.iban||item.bankIban||"";
+  $("bankInstructions").value=item.instructions||item.bankInstructions||"";
+  $("bankEnabled").checked=item.enabled!==false;
+  $("saveBankButton").textContent="حفظ تعديل الحساب";
+}
+
+async function saveBankAccount(){
+  const id=$("bankAccountId").value;
+  const bankName=$("bankName").value.trim();
+
+  if(!bankName){
+    toast("اكتب اسم البنك");
+    return;
+  }
+
+  const list=cloneJson(getBanksAdmin(),[]);
+
+  const row={
+    id:id||makeId("bank"),
+    bankName,
+    accountName:$("bankAccountName").value.trim(),
+    accountNumber:$("bankAccountNumber").value.trim(),
+    iban:$("bankIban").value.trim(),
+    instructions:$("bankInstructions").value.trim(),
+    enabled:$("bankEnabled").checked
+  };
+
+  const index=list.findIndex(x=>String(x.id)===String(id));
+
+  if(index>=0){
+    list[index]={...list[index],...row};
+  }else{
+    list.push(row);
+  }
+
+  try{
+    await persistPaymentSettings({
+      ...paymentSettings,
+      bankAccounts:list
+    });
+
+    resetBankForm();
+    toast(id?"تم تعديل الحساب البنكي ✓":"تمت إضافة الحساب البنكي ✓");
+  }catch(e){
+    alert("تعذر حفظ الحساب:\n"+(e.message||e));
+  }
+}
+
+async function deleteBankAccount(id){
+  if(!confirm("حذف الحساب البنكي؟"))return;
+
+  const list=getBanksAdmin()
+    .filter(x=>String(x.id)!==String(id));
+
+  try{
+    await persistPaymentSettings({
+      ...paymentSettings,
+      bankAccounts:list
+    });
+    toast("تم حذف الحساب البنكي");
+  }catch(e){
+    alert(e.message||e);
+  }
+}
+
+function renderPaymentSettings(){
+  const methods=getPaymentMethodsAdmin();
+
+  $("paymentMethodsList").innerHTML=methods.length
+    ? methods.map(item=>`
+      <div class="order-card">
+        <div class="order-card-head">
+          <div>
+            <strong>💳 ${esc(item.name||item.title||"طريقة دفع")}</strong>
+            <div class="note">
+              النوع: ${esc(item.type||"—")}
+              · الكود: ${esc(item.code||item.id||"—")}
+              · ${item.enabled===false?"متوقفة":"مفعلة"}
+            </div>
+          </div>
+          <div class="actions">
+            <button class="btn sm" onclick="editPaymentMethod('${esc(item.id)}')">تعديل</button>
+            <button class="btn red sm" onclick="deletePaymentMethod('${esc(item.id)}')">حذف</button>
+          </div>
+        </div>
+      </div>
+    `).join("")
+    : `<div class="note">لا توجد طرق دفع. أضف أول طريقة دفع من الأعلى.</div>`;
+
+  const banks=getBanksAdmin();
+
+  $("bankAccountsList").innerHTML=banks.length
+    ? banks.map(item=>`
+      <div class="order-card">
+        <div class="order-card-head">
+          <div>
+            <strong>🏦 ${esc(item.bankName||"حساب بنكي")}</strong>
+            <div class="note">
+              ${item.accountName?`صاحب الحساب: ${esc(item.accountName)}<br>`:""}
+              ${item.accountNumber?`رقم الحساب: <span dir="ltr">${esc(item.accountNumber)}</span><br>`:""}
+              ${item.iban?`IBAN: <span dir="ltr">${esc(item.iban)}</span><br>`:""}
+              ${item.enabled===false?"متوقف":"مفعل"}
+            </div>
+          </div>
+          <div class="actions">
+            <button class="btn sm" onclick="editBankAccount('${esc(item.id)}')">تعديل</button>
+            <button class="btn red sm" onclick="deleteBankAccount('${esc(item.id)}')">حذف</button>
+          </div>
+        </div>
+      </div>
+    `).join("")
+    : `<div class="note">لا توجد حسابات بنكية. أضف أول حساب من الأعلى.</div>`;
+}
+
+/* ================= POLICIES ================= */
+
+function renderPoliciesEditor(){
+  const saved=footerSettings.policies||{};
+
+  $("policiesEditor").innerHTML=policies.map(([k,t])=>`
+    <div class="order-card">
+      <label>${t}</label>
+      <textarea id="policyText_${k}">${esc(saved[k]||"")}</textarea>
+    </div>
+  `).join("");
+}
+
+async function saveFooterSettings(){
+  const data={};
+
+  policies.forEach(([k])=>{
+    data[k]=$("policyText_"+k).value.trim();
+  });
+
+  try{
+    const next={
+      ...footerSettings,
+      policies:{
+        ...(footerSettings.policies||{}),
+        ...data
+      }
+    };
+
+    await saveSetting("footer",next);
+    footerSettings=next;
+    toast("تم حفظ السياسات ✓");
+  }catch(e){
+    alert("تعذر حفظ السياسات:\n"+(e.message||e));
+  }
+}
+
+/* ================= GENERAL SETTINGS ================= */
+
+function fillSimpleSettings(){
+  $("setStoreName").value=generalSettings.storeName||"الشعيبي";
+  $("setStoreNameEn").value=generalSettings.storeNameEn||"ALSHUAIIBE STORE";
+  $("setStoreEyebrow").value=generalSettings.storeEyebrow||"متجر الشعيبي";
+  $("setEmail").value=generalSettings.email||"";
+  $("setPhone").value=generalSettings.phone||"";
+  $("setWhatsapp").value=generalSettings.whatsapp||"";
+  $("setSloganTitle").value=generalSettings.sloganTitle||"";
+  $("setSloganDesc").value=generalSettings.sloganDesc||"";
+  $("setAboutText").value=generalSettings.aboutText||"";
+  $("setLogoUrl").value=generalSettings.logoUrl||"";
+  $("setSplashLogoUrl").value=generalSettings.splashLogoUrl||"";
+  $("setSplashDuration").value=Number(generalSettings.splashDuration||2300);
+  $("setSplashDesktopWidth").value=Number(generalSettings.splashDesktopWidth||generalSettings.splashLogoWidth||330);
+  $("setSplashTabletWidth").value=Number(generalSettings.splashTabletWidth||280);
+  $("setSplashMobileWidth").value=Number(generalSettings.splashMobileWidth||220);
+  $("setSplashBackground").value=generalSettings.splashBackground||"#F8EACB";
+  $("setSplashEnabled").checked=generalSettings.splashEnabled!==false;
+
+  $("setInstagram").value=generalSettings.instagram||"";
+  $("setFacebook").value=generalSettings.facebook||"";
+  $("setTiktok").value=generalSettings.tiktok||"";
+  $("setTwitter").value=generalSettings.twitter||"";
+  $("setSnapchat").value=generalSettings.snapchat||"";
+  $("setTelegram").value=generalSettings.telegram||"";
+
+  $("setEnableSearch").checked=generalSettings.enableSearch!==false;
+  $("setEnableSort").checked=generalSettings.enableSort!==false;
+  $("setFeatureReviews").checked=generalSettings.featureReviews!==false;
+
+  $("adEnabledSelect").value=String(adSettings.enabled===true);
+  $("adType").value=adSettings.type||"image";
+  $("adFit").value=adSettings.fit||"cover";
+  $("adHeightDesktop").value=Number(adSettings.heightDesktop||650);
+  $("adHeightTablet").value=Number(adSettings.heightTablet||520);
+  $("adHeightMobile").value=Number(adSettings.heightMobile||360);
+  $("adRadius").value=Number(adSettings.radius||0);
+  $("adInterval").value=Number(adSettings.interval||3500);
+  $("adPosition").value=adSettings.position||"center";
+  $("adLinkInput").value=adSettings.link||"";
+
+  const colors=designSettings.colors||{};
+  $("designCream").value=colors.cream||"#F8EACB";
+  $("designCard").value=colors.card||"#FFFBF0";
+  $("designInk").value=colors.ink||"#20301C";
+  $("designGold").value=colors.gold||"#A9793C";
+
+  $("designCardDesktop").value=Number(
+    designSettings.cards?.desktopWidth
+    || designSettings.cardWidth
+    || 180
+  );
+
+  $("designCardTablet").value=Number(
+    designSettings.cards?.tabletWidth
+    || 220
+  );
+
+  $("designCardMobile").value=Number(
+    designSettings.cards?.mobileWidth
+    || 280
+  );
+
+  $("designBackgroundUrl").value=designSettings.backgroundUrl||"";
+
+  fillFontSelects();
+  renderExistingAdMedia();
+  renderPaymentSettings();
+  updateProductSizePreview();
+}
+
+async function saveGeneralSettings(){
+  const button=$("saveGeneralButton");
+  button.disabled=true;
+
+  try{
+    let logoUrl=$("setLogoUrl").value.trim();
+    let splashLogoUrl=$("setSplashLogoUrl").value.trim();
+
+    const logoFile=$("setLogoFile").files?.[0];
+    const splashFile=$("setSplashLogoFile").files?.[0];
+
+    if(logoFile){
+      logoUrl=await uploadMediaFile(logoFile,"identity");
+    }
+
+    if(splashFile){
+      splashLogoUrl=await uploadMediaFile(splashFile,"splash");
+    }
+
+    const next={
+      ...generalSettings,
+
+      storeName:$("setStoreName").value.trim(),
+      storeNameEn:$("setStoreNameEn").value.trim(),
+      storeEyebrow:$("setStoreEyebrow").value.trim(),
+
+      email:$("setEmail").value.trim(),
+      phone:$("setPhone").value.trim(),
+      whatsapp:$("setWhatsapp").value.trim(),
+
+      sloganTitle:$("setSloganTitle").value.trim(),
+      sloganDesc:$("setSloganDesc").value.trim(),
+      aboutText:$("setAboutText").value.trim(),
+
+      logoUrl,
+      splashLogoUrl,
+      splashEnabled:$("setSplashEnabled").checked,
+      splashDuration:Number($("setSplashDuration").value||2300),
+
+      splashLogoWidth:Number($("setSplashDesktopWidth").value||330),
+      splashDesktopWidth:Number($("setSplashDesktopWidth").value||330),
+      splashTabletWidth:Number($("setSplashTabletWidth").value||280),
+      splashMobileWidth:Number($("setSplashMobileWidth").value||220),
+      splashBackground:$("setSplashBackground").value,
+
+      instagram:$("setInstagram").value.trim(),
+      facebook:$("setFacebook").value.trim(),
+      tiktok:$("setTiktok").value.trim(),
+      twitter:$("setTwitter").value.trim(),
+      snapchat:$("setSnapchat").value.trim(),
+      telegram:$("setTelegram").value.trim(),
+
+      enableSearch:$("setEnableSearch").checked,
+      enableSort:$("setEnableSort").checked,
+      featureReviews:$("setFeatureReviews").checked
+    };
+
+    await saveSetting("general",next);
+    generalSettings=next;
+
+    $("setLogoUrl").value=logoUrl;
+    $("setSplashLogoUrl").value=splashLogoUrl;
+    $("setLogoFile").value="";
+    $("setSplashLogoFile").value="";
+
+    toast("تم حفظ جميع إعدادات المتجر ✓");
+  }catch(e){
+    alert("تعذر حفظ إعدادات المتجر:\n"+(e.message||e));
+  }finally{
+    button.disabled=false;
+  }
+}
+
+
+window.addEventListener(
+  "resize",
+  ()=>{
+    if($("productSizePreviewCard")){
+      updateProductSizePreview();
+    }
+  },
+  {passive:true}
+);
+
 async function removeRow(table,id){if(!confirm("تأكيد الحذف؟"))return;const{error}=await db.from(table).delete().eq("id",id);if(error)return alert(error.message);toast("تم الحذف");await loadAll()}
 
 async function startAdmin(){try{await db.auth.signOut({scope:"local"})}catch{};$("app").classList.add("hidden");$("login").classList.remove("hidden");$("password").value="";setTimeout(()=>$("password")?.focus(),150)}
