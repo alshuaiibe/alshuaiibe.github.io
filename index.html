@@ -90,9 +90,9 @@ button,input,textarea,select{font:inherit} button{cursor:pointer} a{color:inheri
 
 /* ===== COVERFLOW PRODUCTS ===== */
 .coverflow-shell{position:relative;padding:4px 48px 10px}
-.product-row{width:100%;display:flex;gap:16px;overflow-x:auto;padding:14px calc(50% - min(var(--card-width),42vw)/2) 20px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;perspective:1100px}
+.product-row{width:100%;display:flex;gap:16px;overflow-x:auto;overflow-y:hidden;padding:14px calc(50% - min(var(--card-width),42vw)/2) 20px;scroll-snap-type:x mandatory;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;scrollbar-width:none;perspective:1100px;direction:ltr;touch-action:pan-x pan-y;overscroll-behavior-inline:contain}
 .product-row::-webkit-scrollbar{display:none}
-.product-card{flex:0 0 min(var(--card-width),42vw);width:min(var(--card-width),42vw);max-width:min(var(--card-width),42vw);scroll-snap-align:center;text-align:center;transform:scale(.84) rotateY(6deg);opacity:.55;filter:saturate(.55);transition:transform .35s ease,opacity .35s ease,filter .35s ease}
+.product-card{flex:0 0 min(var(--card-width),42vw);width:min(var(--card-width),42vw);max-width:min(var(--card-width),42vw);scroll-snap-align:center;scroll-snap-stop:always;text-align:center;direction:rtl;transform:scale(.84) rotateY(6deg);opacity:.55;filter:saturate(.55);transition:transform .35s ease,opacity .35s ease,filter .35s ease}
 .product-card.is-center{transform:scale(1.08) rotateY(0);opacity:1;filter:none;z-index:3}
 .product-image{width:100%;aspect-ratio:1/1;position:relative;cursor:pointer;border-radius:18px;background:rgba(255,255,255,.2)}
 .product-image img{width:100%;height:100%;object-fit:contain;padding:8px;transition:.3s}.product-image:hover img{transform:scale(1.04)}
@@ -173,7 +173,7 @@ button,input,textarea,select{font:inherit} button{cursor:pointer} a{color:inheri
   .category-group + .category-group{margin-top:8px;}
   .category-title{display:block;width:100%;margin:0 10px 12px;font-size:27px;}
   .category-group .coverflow-shell{display:block;width:100%;overflow:hidden;}
-  .category-group .product-row{display:flex;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;width:100%;}
+  .category-group .product-row{display:flex;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;width:100%;direction:ltr;touch-action:pan-x pan-y;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;}
   .category-group .product-card{flex:0 0 72vw !important;width:72vw !important;max-width:290px !important;}
 }
 
@@ -805,23 +805,410 @@ function groupHTML(name,items,font){
   <div class="flow-meta"><span id="${gid}_count">01 / ${String(items.length).padStart(2,"0")}</span></div>
   <div class="flow-dots" id="${gid}_dots">${items.map((_,i)=>`<span class="flow-dot ${i===0?"active":""}"></span>`).join("")}</div></div></div>`
 }
-function scrollFlow(id,dir){const row=$(id);if(!row)return;const card=row.querySelector(".product-card");row.scrollBy({left:dir*(card?.getBoundingClientRect().width||180)*-1.1,behavior:"smooth"});setTimeout(()=>syncFlow(id),350)}
-function syncFlow(id){
-  const row=$(id);if(!row)return;const cards=[...row.querySelectorAll(".product-card")];if(!cards.length)return;
-  const rc=row.getBoundingClientRect(),center=rc.left+rc.width/2;let best=0,dist=Infinity;cards.forEach((c,i)=>{const r=c.getBoundingClientRect(),d=Math.abs((r.left+r.width/2)-center);if(d<dist){dist=d;best=i}});
-  cards.forEach((c,i)=>c.classList.toggle("is-center",i===best));const dots=[...document.querySelectorAll(`#${id}_dots .flow-dot`)];dots.forEach((d,i)=>d.classList.toggle("active",i===best));const count=$(id+"_count");if(count)count.textContent=String(best+1).padStart(2,"0")+" / "+String(cards.length).padStart(2,"0");
+const flowState=new Map();
+const flowScrollTimers=new Map();
+
+function getFlowCards(row){
+  return row ? [...row.querySelectorAll(".product-card")] : [];
 }
-function centerInitialProductRows(){
-  document.querySelectorAll(".product-row").forEach(row=>{
-    const first=row.querySelector(".product-card");
-    if(!first)return;
-    requestAnimationFrame(()=>{
-      const target=Math.max(0,first.offsetLeft-(row.clientWidth-first.offsetWidth)/2);
-      row.scrollLeft=target;
-      syncFlow(row.id);
+
+function getCenteredFlowIndex(row){
+  const cards=getFlowCards(row);
+  if(!cards.length)return 0;
+
+  const rowRect=row.getBoundingClientRect();
+  const center=rowRect.left+(rowRect.width/2);
+
+  let best=0;
+  let bestDistance=Infinity;
+
+  cards.forEach((card,index)=>{
+    const rect=card.getBoundingClientRect();
+    const cardCenter=rect.left+(rect.width/2);
+    const distance=Math.abs(cardCenter-center);
+
+    if(distance<bestDistance){
+      bestDistance=distance;
+      best=index;
+    }
+  });
+
+  return best;
+}
+
+function scrollCardToCenter(row,card,behavior="smooth"){
+  if(!row||!card)return;
+
+  /*
+    نجعل شريط المنتجات نفسه LTR داخلياً فقط حتى تكون
+    قيمة scrollLeft موحدة في Safari/Chrome/Firefox/Edge.
+    محتوى البطاقات يبقى عربياً RTL.
+  */
+  const target=
+    card.offsetLeft
+    -((row.clientWidth-card.offsetWidth)/2);
+
+  const maxScroll=Math.max(
+    0,
+    row.scrollWidth-row.clientWidth
+  );
+
+  const safeTarget=Math.max(
+    0,
+    Math.min(maxScroll,target)
+  );
+
+  try{
+    row.scrollTo({
+      left:safeTarget,
+      top:0,
+      behavior:behavior
     });
+  }catch(error){
+    row.scrollLeft=safeTarget;
+  }
+}
+
+function applyFlowVisualState(id,index){
+  const row=$(id);
+  if(!row)return;
+
+  const cards=getFlowCards(row);
+
+  cards.forEach(
+    (card,i)=>{
+      card.classList.toggle(
+        "is-center",
+        i===index
+      );
+    }
+  );
+
+  const dotsContainer=$(id+"_dots");
+
+  const dots=dotsContainer
+    ? [...dotsContainer.querySelectorAll(".flow-dot")]
+    : [];
+
+  dots.forEach(
+    (dot,i)=>{
+      dot.classList.toggle(
+        "active",
+        i===index
+      );
+    }
+  );
+
+  const count=$(id+"_count");
+
+  if(count){
+    count.textContent=
+      String(index+1).padStart(2,"0")
+      +" / "
+      +String(cards.length).padStart(2,"0");
+  }
+}
+
+function syncFlow(id,forceState=false){
+  const row=$(id);
+  if(!row)return;
+
+  const cards=getFlowCards(row);
+  if(!cards.length)return;
+
+  const best=getCenteredFlowIndex(row);
+
+  applyFlowVisualState(id,best);
+
+  clearTimeout(
+    flowScrollTimers.get(id)
+  );
+
+  flowScrollTimers.set(
+    id,
+    setTimeout(()=>{
+      const stable=getCenteredFlowIndex(row);
+      flowState.set(id,stable);
+      applyFlowVisualState(id,stable);
+    },100)
+  );
+
+  if(forceState){
+    flowState.set(id,best);
+  }
+}
+
+function scrollFlow(id,dir){
+  const row=$(id);
+  if(!row)return;
+
+  const cards=getFlowCards(row);
+  if(!cards.length)return;
+
+  let current=flowState.has(id)
+    ? Number(flowState.get(id))
+    : getCenteredFlowIndex(row);
+
+  if(!Number.isFinite(current)){
+    current=0;
+  }
+
+  current=Math.max(
+    0,
+    Math.min(cards.length-1,current)
+  );
+
+  /*
+    dir = +1 : التالي
+    dir = -1 : السابق
+    لا نعتمد نهائياً على RTL scrollLeft.
+  */
+  const next=Math.max(
+    0,
+    Math.min(
+      cards.length-1,
+      current+(dir>0?1:-1)
+    )
+  );
+
+  flowState.set(id,next);
+
+  scrollCardToCenter(
+    row,
+    cards[next],
+    "smooth"
+  );
+
+  applyFlowVisualState(id,next);
+
+  clearTimeout(
+    flowScrollTimers.get(id)
+  );
+
+  flowScrollTimers.set(
+    id,
+    setTimeout(
+      ()=>syncFlow(id,true),
+      380
+    )
+  );
+}
+
+function centerInitialProductRows(){
+  document
+  .querySelectorAll(".product-row")
+  .forEach(row=>{
+
+    const cards=getFlowCards(row);
+
+    if(!cards.length)return;
+
+    flowState.set(row.id,0);
+
+    requestAnimationFrame(()=>{
+
+      scrollCardToCenter(
+        row,
+        cards[0],
+        "auto"
+      );
+
+      applyFlowVisualState(
+        row.id,
+        0
+      );
+
+    });
+
   });
 }
+
+/* ===== دعم السحب باللمس على iPhone / iPad / Android ===== */
+
+document.addEventListener(
+"touchend",
+event=>{
+
+  const row=
+  event.target.closest
+  ? event.target.closest(".product-row")
+  : null;
+
+  if(!row)return;
+
+  setTimeout(()=>{
+
+    const index=
+    getCenteredFlowIndex(row);
+
+    flowState.set(
+      row.id,
+      index
+    );
+
+    const cards=
+    getFlowCards(row);
+
+    if(cards[index]){
+
+      scrollCardToCenter(
+        row,
+        cards[index],
+        "smooth"
+      );
+
+    }
+
+    applyFlowVisualState(
+      row.id,
+      index
+    );
+
+  },70);
+
+},
+{passive:true}
+);
+
+
+/* ===== دعم السحب بالماوس والقلم ===== */
+
+(function enableUniversalProductDrag(){
+
+  let activeRow=null;
+  let startX=0;
+  let startScrollLeft=0;
+  let moved=false;
+
+  document.addEventListener(
+  "pointerdown",
+  event=>{
+
+    if(event.pointerType==="touch"){
+      return;
+    }
+
+    const row=
+    event.target.closest
+    ? event.target.closest(".product-row")
+    : null;
+
+    if(!row)return;
+
+    activeRow=row;
+    startX=event.clientX;
+    startScrollLeft=row.scrollLeft;
+    moved=false;
+
+    try{
+      row.setPointerCapture(
+        event.pointerId
+      );
+    }catch(error){}
+
+  });
+
+  document.addEventListener(
+  "pointermove",
+  event=>{
+
+    if(!activeRow)return;
+
+    const delta=
+    event.clientX-startX;
+
+    if(
+      Math.abs(delta)>4
+    ){
+      moved=true;
+    }
+
+    activeRow.scrollLeft=
+      startScrollLeft-delta;
+
+  });
+
+  function finishPointerDrag(event){
+
+    if(!activeRow)return;
+
+    const row=activeRow;
+
+    activeRow=null;
+
+    try{
+      row.releasePointerCapture(
+        event.pointerId
+      );
+    }catch(error){}
+
+    const index=
+    getCenteredFlowIndex(row);
+
+    flowState.set(
+      row.id,
+      index
+    );
+
+    const cards=
+    getFlowCards(row);
+
+    if(cards[index]){
+
+      scrollCardToCenter(
+        row,
+        cards[index],
+        "smooth"
+      );
+
+    }
+
+    applyFlowVisualState(
+      row.id,
+      index
+    );
+
+  }
+
+  document.addEventListener(
+    "pointerup",
+    finishPointerDrag
+  );
+
+  document.addEventListener(
+    "pointercancel",
+    finishPointerDrag
+  );
+
+  /*
+    إذا كان المستخدم يسحب البطاقة بالماوس
+    لا نفتح نافذة المنتج بالخطأ عند الإفلات.
+  */
+  document.addEventListener(
+  "click",
+  event=>{
+
+    if(!moved)return;
+
+    const row=
+    event.target.closest
+    ? event.target.closest(".product-row")
+    : null;
+
+    if(row){
+
+      event.preventDefault();
+      event.stopPropagation();
+
+    }
+
+    moved=false;
+
+  },
+  true
+  );
+
+})();
 
 function quickAdd(productId){const p=products.find(x=>String(x.id)===String(productId));if(!p){toast("المنتج غير موجود");return}if(p.colors?.length||p.sizes?.length){openProduct(productId);return}addCartItem(p,null,null)}
 function openProduct(productId){
@@ -1106,5 +1493,4 @@ async function initializeStore(){
 initializeStore();
 </script>
 </body>
-</html></body>
 </html>
