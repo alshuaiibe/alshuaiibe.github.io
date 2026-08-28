@@ -133,6 +133,82 @@ main{max-width:1500px;margin:auto;padding:18px 14px 80px}.card{margin-bottom:16p
   ></div>
 </div>
 
+<div
+  class="card"
+  style="
+    margin-top:14px;
+    border:1px solid rgba(169,121,60,.35);
+    background:#fffdf7;
+  "
+>
+  <div class="order-card-head">
+    <div>
+      <h3 style="margin:0 0 6px">⚡ إضافة عدة منتجات بالذكاء الاصطناعي</h3>
+      <div class="note">
+        اختر حتى 10 صور. كل صورة = منتج مستقل.
+        سيحلل Gemini المنتجات واحدًا واحدًا ويجهز لك مسودات للمراجعة.
+        لن يتم حفظ أي منتج إلا بعد الضغط على «حفظ المنتجات المحددة».
+      </div>
+    </div>
+    <span class="pill gold">حتى 10 منتجات</span>
+  </div>
+
+  <div style="margin-top:12px">
+    <label>صور المنتجات الجماعية</label>
+    <input
+      id="batchProductFiles"
+      type="file"
+      accept="image/jpeg,image/png,image/webp,image/heic,image/heif"
+      multiple
+      onchange="prepareBatchProducts()"
+    >
+  </div>
+
+  <div class="actions" style="margin-top:12px">
+    <button
+      id="batchAnalyzeButton"
+      type="button"
+      class="btn blue"
+      onclick="analyzeBatchProducts()"
+    >
+      🤖 تحليل كل المنتجات
+    </button>
+
+    <button
+      id="batchSaveButton"
+      type="button"
+      class="btn gold"
+      onclick="saveBatchProducts()"
+      disabled
+    >
+      💾 حفظ المنتجات المحددة
+    </button>
+
+    <button
+      type="button"
+      class="btn out"
+      onclick="clearBatchProducts()"
+    >
+      مسح القائمة
+    </button>
+  </div>
+
+  <div
+    id="batchGeminiStatus"
+    class="upload-status"
+    style="margin-top:10px"
+  ></div>
+
+  <div
+    id="batchProductsList"
+    style="
+      display:grid;
+      gap:12px;
+      margin-top:14px;
+    "
+  ></div>
+</div>
+
 <input id="productId" type="hidden">
 <div class="grid3">
 <div><label>اسم المنتج</label><input id="productName"></div>
@@ -1372,6 +1448,950 @@ function clearGeminiResult(){
   );
 
 }
+
+
+
+/* =========================================================
+BATCH GEMINI PRODUCTS
+كل صورة = منتج مستقل
+========================================================= */
+
+let batchProductDrafts=[];
+
+function sleepMs(ms){
+  return new Promise(resolve=>setTimeout(resolve,ms));
+}
+
+function isGeminiBusyMessage(message){
+  const value=String(message||"").toLowerCase();
+
+  return (
+    value.includes("high demand")
+    ||value.includes("try again later")
+    ||value.includes("resource exhausted")
+    ||value.includes("temporarily unavailable")
+    ||value.includes("429")
+    ||value.includes("503")
+    ||value.includes("overloaded")
+  );
+}
+
+async function readFunctionError(error){
+
+  let serverMessage="";
+
+  try{
+
+    if(error?.context?.json){
+      const body=await error.context.json();
+      serverMessage=
+        body?.error
+        ||body?.message
+        ||JSON.stringify(body);
+    }
+    else if(error?.context?.text){
+      serverMessage=await error.context.text();
+    }
+
+  }
+  catch(readError){
+    console.warn("Edge Function error body:",readError);
+  }
+
+  return (
+    serverMessage
+    ||error?.message
+    ||"فشل استدعاء Edge Function"
+  );
+
+}
+
+async function invokeGeminiProductWithRetry(images,maxAttempts=3){
+
+  let lastError="";
+
+  for(let attempt=1;attempt<=maxAttempts;attempt++){
+
+    const {data,error}=
+      await db.functions.invoke(
+        GEMINI_PRODUCT_FUNCTION,
+        {
+          body:{
+            images,
+            categories:
+              categories.map(category=>({
+                id:category.id,
+                name:category.name
+              }))
+          }
+        }
+      );
+
+    if(!error && data?.ok){
+      return data.product||data.result;
+    }
+
+    if(error){
+      lastError=await readFunctionError(error);
+    }
+    else{
+      lastError=
+        data?.error
+        ||"لم يرجع Gemini بيانات المنتج";
+    }
+
+    if(
+      attempt<maxAttempts
+      &&
+      isGeminiBusyMessage(lastError)
+    ){
+      await sleepMs(attempt*1800);
+      continue;
+    }
+
+    throw new Error(lastError);
+
+  }
+
+  throw new Error(lastError||"تعذر تحليل المنتج");
+
+}
+
+function batchCategoryOptions(selected=""){
+
+  return (
+    '<option value="">اختر القسم</option>'
+    +
+    categories.map(category=>
+      `<option value="${esc(category.name)}"${
+        String(category.name)===String(selected)
+        ?" selected"
+        :""
+      }>${esc(category.name)}</option>`
+    ).join("")
+  );
+
+}
+
+function batchPreviewUrl(file){
+  try{
+    return URL.createObjectURL(file);
+  }
+  catch{
+    return "";
+  }
+}
+
+function prepareBatchProducts(){
+
+  const input=$("batchProductFiles");
+
+  const files=
+    Array.from(input?.files||[]);
+
+  if(files.length>10){
+    alert("الحد الأقصى 10 منتجات في كل دفعة.");
+    input.value="";
+    batchProductDrafts=[];
+    renderBatchProducts();
+    return;
+  }
+
+  batchProductDrafts=
+    files.map((file,index)=>({
+      id:
+        "batch_"
+        +Date.now()
+        +"_"
+        +index,
+      file,
+      previewUrl:batchPreviewUrl(file),
+      selected:true,
+      status:"ready",
+      error:"",
+      name:"",
+      brand:"",
+      category:"",
+      description:"",
+      colors:[],
+      sizes:[],
+      detected_price:0,
+      price:0,
+      stock:0,
+      discount:0,
+      currency:"ر.ي",
+      is_active:true,
+      is_new:true,
+      sort_order:0
+    }));
+
+  $("batchSaveButton").disabled=true;
+
+  setUploadStatus(
+    "batchGeminiStatus",
+    files.length
+      ?`تم تجهيز ${files.length} صورة للتحليل.`
+      :"",
+    !!files.length
+  );
+
+  renderBatchProducts();
+
+}
+
+function updateBatchDraft(index,field,value){
+
+  const draft=batchProductDrafts[index];
+
+  if(!draft)return;
+
+  if(
+    [
+      "price",
+      "stock",
+      "discount",
+      "sort_order"
+    ].includes(field)
+  ){
+    draft[field]=Number(value||0);
+  }
+  else if(
+    [
+      "selected",
+      "is_active",
+      "is_new"
+    ].includes(field)
+  ){
+    draft[field]=!!value;
+  }
+  else if(
+    [
+      "colors",
+      "sizes"
+    ].includes(field)
+  ){
+    draft[field]=normalizeAiArray(value);
+  }
+  else{
+    draft[field]=String(value??"");
+  }
+
+}
+
+function renderBatchProducts(){
+
+  const box=$("batchProductsList");
+
+  if(!box)return;
+
+  if(!batchProductDrafts.length){
+    box.innerHTML="";
+    return;
+  }
+
+  box.innerHTML=
+    batchProductDrafts.map((draft,index)=>{
+
+      const analyzed=
+        draft.status==="done";
+
+      const failed=
+        draft.status==="error";
+
+      const waiting=
+        draft.status==="analyzing";
+
+      return `
+      <div
+        class="order-card"
+        style="
+          border:${failed?"1px solid #d77":"1px solid rgba(169,121,60,.25)"};
+          background:${failed?"#fff8f8":"#fff"};
+        "
+      >
+        <div
+          style="
+            display:grid;
+            grid-template-columns:110px 1fr;
+            gap:14px;
+            align-items:start;
+          "
+        >
+          <div>
+            ${
+              draft.previewUrl
+              ?`<img
+                  src="${esc(draft.previewUrl)}"
+                  alt=""
+                  style="
+                    width:100px;
+                    height:100px;
+                    object-fit:contain;
+                    border-radius:12px;
+                    border:1px solid #ddd;
+                    background:#fff;
+                  "
+                >`
+              :""
+            }
+
+            <div
+              class="check-row"
+              style="margin-top:8px"
+            >
+              <input
+                type="checkbox"
+                ${draft.selected?"checked":""}
+                onchange="updateBatchDraft(${index},'selected',this.checked)"
+              >
+              <label>حفظ هذا المنتج</label>
+            </div>
+          </div>
+
+          <div>
+            <div
+              class="order-card-head"
+              style="margin-bottom:8px"
+            >
+              <strong>
+                المنتج ${index+1}
+                ${
+                  draft.brand
+                  ?` · ${esc(draft.brand)}`
+                  :""
+                }
+              </strong>
+
+              <span class="pill ${
+                analyzed
+                ?"green"
+                :failed
+                ?"red"
+                :"gold"
+              }">
+                ${
+                  analyzed
+                  ?"تم التحليل ✓"
+                  :failed
+                  ?"فشل التحليل"
+                  :waiting
+                  ?"جارِ التحليل..."
+                  :"جاهز"
+                }
+              </span>
+            </div>
+
+            ${
+              failed
+              ?`<div
+                  class="note"
+                  style="
+                    color:#9a2c2c;
+                    margin-bottom:8px;
+                  "
+                >${esc(draft.error||"تعذر التحليل")}</div>`
+              :""
+            }
+
+            <div class="grid2">
+
+              <div>
+                <label>اسم المنتج</label>
+                <input
+                  value="${esc(draft.name)}"
+                  oninput="updateBatchDraft(${index},'name',this.value)"
+                >
+              </div>
+
+              <div>
+                <label>القسم</label>
+                <select
+                  onchange="updateBatchDraft(${index},'category',this.value)"
+                >
+                  ${batchCategoryOptions(draft.category)}
+                </select>
+              </div>
+
+              <div>
+                <label>السعر</label>
+                <input
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  value="${Number(draft.price||0)}"
+                  oninput="updateBatchDraft(${index},'price',this.value)"
+                >
+              </div>
+
+              <div>
+                <label>المخزون</label>
+                <input
+                  type="number"
+                  min="0"
+                  value="${Number(draft.stock||0)}"
+                  oninput="updateBatchDraft(${index},'stock',this.value)"
+                >
+              </div>
+
+            </div>
+
+            <label>الوصف</label>
+            <textarea
+              oninput="updateBatchDraft(${index},'description',this.value)"
+            >${esc(draft.description)}</textarea>
+
+            <div class="grid2">
+
+              <div>
+                <label>الألوان</label>
+                <textarea
+                  oninput="updateBatchDraft(${index},'colors',this.value)"
+                >${esc(normalizeAiArray(draft.colors).join("\n"))}</textarea>
+              </div>
+
+              <div>
+                <label>الأحجام / السعات</label>
+                <textarea
+                  oninput="updateBatchDraft(${index},'sizes',this.value)"
+                >${esc(normalizeAiArray(draft.sizes).join("\n"))}</textarea>
+              </div>
+
+            </div>
+
+            <div class="actions">
+
+              <div class="check-row">
+                <input
+                  type="checkbox"
+                  ${draft.is_active?"checked":""}
+                  onchange="updateBatchDraft(${index},'is_active',this.checked)"
+                >
+                <label>نشط</label>
+              </div>
+
+              <div class="check-row">
+                <input
+                  type="checkbox"
+                  ${draft.is_new?"checked":""}
+                  onchange="updateBatchDraft(${index},'is_new',this.checked)"
+                >
+                <label>منتج جديد</label>
+              </div>
+
+              ${
+                failed
+                ?`<button
+                    type="button"
+                    class="btn blue sm"
+                    onclick="retryBatchProduct(${index})"
+                  >إعادة التحليل</button>`
+                :""
+              }
+
+              <button
+                type="button"
+                class="btn red sm"
+                onclick="removeBatchProduct(${index})"
+              >
+                إزالة
+              </button>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+      `;
+
+    }).join("");
+
+}
+
+async function analyzeSingleBatchDraft(index){
+
+  const draft=batchProductDrafts[index];
+
+  if(!draft?.file)return;
+
+  draft.status="analyzing";
+  draft.error="";
+  renderBatchProducts();
+
+  try{
+
+    const base64=
+      await fileToBase64(
+        draft.file
+      );
+
+    const product=
+      await invokeGeminiProductWithRetry(
+        [{
+          mimeType:
+            draft.file.type
+            ||"image/jpeg",
+          data:base64
+        }],
+        3
+      );
+
+    draft.name=
+      String(product?.name||"").trim();
+
+    draft.brand=
+      String(product?.brand||"").trim();
+
+    draft.category=
+      bestMatchingCategory(
+        product?.category
+      );
+
+    draft.description=
+      String(
+        product?.description
+        ||""
+      ).trim();
+
+    draft.colors=
+      normalizeAiArray(
+        product?.colors
+      );
+
+    draft.sizes=
+      normalizeAiArray(
+        product?.sizes
+      );
+
+    draft.detected_price=
+      Math.max(
+        0,
+        Number(
+          product?.detected_price
+          ||0
+        )
+        ||0
+      );
+
+    if(
+      draft.detected_price>0
+      &&
+      Number(draft.price||0)<=0
+    ){
+      draft.price=
+        draft.detected_price;
+    }
+
+    draft.status="done";
+    draft.error="";
+
+  }
+  catch(error){
+
+    draft.status="error";
+    draft.error=
+      error?.message
+      ||"تعذر تحليل هذا المنتج";
+
+  }
+
+  renderBatchProducts();
+
+}
+
+async function analyzeBatchProducts(){
+
+  if(!batchProductDrafts.length){
+    toast("اختر صور المنتجات أولاً");
+    return;
+  }
+
+  const button=
+    $("batchAnalyzeButton");
+
+  button.disabled=true;
+
+  const oldText=
+    button.textContent;
+
+  try{
+
+    for(
+      let index=0;
+      index<batchProductDrafts.length;
+      index++
+    ){
+
+      setUploadStatus(
+        "batchGeminiStatus",
+        `تحليل المنتج ${index+1} من ${batchProductDrafts.length}...`,
+        true
+      );
+
+      await analyzeSingleBatchDraft(index);
+
+      /*
+        فاصل صغير بين الطلبات لتقليل ضغط Gemini.
+      */
+      if(
+        index<
+        batchProductDrafts.length-1
+      ){
+        await sleepMs(700);
+      }
+
+    }
+
+    const ok=
+      batchProductDrafts.filter(
+        draft=>draft.status==="done"
+      ).length;
+
+    const failed=
+      batchProductDrafts.filter(
+        draft=>draft.status==="error"
+      ).length;
+
+    $("batchSaveButton").disabled=
+      ok===0;
+
+    setUploadStatus(
+      "batchGeminiStatus",
+      `اكتمل التحليل: ${ok} ناجح${failed?` · ${failed} يحتاج إعادة محاولة`:""}.`,
+      true
+    );
+
+    toast(
+      `تم تحليل ${ok} منتج ✓`
+    );
+
+  }
+  finally{
+
+    button.disabled=false;
+    button.textContent=oldText;
+
+  }
+
+}
+
+async function retryBatchProduct(index){
+
+  setUploadStatus(
+    "batchGeminiStatus",
+    `إعادة تحليل المنتج ${index+1}...`,
+    true
+  );
+
+  await analyzeSingleBatchDraft(index);
+
+  const ok=
+    batchProductDrafts.some(
+      draft=>draft.status==="done"
+    );
+
+  $("batchSaveButton").disabled=
+    !ok;
+
+}
+
+function removeBatchProduct(index){
+
+  const draft=
+    batchProductDrafts[index];
+
+  if(draft?.previewUrl){
+    try{
+      URL.revokeObjectURL(
+        draft.previewUrl
+      );
+    }
+    catch{}
+  }
+
+  batchProductDrafts.splice(
+    index,
+    1
+  );
+
+  $("batchSaveButton").disabled=
+    !batchProductDrafts.some(
+      item=>item.status==="done"
+    );
+
+  renderBatchProducts();
+
+}
+
+function clearBatchProducts(){
+
+  batchProductDrafts.forEach(
+    draft=>{
+      if(draft.previewUrl){
+        try{
+          URL.revokeObjectURL(
+            draft.previewUrl
+          );
+        }
+        catch{}
+      }
+    }
+  );
+
+  batchProductDrafts=[];
+
+  const input=
+    $("batchProductFiles");
+
+  if(input){
+    input.value="";
+  }
+
+  $("batchSaveButton").disabled=true;
+
+  setUploadStatus(
+    "batchGeminiStatus",
+    "",
+    false
+  );
+
+  renderBatchProducts();
+
+}
+
+async function saveBatchProducts(){
+
+  const selected=
+    batchProductDrafts
+      .map((draft,index)=>({
+        draft,
+        index
+      }))
+      .filter(
+        item=>
+          item.draft.selected
+          &&
+          item.draft.status==="done"
+      );
+
+  if(!selected.length){
+    toast("لا توجد منتجات محللة ومحددة للحفظ");
+    return;
+  }
+
+  const invalid=
+    selected.find(
+      item=>
+        !String(
+          item.draft.name
+          ||""
+        ).trim()
+        ||
+        !String(
+          item.draft.category
+          ||""
+        ).trim()
+    );
+
+  if(invalid){
+
+    alert(
+      `المنتج ${invalid.index+1} يحتاج اسمًا وقسمًا قبل الحفظ.`
+    );
+
+    return;
+
+  }
+
+  if(
+    !confirm(
+      `سيتم حفظ ${selected.length} منتج جديد. متابعة؟`
+    )
+  ){
+    return;
+  }
+
+  const button=
+    $("batchSaveButton");
+
+  button.disabled=true;
+
+  const oldText=
+    button.textContent;
+
+  let savedCount=0;
+
+  try{
+
+    for(
+      let i=0;
+      i<selected.length;
+      i++
+    ){
+
+      const {
+        draft,
+        index
+      }=
+      selected[i];
+
+      button.textContent=
+        `جارِ الحفظ ${i+1}/${selected.length}`;
+
+      setUploadStatus(
+        "batchGeminiStatus",
+        `رفع وحفظ المنتج ${i+1} من ${selected.length}...`,
+        true
+      );
+
+      /*
+        نرفع الصورة فقط عند اعتماد المنتج للحفظ.
+      */
+      const imageUrl=
+        draft.file
+        ?await uploadMediaFile(
+          draft.file,
+          "products"
+        )
+        :null;
+
+      const row={
+        name:
+          String(
+            draft.name
+            ||""
+          ).trim(),
+
+        category:
+          String(
+            draft.category
+            ||""
+          ).trim(),
+
+        description:
+          String(
+            draft.description
+            ||""
+          ).trim()
+          ||null,
+
+        price:
+          Number(
+            draft.price
+            ||0
+          ),
+
+        discount:
+          Number(
+            draft.discount
+            ||0
+          ),
+
+        stock:
+          Number(
+            draft.stock
+            ||0
+          ),
+
+        currency:
+          String(
+            draft.currency
+            ||"ر.ي"
+          ).trim()
+          ||"ر.ي",
+
+        images:
+          imageUrl
+          ?[imageUrl]
+          :[],
+
+        colors:
+          normalizeAiArray(
+            draft.colors
+          ),
+
+        sizes:
+          normalizeAiArray(
+            draft.sizes
+          ),
+
+        is_active:
+          draft.is_active!==false,
+
+        is_new:
+          draft.is_new===true,
+
+        sort_order:
+          Number(
+            draft.sort_order
+            ||0
+          )
+      };
+
+      const {
+        error
+      }=
+      await db
+        .from("products")
+        .insert(row);
+
+      if(error){
+        throw new Error(
+          `المنتج ${index+1}: ${error.message}`
+        );
+      }
+
+      savedCount++;
+
+      draft.selected=false;
+
+    }
+
+    toast(
+      `تمت إضافة ${savedCount} منتج ✓`
+    );
+
+    setUploadStatus(
+      "batchGeminiStatus",
+      `تم حفظ ${savedCount} منتج بنجاح ✓`,
+      true
+    );
+
+    clearBatchProducts();
+
+    await loadAll();
+
+  }
+  catch(error){
+
+    alert(
+      "توقف الحفظ بعد إضافة "
+      +savedCount
+      +" منتج.\n\n"
+      +(error?.message||"حدث خطأ")
+    );
+
+    $("batchSaveButton").disabled=false;
+
+  }
+  finally{
+
+    button.textContent=
+      oldText;
+
+    if(batchProductDrafts.length){
+      button.disabled=
+        !batchProductDrafts.some(
+          draft=>
+            draft.selected
+            &&
+            draft.status==="done"
+        );
+    }
+
+  }
+
+}
+
 
 
 /* المنتجات */
