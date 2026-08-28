@@ -2009,14 +2009,35 @@ async function analyzeSingleBatchDraft(index){
         ||0
       );
 
-    if(
-      draft.detected_price>0
-      &&
-      Number(draft.price||0)<=0
-    ){
-      draft.price=
-        draft.detected_price;
-    }
+    const aiPrice=
+      Math.max(
+        0,
+        Number(
+          product?.price
+          ?? product?.detected_price
+          ?? 0
+        )
+        ||0
+      );
+
+    const aiStock=
+      Math.max(
+        0,
+        Math.floor(
+          Number(
+            product?.stock
+            ??0
+          )
+          ||0
+        )
+      );
+
+    /*
+      السعر والمخزون هنا قد يكونان أوامر مباشرة من مدير المتجر،
+      لذلك نستخدمهما حتى لو لم يكونا مكتوبين على الصورة.
+    */
+    draft.price=aiPrice;
+    draft.stock=aiStock;
 
     draft.status="done";
     draft.error="";
