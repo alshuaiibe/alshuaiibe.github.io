@@ -2002,9 +2002,49 @@ function openCustomerInvoice(orderId){
 function closeInvoiceModal(){$("invoiceModal").classList.remove("show");currentInvoiceData=null;updateMainScrim()}
 function renderCustomerInvoice(invoice){
   const s=invoice.snapshot||{},customer=s.customer||{},order=s.order||{},totals=s.totals||{},items=Array.isArray(s.items)?s.items:[],logo=getStoreLogo();
-  const invoiceNo=invoice.invoice_number||s.order_number||"—";
+
+  const invoiceNo=
+    invoice.invoice_number
+    ||s.order_number
+    ||order.order_number
+    ||"—";
+
+  const customerName=
+    customer.name
+    ||customer.customer_name
+    ||customer.full_name
+    ||customer.fullName
+    ||s.customer_name
+    ||s.customerName
+    ||s.name
+    ||order.customer_name
+    ||order.customerName
+    ||order.name
+    ||"—";
+
+  const customerPhone=
+    customer.phone
+    ||customer.customer_phone
+    ||s.customer_phone
+    ||s.phone
+    ||order.customer_phone
+    ||order.phone
+    ||"—";
+
+  const customerAddress=
+    customer.address
+    ||customer.customer_address
+    ||customer.shipping_address
+    ||s.customer_address
+    ||s.shipping_address
+    ||s.address
+    ||order.customer_address
+    ||order.shipping_address
+    ||order.address
+    ||"—";
+
   $("invoiceContainer").innerHTML=`<div class="invoice-sheet" id="printInvoiceSheet"><div class="invoice-head"><div>${logo?`<img class="invoice-logo" style="display:block" src="${escapeHTML(logo)}">`:""}<div class="invoice-brand">${escapeHTML(getStoreName())}</div><div class="invoice-brand-en">${escapeHTML(getStoreNameEn())}</div></div><div style="text-align:left"><div class="invoice-title">فاتورة</div><div>رقم الفاتورة: <strong>#${escapeHTML(invoiceNo)}</strong></div><div>تاريخ الإصدار: ${invoice.issued_at?new Date(invoice.issued_at).toLocaleString("ar"):"—"}</div></div></div>
-  <div class="invoice-grid"><div class="invoice-info"><strong>بيانات العميل</strong><div>الاسم: ${escapeHTML(customer.name||"—")}</div><div>الهاتف: ${escapeHTML(customer.phone||"—")}</div><div>العنوان: ${escapeHTML(customer.address||"—")}</div></div><div class="invoice-info"><strong>بيانات الطلب</strong><div>رقم الطلب: #${escapeHTML(s.order_number||"—")}</div><div>الحالة: ${escapeHTML(orderStatusText(order.status))}</div><div>حالة الدفع: ${escapeHTML(paymentStatusText(order.payment_status))}</div><div>طريقة الدفع: ${escapeHTML(paymentMethodText(order.pay_method))}</div>${order.notes?`<div>ملاحظات: ${escapeHTML(order.notes)}</div>`:""}${order.shipping_company?`<div>شركة الشحن: ${escapeHTML(order.shipping_company)}</div>`:""}${order.tracking_code?`<div>رقم التتبع: ${escapeHTML(order.tracking_code)}</div>`:""}</div></div>
+  <div class="invoice-grid"><div class="invoice-info"><strong>بيانات العميل</strong><div>الاسم: ${escapeHTML(customerName)}</div><div>الهاتف: ${escapeHTML(customerPhone)}</div><div>العنوان: ${escapeHTML(customerAddress)}</div></div><div class="invoice-info"><strong>بيانات الطلب</strong><div>رقم الطلب: #${escapeHTML(s.order_number||"—")}</div><div>الحالة: ${escapeHTML(orderStatusText(order.status))}</div><div>حالة الدفع: ${escapeHTML(paymentStatusText(order.payment_status))}</div><div>طريقة الدفع: ${escapeHTML(paymentMethodText(order.pay_method))}</div>${order.notes?`<div>ملاحظات: ${escapeHTML(order.notes)}</div>`:""}${order.shipping_company?`<div>شركة الشحن: ${escapeHTML(order.shipping_company)}</div>`:""}${order.tracking_code?`<div>رقم التتبع: ${escapeHTML(order.tracking_code)}</div>`:""}</div></div>
   <div class="invoice-table-wrap"><table class="invoice-table"><thead><tr><th>المنتج</th><th>الخيارات</th><th>الكمية</th><th>سعر الوحدة</th><th>الإجمالي</th></tr></thead><tbody>${items.map(i=>`<tr><td>${escapeHTML(i.product_name||i.bundle_name||i.name||"منتج")}</td><td>${[i.color,i.size].filter(Boolean).map(escapeHTML).join(" / ")||"—"}</td><td>${Number(i.quantity||i.qty||1)}</td><td>${Number(i.unit_price??i.price??0).toFixed(2)} ${escapeHTML(i.currency||totals.currency||"")}</td><td><strong>${Number(i.total_price??i.line_total??((Number(i.unit_price??i.price??0)||0)*(Number(i.quantity||i.qty||1)||1))).toFixed(2)} ${escapeHTML(i.currency||totals.currency||"")}</strong></td></tr>`).join("")}</tbody></table></div>
   <div class="invoice-totals"><div><span>المجموع</span><span>${Number(totals.subtotal||0).toFixed(2)} ${escapeHTML(totals.currency||"")}</span></div><div><span>الخصم</span><span>${Number(totals.discount_amount||0).toFixed(2)} ${escapeHTML(totals.currency||"")}</span></div><div><span>الشحن</span><span>${Number(totals.shipping_amount||0).toFixed(2)} ${escapeHTML(totals.currency||"")}</span></div><div class="grand"><span>الإجمالي</span><span>${Number(totals.total||0).toFixed(2)} ${escapeHTML(totals.currency||"")}</span></div></div><div style="text-align:center;font-size:11px;margin-top:25px;color:#666">شكراً لتسوقكم من ${escapeHTML(getStoreEyebrow())}</div></div>`
 }
