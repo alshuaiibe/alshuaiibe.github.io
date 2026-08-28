@@ -556,10 +556,60 @@ async function fetchReviews(){const {data,error}=await client.from("reviews").se
 async function fetchNotifications(){const {data,error}=await client.from("notifications").select("*").eq("is_active",true).order("created_at",{ascending:false}).limit(20);if(error){console.error(error);return}notifications=data||[];renderNotifications()}
 async function fetchCoupons(){const {data,error}=await client.from("coupons").select("*").eq("is_active",true);if(error){console.error(error);return}coupons=data||[]}
 
+function normalizeCategoryValue(v){
+  if(v===null||v===undefined)return "";
+  if(typeof v==="object"){
+    return String(v.id??v.name??v.slug??v.category_id??"").trim().toLowerCase();
+  }
+  return String(v).trim().toLowerCase();
+}
+function categoryCandidates(category){
+  if(!category)return [];
+  return [category.id,category.name,category.slug,category.category_id,category.code]
+    .map(normalizeCategoryValue).filter(Boolean);
+}
+function productCategoryCandidates(product){
+  if(!product)return [];
+  const vals=[
+    product.category,
+    product.category_id,
+    product.categoryId,
+    product.category_slug,
+    product.categorySlug,
+    product.category_name,
+    product.categoryName,
+    product.cat_id,
+    product.catId
+  ];
+  if(product.categories){
+    if(Array.isArray(product.categories)) vals.push(...product.categories);
+    else vals.push(product.categories);
+  }
+  return vals.map(normalizeCategoryValue).filter(Boolean);
+}
+function getProductCategory(product){
+  const values=productCategoryCandidates(product);
+  if(!values.length)return null;
+  return categories.find(category=>categoryCandidates(category).some(v=>values.includes(v)))||null;
+}
+function productBelongsToCategory(product,category){
+  if(!product||!category)return false;
+  const pv=productCategoryCandidates(product);
+  const cv=categoryCandidates(category);
+  if(pv.some(v=>cv.includes(v)))return true;
+  const resolved=getProductCategory(product);
+  return !!resolved && categoryCandidates(resolved).some(v=>cv.includes(v));
+}
 function isBundleProduct(p){
-  const c=String(p.category||"").trim();
+  const resolved=getProductCategory(p);
+  const raw=[
+    p.category,p.category_name,p.categoryName,p.category_slug,p.categorySlug,
+    resolved?.name,resolved?.slug,p.type,p.product_type,p.kind
+  ].map(v=>String(v??"")).join(" ");
   const tags=Array.isArray(p.tags)?p.tags.join(" "):String(p.tags||"");
-  return p.is_bundle===true||p.is_package===true||p.is_offer===true||/باقة|باقات|عرض|عروض/.test(c+" "+tags);
+  return p.is_bundle===true||p.is_package===true||p.is_offer===true||
+         p.bundle===true||p.package===true||p.offer===true||
+         /باقة|باقات|عرض|عروض|bundle|package|offer/i.test(raw+" "+tags);
 }
 function renderBundles(){
   const list=products.filter(isBundleProduct);
@@ -568,29 +618,11 @@ function renderBundles(){
     $("bundlesRow").innerHTML=`<div class="empty" style="padding:25px 10px">لا توجد باقات أو عروض متاحة حالياً.</div>`;
     return;
   }
-  $("bundlesRow").innerHTML=list.map(p=>{const price=Number(p.price||0),discount=Number(p.discount||0),final=price*(1-discount/100),img=p.images?.[0]||"";return `<article class="bundle-card">${img?`<img src="${escapeHTML(img)}" alt="${escapeHTML(p.name)}">`:""}<h3>${escapeHTML(p.name)}</h3><p>${escapeHTML(p.description||"باقة مختارة بسعر مميز.")}</p><div class="price-row"><span class="price">${final.toFixed(2)} ${escapeHTML(p.currency||"ر.ي")}</span>${discount?`<span class="old-price">${price.toFixed(2)}</span>`:""}</div><button class="btn" style="width:100%;margin-top:10px" onclick="quickAdd('${p.id}')">أضف الباقة للسلة</button></article>`}).join("")
-}
-function getProductCategory(product){
-  if(!product)return null;
-  const values=[product.category,product.category_id,product.categoryId,product.category_slug,product.categorySlug]
-    .filter(v=>v!==null&&v!==undefined&&String(v).trim()!=="")
-    .map(v=>String(v).trim().toLowerCase());
-  if(!values.length)return null;
-  return categories.find(category=>{
-    const candidates=[category.id,category.name,category.slug,category.category_id]
-      .filter(v=>v!==null&&v!==undefined&&String(v).trim()!=="")
-      .map(v=>String(v).trim().toLowerCase());
-    return candidates.some(v=>values.includes(v));
-  })||null;
-}
-function productBelongsToCategory(product,category){
-  const resolved=getProductCategory(product);
-  if(!resolved||!category)return false;
-  return String(resolved.id||resolved.name||resolved.slug)===String(category.id||category.name||category.slug);
+  $("bundlesRow").innerHTML=list.map(p=>{const price=Number(p.price||0),discount=Number(p.discount||0),final=price*(1-discount/100),img=Array.isArray(p.images)?(p.images[0]||""):(p.image||p.image_url||"");return `<article class="bundle-card">${img?`<img src="${escapeHTML(img)}" alt="${escapeHTML(p.name)}">`:""}<h3>${escapeHTML(p.name)}</h3><p>${escapeHTML(p.description||"باقة مختارة بسعر مميز.")}</p><div class="price-row"><span class="price">${final.toFixed(2)} ${escapeHTML(p.currency||"ر.ي")}</span>${discount?`<span class="old-price">${price.toFixed(2)}</span>`:""}</div><button class="btn" style="width:100%;margin-top:10px" onclick="quickAdd('${p.id}')">أضف الباقة للسلة</button></article>`}).join("")
 }
 function renderCategoryFilters(){
   const buttons=[`<button class="${activeCategory==="الكل"?"active":""}" onclick="setCategory('الكل')">الكل</button>`];
-  categories.filter(c=>!/باقة|باقات|عرض|عروض/.test(String(c.name||""))).forEach(c=>buttons.push(`<button class="${activeCategory===c.name?"active":""}" onclick='setCategory(${JSON.stringify(c.name)})'>${escapeHTML(c.name)}</button>`));
+  categories.filter(c=>!/باقة|باقات|عرض|عروض|bundle|package|offer/i.test(String(c.name||"")+" "+String(c.slug||""))).forEach(c=>buttons.push(`<button class="${activeCategory===c.name?"active":""}" onclick='setCategory(${JSON.stringify(c.name)})'>${escapeHTML(c.name)}</button>`));
   $("categoryFilters").innerHTML=buttons.join("")
 }
 function setCategory(c){activeCategory=c;renderCategoryFilters();renderProducts()}
@@ -618,6 +650,38 @@ function filteredProducts(){
     return new Date(b.created_at||0)-new Date(a.created_at||0);
   });
   return list;
+}
+function renderProducts(){
+  const list=filteredProducts();
+  if(!list.length){
+    $("productsArea").innerHTML=`<div class="empty">${activeCategory==="__favorites__"?"قائمة المفضلة فارغة.":"لا توجد منتجات مطابقة."}</div>`;
+    return;
+  }
+
+  if(activeCategory!=="الكل"){
+    const title=activeCategory==="__favorites__"?"المفضلة":activeCategory;
+    $("productsArea").innerHTML=groupHTML(title,list,null);
+    requestAnimationFrame(()=>{centerInitialProductRows();document.querySelectorAll("#productsArea .product-row").forEach(r=>syncFlow(r.id));});
+    return;
+  }
+
+  const groups=[];
+  const used=new Set();
+  categories
+    .filter(c=>!/باقة|باقات|عرض|عروض|bundle|package|offer/i.test(String(c.name||"")+" "+String(c.slug||"")))
+    .forEach(category=>{
+      const items=list.filter(product=>productBelongsToCategory(product,category));
+      if(items.length){
+        items.forEach(p=>used.add(String(p.id)));
+        groups.push({name:category.name||"المنتجات",font:category.font_family,items});
+      }
+    });
+
+  const unmatched=list.filter(p=>!used.has(String(p.id)));
+  if(unmatched.length) groups.push({name:"جميع المنتجات",font:null,items:unmatched});
+
+  $("productsArea").innerHTML=groups.map(g=>groupHTML(g.name,g.items,g.font)).join("");
+  requestAnimationFrame(()=>{centerInitialProductRows();document.querySelectorAll("#productsArea .product-row").forEach(r=>syncFlow(r.id));});
 }
 function productCard(product,index=0){
   const price=Number(product.price||0),discount=Number(product.discount||0),final=price*(1-discount/100),image=product.images?.[0]||"",out=Number(product.stock||0)<=0,fav=favorites.includes(product.id);
