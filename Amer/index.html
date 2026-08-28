@@ -1233,7 +1233,51 @@ async function analyzeProductWithGemini(){
     );
 
     if(error){
-      throw error;
+
+      let serverMessage="";
+
+      try{
+
+        if(error?.context?.json){
+
+          const body=
+            await error.context.json();
+
+          serverMessage=
+            body?.error
+            ||body?.message
+            ||JSON.stringify(body);
+
+        }
+        else if(error?.context?.text){
+
+          serverMessage=
+            await error.context.text();
+
+        }
+
+      }
+      catch(readError){
+
+        console.warn(
+          "Could not read Edge Function error body:",
+          readError
+        );
+
+      }
+
+      const detailedError=
+        new Error(
+          serverMessage
+          ||error?.message
+          ||"فشل استدعاء Edge Function"
+        );
+
+      detailedError.originalError=
+        error;
+
+      throw detailedError;
+
     }
 
     if(!data?.ok){
@@ -1280,13 +1324,12 @@ async function analyzeProductWithGemini(){
     );
 
     const message=
-      error?.context?.body?.error
-      ||error?.message
+      error?.message
       ||"حدث خطأ أثناء تحليل المنتج";
 
     setUploadStatus(
       "geminiStatus",
-      "تعذر التحليل",
+      "تعذر التحليل: "+message,
       true
     );
 
@@ -1294,8 +1337,6 @@ async function analyzeProductWithGemini(){
       "تعذر تحليل المنتج:\n"
       +
       message
-      +
-      "\n\nتأكد من نشر Edge Function وإضافة GEMINI_API_KEY داخل Supabase."
     );
 
   }
