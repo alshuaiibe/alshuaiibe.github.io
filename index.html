@@ -92,6 +92,9 @@ button,input,textarea,select{font:inherit} button{cursor:pointer} a{color:inheri
 .coverflow-shell{position:relative;padding:4px 48px 10px}
 .product-row{width:100%;display:flex;gap:16px;overflow-x:auto;overflow-y:hidden;padding:14px calc(50% - min(var(--card-width),42vw)/2) 20px;scroll-snap-type:x mandatory;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;scrollbar-width:none;perspective:1100px;direction:ltr;touch-action:pan-x pan-y;overscroll-behavior-inline:contain}
 .product-row::-webkit-scrollbar{display:none}
+.product-row{cursor:grab;user-select:none;-webkit-user-select:none}
+.product-row.dragging{cursor:grabbing;scroll-snap-type:none}
+.flow-arrow{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 .product-card{flex:0 0 min(var(--card-width),42vw);width:min(var(--card-width),42vw);max-width:min(var(--card-width),42vw);scroll-snap-align:center;scroll-snap-stop:always;text-align:center;direction:rtl;transform:scale(.84) rotateY(6deg);opacity:.55;filter:saturate(.55);transition:transform .35s ease,opacity .35s ease,filter .35s ease}
 .product-card.is-center{transform:scale(1.08) rotateY(0);opacity:1;filter:none;z-index:3}
 .product-image{width:100%;aspect-ratio:1/1;position:relative;cursor:pointer;border-radius:18px;background:rgba(255,255,255,.2)}
@@ -800,12 +803,11 @@ function productCard(product,index=0){
 function groupHTML(name,items,font){
   const gid="flow_"+Math.random().toString(36).slice(2,9);
   return `<div class="category-group"><h3 class="category-title" style="font-family:${font||"var(--product-font)"}">${escapeHTML(name)}</h3><div class="coverflow-shell">
-  <button class="flow-arrow prev" onclick="scrollFlow('${gid}',-1)">‹</button><button class="flow-arrow next" onclick="scrollFlow('${gid}',1)">›</button>
+  <button type="button" class="flow-arrow prev" aria-label="التالي" onclick="scrollFlow('${gid}',1);return false;">›</button><button type="button" class="flow-arrow next" aria-label="السابق" onclick="scrollFlow('${gid}',-1);return false;">‹</button>
   <div class="product-row" id="${gid}" onscroll="syncFlow('${gid}')">${items.map((p,i)=>productCard(p,i)).join("")}</div>
   <div class="flow-meta"><span id="${gid}_count">01 / ${String(items.length).padStart(2,"0")}</span></div>
   <div class="flow-dots" id="${gid}_dots">${items.map((_,i)=>`<span class="flow-dot ${i===0?"active":""}"></span>`).join("")}</div></div></div>`
 }
-const flowState=new Map();
 const flowScrollTimers=new Map();
 
 function getFlowCards(row){
@@ -816,57 +818,24 @@ function getCenteredFlowIndex(row){
   const cards=getFlowCards(row);
   if(!cards.length)return 0;
 
-  const rowRect=row.getBoundingClientRect();
-  const center=rowRect.left+(rowRect.width/2);
+  const rr=row.getBoundingClientRect();
+  const center=rr.left+(rr.width/2);
 
   let best=0;
-  let bestDistance=Infinity;
+  let distance=Infinity;
 
   cards.forEach((card,index)=>{
-    const rect=card.getBoundingClientRect();
-    const cardCenter=rect.left+(rect.width/2);
-    const distance=Math.abs(cardCenter-center);
+    const cr=card.getBoundingClientRect();
+    const cardCenter=cr.left+(cr.width/2);
+    const d=Math.abs(cardCenter-center);
 
-    if(distance<bestDistance){
-      bestDistance=distance;
+    if(d<distance){
+      distance=d;
       best=index;
     }
   });
 
   return best;
-}
-
-function scrollCardToCenter(row,card,behavior="smooth"){
-  if(!row||!card)return;
-
-  /*
-    نجعل شريط المنتجات نفسه LTR داخلياً فقط حتى تكون
-    قيمة scrollLeft موحدة في Safari/Chrome/Firefox/Edge.
-    محتوى البطاقات يبقى عربياً RTL.
-  */
-  const target=
-    card.offsetLeft
-    -((row.clientWidth-card.offsetWidth)/2);
-
-  const maxScroll=Math.max(
-    0,
-    row.scrollWidth-row.clientWidth
-  );
-
-  const safeTarget=Math.max(
-    0,
-    Math.min(maxScroll,target)
-  );
-
-  try{
-    row.scrollTo({
-      left:safeTarget,
-      top:0,
-      behavior:behavior
-    });
-  }catch(error){
-    row.scrollLeft=safeTarget;
-  }
 }
 
 function applyFlowVisualState(id,index){
@@ -875,29 +844,18 @@ function applyFlowVisualState(id,index){
 
   const cards=getFlowCards(row);
 
-  cards.forEach(
-    (card,i)=>{
-      card.classList.toggle(
-        "is-center",
-        i===index
-      );
-    }
-  );
+  cards.forEach((card,i)=>{
+    card.classList.toggle("is-center",i===index);
+  });
 
   const dotsContainer=$(id+"_dots");
-
   const dots=dotsContainer
     ? [...dotsContainer.querySelectorAll(".flow-dot")]
     : [];
 
-  dots.forEach(
-    (dot,i)=>{
-      dot.classList.toggle(
-        "active",
-        i===index
-      );
-    }
-  );
+  dots.forEach((dot,i)=>{
+    dot.classList.toggle("active",i===index);
+  });
 
   const count=$(id+"_count");
 
@@ -909,60 +867,50 @@ function applyFlowVisualState(id,index){
   }
 }
 
-function syncFlow(id,forceState=false){
-  const row=$(id);
-  if(!row)return;
+/*
+  الحركة هنا مبنية على فرق موضع البطاقة بصرياً عن مركز الشريط.
+  لا نعتمد على طريقة RTL الخاصة بكل متصفح.
+*/
+function moveFlowCardToCenter(row,card,behavior="smooth"){
+  if(!row||!card)return;
 
-  const cards=getFlowCards(row);
-  if(!cards.length)return;
+  const rr=row.getBoundingClientRect();
+  const cr=card.getBoundingClientRect();
 
-  const best=getCenteredFlowIndex(row);
+  const rowCenter=rr.left+(rr.width/2);
+  const cardCenter=cr.left+(cr.width/2);
+  const delta=cardCenter-rowCenter;
 
-  applyFlowVisualState(id,best);
+  if(Math.abs(delta)<1)return;
 
-  clearTimeout(
-    flowScrollTimers.get(id)
-  );
+  const target=row.scrollLeft+delta;
+  const max=Math.max(0,row.scrollWidth-row.clientWidth);
+  const safe=Math.max(0,Math.min(max,target));
 
-  flowScrollTimers.set(
-    id,
-    setTimeout(()=>{
-      const stable=getCenteredFlowIndex(row);
-      flowState.set(id,stable);
-      applyFlowVisualState(id,stable);
-    },100)
-  );
-
-  if(forceState){
-    flowState.set(id,best);
+  try{
+    row.scrollTo({
+      left:safe,
+      top:0,
+      behavior:behavior
+    });
+  }catch(error){
+    row.scrollLeft=safe;
   }
 }
 
 function scrollFlow(id,dir){
   const row=$(id);
-  if(!row)return;
+  if(!row)return false;
 
   const cards=getFlowCards(row);
-  if(!cards.length)return;
-
-  let current=flowState.has(id)
-    ? Number(flowState.get(id))
-    : getCenteredFlowIndex(row);
-
-  if(!Number.isFinite(current)){
-    current=0;
-  }
-
-  current=Math.max(
-    0,
-    Math.min(cards.length-1,current)
-  );
+  if(cards.length<2)return false;
 
   /*
-    dir = +1 : التالي
-    dir = -1 : السابق
-    لا نعتمد نهائياً على RTL scrollLeft.
+    نحسب المنتج الموجود فعلياً في المنتصف عند كل ضغطة.
+    بهذه الطريقة حتى بعد السحب بالإصبع لا تضيع حالة السلايدر.
   */
+  const current=getCenteredFlowIndex(row);
+
   const next=Math.max(
     0,
     Math.min(
@@ -971,9 +919,30 @@ function scrollFlow(id,dir){
     )
   );
 
-  flowState.set(id,next);
+  if(next===current){
+    /*
+      إذا وصل للنهاية، نلف إلى الجهة المقابلة.
+      لذلك كل سهم سيستجيب دائماً.
+    */
+    const wrapped=dir>0?0:cards.length-1;
 
-  scrollCardToCenter(
+    moveFlowCardToCenter(
+      row,
+      cards[wrapped],
+      "smooth"
+    );
+
+    applyFlowVisualState(id,wrapped);
+
+    setTimeout(
+      ()=>syncFlow(id),
+      420
+    );
+
+    return false;
+  }
+
+  moveFlowCardToCenter(
     row,
     cards[next],
     "smooth"
@@ -981,231 +950,264 @@ function scrollFlow(id,dir){
 
   applyFlowVisualState(id,next);
 
-  clearTimeout(
-    flowScrollTimers.get(id)
-  );
+  clearTimeout(flowScrollTimers.get(id));
 
   flowScrollTimers.set(
     id,
     setTimeout(
-      ()=>syncFlow(id,true),
-      380
+      ()=>syncFlow(id),
+      420
     )
   );
+
+  return false;
+}
+
+function syncFlow(id){
+  const row=$(id);
+  if(!row)return;
+
+  const index=getCenteredFlowIndex(row);
+  applyFlowVisualState(id,index);
 }
 
 function centerInitialProductRows(){
-  document
-  .querySelectorAll(".product-row")
-  .forEach(row=>{
-
+  document.querySelectorAll(".product-row").forEach(row=>{
     const cards=getFlowCards(row);
-
     if(!cards.length)return;
 
-    flowState.set(row.id,0);
-
+    /*
+      بعد اكتمال القياسات نضع أول منتج في المنتصف.
+    */
     requestAnimationFrame(()=>{
-
-      scrollCardToCenter(
-        row,
-        cards[0],
-        "auto"
-      );
-
-      applyFlowVisualState(
-        row.id,
-        0
-      );
-
+      requestAnimationFrame(()=>{
+        moveFlowCardToCenter(row,cards[0],"auto");
+        applyFlowVisualState(row.id,0);
+      });
     });
-
   });
 }
 
-/* ===== دعم السحب باللمس على iPhone / iPad / Android ===== */
 
-document.addEventListener(
-"touchend",
-event=>{
+/* =========================================================
+   UNIVERSAL SWIPE / DRAG
+   iPhone + iPad + Android + Chrome + Safari + Firefox + Edge
+========================================================= */
 
-  const row=
-  event.target.closest
-  ? event.target.closest(".product-row")
-  : null;
-
-  if(!row)return;
-
-  setTimeout(()=>{
-
-    const index=
-    getCenteredFlowIndex(row);
-
-    flowState.set(
-      row.id,
-      index
-    );
-
-    const cards=
-    getFlowCards(row);
-
-    if(cards[index]){
-
-      scrollCardToCenter(
-        row,
-        cards[index],
-        "smooth"
-      );
-
-    }
-
-    applyFlowVisualState(
-      row.id,
-      index
-    );
-
-  },70);
-
-},
-{passive:true}
-);
-
-
-/* ===== دعم السحب بالماوس والقلم ===== */
-
-(function enableUniversalProductDrag(){
+(function setupUniversalFlowGestures(){
 
   let activeRow=null;
+  let pointerId=null;
   let startX=0;
-  let startScrollLeft=0;
+  let startY=0;
+  let startScroll=0;
+  let dragging=false;
   let moved=false;
 
-  document.addEventListener(
-  "pointerdown",
-  event=>{
-
-    if(event.pointerType==="touch"){
-      return;
-    }
-
-    const row=
-    event.target.closest
-    ? event.target.closest(".product-row")
-    : null;
-
-    if(!row)return;
-
-    activeRow=row;
-    startX=event.clientX;
-    startScrollLeft=row.scrollLeft;
-    moved=false;
-
-    try{
-      row.setPointerCapture(
-        event.pointerId
-      );
-    }catch(error){}
-
-  });
+  function findRow(target){
+    return target && target.closest
+      ? target.closest(".product-row")
+      : null;
+  }
 
   document.addEventListener(
-  "pointermove",
-  event=>{
+    "pointerdown",
+    event=>{
 
-    if(!activeRow)return;
+      const row=findRow(event.target);
+      if(!row)return;
 
-    const delta=
-    event.clientX-startX;
+      /*
+        لا نبدأ السحب إذا ضغط العميل على زر داخل البطاقة.
+      */
+      if(event.target.closest("button"))return;
 
-    if(
-      Math.abs(delta)>4
-    ){
-      moved=true;
-    }
+      activeRow=row;
+      pointerId=event.pointerId;
+      startX=event.clientX;
+      startY=event.clientY;
+      startScroll=row.scrollLeft;
+      dragging=false;
+      moved=false;
 
-    activeRow.scrollLeft=
-      startScrollLeft-delta;
+      try{
+        row.setPointerCapture(pointerId);
+      }catch(error){}
 
-  });
+    },
+    {passive:true}
+  );
 
-  function finishPointerDrag(event){
+  document.addEventListener(
+    "pointermove",
+    event=>{
+
+      if(!activeRow)return;
+      if(pointerId!==null && event.pointerId!==pointerId)return;
+
+      const dx=event.clientX-startX;
+      const dy=event.clientY-startY;
+
+      /*
+        نبدأ كسحب أفقي فقط إذا كانت الحركة الأفقية أوضح
+        من الحركة العمودية حتى يبقى تمرير الصفحة طبيعياً.
+      */
+      if(!dragging){
+        if(Math.abs(dx)<8)return;
+
+        if(Math.abs(dx)<=Math.abs(dy)){
+          activeRow=null;
+          return;
+        }
+
+        dragging=true;
+        moved=true;
+        activeRow.classList.add("dragging");
+      }
+
+      activeRow.scrollLeft=startScroll-dx;
+
+    },
+    {passive:true}
+  );
+
+  function finish(event){
 
     if(!activeRow)return;
 
     const row=activeRow;
+    const dx=(event?.clientX??startX)-startX;
 
-    activeRow=null;
+    row.classList.remove("dragging");
 
     try{
-      row.releasePointerCapture(
-        event.pointerId
-      );
+      if(pointerId!==null){
+        row.releasePointerCapture(pointerId);
+      }
     }catch(error){}
 
-    const index=
-    getCenteredFlowIndex(row);
+    activeRow=null;
+    pointerId=null;
 
-    flowState.set(
-      row.id,
-      index
-    );
+    const cards=getFlowCards(row);
+    if(!cards.length)return;
 
-    const cards=
-    getFlowCards(row);
+    /*
+      إذا كان السحب واضحاً ننتقل بطاقة كاملة،
+      وإلا نثبت أقرب بطاقة في المنتصف.
+    */
+    let index=getCenteredFlowIndex(row);
 
-    if(cards[index]){
+    if(Math.abs(dx)>=35){
+      const base=index;
 
-      scrollCardToCenter(
-        row,
-        cards[index],
-        "smooth"
-      );
-
+      if(dx<0){
+        index=Math.min(cards.length-1,base+1);
+      }else{
+        index=Math.max(0,base-1);
+      }
     }
+
+    moveFlowCardToCenter(
+      row,
+      cards[index],
+      "smooth"
+    );
 
     applyFlowVisualState(
       row.id,
       index
     );
 
+    setTimeout(
+      ()=>syncFlow(row.id),
+      350
+    );
   }
 
+  document.addEventListener("pointerup",finish);
+  document.addEventListener("pointercancel",finish);
+
+  /*
+    Safari القديم الذي قد لا يرسل PointerEvent كما نريد:
+    نضيف Touch fallback مستقل.
+  */
+  let touchRow=null;
+  let touchStartX=0;
+  let touchStartY=0;
+
   document.addEventListener(
-    "pointerup",
-    finishPointerDrag
+    "touchstart",
+    event=>{
+
+      if(window.PointerEvent)return;
+
+      const row=findRow(event.target);
+      if(!row)return;
+
+      const touch=event.touches[0];
+      if(!touch)return;
+
+      touchRow=row;
+      touchStartX=touch.clientX;
+      touchStartY=touch.clientY;
+
+    },
+    {passive:true}
   );
 
   document.addEventListener(
-    "pointercancel",
-    finishPointerDrag
+    "touchend",
+    event=>{
+
+      if(window.PointerEvent)return;
+      if(!touchRow)return;
+
+      const row=touchRow;
+      touchRow=null;
+
+      const touch=event.changedTouches[0];
+      if(!touch)return;
+
+      const dx=touch.clientX-touchStartX;
+      const dy=touch.clientY-touchStartY;
+
+      if(Math.abs(dx)<30 || Math.abs(dx)<=Math.abs(dy)){
+        syncFlow(row.id);
+        return;
+      }
+
+      /*
+        السحب لليسار = التالي
+        السحب لليمين = السابق
+      */
+      scrollFlow(
+        row.id,
+        dx<0?1:-1
+      );
+
+    },
+    {passive:true}
   );
 
   /*
-    إذا كان المستخدم يسحب البطاقة بالماوس
-    لا نفتح نافذة المنتج بالخطأ عند الإفلات.
+    منع فتح المنتج بعد سحب بالماوس/القلم.
   */
   document.addEventListener(
-  "click",
-  event=>{
+    "click",
+    event=>{
+      if(!moved)return;
 
-    if(!moved)return;
+      const row=findRow(event.target);
 
-    const row=
-    event.target.closest
-    ? event.target.closest(".product-row")
-    : null;
+      if(row){
+        event.preventDefault();
+        event.stopPropagation();
+      }
 
-    if(row){
-
-      event.preventDefault();
-      event.stopPropagation();
-
-    }
-
-    moved=false;
-
-  },
-  true
+      moved=false;
+    },
+    true
   );
 
 })();
