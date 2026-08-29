@@ -33,9 +33,25 @@ OneSignalDeferred.push(async function(OneSignal){
   --cream:#F8EACB;--cream-deep:#F1DDA6;--card:#FFFBF0;--ink:#20301C;--ink-soft:#3B4A34;
   --gold:#A9793C;--gold-soft:#C9A96E;--line:rgba(32,48,28,.16);--danger:#9B3A2E;--ok:#4C6B3E;
   --blue:#2C5A82;--shadow:0 10px 30px rgba(32,48,28,.10);--card-width:180px;--card-width-desktop:180px;--card-width-tablet:220px;--card-width-mobile:280px;--product-font:'Aref Ruqaa',serif;
+  --font-body:'Tajawal',sans-serif;
+  --font-brand:'Aref Ruqaa',serif;
+  --font-hero-title:'Aref Ruqaa',serif;
+  --font-hero-description:'Tajawal',sans-serif;
+  --font-nav:'Tajawal',sans-serif;
+  --font-section-titles:'Aref Ruqaa',serif;
+  --font-category-titles:'Aref Ruqaa',serif;
+  --font-product-names:'Aref Ruqaa',serif;
+  --font-prices:'Tajawal',sans-serif;
+  --font-buttons:'Tajawal',sans-serif;
+  --font-bundles:'Tajawal',sans-serif;
+  --font-gifts:'Tajawal',sans-serif;
+  --font-reviews:'Tajawal',sans-serif;
+  --font-footer:'Tajawal',sans-serif;
+  --font-modals:'Tajawal',sans-serif;
+  --font-invoice:'Tajawal',sans-serif;
 }
 *{box-sizing:border-box} html{scroll-behavior:smooth} html,body{margin:0;padding:0;width:100%;max-width:100%;overflow-x:hidden}
-body{min-height:100vh;background:radial-gradient(1200px 500px at 50% -10%,var(--cream-deep),transparent 60%),var(--cream);color:var(--ink);font-family:'Tajawal',sans-serif}
+body{min-height:100vh;background:radial-gradient(1200px 500px at 50% -10%,var(--cream-deep),transparent 60%),var(--cream);color:var(--ink);font-family:var(--font-body)}
 button,input,textarea,select{font:inherit} button{cursor:pointer} a{color:inherit;text-decoration:none} img{max-width:100%}
 #customBackground{position:fixed;inset:0;z-index:-3;pointer-events:none;background-position:center;background-size:cover;background-repeat:no-repeat;display:none}
 #watermark{position:fixed;inset:0;z-index:-2;pointer-events:none;background-position:center;background-repeat:repeat;display:none}
@@ -81,7 +97,7 @@ button,input,textarea,select{font:inherit} button{cursor:pointer} a{color:inheri
 
 /* ===== GIFT STRIP ===== */
 .gift-strip{width:min(980px,calc(100% - 30px));margin:0 auto 28px;padding:18px;border:1px solid var(--line);border-radius:24px;background:linear-gradient(135deg,rgba(255,251,240,.95),rgba(241,221,166,.78));box-shadow:var(--shadow);display:grid;grid-template-columns:1fr auto;align-items:center;gap:18px}
-.gift-strip h3{margin:0;font-family:'Aref Ruqaa';font-size:30px}.gift-strip p{margin:5px 0 0;color:var(--ink-soft);line-height:1.8}.gift-icons{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}.gift-chip{padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.65);border:1px solid var(--line);font-size:11px;font-weight:700}
+.gift-strip h3{margin:0;font-family:var(--font-gifts);font-size:30px}.gift-strip p{margin:5px 0 0;color:var(--ink-soft);line-height:1.8}.gift-icons{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}.gift-chip{padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.65);border:1px solid var(--line);font-size:11px;font-weight:700}
 
 .section{max-width:1180px;margin:0 auto;padding:35px 20px 65px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:18px}.section-head h2{margin:0;font-family:'Aref Ruqaa',serif;font-size:35px}
 .category-filters{display:flex;align-items:center;gap:7px;overflow-x:auto;max-width:100%;scrollbar-width:none}.category-filters::-webkit-scrollbar{display:none}.category-filters button{flex:0 0 auto;border:1px solid var(--line);border-radius:999px;padding:8px 15px;background:var(--card);color:var(--ink-soft);font-weight:700;white-space:nowrap}.category-filters button.active{background:var(--ink);color:var(--cream)}
@@ -342,7 +358,7 @@ button,input,textarea,select{font:inherit} button{cursor:pointer} a{color:inheri
 
 /* ===== BUNDLES ===== */
 #bundlesSection{display:none}.bundles-row{display:flex;gap:14px;overflow-x:auto;padding:4px 2px 14px;scroll-snap-type:x mandatory}.bundle-card{flex:0 0 280px;max-width:84vw;scroll-snap-align:start;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:13px;box-shadow:var(--shadow)}
-.bundle-card img{width:100%;height:180px;object-fit:contain;border-radius:14px;background:var(--cream)}.bundle-card h3{font-family:'Aref Ruqaa';font-size:25px;margin:10px 0 5px}.bundle-card p{color:var(--ink-soft);font-size:12px;line-height:1.7;min-height:40px}
+.bundle-card img{width:100%;height:180px;object-fit:contain;border-radius:14px;background:var(--cream)}.bundle-card h3{font-family:var(--font-bundles);font-size:25px;margin:10px 0 5px}.bundle-card p{color:var(--ink-soft);font-size:12px;line-height:1.7;min-height:40px}
 
 /* ===== REVIEWS ===== */
 .reviews-row{display:flex;gap:14px;overflow-x:auto;padding-bottom:10px;scroll-snap-type:x mandatory}.review-card{flex:0 0 290px;max-width:84vw;padding:18px;background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);scroll-snap-align:start}.review-stars{color:var(--gold);margin-bottom:8px;font-size:18px}.review-text{color:var(--ink-soft);line-height:1.8}.review-name{margin-top:10px;font-weight:700}.verified{display:inline-flex;margin-top:7px;padding:4px 8px;border-radius:999px;background:#D6E7CC;color:var(--ok);font-size:10px;font-weight:700}
@@ -724,6 +740,110 @@ button,input,textarea,select{font:inherit} button{cursor:pointer} a{color:inheri
   }
 }
 
+
+/* =========================================================
+   ADMIN FONT CONTROLS — FINAL
+   جميع اختيارات الخطوط في لوحة الإدارة مرتبطة الآن بالواجهة.
+========================================================= */
+body{font-family:var(--font-body)!important}
+
+.brand-name,
+#splashTextFallback{
+  font-family:var(--font-brand)!important;
+}
+
+.hero h1,
+#heroTitle{
+  font-family:var(--font-hero-title)!important;
+}
+
+.hero p,
+#heroDesc,
+.hero-eyebrow{
+  font-family:var(--font-hero-description)!important;
+}
+
+.main-nav,
+.main-nav button{
+  font-family:var(--font-nav)!important;
+}
+
+.section-head h2,
+.about-box h2,
+.footer-title{
+  font-family:var(--font-section-titles)!important;
+}
+
+.category-title,
+.ibraq-category-title,
+.category-filters,
+.category-filters button{
+  font-family:var(--font-category-titles)!important;
+}
+
+.product-card h3,
+.product-detail-info h2{
+  font-family:var(--font-product-names)!important;
+}
+
+.price,
+.old-price,
+.price-row,
+.cart-total{
+  font-family:var(--font-prices)!important;
+}
+
+button,
+.btn,
+.cart-btn,
+.round-btn,
+.add-btn,
+.gift-btn{
+  font-family:var(--font-buttons)!important;
+}
+
+#bundlesSection,
+.bundle-card,
+.bundle-card h3,
+.bundle-card p{
+  font-family:var(--font-bundles)!important;
+}
+
+#giftStrip,
+#giftModal,
+.gift-chip,
+.gift-summary,
+.gift-product-check{
+  font-family:var(--font-gifts)!important;
+}
+
+#reviewsSection,
+.review-card,
+.review-name,
+.review-text,
+.review-stars{
+  font-family:var(--font-reviews)!important;
+}
+
+.store-footer,
+.store-footer *{
+  font-family:var(--font-footer)!important;
+}
+
+.modal,
+.drawer,
+.notifications-panel,
+#pushPermissionBox{
+  font-family:var(--font-modals)!important;
+}
+
+.invoice-sheet,
+.invoice-sheet *,
+#invoiceModal .invoice-sheet,
+#invoiceModal .invoice-sheet *{
+  font-family:var(--font-invoice)!important;
+}
+
 </style>
 </head>
 
@@ -795,7 +915,7 @@ button,input,textarea,select{font:inherit} button{cursor:pointer} a{color:inheri
   <div id="productsArea" class="products-area"><div class="empty">جارِ تحميل المنتجات…</div></div>
 </section>
 
-<section class="section" id="about"><div class="about-box"><h2 id="aboutStoreTitle" style="font-family:'Aref Ruqaa';font-size:32px">قصة الشعيبي</h2><p id="aboutText">متجر الشعيبي.</p></div></section>
+<section class="section" id="about"><div class="about-box"><h2 id="aboutStoreTitle" style="font-family:var(--font-section-titles);font-size:32px">قصة الشعيبي</h2><p id="aboutText">متجر الشعيبي.</p></div></section>
 
 <section class="section" id="reviewsSection"><div class="section-head"><h2>آراء عملائنا</h2></div><div id="reviewsRow" class="reviews-row"></div></section>
 
@@ -1041,7 +1161,58 @@ function applySettings(){
   root.style.setProperty("--card-width-tablet",tabletCardWidth+"px");
   root.style.setProperty("--card-width-mobile",mobileCardWidth+"px");
 
-  root.style.setProperty("--product-font",designSettings.productFont||generalSettings.productFont||"'Aref Ruqaa', serif");
+  /*
+    ربط جميع اختيارات الخطوط من لوحة الإدارة بصفحة العملاء.
+    لوحة الإدارة تحفظها داخل designSettings.fonts.
+  */
+  const fonts=designSettings.fonts||{};
+
+  const fontFamily=value=>{
+    const font=String(value||"").trim();
+    if(!font)return "";
+    return `"${font.replace(/"/g,"")}", sans-serif`;
+  };
+
+  const fontMap={
+    body:fonts.body||"Tajawal",
+    brand:fonts.brand||"Aref Ruqaa",
+    heroTitle:fonts.heroTitle||"Aref Ruqaa",
+    heroDescription:fonts.heroDescription||"Tajawal",
+    nav:fonts.nav||"Tajawal",
+    sectionTitles:fonts.sectionTitles||"Aref Ruqaa",
+    categoryTitles:fonts.categoryTitles||"Aref Ruqaa",
+    productNames:fonts.productNames||designSettings.productFont||generalSettings.productFont||"Aref Ruqaa",
+    prices:fonts.prices||"Tajawal",
+    buttons:fonts.buttons||"Tajawal",
+    bundles:fonts.bundles||"Tajawal",
+    gifts:fonts.gifts||"Tajawal",
+    reviews:fonts.reviews||"Tajawal",
+    footer:fonts.footer||"Tajawal",
+    modals:fonts.modals||"Tajawal",
+    invoice:fonts.invoice||"Tajawal"
+  };
+
+  root.style.setProperty("--font-body",fontFamily(fontMap.body));
+  root.style.setProperty("--font-brand",fontFamily(fontMap.brand));
+  root.style.setProperty("--font-hero-title",fontFamily(fontMap.heroTitle));
+  root.style.setProperty("--font-hero-description",fontFamily(fontMap.heroDescription));
+  root.style.setProperty("--font-nav",fontFamily(fontMap.nav));
+  root.style.setProperty("--font-section-titles",fontFamily(fontMap.sectionTitles));
+  root.style.setProperty("--font-category-titles",fontFamily(fontMap.categoryTitles));
+  root.style.setProperty("--font-product-names",fontFamily(fontMap.productNames));
+  root.style.setProperty("--font-prices",fontFamily(fontMap.prices));
+  root.style.setProperty("--font-buttons",fontFamily(fontMap.buttons));
+  root.style.setProperty("--font-bundles",fontFamily(fontMap.bundles));
+  root.style.setProperty("--font-gifts",fontFamily(fontMap.gifts));
+  root.style.setProperty("--font-reviews",fontFamily(fontMap.reviews));
+  root.style.setProperty("--font-footer",fontFamily(fontMap.footer));
+  root.style.setProperty("--font-modals",fontFamily(fontMap.modals));
+  root.style.setProperty("--font-invoice",fontFamily(fontMap.invoice));
+
+  /*
+    نبقي المتغير القديم للتوافق مع أي كود سابق.
+  */
+  root.style.setProperty("--product-font",fontFamily(fontMap.productNames));
   const bg=designSettings.backgroundUrl||"";if(bg){$("customBackground").style.backgroundImage=`url("${bg}")`;$("customBackground").style.opacity=String(designSettings.backgroundOpacity??.15);$("customBackground").style.display="block"}else $("customBackground").style.display="none";
   const wm=designSettings.watermarkUrl||"";if(wm){$("watermark").style.backgroundImage=`url("${wm}")`;$("watermark").style.backgroundSize="180px auto";$("watermark").style.opacity=String(designSettings.watermarkOpacity??.1);$("watermark").style.display="block"}else $("watermark").style.display="none";
   $("heroTitle").textContent=generalSettings.sloganTitle||"صُنعت لمن يبحث عن الاختلاف";$("heroDesc").textContent=generalSettings.sloganDesc||"اكتشف تشكيلتنا المختارة بعناية.";$("aboutText").textContent=generalSettings.aboutText||(getStoreEyebrow()+"، وجهتك للمنتجات المختارة بعناية.");
@@ -2713,7 +2884,7 @@ function renderCustomerInvoice(invoice){
 }
 function printInvoice(){
   if(!currentInvoiceData){toast("لا توجد فاتورة");return}const sheet=$("printInvoiceSheet");if(!sheet)return;const popup=window.open("","_blank");if(!popup){alert("المتصفح منع نافذة الطباعة. اسمح بالنوافذ المنبثقة ثم حاول مرة أخرى.");return}
-  popup.document.write(`<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><title>فاتورة ${escapeHTML(getStoreName())} #${escapeHTML(currentInvoiceData.invoice_number||"")}</title><link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet"><style>*{box-sizing:border-box}body{font-family:Tajawal,sans-serif;padding:25px;margin:0;color:#1e1e1e}.invoice-sheet{max-width:900px;margin:auto}.invoice-head{display:flex;justify-content:space-between;gap:15px;align-items:flex-start;padding-bottom:14px;border-bottom:2px solid #222}.invoice-logo{width:82px;height:82px;object-fit:contain;display:block}.invoice-brand{font-family:'Aref Ruqaa';font-weight:700;font-size:36px}.invoice-brand-en{font-size:10px;letter-spacing:.15em;direction:ltr}.invoice-title{font-size:21px;font-weight:900}.invoice-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:15px 0}.invoice-info{border:1px solid #ddd;padding:11px;border-radius:10px;font-size:12px;line-height:1.9}.invoice-table{width:100%;border-collapse:collapse;margin-top:12px}.invoice-table th,.invoice-table td{padding:8px;border:1px solid #ddd;font-size:11px;text-align:right}.invoice-table th{background:#f2ecdf}.invoice-totals{width:330px;max-width:100%;margin:15px 0 0 auto}.invoice-totals div{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #ddd}.invoice-totals .grand{font-size:17px;font-weight:900;border-top:2px solid #222;border-bottom:0}@media print{body{padding:0}}</style></head><body>${sheet.outerHTML}<script>window.onload=function(){setTimeout(function(){window.print()},400)};<\/script></body></html>`);popup.document.close()
+  popup.document.write(`<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><title>فاتورة ${escapeHTML(getStoreName())} #${escapeHTML(currentInvoiceData.invoice_number||"")}</title><link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet"><style>*{box-sizing:border-box}body{font-family:${escapeHTML((designSettings.fonts||{}).invoice||"Tajawal")},sans-serif;padding:25px;margin:0;color:#1e1e1e}.invoice-sheet{max-width:900px;margin:auto}.invoice-head{display:flex;justify-content:space-between;gap:15px;align-items:flex-start;padding-bottom:14px;border-bottom:2px solid #222}.invoice-logo{width:82px;height:82px;object-fit:contain;display:block}.invoice-brand{font-family:'Aref Ruqaa';font-weight:700;font-size:36px}.invoice-brand-en{font-size:10px;letter-spacing:.15em;direction:ltr}.invoice-title{font-size:21px;font-weight:900}.invoice-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:15px 0}.invoice-info{border:1px solid #ddd;padding:11px;border-radius:10px;font-size:12px;line-height:1.9}.invoice-table{width:100%;border-collapse:collapse;margin-top:12px}.invoice-table th,.invoice-table td{padding:8px;border:1px solid #ddd;font-size:11px;text-align:right}.invoice-table th{background:#f2ecdf}.invoice-totals{width:330px;max-width:100%;margin:15px 0 0 auto}.invoice-totals div{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #ddd}.invoice-totals .grand{font-size:17px;font-weight:900;border-top:2px solid #222;border-bottom:0}@media print{body{padding:0}}</style></head><body>${sheet.outerHTML}<script>window.onload=function(){setTimeout(function(){window.print()},400)};<\/script></body></html>`);popup.document.close()
 }
 
 function renderReviews(){if(!reviews.length){$("reviewsRow").innerHTML='<div class="empty">لا توجد تقييمات بعد.</div>';return}$("reviewsRow").innerHTML=reviews.map(r=>`<div class="review-card"><div class="review-stars">${"★".repeat(Number(r.rating||0))}${"☆".repeat(Math.max(0,5-Number(r.rating||0)))}</div><div class="review-text">${escapeHTML(r.text||r.comment||"")}</div><div class="review-name">— ${escapeHTML(r.customer_name||r.name||"عميل")}</div>${r.is_verified_purchase?'<div class="verified">✓ شراء موثق</div>':""}</div>`).join("")}
