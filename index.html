@@ -2381,7 +2381,7 @@ async function submitOrder(){
     const items=cart.map(i=>({id:String(i.id),qty:Number(i.qty||1),color:i.color||null,size:i.size||null}));
     const notes=(baseNotes?baseNotes+"\n":"")+giftNotes();
     const {data,error}=await client.rpc("place_order",{p_name:name,p_phone:phone,p_address:address,p_notes:notes,p_pay_method:$("paymentMethod").value,p_coupon_code:currentCoupon?.code||null,p_items:items});if(error)throw error;
-    const orderNumber=data?.order_number||"";const oldCart=[...cart];cart=[];localStorage.removeItem("alshuaiibe_cart");localStorage.setItem("alshuaiibe_last_phone",phone);localStorage.setItem("alshuaiibe_last_order",String(orderNumber));renderCart();closeCheckout();toast("تم إرسال طلبك بنجاح ✓");await fetchProducts();
+    const orderNumber=data?.order_number||"";const oldCart=[...cart];cart=[];localStorage.removeItem("alshuaiibe_cart");localStorage.setItem("alshuaiibe_last_phone",phone);localStorage.setItem("alshuaiibe_last_order",String(orderNumber));localStorage.setItem("alshuaiibe_last_customer",JSON.stringify({name,phone,orderNumber:String(orderNumber)}));renderCart();closeCheckout();toast("تم إرسال طلبك بنجاح ✓");await fetchProducts();
     if(generalSettings.featureWaCheck===true&&generalSettings.whatsapp){let message=`طلب جديد من ${getStoreEyebrow()} 🛍️\n\nرقم الطلب: #${orderNumber}\nالاسم: ${name}\nالهاتف: ${phone}\nالعنوان: ${address}\n\nالمنتجات:\n`;oldCart.forEach(i=>{message+=`- ${i.name} × ${i.qty}${i.giftGroupId?" 🎁":""}\n`});message+=giftNotes()+`\nالإجمالي: ${Number(data?.total||0).toFixed(2)} ${data?.currency||""}`;window.open("https://wa.me/"+generalSettings.whatsapp.replace(/\D/g,"")+"?text="+encodeURIComponent(message),"_blank")}
     alert("تم إنشاء طلبك بنجاح.\nرقم الطلب: #"+orderNumber+"\n\nاحتفظ برقم الطلب مع رقم هاتفك للتتبع.");$("ordersPhone").value=phone;$("ordersNumber").value=orderNumber;openMyOrders();await loadCustomerOrders()
   }catch(error){console.error(error);alert("تعذر إرسال الطلب:\n"+(error.message||"حدث خطأ غير معروف"))}finally{button.disabled=false;button.textContent="تأكيد الطلب"}
@@ -2411,7 +2411,24 @@ async function loadCustomerOrders(){
     const legacy=await client.rpc("track_orders_by_phone",{p_phone:phone});error=legacy.error;data=(legacy.data||[]).filter(o=>String(o.order_number)===String(orderNumber));
   }
   if(error){console.error(error);$("customerOrdersResults").innerHTML=`<div class="empty">تعذر تحميل الطلب.<br>${escapeHTML(error.message||"")}</div>`;return}
-  customerOrders=data||[];if(!customerOrders.length){$("customerOrdersResults").innerHTML='<div class="empty">لا يوجد طلب مطابق لرقم الهاتف ورقم الطلب.</div>';return}renderCustomerOrders()
+  customerOrders=data||[];if(!customerOrders.length){$("customerOrdersResults").innerHTML='<div class="empty">لا يوجد طلب مطابق لرقم الهاتف ورقم الطلب.</div>';return}
+
+  /*
+    نملأ الاسم فور التتبع إذا كانت دالة التتبع الآمن لا تعيده.
+    هذا يجعل الفاتورة وباقي الواجهة تستخدم نفس الاسم الصحيح.
+  */
+  for(const order of customerOrders){
+    const existing=String(order?.name||order?.customer_name||"").trim();
+    if(!existing||existing==="—"||existing==="-"){
+      const secureName=await getSecureInvoiceCustomerName(order);
+      if(secureName){
+        order.name=secureName;
+        order.customer_name=secureName;
+      }
+    }
+  }
+
+  renderCustomerOrders()
 }
 function trackingSteps(status){
   const steps=[["pending","تم الاستلام"],["confirmed","تم التأكيد"],["processing","قيد التجهيز"],["shipped","تم الشحن"],["delivered","تم التسليم"]],idx=steps.findIndex(x=>x[0]===status);
@@ -2512,26 +2529,66 @@ function buildInvoiceSnapshotFromOrder(o){
 
 async function getSecureInvoiceCustomerName(order){
   /*
-    التتبع الآمن لا يعيد اسم العميل دائماً ضمن بيانات الطلب.
-    لذلك نسترجع الاسم فقط عبر RPC آمن باستخدام رقم الهاتف + رقم الطلب.
-    هذه الدالة لا تكشف أي طلب آخر ولا تعتمد على SELECT مباشر من orders.
+    إصلاح دائم لاسم العميل في الفاتورة.
+    المصدر الأساسي: RPC آمن برقم الهاتف + رقم الطلب.
+    دعم إضافي:
+    - نرسل رقم الطلب كسلسلة لتفادي أي مشكلة bigint/PostgREST.
+    - نفهم كل أشكال استجابة RPC المحتملة.
+    - fallback اختياري إلى SELECT مباشر إذا كانت RLS تسمح به.
+    - fallback محلي للطلب الذي تم إنشاؤه للتو على نفس الجهاز.
+  */
+  const phone=normalizePhone(
+    order?.phone
+    ||order?.customer_phone
+    ||currentCustomerPhone
+    ||localStorage.getItem("alshuaiibe_last_phone")
+    ||""
+  );
+
+  const orderNumber=String(
+    order?.order_number
+    ||currentCustomerOrderNumber
+    ||localStorage.getItem("alshuaiibe_last_order")
+    ||""
+  ).replace(/\D/g,"");
+
+  const readName=value=>{
+    if(value===null||value===undefined)return "";
+
+    if(typeof value==="string"){
+      const v=value.trim();
+      if(!v||v==="—"||v==="-")return "";
+      return v;
+    }
+
+    if(Array.isArray(value)){
+      for(const item of value){
+        const name=readName(item);
+        if(name)return name;
+      }
+      return "";
+    }
+
+    if(typeof value==="object"){
+      return readName(
+        value.name
+        ??value.customer_name
+        ??value.customerName
+        ??value.order_name
+        ??value.customer
+        ??""
+      );
+    }
+
+    return "";
+  };
+
+  if(!phone||!orderNumber)return "";
+
+  /*
+    1) المصدر الآمن الرئيسي.
   */
   try{
-    const phone=normalizePhone(
-      order?.phone
-      ||order?.customer_phone
-      ||currentCustomerPhone
-      ||""
-    );
-
-    const orderNumber=Number(
-      order?.order_number
-      ||currentCustomerOrderNumber
-      ||0
-    );
-
-    if(!phone||!orderNumber)return "";
-
     const {data,error}=await client.rpc(
       "get_order_customer_name_secure",
       {
@@ -2540,70 +2597,99 @@ async function getSecureInvoiceCustomerName(order){
       }
     );
 
-    if(error){
+    if(!error){
+      const name=readName(data);
+      if(name)return name;
+    }else{
       console.warn("get_order_customer_name_secure:",error);
-      return "";
     }
-
-    if(typeof data==="string")return data.trim();
-
-    if(Array.isArray(data)){
-      const first=data[0];
-      if(typeof first==="string")return first.trim();
-      if(first&&typeof first==="object"){
-        return String(
-          first.name
-          ??first.customer_name
-          ??first.customerName
-          ??""
-        ).trim();
-      }
-    }
-
-    if(data&&typeof data==="object"){
-      return String(
-        data.name
-        ??data.customer_name
-        ??data.customerName
-        ??""
-      ).trim();
-    }
-
-    return "";
   }catch(error){
-    console.warn("Secure invoice customer name lookup failed:",error);
-    return "";
+    console.warn("Secure invoice customer name RPC failed:",error);
   }
+
+  /*
+    2) fallback مباشر فقط إذا كانت سياسة RLS تسمح بقراءة هذا الطلب.
+    إذا كانت RLS تمنع ذلك، لا يحدث أي كشف للبيانات وننتقل للبديل التالي.
+  */
+  try{
+    const {data,error}=await client
+      .from("orders")
+      .select("name,phone,order_number")
+      .eq("order_number",orderNumber)
+      .limit(5);
+
+    if(!error&&Array.isArray(data)&&data.length){
+      const exact=data.find(row=>
+        normalizePhone(row?.phone)===phone
+        &&String(row?.order_number||"")===orderNumber
+      );
+
+      const name=readName(exact);
+      if(name)return name;
+    }
+  }catch(error){
+    console.warn("Invoice customer direct fallback failed:",error);
+  }
+
+  /*
+    3) للطلب الذي تم إنشاؤه للتو على نفس الجهاز:
+    نخزن الاسم وقت إنشاء الطلب ونستخدمه فقط إذا تطابق رقم الطلب والهاتف.
+  */
+  try{
+    const savedRaw=localStorage.getItem("alshuaiibe_last_customer");
+    const saved=savedRaw?JSON.parse(savedRaw):null;
+
+    if(
+      saved
+      &&normalizePhone(saved.phone)===phone
+      &&String(saved.orderNumber||"")===orderNumber
+    ){
+      const name=readName(saved.name);
+      if(name)return name;
+    }
+  }catch(error){}
+
+  return "";
 }
 
 async function openCustomerInvoice(orderId){
   const o=customerOrders.find(x=>String(x.order_id||x.id||"")===String(orderId));
-  if(!o){toast("تعذر تحديد الطلب");return}
+  if(!o){
+    toast("تعذر تحديد الطلب");
+    return;
+  }
 
   const snapshot=buildInvoiceSnapshotFromOrder(o);
-  if(!snapshot.items.length){toast("لا توجد تفاصيل منتجات في هذا الطلب");return}
+
+  if(!snapshot.items.length){
+    toast("لا توجد تفاصيل منتجات في هذا الطلب");
+    return;
+  }
 
   /*
-    إصلاح فقدان اسم العميل:
-    إذا لم يصل الاسم مع track_order_secure أو invoice_snapshot
-    نجلبه من RPC الآمن الذي سبق اعتماده للفاتورة.
+    لا نرسم الفاتورة قبل حسم اسم العميل.
+    حتى لو track_order_secure لم يُرجع name، نسترجعه بأمان هنا.
   */
-  const currentName=String(snapshot?.customer?.name||"").trim();
+  let customerName=String(
+    snapshot?.customer?.name
+    ||o?.name
+    ||o?.customer_name
+    ||""
+  ).trim();
 
-  if(!currentName||currentName==="—"||currentName==="-"){
-    const secureName=await getSecureInvoiceCustomerName(o);
+  if(!customerName||customerName==="—"||customerName==="-"){
+    customerName=await getSecureInvoiceCustomerName(o);
+  }
 
-    if(secureName){
-      snapshot.customer=snapshot.customer||{};
-      snapshot.customer.name=secureName;
+  snapshot.customer=snapshot.customer||{};
+  snapshot.customer.name=customerName||"—";
 
-      /*
-        نحدّث النسخة المحلية للطلب أيضاً حتى لا يعاد الطلب
-        عند فتح نفس الفاتورة مرة أخرى في الجلسة الحالية.
-      */
-      o.name=secureName;
-      o.customer_name=secureName;
-    }
+  /*
+    حفظ محلي داخل الجلسة حتى فتح الفاتورة مرة ثانية لا يعيد الاستعلام.
+  */
+  if(customerName){
+    o.name=customerName;
+    o.customer_name=customerName;
   }
 
   currentInvoiceData={
@@ -2614,7 +2700,7 @@ async function openCustomerInvoice(orderId){
 
   renderCustomerInvoice(currentInvoiceData);
   showMainScrim();
-  $("invoiceModal").classList.add("show")
+  $("invoiceModal").classList.add("show");
 }
 function closeInvoiceModal(){$("invoiceModal").classList.remove("show");currentInvoiceData=null;updateMainScrim()}
 function renderCustomerInvoice(invoice){
