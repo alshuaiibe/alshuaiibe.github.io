@@ -2510,16 +2510,108 @@ function buildInvoiceSnapshotFromOrder(o){
   }
 }
 
-function openCustomerInvoice(orderId){
+async function getSecureInvoiceCustomerName(order){
+  /*
+    التتبع الآمن لا يعيد اسم العميل دائماً ضمن بيانات الطلب.
+    لذلك نسترجع الاسم فقط عبر RPC آمن باستخدام رقم الهاتف + رقم الطلب.
+    هذه الدالة لا تكشف أي طلب آخر ولا تعتمد على SELECT مباشر من orders.
+  */
+  try{
+    const phone=normalizePhone(
+      order?.phone
+      ||order?.customer_phone
+      ||currentCustomerPhone
+      ||""
+    );
+
+    const orderNumber=Number(
+      order?.order_number
+      ||currentCustomerOrderNumber
+      ||0
+    );
+
+    if(!phone||!orderNumber)return "";
+
+    const {data,error}=await client.rpc(
+      "get_order_customer_name_secure",
+      {
+        p_phone:phone,
+        p_order_number:orderNumber
+      }
+    );
+
+    if(error){
+      console.warn("get_order_customer_name_secure:",error);
+      return "";
+    }
+
+    if(typeof data==="string")return data.trim();
+
+    if(Array.isArray(data)){
+      const first=data[0];
+      if(typeof first==="string")return first.trim();
+      if(first&&typeof first==="object"){
+        return String(
+          first.name
+          ??first.customer_name
+          ??first.customerName
+          ??""
+        ).trim();
+      }
+    }
+
+    if(data&&typeof data==="object"){
+      return String(
+        data.name
+        ??data.customer_name
+        ??data.customerName
+        ??""
+      ).trim();
+    }
+
+    return "";
+  }catch(error){
+    console.warn("Secure invoice customer name lookup failed:",error);
+    return "";
+  }
+}
+
+async function openCustomerInvoice(orderId){
   const o=customerOrders.find(x=>String(x.order_id||x.id||"")===String(orderId));
   if(!o){toast("تعذر تحديد الطلب");return}
+
   const snapshot=buildInvoiceSnapshotFromOrder(o);
   if(!snapshot.items.length){toast("لا توجد تفاصيل منتجات في هذا الطلب");return}
+
+  /*
+    إصلاح فقدان اسم العميل:
+    إذا لم يصل الاسم مع track_order_secure أو invoice_snapshot
+    نجلبه من RPC الآمن الذي سبق اعتماده للفاتورة.
+  */
+  const currentName=String(snapshot?.customer?.name||"").trim();
+
+  if(!currentName||currentName==="—"||currentName==="-"){
+    const secureName=await getSecureInvoiceCustomerName(o);
+
+    if(secureName){
+      snapshot.customer=snapshot.customer||{};
+      snapshot.customer.name=secureName;
+
+      /*
+        نحدّث النسخة المحلية للطلب أيضاً حتى لا يعاد الطلب
+        عند فتح نفس الفاتورة مرة أخرى في الجلسة الحالية.
+      */
+      o.name=secureName;
+      o.customer_name=secureName;
+    }
+  }
+
   currentInvoiceData={
     invoice_number:o.invoice_number||String(o.order_number||""),
     issued_at:o.invoice_issued_at||o.created_at||new Date().toISOString(),
     snapshot
   };
+
   renderCustomerInvoice(currentInvoiceData);
   showMainScrim();
   $("invoiceModal").classList.add("show")
