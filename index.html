@@ -882,7 +882,7 @@ button,input,textarea,select{font:inherit} button{cursor:pointer} a{color:inheri
   <label>ملاحظات</label><textarea id="checkoutNotes"></textarea>
   <label>كود الخصم</label><div style="display:flex;gap:7px"><input id="couponInput" type="text" style="text-transform:uppercase"><button class="btn small" onclick="applyCoupon()">تطبيق</button></div>
   <div id="couponMessage" class="coupon-message"></div>
-  <label>طريقة الدفع</label><select id="paymentMethod" onchange="renderPaymentDetails()"><option value="bank">تحويل بنكي</option><option value="deposit">إيداع بنكي</option></select>
+  <label>طريقة الدفع</label><select id="paymentMethod" onchange="renderPaymentDetails()"></select>
   <div id="paymentDetails" class="pay-box"></div>
   <button id="submitOrderButton" class="btn" style="width:100%;margin-top:16px" onclick="submitOrder()">تأكيد الطلب</button>
   <button class="btn secondary" style="width:100%;margin-top:8px" onclick="closeCheckout()">إلغاء</button>
@@ -1048,20 +1048,100 @@ function applySettings(){
   const wa=generalSettings.whatsapp||"";if(wa){$("whatsappButton").href="https://wa.me/"+wa.replace(/\D/g,"");$("whatsappButton").style.display="inline-flex"}else $("whatsappButton").style.display="none";
   const es=generalSettings.enableSearch!==false,eo=generalSettings.enableSort!==false;$("searchWrap").style.display=es?"block":"none";$("sortWrap").style.display=eo?"block":"none";$("tools").style.display=(es||eo)?"flex":"none";$("favoriteNav").style.display=generalSettings.featureWish!==false?"inline-block":"none";$("reviewsSection").style.display=generalSettings.featureReviews===false?"none":"block";
   $("giftStrip").style.display=giftSettings.enabled===false?"none":"grid";
-  applyStoreIdentity();applySEO();renderSocials();renderFooterInfo();setupPWA();renderAdvertisement()
+  applyStoreIdentity();applySEO();renderSocials();renderFooterInfo();renderCheckoutPaymentMethods();setupPWA();renderAdvertisement()
 }
 function applySEO(){const title=generalSettings.seoTitle||getStoreEyebrow(),desc=generalSettings.seoDescription||generalSettings.sloganDesc||getStoreEyebrow();document.title=title+" | "+getStoreNameEn();$("metaDesc").setAttribute("content",desc);$("ogTitle").setAttribute("content",title);$("ogDesc").setAttribute("content",desc)}
 function renderSocials(){
   const map=[["whatsapp","واتساب",v=>"https://wa.me/"+v.replace(/\D/g,"")],["instagram","إنستقرام",v=>v],["facebook","فيسبوك",v=>v],["telegram","تيليجرام",v=>v],["twitter","إكس",v=>v],["tiktok","تيك توك",v=>v],["snapchat","سناب",v=>v]];
   $("socialLinks").innerHTML=map.filter(i=>generalSettings[i[0]]).map(i=>`<a target="_blank" href="${escapeHTML(i[2](generalSettings[i[0]]))}">${i[1]}</a>`).join("")
 }
+function getEnabledPaymentMethods(){
+  const configured=Array.isArray(paymentSettings.paymentMethods)
+    ? paymentSettings.paymentMethods.filter(item=>item&&item.enabled!==false)
+    : [];
+
+  if(configured.length)return configured;
+
+  /*
+    توافق مع النسخة القديمة من إعدادات الدفع، حتى لا يتوقف
+    المتجر إذا لم توجد paymentMethods بعد.
+  */
+  return [
+    {id:"bank",code:"bank",name:"تحويل بنكي",title:"تحويل بنكي",type:"bank",enabled:true},
+    {id:"deposit",code:"deposit",name:"إيداع بنكي",title:"إيداع بنكي",type:"bank",enabled:true}
+  ];
+}
+
+function getEnabledBankAccounts(){
+  const banks=Array.isArray(paymentSettings.bankAccounts)
+    ? paymentSettings.bankAccounts.filter(item=>item&&item.enabled!==false)
+    : [];
+
+  if(banks.length)return banks;
+
+  /*
+    توافق مع حقول البنك القديمة.
+  */
+  if(paymentSettings.bankName||paymentSettings.bankAccount||paymentSettings.bankHolder||paymentSettings.bankIban){
+    return [{
+      id:"legacy_bank",
+      bankName:paymentSettings.bankName||"",
+      accountName:paymentSettings.bankHolder||"",
+      accountNumber:paymentSettings.bankAccount||"",
+      iban:paymentSettings.bankIban||"",
+      instructions:paymentSettings.bankInstructions||"",
+      enabled:true
+    }];
+  }
+
+  return [];
+}
+
+function renderCheckoutPaymentMethods(){
+  const select=$("paymentMethod");
+  if(!select)return;
+
+  const previous=String(select.value||"");
+  const methods=getEnabledPaymentMethods();
+
+  select.innerHTML=methods.map((item,index)=>{
+    const value=String(item.code||item.id||item.type||("pay_"+index));
+    const name=item.name||item.title||"طريقة دفع";
+    return `<option value="${escapeHTML(value)}">${escapeHTML(name)}</option>`;
+  }).join("");
+
+  if(previous&&methods.some(item=>String(item.code||item.id||item.type||"")===previous)){
+    select.value=previous;
+  }
+
+  if(!select.value&&select.options.length){
+    select.selectedIndex=0;
+  }
+
+  renderPaymentDetails();
+}
+
 function renderFooterInfo(){
   const phone=generalSettings.phone||generalSettings.whatsapp||"",email=generalSettings.email||"";
-  $("footerPhone").textContent=phone?"📱 "+phone:"📱 الجوال";$("footerPhone").href=phone?"tel:"+phone.replace(/[^\d+]/g,""):"#";
-  $("footerEmail").textContent=email?"✉️ "+email:"✉️ البريد الإلكتروني";$("footerEmail").href=email?"mailto:"+email:"#";
-  $("footerBankDetails").textContent=`البنك: ${paymentSettings.bankName||"—"}\nاسم الحساب: ${paymentSettings.bankHolder||"—"}\nرقم الحساب: ${paymentSettings.bankAccount||"—"}${paymentSettings.bankIban?`\nIBAN: ${paymentSettings.bankIban}`:""}`;
-  const methods=Array.isArray(paymentSettings.methods)?paymentSettings.methods:["تحويل بنكي","VISA","Mastercard"];
-  $("payments").innerHTML=methods.map(m=>`<span class="pay-badge">${escapeHTML(m)}</span>`).join("")
+  $("footerPhone").textContent=phone?"📱 "+phone:"📱 الجوال";
+  $("footerPhone").href=phone?"tel:"+phone.replace(/[^\d+]/g,""):"#";
+  $("footerEmail").textContent=email?"✉️ "+email:"✉️ البريد الإلكتروني";
+  $("footerEmail").href=email?"mailto:"+email:"#";
+
+  const banks=getEnabledBankAccounts();
+  $("footerBankDetails").textContent=banks.length
+    ? banks.map(bank=>[
+        bank.bankName?`البنك: ${bank.bankName}`:"",
+        bank.accountName?`اسم الحساب: ${bank.accountName}`:"",
+        bank.accountNumber?`رقم الحساب: ${bank.accountNumber}`:"",
+        bank.iban?`IBAN: ${bank.iban}`:""
+      ].filter(Boolean).join("\n")).join("\n\n")
+    : "—";
+
+  const methods=getEnabledPaymentMethods();
+  $("payments").innerHTML=methods
+    .map(item=>`<span class="pay-badge">${escapeHTML(item.name||item.title||"طريقة دفع")}</span>`)
+    .join("");
 }
 function setupPWA(){const manifest={name:getStoreEyebrow(),short_name:getStoreName(),start_url:".",display:"standalone",background_color:getComputedStyle(document.documentElement).getPropertyValue("--cream").trim(),theme_color:getComputedStyle(document.documentElement).getPropertyValue("--ink").trim()};const blob=new Blob([JSON.stringify(manifest)],{type:"application/json"});$("dynamicManifest").href=URL.createObjectURL(blob)}
 function normalizeAdMedia(){
@@ -2228,7 +2308,71 @@ function calculateCart(){
   return{subtotal,discount,total:Math.max(0,subtotal-discount),currency:currency||"ر.ي"}
 }
 function applyCoupon(){const code=$("couponInput").value.trim().toUpperCase();if(!code){currentCoupon=null;$("couponMessage").textContent="";renderPaymentDetails();return}const c=coupons.find(x=>String(x.code).toUpperCase()===code);if(!c){currentCoupon=null;$("couponMessage").style.color="var(--danger)";$("couponMessage").textContent="الكوبون غير صحيح.";renderPaymentDetails();return}if(c.expires_at&&new Date(c.expires_at)<new Date()){currentCoupon=null;$("couponMessage").style.color="var(--danger)";$("couponMessage").textContent="انتهت صلاحية الكوبون.";return}currentCoupon=c;$("couponMessage").style.color="var(--ok)";$("couponMessage").textContent="تم تطبيق الكوبون ✓";renderPaymentDetails()}
-function renderPaymentDetails(){const method=$("paymentMethod").value,total=calculateCart();let text=method==="bank"?`البنك: ${paymentSettings.bankName||"—"}\nاسم الحساب: ${paymentSettings.bankHolder||"—"}\nرقم الحساب: ${paymentSettings.bankAccount||"—"}\nIBAN: ${paymentSettings.bankIban||"—"}\n${paymentSettings.bankInstructions||""}`:(paymentSettings.depositDetails||"يرجى التواصل معنا للحصول على بيانات الإيداع.");$("paymentDetails").textContent=text+"\n\nالمبلغ المطلوب: "+total.total.toFixed(2)+" "+total.currency}
+function renderPaymentDetails(){
+  const select=$("paymentMethod");
+  const box=$("paymentDetails");
+  if(!select||!box)return;
+
+  const value=String(select.value||"");
+  const total=calculateCart();
+  const methods=getEnabledPaymentMethods();
+
+  const method=methods.find(item=>
+    String(item.code||item.id||item.type||"")===value
+  )||methods[0]||null;
+
+  if(!method){
+    box.textContent="لا توجد طريقة دفع مفعلة حالياً.";
+    return;
+  }
+
+  const name=method.name||method.title||"طريقة الدفع";
+  const type=String(method.type||"other").toLowerCase();
+  const code=String(method.code||"").trim();
+  const lines=[`طريقة الدفع: ${name}`];
+
+  if(type==="bank"){
+    const banks=getEnabledBankAccounts();
+
+    if(banks.length){
+      lines.push("");
+      lines.push("الحسابات البنكية المتاحة:");
+
+      banks.forEach((bank,index)=>{
+        if(index>0)lines.push("");
+        if(bank.bankName)lines.push(`البنك: ${bank.bankName}`);
+        if(bank.accountName)lines.push(`اسم الحساب: ${bank.accountName}`);
+        if(bank.accountNumber)lines.push(`رقم الحساب: ${bank.accountNumber}`);
+        if(bank.iban)lines.push(`IBAN: ${bank.iban}`);
+        if(bank.instructions)lines.push(bank.instructions);
+      });
+    }else{
+      /*
+        الكود الذي أدخله المدير لطريقة الدفع نفسها قد يكون رقم
+        حساب/إيداع، لذلك نظهره بدل إخفائه.
+      */
+      if(code)lines.push(`الكود / رقم الإيداع: ${code}`);
+      lines.push(paymentSettings.depositDetails||"يرجى التواصل معنا للحصول على بيانات التحويل.");
+    }
+  }else if(type==="wallet"){
+    if(code)lines.push(`رقم المحفظة / الكود: ${code}`);
+    lines.push("حوّل المبلغ إلى المحفظة الموضحة أعلاه ثم احتفظ بإثبات العملية.");
+  }else if(type==="cash"){
+    if(code&&code!==value)lines.push(`الكود: ${code}`);
+    lines.push("يتم الدفع نقداً حسب تعليمات المتجر.");
+  }else if(type==="card"){
+    if(code)lines.push(`الكود / المرجع: ${code}`);
+    lines.push("اتبع تعليمات المتجر لإتمام الدفع بالبطاقة.");
+  }else{
+    if(code)lines.push(`الكود / رقم العملية: ${code}`);
+    lines.push(paymentSettings.depositDetails||"يرجى اتباع بيانات طريقة الدفع الموضحة أعلاه.");
+  }
+
+  lines.push("");
+  lines.push(`المبلغ المطلوب: ${total.total.toFixed(2)} ${total.currency}`);
+
+  box.textContent=lines.join("\n");
+}
 
 async function submitOrder(){
   const name=$("checkoutName").value.trim(),phone=normalizePhone($("checkoutPhone").value),address=$("checkoutAddress").value.trim(),baseNotes=$("checkoutNotes").value.trim();if(!name||!phone||!address){toast("يرجى تعبئة الاسم والهاتف والعنوان");return}if(!cart.length){toast("السلة فارغة");return}
@@ -2245,7 +2389,14 @@ async function submitOrder(){
 
 function orderStatusText(s){return({pending:"قيد الانتظار",confirmed:"تم التأكيد",processing:"قيد التجهيز",shipped:"تم الشحن",delivered:"تم التسليم",cancelled:"ملغي",refunded:"مسترجع"})[s]||s||"—"}
 function paymentStatusText(s){return({unpaid:"غير مدفوع",paid:"مدفوع",failed:"فشل الدفع",refunded:"مسترجع"})[s]||s||"—"}
-function paymentMethodText(m){return({bank:"تحويل بنكي",deposit:"إيداع بنكي",cash:"نقداً"})[m]||m||"—"}
+function paymentMethodText(m){
+  const value=String(m||"");
+  const dynamic=getEnabledPaymentMethods().find(item=>
+    String(item.code||item.id||item.type||"")===value
+  );
+  if(dynamic)return dynamic.name||dynamic.title||value||"—";
+  return ({bank:"تحويل بنكي",deposit:"إيداع بنكي",cash:"نقداً"})[value]||value||"—";
+}
 function openMyOrders(){
   const ph=localStorage.getItem("alshuaiibe_last_phone")||"",no=localStorage.getItem("alshuaiibe_last_order")||"";if(ph)$("ordersPhone").value=ph;if(no)$("ordersNumber").value=no;showMainScrim();$("myOrdersModal").classList.add("show");if(ph&&no)loadCustomerOrders()
 }
