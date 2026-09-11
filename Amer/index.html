@@ -23,7 +23,23 @@ main{max-width:1500px;margin:auto;padding:18px 14px 80px}.card{margin-bottom:16p
 .stat{text-align:center;background:var(--card);border:1px solid var(--line);border-radius:15px;padding:15px}.stat span{display:block;font-size:12px;color:var(--soft)}.stat b{display:block;font-size:28px;color:var(--gold);margin-top:5px}
 .actions{display:flex;gap:7px;flex-wrap:wrap;align-items:center}.note{font-size:12px;line-height:1.8;color:var(--soft)}.check-row{display:flex;align-items:center;gap:8px;margin:5px 0 12px}.check-row input{width:auto;margin:0}
 .table{overflow:auto;border:1px solid var(--line);border-radius:14px}table{width:100%;border-collapse:collapse;min-width:900px;background:white}th,td{padding:10px;border-bottom:1px solid var(--line);text-align:right;font-size:13px;vertical-align:top}th{background:var(--cream2);font-weight:900}
-.order-card{border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:12px;background:#fff}.order-card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.order-card{border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:12px;background:#fff}
+.order-detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px 0}
+.order-detail-box{border:1px solid var(--line);border-radius:12px;padding:11px;background:#fff}
+.order-detail-box small{display:block;color:var(--soft);margin-bottom:4px;font-size:11px}
+.order-detail-box strong{display:block;word-break:break-word}
+.order-detail-items{margin-top:14px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff}
+.order-detail-item{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;padding:11px;border-bottom:1px solid var(--line)}
+.order-detail-item:last-child{border-bottom:0}
+.order-detail-controls{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.order-detail-controls label{display:block;font-size:12px;font-weight:800;margin-bottom:5px}
+.order-detail-controls select{width:100%;margin:0}
+.whatsapp-btn{background:#1f7a3f!important;color:#fff!important}
+@media(max-width:700px){
+  .order-detail-grid,.order-detail-controls{grid-template-columns:1fr}
+  .order-detail-item{grid-template-columns:1fr}
+}
+.order-card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
 .order-summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}.order-summary-box{padding:10px;border-radius:11px;background:var(--cream);border:1px solid var(--line)}.order-summary-box span{display:block;font-size:10px;color:var(--soft)}.order-summary-box strong{display:block;margin-top:4px}
 .pill{display:inline-flex;align-items:center;padding:5px 9px;border-radius:999px;border:1px solid var(--line);font-size:11px;font-weight:700}.pill.green{background:#DDEBD6;color:var(--ok)}.pill.red{background:#F0D8D4;color:var(--danger)}.pill.gold{background:#F4E7C5;color:#805817}
 .product-admin-card{display:grid;grid-template-columns:100px 1fr auto;gap:14px;align-items:center;border:1px solid var(--line);border-radius:16px;padding:13px;background:#fff;margin-bottom:10px}.product-admin-image{width:100px;height:100px;border-radius:13px;background:#f5f2e9;display:flex;align-items:center;justify-content:center;overflow:hidden}.product-admin-image img{width:100%;height:100%;object-fit:contain}.product-admin-name{font-size:18px;font-weight:900}.product-admin-meta{font-size:12px;color:var(--soft);line-height:1.8}
@@ -735,8 +751,19 @@ main{max-width:1500px;margin:auto;padding:18px 14px 80px}.card{margin-bottom:16p
 </main>
 </div>
 
-<div id="modalScrim" class="modal-scrim" onclick="closeInvoiceModal()"></div>
+<div id="modalScrim" class="modal-scrim" onclick="closeAdminModals()"></div>
 <div id="invoiceModal" class="modal"><div class="modal-head"><h2>فاتورة الطلب</h2><button class="close" onclick="closeInvoiceModal()">✕</button></div><div id="invoiceModalBody"></div></div>
+
+<div id="orderDetailsModal" class="modal">
+  <div class="modal-head">
+    <div>
+      <h2 style="margin:0">📦 تفاصيل الطلب</h2>
+      <div id="orderDetailsSubtitle" class="note"></div>
+    </div>
+    <button class="close" onclick="closeOrderDetails()">✕</button>
+  </div>
+  <div id="orderDetailsBody"></div>
+</div>
 <div id="toast" class="toast"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -2482,12 +2509,443 @@ function renderCustomers(){$("customersBody").innerHTML=customers.map(c=>`<tr><t
 function getOrderPayment(o){return o.payment_method||o.pay_method||o.payment||"—"}function getOrderAddress(o){return o.address||o.customer_address||o.shipping_address||"—"}function getOrderCoupon(o){return o.coupon_code||o.coupon||"—"}
 function itemName(i){return i.product_name||i.name||i.bundle_name||(i.item_type==="bundle"?"باقة":"منتج")}function itemQty(i){return Number(i.quantity??i.qty??1)}function itemUnitPrice(i){return Number(i.unit_price??i.price??i.final_price??0)}function itemTotal(i){return Number(i.total_price??i.subtotal??i.line_total??itemUnitPrice(i)*itemQty(i))}
 async function loadOrderItems(orderId){const{data,error}=await db.from("order_items").select("*").eq("order_id",orderId);if(error)throw error;return data||[]}
-function renderOrders(){$("ordersCards").innerHTML=orders.map(o=>`<div class="order-card"><div class="order-card-head"><div><strong>طلب #${esc(o.order_number||o.id)}</strong><div class="note">${esc(o.name||"عميل")} · ${esc(o.phone||"")}<br>${formatDate(o.created_at)}</div></div><span class="pill gold">${statusText(o.status)}</span></div><div class="order-summary-grid"><div class="order-summary-box"><span>الإجمالي</span><strong>${money(o.total,o.currency)}</strong></div><div class="order-summary-box"><span>الدفع</span><strong>${esc(getOrderPayment(o))}</strong></div></div><div class="actions" style="margin-top:12px"><button class="btn gold sm" onclick="openInvoice('${o.id}')">🧾 الفاتورة</button><select style="width:auto;margin:0" onchange="changeStatus('${o.id}',this.value)">${["pending","confirmed","processing","shipped","delivered","cancelled","refunded"].map(s=>`<option value="${s}"${o.status===s?" selected":""}>${statusText(s)}</option>`).join("")}</select></div></div>`).join("")||'<div class="card">لا توجد طلبات.</div>'}
-async function changeStatus(id,status){const{error}=await db.from("orders").update({status,updated_at:new Date().toISOString()}).eq("id",id);if(error)return alert(error.message);await loadAll()}
-function buildInvoiceHTML(o,items){const currency=o.currency||"ر.ي";const rows=items.map((i,n)=>`<tr><td>${n+1}</td><td>${esc(itemName(i))}</td><td>${itemQty(i)}</td><td>${money(itemUnitPrice(i),currency)}</td><td>${money(itemTotal(i),currency)}</td></tr>`).join("")||'<tr><td colspan="5">لا توجد تفاصيل منتجات</td></tr>';return `<div class="invoice"><div class="invoice-header"><h1>${esc(generalSettings.storeName||"الشعيبي")}</h1><p>${esc(generalSettings.storeNameEn||"ALSHUAIIBE STORE")}</p><strong>فاتورة بيع</strong></div><div class="invoice-meta"><div><strong>رقم الطلب:</strong> #${esc(o.order_number||o.id)}</div><div><strong>التاريخ:</strong> ${formatDate(o.created_at)}</div><div><strong>العميل:</strong> ${esc(o.name||"—")}</div><div><strong>الهاتف:</strong> ${esc(o.phone||"—")}</div><div><strong>العنوان:</strong> ${esc(getOrderAddress(o))}</div><div><strong>الدفع:</strong> ${esc(getOrderPayment(o))}</div></div><table class="invoice-table"><thead><tr><th>#</th><th>المنتج</th><th>الكمية</th><th>السعر</th><th>الإجمالي</th></tr></thead><tbody>${rows}</tbody></table><div class="invoice-total"><div class="invoice-total-row final"><span>الإجمالي النهائي</span><span>${money(o.total,currency)}</span></div></div></div>`}
-async function openInvoice(id){const o=orders.find(x=>String(x.id)===String(id));if(!o)return;const items=await loadOrderItems(o.id);currentInvoiceHTML=buildInvoiceHTML(o,items);$("invoiceModalBody").innerHTML=`<div class="actions" style="margin-bottom:15px"><button class="btn green" onclick="printCurrentInvoice()">🖨️ طباعة</button></div>${currentInvoiceHTML}`;$("modalScrim").classList.add("show");$("invoiceModal").classList.add("show")}
-function closeInvoiceModal(){$("invoiceModal").classList.remove("show");$("modalScrim").classList.remove("show")}
-function printCurrentInvoice(){const w=window.open("","_blank");if(!w)return;w.document.write(`<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><title>فاتورة</title><style>body{font-family:Tajawal,Arial;padding:25px;direction:rtl}.invoice{max-width:900px;margin:auto}.invoice-header{text-align:center}.invoice-meta{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0}table{width:100%;border-collapse:collapse}th,td{border:1px solid #ccc;padding:9px}.invoice-total{margin-top:20px}</style></head><body>${currentInvoiceHTML}<script>window.onload=()=>setTimeout(()=>window.print(),300)<\/script></body></html>`);w.document.close()}
+function paymentStatusText(s){
+  return ({
+    unpaid:"غير مدفوع",
+    paid:"مدفوع",
+    failed:"فشل الدفع",
+    refunded:"مسترجع"
+  })[s]||s||"غير مدفوع";
+}
+
+function normalizeAdminPhone(phone){
+  return String(phone||"").replace(/\D/g,"");
+}
+
+function whatsappPhone(phone){
+  let p=normalizeAdminPhone(phone);
+
+  if(!p)return "";
+
+  if(p.startsWith("00")){
+    p=p.slice(2);
+  }
+
+  if(p.startsWith("967")){
+    return p;
+  }
+
+  if(p.startsWith("0")&&p.length===10){
+    p=p.slice(1);
+  }
+
+  /*
+    أرقام الجوال اليمنية المحلية غالباً 9 أرقام وتبدأ بـ 7.
+    نضيف مفتاح اليمن تلقائياً لفتح واتساب مباشرة.
+  */
+  if(/^7\d{8}$/.test(p)){
+    return "967"+p;
+  }
+
+  return p;
+}
+
+function openCustomerWhatsApp(orderId){
+  const o=orders.find(x=>String(x.id)===String(orderId));
+
+  if(!o){
+    return alert("تعذر تحديد الطلب.");
+  }
+
+  const phone=whatsappPhone(o.phone);
+
+  if(!phone){
+    return alert("لا يوجد رقم هاتف صالح لهذا العميل.");
+  }
+
+  const orderNo=o.order_number||o.id||"";
+  const message=
+    `السلام عليكم ${o.name||""}\n`+
+    `معك متجر ${generalSettings.storeName||"الشعيبي"} بخصوص طلبك رقم #${orderNo}.\n`+
+    `نراجع معك تفاصيل الطلب والتأكيد قبل التجهيز.`;
+
+  window.open(
+    `https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
+    "_blank"
+  );
+}
+
+function renderOrders(){
+  $("ordersCards").innerHTML=
+    orders.map(o=>`
+      <div class="order-card">
+        <div class="order-card-head">
+          <div>
+            <strong>طلب #${esc(o.order_number||o.id)}</strong>
+            <div class="note">
+              ${esc(o.name||"عميل")} · ${esc(o.phone||"")}
+              <br>
+              ${formatDate(o.created_at)}
+            </div>
+          </div>
+
+          <div class="actions">
+            <span class="pill gold">${statusText(o.status)}</span>
+            <span class="pill ${o.payment_status==="paid"?"green":"gold"}">
+              ${paymentStatusText(o.payment_status)}
+            </span>
+          </div>
+        </div>
+
+        <div class="order-summary-grid">
+          <div class="order-summary-box">
+            <span>الإجمالي</span>
+            <strong>${money(o.total,o.currency)}</strong>
+          </div>
+
+          <div class="order-summary-box">
+            <span>طريقة الدفع</span>
+            <strong>${esc(getOrderPayment(o))}</strong>
+          </div>
+        </div>
+
+        <div class="actions" style="margin-top:12px">
+          <button class="btn sm" onclick="openOrderDetails('${o.id}')">
+            🔎 تفاصيل الطلب
+          </button>
+
+          <button class="btn whatsapp-btn sm" onclick="openCustomerWhatsApp('${o.id}')">
+            💬 واتساب العميل
+          </button>
+
+          <button class="btn gold sm" onclick="openInvoice('${o.id}')">
+            🧾 الفاتورة
+          </button>
+        </div>
+      </div>
+    `).join("")
+    ||'<div class="card">لا توجد طلبات.</div>';
+}
+
+async function openOrderDetails(id){
+  const o=orders.find(x=>String(x.id)===String(id));
+
+  if(!o){
+    return alert("تعذر تحديد الطلب.");
+  }
+
+  const items=await loadOrderItems(o.id);
+
+  $("orderDetailsSubtitle").textContent=
+    `طلب #${o.order_number||o.id} · ${o.name||"عميل"}`;
+
+  const itemsHTML=
+    items.length
+      ? items.map(item=>`
+          <div class="order-detail-item">
+            <div>
+              <strong>${esc(itemName(item))}</strong>
+              <div class="note">
+                ${[
+                  item.color,
+                  item.size
+                ].filter(Boolean).map(esc).join(" · ")||"بدون خيارات"}
+              </div>
+            </div>
+
+            <div>
+              الكمية:
+              <strong>${itemQty(item)}</strong>
+            </div>
+
+            <div>
+              <strong>${money(itemTotal(item),o.currency)}</strong>
+            </div>
+          </div>
+        `).join("")
+      : '<div class="note" style="padding:16px">لا توجد تفاصيل منتجات.</div>';
+
+  $("orderDetailsBody").innerHTML=`
+    <div class="order-detail-grid">
+
+      <div class="order-detail-box">
+        <small>اسم العميل</small>
+        <strong>${esc(o.name||"—")}</strong>
+      </div>
+
+      <div class="order-detail-box">
+        <small>رقم الهاتف</small>
+        <strong>${esc(o.phone||"—")}</strong>
+      </div>
+
+      <div class="order-detail-box">
+        <small>العنوان</small>
+        <strong>${esc(getOrderAddress(o))}</strong>
+      </div>
+
+      <div class="order-detail-box">
+        <small>تاريخ الطلب</small>
+        <strong>${formatDate(o.created_at)}</strong>
+      </div>
+
+      <div class="order-detail-box">
+        <small>طريقة الدفع</small>
+        <strong>${esc(getOrderPayment(o))}</strong>
+      </div>
+
+      <div class="order-detail-box">
+        <small>الإجمالي</small>
+        <strong>${money(o.total,o.currency)}</strong>
+      </div>
+
+      <div class="order-detail-box" style="grid-column:1/-1">
+        <small>ملاحظات العميل</small>
+        <strong style="white-space:pre-wrap">${esc(o.notes||"لا توجد ملاحظات")}</strong>
+      </div>
+
+    </div>
+
+    <h3 style="margin:15px 0 8px">المنتجات</h3>
+
+    <div class="order-detail-items">
+      ${itemsHTML}
+    </div>
+
+    <div class="order-detail-controls">
+
+      <div>
+        <label>حالة الطلب</label>
+        <select id="detailOrderStatus">
+          ${[
+            "pending",
+            "confirmed",
+            "processing",
+            "shipped",
+            "delivered",
+            "cancelled",
+            "refunded"
+          ].map(status=>`
+            <option
+              value="${status}"
+              ${String(o.status||"pending")===status?"selected":""}
+            >
+              ${statusText(status)}
+            </option>
+          `).join("")}
+        </select>
+      </div>
+
+      <div>
+        <label>حالة الدفع</label>
+        <select id="detailPaymentStatus">
+          ${[
+            "unpaid",
+            "paid",
+            "failed",
+            "refunded"
+          ].map(status=>`
+            <option
+              value="${status}"
+              ${String(o.payment_status||"unpaid")===status?"selected":""}
+            >
+              ${paymentStatusText(status)}
+            </option>
+          `).join("")}
+        </select>
+      </div>
+
+    </div>
+
+    <div class="actions" style="margin-top:16px">
+
+      <button
+        class="btn green"
+        onclick="saveOrderReview('${o.id}')"
+      >
+        ✅ حفظ واعتماد التحديث
+      </button>
+
+      <button
+        class="btn whatsapp-btn"
+        onclick="openCustomerWhatsApp('${o.id}')"
+      >
+        💬 مراجعة الطلب عبر واتساب
+      </button>
+
+      <button
+        class="btn gold"
+        onclick="openInvoice('${o.id}')"
+      >
+        🧾 عرض الفاتورة
+      </button>
+
+    </div>
+  `;
+
+  $("modalScrim").classList.add("show");
+  $("orderDetailsModal").classList.add("show");
+}
+
+async function saveOrderReview(id){
+  const status=$("detailOrderStatus")?.value||"pending";
+  const paymentStatus=$("detailPaymentStatus")?.value||"unpaid";
+
+  const button=document.querySelector(
+    `button[onclick="saveOrderReview('${id}')"]`
+  );
+
+  const oldText=button?.textContent||"✅ حفظ واعتماد التحديث";
+
+  try{
+    if(button){
+      button.disabled=true;
+      button.textContent="⏳ جارِ الحفظ...";
+    }
+
+    const {error}=await db
+      .from("orders")
+      .update({
+        status,
+        payment_status:paymentStatus,
+        updated_at:new Date().toISOString()
+      })
+      .eq("id",id);
+
+    if(error)throw error;
+
+    const local=orders.find(x=>String(x.id)===String(id));
+    if(local){
+      local.status=status;
+      local.payment_status=paymentStatus;
+    }
+
+    toast("تم تحديث الطلب بنجاح ✓");
+
+    closeOrderDetails();
+    await loadAll();
+
+  }catch(error){
+    console.error("saveOrderReview:",error);
+    alert("تعذر تحديث الطلب:\n"+(error.message||"حدث خطأ"));
+  }finally{
+    if(button){
+      button.disabled=false;
+      button.textContent=oldText;
+    }
+  }
+}
+
+async function changeStatus(id,status){
+  const{error}=await db
+    .from("orders")
+    .update({
+      status,
+      updated_at:new Date().toISOString()
+    })
+    .eq("id",id);
+
+  if(error)return alert(error.message);
+
+  await loadAll();
+}
+
+function buildInvoiceHTML(o,items){
+  const currency=o.currency||"ر.ي";
+  const rows=items.map((i,n)=>`
+    <tr>
+      <td>${n+1}</td>
+      <td>${esc(itemName(i))}</td>
+      <td>${itemQty(i)}</td>
+      <td>${money(itemUnitPrice(i),currency)}</td>
+      <td>${money(itemTotal(i),currency)}</td>
+    </tr>
+  `).join("")||'<tr><td colspan="5">لا توجد تفاصيل منتجات</td></tr>';
+
+  return `
+    <div class="invoice">
+      <div class="invoice-header">
+        <h1>${esc(generalSettings.storeName||"الشعيبي")}</h1>
+        <p>${esc(generalSettings.storeNameEn||"ALSHUAIIBE STORE")}</p>
+        <strong>فاتورة بيع</strong>
+      </div>
+
+      <div class="invoice-meta">
+        <div><strong>رقم الطلب:</strong> #${esc(o.order_number||o.id)}</div>
+        <div><strong>التاريخ:</strong> ${formatDate(o.created_at)}</div>
+        <div><strong>العميل:</strong> ${esc(o.name||"—")}</div>
+        <div><strong>الهاتف:</strong> ${esc(o.phone||"—")}</div>
+        <div><strong>العنوان:</strong> ${esc(getOrderAddress(o))}</div>
+        <div><strong>الدفع:</strong> ${esc(getOrderPayment(o))}</div>
+        <div><strong>حالة الدفع:</strong> ${esc(paymentStatusText(o.payment_status))}</div>
+        <div><strong>حالة الطلب:</strong> ${esc(statusText(o.status))}</div>
+      </div>
+
+      <table class="invoice-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>المنتج</th>
+            <th>الكمية</th>
+            <th>السعر</th>
+            <th>الإجمالي</th>
+          </tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table>
+
+      <div class="invoice-total">
+        <div class="invoice-total-row final">
+          <span>الإجمالي النهائي</span>
+          <span>${money(o.total,currency)}</span>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+async function openInvoice(id){
+  const o=orders.find(x=>String(x.id)===String(id));
+  if(!o)return;
+
+  const items=await loadOrderItems(o.id);
+
+  currentInvoiceHTML=buildInvoiceHTML(o,items);
+
+  $("invoiceModalBody").innerHTML=`
+    <div class="actions" style="margin-bottom:15px">
+      <button class="btn green" onclick="printCurrentInvoice()">🖨️ طباعة</button>
+      <button class="btn whatsapp-btn" onclick="openCustomerWhatsApp('${o.id}')">💬 واتساب العميل</button>
+    </div>
+    ${currentInvoiceHTML}
+  `;
+
+  $("orderDetailsModal")?.classList.remove("show");
+  $("modalScrim").classList.add("show");
+  $("invoiceModal").classList.add("show");
+}
+
+function closeInvoiceModal(){
+  $("invoiceModal").classList.remove("show");
+
+  if(!$("orderDetailsModal")?.classList.contains("show")){
+    $("modalScrim").classList.remove("show");
+  }
+}
+
+function closeOrderDetails(){
+  $("orderDetailsModal")?.classList.remove("show");
+
+  if(!$("invoiceModal")?.classList.contains("show")){
+    $("modalScrim").classList.remove("show");
+  }
+}
+
+function closeAdminModals(){
+  $("invoiceModal")?.classList.remove("show");
+  $("orderDetailsModal")?.classList.remove("show");
+  $("modalScrim")?.classList.remove("show");
+}
+
 function renderReviews(){$("reviewsList").innerHTML=reviews.map(r=>`<div class="order-card"><strong>${esc(r.customer_name||r.name||"عميل")}</strong><div>⭐ ${Number(r.rating||0)}</div><p>${esc(r.text||r.comment||"")}</p><button class="btn red sm" onclick="removeRow('reviews','${r.id}')">حذف</button></div>`).join("")||"لا توجد تقييمات."}
 async function saveRelation(){if($("relFrom").value===$("relTo").value)return toast("اختر منتجين مختلفين");const{error}=await db.from("product_relations").insert({product_id:$("relFrom").value,related_product_id:$("relTo").value,relation_type:$("relType").value});if(error)return alert(error.message);await loadAll()}
 function renderRelations(){$("relationsList").innerHTML=relations.map(r=>`<div class="order-card">${esc(products.find(p=>String(p.id)===String(r.product_id))?.name||"")} ← ${esc(products.find(p=>String(p.id)===String(r.related_product_id))?.name||"")} <button class="btn red sm" onclick="removeRow('product_relations','${r.id}')">حذف</button></div>`).join("")||"لا توجد روابط."}
