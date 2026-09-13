@@ -258,7 +258,14 @@ main{max-width:1500px;margin:auto;padding:18px 14px 80px}.card{margin-bottom:16p
 <div><label>السعر</label><input id="productPrice" type="number" step="0.01"></div>
 <div><label>الخصم %</label><input id="productDiscount" type="number" min="0" max="100" value="0"></div>
 <div><label>المخزون</label><input id="productStock" type="number" min="0" value="0"></div>
-<div><label>العملة</label><input id="productCurrency" value="ر.ي"></div>
+<div>
+<label>العملة</label>
+<select id="productCurrency">
+<option value="ر.ي">🇾🇪 ريال يمني — ر.ي</option>
+<option value="ر.س">🇸🇦 ريال سعودي — ر.س</option>
+<option value="$">🇺🇸 دولار أمريكي — $</option>
+</select>
+</div>
 <div><label>ترتيب الظهور</label><input id="productSortOrder" type="number" value="0"></div>
 </div>
 <label>وصف المنتج</label>
@@ -1881,6 +1888,28 @@ function renderBatchProducts(){
                   value="${Number(draft.price||0)}"
                   oninput="updateBatchDraft(${index},'price',this.value)"
                 >
+              </div>
+
+              <div>
+                <label>العملة</label>
+                <select
+                  onchange="updateBatchDraft(${index},'currency',this.value)"
+                >
+                  <option
+                    value="ر.ي"
+                    ${String(draft.currency||"ر.ي")==="ر.ي"?"selected":""}
+                  >🇾🇪 ريال يمني — ر.ي</option>
+
+                  <option
+                    value="ر.س"
+                    ${String(draft.currency||"")==="ر.س"?"selected":""}
+                  >🇸🇦 ريال سعودي — ر.س</option>
+
+                  <option
+                    value="$"
+                    ${String(draft.currency||"")==="$"?"selected":""}
+                  >🇺🇸 دولار أمريكي — $</option>
+                </select>
               </div>
 
               <div>
