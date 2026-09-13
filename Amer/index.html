@@ -110,7 +110,7 @@ main{max-width:1500px;margin:auto;padding:18px 14px 80px}.card{margin-bottom:16p
   </div>
 
   <div style="margin-top:12px">
-    <label>✍️ وصفي وتعليماتي لـ Gemini</label>
+    <label>✍️ وصفي وتعليماتي للذكاء الاصطناعي</label>
     <textarea
       id="geminiCustomPrompt"
       rows="5"
@@ -118,7 +118,7 @@ main{max-width:1500px;margin:auto;padding:18px 14px 80px}.card{margin-bottom:16p
       style="min-height:120px"
     ></textarea>
     <div class="note">
-      اكتب هنا ما تعرفه عن المنتج وما تريد من Gemini أن يكتبه. سيستخدم الصور + وصفك معاً.
+      اكتب هنا ما تعرفه عن المنتج وما تريد من Gemini أو ChatGPT أن يكتبه. سيستخدم الصور + وصفك معاً.
     </div>
   </div>
 
@@ -130,6 +130,15 @@ main{max-width:1500px;margin:auto;padding:18px 14px 80px}.card{margin-bottom:16p
       onclick="analyzeProductWithGemini()"
     >
       ✨ حلّل الصور وعبّئ المنتج
+    </button>
+
+    <button
+      id="openaiAnalyzeButton"
+      type="button"
+      class="btn green"
+      onclick="analyzeProductWithChatGPT()"
+    >
+      🤖 تحليل المنتج بـ ChatGPT
     </button>
 
     <button
@@ -175,7 +184,7 @@ main{max-width:1500px;margin:auto;padding:18px 14px 80px}.card{margin-bottom:16p
       <h3 style="margin:0 0 6px">⚡ إضافة عدة منتجات بالذكاء الاصطناعي</h3>
       <div class="note">
         اختر حتى 10 صور. كل صورة = منتج مستقل.
-        سيحلل Gemini المنتجات واحدًا واحدًا ويجهز لك مسودات للمراجعة.
+        اختر Gemini أو ChatGPT لتحليل المنتجات واحدًا واحدًا وتجهيز مسودات للمراجعة.
         لن يتم حفظ أي منتج إلا بعد الضغط على «حفظ المنتجات المحددة».
       </div>
     </div>
@@ -183,7 +192,7 @@ main{max-width:1500px;margin:auto;padding:18px 14px 80px}.card{margin-bottom:16p
   </div>
 
   <div style="margin-top:12px">
-    <label>✍️ وصف وتعليمات Gemini لهذه الدفعة</label>
+    <label>✍️ وصف وتعليمات الذكاء الاصطناعي لهذه الدفعة</label>
     <textarea
       id="batchGeminiCustomPrompt"
       rows="5"
@@ -191,7 +200,7 @@ main{max-width:1500px;margin:auto;padding:18px 14px 80px}.card{margin-bottom:16p
       style="min-height:120px"
     ></textarea>
     <div class="note">
-      هذه التعليمات ستُطبق على جميع المنتجات في الدفعة. ويمكنك كتابة معلومات تعرفها مسبقاً ليعتمد عليها Gemini مع الصور.
+      هذه التعليمات ستُطبق على جميع المنتجات في الدفعة سواء استخدمت Gemini أو ChatGPT.
     </div>
   </div>
 
@@ -213,7 +222,16 @@ main{max-width:1500px;margin:auto;padding:18px 14px 80px}.card{margin-bottom:16p
       class="btn blue"
       onclick="analyzeBatchProducts()"
     >
-      🤖 تحليل كل المنتجات
+      ✨ تحليل كل المنتجات بـ Gemini
+    </button>
+
+    <button
+      id="batchOpenAIAnalyzeButton"
+      type="button"
+      class="btn green"
+      onclick="analyzeBatchProductsWithChatGPT()"
+    >
+      🤖 تحليل كل المنتجات بـ ChatGPT
     </button>
 
     <button
@@ -901,6 +919,9 @@ GEMINI AI PRODUCT ASSISTANT
 const GEMINI_PRODUCT_FUNCTION =
 "gemini-product-analyzer";
 
+const OPENAI_PRODUCT_FUNCTION =
+"openai-product-analyzer";
+
 let lastGeminiProductDraft=null;
 
 function fileToBase64(file){
@@ -1491,6 +1512,173 @@ async function analyzeProductWithGemini(){
 
 }
 
+async function invokeProductAnalyzer(functionName,images,customPrompt){
+
+  const {
+    data,
+    error
+  }=
+  await db.functions.invoke(
+    functionName,
+    {
+      body:{
+        images,
+        categories:
+          categories.map(
+            category=>({
+              id:category.id,
+              name:category.name
+            })
+          ),
+        customPrompt:
+          String(customPrompt||"").trim()
+      }
+    }
+  );
+
+  if(error){
+    let serverMessage="";
+
+    try{
+      if(error?.context?.json){
+        const body=await error.context.json();
+        serverMessage=
+          body?.error
+          ||body?.message
+          ||JSON.stringify(body);
+      }
+      else if(error?.context?.text){
+        serverMessage=await error.context.text();
+      }
+    }
+    catch(readError){
+      console.warn("AI function error body:",readError);
+    }
+
+    throw new Error(
+      serverMessage
+      ||error?.message
+      ||"فشل استدعاء خدمة الذكاء الاصطناعي"
+    );
+  }
+
+  if(!data?.ok){
+    throw new Error(
+      data?.error
+      ||"تعذر تحليل المنتج"
+    );
+  }
+
+  const draft=
+    data.product
+    ||data.result
+    ||null;
+
+  if(!draft){
+    throw new Error("لم ترجع خدمة الذكاء الاصطناعي بيانات المنتج");
+  }
+
+  return draft;
+}
+
+async function analyzeProductWithChatGPT(){
+
+  const input=$("productImageFiles");
+  const files=Array.from(input?.files||[]);
+
+  if(!files.length){
+    toast("اختر صور المنتج أولاً");
+    input?.focus();
+    return;
+  }
+
+  if(files.length>5){
+    alert("اختر بحد أقصى 5 صور لنفس المنتج في كل مرة.");
+    return;
+  }
+
+  const oversized=files.find(
+    file=>Number(file.size||0)>8*1024*1024
+  );
+
+  if(oversized){
+    alert("الصورة "+oversized.name+" أكبر من 8MB. صغّرها ثم حاول من جديد.");
+    return;
+  }
+
+  const button=$("openaiAnalyzeButton");
+  const geminiButton=$("geminiAnalyzeButton");
+  const oldText=button.textContent;
+
+  button.disabled=true;
+  if(geminiButton)geminiButton.disabled=true;
+  button.textContent="⏳ ChatGPT يحلل الصور...";
+
+  setUploadStatus(
+    "geminiStatus",
+    "جارِ تجهيز الصور لـ ChatGPT...",
+    true
+  );
+
+  try{
+    const images=[];
+
+    for(let i=0;i<files.length;i++){
+      setUploadStatus(
+        "geminiStatus",
+        `جارِ تجهيز الصورة ${i+1} من ${files.length}...`,
+        true
+      );
+
+      const file=files[i];
+      images.push({
+        mimeType:file.type||"image/jpeg",
+        data:await fileToBase64(file)
+      });
+    }
+
+    setUploadStatus(
+      "geminiStatus",
+      "ChatGPT يحلل المنتج الآن...",
+      true
+    );
+
+    const draft=await invokeProductAnalyzer(
+      OPENAI_PRODUCT_FUNCTION,
+      images,
+      String($("geminiCustomPrompt")?.value||"").trim()
+    );
+
+    lastGeminiProductDraft=draft;
+    applyGeminiDraft(draft);
+
+    setUploadStatus(
+      "geminiStatus",
+      "تم تحليل المنتج بواسطة ChatGPT ✓ راجع البيانات ثم اضغط حفظ المنتج.",
+      true
+    );
+
+    toast("تم تجهيز مسودة المنتج بواسطة ChatGPT ✓");
+  }
+  catch(error){
+    console.error("ChatGPT product analyzer:",error);
+    const message=error?.message||"حدث خطأ أثناء تحليل المنتج";
+
+    setUploadStatus(
+      "geminiStatus",
+      "تعذر تحليل ChatGPT: "+message,
+      true
+    );
+
+    alert("تعذر تحليل المنتج بواسطة ChatGPT:\n"+message);
+  }
+  finally{
+    button.disabled=false;
+    if(geminiButton)geminiButton.disabled=false;
+    button.textContent=oldText;
+  }
+}
+
 function clearGeminiResult(){
 
   lastGeminiProductDraft=
@@ -1622,6 +1810,36 @@ async function invokeGeminiProductWithRetry(images,maxAttempts=3,customPrompt=""
 
   throw new Error(lastError||"تعذر تحليل المنتج");
 
+}
+
+async function invokeOpenAIProductWithRetry(images,maxAttempts=3,customPrompt=""){
+
+  let lastError="";
+
+  for(let attempt=1;attempt<=maxAttempts;attempt++){
+    try{
+      return await invokeProductAnalyzer(
+        OPENAI_PRODUCT_FUNCTION,
+        images,
+        customPrompt
+      );
+    }
+    catch(error){
+      lastError=error?.message||"تعذر تحليل المنتج";
+
+      if(
+        attempt<maxAttempts
+        &&isGeminiBusyMessage(lastError)
+      ){
+        await sleepMs(attempt*1800);
+        continue;
+      }
+
+      throw new Error(lastError);
+    }
+  }
+
+  throw new Error(lastError||"تعذر تحليل المنتج");
 }
 
 function batchCategoryOptions(selected=""){
@@ -2186,6 +2404,97 @@ async function analyzeBatchProducts(){
 
   }
 
+}
+
+async function analyzeSingleBatchDraftWithChatGPT(index){
+
+  const draft=batchProductDrafts[index];
+  if(!draft?.file)return;
+
+  draft.status="analyzing";
+  draft.error="";
+  renderBatchProducts();
+
+  try{
+    const base64=await fileToBase64(draft.file);
+
+    const product=await invokeOpenAIProductWithRetry(
+      [{
+        mimeType:draft.file.type||"image/jpeg",
+        data:base64
+      }],
+      3,
+      String($("batchGeminiCustomPrompt")?.value||"").trim()
+    );
+
+    draft.name=String(product?.name||"").trim();
+    draft.brand=String(product?.brand||"").trim();
+    draft.category=bestMatchingCategory(product?.category);
+    draft.description=String(product?.description||"").trim();
+    draft.colors=normalizeAiArray(product?.colors);
+    draft.sizes=normalizeAiArray(product?.sizes);
+    draft.detected_price=Math.max(0,Number(product?.detected_price||0)||0);
+    draft.price=Math.max(0,Number(product?.price??product?.detected_price??0)||0);
+    draft.stock=Math.max(0,Math.floor(Number(product?.stock??0)||0));
+    draft.status="done";
+    draft.error="";
+  }
+  catch(error){
+    draft.status="error";
+    draft.error=error?.message||"تعذر تحليل هذا المنتج بواسطة ChatGPT";
+  }
+
+  renderBatchProducts();
+}
+
+async function analyzeBatchProductsWithChatGPT(){
+
+  if(!batchProductDrafts.length){
+    toast("اختر صور المنتجات أولاً");
+    return;
+  }
+
+  const button=$("batchOpenAIAnalyzeButton");
+  const geminiButton=$("batchAnalyzeButton");
+  const oldText=button.textContent;
+
+  button.disabled=true;
+  if(geminiButton)geminiButton.disabled=true;
+  button.textContent="⏳ ChatGPT يحلل المنتجات...";
+
+  try{
+    for(let index=0;index<batchProductDrafts.length;index++){
+      setUploadStatus(
+        "batchGeminiStatus",
+        `ChatGPT يحلل المنتج ${index+1} من ${batchProductDrafts.length}...`,
+        true
+      );
+
+      await analyzeSingleBatchDraftWithChatGPT(index);
+
+      if(index<batchProductDrafts.length-1){
+        await sleepMs(700);
+      }
+    }
+
+    const ok=batchProductDrafts.filter(draft=>draft.status==="done").length;
+    const failed=batchProductDrafts.filter(draft=>draft.status==="error").length;
+
+    $("batchSaveButton").disabled=ok===0;
+
+    setUploadStatus(
+      "batchGeminiStatus",
+      `اكتمل تحليل ChatGPT: ${ok} ناجح${failed?` · ${failed} يحتاج إعادة محاولة`:""}.`,
+      true
+    );
+
+    toast(`تم تحليل ${ok} منتج بواسطة ChatGPT ✓`);
+  }
+  finally{
+    button.disabled=false;
+    if(geminiButton)geminiButton.disabled=false;
+    button.textContent=oldText;
+  }
 }
 
 async function retryBatchProduct(index){
