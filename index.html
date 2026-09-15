@@ -1551,16 +1551,17 @@ function productBelongsToCategory(product,category){
   return !!resolved && categoryCandidates(resolved).some(v=>cv.includes(v));
 }
 function isBundleProduct(p){
-  const resolved=getProductCategory(p);
-  const raw=[
-    p.name,p.title,p.slug,
-    p.category,p.category_name,p.categoryName,p.category_slug,p.categorySlug,
-    resolved?.name,resolved?.slug,p.type,p.product_type,p.kind
-  ].map(v=>String(v??"")).join(" ");
-  const tags=Array.isArray(p.tags)?p.tags.join(" "):String(p.tags||"");
-  return p.is_bundle===true||p.is_package===true||p.is_offer===true||
-         p.bundle===true||p.package===true||p.offer===true||
-         /باقة|باقات|عرض|عروض|bundle|package|offer/i.test(raw+" "+tags);
+  /*
+    الباقات الحقيقية تُحدد من حقول المنتج الصريحة فقط.
+    لا نعتبر اسم القسم (مثل "باقات إبراق") سببًا لإخفاء المنتج من المتجر.
+  */
+  const typeText=[p.type,p.product_type,p.kind]
+    .map(v=>String(v??"").trim().toLowerCase())
+    .join(" ");
+
+  return p.is_bundle===true || p.is_package===true || p.is_offer===true ||
+         p.bundle===true || p.package===true || p.offer===true ||
+         /(^|\s)(bundle|package|offer)(\s|$)/i.test(typeText);
 }
 function renderBundles(){
   const section=$("bundlesSection");
@@ -1686,7 +1687,7 @@ async function showBundleInfo(bundleId){
 }
 function renderCategoryFilters(){
   const buttons=[`<button class="${activeCategory==="الكل"?"active":""}" onclick="setCategory('الكل')">الكل</button>`];
-  categories.filter(c=>!/باقة|باقات|عرض|عروض|bundle|package|offer/i.test(String(c.name||"")+" "+String(c.slug||""))).forEach(c=>buttons.push(`<button class="${activeCategory===c.name?"active":""}" onclick='setCategory(${JSON.stringify(c.name)})'>${escapeHTML(c.name)}</button>`));
+  categories.forEach(c=>buttons.push(`<button class="${activeCategory===c.name?"active":""}" onclick='setCategory(${JSON.stringify(c.name)})'>${escapeHTML(c.name)}</button>`));
   $("categoryFilters").innerHTML=buttons.join("")
 }
 function setCategory(c){activeCategory=c;renderCategoryFilters();renderProducts()}
@@ -1742,7 +1743,6 @@ function renderProducts(){
   const groups=[];
   const used=new Set();
   categories
-    .filter(c=>!/باقة|باقات|عرض|عروض|bundle|package|offer/i.test(String(c.name||"")+" "+String(c.slug||"")))
     .forEach(category=>{
       const items=list.filter(product=>productBelongsToCategory(product,category));
       if(items.length){
