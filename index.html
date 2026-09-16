@@ -1197,6 +1197,55 @@ button,
   }
 }
 
+
+/* =========================================================
+   FIX — Gift modal must show all fields and final cart button
+========================================================= */
+#giftModal.modal{
+  position:fixed!important;
+  top:50%!important;
+  left:50%!important;
+  right:auto!important;
+  bottom:auto!important;
+  transform:translate(-50%,-50%)!important;
+  width:min(900px,94vw)!important;
+  height:auto!important;
+  max-height:90dvh!important;
+  overflow:hidden!important;
+  display:none;
+  flex-direction:column!important;
+  z-index:10050!important;
+}
+#giftModal.modal.show{
+  display:flex!important;
+}
+#giftModal .gift-modal-head{
+  flex:0 0 auto!important;
+  position:relative!important;
+  z-index:2!important;
+}
+#giftModal .gift-modal-body{
+  flex:1 1 auto!important;
+  min-height:0!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  -webkit-overflow-scrolling:touch!important;
+  overscroll-behavior:contain!important;
+  padding-bottom:max(28px,env(safe-area-inset-bottom))!important;
+}
+#giftModal .gift-final-btn{
+  display:block!important;
+  position:relative!important;
+  margin-bottom:8px!important;
+}
+@media(max-width:768px){
+  #giftModal.modal{
+    width:94vw!important;
+    max-height:88dvh!important;
+    border-radius:22px!important;
+  }
+}
+
 </style>
 </head>
 
