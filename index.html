@@ -1168,6 +1168,35 @@ button,
   #bundlesRow .bundle-card .btn{width:calc(100% - 20px)!important;margin:9px 10px 0!important;padding:10px 5px!important;font-size:10px!important}
 }
 
+
+/* BUNDLES — add-to-cart action */
+.bundle-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin:13px 16px 0;
+}
+#bundlesRow .bundle-card .bundle-actions .btn{
+  width:100%!important;
+  margin:0!important;
+}
+#bundlesRow .bundle-card .bundle-add-cart{
+  background:var(--ink)!important;
+  color:#fff!important;
+}
+#bundlesRow .bundle-card .bundle-details{
+  background:#fff!important;
+  color:var(--ink)!important;
+  border:1px solid rgba(32,48,28,.18)!important;
+}
+@media(max-width:560px){
+  .bundle-actions{
+    grid-template-columns:1fr;
+    gap:6px;
+    margin:9px 10px 0;
+  }
+}
+
 </style>
 </head>
 
@@ -1986,11 +2015,97 @@ function renderBundles(){
         ${stock>0?`متوفر: ${stock}`:"نفدت الكمية"}
       </div>
 
-      <button class="btn" style="width:100%;margin-top:10px" ${stock<=0?"disabled":""} ${action}>
-        ${stock<=0?"غير متوفر":(fromBundlesTable?"تفاصيل الباقة":"أضف الباقة للسلة")}
-      </button>
+      ${fromBundlesTable
+        ? `<div class="bundle-actions">
+             <button class="btn bundle-add-cart" ${stock<=0?"disabled":""}
+               onclick="addBundleToCart('${escapeHTML(String(bundle.id||""))}')">
+               ${stock<=0?"غير متوفر":"🛒 إضافة إلى السلة"}
+             </button>
+             <button class="btn bundle-details" ${stock<=0?"disabled":""}
+               onclick="showBundleInfo('${escapeHTML(String(bundle.id||""))}')">
+               تفاصيل الباقة
+             </button>
+           </div>`
+        : `<button class="btn" style="width:100%;margin-top:10px" ${stock<=0?"disabled":""} ${action}>
+             ${stock<=0?"غير متوفر":"أضف الباقة للسلة"}
+           </button>`}
     </article>`;
   }).join("");
+}
+
+
+async function addBundleToCart(bundleId){
+  const bundle=bundles.find(b=>String(b.id)===String(bundleId));
+  if(!bundle){toast("تعذر تحديد الباقة");return}
+  if(Number(bundle.stock||0)<=0){toast("الباقة غير متوفرة");return}
+
+  try{
+    const {data,error}=await client
+      .from("bundle_items")
+      .select("product_id,quantity")
+      .eq("bundle_id",bundle.id);
+
+    if(error)throw error;
+
+    const rows=Array.isArray(data)?data:[];
+    if(!rows.length){toast("لم تتم إضافة منتجات لهذه الباقة بعد");return}
+
+    const resolved=[];
+    for(const row of rows){
+      const p=products.find(x=>String(x.id)===String(row.product_id));
+      const qty=Math.max(1,Number(row.quantity||1)||1);
+      if(!p)throw new Error("BUNDLE_PRODUCT_NOT_FOUND");
+      if(Number(p.stock||0)<qty){
+        toast(`الكمية غير متوفرة للمنتج: ${p.name||""}`);
+        return;
+      }
+      resolved.push({product:p,qty});
+    }
+
+    // Use the existing product cart/order structure, but allocate the bundle
+    // offer price across its real products so the cart total remains the offer price.
+    const offerPrice=Math.max(0,Number(bundle.offer_price??bundle.regular_price??0)||0);
+    const bases=resolved.map(({product,qty})=>{
+      const base=Number(product.price||0)*(1-Number(product.discount||0)/100);
+      return Math.max(0,base)*qty;
+    });
+    const baseTotal=bases.reduce((a,b)=>a+b,0);
+    if(offerPrice<=0||baseTotal<=0){
+      toast("تعذر تحديد سعر الباقة");
+      return;
+    }
+
+    const groupId=`bundle-${bundle.id}-${Date.now()}`;
+    let remaining=offerPrice;
+
+    resolved.forEach(({product,qty},index)=>{
+      const isLast=index===resolved.length-1;
+      const allocated=isLast
+        ? remaining
+        : Math.round((offerPrice*(bases[index]/baseTotal))*100)/100;
+      remaining=Math.round((remaining-allocated)*100)/100;
+      const unitPrice=Math.round((allocated/qty)*100)/100;
+
+      for(let i=0;i<qty;i++){
+        const cartProduct={
+          ...product,
+          price:unitPrice,
+          discount:0,
+          currency:bundle.currency||product.currency||"ر.ي"
+        };
+        addCartItem(cartProduct,null,null,{
+          bundleId:String(bundle.id),
+          bundleGroupId:groupId,
+          bundleName:bundle.name||"باقة الشعيبي"
+        });
+      }
+    });
+
+    toast(`تمت إضافة ${bundle.name||"الباقة"} إلى السلة`);
+  }catch(error){
+    console.error("addBundleToCart:",error);
+    toast("تعذر إضافة الباقة إلى السلة");
+  }
 }
 
 async function showBundleInfo(bundleId){
