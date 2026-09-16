@@ -390,6 +390,10 @@ main{max-width:1500px;margin:auto;padding:18px 14px 80px}.card{margin-bottom:16p
 <div><label>القيمة</label><input id="cpValue" type="number"></div><div><label>الحد الأدنى</label><input id="cpMin" type="number"></div><div><label>أقصى خصم</label><input id="cpMax" type="number"></div><div><label>تاريخ الانتهاء</label><input id="cpExpiry" type="date"></div>
 </div>
 <div class="check-row"><input id="cpFirst" type="checkbox"><label for="cpFirst">لأول طلب فقط</label></div>
+<h3 style="margin-bottom:6px">🏷️ يُطبق الكوبون على</h3>
+<div class="check-row"><input id="cpAllCategories" type="checkbox" checked onchange="toggleCouponCategoryScope()"><label for="cpAllCategories">جميع الأقسام</label></div>
+<div id="cpCategoriesBox" class="grid3" style="padding:12px;border:1px solid var(--line);border-radius:14px;background:#fff;margin-bottom:12px"></div>
+<p class="note">ألغِ «جميع الأقسام» ثم اختر قسمًا أو أكثر. الخصم سيُطبق فقط على منتجات الأقسام المحددة.</p>
 <button class="btn" onclick="saveCoupon()">إضافة كوبون</button></div><div id="couponList" class="card"></div>
 </section>
 
@@ -2841,8 +2845,30 @@ function resetBundle(){["bundleId","bundleName","bundleRegular","bundleOffer","b
 function renderBundles(){$("bundleList").innerHTML=bundles.map(b=>`<div class="order-card"><strong>🔥 ${esc(b.name)}</strong><div class="note">${money(b.offer_price,b.currency)} · المخزون: ${Number(b.stock||0)}</div><button class="btn red sm" onclick="removeRow('bundles','${b.id}')">حذف</button></div>`).join("")||"لا توجد باقات."}
 async function saveGift(){const name=$("giftName").value.trim();if(!name)return toast("اكتب اسم التغليف");let image_url=null;const f=$("giftImageFile").files?.[0];if(f)image_url=await uploadMediaFile(f,"gifts");const{error}=await db.from("gift_options").insert({name,price:Number($("giftPrice").value||0),image_url,description:$("giftDesc").value.trim()||null,is_active:true});if(error)return alert(error.message);await loadAll()}
 function renderGifts(){$("giftList").innerHTML=gifts.map(g=>`<div class="order-card"><strong>🎁 ${esc(g.name)}</strong> · ${money(g.price,g.currency)} <button class="btn red sm" onclick="removeRow('gift_options','${g.id}')">حذف</button></div>`).join("")||"لا توجد خيارات تغليف."}
-async function saveCoupon(){const row={code:$("cpCode").value.trim().toUpperCase(),discount_type:$("cpType").value,value:Number($("cpValue").value||0),min_order:Number($("cpMin").value||0),max_discount:$("cpMax").value?Number($("cpMax").value):null,expires_at:$("cpExpiry").value||null,first_order_only:$("cpFirst").checked,is_active:true};if(!row.code)return toast("اكتب الكود");const{error}=await db.from("coupons").insert(row);if(error)return alert(error.message);await loadAll()}
-function renderCoupons(){$("couponList").innerHTML=coupons.map(c=>`<div class="order-card"><strong>${esc(c.code)}</strong> · ${c.discount_type==="percentage"?c.value+"%":money(c.value)} <button class="btn red sm" onclick="removeRow('coupons','${c.id}')">حذف</button></div>`).join("")||"لا توجد كوبونات."}
+function renderCouponCategoryChoices(){
+ const box=$("cpCategoriesBox");if(!box)return;
+ box.innerHTML=categories.map(c=>`<label class="check-row" style="margin:0;padding:7px;border:1px solid var(--line);border-radius:10px"><input class="cp-category-check" type="checkbox" value="${esc(c.name)}"><span>${esc(c.name)}</span></label>`).join("")||'<span class="note">لا توجد أقسام بعد.</span>';
+ toggleCouponCategoryScope();
+}
+function toggleCouponCategoryScope(){
+ const all=$("cpAllCategories")?.checked!==false;
+ document.querySelectorAll(".cp-category-check").forEach(x=>{x.disabled=all;if(all)x.checked=false});
+}
+function selectedCouponCategories(){return Array.from(document.querySelectorAll(".cp-category-check:checked")).map(x=>x.value)}
+async function saveCoupon(){
+ const allCategories=$("cpAllCategories")?.checked!==false;
+ const selected=selectedCouponCategories();
+ if(!allCategories&&!selected.length)return toast("اختر قسمًا واحدًا على الأقل");
+ const row={code:$("cpCode").value.trim().toUpperCase(),discount_type:$("cpType").value,value:Number($("cpValue").value||0),min_order:Number($("cpMin").value||0),max_discount:$("cpMax").value?Number($("cpMax").value):null,expires_at:$("cpExpiry").value||null,first_order_only:$("cpFirst").checked,is_active:true,applicable_categories:allCategories?null:selected};
+ if(!row.code)return toast("اكتب الكود");
+ const{error}=await db.from("coupons").insert(row);if(error)return alert(error.message);
+ $("cpCode").value="";$("cpValue").value="";$("cpMin").value="";$("cpMax").value="";$("cpExpiry").value="";$("cpFirst").checked=false;$("cpAllCategories").checked=true;renderCouponCategoryChoices();
+ toast("تمت إضافة الكوبون ✓");await loadAll();
+}
+function renderCoupons(){
+ renderCouponCategoryChoices();
+ $("couponList").innerHTML=coupons.map(c=>{const scope=Array.isArray(c.applicable_categories)&&c.applicable_categories.length?c.applicable_categories.join("، "):"جميع الأقسام";return `<div class="order-card"><div class="order-card-head"><div><strong>${esc(c.code)}</strong> · ${c.discount_type==="percentage"?c.value+"%":money(c.value)}<div class="note">يُطبق على: <strong>${esc(scope)}</strong></div></div><button class="btn red sm" onclick="removeRow('coupons','${c.id}')">حذف</button></div></div>`}).join("")||"لا توجد كوبونات."
+}
 function renderCustomers(){$("customersBody").innerHTML=customers.map(c=>`<tr><td>${esc(c.name||"عميل")}</td><td>${esc(c.phone||"")}</td><td>${Number(c.total_orders||0)}</td><td>${Number(c.purchase_count||0)}</td><td>${money(c.lifetime_value)}</td><td>${formatDate(c.last_order_at)}</td></tr>`).join("")}
 function getOrderPayment(o){return o.payment_method||o.pay_method||o.payment||"—"}function getOrderAddress(o){return o.address||o.customer_address||o.shipping_address||"—"}function getOrderCoupon(o){return o.coupon_code||o.coupon||"—"}
 function itemName(i){return i.product_name||i.name||i.bundle_name||(i.item_type==="bundle"?"باقة":"منتج")}function itemQty(i){return Number(i.quantity??i.qty??1)}function itemUnitPrice(i){return Number(i.unit_price??i.price??i.final_price??0)}function itemTotal(i){return Number(i.total_price??i.subtotal??i.line_total??itemUnitPrice(i)*itemQty(i))}
