@@ -1246,6 +1246,42 @@ button,
   }
 }
 
+
+/* ALSHUAIIBE — WhatsApp checkout cart (isolated styles) */
+#cartDrawer.wa-cart{inset:0;width:100%;height:100dvh;max-width:none;transform:translateY(105%);background:#fbfaf7;color:#171c25;box-shadow:none;z-index:120;overflow:hidden}
+#cartDrawer.wa-cart.show{transform:translateY(0)}
+#cartDrawer.wa-cart .drawer-head{width:min(1260px,100%);margin:0 auto;padding:20px 22px;border:0;flex-shrink:0}
+#cartDrawer.wa-cart .drawer-head h3{font-size:clamp(25px,3vw,42px);font-weight:900}
+#cartDrawer.wa-cart .drawer-head .close-btn{border:1px solid #dce2e9;border-radius:12px;background:white;padding:6px 13px;color:#2563eb}
+#cartDrawer.wa-cart .wa-cart-layout{display:grid;grid-template-columns:minmax(280px,440px) minmax(0,1fr);gap:35px;direction:ltr;max-width:1260px;width:100%;margin:0 auto;flex:1;min-height:0;padding:0 22px 24px;overflow:auto;align-items:start}
+#cartDrawer.wa-cart .wa-cart-summary,#cartDrawer.wa-cart .wa-cart-products{direction:rtl;min-width:0}
+#cartDrawer.wa-cart .wa-cart-summary{border:1px solid #dce2e9;background:white;border-radius:20px;padding:25px;box-shadow:0 4px 20px #14213d08}
+#cartDrawer.wa-cart .wa-cart-summary h3{margin:0 0 25px;font-size:21px}
+#cartDrawer.wa-cart .wa-total-line{display:flex;justify-content:space-between;gap:10px;margin:15px 0;font-size:14px}
+#cartDrawer.wa-cart .wa-total-line span:first-child{color:#667085}
+#cartDrawer.wa-cart .wa-total-line.grand{font-weight:900;font-size:19px;padding:17px 0;border-top:1px solid #e5e7eb;border-bottom:1px solid #e5e7eb}
+#cartDrawer.wa-cart .wa-total-line.grand span:last-child{color:#c6922b}
+#cartDrawer.wa-cart .wa-cart-summary label{display:block;font-size:12px;font-weight:800;margin:16px 0 7px}
+#cartDrawer.wa-cart .wa-cart-summary input,#cartDrawer.wa-cart .wa-cart-summary textarea{width:100%;border:1px solid #dce2e9;border-radius:12px;padding:13px;background:white;color:#1f2937;outline-color:#64cd73;resize:vertical}
+#cartDrawer.wa-cart .wa-coupon{display:flex;gap:8px;direction:rtl}
+#cartDrawer.wa-cart .wa-coupon button{border:0;border-radius:11px;padding:0 18px;background:#242b37;color:white;font-weight:800}
+#cartDrawer.wa-cart .wa-cart-submit{display:block;width:100%;border:0;border-radius:14px;background:#5dcc6b;color:white;font-weight:900;padding:17px 10px;margin-top:20px;font-size:15px}
+#cartDrawer.wa-cart .wa-cart-submit:disabled{opacity:.5}
+#cartDrawer.wa-cart .wa-method{padding:14px;border:1px solid #a2e9ad;border-radius:14px;background:#effdf1;color:#347c43;font-weight:800}
+#cartDrawer.wa-cart .wa-method small{display:block;color:#77869b;font-weight:500;margin-top:5px}
+#cartDrawer.wa-cart .wa-cart-item{display:flex;align-items:center;gap:18px;border:1px solid #dce2e9;border-radius:19px;background:white;padding:20px;margin-bottom:15px;min-height:135px;box-shadow:0 3px 15px #14213d06}
+#cartDrawer.wa-cart .wa-cart-item img{width:100px;height:105px;object-fit:contain;border:1px solid #e4e9ef;border-radius:15px}
+#cartDrawer.wa-cart .wa-cart-item-info{flex:1;min-width:0}
+#cartDrawer.wa-cart .wa-cart-item-info strong{display:block;font-size:16px}
+#cartDrawer.wa-cart .wa-item-price{color:#c6922b;font-weight:900;margin:8px 0}
+#cartDrawer.wa-cart .wa-item-controls{display:flex;gap:14px;align-items:center}
+#cartDrawer.wa-cart .wa-item-controls button{border:0;border-radius:11px;background:#f0f3f7;width:43px;height:43px;font-size:24px;color:#384860}
+#cartDrawer.wa-cart .wa-item-remove{align-self:flex-start;border:0;background:none;color:#667085;font-size:22px}
+#cartDrawer.wa-cart .wa-cart-products-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;font-weight:800}
+#cartDrawer.wa-cart .wa-clear{border:0;background:transparent;color:#8996a8}
+#cartDrawer.wa-cart .drawer-foot{display:none}
+@media(max-width:740px){#cartDrawer.wa-cart .wa-cart-layout{grid-template-columns:1fr;gap:15px;padding:0 12px 25px}#cartDrawer.wa-cart .wa-cart-products{grid-row:1}#cartDrawer.wa-cart .wa-cart-summary{grid-row:2;padding:18px}#cartDrawer.wa-cart .drawer-head{padding:13px 14px}#cartDrawer.wa-cart .wa-cart-item{padding:11px;gap:10px;min-height:105px}#cartDrawer.wa-cart .wa-cart-item img{width:75px;height:80px}#cartDrawer.wa-cart .wa-item-controls button{width:35px;height:35px}}
+
 </style>
 </head>
 
@@ -1369,10 +1405,23 @@ button,
 </footer>
 
 <div id="cartScrim" class="scrim" onclick="closeCart()"></div>
-<div id="cartDrawer" class="drawer">
-  <div class="drawer-head"><h3>سلة المشتريات</h3><button class="close-btn" onclick="closeCart()">✕</button></div>
-  <div id="cartBody" class="drawer-body"></div>
-  <div class="drawer-foot"><div class="cart-total"><span>الإجمالي</span><span id="cartTotal">0</span></div><button class="btn" style="width:100%" onclick="openCheckout()">إتمام الطلب</button></div>
+<div id="cartDrawer" class="drawer wa-cart" role="dialog" aria-modal="true" aria-label="سلة التسوق">
+  <div class="drawer-head"><h3>▣ سلة التسوق</h3><button class="close-btn" onclick="closeCart()" aria-label="إغلاق السلة">✕</button></div>
+  <div class="wa-cart-layout">
+    <div class="wa-cart-summary"><h3>ملخص الطلب</h3>
+      <div class="wa-total-line"><span>المجموع الفرعي</span><strong id="waSubtotal">0</strong></div>
+      <div class="wa-total-line"><span>التوصيل</span><span>يحدد حسب الموقع</span></div>
+      <div class="wa-total-line grand"><span>الإجمالي</span><span id="cartTotal">0</span></div>
+      <label for="waCouponInput">كوبون الخصم</label><div class="wa-coupon"><input id="waCouponInput" placeholder="أدخل كود الخصم"><button type="button" onclick="applyWaCartCoupon()">تطبيق</button></div><div id="waCouponMessage" class="coupon-message" aria-live="polite"></div>
+      <div class="wa-total-line"><span>الخصم</span><strong id="waDiscount">0</strong></div>
+      <label for="waCustomerName">الاسم (اختياري)</label><input id="waCustomerName" autocomplete="name" placeholder="اسم المستلم">
+      <label for="waCustomerPhone">رقم الهاتف (اختياري)</label><input id="waCustomerPhone" type="tel" autocomplete="tel" placeholder="رقم للتواصل">
+      <label for="waAddress">عنوان التوصيل</label><textarea id="waAddress" rows="2" placeholder="المدينة، الحي، الشارع..."></textarea>
+      <label>طريقة الطلب</label><div class="wa-method">◉ عبر واتساب<small>أرسل تفاصيل طلبك مباشرة لتأكيده مع فريقنا</small></div>
+      <button class="wa-cart-submit" id="waCartSubmit" type="button" onclick="sendCartToWhatsApp()">◉ إرسال الطلب عبر واتساب</button>
+    </div>
+    <div class="wa-cart-products"><div class="wa-cart-products-head"><span id="waCartCount">0 منتجات</span><button class="wa-clear" type="button" onclick="clearWaCart()">▤ إفراغ السلة</button></div><div id="cartBody"></div></div>
+  </div>
 </div>
 
 <div id="modalScrim" class="scrim" onclick="closeAllModals()"></div>
@@ -2942,16 +2991,56 @@ function addCartItem(product,color,size,extra={}){
   saveCart();toast(extra.giftGroupId?"تمت إضافة الهدية إلى السلة 🎁":"أُضيف إلى السلة");openCart()
 }
 function renderCart(){
-  const count=cart.reduce((t,i)=>t+Number(i.qty||0),0);$("cartCount").textContent=String(count);
-  if(!cart.length){localStorage.removeItem("alshuaiibe_cart");$("cartBody").innerHTML='<div class="empty">السلة فارغة</div>';$("cartTotal").textContent="0";return}
-  const totals={};$("cartBody").innerHTML=cart.map(item=>{const p=products.find(x=>String(x.id)===String(item.id));if(!p)return"";const price=Number(p.price||0)*(1-Number(p.discount||0)/100),currency=p.currency||"ر.ي";totals[currency]=(totals[currency]||0)+price*Number(item.qty||1);
-    return `<div class="cart-item">${item.image?`<img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.name||"")}">`:""}<div class="cart-info"><div class="cart-name">${escapeHTML(item.name||p.name||"")}${item.giftGroupId?' 🎁':""}</div><div class="cart-meta">${[item.color,item.size].filter(Boolean).map(escapeHTML).join(" · ")}</div>${item.giftGroupId?`<div class="cart-meta">هدية إلى: ${escapeHTML(item.gift?.recipientName||"")}</div>`:""}<div class="cart-meta">${price.toFixed(2)} ${escapeHTML(currency)}</div><div class="qty"><button onclick="changeQty('${item.key}',-1)">−</button><span>${item.qty}</span><button onclick="changeQty('${item.key}',1)" ${item.giftGroupId?"disabled":""}>+</button><button onclick="removeCartItem('${item.key}')" style="width:auto;padding:0 8px;color:var(--danger)">حذف</button></div></div></div>`}).join("");
-  $("cartTotal").textContent=Object.entries(totals).map(([c,v])=>`${Number(v).toFixed(2)} ${c}`).join(" + ")||"0";localStorage.setItem("alshuaiibe_cart",JSON.stringify(cart))
+  const count=cart.reduce((t,i)=>t+Number(i.qty||0),0);
+  $("cartCount").textContent=String(count);
+  $("waCartCount").textContent=count+" منتجات";
+  const valid=cart.filter(i=>products.some(p=>String(p.id)===String(i.id)));
+  $("cartBody").innerHTML=valid.length?valid.map(item=>{
+    const p=products.find(x=>String(x.id)===String(item.id));
+    const price=Number(p.price||0)*(1-Number(p.discount||0)/100);
+    const key=encodeURIComponent(item.key);
+    return `<div class="wa-cart-item">${item.image?`<img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.name||'')}">`:''}<div class="wa-cart-item-info"><strong>${escapeHTML(item.name||p.name||'')}${item.giftGroupId?' 🎁':''}</strong><div class="cart-meta">${[item.color,item.size].filter(Boolean).map(escapeHTML).join(' · ')}</div><div class="wa-item-price">${price.toFixed(2)} ${escapeHTML(p.currency||'ر.ي')}</div><div class="wa-item-controls"><button type="button" data-cart-key="${key}" onclick="changeWaQty(this,-1)">−</button><b>${Number(item.qty||1)}</b><button type="button" data-cart-key="${key}" onclick="changeWaQty(this,1)" ${item.giftGroupId?'disabled':''}>+</button></div></div><button class="wa-item-remove" type="button" data-cart-key="${key}" onclick="removeWaItem(this)" aria-label="حذف المنتج">♧</button></div>`;
+  }).join(''):'<div class="empty">السلة فارغة</div>';
+  const t=calculateCart(),fmt=n=>Number(n||0).toFixed(2)+' '+t.currency;
+  $("waSubtotal").textContent=fmt(t.subtotal);$("waDiscount").textContent='− '+fmt(t.discount);$("cartTotal").textContent=fmt(t.total);
+  $("waCartSubmit").disabled=!valid.length;
+  if(!cart.length)localStorage.removeItem('alshuaiibe_cart');else localStorage.setItem('alshuaiibe_cart',JSON.stringify(cart));
 }
+function changeWaQty(el,n){changeQty(decodeURIComponent(el.dataset.cartKey),n)}
+function removeWaItem(el){removeCartItem(decodeURIComponent(el.dataset.cartKey))}
+function clearWaCart(){if(!cart.length)return;if(!confirm('هل تريد إفراغ السلة؟'))return;cart=[];currentCoupon=null;saveCart()}
+function applyWaCartCoupon(){
+  const code=$("waCouponInput").value.trim().toUpperCase();currentCoupon=null;
+  const box=$("waCouponMessage");box.style.color='var(--danger)';
+  if(!code){box.textContent='';renderCart();return}
+  const c=coupons.find(x=>String(x.code||'').toUpperCase()===code);
+  if(!c||c.expires_at&&new Date(c.expires_at)<new Date()){box.textContent='الكوبون غير صحيح أو منتهي الصلاحية';renderCart();return}
+  if(calculateCart().subtotal<Number(c.min_order||0)){box.textContent='لم تصل إلى الحد الأدنى للكوبون';renderCart();return}
+  currentCoupon=c;box.style.color='#347c43';box.textContent='تم تطبيق الكوبون ✓';renderCart();
+}
+function sendCartToWhatsApp(){
+  cleanCartAgainstProducts();saveCart();if(!cart.length){toast('السلة فارغة');return}
+  const number=String(generalSettings.whatsapp||'').replace(/\D/g,'');
+  if(!number){toast('رقم واتساب المتجر غير محدد في الإعدادات');return}
+  const address=$("waAddress").value.trim();if(!address){toast('يرجى إدخال عنوان التوصيل');$("waAddress").focus();return}
+  const name=$("waCustomerName").value.trim(),phone=$("waCustomerPhone").value.trim();
+  const t=calculateCart();let lines=['🛒 طلب جديد من '+getStoreEyebrow(),''];
+  if(name)lines.push('الاسم: '+name);if(phone)lines.push('الهاتف: '+phone);
+  lines.push('عنوان التوصيل: '+address,'','المنتجات:');
+  cart.forEach((i,n)=>{const p=products.find(x=>String(x.id)===String(i.id));if(!p)return;const price=Number(p.price||0)*(1-Number(p.discount||0)/100);lines.push(`${n+1}. ${i.name||p.name} × ${i.qty} — ${(price*Number(i.qty||1)).toFixed(2)} ${p.currency||'ر.ي'}`);if(i.color)lines.push('اللون: '+i.color);if(i.size)lines.push('المقاس: '+i.size);if(i.giftGroupId)lines.push('🎁 هدية')});
+  const gifts=giftNotes();if(gifts)lines.push('',gifts);
+  lines.push('','المجموع الفرعي: '+t.subtotal.toFixed(2)+' '+t.currency);
+  if(t.discount)lines.push('الخصم: '+t.discount.toFixed(2)+' '+t.currency,'كوبون: '+(currentCoupon?.code||''));
+  lines.push('التوصيل: يحدد حسب الموقع','الإجمالي دون التوصيل: '+t.total.toFixed(2)+' '+t.currency);
+  const url='https://wa.me/'+number+'?text='+encodeURIComponent(lines.join('\n'));
+  // Navigate in the same tab to avoid popup blockers on Safari/iPad.
+  window.location.assign(url);
+}
+
 function changeQty(key,change){const i=cart.find(x=>x.key===key);if(!i)return;if(i.giftGroupId&&change>0)return;const p=products.find(x=>String(x.id)===String(i.id));if(!p){cart=cart.filter(x=>x.key!==key);saveCart();return}i.qty=Number(i.qty||0)+Number(change||0);if(i.qty>Number(p.stock||0)){i.qty=Number(p.stock||0);toast("وصلت للكمية المتوفرة")}if(i.qty<=0)cart=cart.filter(x=>x.key!==key);saveCart()}
 function removeCartItem(key){cart=cart.filter(i=>i.key!==key);saveCart()}
-function openCart(){renderCart();$("cartScrim").classList.add("show");$("cartDrawer").classList.add("show")}
-function closeCart(){$("cartScrim").classList.remove("show");$("cartDrawer").classList.remove("show")}
+function openCart(){renderCart();$("cartScrim").classList.add("show");$("cartDrawer").classList.add("show");document.body.style.overflow="hidden"}
+function closeCart(){$("cartScrim").classList.remove("show");$("cartDrawer").classList.remove("show");document.body.style.overflow=""}
 
 function showMainScrim(){$("modalScrim").classList.add("show")}
 function updateMainScrim(){const ids=["productModal","giftModal","checkoutModal","myOrdersModal","reviewModal","invoiceModal","policyModal"];const any=ids.some(id=>$(id)?.classList.contains("show"));$("modalScrim").classList.toggle("show",any)}
