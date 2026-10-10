@@ -1590,6 +1590,7 @@ $("year").textContent=new Date().getFullYear();
 function toast(message){const el=$("toast");el.textContent=message;el.classList.add("show");setTimeout(()=>el.classList.remove("show"),2200)}
 function escapeHTML(value){return String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
 function normalizePhone(phone){return String(phone||"").replace(/[^0-9]/g,"")}
+function storeCurrency(){return ["ر.س","$","ر.ي"].includes(generalSettings.currency)?generalSettings.currency:"ر.ي"}
 function getStoreName(){return generalSettings.storeName||DEFAULT_STORE.name}
 function getStoreNameEn(){return generalSettings.storeNameEn||DEFAULT_STORE.nameEn}
 function getStoreEyebrow(){return generalSettings.storeEyebrow||("متجر "+getStoreName())}
@@ -2120,7 +2121,7 @@ function renderBundles(){
 
     const offerPrice=Number.isFinite(offerRaw)?Math.max(0,offerRaw):regularPrice;
     const stock=Math.max(0,Number(bundle.stock??0)||0);
-    const currency=bundle.currency||"ر.ي";
+    const currency=storeCurrency();
 
     const image=
       bundle.image_url
@@ -2231,7 +2232,7 @@ async function addBundleToCart(bundleId){
           ...product,
           price:unitPrice,
           discount:0,
-          currency:bundle.currency||product.currency||"ر.ي"
+          currency:bundle.currency||storeCurrency()
         };
         addCartItem(cartProduct,null,null,{
           bundleId:String(bundle.id),
@@ -2283,7 +2284,7 @@ async function showBundleInfo(bundleId){
     alert(
       `${bundle.name||"الباقة"}\n\n`+
       `منتجات الباقة:\n• ${names.join("\n• ")}\n\n`+
-      `سعر العرض: ${Number(bundle.offer_price??bundle.regular_price??0).toFixed(2)} ${bundle.currency||"ر.ي"}`
+      `سعر العرض: ${Number(bundle.offer_price??bundle.regular_price??0).toFixed(2)} ${storeCurrency()}`
     );
   }catch(error){
     console.error("showBundleInfo:",error);
@@ -2369,7 +2370,7 @@ function productCard(product,index=0){
       ${image?`<img src="${escapeHTML(image)}" alt="${escapeHTML(product.name)}" loading="lazy">`:""}
       ${generalSettings.featureWish!==false?`<button class="favorite-btn" onclick="toggleFavorite('${product.id}',event)">${fav?"❤️":"🤍"}</button>`:""}
       ${discount>0?`<span class="discount-badge">خصم ${discount}%</span>`:""}${product.is_new?`<span class="new-badge">جديد</span>`:""}${out?`<div class="out-layer">نفدت الكمية</div>`:""}
-    </div><h3>${escapeHTML(product.name)}</h3><div class="price-row"><span class="price">${final.toFixed(2)} ${escapeHTML(product.currency||"ر.ي")}</span>${discount>0?`<span class="old-price">${price.toFixed(2)}</span>`:""}</div>
+    </div><h3>${escapeHTML(product.name)}</h3><div class="price-row"><span class="price">${final.toFixed(2)} ${escapeHTML(storeCurrency())}</span>${discount>0?`<span class="old-price">${price.toFixed(2)}</span>`:""}</div>
     <button class="add-btn" ${out?"disabled":""} onclick="quickAdd('${product.id}')">${out?"غير متوفر":"أضف للسلة"}</button>
     <button class="gift-btn" ${out?"disabled":""} onclick="openGiftBuilder('${product.id}')">🎁 شراء كهدية</button>
   </article>`
@@ -3027,7 +3028,7 @@ function openProduct(productId){
  currentProduct=p;detailQuantity=1;$("detailQty").textContent="1";
  $("modalProductImage").src=p.images?.[0]||"";$("modalProductImage").alt=p.name||"";$("modalProductName").textContent=p.name||"";
  const price=Number(p.price||0),discount=Number(p.discount||0),final=price*(1-discount/100);
- $("modalProductPrice").innerHTML=`<span class="price">${final.toFixed(2)} ${escapeHTML(p.currency||"ر.ي")}</span>${discount?`<span class="old-price">${price.toFixed(2)}</span>`:""}`;
+ $("modalProductPrice").innerHTML=`<span class="price">${final.toFixed(2)} ${escapeHTML(storeCurrency())}</span>${discount?`<span class="old-price">${price.toFixed(2)}</span>`:""}`;
  $("modalProductDescription").textContent=p.description||"لا توجد تفاصيل إضافية لهذا المنتج.";
  // The store identity is ALSHUAIIBE; the label here is the product's catalog section.
  const category=getProductCategory(p);
@@ -3053,7 +3054,7 @@ function openProduct(productId){
    ?`اكتشف منتجات أخرى من قسم ${sectionName}`
    :"لا يوجد قسم محدد لهذا المنتج";
  $("detailRelatedGrid").innerHTML=related.length
-   ?related.map(x=>{const val=Number(x.price||0)*(1-Number(x.discount||0)/100);return `<article class="detail-related-card" onclick='openProduct(${JSON.stringify(String(x.id))})'><img loading="lazy" src="${escapeHTML(x.images?.[0]||'')}" alt="${escapeHTML(x.name||'')}"><strong>${escapeHTML(x.name||'')}</strong><span>${val.toFixed(2)} ${escapeHTML(x.currency||'ر.ي')}</span></article>`}).join("")
+   ?related.map(x=>{const val=Number(x.price||0)*(1-Number(x.discount||0)/100);return `<article class="detail-related-card" onclick='openProduct(${JSON.stringify(String(x.id))})'><img loading="lazy" src="${escapeHTML(x.images?.[0]||'')}" alt="${escapeHTML(x.name||'')}"><strong>${escapeHTML(x.name||'')}</strong><span>${val.toFixed(2)} ${escapeHTML(storeCurrency())}</span></article>`}).join("")
    :'<div class="hint">لا توجد منتجات أخرى من نفس القسم حاليًا.</div>';
  showMainScrim();$("productModal").classList.add("show");$("productModal").scrollTop=0;
 }
@@ -3075,7 +3076,7 @@ function renderCart(){
     const p=products.find(x=>String(x.id)===String(item.id));
     const price=Number(p.price||0)*(1-Number(p.discount||0)/100);
     const key=encodeURIComponent(item.key);
-    return `<div class="wa-cart-item">${item.image?`<img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.name||'')}">`:''}<div class="wa-cart-item-info"><strong>${escapeHTML(item.name||p.name||'')}${item.giftGroupId?' 🎁':''}</strong><div class="cart-meta">${[item.color,item.size].filter(Boolean).map(escapeHTML).join(' · ')}</div><div class="wa-item-price">${price.toFixed(2)} ${escapeHTML(p.currency||'ر.ي')}</div><div class="wa-item-controls"><button type="button" data-cart-key="${key}" onclick="changeWaQty(this,-1)">−</button><b>${Number(item.qty||1)}</b><button type="button" data-cart-key="${key}" onclick="changeWaQty(this,1)" ${item.giftGroupId?'disabled':''}>+</button></div></div><button class="wa-item-remove" type="button" data-cart-key="${key}" onclick="removeWaItem(this)" aria-label="حذف المنتج">♧</button></div>`;
+    return `<div class="wa-cart-item">${item.image?`<img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.name||'')}">`:''}<div class="wa-cart-item-info"><strong>${escapeHTML(item.name||p.name||'')}${item.giftGroupId?' 🎁':''}</strong><div class="cart-meta">${[item.color,item.size].filter(Boolean).map(escapeHTML).join(' · ')}</div><div class="wa-item-price">${price.toFixed(2)} ${escapeHTML(storeCurrency())}</div><div class="wa-item-controls"><button type="button" data-cart-key="${key}" onclick="changeWaQty(this,-1)">−</button><b>${Number(item.qty||1)}</b><button type="button" data-cart-key="${key}" onclick="changeWaQty(this,1)" ${item.giftGroupId?'disabled':''}>+</button></div></div><button class="wa-item-remove" type="button" data-cart-key="${key}" onclick="removeWaItem(this)" aria-label="حذف المنتج">♧</button></div>`;
   }).join(''):'<div class="empty">السلة فارغة</div>';
   const t=calculateCart(),fmt=n=>Number(n||0).toFixed(2)+' '+t.currency;
   $("waSubtotal").textContent=fmt(t.subtotal);$("waDiscount").textContent='− '+fmt(t.discount);$("cartTotal").textContent=fmt(t.total);
@@ -3103,7 +3104,7 @@ function sendCartToWhatsApp(){
   const t=calculateCart();let lines=['🛒 طلب جديد من '+getStoreEyebrow(),''];
   if(name)lines.push('الاسم: '+name);if(phone)lines.push('الهاتف: '+phone);
   lines.push('عنوان التوصيل: '+address,'','المنتجات:');
-  cart.forEach((i,n)=>{const p=products.find(x=>String(x.id)===String(i.id));if(!p)return;const price=Number(p.price||0)*(1-Number(p.discount||0)/100);lines.push(`${n+1}. ${i.name||p.name} × ${i.qty} — ${(price*Number(i.qty||1)).toFixed(2)} ${p.currency||'ر.ي'}`);if(i.color)lines.push('اللون: '+i.color);if(i.size)lines.push('المقاس: '+i.size);if(i.giftGroupId)lines.push('🎁 هدية')});
+  cart.forEach((i,n)=>{const p=products.find(x=>String(x.id)===String(i.id));if(!p)return;const price=Number(p.price||0)*(1-Number(p.discount||0)/100);lines.push(`${n+1}. ${i.name||p.name} × ${i.qty} — ${(price*Number(i.qty||1)).toFixed(2)} ${storeCurrency()}`);if(i.color)lines.push('اللون: '+i.color);if(i.size)lines.push('المقاس: '+i.size);if(i.giftGroupId)lines.push('🎁 هدية')});
   const gifts=giftNotes();if(gifts)lines.push('',gifts);
   lines.push('','المجموع الفرعي: '+t.subtotal.toFixed(2)+' '+t.currency);
   if(t.discount)lines.push('الخصم: '+t.discount.toFixed(2)+' '+t.currency,'كوبون: '+(currentCoupon?.code||''));
@@ -3131,13 +3132,13 @@ function getWrapOptions(){
   return opts.map(x=>typeof x==="string"?{name:x,price:0}:x)
 }
 function openGiftBuilder(preselectedId=""){
-  const available=products.filter(p=>!isBundleProduct(p)&&Number(p.stock||0)>0);$("giftProducts").innerHTML=available.map(p=>`<label class="gift-product-check"><input type="checkbox" value="${escapeHTML(String(p.id))}" ${String(p.id)===String(preselectedId)?"checked":""} onchange="renderGiftSummary()">${p.images?.[0]?`<img src="${escapeHTML(p.images[0])}">`:""}<span><b>${escapeHTML(p.name)}</b><br><small>${Number(p.price||0)*(1-Number(p.discount||0)/100)} ${escapeHTML(p.currency||"ر.ي")}</small></span></label>`).join("");
+  const available=products.filter(p=>!isBundleProduct(p)&&Number(p.stock||0)>0);$("giftProducts").innerHTML=available.map(p=>`<label class="gift-product-check"><input type="checkbox" value="${escapeHTML(String(p.id))}" ${String(p.id)===String(preselectedId)?"checked":""} onchange="renderGiftSummary()">${p.images?.[0]?`<img src="${escapeHTML(p.images[0])}">`:""}<span><b>${escapeHTML(p.name)}</b><br><small>${Number(p.price||0)*(1-Number(p.discount||0)/100)} ${escapeHTML(storeCurrency())}</small></span></label>`).join("");
   $("giftWrap").innerHTML=getWrapOptions().map((o,i)=>`<option value="${i}">${escapeHTML(o.name)}${Number(o.price||0)>0?` (+${Number(o.price).toFixed(2)})`:""}</option>`).join("");
   ["giftSenderName","giftSenderPhone","giftRecipientName","giftRecipientPhone","giftCardText"].forEach(id=>$(id).value="");renderGiftSummary();showMainScrim();$("giftModal").classList.add("show")
 }
 function closeGiftBuilder(){$("giftModal").classList.remove("show");updateMainScrim()}
 function selectedGiftProducts(){return [...document.querySelectorAll('#giftProducts input[type="checkbox"]:checked')].map(c=>products.find(p=>String(p.id)===String(c.value))).filter(Boolean)}
-function renderGiftSummary(){const selected=selectedGiftProducts(),wrap=getWrapOptions()[Number($("giftWrap").value||0)]||{name:"",price:0};let total=selected.reduce((t,p)=>t+Number(p.price||0)*(1-Number(p.discount||0)/100),0)+Number(wrap.price||0);const cur=selected[0]?.currency||"ر.ي";$("giftSummary").innerHTML=`المنتجات المختارة: <b>${selected.length}</b><br>التغليف: <b>${escapeHTML(wrap.name)}</b><br>قيمة المنتجات التقريبية: <b>${total.toFixed(2)} ${escapeHTML(cur)}</b><br><small>رسوم التغليف الإضافية إن وجدت تُحفظ مع بيانات الهدية؛ ولإضافتها حسابيًا إلى إجمالي الطلب اجعل التغليف منتج خدمة داخل جدول products.</small>`}
+function renderGiftSummary(){const selected=selectedGiftProducts(),wrap=getWrapOptions()[Number($("giftWrap").value||0)]||{name:"",price:0};let total=selected.reduce((t,p)=>t+Number(p.price||0)*(1-Number(p.discount||0)/100),0)+Number(wrap.price||0);const cur=storeCurrency();$("giftSummary").innerHTML=`المنتجات المختارة: <b>${selected.length}</b><br>التغليف: <b>${escapeHTML(wrap.name)}</b><br>قيمة المنتجات التقريبية: <b>${total.toFixed(2)} ${escapeHTML(cur)}</b><br><small>رسوم التغليف الإضافية إن وجدت تُحفظ مع بيانات الهدية؛ ولإضافتها حسابيًا إلى إجمالي الطلب اجعل التغليف منتج خدمة داخل جدول products.</small>`}
 function addGiftToCart(){
   const selected=selectedGiftProducts();if(!selected.length){toast("اختر منتجًا واحدًا على الأقل");return}
   const senderName=$("giftSenderName").value.trim(),senderPhone=normalizePhone($("giftSenderPhone").value),recipientName=$("giftRecipientName").value.trim(),recipientPhone=normalizePhone($("giftRecipientPhone").value),cardText=$("giftCardText").value.trim();
@@ -3153,9 +3154,9 @@ function giftNotes(){
 }
 
 function calculateCart(){
-  let subtotal=0,currency=null;cart.forEach(i=>{const p=products.find(x=>String(x.id)===String(i.id));if(!p)return;const pr=Number(p.price||0)*(1-Number(p.discount||0)/100);subtotal+=pr*Number(i.qty||1);currency=currency||p.currency||"ر.ي"});let discount=0;
+  let subtotal=0,currency=null;cart.forEach(i=>{const p=products.find(x=>String(x.id)===String(i.id));if(!p)return;const pr=Number(p.price||0)*(1-Number(p.discount||0)/100);subtotal+=pr*Number(i.qty||1);currency=currency||storeCurrency()});let discount=0;
   if(currentCoupon){const min=Number(currentCoupon.min_order||0);if(subtotal>=min){const type=currentCoupon.discount_type||"percentage",val=Number(currentCoupon.value||0);discount=type==="fixed"?Math.min(subtotal,val):subtotal*(val/100);if(currentCoupon.max_discount!=null)discount=Math.min(discount,Number(currentCoupon.max_discount))}}
-  return{subtotal,discount,total:Math.max(0,subtotal-discount),currency:currency||"ر.ي"}
+  return{subtotal,discount,total:Math.max(0,subtotal-discount),currency:storeCurrency()}
 }
 function applyCoupon(){const code=$("couponInput").value.trim().toUpperCase();if(!code){currentCoupon=null;$("couponMessage").textContent="";renderPaymentDetails();return}const c=coupons.find(x=>String(x.code).toUpperCase()===code);if(!c){currentCoupon=null;$("couponMessage").style.color="var(--danger)";$("couponMessage").textContent="الكوبون غير صحيح.";renderPaymentDetails();return}if(c.expires_at&&new Date(c.expires_at)<new Date()){currentCoupon=null;$("couponMessage").style.color="var(--danger)";$("couponMessage").textContent="انتهت صلاحية الكوبون.";return}currentCoupon=c;$("couponMessage").style.color="var(--ok)";$("couponMessage").textContent="تم تطبيق الكوبون ✓";renderPaymentDetails()}
 function renderPaymentDetails(){
@@ -3323,7 +3324,7 @@ function buildInvoiceSnapshotFromOrder(o){
   const liveItems=Array.isArray(o?.items)?o.items:[];
   const savedItems=Array.isArray(saved.items)?saved.items:[];
   const sourceItems=savedItems.length?savedItems:liveItems;
-  const currency=savedTotals.currency||o?.currency||sourceItems.find(i=>i?.currency)?.currency||"ر.ي";
+  const currency=savedTotals.currency||o?.currency||sourceItems.find(i=>i?.currency)?.currency||storeCurrency();
   const items=sourceItems.map(i=>{
     const qty=Math.max(1,Number(i?.quantity??i?.qty??1)||1);
     const unit=Number(i?.unit_price??i?.price??0)||0;
@@ -3625,3 +3626,4 @@ async function initializeStore(){
 initializeStore();
 </script>
 </body>
+</html>
