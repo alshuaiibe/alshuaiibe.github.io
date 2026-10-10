@@ -1282,6 +1282,42 @@ button,
 #cartDrawer.wa-cart .drawer-foot{display:none}
 @media(max-width:740px){#cartDrawer.wa-cart .wa-cart-layout{grid-template-columns:1fr;gap:15px;padding:0 12px 25px}#cartDrawer.wa-cart .wa-cart-products{grid-row:1}#cartDrawer.wa-cart .wa-cart-summary{grid-row:2;padding:18px}#cartDrawer.wa-cart .drawer-head{padding:13px 14px}#cartDrawer.wa-cart .wa-cart-item{padding:11px;gap:10px;min-height:105px}#cartDrawer.wa-cart .wa-cart-item img{width:75px;height:80px}#cartDrawer.wa-cart .wa-item-controls button{width:35px;height:35px}}
 
+
+/* ALSHUAIIBE full product experience */
+#productModal.product-modal{position:fixed;inset:0;top:0;left:0;transform:none;width:100vw;max-width:none;height:100dvh;max-height:none;overflow-y:auto;border-radius:0;padding:0;background:#fff;z-index:110;overscroll-behavior:contain}
+#productModal .product-detail{max-width:1390px;margin:0 auto;padding:75px 5% 35px;display:grid;grid-template-columns:1fr 1.08fr;gap:5%;align-items:start}
+#productModal .product-detail-image{grid-column:1;grid-row:1;background:#fafafa;min-height:530px;position:relative;border-radius:3px;display:flex;align-items:center;justify-content:center;padding:35px}
+#productModal .product-detail-image img{width:100%;height:480px;max-height:none;object-fit:contain}
+#productModal .product-detail-info{grid-column:2;grid-row:1;padding:25px 0;overflow:visible}
+#productModal .product-detail-info h2{font-size:clamp(30px,3.6vw,52px);color:#123d32;margin:12px 0 14px;line-height:1.4}
+#productModal #modalProductPrice{justify-content:flex-start!important;margin:0 0 20px!important}
+#productModal #modalProductPrice .price{font-size:27px;color:#a63d48}
+#productModal #modalProductDescription{font-size:15px;line-height:2.2!important;padding:22px 0;border-top:1px solid #e5e5e5;border-bottom:1px solid #e5e5e5;margin:18px 0}
+#productModal .detail-close{position:fixed;left:20px;top:85px;z-index:5;width:43px;height:43px;border:1px solid #e1e1e1;border-radius:50%;background:#fff;font-size:23px}
+#productModal .detail-breadcrumb{position:absolute;right:5%;top:25px;color:#777;font-size:13px}
+#productModal .detail-brand{font-size:16px;font-weight:800;color:#ae7c4c;margin-bottom:6px}
+#productModal .detail-stock{font-size:14px;font-weight:700;color:#275846;margin-bottom:15px}
+#productModal .detail-section-title{font-size:19px;font-weight:800;margin:14px 0 4px}
+#productModal .detail-actions{display:grid;grid-template-columns:1fr auto;gap:10px;margin-top:20px}
+#productModal #modalAddButton{margin:0!important;border-radius:5px;background:#111;color:#fff;min-height:50px}
+#productModal .detail-qty{display:flex;align-items:center;border:1px solid #ddd;border-radius:30px;overflow:hidden;gap:15px;padding:5px 10px}
+#productModal .detail-qty button{border:0;background:#f6f3ef;color:#2674aa;border-radius:50%;width:33px;height:33px;font-size:21px}
+#productModal .detail-favorite{width:100%;margin-top:12px;border:1px solid #222;border-radius:5px;background:white;color:#222;min-height:48px;font-weight:700}
+#productModal #modalGiftButton{background:#f6f0e4;color:#765128;border:1px solid #d8c6a3;border-radius:5px}
+#productModal .detail-gallery{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;margin-top:15px}
+#productModal .detail-gallery button{width:65px;height:70px;border:1px solid #ddd;background:#fff;border-radius:6px;padding:4px}
+#productModal .detail-gallery button.active{border:2px solid #164334}
+#productModal .detail-gallery img{width:100%;height:100%;object-fit:contain}
+#productModal .detail-recommendations{max-width:1390px;margin:35px auto 70px;padding:0 5%}
+#productModal .detail-recommendations h2{font-size:30px;color:#123d32;margin:0 0 5px}
+#productModal .detail-recommendations p{color:#777;margin:0 0 20px}
+#productModal .detail-related-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:15px}
+#productModal .detail-related-card{border:1px solid #eee;padding:10px;text-align:center;cursor:pointer;background:#fff}
+#productModal .detail-related-card img{width:100%;height:175px;object-fit:contain}
+#productModal .detail-related-card strong{display:block;font-size:13px;margin:8px 0}
+#productModal .detail-related-card span{color:#a63d48;font-weight:800}
+@media(max-width:760px){#productModal .product-detail{padding:75px 18px 20px;grid-template-columns:1fr;gap:8px}#productModal .product-detail-image{grid-column:1;grid-row:1;min-height:290px;padding:12px}#productModal .product-detail-image img{height:310px}#productModal .product-detail-info{grid-column:1;grid-row:2;padding:12px 0}#productModal .detail-close{top:18px;left:16px}#productModal .detail-breadcrumb{top:28px;right:18px;max-width:75%;font-size:11px}#productModal .detail-related-grid{grid-template-columns:repeat(2,minmax(0,1fr))}#productModal .detail-recommendations{padding:0 18px}#productModal .detail-related-card img{height:145px}}
+
 </style>
 </head>
 
@@ -1426,19 +1462,25 @@ button,
 
 <div id="modalScrim" class="scrim" onclick="closeAllModals()"></div>
 
-<div id="productModal" class="modal product-modal">
+<div id="productModal" class="modal product-modal" role="dialog" aria-modal="true" aria-label="تفاصيل المنتج">
+  <button class="detail-close" type="button" onclick="closeProductModal()" aria-label="إغلاق">×</button>
+  <div id="detailBreadcrumb" class="detail-breadcrumb"></div>
   <div class="product-detail">
-    <div class="product-detail-image"><img id="modalProductImage" alt=""></div>
+    <div class="product-detail-image"><div style="width:100%"><img id="modalProductImage" alt=""><div id="detailGallery" class="detail-gallery"></div></div></div>
     <div class="product-detail-info">
-      <button class="close-btn" style="float:left;margin-bottom:10px" onclick="closeProductModal()">✕</button>
+      <div id="detailBrand" class="detail-brand"></div>
       <h2 id="modalProductName"></h2>
-      <div id="modalProductPrice" class="price-row" style="justify-content:flex-start;margin-bottom:14px"></div>
-      <div id="modalProductDescription" style="color:var(--ink-soft);line-height:1.9;white-space:pre-line"></div>
+      <div id="modalProductPrice" class="price-row"></div>
+      <div id="detailStock" class="detail-stock"></div>
+      <div class="detail-section-title">تفاصيل المنتج</div>
+      <div id="modalProductDescription" style="color:var(--ink-soft);white-space:pre-line"></div>
       <div id="modalOptions"></div>
-      <button id="modalAddButton" class="btn" style="width:100%;margin-top:20px">أضف للسلة</button>
-      <button id="modalGiftButton" class="btn gold" style="width:100%;margin-top:8px">🎁 شراء كهدية</button>
+      <div class="detail-actions"><button id="modalAddButton" class="btn" type="button">أضف إلى السلة</button><div class="detail-qty"><button type="button" onclick="changeDetailQty(-1)">−</button><b id="detailQty">1</b><button type="button" onclick="changeDetailQty(1)">+</button></div></div>
+      <button id="detailFavorite" class="detail-favorite" type="button" onclick="favoriteCurrentDetail()">♡ المفضلة</button>
+      <button id="modalGiftButton" class="btn gold" style="width:100%;margin-top:10px" type="button">🎁 شراء كهدية</button>
     </div>
   </div>
+  <section class="detail-recommendations"><h2>قد تعجبك أيضًا</h2><p id="detailRelatedSubtitle">اكتشف منتجات أخرى من نفس البراند</p><div id="detailRelatedGrid" class="detail-related-grid"></div></section>
 </div>
 
 <!-- NEW: GIFT BUILDER -->
@@ -2975,14 +3017,38 @@ window.addEventListener(
 });
 
 function quickAdd(productId){const p=products.find(x=>String(x.id)===String(productId));if(!p){toast("المنتج غير موجود");return}if(p.colors?.length||p.sizes?.length){openProduct(productId);return}addCartItem(p,null,null)}
+let detailQuantity=1;
+function productBrandName(p){return String(p.brand_name||p.brand?.name||p.brand||p.brandName||p.brand_id||p.brandId||"").trim()}
+function detailGallerySelect(index){const p=currentProduct;if(!p)return;const images=Array.isArray(p.images)?p.images:[];$("modalProductImage").src=images[index]||images[0]||"";document.querySelectorAll("#detailGallery button").forEach((b,i)=>b.classList.toggle("active",i===index))}
+function changeDetailQty(delta){if(!currentProduct)return;detailQuantity=Math.max(1,Math.min(Number(currentProduct.stock||1),detailQuantity+delta));$("detailQty").textContent=detailQuantity}
+function favoriteCurrentDetail(){if(!currentProduct)return;toggleFavorite(currentProduct.id);$("detailFavorite").textContent=favorites.includes(currentProduct.id)?"♥ في المفضلة":"♡ المفضلة"}
 function openProduct(productId){
-  const p=products.find(x=>String(x.id)===String(productId));if(!p)return;currentProduct=p;$("modalProductImage").src=p.images?.[0]||"";$("modalProductName").textContent=p.name||"";
-  const price=Number(p.price||0),discount=Number(p.discount||0),final=price*(1-discount/100);$("modalProductPrice").innerHTML=`<span class="price">${final.toFixed(2)} ${escapeHTML(p.currency||"ر.ي")}</span>${discount?`<span class="old-price">${price.toFixed(2)}</span>`:""}`;$("modalProductDescription").textContent=p.description||"";
-  let h="";if(p.colors?.length)h+=`<label>اللون</label><div class="swatches" id="modalColors">${p.colors.map((c,i)=>`<span class="swatch ${i===0?"active":""}" onclick="selectSwatch(this)">${escapeHTML(c)}</span>`).join("")}</div>`;if(p.sizes?.length)h+=`<label>الحجم</label><div class="swatches" id="modalSizes">${p.sizes.map((s,i)=>`<span class="swatch ${i===0?"active":""}" onclick="selectSwatch(this)">${escapeHTML(s)}</span>`).join("")}</div>`;$("modalOptions").innerHTML=h;
-  const b=$("modalAddButton");b.disabled=Number(p.stock||0)<=0;b.textContent=b.disabled?"نفدت الكمية":"أضف للسلة";b.onclick=addCurrentProduct;$("modalGiftButton").disabled=b.disabled;$("modalGiftButton").onclick=()=>{closeProductModal();openGiftBuilder(String(p.id))};showMainScrim();$("productModal").classList.add("show")
+ const p=products.find(x=>String(x.id)===String(productId));if(!p)return;
+ currentProduct=p;detailQuantity=1;$("detailQty").textContent="1";
+ $("modalProductImage").src=p.images?.[0]||"";$("modalProductImage").alt=p.name||"";$("modalProductName").textContent=p.name||"";
+ const price=Number(p.price||0),discount=Number(p.discount||0),final=price*(1-discount/100);
+ $("modalProductPrice").innerHTML=`<span class="price">${final.toFixed(2)} ${escapeHTML(p.currency||"ر.ي")}</span>${discount?`<span class="old-price">${price.toFixed(2)}</span>`:""}`;
+ $("modalProductDescription").textContent=p.description||"لا توجد تفاصيل إضافية لهذا المنتج.";
+ const brand=productBrandName(p),category=getProductCategory(p);
+ $("detailBrand").textContent=brand||category?.name||"";
+ $("detailBreadcrumb").textContent=["الرئيسية",brand||category?.name,p.name].filter(Boolean).join(" / ");
+ $("detailStock").textContent=Number(p.stock||0)>0?`الكمية المتوفرة: ${Number(p.stock)} قطعة`:"غير متوفر حاليًا";
+ $("detailFavorite").textContent=favorites.includes(p.id)?"♥ في المفضلة":"♡ المفضلة";
+ const images=Array.isArray(p.images)?p.images.filter(Boolean):[];
+ $("detailGallery").innerHTML=images.length>1?images.map((src,i)=>`<button type="button" class="${i===0?'active':''}" onclick="detailGallerySelect(${i})"><img src="${escapeHTML(src)}" alt="صورة ${i+1}"></button>`).join(""):"";
+ let h="";if(p.colors?.length)h+=`<label>اللون</label><div class="swatches" id="modalColors">${p.colors.map((c,i)=>`<span class="swatch ${i===0?'active':''}" onclick="selectSwatch(this)">${escapeHTML(c)}</span>`).join("")}</div>`;
+ if(p.sizes?.length)h+=`<label>الحجم</label><div class="swatches" id="modalSizes">${p.sizes.map((z,i)=>`<span class="swatch ${i===0?'active':''}" onclick="selectSwatch(this)">${escapeHTML(z)}</span>`).join("")}</div>`;
+ $("modalOptions").innerHTML=h;
+ const b=$("modalAddButton");b.disabled=Number(p.stock||0)<=0;b.textContent=b.disabled?"نفدت الكمية":"أضف إلى السلة";b.onclick=addCurrentProduct;
+ $("modalGiftButton").disabled=b.disabled;$("modalGiftButton").onclick=()=>{closeProductModal();openGiftBuilder(String(p.id))};
+ // Match only explicit brand fields. Never pretend category is a brand.
+ const related=brand?products.filter(x=>String(x.id)!==String(p.id)&&productBrandName(x).toLowerCase()===brand.toLowerCase()).slice(0,10):[];
+ $("detailRelatedSubtitle").textContent=brand?`اكتشف منتجات أخرى من ${brand}`:"لا توجد معلومات براند لهذا المنتج";
+ $("detailRelatedGrid").innerHTML=related.length?related.map(x=>{const val=Number(x.price||0)*(1-Number(x.discount||0)/100);return `<article class="detail-related-card" onclick='openProduct(${JSON.stringify(String(x.id))})'><img loading="lazy" src="${escapeHTML(x.images?.[0]||'')}" alt="${escapeHTML(x.name||'')}"><strong>${escapeHTML(x.name||'')}</strong><span>${val.toFixed(2)} ${escapeHTML(x.currency||'ر.ي')}</span></article>`}).join(""):'<div class="hint">لا توجد منتجات أخرى من نفس البراند حاليًا.</div>';
+ showMainScrim();$("productModal").classList.add("show");$("productModal").scrollTop=0;
 }
 function selectSwatch(el){[...el.parentElement.children].forEach(x=>x.classList.remove("active"));el.classList.add("active")}
-function addCurrentProduct(){if(!currentProduct)return;const c=document.querySelector("#modalColors .active")?.textContent?.trim()||null,s=document.querySelector("#modalSizes .active")?.textContent?.trim()||null;addCartItem(currentProduct,c,s);closeProductModal()}
+function addCurrentProduct(){if(!currentProduct)return;const c=document.querySelector("#modalColors .active")?.textContent?.trim()||null,z=document.querySelector("#modalSizes .active")?.textContent?.trim()||null;const p=currentProduct;for(let i=0;i<detailQuantity;i++)addCartItem(p,c,z);closeProductModal()}
 
 function addCartItem(product,color,size,extra={}){
   if(!product?.id){toast("تعذر إضافة المنتج");return}if(Number(product.stock||0)<=0){toast("المنتج غير متوفر");return}
