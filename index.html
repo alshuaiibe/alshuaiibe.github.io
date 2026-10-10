@@ -3029,9 +3029,12 @@ function openProduct(productId){
  const price=Number(p.price||0),discount=Number(p.discount||0),final=price*(1-discount/100);
  $("modalProductPrice").innerHTML=`<span class="price">${final.toFixed(2)} ${escapeHTML(p.currency||"ر.ي")}</span>${discount?`<span class="old-price">${price.toFixed(2)}</span>`:""}`;
  $("modalProductDescription").textContent=p.description||"لا توجد تفاصيل إضافية لهذا المنتج.";
- const brand=productBrandName(p),category=getProductCategory(p);
- $("detailBrand").textContent=brand||category?.name||"";
- $("detailBreadcrumb").textContent=["الرئيسية",brand||category?.name,p.name].filter(Boolean).join(" / ");
+ // The store identity is ALSHUAIIBE; the label here is the product's catalog section.
+ const category=getProductCategory(p);
+ const sectionName=String(category?.name||"").trim();
+ $("detailBrand").textContent=sectionName;
+ $("detailBrand").style.display=sectionName?"":"none";
+ $("detailBreadcrumb").textContent=["الرئيسية",sectionName,p.name].filter(Boolean).join(" / ");
  $("detailStock").textContent=Number(p.stock||0)>0?`الكمية المتوفرة: ${Number(p.stock)} قطعة`:"غير متوفر حاليًا";
  $("detailFavorite").textContent=favorites.includes(p.id)?"♥ في المفضلة":"♡ المفضلة";
  const images=Array.isArray(p.images)?p.images.filter(Boolean):[];
@@ -3041,10 +3044,17 @@ function openProduct(productId){
  $("modalOptions").innerHTML=h;
  const b=$("modalAddButton");b.disabled=Number(p.stock||0)<=0;b.textContent=b.disabled?"نفدت الكمية":"أضف إلى السلة";b.onclick=addCurrentProduct;
  $("modalGiftButton").disabled=b.disabled;$("modalGiftButton").onclick=()=>{closeProductModal();openGiftBuilder(String(p.id))};
- // Match only explicit brand fields. Never pretend category is a brand.
- const related=brand?products.filter(x=>String(x.id)!==String(p.id)&&productBrandName(x).toLowerCase()===brand.toLowerCase()).slice(0,10):[];
- $("detailRelatedSubtitle").textContent=brand?`اكتشف منتجات أخرى من ${brand}`:"لا توجد معلومات براند لهذا المنتج";
- $("detailRelatedGrid").innerHTML=related.length?related.map(x=>{const val=Number(x.price||0)*(1-Number(x.discount||0)/100);return `<article class="detail-related-card" onclick='openProduct(${JSON.stringify(String(x.id))})'><img loading="lazy" src="${escapeHTML(x.images?.[0]||'')}" alt="${escapeHTML(x.name||'')}"><strong>${escapeHTML(x.name||'')}</strong><span>${val.toFixed(2)} ${escapeHTML(x.currency||'ر.ي')}</span></article>`}).join(""):'<div class="hint">لا توجد منتجات أخرى من نفس البراند حاليًا.</div>';
+ // Recommend from the SAME catalog section (brand category), not from all products.
+ // Reuse the exact matching function used by the storefront's category groups.
+ const related=category
+   ?products.filter(x=>String(x.id)!==String(p.id)&&productBelongsToCategory(x,category)).slice(0,10)
+   :[];
+ $("detailRelatedSubtitle").textContent=sectionName
+   ?`اكتشف منتجات أخرى من قسم ${sectionName}`
+   :"لا يوجد قسم محدد لهذا المنتج";
+ $("detailRelatedGrid").innerHTML=related.length
+   ?related.map(x=>{const val=Number(x.price||0)*(1-Number(x.discount||0)/100);return `<article class="detail-related-card" onclick='openProduct(${JSON.stringify(String(x.id))})'><img loading="lazy" src="${escapeHTML(x.images?.[0]||'')}" alt="${escapeHTML(x.name||'')}"><strong>${escapeHTML(x.name||'')}</strong><span>${val.toFixed(2)} ${escapeHTML(x.currency||'ر.ي')}</span></article>`}).join("")
+   :'<div class="hint">لا توجد منتجات أخرى من نفس القسم حاليًا.</div>';
  showMainScrim();$("productModal").classList.add("show");$("productModal").scrollTop=0;
 }
 function selectSwatch(el){[...el.parentElement.children].forEach(x=>x.classList.remove("active"));el.classList.add("active")}
@@ -3615,4 +3625,3 @@ async function initializeStore(){
 initializeStore();
 </script>
 </body>
-</html>
