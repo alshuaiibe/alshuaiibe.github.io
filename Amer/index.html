@@ -276,14 +276,7 @@ main{max-width:1500px;margin:auto;padding:18px 14px 80px}.card{margin-bottom:16p
 <div><label>السعر</label><input id="productPrice" type="number" step="0.01"></div>
 <div><label>الخصم %</label><input id="productDiscount" type="number" min="0" max="100" value="0"></div>
 <div><label>المخزون</label><input id="productStock" type="number" min="0" value="0"></div>
-<div>
-<label>العملة</label>
-<select id="productCurrency">
-<option value="ر.ي">🇾🇪 ريال يمني — ر.ي</option>
-<option value="ر.س">🇸🇦 ريال سعودي — ر.س</option>
-<option value="$">🇺🇸 دولار أمريكي — $</option>
-</select>
-</div>
+
 <div><label>ترتيب الظهور</label><input id="productSortOrder" type="number" value="0"></div>
 </div>
 <label>وصف المنتج</label>
@@ -713,6 +706,7 @@ main{max-width:1500px;margin:auto;padding:18px 14px 80px}.card{margin-bottom:16p
   <div class="card">
     <h2>⚙️ إعدادات المتجر</h2>
 
+<div class="card" style="background:#fffdf7;border:1px solid rgba(169,121,60,.3)"><h3>💱 العملة الأساسية للمتجر</h3><p class="note">عملة واحدة لجميع الأسعار الجديدة وعرض المنتجات والسلة. تغيير العملة لا يحوّل الأرقام إلى قيم صرف جديدة؛ راجع الأسعار قبل النشر. الطلبات القديمة تحتفظ بعملتها المسجلة.</p><label for="setStoreCurrency">عملة المتجر</label><select id="setStoreCurrency"><option value="ر.س">🇸🇦 ريال سعودي (ر.س)</option><option value="$">🇺🇸 دولار أمريكي ($)</option><option value="ر.ي">🇾🇪 ريال يمني (ر.ي)</option></select></div>
     <h3>هوية المتجر</h3>
     <div class="grid2">
       <div><label>اسم المتجر</label><input id="setStoreName"></div>
@@ -815,7 +809,8 @@ const policies=[["about","من نحن"],["returns","سياسة الاستبدا�
 
 function toast(m){$("toast").textContent=m;$("toast").classList.add("show");setTimeout(()=>$("toast").classList.remove("show"),2200)}
 function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
-function money(v,c="ر.ي"){return Number(v||0).toFixed(2)+" "+(c||"ر.ي")}
+function storeCurrency(){return ["ر.س","$","ر.ي"].includes(generalSettings.currency)?generalSettings.currency:"ر.ي"}
+function money(v,c){return Number(v||0).toFixed(2)+" "+(c||storeCurrency())}
 function parseLines(v){return String(v||"").split(/[\n,]+/).map(x=>x.trim()).filter(Boolean)}
 function formatDate(v){if(!v)return"—";try{return new Date(v).toLocaleString("ar")}catch{return String(v)}}
 function statusText(s){return({pending:"قيد الانتظار",confirmed:"تم التأكيد",processing:"قيد التجهيز",shipped:"تم الشحن",delivered:"تم التسليم",cancelled:"ملغي",refunded:"مسترجع"})[s]||s||"—"}
@@ -1908,7 +1903,7 @@ function prepareBatchProducts(){
       price:0,
       stock:0,
       discount:0,
-      currency:"ر.ي",
+      currency:storeCurrency(),
       is_active:true,
       is_new:true,
       sort_order:0
@@ -2114,24 +2109,7 @@ function renderBatchProducts(){
 
               <div>
                 <label>العملة</label>
-                <select
-                  onchange="updateBatchDraft(${index},'currency',this.value)"
-                >
-                  <option
-                    value="ر.ي"
-                    ${String(draft.currency||"ر.ي")==="ر.ي"?"selected":""}
-                  >🇾🇪 ريال يمني — ر.ي</option>
-
-                  <option
-                    value="ر.س"
-                    ${String(draft.currency||"")==="ر.س"?"selected":""}
-                  >🇸🇦 ريال سعودي — ر.س</option>
-
-                  <option
-                    value="$"
-                    ${String(draft.currency||"")==="$"?"selected":""}
-                  >🇺🇸 دولار أمريكي — $</option>
-                </select>
+                <span class="note">العملة: ${esc(storeCurrency())} (من إعدادات المتجر)</span>
               </div>
 
               <div>
@@ -2721,7 +2699,7 @@ async function saveBatchProducts(){
 
         currency:
           String(
-            draft.currency
+            storeCurrency()
             ||"ر.ي"
           ).trim()
           ||"ر.ي",
@@ -2829,22 +2807,22 @@ async function saveProduct(){
  const b=$("saveProductButton");b.disabled=true;
  try{
   const uploaded=$("productImageFiles").files.length?await uploadMultipleFiles($("productImageFiles").files,"products","productUploadStatus"):[];
-  const row={name,category,description:$("productDescription").value.trim()||null,price:Number($("productPrice").value||0),discount:Number($("productDiscount").value||0),stock:Number($("productStock").value||0),currency:$("productCurrency").value.trim()||"ر.ي",images:[...editingProductImages,...uploaded],colors:parseLines($("productColors").value),sizes:parseLines($("productSizes").value),is_active:$("productActive").checked,is_new:$("productNew").checked,sort_order:Number($("productSortOrder").value||0)};
+  const row={name,category,description:$("productDescription").value.trim()||null,price:Number($("productPrice").value||0),discount:Number($("productDiscount").value||0),stock:Number($("productStock").value||0),currency:storeCurrency(),images:[...editingProductImages,...uploaded],colors:parseLines($("productColors").value),sizes:parseLines($("productSizes").value),is_active:$("productActive").checked,is_new:$("productNew").checked,sort_order:Number($("productSortOrder").value||0)};
   const r=id?await db.from("products").update(row).eq("id",id):await db.from("products").insert(row);if(r.error)throw r.error;toast(id?"تم تعديل المنتج ✓":"تمت إضافة المنتج ✓");resetProductForm();await loadAll();
  }catch(e){alert("تعذر حفظ المنتج:\n"+e.message)}finally{b.disabled=false;setUploadStatus("productUploadStatus","",false)}
 }
-function editProduct(id){const p=products.find(x=>String(x.id)===String(id));if(!p)return;$("productId").value=p.id;$("productName").value=p.name||"";$("productCategory").value=p.category||"";$("productPrice").value=Number(p.price||0);$("productDiscount").value=Number(p.discount||0);$("productStock").value=Number(p.stock||0);$("productCurrency").value=p.currency||"ر.ي";$("productSortOrder").value=Number(p.sort_order||0);$("productDescription").value=p.description||"";$("productColors").value=Array.isArray(p.colors)?p.colors.join("\n"):"";$("productSizes").value=Array.isArray(p.sizes)?p.sizes.join("\n"):"";$("productActive").checked=p.is_active!==false;$("productNew").checked=p.is_new===true;editingProductImages=Array.isArray(p.images)?[...p.images]:[];renderExistingProductImages();$("saveProductButton").textContent="حفظ التعديلات"}
-function resetProductForm(){clearGeminiResult();["productId","productName","productPrice","productDescription","productColors","productSizes"].forEach(id=>$(id).value="");$("productCategory").value="";$("productDiscount").value="0";$("productStock").value="0";$("productCurrency").value="ر.ي";$("productSortOrder").value="0";$("productActive").checked=true;$("productNew").checked=false;$("productImageFiles").value="";editingProductImages=[];renderExistingProductImages();$("newProductImagesPreview").innerHTML="";$("saveProductButton").textContent="حفظ المنتج"}
-function renderAdminProducts(){$("productsCount").textContent=products.length+" منتج";$("productsAdminList").innerHTML=products.map(p=>{const img=Array.isArray(p.images)?p.images[0]||"":"";return `<div class="product-admin-card"><div class="product-admin-image">${img?`<img src="${esc(img)}">`:"🛍️"}</div><div><div class="product-admin-name">${esc(p.name)}</div><div class="product-admin-meta">القسم: ${esc(p.category||"—")}<br>السعر: ${money(p.price,p.currency)} · المخزون: ${Number(p.stock||0)} · ${p.is_active!==false?"نشط ✅":"مخفي ⛔"}</div></div><div class="actions"><button class="btn sm" onclick="editProduct('${p.id}')">تعديل</button><button class="btn red sm" onclick="removeRow('products','${p.id}')">حذف</button></div></div>`}).join("")||'<div class="note">لا توجد منتجات.</div>'}
+function editProduct(id){const p=products.find(x=>String(x.id)===String(id));if(!p)return;$("productId").value=p.id;$("productName").value=p.name||"";$("productCategory").value=p.category||"";$("productPrice").value=Number(p.price||0);$("productDiscount").value=Number(p.discount||0);$("productStock").value=Number(p.stock||0);$("productSortOrder").value=Number(p.sort_order||0);$("productDescription").value=p.description||"";$("productColors").value=Array.isArray(p.colors)?p.colors.join("\n"):"";$("productSizes").value=Array.isArray(p.sizes)?p.sizes.join("\n"):"";$("productActive").checked=p.is_active!==false;$("productNew").checked=p.is_new===true;editingProductImages=Array.isArray(p.images)?[...p.images]:[];renderExistingProductImages();$("saveProductButton").textContent="حفظ التعديلات"}
+function resetProductForm(){clearGeminiResult();["productId","productName","productPrice","productDescription","productColors","productSizes"].forEach(id=>$(id).value="");$("productCategory").value="";$("productDiscount").value="0";$("productStock").value="0";$("productSortOrder").value="0";$("productActive").checked=true;$("productNew").checked=false;$("productImageFiles").value="";editingProductImages=[];renderExistingProductImages();$("newProductImagesPreview").innerHTML="";$("saveProductButton").textContent="حفظ المنتج"}
+function renderAdminProducts(){$("productsCount").textContent=products.length+" منتج";$("productsAdminList").innerHTML=products.map(p=>{const img=Array.isArray(p.images)?p.images[0]||"":"";return `<div class="product-admin-card"><div class="product-admin-image">${img?`<img src="${esc(img)}">`:"🛍️"}</div><div><div class="product-admin-name">${esc(p.name)}</div><div class="product-admin-meta">القسم: ${esc(p.category||"—")}<br>السعر: ${money(p.price,storeCurrency())} · المخزون: ${Number(p.stock||0)} · ${p.is_active!==false?"نشط ✅":"مخفي ⛔"}</div></div><div class="actions"><button class="btn sm" onclick="editProduct('${p.id}')">تعديل</button><button class="btn red sm" onclick="removeRow('products','${p.id}')">حذف</button></div></div>`}).join("")||'<div class="note">لا توجد منتجات.</div>'}
 
 /* بقية الإدارة */
 async function saveVariant(){const row={product_id:$("varProduct").value,title:$("varTitle").value.trim(),sku:$("varSku").value.trim()||null,price:$("varPrice").value?Number($("varPrice").value):null,stock:Number($("varStock").value||0),color:$("varColor").value.trim()||null,is_active:true};if(!row.product_id||!row.title){toast("اختر المنتج واكتب الخيار");return}const{error}=await db.from("product_variants").insert(row);if(error)return alert(error.message);await loadAll()}
 function renderVariants(){$("variantsBody").innerHTML=variants.map(v=>`<tr><td>${esc(products.find(p=>String(p.id)===String(v.product_id))?.name||"")}</td><td>${esc(v.title||v.size||"")}</td><td>${esc(v.sku||"")}</td><td>${money(v.price)}</td><td>${Number(v.stock||0)}</td><td><button class="btn red sm" onclick="removeRow('product_variants','${v.id}')">حذف</button></td></tr>`).join("")}
 async function saveBundle(){let id=$("bundleId").value;try{let image_url=$("bundleExistingImage").value||null;const f=$("bundleImageFile").files?.[0];if(f)image_url=await uploadMediaFile(f,"bundles");const row={name:$("bundleName").value.trim(),regular_price:Number($("bundleRegular").value||0),offer_price:Number($("bundleOffer").value||0),stock:Number($("bundleStock").value||0),image_url,description:$("bundleDesc").value.trim()||null,ends_at:$("bundleEnd").value?new Date($("bundleEnd").value).toISOString():null,is_active:true};if(!row.name)throw new Error("اكتب اسم الباقة");const r=id?await db.from("bundles").update(row).eq("id",id).select().single():await db.from("bundles").insert(row).select().single();if(r.error)throw r.error;id=r.data.id;await db.from("bundle_items").delete().eq("bundle_id",id);const items=[...$("bundleProducts").selectedOptions].map(o=>({bundle_id:id,product_id:o.value,quantity:1}));if(items.length){const x=await db.from("bundle_items").insert(items);if(x.error)throw x.error}resetBundle();await loadAll();toast("تم حفظ الباقة")}catch(e){alert(e.message)}}
 function resetBundle(){["bundleId","bundleName","bundleRegular","bundleOffer","bundleStock","bundleDesc","bundleEnd","bundleExistingImage"].forEach(id=>$(id).value="");$("bundleImageFile").value="";$("bundleImagePreview").innerHTML="";[...$("bundleProducts").options].forEach(x=>x.selected=false)}
-function renderBundles(){$("bundleList").innerHTML=bundles.map(b=>`<div class="order-card"><strong>🔥 ${esc(b.name)}</strong><div class="note">${money(b.offer_price,b.currency)} · المخزون: ${Number(b.stock||0)}</div><button class="btn red sm" onclick="removeRow('bundles','${b.id}')">حذف</button></div>`).join("")||"لا توجد باقات."}
+function renderBundles(){$("bundleList").innerHTML=bundles.map(b=>`<div class="order-card"><strong>🔥 ${esc(b.name)}</strong><div class="note">${money(b.offer_price,storeCurrency())} · المخزون: ${Number(b.stock||0)}</div><button class="btn red sm" onclick="removeRow('bundles','${b.id}')">حذف</button></div>`).join("")||"لا توجد باقات."}
 async function saveGift(){const name=$("giftName").value.trim();if(!name)return toast("اكتب اسم التغليف");let image_url=null;const f=$("giftImageFile").files?.[0];if(f)image_url=await uploadMediaFile(f,"gifts");const{error}=await db.from("gift_options").insert({name,price:Number($("giftPrice").value||0),image_url,description:$("giftDesc").value.trim()||null,is_active:true});if(error)return alert(error.message);await loadAll()}
-function renderGifts(){$("giftList").innerHTML=gifts.map(g=>`<div class="order-card"><strong>🎁 ${esc(g.name)}</strong> · ${money(g.price,g.currency)} <button class="btn red sm" onclick="removeRow('gift_options','${g.id}')">حذف</button></div>`).join("")||"لا توجد خيارات تغليف."}
+function renderGifts(){$("giftList").innerHTML=gifts.map(g=>`<div class="order-card"><strong>🎁 ${esc(g.name)}</strong> · ${money(g.price,storeCurrency())} <button class="btn red sm" onclick="removeRow('gift_options','${g.id}')">حذف</button></div>`).join("")||"لا توجد خيارات تغليف."}
 function renderCouponCategoryChoices(){
  const box=$("cpCategoriesBox");if(!box)return;
  box.innerHTML=categories.map(c=>`<label class="check-row" style="margin:0;padding:7px;border:1px solid var(--line);border-radius:10px"><input class="cp-category-check" type="checkbox" value="${esc(c.name)}"><span>${esc(c.name)}</span></label>`).join("")||'<span class="note">لا توجد أقسام بعد.</span>';
@@ -3834,6 +3812,7 @@ async function saveFooterSettings(){
 /* ================= GENERAL SETTINGS ================= */
 
 function fillSimpleSettings(){
+  $("setStoreCurrency").value=storeCurrency();
   $("setStoreName").value=generalSettings.storeName||"الشعيبي";
   $("setStoreNameEn").value=generalSettings.storeNameEn||"ALSHUAIIBE STORE";
   $("setStoreEyebrow").value=generalSettings.storeEyebrow||"متجر الشعيبي";
@@ -3925,6 +3904,7 @@ async function saveGeneralSettings(){
 
     const next={
       ...generalSettings,
+      currency:$("setStoreCurrency").value,
 
       storeName:$("setStoreName").value.trim(),
       storeNameEn:$("setStoreNameEn").value.trim(),
